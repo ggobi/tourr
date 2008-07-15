@@ -1,5 +1,3 @@
-source("geodesic.r")
-source("linear-algebra.r")
 
 basis_random <- function(n, d = 2) {  
   mvn <- matrix(rnorm(n * d), ncol = d)
@@ -28,16 +26,4 @@ basis_better <- function(current, alpha = 0.5, index, method = "linear", max.tri
   }
   
   NA
-}
-
-# Generate bases for the little tour
-bases_little <- function(p, d = 2) {
-  b <- diag(rep(1, p))
-  vars <- combn(p, d)
-  lapply(seq_len(ncol(vars)), function(i) b[, vars[, i]] )
-}
-
-# Pre-determined set of frames
-bases_fixed <- function(basis_set, indx) {
-  basis_set[[indx]]
 }

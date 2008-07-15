@@ -1,5 +1,3 @@
-#source("linear-algebra.r")
-
 # Interpolates between two frames, using geodesic path, as outlined in
 # http:#www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-algs.pdf and
 # http:#www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-math.pdf
