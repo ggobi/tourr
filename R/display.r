@@ -2,7 +2,7 @@
 
 #X r_tour(mtcars[, 1:5])
 #X r_tour(mtcars[, 1:5], little_tour)
-r_tour <- function(data, tour = grand_tour, aps = 1, fps = 30, ...) {
+r_tour <- function(data, tourf = grand_tour, aps = 1, fps = 30, ...) {
   # Standardise data
   data <- apply(data, 2, function(x) (x - min(x)) / diff(range(x)))
   
@@ -35,7 +35,7 @@ r_tour <- function(data, tour = grand_tour, aps = 1, fps = 30, ...) {
   }
 
   cat("Press Ctrl+C to stop tour runnning\n")
-  tour(start, velocity = aps / fps, step_fun = step, target_fun = target, total_steps = Inf, ...)
+  tourf(start, velocity = aps / fps, step_fun = step, target_fun = target, total_steps = Inf, data=data, ...)
 }
 
 
