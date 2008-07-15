@@ -40,27 +40,26 @@ r_tour <- function(data, tour = grand_tour, aps = 1, fps = 30, ...) {
 
 
 
-ggobi_tour <- function(data, tour = grand_tour, ...) {
+ggobi_tour <- function(data, tour = grand_tour, aps = 1, fps = 100, ...) {
   if(!require("rggobi", quiet = TRUE)) {
     stop("rggobi required for ggobi based tour")
   }
-
   
   # Start with plot of first two variables
   start <- matrix(0, nrow = ncol(data), ncol = 2)
-  diag(start) <- 1
-  
+  diag(start) <- runif(2)
+    
   # Display
+  data <- apply(data, 2, function(x) (x - min(x)) / diff(range(x)))
   g <- ggobi(data)
-  gd <- g$data
+  gd <- display(g$data, "2D Tour")
+  
   update_plot <- function(step, proj) {
-    Sys.sleep(0.05)
-    rect(-2, -2, 2, 2, col="#FFFFFFE6", border=NA)
-    points(data %*% proj, pch=20)
+    Sys.sleep(1 / fps)
+    ggobi_display_set_tour_projection(gd, proj)
   }
 
+  cat("Pause the tour in GGobi to allow R control to begin\n")
   cat("Press Ctrl+C to stop tour runnning\n")
-  tour(start, step_fun = update_plot, total_steps = Inf)
+  tour(start, velocity = aps / fps, total_steps = Inf, step_fun = update_plot, ...)
 }
-
-
