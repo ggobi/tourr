@@ -14,18 +14,24 @@ r_tour <- function(data, tour = grand_tour, aps = 1, fps = 30, ...) {
   start <- basis_random(ncol(data), 2)
   
   # Display 
-  range <- c(-sqrt(2), sqrt(2))
-  par(pch="s")
-  plot(NA, NA,xlim=range, ylim=range, xlab="", ylab="", axes=FALSE, frame=TRUE)
+  range <- c(-2, 2)
+  par(pch = "s")
+  plot(NA, NA,xlim=range, ylim=range, xlab="", ylab="", axes=FALSE, frame=TRUE, xaxs="i", yaxs="i")
   step <- function(step, proj) {
     Sys.sleep(1 / fps)
-    rect(-sqrt(2), -sqrt(2), sqrt(2), sqrt(2), col="#FFFFFFE6", border=NA)
+    rect(-1.99, -1.99, 1.99, 1.99, col="#FFFFFFE6", border=NA)
+    
+    # Draw tour axes
+    segments(0, 0, proj[, 1], proj[, 2], col="grey50")
+    theta <- seq(0, 2 * pi, length = 50)
+    lines(cos(theta), sin(theta), col="grey50")
+    points(proj, pch=as.character(1:nrow(proj)), col="grey50Fu")
+
+    # Draw projected points
     points(data %*% proj, pch=20)
-    segments(0, 0, proj[, 1], proj[, 2], col="red")
-    points(proj, pch=as.character(1:nrow(proj)), col="red")
   }
   target <- function(target) {
-    rect(-sqrt(2), -sqrt(2), sqrt(2), sqrt(2), col="#7F7F7F33", border=NA)
+    rect(-1.99, -1.99, 1.99, 1.99, col="#7F7F7F33", border=NA)
   }
 
   cat("Press Ctrl+C to stop tour runnning\n")
