@@ -1,0 +1,12 @@
+Package: tourr
+Type: Package
+Title: Implement tour methods in pure R code
+Version: 0.1
+Date: 2008-08-01
+Author: Hadley Wickham <h.wickham@gmail.com>, Dianne Cook <dicook@iastate.edu>
+Maintainer: Hadley Wickham <h.wickham@gmail.com>
+Description: Implements geodesic interpolation and basis generation functions that allow you to create new tour methods from R.
+Depends: R (>= 2.7)
+Suggests: rggobi
+License: MIT
+LazyData: true
