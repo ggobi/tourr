@@ -25,7 +25,7 @@ r_tour <- function(data, tour = grand_tour, aps = 1, fps = 30, ...) {
     segments(0, 0, proj[, 1], proj[, 2], col="grey50")
     theta <- seq(0, 2 * pi, length = 50)
     lines(cos(theta), sin(theta), col="grey50")
-    points(proj, pch=as.character(1:nrow(proj)), col="grey50Fu")
+    points(proj, pch=as.character(1:nrow(proj)), col="grey50")
 
     # Draw projected points
     points(data %*% proj, pch=20)

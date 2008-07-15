@@ -43,10 +43,10 @@ geodesic <- function(Fa, Fz, epsilon = 1e-6) {
   
   list(Va = Va, Ga = Ga, Gz = Gz, tau = tau)
 }
-  
+
 step_fraction <- function(interp, fraction) {
   # Interpolate between starting and end planes
-  #  - multiply col-wise by angles
+  #  - must multiply column wise (hence all the transposes)
   G <- t(
     t(interp$Ga) * cos(fraction * interp$tau) + 
     t(interp$Gz) * sin(fraction * interp$tau)
@@ -58,19 +58,4 @@ step_fraction <- function(interp, fraction) {
 
 step_angle <- function(interp, angle) {
   step_fraction(interp, angle / sqrt(sum(interp$tau^2)))
-}
-
-geodesic_path <- function(new_target_f) { # new_target_f is the basis generator fn
-  function(previous) {    
-    frame <- new_target_f(previous)
-    interpolator <- geodesic(previous, frame)
-    dist <- sqrt(sum(interpolator$tau ^ 2))
-
-    list(
-      frame = frame,
-      interpolate = function(angle) step_fraction(interpolator, angle),
-      dist = dist,
-       tau = interpolator$tau
-    )
-  }
 }

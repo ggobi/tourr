@@ -30,3 +30,19 @@ tour <- function(
     step_counter <- step_counter + 1
   }
 }
+
+
+geodesic_path <- function(new_target_f) { # new_target_f is the basis generator fn
+  function(previous) {    
+    frame <- new_target_f(previous)
+    interpolator <- geodesic(previous, frame)
+    dist <- sqrt(sum(interpolator$tau ^ 2))
+
+    list(
+      frame = frame,
+      interpolate = function(angle) step_fraction(interpolator, angle),
+      dist = dist,
+       tau = interpolator$tau
+    )
+  }
+}
