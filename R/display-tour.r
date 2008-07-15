@@ -4,7 +4,7 @@
 #X r_tour(mtcars[, 1:5], little_tour)
 r_tour <- function(data, tour = grand_tour, aps = 1, fps = 30, ...) {
   # Standardise data
-  data <- t(apply(data, 1, function(x) (x - min(x)) / diff(range(x))))
+  data <- apply(data, 2, function(x) (x - min(x)) / diff(range(x)))
   
   # Start with plot of first two variables
   # start <- matrix(0, nrow = ncol(data), ncol = 2)
@@ -21,8 +21,8 @@ r_tour <- function(data, tour = grand_tour, aps = 1, fps = 30, ...) {
     Sys.sleep(1 / fps)
     rect(-sqrt(2), -sqrt(2), sqrt(2), sqrt(2), col="#FFFFFFE6", border=NA)
     points(data %*% proj, pch=20)
-    segments(-1, -1, proj[, 1] * 0.4 - 1, proj[, 2] * 0.4 - 1, col="red")
-    points(proj * 0.4 - 1, pch=as.character(1:nrow(proj)), col="red")
+    segments(0, 0, proj[, 1], proj[, 2], col="red")
+    points(proj, pch=as.character(1:nrow(proj)), col="red")
   }
   target <- function(target) {
     rect(-sqrt(2), -sqrt(2), sqrt(2), sqrt(2), col="#7F7F7F33", border=NA)
