@@ -1,34 +1,8 @@
 nul <- function(...) {}
 
-grand_tour <- function(current, ...) {
-  new_target <- function(current) {
-    basis_random(nrow(current), ncol(current))
-  }
 
-  tour(current, new_target, ...)
-}
-
-guided_tour <- function(current, data, index_f, temp = 1, cooling = 0.99, ...) {
-  index <- function(proj, data) index_f(as.matrix(data) %*% proj)
-  
-  temp <- 1
-  new_target <- function(current) {
-    basis <- basis_better(current, temp, index)
-    temp <<- temp * cool
-    basis
-  }
-  
-  tour(current, new_target, ...)
-}
-
-correlation_tour <- function(current, n1, n2, ...) {
-  new_target <- function(current) {
-    cbind(basis_random(n1, 1), basis_random(n2, 1))
-  }
-
-  tour(current, new_target, ...)
-}
-
+# The tour function provides the common machinery behind all tour methods:
+# interpolating from basis to basis, and generating new bases when necessary.
 
 tour <- function(
   current, target_f, velocity = 0.05, total_steps = 100,

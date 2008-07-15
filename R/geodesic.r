@@ -37,8 +37,9 @@ geodesic <- function(Fa, Fz, epsilon = 1e-6) {
 
   # Compute and check principal angles -----------------------
   tau <- acos(lambda)
-  Gz[, tau < epsilon] <- Ga[, tau < epsilon]
-  tau[tau < epsilon] <- 0
+  badtau <- is.nan(tau) | tau < epsilon
+  Gz[, badtau] <- Ga[, badtau]
+  tau[badtau] <- 0
   
   list(Va = Va, Ga = Ga, Gz = Gz, tau = tau)
 }
