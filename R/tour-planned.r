@@ -26,7 +26,3 @@ bases_little <- function(p, d = 2) {
   vars <- combn(p, d)
   lapply(seq_len(ncol(vars)), function(i) b[, vars[, i]] )
 }
-
-
-# df <- data.frame(x = rnorm(40), y = rnorm(40))
-# 

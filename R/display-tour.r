@@ -21,14 +21,15 @@ r_tour <- function(data, tour = grand_tour, aps = 1, fps = 30, ...) {
     Sys.sleep(1 / fps)
     rect(-sqrt(2), -sqrt(2), sqrt(2), sqrt(2), col="#FFFFFFE6", border=NA)
     points(data %*% proj, pch=20)
-    segments(-1, -1, proj[, 1] * 0.5 - 1, proj[, 2] * 0.5 - 1, pch=20, col="red")
+    segments(-1, -1, proj[, 1] * 0.4 - 1, proj[, 2] * 0.4 - 1, col="red")
+    points(proj * 0.4 - 1, pch=as.character(1:nrow(proj)), col="red")
   }
   target <- function(target) {
     rect(-sqrt(2), -sqrt(2), sqrt(2), sqrt(2), col="#7F7F7F33", border=NA)
   }
 
   cat("Press Ctrl+C to stop tour runnning\n")
-  tour(start, velocity = aps / fps, step_fun = step, target_fun = target, total_steps = Inf)
+  tour(start, velocity = aps / fps, step_fun = step, target_fun = target, total_steps = Inf, ...)
 }
 
 
