@@ -5,6 +5,7 @@
 r_tour <- function(data, tourf = grand_tour, aps = 1, fps = 30, ...) {
   # Standardise data
   data <- apply(data, 2, function(x) (x - min(x)) / diff(range(x)))
+  labels <- abbreviate(colnames(data), 2)
   
   # Start with plot of first two variables
   # start <- matrix(0, nrow = ncol(data), ncol = 2)
@@ -25,7 +26,7 @@ r_tour <- function(data, tourf = grand_tour, aps = 1, fps = 30, ...) {
     segments(0, 0, proj[, 1], proj[, 2], col="grey50")
     theta <- seq(0, 2 * pi, length = 50)
     lines(cos(theta), sin(theta), col="grey50")
-    points(proj, pch=as.character(1:nrow(proj)), col="grey50")
+    text(proj, label = labels, col="grey50")
 
     # Draw projected points
     points(data %*% proj, pch=20)
