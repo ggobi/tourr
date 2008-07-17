@@ -16,7 +16,8 @@
 # Currently only works for d = {1, 2}.
 geodesic <- function(Fa, Fz, epsilon = 1e-6) {
   # if (Fa.equivalent(Fz)) return();
-
+  # cat("dim Fa",nrow(Fa),ncol(Fa),"dim Fz",nrow(Fz),ncol(Fz),"\n")
+  
   # Compute the SVD: Fa'Fz = Va lambda Vz' --------------------------------
   sv <- svd(t(Fa) %*% Fz)
 

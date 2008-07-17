@@ -5,7 +5,7 @@ nul <- function(...) {}
 # interpolating from basis to basis, and generating new bases when necessary.
 
 tour <- function(
-  current, target_f, velocity = 0.05, total_steps = 100,
+  current, target_f = grand_tour, velocity = 0.05, total_steps = 100,
   step_fun = nul, target_fun = nul, ...
 ){
   new_target <- geodesic_path(target_f)
