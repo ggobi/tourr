@@ -15,6 +15,15 @@
 # 
 # Currently only works for d = {1, 2}.
 geodesic <- function(Fa, Fz, epsilon = 1e-6) {
+  if (!is_orthonormal(Fa)) {
+    message("Orthonormalising Fa")
+    Fa <- orthonormalise(Fa)
+  }
+  if (!is_orthonormal(Fz)) {
+    message("Orthonormalising Fz")
+    Fz <- orthonormalise(Fz)    
+  }
+  
   # if (Fa.equivalent(Fz)) return();
   # cat("dim Fa",nrow(Fa),ncol(Fa),"dim Fz",nrow(Fz),ncol(Fz),"\n")
   
