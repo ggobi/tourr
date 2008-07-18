@@ -36,7 +36,7 @@ r_tour <- function(data, tourf = grand_tour, d=2, aps = 1, fps = 30, ...) {
   }
 
   cat("Press Ctrl+C to stop tour runnning\n")
-  tour(start, velocity = aps / fps, step_fun = step, target_fun = target, total_steps = Inf, ...)
+  tourf(start, velocity = aps / fps, step_fun = step, target_fun = target, total_steps = Inf, ..., data=data)
 }
 
 
