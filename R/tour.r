@@ -36,6 +36,7 @@ tour <- function(
 geodesic_path <- function(new_target_f) { 
   function(previous) {    
     dist <- 0
+    # Keep trying until we get a target that's not equivalent to the previous
     while (dist < 1e-3) {
       frame <- new_target_f(previous)
       interpolator <- geodesic(previous, frame)
