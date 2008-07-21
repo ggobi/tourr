@@ -8,11 +8,8 @@ r_tour <- function(data, tourf = grand_tour, d=2, aps = 1, fps = 30, ...) {
   labels <- abbreviate(colnames(data), 2)
   
   # Start with plot of first two variables
-  # start <- matrix(0, nrow = ncol(data), ncol = 2)
-  # diag(start) <- runif(2)
-  
-  # Start with a random basis
-  start <- basis_random(ncol(data), d)
+  start <- matrix(0, nrow = ncol(data), ncol = 2)
+  diag(start) <- 1
   
   # Display 
   range <- c(-2, 2)

@@ -13,7 +13,6 @@
 #   * Ga = Fa Va, Gz = Fz Vz
 #   * tau = principle angles
 # 
-# Currently only works for d = {1, 2}.
 geodesic <- function(Fa, Fz, epsilon = 1e-6) {
   if (!is_orthonormal(Fa)) {
     message("Orthonormalising Fa")
@@ -46,7 +45,7 @@ geodesic <- function(Fa, Fz, epsilon = 1e-6) {
   Gz <- orthonormalise_by(Gz, Ga)
 
   # Compute and check principal angles -----------------------
-  tau <- acos(lambda)
+  tau <- suppressWarnings(acos(lambda))
   badtau <- is.nan(tau) | tau < epsilon
   Gz[, badtau] <- Ga[, badtau]
   tau[badtau] <- 0
