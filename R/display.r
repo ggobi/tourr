@@ -95,6 +95,7 @@ ggobi_tour <- function(data, tour = grand_tour, aps = 1, fps = 100, ...) {
   # Display
   data <- apply(data, 2, function(x) (x - min(x)) / diff(range(x)))
   g <- ggobi(data)
+  cat("Pause the tour in GGobi to allow R control to begin\n")
   gd <- display(g$data, "2D Tour")
   
   update_plot <- function(step, proj) {
@@ -102,7 +103,21 @@ ggobi_tour <- function(data, tour = grand_tour, aps = 1, fps = 100, ...) {
     ggobi_display_set_tour_projection(gd, proj)
   }
 
-  cat("Pause the tour in GGobi to allow R control to begin\n")
   cat("Press Ctrl+C to stop tour runnning\n")
   tour(start, velocity = aps / fps, total_steps = Inf, step_fun = update_plot, ...)
 }
+
+scatmat_tour<-function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, ...) {}
+
+image_tour<-function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, ...) {}
+
+density_tour<-function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, ...) {}
+
+ts_tour<-function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, ...) {}
+
+faces_tour<-function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, ...) {}
+
+andrews_tour<-function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, ...) {}
+
+# Versions
+# Storing history, saving files to create movie, or interact with eg using ggobi
