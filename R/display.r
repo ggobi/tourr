@@ -56,15 +56,19 @@ pcp_tour <- function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, ...) {
     xs <- rep(c(xpos, NA), length = length(ys))
     
     rect(0, -1.99, d, 1.99, col="#FFFFFFE6", border=NA)
-    segments(xpos, 1.99, xpos, -1.99, col="grey80")
-    segments(0, 0, d, 0, col="grey50")
+    segments(xpos, 1.99, xpos, -1.99, col="grey90")
+    segments(0, 0, d, 0, col="grey90")
     
-    label_df <- subset(data.frame(
+    label_df <- data.frame(
       x = xpos, 
       y = as.vector(t(proj)),
       label = rep(labels, each = d)
-    ), abs(y) > 0.05)
-    with(label_df, text(x, y, label = label, col="grey50"))
+    )
+    with(
+      subset(label_df, abs(y) > 0.05), 
+      text(x, y, label = label, col="grey50", pos = 4)
+    )
+    with(label_df, points(x, y, col="grey50", pch=20))
     
     
     lines(xs, ys)
