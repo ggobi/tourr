@@ -46,15 +46,27 @@ pcp_tour <- function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, ...) {
   start <- matrix(0, nrow = ncol(data), ncol = d)
   diag(start) <- 1
   
+  xpos <- 1:d - 0.5
   # Display 
   plot(NA, NA,xlim=c(0, d), ylim=c(-2, 2), xlab="", ylab="", axes=FALSE, frame=TRUE, xaxs="i", yaxs="i")
   step <- function(step, proj) {
     Sys.sleep(1 / fps)
     
     ys <- as.vector(t(cbind(data %*% proj, NA)))
-    xs <- rep(c(0:(d-1) + 0.5, NA), length = length(ys))
+    xs <- rep(c(xpos, NA), length = length(ys))
     
     rect(0, -1.99, d, 1.99, col="#FFFFFFE6", border=NA)
+    segments(xpos, 1.99, xpos, -1.99, col="grey80")
+    segments(0, 0, d, 0, col="grey50")
+    
+    label_df <- subset(data.frame(
+      x = xpos, 
+      y = as.vector(t(proj)),
+      label = rep(labels, each = d)
+    ), abs(y) > 0.05)
+    with(label_df, text(x, y, label = label, col="grey50"))
+    
+    
     lines(xs, ys)
   }
   target <- function(target) {
