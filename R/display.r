@@ -2,13 +2,13 @@
 
 #X r_tour(mtcars[, 1:5])
 #X r_tour(mtcars[, 1:5], little_tour)
-r_tour <- function(data, tourf = grand_tour, d=2, aps = 1, fps = 30, ...) {
+r_tour <- function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, ...) {
   # Standardise data
   data <- apply(data, 2, function(x) (x - min(x)) / diff(range(x)))
   labels <- abbreviate(colnames(data), 2)
   
   # Start with plot of first two variables
-  start <- matrix(0, nrow = ncol(data), ncol = 2)
+  start <- matrix(0, nrow = ncol(data), ncol = d)
   diag(start) <- 1
   
   # Display 
@@ -17,6 +17,7 @@ r_tour <- function(data, tourf = grand_tour, d=2, aps = 1, fps = 30, ...) {
   plot(NA, NA,xlim=range, ylim=range, xlab="", ylab="", axes=FALSE, frame=TRUE, xaxs="i", yaxs="i")
   step <- function(step, proj) {
     Sys.sleep(1 / fps)
+    
     rect(-1.99, -1.99, 1.99, 1.99, col="#FFFFFFE6", border=NA)
     
     # Draw tour axes
@@ -30,6 +31,34 @@ r_tour <- function(data, tourf = grand_tour, d=2, aps = 1, fps = 30, ...) {
   }
   target <- function(target) {
     rect(-1.99, -1.99, 1.99, 1.99, col="#7F7F7F33", border=NA)
+  }
+
+  cat("Press Ctrl+C to stop tour runnning\n")
+  tourf(start, velocity = aps / fps, step_fun = step, target_fun = target, total_steps = Inf, ..., data=data)
+}
+
+pcp_tour <- function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, ...) {
+  # Standardise data
+  data <- apply(data, 2, function(x) (x - min(x)) / diff(range(x)))
+  labels <- abbreviate(colnames(data), 2)
+  
+  # Start with plot of first two variables
+  start <- matrix(0, nrow = ncol(data), ncol = d)
+  diag(start) <- 1
+  
+  # Display 
+  plot(NA, NA,xlim=c(0, d), ylim=c(-2, 2), xlab="", ylab="", axes=FALSE, frame=TRUE, xaxs="i", yaxs="i")
+  step <- function(step, proj) {
+    Sys.sleep(1 / fps)
+    
+    ys <- as.vector(t(cbind(data %*% proj, NA)))
+    xs <- rep(c(0:(d-1) + 0.5, NA), length = length(ys))
+    
+    rect(0, -1.99, d, 1.99, col="#FFFFFFE6", border=NA)
+    lines(xs, ys)
+  }
+  target <- function(target) {
+    rect(0, -1.99, d, 1.99, col="#7F7F7F33", border=NA)
   }
 
   cat("Press Ctrl+C to stop tour runnning\n")
