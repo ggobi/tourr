@@ -158,6 +158,9 @@ density_tour<-function(data, tourf = grand_tour, method="hist", d = 1, aps = 1, 
 
 scatmat_tour<-function(data, tourf = grand_tour, d = 1, aps = 1, fps = 30, ...) {}
 
+# image_tour(pict_samp)
+# This is too slow, should probably also standardise the density from frame
+# to frame
 image_tour<-function(data, tourf = grand_tour, d = 1, aps = 1, fps = 30, ...) {
   # Standardise data
 #  data <- apply(data, 2, function(x) (x - min(x)) / diff(range(x)))
@@ -177,7 +180,7 @@ image_tour<-function(data, tourf = grand_tour, d = 1, aps = 1, fps = 30, ...) {
     image(data[,,1]*proj[1]+data[,,2]*proj[2]+data[,,3]*proj[3])
   }
   target <- function(target) {
-    rect(-1.99, -1.99, 1.99, 1.99, col="#7F7F7F33", border=NA)
+    #rect(-1.99, -1.99, 1.99, 1.99, col="#7F7F7F33", border=NA)
   }
 
   cat("Press Ctrl+C to stop tour runnning\n")
@@ -192,3 +195,42 @@ andrews_tour<-function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, ...) 
 
 # Versions
 # Storing history, saving files to create movie, or interact with eg using ggobi
+
+# This one basically runs a 2D tour and saves the projections
+#X t1 <- history_tour(mtcars[, 1:5])
+#X smtcars <- apply(mtcars[, 1:5], 2, function(x) (x - min(x)) / diff(range(x)))
+#X par(pch="s")
+#X plot(NA, NA,xlim=c(-2,2), ylim=c(-2,2), xlab="", ylab="", axes=FALSE, frame=TRUE, xaxs="i", yaxs="i")
+#X for (i in 1:length(t1)) {
+#X   rect(-1.99, -1.99, 1.99, 1.99, col="#FFFFFFE6", border=NA)
+#X   points(smtcars %*% t1[[i]], pch=20)
+#X   text(-1.5,-1.5,paste(i),cex=2)
+#X }
+#X t1 <- history_tour(mtcars[, 1:5], tourf = guided_tour, index = holes)
+
+history_tour<-function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, nbases=1000, ...){
+  data <- apply(data, 2, function(x) (x - min(x)) / diff(range(x)))
+  labels <- abbreviate(colnames(data), 2)
+  
+  # Start with plot of first two variables
+  start <- matrix(0, nrow = ncol(data), ncol = d)
+  diag(start) <- 1
+  projs <<- list()
+  projs[[1]] <<- start
+  count <<- 1
+  
+  step <- function(step, proj) {
+    
+    # Save projection
+    count <<- count+1
+    projs[[count]] <<- proj
+    cat(count,"\n")
+  }
+  target <- function(target) {
+#    count <<- count+1
+#    projs[[count]] <<- proj
+  }
+
+  tourf(start, velocity = aps / fps, step_fun = step, target_fun = target, total_steps = nbases, ..., data=data)
+  return(projs)
+}

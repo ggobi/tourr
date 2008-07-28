@@ -2,7 +2,7 @@
 basis_better <- function(current, alpha = 0.5, index, method = "linear", max.tries = Inf) {
   cur_index <- index(current)
   
-  # cat("Old", cur_index, "\n")
+  cat("Old", cur_index, "\n")
   try <- 1
   while(try < max.tries) {
     new_basis <- basis_nearby(current, alpha, method)
