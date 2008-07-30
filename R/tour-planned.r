@@ -1,12 +1,24 @@
 # The planned tour takes you from one basis to the next in a 
 # set order.  It cycles back from the last basis to the first.
+# 
+# The set of basis can either be a list of projection matrices or 
+# a 3d array
 planned_tour <- function(current, basis_set, ...) {
   index <- 0
-  n <- length(basis_set)
   
-  new_target <- function(current) {
-    index <<- (index %% n) + 1
-    basis_set[[index]]
+  if (is.list(basis_set)) {
+    n <- length(basis_set)
+    new_target <- function(current) {
+      index <<- (index %% n) + 1
+      basis_set[[index]]
+    }    
+  } else {
+    n <- dim(basis_set)[3]
+    new_target <- function(current) {
+      index <<- (index %% n) + 1
+      basis_set[, , index]
+    }
+    
   }
         
   tour(current, new_target, ...)
