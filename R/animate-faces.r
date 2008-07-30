@@ -1,1 +1,19 @@
-faces_tour<-function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, ...) {}
+# animate_faces(mtcars[1:4, ], d = 5)
+
+animate_faces <- function(data, tourf = grand_tour, d = 3, ...) {
+  require("TeachingDemos")
+  
+  render_data <- function(data, proj) {
+    x <- data %*% proj
+    x <- (x + 2) / 4
+    faces2(x, scale = "none")
+  }
+
+  animate(
+    d = d, data = data, tourf = tourf, 
+    render_frame = nul, render_data = render_data,
+    render_transition = nul, render_target = nul, 
+    ...
+  )
+  
+}
