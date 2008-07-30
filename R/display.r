@@ -195,12 +195,17 @@ andrews_tour<-function(data, tourf = grand_tour, d = 1, aps = 1, fps = 30, nbase
   data <- apply(data, 2, function(x) (x - min(x)) / diff(range(x)))
 
   t1 <- history_tour(data=data, tourf=tourf, d=d, nbases=nbases)
-  t1 <- matrix(unlist(t1),ncol=ncol(data),byrow=T)
+  t1 <- matrix(unlist(t1), ncol=ncol(data), byrow=T)
   x <- data %*% t(t1)
-  cat(nrow(x),ncol(x),nrow(t1),ncol(t1),"\n")
-  plot(c(1,nbases),range(x),type="n",xlab="Time",ylab="Data")
-  for (i in 1:nrow(data))
-    lines(c(1:nbases),x[i,])
+  x <- apply(x, 2, function(vec) {vec-mean(vec)})
+
+  plot(c(1,nbases), range(x), type="n", xlab="Time", ylab="Data",
+       main="Andrews curves from random projections")
+  rect(-100, -5, nbases+100, 5, col="grey90")
+  abline(h=seq(-3,3,0.5), col="white")
+  abline(v=seq(0, nbases, 50), col="white")
+  for (i in 1:nrow(data)) 
+    lines(c(1:nbases), x[i,])
 }
 
 fd<-as.matrix(d.sflea)%*%t(t1)
@@ -240,7 +245,6 @@ history_tour<-function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, nbase
     # Save projection
     count <<- count+1
     projs[[count]] <<- proj
-    cat(count,"\n")
   }
   target <- function(target) {
 #    count <<- count+1
