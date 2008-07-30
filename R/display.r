@@ -191,7 +191,23 @@ ts_tour<-function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, ...) {}
 
 faces_tour<-function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, ...) {}
 
-andrews_tour<-function(data, tourf = grand_tour, d = 2, aps = 1, fps = 30, ...) {}
+andrews_tour<-function(data, tourf = grand_tour, d = 1, aps = 1, fps = 30, nbases=1000, ...) {
+  data <- apply(data, 2, function(x) (x - min(x)) / diff(range(x)))
+
+  t1 <- history_tour(data=data, tourf=tourf, d=d, nbases=nbases)
+  t1 <- matrix(unlist(t1),ncol=ncol(data),byrow=T)
+  x <- data %*% t(t1)
+  cat(nrow(x),ncol(x),nrow(t1),ncol(t1),"\n")
+  plot(c(1,nbases),range(x),type="n",xlab="Time",ylab="Data")
+  for (i in 1:nrow(data))
+    lines(c(1:nbases),x[i,])
+}
+
+fd<-as.matrix(d.sflea)%*%t(t1)
+plot(c(0,100),range(fd),type="n",xlab="Time",ylab="Data")
+for (i in 1:74) 
+  lines(c(1:100),fd[i,])
+lines(rep(c(1,2),74),c(fd[,1],fd[,2]))
 
 # Versions
 # Storing history, saving files to create movie, or interact with eg using ggobi
