@@ -1,12 +1,13 @@
 # animate_density(mtcars[, 1:5])
 # animate_density(mtcars[, 1:5],method="density")
 
-animate_density <- function(data, tourf = grand_tour, method="hist", ...) {
+animate_density <- function(data, tourf = grand_tour, method="hist", center=T, ...) {
   labels <- abbreviate(colnames(data), 2)
   
   # Display 
   range <- c(-2, 2)
   render_frame <- function() {
+    par(pty="m")
     plot(
       x = NA, y = NA, xlim = range, ylim = c(-1.1,4), xaxs="i", yaxs="i",
       xlab = "Data Projection", ylab = "Density"
@@ -20,14 +21,17 @@ animate_density <- function(data, tourf = grand_tour, method="hist", ...) {
     lines(c(0,0), c(-1,0), col="white")
     lines(c(-1,-1), c(-1,0), col="white")
     lines(c(1,1), c(-1,0), col="white")
+
+    x <- data%*%proj
+    if (center) x <- apply(x, 2, function(vec) {vec-mean(vec)})
     
     # Render projection data
     if (method=="hist") {
-      bins <- hist(data%*%proj, breaks = seq(-2, 2, 0.2), plot = FALSE)
+      bins <- hist(x, breaks = seq(-2, 2, 0.2), plot = FALSE)
       with(bins, rect(mids - 0.1, rep(0, length(mids)), mids + 0.1, density, col="black"))
     }
     else if (method=="density") {
-      polygon(density(data %*% proj), lwd = 2, col="black")
+      polygon(density(x), lwd = 2, col="black")
       abline(h = 0)
     }
     
