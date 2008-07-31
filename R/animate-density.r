@@ -1,7 +1,7 @@
 # animate_density(mtcars[, 1:5])
 # animate_density(mtcars[, 1:5],method="density")
 
-animate_density <- function(data, tourf = grand_tour, method="hist", center=T, ...) {
+animate_density <- function(data, tourf = grand_tour, method="hist", center=TRUE, ...) {
   labels <- abbreviate(colnames(data), 2)
   
   # Display 
@@ -23,7 +23,7 @@ animate_density <- function(data, tourf = grand_tour, method="hist", center=T, .
     lines(c(1,1), c(-1,0), col="white")
 
     x <- data%*%proj
-    if (center) x <- apply(x, 2, function(vec) {vec-mean(vec)})
+    if (center) x <- scale(x, center = TRUE, scale = FALSE)
     
     # Render projection data
     if (method=="hist") {

@@ -1,11 +1,11 @@
 #X t1 <- save_history(mtcars[, 1:5], nbases = 1000, interpolate = T, d = 1)
 #X andrews_history(t1)
 
-andrews_history <- function(history, data = attr(history, "data"), center=T) {
+andrews_history <- function(history, data = attr(history, "data"), center = TRUE) {
   n <- dim(history)[3]
 
   x <- apply(history, 3, function(proj) data %*% proj)
-  if (center) x <- apply(x, 2, function(vec) {vec-mean(vec)})
+  if (center) x <- scale(x, center = TRUE, scale = FALSE)
 
   par(pty="m",mar=c(4,4,1,1))
   plot(c(1, n), range(x), type="n", xlab="Time", ylab="Data")

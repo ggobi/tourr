@@ -1,9 +1,9 @@
 #X animate_xy(mtcars[, 1:5])
 #X animate_xy(mtcars[, 1:5], little_tour)
-#X animate_xy(mtcars[, 1:5],center=F)
-#X animate_xy(mtcars[, 1:5],axes="bottomleft")
-#X animate_xy(mtcars[, 1:5],axes="off")
-animate_xy <- function(data, tourf = grand_tour, center=T, axes="center", ...) {
+#X animate_xy(mtcars[, 1:5], center=F)
+#X animate_xy(mtcars[, 1:5], axes="bottomleft")
+#X animate_xy(mtcars[, 1:5], axes="off")
+animate_xy <- function(data, tourf = grand_tour, center = TRUE, axes = "center", ...) {
   labels <- abbreviate(colnames(data), 2)
   
   render_frame <- function() {
@@ -30,7 +30,7 @@ animate_xy <- function(data, tourf = grand_tour, center=T, axes="center", ...) {
 
     # Render projected points
     x <- data %*% proj
-    if (center) x <- apply(x, 2, function(vec) {vec-mean(vec)})
+    if (center) x <- scale(x, center = TRUE, scale = FALSE)
     points(x, pch=20)
   }
   render_target <- function(target) {

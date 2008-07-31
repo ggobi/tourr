@@ -11,7 +11,6 @@ display_ggobi <- function(data, tour = grand_tour, ..., rescale = TRUE, sphere =
   if (sphere) data  <- sphere(data)
 
   # Display
-  data <- apply(data, 2, function(x) (x - min(x)) / diff(range(x)))
   g <- ggobi(data)
   cat("Pause the tour in GGobi to allow R control to begin\n")
   gd <- display(g$data, "2D Tour")
