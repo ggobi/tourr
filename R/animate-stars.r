@@ -1,5 +1,5 @@
-# animate_stars(mtcars[1:4, ], d = 5)
-# animate_stars(mtcars[1:4, ], d = 5, col.stars = rep("grey50", 4), radius = FALSE)
+# animate_stars(flea[, 1:6], d = 5)
+# animate_stars(flea[, 1:6], d = 5, col.stars = rep("grey50", 4), radius = FALSE)
 
 # Scaling doesn't seem to be quite right as centres move around as
 # well as outside points.

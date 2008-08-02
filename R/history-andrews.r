@@ -1,4 +1,4 @@
-#X t1 <- save_history(mtcars[, 1:5], nbases = 1000, interpolate = T, d = 1)
+#X t1 <- save_history(flea[, 1:6], nbases = 1000, interpolate = T, d = 1)
 #X andrews_history(t1)
 
 andrews_history <- function(history, data = attr(history, "data"), center = TRUE) {

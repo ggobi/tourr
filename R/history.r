@@ -1,6 +1,6 @@
 #X t1 <- save_history(mtcars[, 1:5], nbases = 3)
 #X animate_xy(mtcars[, 1:5], planned_tour, basis_set = t1)
-#X animate_pcp(mtcars[, 1:5], planned_tour, basis_set = t1)
+#X animate_pcp(flea[, 1:6], planned_tour, basis_set = t1)
 
 save_history <- function(data, tourf = grand_tour, d = 2, nbases = 100, interpolate = FALSE, ..., rescale = TRUE, sphere = FALSE){
   if (rescale) data <- rescale(data)

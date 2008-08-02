@@ -1,8 +1,8 @@
-#X animate_xy(mtcars[, 1:5])
-#X animate_xy(mtcars[, 1:5], little_tour)
-#X animate_xy(mtcars[, 1:5], center=F)
-#X animate_xy(mtcars[, 1:5], axes="bottomleft")
-#X animate_xy(mtcars[, 1:5], axes="off")
+#X animate_xy(flea[, 1:6])
+#X animate_xy(flea[, 1:6], little_tour)
+#X animate_xy(flea[, 1:6], center = F)
+#X animate_xy(flea[, 1:6], axes = "bottomleft")
+#X animate_xy(flea[, 1:6], axes = "off")
 animate_xy <- function(data, tourf = grand_tour, center = TRUE, axes = "center", ...) {
   labels <- abbreviate(colnames(data), 2)
   

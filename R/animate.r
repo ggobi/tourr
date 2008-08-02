@@ -1,4 +1,5 @@
 # Also needs to be able to save to disk
+# This function runs the selected tour and displays with R in the chosen way.
 animate <- function(data, tourf, d, aps = 1, fps = 30, start = NULL, render_frame, render_target, render_data, render_transition, ..., rescale = TRUE, sphere = FALSE, file = NULL, dev = NULL, dev.settings = list()) {
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere(data)

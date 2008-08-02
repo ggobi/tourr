@@ -1,5 +1,5 @@
-# animate_density(mtcars[, 1:5])
-# animate_density(mtcars[, 1:5],method="density")
+# animate_density(flea[, 1:6])
+# animate_density(flea[, 1:6], method = "density")
 
 animate_density <- function(data, tourf = grand_tour, method="hist", center=TRUE, ...) {
   labels <- abbreviate(colnames(data), 2)

@@ -1,4 +1,4 @@
-# animate_faces(mtcars[1:4, ], d = 5)
+# animate_faces(flea[, 1:6], d = 5)
 
 animate_faces <- function(data, tourf = grand_tour, d = 3, ...) {
   require("TeachingDemos")

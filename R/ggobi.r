@@ -1,4 +1,7 @@
-display_ggobi <- function(data, tour = grand_tour, ..., rescale = TRUE, sphere = FALSE) {
+# library(rggobi)
+#X  display_ggobi(flea[,1:6])
+
+display_ggobi <- function(data, edges = NULL, tour_f = grand_tour, aps = 1, fps = 30, ..., rescale = TRUE, sphere = FALSE) {
   if(!require("rggobi", quiet = TRUE)) {
     stop("rggobi required for ggobi based tour")
   }
@@ -13,7 +16,9 @@ display_ggobi <- function(data, tour = grand_tour, ..., rescale = TRUE, sphere =
   # Display
   g <- ggobi(data)
   cat("Pause the tour in GGobi to allow R control to begin\n")
-  gd <- display(g$data, "2D Tour")
+  # gd <- display(g$data, "2D Tour")
+  gd <- displays(g)[[1]]
+  pmode(gd) <- "2D Tour"
   
   update_plot <- function(step, proj) {
     Sys.sleep(1 / fps)
@@ -21,5 +26,6 @@ display_ggobi <- function(data, tour = grand_tour, ..., rescale = TRUE, sphere =
   }
 
   cat("Press Ctrl+C to stop tour runnning\n")
-  tour(start, velocity = aps / fps, total_steps = Inf, step_fun = update_plot, ...)
+  tour_f(start, velocity = aps / fps, total_steps = Inf, step_fun = update_plot, ...)
 }
+
