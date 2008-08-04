@@ -14,13 +14,14 @@
 #   * tau = principle angles
 # 
 geodesic <- function(Fa, Fz, epsilon = 1e-6) {
+
   if (!is_orthonormal(Fa)) {
     message("Orthonormalising Fa")
     Fa <- orthonormalise(Fa)
   }
   if (!is_orthonormal(Fz)) {
     message("Orthonormalising Fz")
-    Fz <- orthonormalise(Fz)    
+    Fz <- orthonormalise(Fz)
   }
   
   # if (Fa.equivalent(Fz)) return();

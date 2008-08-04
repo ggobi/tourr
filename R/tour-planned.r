@@ -10,14 +10,21 @@ planned_tour <- function(current, basis_set, ...) {
     n <- length(basis_set)
     new_target <- function(current) {
       index <<- (index %% n) + 1
-      basis_set[[index]]
+      if (is.null(ncol(basis_set[[index]]))) 
+        matrix(basis_set[[index]])
+      else
+        basis_set[[index]]
     }    
   } else {
     n <- dim(basis_set)[3]
     new_target <- function(current) {
       index <<- (index %% n) + 1
-      basis_set[, , index]
-    }
+      if (is.null(ncol(basis_set[, , index]))) {
+        matrix(basis_set[, , index])
+      }
+      else
+        basis_set[, , index]
+   }
     
   }
         

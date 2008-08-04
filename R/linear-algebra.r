@@ -1,5 +1,6 @@
 normalise <- function(x) {
-  if (ncol(x)>1) 
+
+  if (ncol(x) > 1) 
     t(t(x) / sqrt(colSums(x ^ 2)))
   else
     x/sqrt(sum(x^2))
@@ -9,7 +10,7 @@ normalise <- function(x) {
 orthonormalise <- function(x) {
   x <- normalise(x) # to be conservative
   
-  if (ncol(x)>1) {
+  if (ncol(x) > 1) {
     for (j in seq_len(ncol(x))) {
       for (i in seq_len(j - 1)) {
         x[, j] <- x[, j] - crossprod(x[, j], x[, i]) * x[, i]
