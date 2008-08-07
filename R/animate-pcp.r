@@ -3,7 +3,6 @@ animate_pcp <- function(data, tourf = grand_tour, d = 2, ...) {
   xpos <- 1:d - 0.5
   
   render_frame <- function() {
-    par(pch = "s")
     blank_plot(xlim = c(0, d), ylim = c(-2, 2))
   }
   render_transition <- function() {
