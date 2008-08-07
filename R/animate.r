@@ -42,7 +42,7 @@ rescale <- function(df) {
 
 # Utility function for sphering a matrix of data
 sphere <- function(df) {
-  predict(princomp(df))
+  apply(predict(princomp(df)), 2, scale)
 }
 
 # Setting up to be ready to display data projections

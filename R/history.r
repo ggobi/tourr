@@ -1,8 +1,8 @@
-#X t1 <- save_history(mtcars[, 1:5], nbases = 3)
-#X animate_xy(mtcars[, 1:5], planned_tour, basis_set = t1)
-#X t1 <- save_history(mtcars[, 1:5], nbases = 3, d = 4)
+#X t1 <- save_history(flea[, 1:6], nbases = 3)
+#X animate_xy(flea[, 1:6], planned_tour, basis_set = t1)
+#X t1 <- save_history(flea[, 1:6], nbases = 3, d = 4)
 #X animate_pcp(flea[, 1:6], planned_tour, basis_set = t1)
-#X t1 <- save_history(mtcars[, 1:5], nbases = 3, d = 1)
+#X t1 <- save_history(flea[, 1:6], nbases = 3, d = 1)
 #X animate_density(flea[, 1:6], planned_tour, basis_set = t1)
 
 save_history <- function(data, tourf = grand_tour, d = 2, nbases = 100, interpolate = FALSE, ..., rescale = TRUE, sphere = FALSE){
