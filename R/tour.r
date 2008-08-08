@@ -28,6 +28,7 @@ tour <- function(
     }
     step <- step + 1
     step_counter <- step_counter + 1
+    cat("nbases",step_counter,"\n")
   }
 }
 

@@ -1,5 +1,7 @@
 # Basic basis generation function for simulated annealing
-basis_better <- function(current, alpha = 0.5, index, method = "linear", max.tries = Inf) {
+basis_better <- function(current, alpha = 0.5, index, max.tries = Inf,
+  method = "linear"
+) {
   cur_index <- index(current)
   
   cat("Old", cur_index, "\n")
@@ -8,25 +10,28 @@ basis_better <- function(current, alpha = 0.5, index, method = "linear", max.tri
     new_basis <- basis_nearby(current, alpha, method)
     new_index <- index(new_basis)
     if (new_index > cur_index) {
-      # cat("New", new_index, "\n")
+      cat("New", new_index, "try", try, "\n")
       return(new_basis)
     }
     try <- try + 1
   }
   
-  NA
+  current
 }
 
 
-guided_tour <- function(current, data, index_f, temp = 1, cooling = 0.99, ...) {
+guided_tour <- function(current, data, index_f, temp = 1, cooling = 0.99, max.tries = Inf, ...) {
   index <- function(proj) {
     index_f(as.matrix(data) %*% proj)
   }
-  
+
   temp <- 1
   new_target <- function(current) {
-    basis <- basis_better(current, temp, index)
+    basis <- basis_better(current, temp, index, max.tries)
+
     temp <<- temp * cooling
+    cat("temp",temp,"\n")
+
     basis
   }
   
