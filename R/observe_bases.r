@@ -87,9 +87,10 @@ observe_2dframes <- function(basis_set, ...) {
     total_steps = Inf, ...)
 }
 
+#X t1 <- save_history(flea[, 1:3], nbases = 5, d = 1)
 #X t1 <- save_history(flea[, 1:6], nbases = 3, d = 1)
-#X observe_vectors(t1)
-observe_vectors <- function(basis_set, ...) {
+#X observe_vectors_move(t1)
+observe_vectors_move <- function(basis_set, index_f = NULL, ...) {
   
   # Collect the vectors into one matrix
   if (is.list(basis_set)) {
@@ -97,44 +98,65 @@ observe_vectors <- function(basis_set, ...) {
     n <- length(basis_set)
     pdim <- ncol(basis_set[[1]])
     vec <<- rbind(rep(0, length(basis_set[[1]])), basis_set[[1]],
-      basis_set[[1]])
-    vec_edges <<- rbind(c(1, 2), c(1, 3))
+      basis_set[[1]], -basis_set[[1]])
+    vec_edges <<- rbind(c(1, 2), c(1, 3), c(1, 4))
     colnames(vec) <- paste("V", 1:length(basis_set[[1]]), sep="")
     bdim <<- length(basis_set[[1]])
     for (i in 2:n) {
-      vec <<- rbind(vec, basis_set[[i]])
-      vec_edges <<- rbind(vec_edges, c(1, i + 2))
+      vec <<- rbind(vec, basis_set[[i]], -basis_set[[i]])
+      vec_edges <<- rbind(vec_edges, c(1, i + 3), c(1, 2*i + 3))
     }
+    x <<- attr(basis_set, "data")
   } else {
     current = matrix(basis_set[, , 1])
     n <- dim(basis_set)[3]
     pdim <- ncol(basis_set[[1]])
     vec <<- rbind(rep(0, length(basis_set[[1]])), basis_set[, , 1],
-      basis_set[, , 1])
-    vec_edges <<- rbind(c(1, 2), c(1, 3))
+      basis_set[, , 1], -basis_set[, , 1])
+    vec_edges <<- rbind(c(1, 2), c(1, 3), c(1, 4))
     colnames(vec) <<- paste("V", 1:length(basis_set[, , 1]), sep="")
     bdim <<- length(basis_set[, , 1])
     for (i in 2:n) {
-      vec <<- rbind(vec, basis_set[, , i])
-      vec_edges <<- rbind(vec_edges, c(1, i + 2))
-   }    
+      vec <<- rbind(vec, basis_set[, , i], -basis_set[, , i])
+      vec_edges <<- rbind(vec_edges, c(1, 2*(i-1) + 3), c(1, 2*(i-1)+1 + 3))
+      cat(2*(i-1) + 3, 2*(i-1)+1 + 3, "\n")
+    }
+    x <<- attr(basis_set, "data")
   }
+  cat(nrow(vec_edges), nrow(vec), "\n")
 
   # Make the background sphere
   sph <- gen.sphere(300, bdim)
   vec <- rbind(vec, sph)
-
+  if (!is.null(index_f)) {
+    index_val <- NULL
+    for (i in 1:300) 
+      index_val <- c(index_val,index_f(x%*%as.matrix(sph[i,])))
+    index_val_range <<- range(index_val)
+    index_val <- (index_val-index_val_range[1])/diff(index_val_range)
+  }
+  lims <- 1
+  if (!is.null(index_f)) {
+    vec <- rbind(vec, sph+sph*index_val)
+    vec <- rbind(vec, x/3)
+    lims <- 1
+  }
+  vec <- rbind(vec, rep(-lims, ncol(x)), rep(lims, ncol(x)))
+  
   # Load structures into ggobi, color
   gd <- ggobi(vec)
   d <- displays(gd)[[1]]
   pmode(d) <- "2D Tour"
   g <- gd[1]
-  gcolor <- c(9, 9, rep(6, n), rep(8, 300))
+  gcolor <- c(2, 2, rep(9, 2*n), rep(8, 300), rep(8, 300), rep(1, nrow(x)), 1, 1)
   glyph_color(g) <- gcolor
-  gsize <- c(5, 5, rep(2, n), rep(1, 300))
+  gsize <- c(5, 5, rep(2, 2*n), rep(1, 600), rep(3, nrow(x)), 1, 1)
   glyph_size(g) <- gsize
+  gtype <- c(rep(6, 2+2*n+600+nrow(x)), 1, 1)
+  glyph_type(g) <- gtype
   edges(g) <- vec_edges
   cat("To watch the frame interpolation, turn on edges and pause the tour. \n")
+  cat("Set the limits of all variables to be -2, 2, to maintain the sphere. \n")
   
   firstime <<- TRUE
   # Then draw the interpolation frame at each step
@@ -159,6 +181,70 @@ observe_vectors <- function(basis_set, ...) {
 
   planned_tour(current, basis_set, step_fun = step, target_fun = target,
     total_steps = Inf, ...)
+}
+
+#X t1 <- save_history(flea[, 1:3], nbases = 1000, d = 1, interpolate = T)
+#X t1 <- save_history(flea[, 1:6], nbases = 3, d = 1, interpolate = T)
+#X observe_vectors(t1, nbases = 50)
+observe_vectors <- function(basis_set, index_f = NULL, nbases = 2, ...) {
+  
+  # Collect the vectors into one matrix
+  if (is.list(basis_set)) {
+    current = matrix(basis_set[[1]])
+    n <- min(length(basis_set), nbases)
+    pdim <- ncol(basis_set[[1]])
+    vec <<- rbind(rep(0, length(basis_set[[1]])), basis_set[[1]])
+    bdim <<- length(basis_set[[1]])
+    for (i in 2:n) {
+      vec <<- rbind(vec, basis_set[[i]],)
+    }
+    colnames(vec) <- paste("V", 1:length(basis_set[[1]]), sep="")
+    x <<- attr(basis_set, "data")
+  } else {
+    current = matrix(basis_set[, , 1])
+    n <- min(dim(basis_set)[3], nbases)
+    pdim <- ncol(basis_set[[1]])
+    vec <<- t(as.matrix(basis_set[, , 1]))
+    cat(nrow(vec), ncol(vec), "\n")
+    bdim <<- length(basis_set[, , 1])
+    for (i in 2:n) {
+      vec <<- rbind(vec, basis_set[, , i])
+    }
+    colnames(vec) <<- paste("V", 1:length(basis_set[, , 1]), sep="")
+    x <<- attr(basis_set, "data")
+  }
+
+  # Make the background sphere
+  sph <- gen.sphere(300, bdim)
+  vec <- rbind(vec, sph)
+  if (!is.null(index_f)) {
+    index_val <- NULL
+    for (i in 1:300) 
+      index_val <- c(index_val,index_f(x%*%as.matrix(sph[i,])))
+    index_val_range <<- range(index_val)
+    index_val <- (index_val-index_val_range[1])/diff(index_val_range)
+  }
+  lims <- 1
+  if (!is.null(index_f)) {
+    vec <- rbind(vec, sph+sph*index_val)
+    vec <- rbind(vec, x/3)
+    lims <- 1
+  }
+  vec <- rbind(vec, rep(-lims, ncol(x)), rep(lims, ncol(x)))
+  
+  # Load structures into ggobi, color
+  gd <- ggobi(vec)
+  d <- displays(gd)[[1]]
+  pmode(d) <- "2D Tour"
+  g <- gd[1]
+  gcolor <- c(rep(2, n), rep(8, 300), rep(8, 300), rep(1, nrow(x)), 1, 1)
+  glyph_color(g) <- gcolor
+  gsize <- c(rep(5, n), rep(2, 600), rep(3, nrow(x)), 1, 1)
+  glyph_size(g) <- gsize
+  gtype <- c(rep(6, n+600+nrow(x)), 1, 1)
+  glyph_type(g) <- gtype
+  
+  NA
 }
 
 gen.sphere <- function(n = 100, p = 5) {
@@ -209,7 +295,7 @@ observe_vectors_r <- function(basis_set, index_f = NULL, ...) {
     index_val <- (index_val-index_val_range[1])/diff(index_val_range)
   }
 
-  # Load structures into ggobi, color
+  # Plot sphere, index values, and lines
   par(pty="s", mar=c(1,1,1,1))
   lims <<- c(-1,1)
   if (!is.null(index_f)) lims <<- c(-2,2)
@@ -220,16 +306,16 @@ observe_vectors_r <- function(basis_set, index_f = NULL, ...) {
   abline(v=seq(-2,2,0.5),col="white")
   points(sph, pch=16,col="white")
   if (!is.null(index_f)) {
-    points(sph+sph*index_val, pch=16, col="grey50")
-    points(x[,1]/3,x[,2]/3, pch=4, col="grey50")
+    points(sph+sph*index_val, pch=16, col="grey70")
+    points(x[,1]/3,x[,2]/3, pch=16, col="grey70")
   }
   for (i in 2:nrow(vec)) {
-    lines(vec[c(1,i),1], vec[c(1, i), 2], col="grey40", lwd=2)
+    lines(vec[c(1,i),1], vec[c(1, i), 2], col="black", lwd=2)
     lab = paste("F",i-2,sep="")
     pos <- 1
     if (vec[i, 2] > 0) pos <- 3
     text(vec[i, 1], vec[i, 2], labels = lab, pos=pos)
-    lines(-vec[c(1,i),1], -vec[c(1, i), 2], col="grey50", lty=2, lwd=2)
+    lines(-vec[c(1,i),1], -vec[c(1, i), 2], col="black", lty=2, lwd=2)
   }
   
   firstime <<- TRUE

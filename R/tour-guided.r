@@ -19,7 +19,6 @@ basis_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   current
 }
 
-
 guided_tour <- function(current, data, index_f, temp = 1, cooling = 0.99, max.tries = Inf, ...) {
   index <- function(proj) {
     index_f(as.matrix(data) %*% proj)
