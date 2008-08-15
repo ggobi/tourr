@@ -20,7 +20,7 @@ interpolate <- function(basis_set, velocity = 0.05) {
   nsteps <- ceiling(dist / velocity)
 
   i <- 2
-  while(i < n) {
+  while(i < n | step < nsteps) {
     proj <- step_fraction(path, step / nsteps)
     output <- append(output, list(proj))
 
@@ -34,5 +34,8 @@ interpolate <- function(basis_set, velocity = 0.05) {
     }
     step <- step + 1
   }  
-  output
+  oarray <- unlist(output)
+  dim(oarray) <- c(nrow(output[[1]]), ncol(output[[2]]), length(output))
+  attr(oarray, "data") <- attr(basis_set, "data")
+  oarray
 }
