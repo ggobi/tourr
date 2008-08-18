@@ -28,7 +28,6 @@ save_history <- function(data, tour_f = grand_tour, d = 2, nbases = 100, interpo
     if (interpolate) {
       count <<- count+1
       projs[, , count] <<- proj
-      cat(count,"\n")
     }
   }
   target <- function(target) {

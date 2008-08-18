@@ -1,3 +1,4 @@
+#X animate_pcp(flea[, 1:6], d=3)
 animate_pcp <- function(data, tourf = grand_tour, d = 2, ...) {
   labels <- abbreviate(colnames(data), 2)
   xpos <- 1:d - 0.5

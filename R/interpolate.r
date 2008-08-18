@@ -19,7 +19,6 @@ interpolate <- function(basis_set, velocity = 0.05) {
   if (n < 2) return(basis_set)
   output <- list()
   
-  browser()
   path <- geodesic(get_basis(1), get_basis(2))
   dist <- sqrt(sum(path$tau ^ 2))
 

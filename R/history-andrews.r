@@ -1,5 +1,6 @@
 #X t1 <- save_history(flea[, 1:6], nbases = 1000, interpolate = T, d = 1)
 #X andrews_history(t1)
+#X andrews_history(interpolate(t1))
 
 andrews_history <- function(history, data = attr(history, "data"), center = TRUE) {
   n <- dim(history)[3]
