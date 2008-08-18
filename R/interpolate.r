@@ -1,4 +1,4 @@
-t1 <- save_history(flea[, 1:6], nbases = 3)
+# t1 <- save_history(flea[, 1:6], nbases = 3)
 
 # This function takes a set of bases and produces a tour by geodesically 
 # interpolating between each basis
