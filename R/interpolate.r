@@ -1,10 +1,16 @@
-# t1 <- save_history(flea[, 1:6], nbases = 3)
+# t1 <- save_history(flea[, 1:6], nbases = 10, d = 1)
+# tinterp <- interpolate(t1)
 
 # This function takes a set of bases and produces a tour by geodesically 
 # interpolating between each basis
 interpolate <- function(basis_set, velocity = 0.05) {
+  
   if (is.array(basis_set)) {
-    get_basis <- function(i) basis_set[,, i]
+    get_basis <- function(i) {
+      x <- basis_set[, , i, drop = FALSE]
+      dim(x) <- dim(x)[1:2]
+      x
+    }
     n <- dim(basis_set)[3]
   } else {
     get_basis <- function(i) basis_set[[i]]
@@ -12,7 +18,8 @@ interpolate <- function(basis_set, velocity = 0.05) {
   }
   if (n < 2) return(basis_set)
   output <- list()
-
+  
+  browser()
   path <- geodesic(get_basis(1), get_basis(2))
   dist <- sqrt(sum(path$tau ^ 2))
 
