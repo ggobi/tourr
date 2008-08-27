@@ -7,7 +7,7 @@
 #X testdata <- matrix(rnorm(100*2), ncol=2)
 #X testdata[1:50,1] <- testdata[1:50,1] + 10
 #X testdata <- sphere(testdata)
-#X t1 <- save_history(testdata, tour_f = guided_tour, index_f = holes, nbases=5, d=1, rescale=F, sphere=F, max.tries = 100, cooling = 0.95)
+#X t2 <- save_history(testdata, tour_f = guided_tour, index_f = holes, nbases=5, d=1, rescale=F, sphere=F, max.tries = 100, cooling = 0.95)
 
 save_history <- function(data, tour_f = grand_tour, d = 2, nbases = 100, interpolate = FALSE, ..., rescale = TRUE, sphere = FALSE){
   if (rescale) data <- rescale(data)

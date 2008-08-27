@@ -3,6 +3,7 @@
 #X animate_xy(flea[, 1:6], center = F)
 #X animate_xy(flea[, 1:6], axes = "bottomleft")
 #X animate_xy(flea[, 1:6], axes = "off")
+#X animate_xy(flea[, 1:6], correlation_tour, pos=c(T,T,T,F,F,F), axes = "bottomleft")
 animate_xy <- function(data, tourf = grand_tour, center = TRUE, axes = "center", ...) {
   labels <- abbreviate(colnames(data), 2)
   

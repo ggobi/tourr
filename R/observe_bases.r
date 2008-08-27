@@ -306,6 +306,7 @@ gen_sphere <- function(n = 100, p = 5) {
 #X t1 <- save_history(testdata, nbases=3, d=1, rescale=F, sphere=F)
 #X observe_vectors_r(t1)
 #X observe_vectors_r(t1, plt_proj=T)
+#X t1 <- save_history(testdata, tour_f = guided_tour, index_f = holes, nbases=5, d=1, rescale=F, sphere=F, max.tries = 100, cooling = 0.95)
 #X observe_vectors_r(t1, holes)
 observe_vectors_r <- function(basis_set, index_f = NULL, plt_data = TRUE, plt_proj = FALSE, ...) {
   
@@ -445,18 +446,29 @@ plot_hist_on_proj <-function(data, proj) {
   }          
 }
 
+#X t2 <- save_history(testdata, tour_f = guided_tour, index_f = holes, nbases=5, d=1, rescale=F, sphere=F, max.tries = 100, cooling = 0.95)
 #X library(rggobi)
-#X gd<-observe_pp_trace(t2, nbases=1000)
+#X gd<-observe_pp_trace(t2, nbases=10000)
+#X gd<-observe_pp_trace(interpolate(t2), nbases=10000)
 #X d<-displays(gd)[[1]]
 #X pmode(d) <- "1D Tour"
 #X ggsgnl <- gSignalConnect(gd, "identify-point", linker)
 #X #Open a scatterplot display of the trace
+#X gSignalHandlerDisconnect(gd, ggsgnl)
+#X flea_s <- sphere(flea[,c(1,2,4)])
+#X t2 <- save_history(flea_s, tour_f = guided_tour, index_f = holes, nbases=10, d=1, rescale=F, sphere=F, max.tries = 100, cooling = 0.99)
+#X gd<-observe_pp_trace(interpolate(t2), nbases=10000)
+#X d<-displays(gd)[[1]]
+#X pmode(d) <- "1D Tour"
+#X t3 <- interpolate(t2)
+#X ggsgnl <- gSignalConnect(gd, "identify-point", linker2)
 #X gSignalHandlerDisconnect(gd, ggsgnl)
 observe_pp_trace <- function(basis_set, g, index_f = holes, nbases = 2, ...) {
   
   # Collect the vectors into one matrix
   current = matrix(basis_set[, , 1])
   n <- min(dim(basis_set)[3], nbases)
+  cat(n,"\n")
   pdim <- ncol(basis_set[[1]])
   x <<- attr(basis_set, "data")
   vec <<- t(as.matrix(basis_set[, , 1]))
@@ -484,6 +496,13 @@ linker <- function(gg, gplot, idx, data) {
   if (idx != -1) {
     idx <- idx + 1
     ggobi_display_set_tour_projection(d, t2[, , idx])
+  }
+}
+
+linker2 <- function(gg, gplot, idx, data) {
+  if (idx != -1) {
+    idx <- idx + 1
+    ggobi_display_set_tour_projection(d, t3[, , idx])
   }
 }
 

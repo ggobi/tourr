@@ -15,6 +15,8 @@ tour <- function(
   step <- 0
   nsteps <- ceiling(target$dist / velocity)
 
+  cat(target$tau[1],"hello \n")
+  
   step_counter <- 1
   while(step_counter < total_steps) {
     proj <- target$interpolate(step / nsteps)
@@ -31,7 +33,6 @@ tour <- function(
   }
 }
 
-
 # new_target_f is the basis generator fn
 geodesic_path <- function(new_target_f) { 
   function(previous) {    
@@ -42,13 +43,16 @@ geodesic_path <- function(new_target_f) {
       interpolator <- geodesic(previous, frame)
       dist <- sqrt(sum(interpolator$tau ^ 2))      
     }
-    
+
+    cat(interpolator$tau[1],"\n")
     list(
       frame = frame,
       frame_prev = previous,
       interpolate = function(pos) step_fraction(interpolator, pos),
       dist = dist,
-      tau = interpolator$tau
+      tau = interpolator$tau,
+      Ga = interpolator$Ga,
+      Gz = interpolator$Gz
     )
   }
 }
