@@ -9,7 +9,7 @@ animate_pcp <- function(data, tourf = grand_tour, d = 2, ...) {
   render_transition <- function() {
     rect(0, -1.99, d, 1.99, col="#FFFFFFE6", border=NA)
   }
-  render_data <- function(data, proj) {    
+  render_data <- function(data, proj, geodesic) {    
     ys <- as.vector(t(cbind(data %*% proj, NA)))
     xs <- rep(c(xpos, NA), length = length(ys))
     

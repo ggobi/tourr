@@ -24,7 +24,7 @@ save_history <- function(data, tour_f = grand_tour, d = 2, nbases = 100, interpo
   projs <- array(NA, c(ncol(data), d, nbases))
   count <- 0
   
-  step <- function(step, proj) {
+  step <- function(step, proj, geodesic) {
     if (interpolate) {
       count <<- count+1
       projs[, , count] <<- proj

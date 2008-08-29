@@ -6,7 +6,7 @@
 
 animate_stars <- function(data, tourf = grand_tour, d = 3, ...) {
   
-  render_data <- function(data, proj) {
+  render_data <- function(data, proj, geodesic) {
     x <- data %*% proj
     x <- (x + 2) / 4
     stars(x, scale = FALSE, ...)

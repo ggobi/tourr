@@ -20,7 +20,7 @@ display_ggobi <- function(data, edges = NULL, tour_f = grand_tour, aps = 1, fps 
   gd <- displays(g)[[1]]
   pmode(gd) <- "2D Tour"
   
-  update_plot <- function(step, proj) {
+  update_plot <- function(step, proj, geodesic) {
     Sys.sleep(1 / fps)
     ggobi_display_set_tour_projection(gd, proj)
   }

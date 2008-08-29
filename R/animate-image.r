@@ -17,7 +17,7 @@ animate_image <- function(data, tourf = grand_tour, ...) {
     blank_plot(xlim = c(1, xs), ylim = c(1, xs))
   }
   
-  render_data <- function(data, proj) {
+  render_data <- function(data, proj, geodesic) {
     z <- data %*% proj
     dim(z) <- c(xs, ys)
     image(

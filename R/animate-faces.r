@@ -3,7 +3,7 @@
 animate_faces <- function(data, tourf = grand_tour, d = 3, ...) {
   require("TeachingDemos")
   
-  render_data <- function(data, proj) {
+  render_data <- function(data, proj, geodesic) {
     x <- data %*% proj
     x <- (x + 2) / 4
     faces2(x, scale = "none")

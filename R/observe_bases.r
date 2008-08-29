@@ -77,7 +77,7 @@ observe_2dframes <- function(basis_set, ...) {
   
   firstime <<- TRUE
   # Then draw the interpolation frame at each step
-  step <- function(step, proj) {
+  step <- function(step, proj, geodesic) {
     if (firstime)
       ans <<- readline("Press y when ready to start.")
     if (ans != "y") {
@@ -186,7 +186,7 @@ observe_vectors_move <- function(basis_set, index_f = NULL, ...) {
   
   firstime <<- TRUE
   # Then draw the interpolation frame at each step
-  step <- function(step, proj) {
+  step <- function(step, proj, geodesic) {
     if (firstime)
       ans <<- readline("Press y when ready to start.")
     if (ans != "y") {
@@ -197,7 +197,7 @@ observe_vectors_move <- function(basis_set, index_f = NULL, ...) {
     for (j in 1:nrow(proj)) 
       g[2,j] <<- proj[j]
   }
-  target <- function(target) {
+  target <- function(target, geodesic) {
     tans <<- readline("Press y to start next interpolation.")
     if (tans != "y") {
       Sys.sleep(2)
@@ -382,7 +382,7 @@ observe_vectors_r <- function(basis_set, index_f = NULL, plt_data = TRUE, plt_pr
   
   firstime <<- TRUE
   # Then draw the interpolation frame at each step
-  step <- function(step, proj) {
+  step <- function(step, proj, geodesic) {
     if (firstime)
       ans <<- readline("Press y when ready to start.")
     if (ans != "y") {
@@ -549,7 +549,7 @@ observe_pp_trace_r<- function(basis_set, index_f = holes, nbases = 2, ...) {
   
   firstime <<- TRUE
   # Then draw the interpolation frame at each step
-  step <- function(step, proj) {
+  step <- function(step, proj, geodesic) {
     if (firstime)
       ans <<- readline("Press y when ready to start.")
     if (ans != "y") {

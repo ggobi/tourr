@@ -20,11 +20,11 @@ tour <- function(
   step_counter <- 1
   while(step_counter < total_steps) {
     proj <- target$interpolate(step / nsteps)
-    step_fun(step, proj)
+    step_fun(step, proj, target)
 
     if (step == nsteps) {
       target <- new_target(proj)
-      target_fun(target$frame)
+      target_fun(target$frame, target)
       step <- 0
       nsteps <- ceiling(target$dist / velocity)
     }

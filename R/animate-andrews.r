@@ -23,7 +23,7 @@ animate_andrews <- function(data, tourf = grand_tour, d = 2, ...) {
   render_transition <- function() {
     rect(-pi, -1, pi, 1, col="#FFFFFF", border=NA)
   }
-  render_data <- function(data, proj) {    
+  render_data <- function(data, proj, geodesic) {    
     xd <- data %*% proj
     xd <- rescale(xd)
     

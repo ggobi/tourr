@@ -11,7 +11,7 @@ animate <- function(data, tourf, d, aps = 1, fps = 30, start = NULL, render_fram
   
   if (is.null(file)) {
     render_frame()
-    step <- function(step, proj) {
+    step <- function(step, proj, geodesic) {
       Sys.sleep(1 / fps)
       render_transition()
       render_data(data, proj)
@@ -21,7 +21,7 @@ animate <- function(data, tourf, d, aps = 1, fps = 30, start = NULL, render_fram
     do.call(dev, c(list(file = file), dev.settings))
     on.exit(dev.off())
 
-    step <- function(step, proj) {
+    step <- function(step, proj, geodesic) {
       render_frame()
       render_data(data, proj)
     }

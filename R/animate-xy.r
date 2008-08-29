@@ -14,7 +14,7 @@ animate_xy <- function(data, tourf = grand_tour, center = TRUE, axes = "center",
   render_transition <- function() {
     rect(-1.99, -1.99, 1.99, 1.99, col="#FFFFFFE6", border=NA)
   }
-  render_data <- function(data, proj) {
+  render_data <- function(data, proj, geodesic) {
     # Render axes
     if (axes == "center") {
       segments(0, 0, proj[, 1], proj[, 2], col="grey50")
