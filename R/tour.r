@@ -24,6 +24,8 @@ tour <- function(
 
     if (step == nsteps) {
       target <- new_target(proj)
+      if (is.null(target)) return()
+      
       target_fun(target$frame, target)
       step <- 0
       nsteps <- ceiling(target$dist / velocity)

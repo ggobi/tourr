@@ -16,7 +16,7 @@ basis_better <- function(current, alpha = 0.5, index, max.tries = Inf,
     try <- try + 1
   }
   
-  current
+  NULL
 }
 
 basis_better_plus_random<- function(current, alpha = 0.5, index,
@@ -41,7 +41,7 @@ basis_better_plus_random<- function(current, alpha = 0.5, index,
     try <- try + 1
   }
   
-  current
+  NULL
 }
 
 guided_tour <- function(current, data, index_f, temp = 1, cooling = 0.99, max.tries = Inf, basis_f = basis_better, ...) {
