@@ -32,7 +32,7 @@ animate_pcp <- function(data, tourf = grand_tour, d = 2, ...) {
     # Data values
     lines(xs, ys)
   }
-  render_target <- function(target) {
+  render_target <- function(target, geodesic) {
     rect(0, -1.99, d, 1.99, col="#7F7F7F33", border=NA)
   }
 

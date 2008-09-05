@@ -43,7 +43,7 @@ animate_density <- function(data, tourf = grand_tour, method="hist", center = TR
       text(1, -x, labels[i], pos=4)
     }
   }
-  render_target <- function(target) {
+  render_target <- function(target, geodesic) {
     rect(-1.99, -1.99, 1.99, 5, col="#7F7F7F33", border=NA)
   }
 

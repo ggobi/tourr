@@ -34,7 +34,7 @@ animate_xy <- function(data, tourf = grand_tour, center = TRUE, axes = "center",
     if (center) x <- scale(x, center = TRUE, scale = FALSE)
     points(x, pch=20)
   }
-  render_target <- function(target) {
+  render_target <- function(target, geodesic) {
     rect(-1.99, -1.99, 1.99, 1.99, col="#7F7F7F33", border=NA)
   }
 
