@@ -46,7 +46,7 @@ basis_better_plus_random<- function(current, alpha = 0.5, index,
   NULL
 }
 
-guided_tour <- function(current, data, index_f, temp = 1, cooling = 0.99, max.tries = 5, basis_f = basis_better, ...) {
+guided_tour <- function(current, data, index_f, temp = 1, cooling = 0.99, max.tries = 25, basis_f = basis_better, ...) {
   index <- function(proj) {
     index_f(as.matrix(data) %*% proj)
   }
