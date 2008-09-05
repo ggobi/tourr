@@ -1,7 +1,7 @@
 normalise <- function(x) {
 
   if (ncol(x) > 1) 
-    t(t(x) / sqrt(colSums(x ^ 2)))
+    t(t(x) / sqrt(colSums(x ^ 2, na.rm = TRUE)))
   else
     x/sqrt(sum(x^2))
 }
