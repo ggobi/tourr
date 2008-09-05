@@ -8,6 +8,7 @@ basis_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   try <- 1
   while(try < max.tries) {
     new_basis <- basis_nearby(current, alpha, method)
+    
     new_index <- index(new_basis)
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
@@ -18,6 +19,7 @@ basis_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   
   NULL
 }
+
 
 basis_better_plus_random<- function(current, alpha = 0.5, index,
   max.tries = Inf, method = "linear", eps = 0.001
@@ -44,18 +46,15 @@ basis_better_plus_random<- function(current, alpha = 0.5, index,
   NULL
 }
 
-guided_tour <- function(current, data, index_f, temp = 1, cooling = 0.99, max.tries = Inf, basis_f = basis_better, ...) {
+guided_tour <- function(current, data, index_f, temp = 1, cooling = 0.99, max.tries = 5, basis_f = basis_better, ...) {
   index <- function(proj) {
     index_f(as.matrix(data) %*% proj)
   }
 
   temp <- 1
   new_target <- function(current) {
-#    basis <- basis_better(current, temp, index, max.tries)
     basis <- basis_f(current, temp, index, max.tries)
-
     temp <<- temp * cooling
-    cat("temp",temp,"\n")
 
     basis
   }
@@ -63,36 +62,3 @@ guided_tour <- function(current, data, index_f, temp = 1, cooling = 0.99, max.tr
   tour(current, new_target, ...)
 }
 
-# Not rotationally invariant - bad idea!
-cor1 <- function(matrix) abs(cor(matrix[, 1], matrix[, 2]))
-
-holes <- function(mat) {
-  n <- nrow(mat)
-  d <- ncol(mat)
-
-  num <- 1 - 1/n * sum(exp(-0.5 * apply(mat, 1, crossprod)))
-  den <- 1 - exp(-d / 2)
-  
-  num/den
-}
-
-cm <- function(mat) {
-  n <- nrow(mat)
-  d <- ncol(mat)
-
-  num <- 1/n * sum(exp(-0.5 * apply(mat, 1, crossprod))) - exp(-d / 2)
-  den <- 1 - exp(-d / 2)
-  
-  num/den
-}
-
-ldaPP <- function(mat, cl) {
-  if (length(unique(cl)) < 2)
-    return(NA)
-
-  fit <- manova(mat~cl)
-
-  1-summary(fit,test="Wilks")$stats[[3]]
-}
-
-#X r_tour(mtcars[, 1:5], guided_tour, index_f = cor1)

@@ -15,8 +15,6 @@ tour <- function(
   step <- 0
   nsteps <- ceiling(target$dist / velocity)
 
-  cat(target$tau[1],"hello \n")
-  
   step_counter <- 1
   while(step_counter < total_steps) {
     proj <- target$interpolate(step / nsteps)
@@ -42,11 +40,12 @@ geodesic_path <- function(new_target_f) {
     # Keep trying until we get a target that's not equivalent to the previous
     while (dist < 1e-3) {
       frame <- new_target_f(previous)
+      if (is.null(frame)) return(NULL)
       interpolator <- geodesic(previous, frame)
       dist <- sqrt(sum(interpolator$tau ^ 2))      
     }
 
-    cat(interpolator$tau[1],"\n")
+    # cat(interpolator$tau[1],"\n")
     list(
       frame = frame,
       frame_prev = previous,
