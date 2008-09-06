@@ -30,7 +30,7 @@ save_history <- function(data, tour_f = grand_tour, d = 2, nbases = 100, interpo
       projs[, , count] <<- proj
     }
   }
-  target <- function(target) {
+  target <- function(target, geodesic) {
     if (!interpolate) {
       count <<- count+1
       projs[, , count] <<- target      
@@ -41,6 +41,11 @@ save_history <- function(data, tour_f = grand_tour, d = 2, nbases = 100, interpo
     start, velocity = velocity, total_steps = nbases + 1,
     step_fun = step, target_fun = target,  ..., data=data
   )
+  
+  # Remove empty matrices for tours that terminated early
+  # (e.g. guided tour)
+  empty <- apply(projs, 3, function(x) all(is.na(x)))
+  projs <- projs[, , !empty]
   
   attr(projs, "data") <- data
   projs
