@@ -13,16 +13,15 @@ save_history <- function(data, tour_f = grand_tour, d = 2, nbases = 100, interpo
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere(data)
   
-  # Start with plot of first two variables
+  # Start with random basis
   start <- basis_random(ncol(data), d)
-#  start <- matrix(0, nrow = ncol(data), ncol = d)
-#  diag(start) <- 1
 
   # A bit inefficient, but otherwise save changes to rest of tour code
   velocity <- if (interpolate) 0.05 else 10
 
-  projs <- array(NA, c(ncol(data), d, nbases))
-  count <- 0
+  projs <- array(NA, c(ncol(data), d, nbases + 1))
+  projs[, , 1] <- start
+  count <- 1
   
   step <- function(step, proj, geodesic) {
     if (interpolate) {
@@ -45,7 +44,7 @@ save_history <- function(data, tour_f = grand_tour, d = 2, nbases = 100, interpo
   # Remove empty matrices for tours that terminated early
   # (e.g. guided tour)
   empty <- apply(projs, 3, function(x) all(is.na(x)))
-  projs <- projs[, , !empty]
+  projs <- projs[, , !empty, drop = FALSE]
   
   attr(projs, "data") <- data
   projs
