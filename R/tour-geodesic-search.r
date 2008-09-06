@@ -25,7 +25,7 @@ basis_geodesic_search <- function(current, alpha = 1, index, max.tries = 5) {
   
 }
 
-find_best_dir <- function(old, index, dist = 0.05, tries = 10) {
+find_best_dir <- function(old, index, dist = 0.01, tries = 10) {
   bases <- replicate(tries, basis_random(nrow(old), ncol(old)),
     simplify = FALSE)
   
