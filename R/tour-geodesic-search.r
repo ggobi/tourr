@@ -3,10 +3,16 @@ basis_geodesic_search <- function(current, alpha = 1, index, max.tries = 5) {
   
   try <- 1
   while(try < max.tries) {
-    direction <- basis_random(nrow(current), ncol(current))
+    # Try 10 random directions and pick the one that has the highest
+    # index with a small step
+    direction <- find_best_dir(current, index)
+    
+    # Travel right round (pi / 2 radians) the sphere in that direction
+    # looking for the best projection
     peak <- find_path_peak(current, direction, index, pi / 2)
     
-    if (peak$index > cur_index) {
+    pdiff <- (peak$index - cur_index) / cur_index
+    if (pdiff > 0.001) {
       cat("New index: ", peak$index, " (", peak$dist, " away)\n", sep="")
       return(peak$basis)
     }
@@ -17,6 +23,19 @@ basis_geodesic_search <- function(current, alpha = 1, index, max.tries = 5) {
   
   NULL
   
+}
+
+find_best_dir <- function(old, index, dist = 0.05, tries = 10) {
+  bases <- replicate(tries, basis_random(nrow(old), ncol(old)),
+    simplify = FALSE)
+  
+  score <- function(new) {
+    interpolator <- geodesic(old, new)
+    small_step <- step_angle(interpolator, dist)
+    index(small_step)
+  }
+  scores <- sapply(bases, score)
+  bases[[which.max(scores)]]
 }
 
 find_path_peak <- function(old, new, index, max_dist = pi / 2) {
@@ -39,4 +58,6 @@ find_path_peak <- function(old, new, index, max_dist = pi / 2) {
 # }
 # 
 #
-# animate_xy(flea[, 1:3], guided_tour, index_f = cm, basis_f = basis_geodesic_search)
+# animate_xy(flea[, 1:3], guided_tour, index_f = cm, basis_f = basis_geodesic_search, sphere = T)
+#
+# tries <- replicate(5, save_history(flea[, 1:3], guided_tour, index_f = holes, basis_f = basis_geodesic_search, sphere = T), simplify = F)
