@@ -2,7 +2,7 @@ holes <- function(mat) {
   n <- nrow(mat)
   d <- ncol(mat)
 
-  num <- 1 - 1/n * sum(exp(-0.5 * apply(mat, 1, crossprod)))
+  num <- 1 - 1/n * sum(exp(-0.5 * rowSums(mat ^ 2)))
   den <- 1 - exp(-d / 2)
   
   num/den
@@ -12,7 +12,7 @@ cm <- function(mat) {
   n <- nrow(mat)
   d <- ncol(mat)
 
-  num <- 1/n * sum(exp(-0.5 * apply(mat, 1, crossprod))) - exp(-d / 2)
+  num <- 1 / n * sum(exp(-0.5 * rowSums(mat ^ 2))) - exp(-d / 2)
   den <- 1 - exp(-d / 2)
   
   num/den
