@@ -6,6 +6,9 @@
 #X observe_2dframes(interpolate(t1))
 
 observe_2dframes <- function(basis_set, ...) {
+  if (!require("rggobi")) {
+    stop("rggobi required for this visualisation")
+  }
   if (is.null(basis_set)) return(NA)
   
   # Draw all target bases
@@ -112,6 +115,9 @@ observe_2dframes <- function(basis_set, ...) {
 #X observe_vectors_move(t1)
 #X observe_vectors_move(interpolate(t1))
 observe_vectors_move <- function(basis_set, index_f = NULL, ...) {
+  if (!require("rggobi")) {
+    stop("rggobi required for this visualisation")
+  }
   
   # Collect the vectors into one matrix
   if (is.list(basis_set)) {
@@ -213,6 +219,9 @@ observe_vectors_move <- function(basis_set, index_f = NULL, ...) {
 #X t1 <- save_history(flea[, 1:6], nbases = 3, d = 1, interpolate = T)
 #X observe_vectors(interpolate(t1), nbases = 3)
 observe_vectors <- function(basis_set, index_f = NULL, nbases = 2, ...) {
+  if (!require("rggobi")) {
+    stop("rggobi required for this visualisation")
+  }
   
   # Collect the vectors into one matrix
   if (is.list(basis_set)) {
@@ -295,9 +304,7 @@ observe_vectors <- function(basis_set, index_f = NULL, nbases = 2, ...) {
 }
 
 gen_sphere <- function(n = 100, p = 5) {
-  x <- matrix(rnorm(n * p), ncol=p)
-  xnew <- t(apply(x, 1, f.norm.vec))
-  xnew
+  t(normalise(matrix(rnorm(n * p), ncol = n)))
 }
 
 #X testdata <- matrix(rnorm(100*2), ncol=2)
@@ -464,6 +471,9 @@ plot_hist_on_proj <-function(data, proj) {
 #X ggsgnl <- gSignalConnect(gd, "identify-point", linker2)
 #X gSignalHandlerDisconnect(gd, ggsgnl)
 observe_pp_trace <- function(basis_set, g, index_f = holes, nbases = 2, ...) {
+  if (!require("rggobi")) {
+    stop("rggobi required for this visualisation")
+  }
   
   # Collect the vectors into one matrix
   current = matrix(basis_set[, , 1])
