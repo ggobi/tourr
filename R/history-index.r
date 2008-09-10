@@ -11,7 +11,8 @@ histories_index <- function(bases_list, index_f) {
   data.frame(
     try = rep(seq_along(indices), sapply(indices, length)),
     step = unlist(sapply(indices, seq_along)), 
-    value = unlist(indices)
+    value = unlist(indices),
+    improvement = unlist(lapply(indices, function(x) c(0, diff(x))))
   )  
 }
 
