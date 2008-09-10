@@ -16,15 +16,24 @@ histories_index <- function(bases_list, index_f) {
 }
 
 # # Perform guided tour 10 times, saving results
+# tries <- replicate(100, save_history(flea[, 1:6], d=1, guided_tour, index_f = holes, basis_f = basis_geodesic_search, sphere = T), simplify = F)
+
+
 # tries <- replicate(10, save_history(flea[, 1:6], guided_tour, index_f = holes, basis_f = basis_geodesic_search, sphere = T), simplify = F)
+
+# old <- replicate(10, save_history(flea[, 1:6], guided_tour, index_f = holes, basis_f = basis_better, sphere = T), simplify = F)
+
+
 # 
 # # Interpolate between target bases 
 # itries <- lapply(tries, interpolate)
+# iold <- lapply(old, interpolate)
 # 
 # histories_index(tries, holes)
 # 
 # library(ggplot2)
-# qplot(step, value, data=histories_index(itries, cm), group=try, geom="line")
+# qplot(step, value, data=histories_index(itries, holes), group=try, geom="line")
+# qplot(step, value, data=histories_index(iold, holes), group=try, geom="line")
 # 
 # # Experiment with MDS ------
 # 
