@@ -36,11 +36,11 @@ history_geodesics <- function(data, tour_f = grand_tour, d = 2, nbases = 100, in
   # Remove empty matrices for tours that terminated early
   # (e.g. guided tour)
   empty <- apply(projs, 3, function(x) all(is.na(x)))
-  projs <- projs[, , !empty, drop = FALSE]
-  attr(projs, "data") <- data
 
-  empty <- apply(princ_dirs, 3, function(x) all(is.na(x)))
+  projs <- projs[, , !empty, drop = FALSE]
   princ_dirs <- princ_dirs[, , !empty, drop = FALSE]
+
+  attr(projs, "data") <- data
   attr(princ_dirs, "data") <- data
 
   list(projs, princ_dirs)
