@@ -14,7 +14,7 @@ animate <- function(data, tourf, d, aps = 1, fps = 30, start = NULL, render_fram
     step <- function(step, proj, geodesic) {
       Sys.sleep(1 / fps)
       render_transition()
-      render_data(data, proj)
+      render_data(data, proj, geodesic)
     }  
     
   } else {
@@ -23,7 +23,7 @@ animate <- function(data, tourf, d, aps = 1, fps = 30, start = NULL, render_fram
 
     step <- function(step, proj, geodesic) {
       render_frame()
-      render_data(data, proj)
+      render_data(data, proj, geodesic)
     }
   }
   
