@@ -8,7 +8,7 @@ animate_density <- function(data, tourf = grand_tour, method="hist", center = TR
   # Display 
   range <- c(-2, 2)
   render_frame <- function() {
-    par(pty="m")
+    par(pty="m",mar=c(4,4,1,1))
     plot(
       x = NA, y = NA, xlim = range, ylim = c(-1.1,4), xaxs="i", yaxs="i",
       xlab = "Data Projection", ylab = "Density"
@@ -29,7 +29,9 @@ animate_density <- function(data, tourf = grand_tour, method="hist", center = TR
     # Render projection data
     if (method=="hist") {
       bins <- hist(x, breaks = seq(-2, 2, 0.2), plot = FALSE)
-      with(bins, rect(mids - 0.1, rep(0, length(mids)), mids + 0.1, density, col="black"))
+      with(bins, rect(mids - 0.1, rep(0, length(mids)), mids + 0.1, density,
+          col="black", border="white"))
+      box(col="grey70")
     }
     else if (method=="density") {
       polygon(density(x), lwd = 2, col="black")

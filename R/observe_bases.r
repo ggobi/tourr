@@ -218,88 +218,79 @@ observe_vectors_move <- function(basis_set, index_f = NULL, ...) {
 #X t1 <- save_history(flea[, 1:3], nbases = 50, d = 1)
 #X t1 <- save_history(flea[, 1:6], nbases = 3, d = 1, interpolate = T)
 #X observe_vectors(interpolate(t1), nbases = 3)
+#X t2 <- save_history(flea[,c(1,2,4)], tour_f = guided_tour, index_f = holes, d=1, sphere=T, basis_f = basis_geodesic_search)
+#X observe_vectors(interpolate(t2), holes)
+#X t3 <- save_history(flea[,1:6], tour_f = guided_tour, index_f = holes, d=1, sphere=T, basis_f = basis_geodesic_search)
+#X observe_vectors(interpolate(t3), holes)
 observe_vectors <- function(basis_set, index_f = NULL, nbases = 2, ...) {
   if (!require("rggobi")) {
     stop("rggobi required for this visualisation")
   }
   
   # Collect the vectors into one matrix
-  if (is.list(basis_set)) {
-    current = matrix(basis_set[[1]])
-    n <- min(length(basis_set), nbases)
-    pdim <- ncol(basis_set[[1]])
-    x <<- attr(basis_set, "data")
-    vec <<- t(as.matrix(basis_set[[1]]))
-    bdim <<- length(basis_set[[1]])
-    # Make the background sphere
-    sph <- gen_sphere(1000, bdim)
-    if (!is.null(index_f)) {
-      index_val <- NULL
-      for (i in 1:1000) 
-        index_val <- c(index_val,index_f(x%*%as.matrix(sph[i,])))
-      index_val_range <<- range(index_val)
-      index_val <- (index_val-index_val_range[1])/diff(index_val_range)
-    }
-    for (i in 2:n) {
-      vec <<- rbind(vec, basis_set[[i]])
-    }
-    colnames(vec) <- paste("V", 1:length(basis_set[[1]]), sep="")
-  } else {
-    current = matrix(basis_set[, , 1])
-    n <- min(dim(basis_set)[3], nbases)
-    pdim <- ncol(basis_set[[1]])
-    x <<- attr(basis_set, "data")
-    if (!is.null(index_f)) {
-      new_index_val <- (index_f(x%*%basis_set[, , 1]) - index_val_range[1])/
-        diff(index_val_range)
-      vec <<- t(as.matrix(basis_set[, , 1]+basis_set[, , 1]*new_index_val))
-    }
-    vec <<- t(as.matrix(basis_set[, , 1]))
-    cat(nrow(vec), ncol(vec), n, "\n")
-    bdim <<- length(basis_set[, , 1])
-    # Make the background sphere
-    sph <- gen_sphere(1000, bdim)
-    if (!is.null(index_f)) {
-      index_val <- NULL
-      for (i in 1:1000) 
-        index_val <- c(index_val,index_f(x%*%as.matrix(sph[i,])))
-      index_val_range <<- range(index_val)
-      index_val <- (index_val-index_val_range[1])/diff(index_val_range)
-    }
-    for (i in 2:n) {
-      if (!is.null(index_f)) {
-        new_index_val <- (index_f(x%*%basis_set[, , i]) - index_val_range[1])/
-          diff(index_val_range)
-        vec <<- rbind(vec, basis_set[, , i] + basis_set[, , 1]*new_index_val)
-      }
-      else
-        vec <<- rbind(vec, basis_set[, , i])
-    }
-    colnames(vec) <<- paste("V", 1:length(basis_set[, , 1]), sep="")
+  current = matrix(basis_set[, , 1])
+  n <- dim(basis_set)[3]
+  pdim <- ncol(basis_set[[1]])
+  x <<- attr(basis_set, "data")
+  if (!is.null(index_f)) {
+    new_index_val <- (index_f(x%*%basis_set[, , 1]) - index_val_range[1])/
+      diff(index_val_range)
+    vec <<- t(as.matrix(basis_set[, , 1]+basis_set[, , 1]*new_index_val))
   }
+  vec <<- t(as.matrix(basis_set[, , 1]))
+  cat(nrow(vec), ncol(vec), n, "\n")
+  bdim <<- length(basis_set[, , 1])
+  # Make the background sphere
+  sph <- gen_sphere(1000, bdim)
+  if (!is.null(index_f)) {
+    index_val <- NULL
+    for (i in 1:1000) 
+      index_val <- c(index_val,index_f(x%*%as.matrix(sph[i,])))
+    index_val_range <<- range(index_val)
+    index_val <- (index_val-index_val_range[1])/diff(index_val_range)
+  }
+  for (i in 2:n) {
+    if (!is.null(index_f)) {
+      new_index_val <- (index_f(x%*%basis_set[, , i]) - index_val_range[1])/
+        diff(index_val_range)
+      vec <<- rbind(vec, basis_set[, , i] + basis_set[, , i]*new_index_val)
+    }
+    else
+      vec <<- rbind(vec, basis_set[, , i])
+  }
+  colnames(vec) <<- paste("V", 1:length(basis_set[, , 1]), sep="")
 
   # Put pieces together
   vec <- rbind(vec, sph)
   lims <- 1
   if (!is.null(index_f)) {
     vec <- rbind(vec, sph+sph*index_val)
-    vec <- rbind(vec, x/3)
+#    vec <- rbind(vec, x/3)
+    vec <- rbind(rep(0, ncol(vec)), vec)
+    vec_edges <- c(1,2)
+    for (i in 2:n)
+      vec_edges <- rbind(vec_edges, c(1,i+1))
     lims <- 2
   }
   vec <- rbind(vec, rep(-lims, ncol(x)), rep(lims, ncol(x)))
-  
+
+  rownames(vec) <- as.character(1:nrow(vec))
+  rownames(vec) <- rownames(vec)
+  vec_edges <- matrix(as.character(vec_edges),ncol=2)
+   
   # Load structures into ggobi, color
   gd <- ggobi(vec)
   d <- displays(gd)[[1]]
   pmode(d) <- "2D Tour"
   g <- gd[1]
-  gcolor <- c(rep(2, n), rep(8, 1000), rep(8, 1000), rep(1, nrow(x)), 8, 8)
+  gcolor <- c(rep(2, n+1), rep(8, 1000), rep(8, 1000), 8, 8)
   glyph_color(g) <- gcolor
-  gsize <- c(rep(5, n), rep(2, 2000), rep(3, nrow(x)), 1, 1)
+  gsize <- c(rep(5, n+1), rep(2, 2000), 1, 1)
   glyph_size(g) <- gsize
-  gtype <- c(rep(6, n+2000+nrow(x)), 1, 1)
+  gtype <- c(rep(6, n+1+2000+nrow(x)), 1, 1)
   glyph_type(g) <- gtype
-  
+  edges(g) <- vec_edges
+    
   NA
 }
 
@@ -470,7 +461,7 @@ plot_hist_on_proj <-function(data, proj) {
 #X t3 <- interpolate(t2)
 #X ggsgnl <- gSignalConnect(gd, "identify-point", linker2)
 #X gSignalHandlerDisconnect(gd, ggsgnl)
-observe_pp_trace <- function(basis_set, g, index_f = holes, nbases = 2, ...) {
+observe_pp_trace <- function(basis_set, index_f = holes, nbases = 2, ...) {
   if (!require("rggobi")) {
     stop("rggobi required for this visualisation")
   }
@@ -478,24 +469,36 @@ observe_pp_trace <- function(basis_set, g, index_f = holes, nbases = 2, ...) {
   # Collect the vectors into one matrix
   current = matrix(basis_set[, , 1])
   n <- min(dim(basis_set)[3], nbases)
-  cat(n,"\n")
   pdim <- ncol(basis_set[[1]])
   x <<- attr(basis_set, "data")
-  vec <<- t(as.matrix(basis_set[, , 1]))
-  index_val <<- index_f(x%*%as.matrix(basis_set[, , 1]))
-  cat(nrow(vec), ncol(vec), "\n")
-  bdim <<- length(basis_set[, , 1])
-  for (i in 2:n) {
-    vec <<- rbind(vec, basis_set[, , i])
-    index_val <<- c(index_val, index_f(x%*%as.matrix(basis_set[, , i])))
+  cat(nrow(x), ncol(x), "\n")
+  if (!is.matrix(basis_set[, , 1])) {
+    vec <<- t(as.matrix(basis_set[, , 1]))
+    index_val <<- index_f(x%*%as.matrix(basis_set[, , 1]))
+    bdim <<- length(basis_set[, , 1])
+    for (i in 2:n) {
+      vec <<- rbind(vec, basis_set[, , i])
+      index_val <<- c(index_val, index_f(x%*%as.matrix(basis_set[, , i])))
+    }
+    colnames(vec) <<- paste("V", 1:length(basis_set[, , 1]), sep="")
   }
-  colnames(vec) <<- paste("V", 1:length(basis_set[, , 1]), sep="")
+  else {
+    vec <<- t(basis_set[, , 1])
+    index_val <<- index_f(x%*%basis_set[, , 1])
+    bdim <<- nrow(basis_set[, , 1])
+    for (i in 2:n) {
+      vec <<- rbind(vec, t(basis_set[, , i]))
+      index_val <<- c(index_val, index_f(x%*%basis_set[, , i]))
+    }
+    colnames(vec) <<- paste("V", 1:nrow(basis_set[, , 1]), sep="")
+  }
 
   # Load structures into ggobi, color
   gd <- ggobi(x)
 #  d <- displays(gd)[[1]]
 #  pmode(d) <- "1D Tour"
   pptrace <- cbind(1:length(index_val), index_val)
+  cat(nrow(pptrace), ncol(pptrace), "\n")
   colnames(pptrace) <- c("Time","Index")
   gd$trace <- pptrace
 

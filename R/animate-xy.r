@@ -29,6 +29,9 @@ animate_xy <- function(data, tourf = grand_tour, center = TRUE, axes = "center",
       text(-1.25+proj[, 1]/2, -1.25+proj[, 2]/2, label = labels, col="grey50")
     }
 
+    g <-geodesic$Gz
+    cat(nrow(g),"\n")
+    
     # Render projected points
     x <- data %*% proj
     if (center) x <- scale(x, center = TRUE, scale = FALSE)

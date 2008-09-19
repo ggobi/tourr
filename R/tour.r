@@ -1,9 +1,7 @@
 nul <- function(...) {}
 
-
 # The tour function provides the common machinery behind all tour methods:
 # interpolating from basis to basis, and generating new bases when necessary.
-
 tour <- function(
   current, target_f, velocity = 0.05, total_steps = 100,
   step_fun = nul, target_fun = nul, ...
