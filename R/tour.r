@@ -9,7 +9,7 @@ tour <- function(
   new_target <- geodesic_path(target_f)
   
   target <- new_target(current)
-  target_fun(target$frame)
+  target_fun(target$frame, target)
   step <- 0
   nsteps <- ceiling(target$dist / velocity)
 
