@@ -24,7 +24,7 @@ history_geodesics <- function(data, tour_f = grand_tour, d = 2, nbases = 100, in
       count <<- count+1
       projs[, , count] <<- target      
     }
-    princ_dirs[, , count] <<- geodesic
+    princ_dirs[, , count] <<- geodesic$Gz
     cat(dim(princ_dirs[, , count]),"\n")
   }
 
