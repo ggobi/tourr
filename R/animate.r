@@ -27,11 +27,17 @@ animate <- function(data, tourf, d, aps = 1, fps = 30, start = NULL, render_fram
     }
   }
   
-  cat("Press Ctrl+C to stop tour runnning\n")
+  if (interactive()) {
+    message("Press Ctrl+C to stop tour runnning\n")
+    total_steps <- Inf    
+  } else {
+    total_steps <- 1
+  }
+  
   tourf(
     start, velocity = aps / fps, 
     step_fun = step, target_fun = render_target, 
-    total_steps = Inf, ..., data = data
+    total_steps = total_steps, ..., data = data
   )
 }
 
