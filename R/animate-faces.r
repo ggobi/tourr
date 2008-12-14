@@ -1,7 +1,7 @@
 # animate_faces(flea[, 1:6], d = 5)
 
 animate_faces <- function(data, tourf = grand_tour, d = 3, ...) {
-  require("TeachingDemos")
+  require("     ")
   
   render_data <- function(data, proj, geodesic) {
     x <- data %*% proj

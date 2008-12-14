@@ -1,3 +1,8 @@
+#' A null function
+#'
+#' This function does nothing, and is a useful default callback function
+#' 
+#' @param ... all arguments to \code{...} are ignore
 nul <- function(...) {}
 
 # The tour function provides the common machinery behind all tour methods:

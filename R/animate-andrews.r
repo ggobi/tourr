@@ -1,3 +1,21 @@
+#' Compute Andrews' curves
+#' 
+#' This function takes a numeric vector of input, and returns a function which
+#' allows you to compute the value of the Andrew's curve at every point along
+#' its path from -pi to pi.
+#'
+#' @param x input a new parameter
+#' @return a function with single argument, theta
+#'
+#' @examples
+#' a <- andrews(1:2)
+#' a(0)
+#' a(-pi)
+#' grid <- seq(-pi, pi, length = 50)
+#' a(grid)
+#' 
+#' plot(grid, andrews(1:2)(grid), type = "l")
+#' plot(grid, andrews(runif(5))(grid), type = "l")
 andrews <- function(x) {
   n <- length(x)
   y <- rep(x[1] / sqrt(2), length(t))
@@ -11,8 +29,21 @@ andrews <- function(x) {
   }
 }
 
-#X animate_andrews(flea[, 1:6])
-
+#' Andrews' curves animation 
+#'
+#' Animate a tour path with Andrews' curves.  For more details about Andrew's
+#' curves, see \code{\link{andrews}}
+#'
+#' @param data matrix, or data frame containing numeric columns
+#' @param tour path generator, defaults to the grand tour
+#' @param d number of target dimensions
+#' @param ... other arguments passed on to the tour path generator
+#' @keywords hplot
+#' 
+#' @examples
+#' animate_andrews(flea[, 1:6])
+#' animate_andrews(flea[, 1:6], d = 3)
+#' animate_andrews(flea[, 1:6], d = 6)
 animate_andrews <- function(data, tourf = grand_tour, d = 2, ...) {
   grid <- seq(-pi, pi, length = 50)
   data <- rescale(data)

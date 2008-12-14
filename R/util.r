@@ -1,5 +1,9 @@
-f.sphere.data <- function(x) {
-  evc <- eigen(var(x))
-  vc2 <- (evc$vectors)%*%diag(1/sqrt(evc$values))%*%t(evc$vectors)
-  x <- x%*%vc2
+# Utility function for standardizing a vector of data
+rescale <- function(df) {
+  apply(df, 2, function(x) (x - min(x)) / diff(range(x)))
+}
+
+# Utility function for sphering a matrix of data
+sphere <- function(df) {
+  apply(predict(princomp(df)), 2, scale)
 }
