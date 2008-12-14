@@ -1,4 +1,19 @@
-#X animate_pcp(flea[, 1:6], d=3)
+#' Parallel coordinates animation.
+#'
+#' Animate a nD tour path with a parallel coordinates plot. 
+#'
+#' The lines show the observations, and the points, the values of the 
+#' projection matrix.
+#'
+#' @param data matrix, or data frame containing numeric columns
+#' @param tourf tour path generator, defaults to the grand tour
+#' @param d number of target dimensions
+#' @param ... other arguments passed on to \code{\link{animate}}
+#' @seealso \code{\link{animate}} for options that apply to all animations
+#' @keywords hplot
+#' @examples
+#' animate_pcp(flea[, 1:6], d = 3)
+#' animate_pcp(flea[, 1:6], d = 5)
 animate_pcp <- function(data, tourf = grand_tour, d = 2, ...) {
   labels <- abbreviate(colnames(data), 2)
   xpos <- 1:d - 0.5
@@ -27,7 +42,7 @@ animate_pcp <- function(data, tourf = grand_tour, d = 2, ...) {
       subset(label_df, abs(y) > 0.05), 
       text(x, y, label = label, col="grey50", pos = 4)
     )
-    with(label_df, points(x, y, col="grey50", pch=20))
+    with(label_df, points(x, y, col="grey50", pch = 20))
     
     # Data values
     lines(xs, ys)
@@ -39,7 +54,7 @@ animate_pcp <- function(data, tourf = grand_tour, d = 2, ...) {
   animate(
     data = data, tourf = tourf, d = d, 
     render_frame = render_frame, render_data = render_data,
-    render_transition = render_transition, render_target = render_target, 
+    render_transition = render_transition, render_target = nul, 
     ...
   )
 }
