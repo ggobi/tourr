@@ -29,8 +29,7 @@ animate_xy <- function(data, tourf = grand_tour, center = TRUE, axes = "center",
       text(-1.25+proj[, 1]/2, -1.25+proj[, 2]/2, label = labels, col="grey50")
     }
 
-    g <-geodesic$Gz
-    cat(nrow(g),"\n")
+    g <- geodesic$Gz
     
     # Render projected points
     x <- data %*% proj
@@ -44,7 +43,7 @@ animate_xy <- function(data, tourf = grand_tour, center = TRUE, axes = "center",
   animate(
     data = data, tourf = tourf, d = 2, 
     render_frame = render_frame, render_data = render_data,
-    render_transition = render_transition, render_target = render_target, 
+    render_transition = render_transition, render_target = nul, 
     ...
   )
 }

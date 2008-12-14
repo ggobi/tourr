@@ -1,33 +1,9 @@
-blue <- rgb(0, 0.91, 0.89)
-red <- rgb(0.98, 0.052, 0)
-green <- "green2"
-
-project3d <- function(d3, length = par("din")[1] * 25.4, z0 = 300, d = 30) {
-  length <- length * 0.3
-  x <- d3[, 1] * length
-  y <- d3[, 2] * length
-  # Squash z dimension a bit more
-  z <- (1.5 + d3[, 3]) * length / 2
-    
-  d2 <- data.frame(
-    left =  (z0 * x - z * d) / (z0 - z), 
-    right = (z0 * x + z * d) / (z0 - z),
-    y =     (z0 * y)         / (z0 - z)
-  ) / length * 0.5
-}
-
-# Math from http://dogfeathers.com/java/3dproj.html
-# z0 = distance from eye to screen, mm
-# d = half interpupilary distance, mm
-anaglyph <- function(d3, ...) {
-  d2 <- project3d(d3)
-
-  with(d2, points(right, y, col=blue, pch = 20)) # skyblue
-  with(d2, points(left, y, col=red, pch=20))
-}
-
 # animate_stereo(flea[, 1:6])
 animate_stereo <- function(data, tourf = grand_tour, ...) {
+  blue <- rgb(0, 0.91, 0.89)
+  red <- rgb(0.98, 0.052, 0)
+  green <- "green2"
+  
   labels <- abbreviate(colnames(data), 2)
   
   render_frame <- function() {
@@ -55,4 +31,28 @@ animate_stereo <- function(data, tourf = grand_tour, ...) {
     render_transition = render_transition, render_target = nul, 
     ...
   )
+}
+
+anaglyph <- function(d3, ...) {
+  d2 <- project3d(d3)
+
+  with(d2, points(right, y, col=blue, pch = 20))
+  with(d2, points(left, y, col=red, pch=20))
+}
+
+# Math from http://dogfeathers.com/java/3dproj.html
+# z0 = distance from eye to screen, mm
+# d = half interpupilary distance, mm
+project3d <- function(d3, length = par("din")[1] * 25.4, z0 = 300, d = 30) {
+  length <- length * 0.3
+  x <- d3[, 1] * length
+  y <- d3[, 2] * length
+  # Squash z dimension a bit more
+  z <- (1.5 + d3[, 3]) * length / 2
+    
+  d2 <- data.frame(
+    left =  (z0 * x - z * d) / (z0 - z), 
+    right = (z0 * x + z * d) / (z0 - z),
+    y =     (z0 * y)         / (z0 - z)
+  ) / length * 0.5
 }
