@@ -8,7 +8,8 @@
 #' @param should 1d projection be centered to have mean zero (default: TRUE).
 #'   This pins the centre of distribution to the same place, and makes it
 #'   easier to focus on the shape of the distribution.
-#' @param ... other arguments passed on to the tour path generator
+#' @param ... other arguments passed on to \code{\link{animate}}
+#' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' 
 #' @examples
