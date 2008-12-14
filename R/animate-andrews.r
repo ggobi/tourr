@@ -35,7 +35,7 @@ andrews <- function(x) {
 #' curves, see \code{\link{andrews}}
 #'
 #' @param data matrix, or data frame containing numeric columns
-#' @param tour path generator, defaults to the grand tour
+#' @param tourf tour path generator, defaults to the grand tour
 #' @param d number of target dimensions
 #' @param ... other arguments passed on to the tour path generator
 #' @keywords hplot
@@ -44,6 +44,9 @@ andrews <- function(x) {
 #' animate_andrews(flea[, 1:6])
 #' animate_andrews(flea[, 1:6], d = 3)
 #' animate_andrews(flea[, 1:6], d = 6)
+#' 
+#' # It's easy to experiment with different tour paths:
+#' animate_andrews(flea[, 1:6], guided_tour, index_f = cm)
 animate_andrews <- function(data, tourf = grand_tour, d = 2, ...) {
   grid <- seq(-pi, pi, length = 50)
   data <- rescale(data)

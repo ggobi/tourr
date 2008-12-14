@@ -1,9 +1,28 @@
-#X animate_density(flea[, 1:6])
-#X animate_density(flea[, 1:6], method = "density")
-#X animate_density(flea[, 1:6], tourf = planned_tour, basis_set = t1, method = "density")
-
-animate_density <- function(data, tourf = grand_tour, method="hist", center = TRUE, ...) {
+#' 1d distribution animation.
+#'
+#' Animate a 1d tour path with a density plot or histogram.
+#'
+#' @param data matrix, or data frame containing numeric columns
+#' @param tourf tour path generator, defaults to the grand tour
+#' @param method display method, histogram or density plot
+#' @param should 1d projection be centered to have mean zero (default: TRUE).
+#'   This pins the centre of distribution to the same place, and makes it
+#'   easier to focus on the shape of the distribution.
+#' @param ... other arguments passed on to the tour path generator
+#' @keywords hplot
+#' 
+#' @examples
+#' animate_dist(flea[, 1:6])
+#'
+#' # When the distribution is not centred, it tends to wander around in a 
+#' # distracting manner
+#' animate_dist(flea[, 1:6], centre = FALSE)
+#'
+#' # Alternatively, you can display the distribution with a histogram
+#' animate_dist(flea[, 1:6], method = "hist")
+animate_dist <- function(data, tourf = grand_tour, method="density", center = TRUE, ...) {
   labels <- abbreviate(colnames(data), 2)
+  method <- match.arg(method, c("histogram", "density"))
   
   # Display 
   range <- c(-2, 2)
@@ -11,8 +30,9 @@ animate_density <- function(data, tourf = grand_tour, method="hist", center = TR
     par(pty="m",mar=c(4,4,1,1))
     plot(
       x = NA, y = NA, xlim = range, ylim = c(-1.1,4), xaxs="i", yaxs="i",
-      xlab = "Data Projection", ylab = "Density"
+      xlab = "Data Projection", ylab = "Density", yaxt = "n"
     )
+    axis(2, seq(0, 4, by = 1))
   }
   render_transition <- function() {
     rect(-1.99, -1.99, 1.99, 5, col="grey80", border=NA)
@@ -27,16 +47,15 @@ animate_density <- function(data, tourf = grand_tour, method="hist", center = TR
     if (center) x <- scale(x, center = TRUE, scale = FALSE)
     
     # Render projection data
-    if (method=="hist") {
+    if (method == "histogram") {
       bins <- hist(x, breaks = seq(-2, 2, 0.2), plot = FALSE)
-      with(bins, rect(mids - 0.1, rep(0, length(mids)), mids + 0.1, density,
+      with(bins, rect(mids - 0.1, 0, mids + 0.1, density,
           col="black", border="white"))
-      box(col="grey70")
-    }
-    else if (method=="density") {
+    } else if (method == "density") {
       polygon(density(x), lwd = 2, col="black")
-      abline(h = 0)
     }
+    abline(h = 0)
+    box(col="grey70")
     
     # Render tour axes
     for (i in 1:length(proj)) {

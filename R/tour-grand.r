@@ -1,4 +1,4 @@
-#X animate_density(flea[,1:6])
+#X animate_dist(flea[,1:6])
 #X animate_xy(flea[,1:6])
 
 # This method generates target bases by randomly sampling on

@@ -3,7 +3,7 @@
 #X t1 <- save_history(flea[, 1:6], nbases = 3, d = 4)
 #X animate_pcp(flea[, 1:6], planned_tour, basis_set = t1)
 #X t1 <- save_history(flea[, 1:6], nbases = 3, d = 1)
-#X animate_density(flea[, 1:6], planned_tour, basis_set = t1)
+#X animate_dist(flea[, 1:6], planned_tour, basis_set = t1)
 #X testdata <- matrix(rnorm(100*2), ncol=2)
 #X testdata[1:50,1] <- testdata[1:50,1] + 10
 #X testdata <- sphere(testdata)
