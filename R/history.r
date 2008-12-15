@@ -1,36 +1,58 @@
-#X t1 <- save_history(flea[, 1:6], nbases = 3)
-#X animate_xy(flea[, 1:6], planned_tour, basis_set = t1)
-#X t1 <- save_history(flea[, 1:6], nbases = 3, d = 4)
-#X animate_pcp(flea[, 1:6], planned_tour, basis_set = t1)
-#X t1 <- save_history(flea[, 1:6], nbases = 3, d = 1)
-#X animate_dist(flea[, 1:6], planned_tour, basis_set = t1)
-#X testdata <- matrix(rnorm(100*2), ncol=2)
-#X testdata[1:50,1] <- testdata[1:50,1] + 10
-#X testdata <- sphere(testdata)
-#X t2 <- save_history(testdata, tour_f = guided_tour, index_f = holes, nbases=5, d=1, rescale=F, sphere=F, max.tries = 100, cooling = 0.95)
-
-save_history <- function(data, tour_f = grand_tour, d = 2, nbases = 100, ..., rescale = TRUE, sphere = FALSE){
+#' Save tour history
+#'
+#' Save a tour path so it can later be displayed in many different ways.
+#'
+#' @param data matrix, or data frame containing numeric columns
+#' @param tour_path tour path generator, defaults to the grand tour
+#' @param max_bases maximum number of new bases to generate.  Some tour paths
+#'  (like the guided tour) may generate less than the maximum.
+#' @param start starting projection, if you want to specify one
+#' @param rescale if true, rescale all variables to range [0,1]?
+#' @param sphere if true, sphere all variables
+#'
+#' @examples
+#' t1 <- save_history(flea[, 1:6], max = 3)
+#' animate_xy(flea[, 1:6], planned_tour(t1))
+#' andrews_history(t1)
+#' andrews_history(interpolate(t1))
+#'
+#' t1 <- save_history(flea[, 1:6], grand_tour(4), max = 3)
+#' animate_pcp(flea[, 1:6], planned_tour(t1))
+#' animate_scatmat(flea[, 1:6], planned_tour(t1))
+#'
+#' t1 <- save_history(flea[, 1:6], grand_tour(1), max = 3)
+#' animate_dist(flea[, 1:6], planned_tour(t1))
+#'
+#' testdata <- matrix(rnorm(100*3), ncol=3)
+#' testdata[1:50, 1] <- testdata[1:50, 1] + 10
+#' testdata <- sphere(testdata)
+#' t2 <- save_history(testdata, guided_tour(holes, max.tries = 100), max = 5, rescale=F)
+#' animate_xy(testdata, planned_tour(t2))
+save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start = NULL, rescale = TRUE, sphere = FALSE){
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere(data)
   
-  # Start with random basis
-  start <- basis_random(ncol(data), d)
-
-  # A bit inefficient, but otherwise save changes to rest of tour code
+  # A bit inefficient, but saves changes to rest of tour code
+  # Basically ensures that we only ever jump from one basis to the next:
+  # don't use any geodesic interpolation
   velocity <- 10
+  
+  if (is.null(start)) {
+    start <- tour_path(NULL, data)    
+  }
 
-  projs <- array(NA, c(ncol(data), d, nbases + 1))
+  projs <- array(NA, c(ncol(data), ncol(start), max_bases + 1))
   projs[, , 1] <- start
   count <- 1
   
   target <- function(target, geodesic) {
     count <<- count+1
-    projs[, , count] <<- target      
+    projs[, , count] <<- target
   }
 
-  tour_f(
-    start, velocity = velocity, total_steps = nbases + 1,
-    step_fun = nul, target_fun = target,  ..., data=data
+  tour(data, tour_path, start = start,
+    velocity = velocity, total_steps = max_bases + 1,
+    target_fun = target
   )
   
   # Remove empty matrices for tours that terminated early

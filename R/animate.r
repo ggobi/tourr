@@ -18,7 +18,7 @@
 #' @param tour_path tour path generator, defaults to the grand tour
 #' @param aps target angular velocity (in radians per second)
 #' @param fps target frames per second (defaults to 30)
-#' @param max_frames the maximum number of frames to generate.  Defaults to
+#' @param max_frames the maximum number of bases to generate.  Defaults to
 #'   Inf for interactive use (must use Ctrl + C to terminate), and 1 for 
 #'   non-interactive use.  It's recommended that you set this value to a 
 #'   finite number if you are saving the animation to disk.
