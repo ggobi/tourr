@@ -4,11 +4,12 @@
 #' the space of all d-dimensional planes in p-space.
 #'
 #' @param target dimensionality
-#'
 #' @examples
 #' # All animation methods use the grand tour path by default
 #' animate_dist(flea[, 1:6])
 #' animate_xy(flea[, 1:6])
+#' animate_pcp(flea[, 1:6])
+#' animate_pcp(flea[, 1:6], grand_tour(4))
 grand_tour <- function(d = 2) {
   generator <- function(current, data) {
     if (is.null(current)) return(basis_init(ncol(data), d))
