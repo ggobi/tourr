@@ -1,4 +1,4 @@
-#' Parallel coordinates animation.
+#' Parallel coordinates tour path animation.
 #'
 #' Animate a nD tour path with a parallel coordinates plot. 
 #'

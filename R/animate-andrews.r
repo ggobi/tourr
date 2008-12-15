@@ -1,4 +1,4 @@
-#' Andrews' curves animation 
+#' Andrews' curves tour path animation.
 #'
 #' Animate a nD tour path with Andrews' curves.  For more details about
 #' Andrew's curves, see \code{\link{andrews}}

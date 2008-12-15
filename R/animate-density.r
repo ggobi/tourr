@@ -1,4 +1,4 @@
-#' 1d distribution animation.
+#' 1d distribution tour path animation.
 #'
 #' Animate a 1d tour path with a density plot or histogram.
 #'

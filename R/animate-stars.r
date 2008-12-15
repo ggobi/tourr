@@ -1,4 +1,4 @@
-#' Star glyph  animation.
+#' Star glyph tour path animation.
 #'
 #' Animate a nD tour path with star glyphs.
 #'
@@ -6,7 +6,7 @@
 #' centres move around as well as outside points.
 #'
 #' @param data matrix, or data frame containing numeric columns
-#' @param tour_path tour path generator, defaults to the grand tour
+#' @param tour_path tour path, defaults to the grand tour
 #' @param d number of target dimensions
 #' @param ... other arguments passed on to \code{\link{animate}} and 
 #'   \code{\link{stars}}

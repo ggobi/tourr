@@ -1,11 +1,29 @@
-#X animate_xy(flea[, 1:6])
-#X animate_xy(flea[, 1:6], little_tour())
-#X animate_xy(flea[, 1:6], center = FALSE)
-#X animate_xy(flea[, 1:6], axes = "bottomleft")
-#X animate_xy(flea[, 1:6], axes = "off")
-#X animate_xy(flea[, 1:6], correlation_tour, pos=c(T,T,T,F,F,F), axes = "bottomleft")
+#' Scatterplot tour path animation
+#'
+#' Animate a 2D tour path with a scatterplot.
+#'
+#' @param data matrix, or data frame containing numeric columns
+#' @param tour_path tour path, defaults to the grand tour
+#' @param center if TRUE, centers projected data to (0,0).  This pins the 
+#'  center of data cloud and make it easier to focus on the changing shape
+#'  rather than position.
+#' @param position of the axes: center, bottomleft or off
+#' @param ... other arguments passed on to \code{\link{animate}}
+#'
+#' @examples
+#' animate_xy(flea[, 1:6])
+#' animate_xy(flea[, 1:6], little_tour())
+#' animate_xy(flea[, 1:3], guided_tour(holes))
+#' animate_xy(flea[, 1:6], center = FALSE)
+#'
+#' # The default axes are centered, like a biplot, but there are other options
+#' animate_xy(flea[, 1:6], axes = "bottomleft")
+#' animate_xy(flea[, 1:6], axes = "off")
+#' animate_xy(flea[, 1:6], correlation_tour(rep(c(TRUE, FALSE), 3),
+#'   axes = "bottomleft")
 animate_xy <- function(data, tour_path = grand_tour(), center = TRUE, axes = "center", ...) {
   labels <- abbreviate(colnames(data), 2)
+  axes <- match.arg(axes, c("center", "bottomleft", "off"))
   
   render_frame <- function() {
     par(pty = "s", mar = rep(1,4))

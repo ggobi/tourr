@@ -1,4 +1,7 @@
-# animate_stereo(flea[, 1:6])
+#' Anaglpyh tour path animation.
+#'
+#' @examples
+#' animate_stereo(flea[, 1:6])
 animate_stereo <- function(data, tour_path = grand_tour(3), ...) {
   blue <- rgb(0, 0.91, 0.89)
   red <- rgb(0.98, 0.052, 0)

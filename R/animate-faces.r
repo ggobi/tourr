@@ -1,4 +1,4 @@
-#' Chernoff faces animation.
+#' Chernoff faces tour path animation.
 #'
 #' Animate a nD tour path with Chernoff's faces.  Can display up to 18
 #' dimensions.

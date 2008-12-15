@@ -1,4 +1,4 @@
-#' Scatterplot matrix animation.
+#' Scatterplot matrix tour path animation.
 #'
 #' Animate a nD tour path with a scatterplot matrix. 
 #'
