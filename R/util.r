@@ -1,9 +1,20 @@
-# Utility function for standardizing a vector of data
+#' Rescale a matrix or data frame
+#'
+#' Standardise each column to have range [0, 1]
+#' 
+#' @param df data frame or matrix
+#' @keywords manip
 rescale <- function(df) {
   apply(df, 2, function(x) (x - min(x)) / diff(range(x)))
 }
 
-# Utility function for sphering a matrix of data
+#' Sphere a matrix (or data frame)
+#'
+#' Sphering is often useful in conjunction with the guided tour, as it 
+#' removes simpler patterns that may conceal more interesting findings.
+#'
+#' @param df   data frame or matrix
+#' @keywords manip
 sphere <- function(df) {
   apply(predict(princomp(df)), 2, scale)
 }
@@ -14,5 +25,6 @@ sphere <- function(df) {
 #' This function does nothing, and is a useful default callback function
 #' 
 #' @param ... all arguments to \code{...} are ignore
+#' @keyword ignore
 nul <- function(...) {}
 

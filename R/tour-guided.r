@@ -1,3 +1,11 @@
+#' The guided tour
+#'
+#' Instead of choosing new projections at random like the grand tour, the 
+#' guided tour always tries to find a projection that is more interesting
+#' than the current projection.
+#'
+#' @seealso \code{\link{cm}}, \code{\link{holes}} and \code{\link{lda_pp}}
+#'   for examples of index functions
 guided_tour <- function(current, data, index_f, temp = 1, cooling = 0.99, max.tries = 25, basis_f = basis_geodesic_search, ...) {
   index <- function(proj) {
     index_f(as.matrix(data) %*% proj)

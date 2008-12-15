@@ -1,13 +1,3 @@
-#' Generate a random basis
-#'
-#' @keywords internal
-#' @param n dimensionality of data
-#' @param d dimensionality of target projection
-basis_random <- function(n, d = 2) {  
-  mvn <- matrix(rnorm(n * d), ncol = d)
-  orthonormalise(mvn)
-}
-
 #' A grand tour path
 #'
 #' This method generates target bases by randomly sampling on
@@ -26,4 +16,14 @@ grand_tour <- function(current, ...) {
   }
 
   tour(current, new_target)
+}
+
+#' Generate a random basis
+#'
+#' @keywords internal
+#' @param n dimensionality of data
+#' @param d dimensionality of target projection
+basis_random <- function(n, d = 2) {  
+  mvn <- matrix(rnorm(n * d), ncol = d)
+  orthonormalise(mvn)
 }
