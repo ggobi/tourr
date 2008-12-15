@@ -7,8 +7,7 @@
 #' Chernoff faces.  See \code{\link{faces2}} for more details.
 #'
 #' @param data matrix, or data frame containing numeric columns
-#' @param tourf tour path generator, defaults to the grand tour
-#' @param d number of target dimensions
+#' @param tour_path tour path generator, defaults to the grand tour
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
@@ -18,8 +17,8 @@
 #' animate_faces(flea[1:2, 1:6])
 #' animate_faces(flea[1:4, 1:6])
 #' 
-#' animate_faces(flea[1:2, 1:6], d = 5)
-animate_faces <- function(data, tourf = grand_tour, d = 3, ...) {
+#' animate_faces(flea[1:2, 1:6], grand_tour(5))
+animate_faces <- function(data, tour_path = grand_tour(3), ...) {
   require("TeachingDemos")
   
   render_data <- function(data, proj, geodesic) {
@@ -28,10 +27,5 @@ animate_faces <- function(data, tourf = grand_tour, d = 3, ...) {
     faces2(x, scale = "none")
   }
 
-  animate(
-    d = d, data = data, tourf = tourf, 
-    render_frame = nul, render_data = render_data,
-    render_transition = nul, render_target = nul, 
-    ...
-  )
+  animate(data, tour_path, render_data = render_data, ...)
 }

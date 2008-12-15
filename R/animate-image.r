@@ -6,14 +6,14 @@
 #' mixed with the tour.
 #'
 #' @param data matrix, or data frame containing numeric columns
-#' @param tourf tour path generator, defaults to the grand tour
+#' @param tour_path tour path generator, defaults to the grand tour
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @examples
 #' str(ozone)
 #' animate_image(ozone)
-animate_image <- function(data, tourf = grand_tour, ...) {
+animate_image <- function(data, tour_path = grand_tour(1), ...) {
   xs <- dim(data)[1]
   ys <- dim(data)[2]
   zs <- dim(data)[3]
@@ -37,9 +37,7 @@ animate_image <- function(data, tourf = grand_tour, ...) {
   }
 
   animate(
-    data = data, tourf = tourf, d = 1, 
-    render_frame = render_frame, render_data = render_data,
-    render_transition = nul, render_target = nul, 
-    ...
+    data = data, tour_path = tour_path, 
+    render_frame = render_frame, render_data = render_data, ...
   )
 }

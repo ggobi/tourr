@@ -4,33 +4,42 @@
 #' guided tour always tries to find a projection that is more interesting
 #' than the current projection.
 #'
+#' @param search_f 
+#' @param alpha the initial size of the search window, in radians
+#' @param cooling the amount the size of the search window should be adjusted
+#'   by after each step
 #' @seealso \code{\link{cm}}, \code{\link{holes}} and \code{\link{lda_pp}}
-#'   for examples of index functions
-guided_tour <- function(current, data, index_f, temp = 1, cooling = 0.99, max.tries = 25, basis_f = basis_geodesic_search, ...) {
-  index <- function(proj) {
-    index_f(as.matrix(data) %*% proj)
-  }
+#'   for examples of index functions.  The function should take a numeric
+#'   matrix and return a single number, preferrably between 0 and 1.
+#' @seealso \code{\link{search_geodesic}}, \code{\link{search_better}},
+#'   \code{\link{search_better_random}} for different search functions
+guided_tour <- function(index_f, d = 2, alpha = 1, cooling = 0.99, max.tries = 25, search_f = search_geodesic) {
 
-  temp <- 1
-  new_target <- function(current) {
-    basis <- basis_f(current, temp, index, max.tries)
-    temp <<- temp * cooling
+  generator <- function(current, data) {
+    if (is.null(current)) return(basis_init(ncol(data), d))    
+    
+    index <- function(proj) {
+      index_f(as.matrix(data) %*% proj)
+    }
+
+    basis <- search_f(current, alpha, index, max.tries)
+    alpha <<- alpha * cooling
 
     basis
   }
   
-  tour(current, new_target)
+  new_tour_path("guided", generator)
 }
 
 
-basis_geodesic_search <- function(current, alpha = 1, index, max.tries = 5) {
+search_geodesic <- function(current, alpha = 1, index, max.tries = 5) {
   cur_index <- index(current)
   
   try <- 1
   while(try < max.tries) {
-    # Try 10 random directions and pick the one that has the highest
-    # index with a small step
-    direction <- find_best_dir(current, index)
+    # Try 5 random directions and pick the one that has the highest
+    # index after a small step in either direction
+    direction <- find_best_dir(current, index, 5)
     
     # Travel right round (pi / 2 radians) the sphere in that direction
     # looking for the best projection
@@ -41,7 +50,7 @@ basis_geodesic_search <- function(current, alpha = 1, index, max.tries = 5) {
       cat("New index: ", peak$index, " (", peak$dist, " away)\n", sep="")
       return(peak$basis)
     }
-    cat("Best was   ", peak$index, " (", peak$dist, " away).  Trying again...\n", sep="")
+    cat("Best was:   ", peak$index, " (", peak$dist, " away).  Trying again...\n", sep="")
     
     try <- try + 1
   }
@@ -88,7 +97,7 @@ find_path_peak <- function(old, new, index, max_dist = pi / 4) {
 #
 # tries <- replicate(5, save_history(flea[, 1:3], guided_tour, index_f = holes, basis_f = basis_geodesic_search, sphere = T), simplify = F)
 # tion function for simulated annealing
-basis_better <- function(current, alpha = 0.5, index, max.tries = Inf,
+search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   method = "linear"
 ) {
   cur_index <- index(current)
@@ -110,7 +119,7 @@ basis_better <- function(current, alpha = 0.5, index, max.tries = Inf,
 }
 
 
-basis_better_plus_random<- function(current, alpha = 0.5, index,
+search_better_random <- function(current, alpha = 0.5, index,
   max.tries = Inf, method = "linear", eps = 0.001
 ) {
   cur_index <- index(current)

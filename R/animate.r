@@ -15,15 +15,13 @@
 #' takes considerably more time to generate.
 #'
 #' @param data matrix, or data frame containing numeric columns
-#' @param tourf tour path generator, defaults to the grand tour
-#' @param d number of target dimensions
+#' @param tour_path tour path generator, defaults to the grand tour
 #' @param aps target angular velocity (in radians per second)
 #' @param fps target frames per second (defaults to 30)
 #' @param max_frames the maximum number of frames to generate.  Defaults to
 #'   Inf for interactive use (must use Ctrl + C to terminate), and 1 for 
 #'   non-interactive use.  It's recommended that you set this value to a 
 #'   finite number if you are saving the animation to disk.
-#' @param start starting projection, if omitted will use random projection
 #' @param render_frame function called once at the beginning of the animation
 #'   to set up the plotting surface.  This function has no arguments.
 #' @param render_data function called after every new projection is generated
@@ -48,24 +46,20 @@
 #' animate_xy(f, max_frames = 10, fps = 1, aps = 0.1)
 #'
 #' animate_xy(f, max_frames = 100, file = "test.pdf", dev = pdf)
-animate <- function(data, tourf, d, aps = 1, fps = 30, max_frames = Inf, start = NULL, render_frame, render_target, render_data, render_transition, ..., rescale = TRUE, sphere = FALSE, file = NULL, dev = NULL, dev.settings = list()) {
+animate <- function(data, tour_path, aps = 1, fps = 30, max_frames = Inf, render_frame = nul, render_target = nul, render_data = nul, render_transition = nul, ..., rescale = TRUE, sphere = FALSE, file = NULL, dev = NULL, dev.settings = list()) {
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere(data)
   
-  if (is.null(start)) {
-    start <- matrix(0, nrow = ncol(data), ncol = d)
-    diag(start) <- 1    
-  }
-  
   if (is.null(file)) {
+    # Display on screen
     render_frame()
     step <- function(step, proj, geodesic) {
       render_transition()
       render_data(data, proj, geodesic)
       Sys.sleep(1 / fps)
     }  
-    
   } else {
+    # Save to disk
     do.call(dev, c(list(file = file), dev.settings))
     on.exit(dev.off())
 
@@ -75,25 +69,17 @@ animate <- function(data, tourf, d, aps = 1, fps = 30, max_frames = Inf, start =
     }
   }
   
-  if (!interactive() && max_frames == Inf) {
+  # By default, only take single step if not interactive
+  if (!interactive() && missing(max_frames)) {
     max_frames <- 1
   }
   if (max_frames == Inf) {
     message("Press Ctrl+C to stop tour runnning\n")
   }
   
-  tourf(
-    start, velocity = aps / fps, 
-    step_fun = step, target_fun = render_target, 
-    total_steps = max_frames, ..., data = data
+  tour(
+    data = data, tour_path = tour_path, 
+    velocity = aps / fps, total_steps = max_frames,
+    step_fun = step, target_fun = render_target, ...
   )
-}
-
-# Setting up to be ready to display data projections
-blank_plot <- function(...) {
-  plot(
-    x = NA, y = NA, xlab = "", ylab = "",
-    axes = FALSE, frame = TRUE, xaxs = "i", yaxs = "i",
-    ...
-  )  
 }

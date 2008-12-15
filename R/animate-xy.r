@@ -1,10 +1,10 @@
 #X animate_xy(flea[, 1:6])
-#X animate_xy(flea[, 1:6], little_tour)
-#X animate_xy(flea[, 1:6], center = F)
+#X animate_xy(flea[, 1:6], little_tour())
+#X animate_xy(flea[, 1:6], center = FALSE)
 #X animate_xy(flea[, 1:6], axes = "bottomleft")
 #X animate_xy(flea[, 1:6], axes = "off")
 #X animate_xy(flea[, 1:6], correlation_tour, pos=c(T,T,T,F,F,F), axes = "bottomleft")
-animate_xy <- function(data, tourf = grand_tour, center = TRUE, axes = "center", ...) {
+animate_xy <- function(data, tour_path = grand_tour(), center = TRUE, axes = "center", ...) {
   labels <- abbreviate(colnames(data), 2)
   
   render_frame <- function() {
@@ -21,8 +21,7 @@ animate_xy <- function(data, tourf = grand_tour, center = TRUE, axes = "center",
       theta <- seq(0, 2 * pi, length = 50)
       lines(cos(theta), sin(theta), col="grey50")
       text(proj, label = labels, col="grey50")
-    }
-    else if (axes == "bottomleft") {
+    } else if (axes == "bottomleft") {
       segments(-1.25, -1.25, -1.25+proj[, 1]/2, -1.25+proj[, 2]/2, col="grey50")
       theta <- seq(0, 2 * pi, length = 50)
       lines(-1.25+cos(theta)/2, -1.25+sin(theta)/2, col="grey50")
@@ -41,9 +40,8 @@ animate_xy <- function(data, tourf = grand_tour, center = TRUE, axes = "center",
   }
 
   animate(
-    data = data, tourf = tourf, d = 2, 
+    data = data, tour_path = tour_path,
     render_frame = render_frame, render_data = render_data,
-    render_transition = render_transition, render_target = nul, 
-    ...
+    render_transition = render_transition, ...
   )
 }

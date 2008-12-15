@@ -28,3 +28,12 @@ sphere <- function(df) {
 #' @keyword ignore
 nul <- function(...) {}
 
+
+# Setting up to be ready to display data projections
+blank_plot <- function(...) {
+  plot(
+    x = NA, y = NA, xlab = "", ylab = "",
+    axes = FALSE, frame = TRUE, xaxs = "i", yaxs = "i",
+    ...
+  )  
+}

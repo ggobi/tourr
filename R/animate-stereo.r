@@ -1,5 +1,5 @@
 # animate_stereo(flea[, 1:6])
-animate_stereo <- function(data, tourf = grand_tour, ...) {
+animate_stereo <- function(data, tour_path = grand_tour(3), ...) {
   blue <- rgb(0, 0.91, 0.89)
   red <- rgb(0.98, 0.052, 0)
   green <- "green2"
@@ -26,10 +26,9 @@ animate_stereo <- function(data, tourf = grand_tour, ...) {
   }
 
   animate(
-    data = data, tourf = tourf, d = 3, 
+    data = data, tour_path = tour_path,
     render_frame = render_frame, render_data = render_data,
-    render_transition = render_transition, render_target = nul, 
-    ...
+    render_transition = render_transition, ...
   )
 }
 

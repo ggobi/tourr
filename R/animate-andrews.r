@@ -4,7 +4,7 @@
 #' Andrew's curves, see \code{\link{andrews}}
 #'
 #' @param data matrix, or data frame containing numeric columns
-#' @param tourf tour path generator, defaults to the grand tour
+#' @param tour_path tour path generator, defaults to the grand tour
 #' @param d number of target dimensions
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
@@ -12,12 +12,12 @@
 #' 
 #' @examples
 #' animate_andrews(flea[, 1:6])
-#' animate_andrews(flea[, 1:6], d = 3)
-#' animate_andrews(flea[, 1:6], d = 6)
+#' animate_andrews(flea[, 1:6], grand_tour(d = 3))
+#' animate_andrews(flea[, 1:6], grand_tour(d = 6))
 #' 
 #' # It's easy to experiment with different tour paths:
-#' animate_andrews(flea[, 1:6], guided_tour, index_f = cm)
-animate_andrews <- function(data, tourf = grand_tour, d = 2, ...) {
+#' animate_andrews(flea[, 1:6], guided_tour(cm))
+animate_andrews <- function(data, tour_path = grand_tour(3), ...) {
   grid <- seq(-pi, pi, length = 50)
   data <- rescale(data)
   
@@ -42,10 +42,9 @@ animate_andrews <- function(data, tourf = grand_tour, d = 2, ...) {
   }
 
   animate(
-    data = data, tourf = tourf, d = d, 
+    data = data, tour_path = tour_path, 
     render_frame = render_frame, render_data = render_data,
-    render_transition = render_transition, render_target = nul, 
-    ...
+    render_transition = render_transition,  ...
   )
 }
 

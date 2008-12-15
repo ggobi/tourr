@@ -14,7 +14,7 @@ lda_pp <- function(mat, cl) {
   if (length(unique(cl)) < 2)
     return(NA)
 
-  fit <- manova(mat~cl)
+  fit <- manova(mat ~ cl)
 
   1 - summary(fit,test="Wilks")$stats[[3]]
 }
