@@ -13,5 +13,5 @@ freeze <- function(input, frozen) {
   
   input <- sweep(input, 2, sqrt(1 - frozen_lengths), "*")
   input[fixed] <- frozen[fixed]
-  
+  input
 }

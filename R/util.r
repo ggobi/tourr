@@ -7,3 +7,12 @@ rescale <- function(df) {
 sphere <- function(df) {
   apply(predict(princomp(df)), 2, scale)
 }
+
+
+#' A null function
+#'
+#' This function does nothing, and is a useful default callback function
+#' 
+#' @param ... all arguments to \code{...} are ignore
+nul <- function(...) {}
+

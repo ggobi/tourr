@@ -10,13 +10,11 @@ holes <- function(mat) {
 
 cm <- function(mat) 1 - holes(mat)
 
-ldaPP <- function(mat, cl) {
+lda_pp <- function(mat, cl) {
   if (length(unique(cl)) < 2)
     return(NA)
 
   fit <- manova(mat~cl)
 
-  1-summary(fit,test="Wilks")$stats[[3]]
+  1 - summary(fit,test="Wilks")$stats[[3]]
 }
-
-#X r_tour(mtcars[, 1:5], guided_tour, index_f = cor1)

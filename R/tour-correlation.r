@@ -11,5 +11,5 @@ correlation_tour <- function(current, pos, ...) {
     cbind(x, y)
   }
 
-  tour(current, new_target, ...)
+  tour(current, new_target)
 }

@@ -1,18 +1,25 @@
-# Interpolates between two frames, using geodesic path, as outlined in
-# http:#www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-algs.pdf and
-# http:#www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-math.pdf
-# 
-# We follow the notation outlined in this paper.
-# 
-#   * p = dimension of data
-#   * d = target dimension
-#   * F = frame, an orthonormal p x d matrix
-#   * Fa = starting frame, Fz = target frame
-#   * ds = dim(span(Fa, Fz)), dI = dim(span(Fa) n span(Fz))
-#   * Fa'Fz = Va lamda  Vz' (svd)
-#   * Ga = Fa Va, Gz = Fz Vz
-#   * tau = principle angles
-# 
+#' Interpolate along a geodesic path between two frames.
+#'
+#' The methdology is outlined in 
+#' \url{http:www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-algs.pdf}
+#' and
+#' \url{http:www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-math.pdf},
+#' and the code follows the notation outlined in those papers:
+#' 
+#' \itemize{
+#'   \item{p = dimension of data}
+#'   \item{d = target dimension}
+#'   \item{F = frame, an orthonormal p x d matrix}
+#'   \item{Fa = starting frame, Fz = target frame}
+#'   \item{Fa'Fz = Va lamda  Vz' (svd)}
+#'   \item{Ga = Fa Va, Gz = Fz Vz}
+#'   \item{tau = principle angles}
+#' }
+#' @keywords internal
+#' @param Fa starting frame, will be orthonormalised if necessary
+#' @param Fz target frame, will be orthonormalised if necessary
+#' @param epsilon epsilon used to determine if an angle is effectively equal
+#'   to 0
 geodesic <- function(Fa, Fz, epsilon = 1e-6) {
 
   if (!is_orthonormal(Fa)) {
@@ -30,7 +37,7 @@ geodesic <- function(Fa, Fz, epsilon = 1e-6) {
   # Compute the SVD: Fa'Fz = Va lambda Vz' --------------------------------
   sv <- svd(t(Fa) %*% Fz)
 
-  # R returns this from smallest to largest -------------------------------
+  # R returns the svd from smallest to largest -------------------------------
   nc <- ncol(Fa)
   lambda <- sv$d[nc:1]
   Va <- sv$u[, nc:1]
@@ -54,6 +61,11 @@ geodesic <- function(Fa, Fz, epsilon = 1e-6) {
   list(Va = Va, Ga = Ga, Gz = Gz, tau = tau)
 }
 
+#' Step along an interpolated path by fraction of path length
+#'
+#' @keywords internal
+#' @param interp interpolated path
+#' @param fraction fraction of distance between start and end planes
 step_fraction <- function(interp, fraction) {
   # Interpolate between starting and end planes
   #  - must multiply column wise (hence all the transposes)
@@ -66,6 +78,11 @@ step_fraction <- function(interp, fraction) {
   orthonormalise(G %*% t(interp$Va))
 }
 
+#' Step along an interpolated path by angle in radians
+#' 
+#' @keywords internal 
+#' @param interp interpolated path
+#' @param angle angle, in radians 
 step_angle <- function(interp, angle) {
   step_fraction(interp, angle / sqrt(sum(interp$tau^2)))
 }
