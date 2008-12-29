@@ -1,11 +1,64 @@
-history_index <- function(bases, index_f, data = attr(bases, "data")) {
+#' Compute index values for a tour history
+#'
+#' @param history list of bases produced by \code{\link{save_history}} 
+#'   (or otherwise)
+#' @param index_f index function to apply to each basis
+#' @param data dataset to be projected on to bases
+#' @keywords hplot
+#' @seealso \code{\link{save_history}} for options to save history
+#' @examples
+#' fl_holes <- save_history(flea[, 1:6], guided_tour(holes), sphere = TRUE)
+#' history_index(fl_holes, holes)
+#' history_index(fl_holes, cm)
+#' 
+#' plot(history_index(fl_holes, holes), type = "l")
+#' plot(history_index(fl_holes, cm), type = "l")
+#' 
+#' # Use interpolate to show all intermediate bases as well
+#' hi <- history_index(interpolate(fl_holes), holes)
+#' hi
+#' plot(hi)
+history_index <- function(history, index_f, data = attr(history, "data")) {
   index <- function(proj) {
     index_f(as.matrix(data) %*% proj)
   }
   
-  apply(bases, 3, index)
+  structure(
+    apply(history, 3, index), 
+    class = "history_index"
+  )
 }
 
+plot.history_index <- function(x, ...) {
+  df <- data.frame(
+    index = unclass(x),
+    step = seq_along(x)
+  )
+  ggplot2::qplot(step, index, data = df, geom ="line")
+}
+
+#' Compute index value for many histories
+#' 
+#' This is a convenience method that returns a data frame summarising the 
+#' index values for multiple tour paths.
+#'
+#' @keywords interval
+#' @param bases_list list of histories produced by \code{\link{save_history}}
+#' @param index_f index function to apply to each projection
+#' @example
+#' holes1d <- guided_tour(holes, 1)
+#' # Perform guided tour 10 times, saving results
+#' tries <- replicate(25, save_history(flea[, 1:6], holes1d), simplify = FALSE)
+#' # Interpolate between target bases 
+#' itries <- lapply(tries, interpolate)
+#'
+#' paths <- histories_index(itries, holes)
+#' head(paths)
+#' 
+#' if (requre(ggplot2)) {
+#' qplot(step, value, data=paths, group=try, geom="line")
+#' qplot(step, improvement, data=paths, group=try, geom="line")
+#' }
 histories_index <- function(bases_list, index_f) {
   indices <- lapply(bases_list, history_index, index_f)
   data.frame(
@@ -16,42 +69,6 @@ histories_index <- function(bases_list, index_f) {
   )  
 }
 
-# # Perform guided tour 10 times, saving results
-# tries <- replicate(100, save_history(flea[, 1:6], d=1, guided_tour, index_f = holes, basis_f = basis_geodesic_search, sphere = T), simplify = F)
 
 
-# tries <- replicate(10, save_history(flea[, 1:6], guided_tour, index_f = holes, basis_f = basis_geodesic_search, sphere = T), simplify = F)
 
-# old <- replicate(10, save_history(flea[, 1:6], guided_tour, index_f = holes, basis_f = basis_better, sphere = T), simplify = F)
-
-
-# 
-# # Interpolate between target bases 
-# itries <- lapply(tries, interpolate)
-# iold <- lapply(old, interpolate)
-# 
-# histories_index(tries, holes)
-# 
-# library(ggplot2)
-# qplot(step, value, data=histories_index(itries, holes), group=try, geom="line")
-# qplot(step, value, data=histories_index(iold, holes), group=try, geom="line")
-# 
-# # Experiment with MDS ------
-# 
-# tries2 <- lapply(tries, interpolate, 0.2)
-# bases <- unlist(tries2)
-# dim(bases) <- c(6, 2, length(bases) / 12)
-# 
-# n <- dim(bases)[3]
-# d <- matrix(NA, nrow = n, ncol = n)
-# 
-# for(i in seq_len(n)) {
-#   for (j in seq_len(i - 1)) {
-#     d[i, j] <- proj_dist(bases[, , i], bases[, , j])
-#   }
-# }
-# d <- as.dist(d)
-# 
-# ord <- isoMDS(d)$points
-# mds <- data.frame(ord, histories_index(tries2, holes))
-# qplot(X1, X2, data=mds, geom="path", group=try) + geom_point(aes(size = value, colour=value)) + coord_equal()

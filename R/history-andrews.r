@@ -1,20 +1,61 @@
-#X t1 <- save_history(flea[, 1:6], nbases = 1000, interpolate = T, d = 1)
-#X andrews_history(t1)
-#X andrews_history(interpolate(t1))
-
-andrews_history <- function(history, data = attr(history, "data"), center = TRUE) {
+#' Draw the path that the geodesics took.
+#'
+#' This computes the projected values of each observation at each step, and 
+#' allows you to recreate static views of the animated plots.
+#'
+#' @param history list of bases produced by \code{\link{save_history}} 
+#'   (or otherwise)
+#' @param data dataset to be projected on to bases
+#' @examples
+#' path1d <- save_history(flea[, 1:6], grand_tour(1), 10)
+#' path2d <- save_history(flea[, 1:6], grand_tour(2), 10)
+#'
+#' plot(history_curves(path1d))
+#' plot(history_curves(interpolate(path1d)))
+#'
+#' plot(history_curves(path2d))
+#' plot(history_curves(interpolate(path2d)))
+#'
+#' # Instead of relying on the built in plot method, you might want to 
+#' # generate your own.  Here are few examples of alternative displays:
+#'
+#' df <- history_curves(path2d)
+#' qplot(step, value, data = df, group = obs:var, geom = "line", colour=var)
+#' 
+#' qplot(`1`, `2`, data = cast(df, ... ~ var)) + 
+#'   facet_wrap( ~ step) + 
+#'   coord_equal()
+#' qplot(step, value, data = df, colour = var, geom="line") + 
+#'   facet_wrap( ~ obs) 
+history_curves <- function(history, data = attr(history, "data")) {
   n <- dim(history)[3]
 
-  x <- apply(history, 3, function(proj) data %*% proj)
-  if (center) x <- scale(x, center = TRUE, scale = FALSE)
+  project <- function(basis) {
+    proj <- data %*% basis
+    data.frame(
+      obs = factor(row(proj)),
+      var = factor(col(proj)),
+      value = as.vector(proj)
+    )
+  }
+  projections <- do.call("rbind", apply(history, 3, project))
+  projections$step <- rep(seq_len(n), each = nrow(data) * ncol(history))
+  class(projections) <- c("history_curve", class(projections))
+  
+  projections
+}  
 
-  par(pty="m",mar=c(4,4,1,1))
-  plot(c(1, n), range(x), type="n", xlab="Time", ylab="Data")
-  rect(-100, -5, n + 100, 5, col = "grey90")
-  abline(h = seq(-3, 3, 0.5), col = "white")
-  abline(v = seq(0, n, 50), col = "white")
-      
-  ys <- as.vector(t(cbind(x, NA)))
-  xs <- rep(c(seq_len(n), NA), length = length(ys))
-  lines(xs, ys)
+#' Plot history curves
+#' 
+#' The default plot method is a line plot with step on the x axis and 
+#' value on the y axis.  Each observation is drawn with a different line
+#' line and the plot is facetted by variable.  This is rather similar in 
+#' spirit to a parallel coordinates plot or Andrews curves.
+#'
+#' For alternative ways of plotting this data, see
+#'  \code{\link{history_curves}}
+#' @keyword internal
+plot.history_curve <- function(x, ...) {
+  ggplot2::qplot(step, value, data = x, group = obs, geom = "line") + 
+    facet_grid(var ~ .) 
 }

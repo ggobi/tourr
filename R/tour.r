@@ -46,7 +46,7 @@ tour <- function(data, tour_path, start = NULL, velocity = 0.05,
 
     if (step == nsteps) {
       target <- tour_path(proj, data)
-      if (is.null(target)) return()
+      if (is.null(target)) return(invisible())
       
       target_fun(target$frame, target)
       step <- 0

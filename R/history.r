@@ -11,6 +11,8 @@
 #' @param sphere if true, sphere all variables
 #'
 #' @examples
+#' # You can use a saved history to replay tours with different visualisations
+#'
 #' t1 <- save_history(flea[, 1:6], max = 3)
 #' animate_xy(flea[, 1:6], planned_tour(t1))
 #' andrews_history(t1)
@@ -29,6 +31,10 @@
 #' t2 <- save_history(testdata, guided_tour(holes, max.tries = 100), 
 #'   max = 5, rescale=F)
 #' animate_xy(testdata, planned_tour(t2))
+#'
+#' # Or you can use saved histories to visualise the path that the tour took.
+#' plot(history_index(interpolate(t2), holes))
+#' plot(history_curves(interpolate(t2)))
 save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start = NULL, rescale = TRUE, sphere = FALSE){
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere(data)
@@ -43,12 +49,14 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
   }
 
   projs <- array(NA, c(ncol(data), ncol(start), max_bases + 1))
+  princ_dirs <- projs
   projs[, , 1] <- start
   count <- 1
   
   target <- function(target, geodesic) {
     count <<- count+1
     projs[, , count] <<- target
+    princ_dirs[, , count] <<- geodesic$Gz
   }
 
   tour(data, tour_path, start = start,
@@ -62,5 +70,26 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
   projs <- projs[, , !empty, drop = FALSE]
   
   attr(projs, "data") <- data
-  projs
+  structure(projs, class = "history_array")
+}
+
+
+as.list.history_list <- function(x, ...) x
+as.list.history_array <- function(x, ...) {
+  n <- dim(x)[3]
+  projs <- vector("list", n)
+  for (i in seq_len(n)) {
+    projs[[i]] <- x[, , i]
+  }
+  structure(projs, class = "history_list")
+}
+
+as.array.history_array <- function(x, ...) x
+as.array.history_list <- function(x, ...) {
+  dims <- c(nrow(x[[1]]), ncol(x[[1]]), length(x))
+  projs <- array(NA, dims)
+  for (i in seq_along(x)) {
+    projs[, , i] <- x[[i]]
+  }
+  structure(projs, class = "history_array")
 }

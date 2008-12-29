@@ -35,21 +35,26 @@ orthonormalise_by <- function(x, by) {
 }
 
 
+#' Calculate the distance between two bases
+#'
+#' Computes the Frobenius norm between two bases.
+# 
+#' @param x projection matrix a
+#' @param y projection matrix b
 proj_dist <- function(x, y) sqrt(sum((x %*% t(x) - y %*% t(y)) ^ 2))
 
 is_orthonormal <- function(x) {
-  itis = T
-
-  if (ncol(x)>1) {
-    for (j in seq_len(ncol(x))) 
-      if (sqrt(sum(x[,j]^2)) < 0.999) itis=F
+  if (ncol(x) > 1) {
+    for (j in seq_len(ncol(x))) {
+      if (sqrt(sum(x[, j] ^ 2)) < 0.999) return(FALSE)
+    }
+    
     for (j in 2:ncol(x)) {
-      for (i in 1:(ncol(x)-1)) {
-        if (sum(x[,j]*x[,i]) > 0.01) itis=F
+      for (i in 1:(ncol(x) - 1)) {
+        if (sum(x[, j] * x[, i]) > 0.01) return(FALSE)
       }
     }
   }
   
-  itis
-
+  TRUE
 }

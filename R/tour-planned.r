@@ -8,7 +8,6 @@
 #' a method that works with tour paths like \code{\link{save_history}}, 
 #' \code{\link{animate}}
 #' 
-#' @TODO add cycle argument
 #' @param current the starting projection
 #' @param basis_set the set of bases as a list of projection matrices
 #'   or a 3d array
@@ -19,29 +18,29 @@
 #' @seealso \code{save_history} for saving the output of another tour path
 #'   to replay later with the planned tour
 #' @examples
-#' twod <- save_history(flea[, 1:6], nbases = 3)
+#' twod <- save_history(flea[, 1:3], max = 5)
 #' str(twod)
-#' animate_xy(flea[, 1:6], planned_tour(twod))
+#' animate_xy(flea[, 1:3], planned_tour(twod))
+#' animate_xy(flea[, 1:3], planned_tour(twod, TRUE))
 #'
 #' oned <- save_history(flea[, 1:6], grand_tour(1), nbases = 3)
 #' animate_dist(flea[, 1:6], planned_tour(oned))
-planned_tour <- function(basis_set) {
+planned_tour <- function(basis_set, cycle = FALSE) {
   index <- 0
+  basis_set <- as.list(basis_set)
   
-  if (is.list(basis_set)) {
-    n <- length(basis_set)
+  n <- length(basis_set)
+  if (cycle) {
     generator <- function(current, data) {
       index <<- (index %% n) + 1
       basis_set[[index]]
-    }    
+    }        
   } else {
-    n <- dim(basis_set)[3]
     generator <- function(current, data) {
-      index <<- (index %% n) + 1
-      basis <- basis_set[, , index, drop = FALSE]
-      dim(basis) <- dim(basis)[1:2]
-      basis
-    }
+      index <<- index + 1
+      if (index > n) return(NULL)
+      basis_set[[index]]
+    }        
   }
         
   new_tour_path("planned", generator)

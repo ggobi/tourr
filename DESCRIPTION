@@ -7,6 +7,6 @@ Author: Dianne Cook <dicook@iastate.edu>, Hadley Wickham <h.wickham@gmail.com>
 Maintainer: Hadley Wickham <h.wickham@gmail.com>
 Description: Implements geodesic interpolation and basis generation functions that allow you to create new tour methods from R.
 Depends: R (>= 2.7)
-Suggests: rggobi,TeachingDemos
+Suggests: rggobi,TeachingDemos,ggplot2
 License: MIT
 LazyData: true
