@@ -28,7 +28,8 @@
 #' qplot(step, value, data = df, colour = var, geom="line") + 
 #'   facet_wrap( ~ obs) 
 history_curves <- function(history, data = attr(history, "data")) {
-  n <- dim(history)[3]
+  history <- as.list(history)
+  n <- length(history)
 
   project <- function(basis) {
     proj <- data %*% basis
@@ -38,8 +39,8 @@ history_curves <- function(history, data = attr(history, "data")) {
       value = as.vector(proj)
     )
   }
-  projections <- do.call("rbind", apply(history, 3, project))
-  projections$step <- rep(seq_len(n), each = nrow(data) * ncol(history))
+  projections <- do.call("rbind", lapply(history, project))
+  projections$step <- rep(seq_len(n), each = nrow(data) * ncol(history[[1]]))
   class(projections) <- c("history_curve", class(projections))
   
   projections

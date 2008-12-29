@@ -79,9 +79,9 @@ as.list.history_array <- function(x, ...) {
   n <- dim(x)[3]
   projs <- vector("list", n)
   for (i in seq_len(n)) {
-    projs[[i]] <- x[, , i]
+    projs[[i]] <- as.matrix(x[, , i])
   }
-  structure(projs, class = "history_list")
+  structure(projs, class = "history_list", data = attr(x, "data"))
 }
 
 as.array.history_array <- function(x, ...) x
@@ -91,5 +91,5 @@ as.array.history_list <- function(x, ...) {
   for (i in seq_along(x)) {
     projs[, , i] <- x[[i]]
   }
-  structure(projs, class = "history_array")
+  structure(projs, class = "history_array", data = attr(x, "data"))
 }

@@ -23,7 +23,7 @@
 #' animate_xy(flea[, 1:3], planned_tour(twod))
 #' animate_xy(flea[, 1:3], planned_tour(twod, TRUE))
 #'
-#' oned <- save_history(flea[, 1:6], grand_tour(1), nbases = 3)
+#' oned <- save_history(flea[, 1:6], grand_tour(1), max = 3)
 #' animate_dist(flea[, 1:6], planned_tour(oned))
 planned_tour <- function(basis_set, cycle = FALSE) {
   index <- 0
