@@ -4,18 +4,10 @@
 # This function takes a set of bases and produces a tour by geodesically 
 # interpolating between each basis
 interpolate <- function(basis_set, velocity = 0.05) {
-  
-  if (is.array(basis_set)) {
-    get_basis <- function(i) {
-      x <- basis_set[, , i, drop = FALSE]
-      dim(x) <- dim(x)[1:2]
-      x
-    }
-    n <- dim(basis_set)[3]
-  } else {
-    get_basis <- function(i) basis_set[[i]]
-    n <- length(basis_set)
-  }
+  basis_set <- as.list(basis_set)
+  get_basis <- function(i) basis_set[[i]]
+  n <- length(basis_set)
+
   if (n < 2) return(basis_set)
   output <- list()
   
@@ -43,5 +35,6 @@ interpolate <- function(basis_set, velocity = 0.05) {
   oarray <- unlist(output)
   dim(oarray) <- c(nrow(output[[1]]), ncol(output[[2]]), length(output))
   attr(oarray, "data") <- attr(basis_set, "data")
+  class(oarray) <- c("history_array", class(oarray))
   oarray
 }
