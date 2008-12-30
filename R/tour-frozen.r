@@ -46,6 +46,7 @@
 # frozen[4, ] <- c(-.2, .2)
 # animate_xy(flea[, 1:5], frozen_tour(2, frozen))
 frozen_tour <- function(d = 2, frozen) { 
+  check_frozen(frozen)
   
   frozen_geodesic <- function(previous, data) {
     if (is.null(previous)) return(basis_init(ncol(data), d))
@@ -81,6 +82,13 @@ frozen_tour <- function(d = 2, frozen) {
   structure(frozen_geodesic, class = "tour-path")
 }
 
+
+check_frozen <- function(frozen) {
+  lengths <- colSums(frozen ^ 2, na.rm = TRUE)
+  if (any(lengths >= 1)) {
+    stop("Columns of frozen matrix must have squared norm < 1", call. = FALSE)
+  }
+}
 
 #' Freeze and thaw matrices
 #'
