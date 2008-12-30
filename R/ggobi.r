@@ -1,7 +1,8 @@
-# library(rggobi)
-#X  display_ggobi(flea[,1:6])
-
-display_ggobi <- function(data, edges = NULL, tour_f = grand_tour, aps = 1, fps = 30, ..., rescale = TRUE, sphere = FALSE) {
+#' Use ggobi to display a tour path.
+#'
+#' This 
+#X  ggobi_tour(flea[,1:6])
+ggobi_tour <- function(data, tour_f = grand_tour, aps = 1, fps = 30, ..., rescale = TRUE, sphere = FALSE) {
   if(!require("rggobi", quiet = TRUE)) {
     stop("rggobi required for ggobi based tour")
   }
@@ -15,7 +16,7 @@ display_ggobi <- function(data, edges = NULL, tour_f = grand_tour, aps = 1, fps 
 
   # Display
   g <- ggobi(data)
-  cat("Pause the tour in GGobi to allow R control to begin\n")
+  message("Pause the tour in GGobi to allow R control to begin")
   # gd <- display(g$data, "2D Tour")
   gd <- displays(g)[[1]]
   pmode(gd) <- "2D Tour"

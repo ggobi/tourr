@@ -1,12 +1,22 @@
+#' Normalise a numeric matrix
+#'
+#' Ensure that columns of a numeric matrix have norm 1
+#' 
+#' @keywords internal
+#' @param x numeric matrix or vector
 normalise <- function(x) {
-
-  if (ncol(x) > 1) 
-    t(t(x) / sqrt(colSums(x ^ 2, na.rm = TRUE)))
-  else
-    x/sqrt(sum(x^2))
+  if (is.matrix(x)) {
+    lengths <- sqrt(colSums(x ^ 2, na.rm = TRUE))
+    sweep(x, 2, lengths, "/")
+  } else {
+    x / sqrt(sum(x ^ 2))    
+  }
 }
 
-# Orthonormalise using modified Gram-Schmidt_process
+#' Orthonormalise using modified Gram-Schmidt process
+#'
+#' @keywords internal
+#' @param x numeric matrix
 orthonormalise <- function(x) {
   x <- normalise(x) # to be conservative
   
@@ -21,6 +31,36 @@ orthonormalise <- function(x) {
   normalise(x)
 }
 
+
+#' Test if a numeric matrix is orthonormal
+#'
+#' @keywords internal
+#' @param x numeric matrix
+#' @param tol tolerance used to test floating point differences
+is_orthonormal <- function(x, tol = 0.001) {
+  stopifnot(is.matrix(x))
+
+  for (j in seq_len(ncol(x))) {
+    if (sqrt(sum(x[, j] ^ 2)) < 1 - tol) return(FALSE)
+  }
+  
+  for (j in 2:ncol(x)) {
+    for (i in 1:(ncol(x) - 1)) {
+      if (abs(sum(x[, j] * x[, i])) > tol) return(FALSE)
+    }
+  }
+  
+  TRUE
+}
+
+#' Orthonnormalise one matrix by another
+#'
+#' This ensures that each column in x is orthogonal to the corresponding
+#' column in by.
+#'
+#' @keywords internal
+#' @param x numeric matrix
+#' @param by numeric matrix, same size as x
 orthonormalise_by <- function(x, by) {
   stopifnot(ncol(x) == ncol(by))
   stopifnot(nrow(x) == nrow(by))
@@ -42,19 +82,3 @@ orthonormalise_by <- function(x, by) {
 #' @param x projection matrix a
 #' @param y projection matrix b
 proj_dist <- function(x, y) sqrt(sum((x %*% t(x) - y %*% t(y)) ^ 2))
-
-is_orthonormal <- function(x) {
-  if (ncol(x) > 1) {
-    for (j in seq_len(ncol(x))) {
-      if (sqrt(sum(x[, j] ^ 2)) < 0.999) return(FALSE)
-    }
-    
-    for (j in 2:ncol(x)) {
-      for (i in 1:(ncol(x) - 1)) {
-        if (sum(x[, j] * x[, i]) > 0.01) return(FALSE)
-      }
-    }
-  }
-  
-  TRUE
-}
