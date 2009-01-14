@@ -32,7 +32,7 @@ tour <- function(data, tour_path, start = NULL, velocity = 0.05,
   if (is.null(start)) {
     start <- tour_path(NULL, data)
   }
-  
+
   # Initialise first step
   target <- tour_path(start, data)
   target_fun(target$frame, target)

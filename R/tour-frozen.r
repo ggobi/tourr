@@ -46,40 +46,14 @@
 # frozen[4, ] <- c(-.2, .2)
 # animate_xy(flea[, 1:5], frozen_tour(2, frozen))
 frozen_tour <- function(d = 2, frozen) { 
-  check_frozen(frozen)
-  
-  frozen_geodesic <- function(previous, data) {
-    if (is.null(previous)) return(basis_init(ncol(data), d))
-    new_frozen <- function() {
-      mat <- basis_random(ncol(data), d)      
-      freeze(mat, frozen)
-    }
-    
-    previous_frozen <- freeze(previous, frozen)
-    
-    dist <- 0
-    while (dist < 1e-3) {
-      frame <- new_frozen()
-      dist <- proj_dist(previous_frozen, frame)
-    }
-    interpolator <- geodesic(previous_frozen, frame)
-    
-    interpolate <- function(pos) {
-      thaw(step_fraction(interpolator, pos), frozen)
-    }
+  generator <- function(current, data) {
+    if (is.null(current)) return(basis_init(ncol(data), d))
 
-    list(
-      frame = frame,
-      frame_prev = previous,
-      interpolate = interpolate,
-      dist = dist,
-      tau = interpolator$tau,
-      Ga = interpolator$Ga,
-      Gz = interpolator$Gz
-    )
+    basis_random(ncol(data), d)
   }
-  
-  structure(frozen_geodesic, class = "tour-path")
+
+  check_frozen(frozen)
+  new_tour_path("grand", generator, frozen = frozen) 
 }
 
 
