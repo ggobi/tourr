@@ -56,7 +56,6 @@ frozen_tour <- function(d = 2, frozen) {
   new_tour_path("grand", generator, frozen = frozen) 
 }
 
-
 check_frozen <- function(frozen) {
   lengths <- colSums(frozen ^ 2, na.rm = TRUE)
   if (any(lengths >= 1)) {
