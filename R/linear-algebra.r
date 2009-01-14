@@ -44,10 +44,12 @@ is_orthonormal <- function(x, tol = 0.001) {
     if (sqrt(sum(x[, j] ^ 2)) < 1 - tol) return(FALSE)
   }
   
-  for (j in 2:ncol(x)) {
-    for (i in 1:(ncol(x) - 1)) {
-      if (abs(sum(x[, j] * x[, i])) > tol) return(FALSE)
-    }
+  if (ncol(x) > 1) {
+    for (j in 2:ncol(x)) {
+      for (i in 1:(ncol(x) - 1)) {
+        if (abs(sum(x[, j] * x[, i])) > tol) return(FALSE)
+      }
+    }    
   }
   
   TRUE
