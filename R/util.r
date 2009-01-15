@@ -25,11 +25,12 @@ sphere <- function(df) {
 #' This function does nothing, and is a useful default callback function
 #' 
 #' @param ... all arguments to \code{...} are ignore
-#' @keyword ignore
+#' @keywords internal
 nul <- function(...) {}
 
 
-# Setting up to be ready to display data projections
+#' Set up a blank plot to display data projections
+#' @keywords internal
 blank_plot <- function(...) {
   plot(
     x = NA, y = NA, xlab = "", ylab = "",

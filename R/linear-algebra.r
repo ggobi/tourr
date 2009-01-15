@@ -1,8 +1,8 @@
-#' Normalise a numeric matrix
+#' Normalise a numeric matrix.
 #'
 #' Ensure that columns of a numeric matrix have norm 1
 #' 
-#' @keywords internal, algebra
+#' @keywords internal algebra
 #' @param x numeric matrix or vector
 normalise <- function(x) {
   if (is.matrix(x)) {
@@ -13,9 +13,9 @@ normalise <- function(x) {
   }
 }
 
-#' Orthonormalise using modified Gram-Schmidt process
+#' Orthonormalise using modified Gram-Schmidt process.
 #'
-#' @keywords internal, algebra
+#' @keywords internal algebra
 #' @param x numeric matrix
 orthonormalise <- function(x) {
   x <- normalise(x) # to be conservative
@@ -32,9 +32,9 @@ orthonormalise <- function(x) {
 }
 
 
-#' Test if a numeric matrix is orthonormal
+#' Test if a numeric matrix is orthonormal.
 #'
-#' @keywords internal, algebra
+#' @keywords internal algebra
 #' @param x numeric matrix
 #' @param tol tolerance used to test floating point differences
 is_orthonormal <- function(x, tol = 0.001) {
@@ -55,12 +55,12 @@ is_orthonormal <- function(x, tol = 0.001) {
   TRUE
 }
 
-#' Orthonnormalise one matrix by another
+#' Orthonnormalise one matrix by another.
 #'
 #' This ensures that each column in x is orthogonal to the corresponding
 #' column in by.
 #'
-#' @keywords internal, algebra
+#' @keywords internal algebra
 #' @param x numeric matrix
 #' @param by numeric matrix, same size as x
 orthonormalise_by <- function(x, by) {
@@ -77,7 +77,7 @@ orthonormalise_by <- function(x, by) {
 }
 
 
-#' Calculate the distance between two bases
+#' Calculate the distance between two bases.
 #'
 #' Computes the Frobenius norm between two bases.  This is equals to the
 #' Euclidean norm of the vector of sines of principal angles between the two

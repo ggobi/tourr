@@ -1,4 +1,4 @@
-#' The independent tour
+#' The independent tour.
 #' 
 #' The independent tour combines a set of independent 1d tours to produce
 #' a nd tour.  For the special case of 2d, this is known as a correlation 

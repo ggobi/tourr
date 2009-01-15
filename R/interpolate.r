@@ -1,12 +1,12 @@
-#' Interpolate geodesically between bases
+#' Interpolate geodesically between bases.
 #' 
 #' This function takes a set of bases and produces a tour by geodesically 
 #' interpolating between each basis
 #' 
 #' @param basis_set input basis set
 #' @param angle target distance (in radians) between bases
-#' @keyword hplot
-#' @example
+#' @keywords hplot
+#' @examples
 #' t1 <- save_history(flea[, 1:6], grand_tour(1), max = 10)
 #' dim(t1)
 #' dim(interpolate(t1, 0.01))

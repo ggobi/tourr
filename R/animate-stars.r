@@ -7,7 +7,6 @@
 #'
 #' @param data matrix, or data frame containing numeric columns
 #' @param tour_path tour path, defaults to the grand tour
-#' @param d number of target dimensions
 #' @param ... other arguments passed on to \code{\link{animate}} and 
 #'   \code{\link{stars}}
 #' @seealso \code{\link{animate}} for options that apply to all animations

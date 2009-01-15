@@ -5,7 +5,7 @@
 #' @param data matrix, or data frame containing numeric columns
 #' @param tour_path tour path generator, defaults to the grand tour
 #' @param method display method, histogram or density plot
-#' @param should 1d projection be centered to have mean zero (default: TRUE).
+#' @param center should 1d projection be centered to have mean zero (default: TRUE).
 #'   This pins the centre of distribution to the same place, and makes it
 #'   easier to focus on the shape of the distribution.
 #' @param ... other arguments passed on to \code{\link{animate}}
@@ -17,7 +17,7 @@
 #'
 #' # When the distribution is not centred, it tends to wander around in a 
 #' # distracting manner
-#' animate_dist(flea[, 1:6], centre = FALSE)
+#' animate_dist(flea[, 1:6], center = FALSE)
 #'
 #' # Alternatively, you can display the distribution with a histogram
 #' animate_dist(flea[, 1:6], method = "hist")

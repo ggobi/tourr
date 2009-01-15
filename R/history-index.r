@@ -1,4 +1,4 @@
-#' Compute index values for a tour history
+#' Compute index values for a tour history.
 #'
 #' @param history list of bases produced by \code{\link{save_history}} 
 #'   (or otherwise)
@@ -29,6 +29,10 @@ history_index <- function(history, index_f, data = attr(history, "data")) {
   )
 }
 
+#' Plot history index with ggplot2.
+#' 
+#' @keywords internal hplot
+#' @method plot history_index
 plot.history_index <- function(x, ...) {
   df <- data.frame(
     index = unclass(x),
@@ -37,15 +41,15 @@ plot.history_index <- function(x, ...) {
   ggplot2::qplot(step, index, data = df, geom ="line")
 }
 
-#' Compute index value for many histories
+#' Compute index value for many histories.
 #' 
 #' This is a convenience method that returns a data frame summarising the 
 #' index values for multiple tour paths.
 #'
-#' @keywords interval
+#' @keywords internal
 #' @param bases_list list of histories produced by \code{\link{save_history}}
 #' @param index_f index function to apply to each projection
-#' @example
+#' @examples
 #' holes1d <- guided_tour(holes, 1)
 #' # Perform guided tour 10 times, saving results
 #' tries <- replicate(25, save_history(flea[, 1:6], holes1d), simplify = FALSE)

@@ -1,4 +1,4 @@
-#' The planned tour
+#' The planned tour.
 #' 
 #' The planned tour takes you from one basis to the next in a 
 #' set order.  Once you have visited all the planned bases, you either stop
@@ -8,11 +8,11 @@
 #' a method that works with tour paths like \code{\link{save_history}}, 
 #' or \code{\link{animate}}
 #' 
-#' @param current the starting projection
 #' @param basis_set the set of bases as a list of projection matrices
 #'   or a 3d array
-#' @param ... other arguments passed on to \code{\link{tour}}
-#' @keywords hplot, dynamic
+#' @param cycle cycle through continuously (\code{TRUE}) or stop after 
+#'   first pass (\code{FALSE})
+#' @keywords hplot dynamic
 #' @seealso The \code{\link{little_tour}}, a special type of planned tour
 #'   which cycles between all axis parallel projections
 #' @seealso \code{save_history} for saving the output of another tour path

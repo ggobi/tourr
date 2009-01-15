@@ -1,4 +1,4 @@
-#' Scatterplot tour path animation
+#' Scatterplot tour path animation.
 #'
 #' Animate a 2D tour path with a scatterplot.
 #'
@@ -7,7 +7,7 @@
 #' @param center if TRUE, centers projected data to (0,0).  This pins the 
 #'  center of data cloud and make it easier to focus on the changing shape
 #'  rather than position.
-#' @param position of the axes: center, bottomleft or off
+#' @param axes position of the axes: center, bottomleft or off
 #' @param ... other arguments passed on to \code{\link{animate}}
 #'
 #' @examples
@@ -19,7 +19,7 @@
 #' # The default axes are centered, like a biplot, but there are other options
 #' animate_xy(flea[, 1:6], axes = "bottomleft")
 #' animate_xy(flea[, 1:6], axes = "off")
-#' animate_xy(flea[, 1:6], correlation_tour(rep(c(TRUE, FALSE), 3),
+#' animate_xy(flea[, 1:6], independent_tour(c(1, 2, 1, 2, 1, 2)),
 #'   axes = "bottomleft")
 animate_xy <- function(data, tour_path = grand_tour(), center = TRUE, axes = "center", ...) {
   labels <- abbreviate(colnames(data), 2)

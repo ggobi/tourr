@@ -8,8 +8,6 @@
 #' 
 #' @TODO eliminate these functions
 #' @keywords internal
-#' @alias find_best_frozen_dir
-#' @alias find_frozen_path_peak
 search_frozen_geodesic <- function(current, index, max.tries = 5, n = 5, frozen) {
   cur_index <- index(thaw(current, frozen))
   
@@ -35,7 +33,8 @@ search_frozen_geodesic <- function(current, index, max.tries = 5, n = 5, frozen)
   NULL  
 }
 
-
+#' Find most promising direction in frozen space.
+#' @keywords internal
 find_best_frozen_dir <- function(old, frozen, index, dist = 0.01, tries = 5) {
   new_basis <- function() freeze(basis_random(nrow(old), ncol(old)), frozen)
   bases <- replicate(tries, new_basis(), simplify = FALSE)
@@ -52,6 +51,8 @@ find_best_frozen_dir <- function(old, frozen, index, dist = 0.01, tries = 5) {
   thaw(bases[[which.max(scores)]], frozen)
 }
 
+#' Find most highest peak along frozen geodesic.
+#' @keywords internal
 find_frozen_path_peak <- function(old, new, frozen, index, max_dist = pi / 4) {
   interpolator <- geodesic_info(freeze(old, frozen), freeze(new, frozen))
 

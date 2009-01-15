@@ -1,4 +1,4 @@
-#' Generate a new tour path function
+#' Generate a new tour path function.
 #'
 #' A tour path is a function that when called with the current projection
 #' and data set, generates sequence of \code{\link{geodesic_path}}s.  The 

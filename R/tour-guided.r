@@ -1,4 +1,4 @@
-#' The guided tour
+#' The guided tour.
 #'
 #' Instead of choosing new projections at random like the grand tour, the 
 #' guided tour always tries to find a projection that is more interesting
@@ -10,7 +10,7 @@
 #' a method that works with tour paths like \code{\link{save_history}}, 
 #' or \code{\link{animate}}
 #' 
-#' @param index the index function to optimise.
+#' @param index_f the index function to optimise.
 #' @param d target dimensionality
 #' @param alpha the initial size of the search window, in radians
 #' @param cooling the amount the size of the search window should be adjusted

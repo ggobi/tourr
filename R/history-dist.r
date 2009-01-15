@@ -1,4 +1,4 @@
-#' Compute distance matrix from bases
+#' Compute distance matrix from bases.
 #' 
 #' @examples
 #' grand <- interpolate(save_history(flea[, 1:6], max = 50), 0.2)

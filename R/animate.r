@@ -1,4 +1,4 @@
-#' Animate a tour path
+#' Animate a tour path.
 #'
 #' This is the function that powers all of the tour animations.  Generally
 #' you should not have to call this function directly, unless you are creating
@@ -24,6 +24,8 @@
 #'   finite number if you are saving the animation to disk.
 #' @param render_frame function called once at the beginning of the animation
 #'   to set up the plotting surface.  This function has no arguments.
+#' @param render_target function called whenever new target projection is 
+#'   generated
 #' @param render_data function called after every new projection is generated
 #'   to render the data.  The function has three arguments: the data, the
 #'   the projection matrix and the geodesic path 
@@ -35,9 +37,9 @@
 #' @param rescale if true, rescale all variables to range [0,1]?
 #' @param sphere if true, sphere all variables
 #' @param file if specified, will save frames to disk instead of displaying on
-#'   screen.  Can be of the format "Rplot%03d.png"
+#'   screen.  Can be of the format "Rplot\%03d.png"
 #' @param dev output device to use (e.g. \code{\link{png}}, \code{\link{pdf}})
-#' @param dev.setting a list of other options to use when initialising output
+#' @param dev.settings a list of other options to use when initialising output
 #'   device
 #' @examples 
 #' f <- flea[, 1:6]

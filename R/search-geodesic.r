@@ -48,7 +48,7 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5) {
 #' and take a small step towards and away from each location.  The most 
 #' promising direction has the highest value of the \code{index} function.
 #'
-#' @keywords optimize, internal
+#' @keywords optimize internal
 #' @param old current projection
 #' @param index interestingness index function
 #' @param dist step size in radians, should be small
@@ -58,7 +58,7 @@ find_best_dir <- function(old, index, dist = 0.01, tries = 5) {
     simplify = FALSE)
   
   score <- function(new) {
-    interpolator <- geodesic(old, new)
+    interpolator <- geodesic_info(old, new)
     forward <- step_angle(interpolator, dist)
     backward <- step_angle(interpolator, -dist)
 
@@ -68,7 +68,7 @@ find_best_dir <- function(old, index, dist = 0.01, tries = 5) {
   bases[[which.max(scores)]]
 }
 
-#' Find the most interesting projection along a geodesic
+#' Find the most interesting projection along a geodesic.
 #'
 #' Use \code{\link{optimize}} to find the most interesting projection amongst
 #' all projections on a geodesic.  This method assumes that the function is 
@@ -79,9 +79,9 @@ find_best_dir <- function(old, index, dist = 0.01, tries = 5) {
 #' @param new projection that gives direction to travel in
 #' @param index interestingness index function
 #' @param max_dist maximum distance to travel along in radians
-#' @keywords optimize, internal
+#' @keywords optimize internal
 find_path_peak <- function(old, new, index, max_dist = pi / 4) {
-  interpolator <- geodesic(old, new)
+  interpolator <- geodesic_info(old, new)
 
   index_pos <- function(alpha) index(step_angle(interpolator, alpha))
   

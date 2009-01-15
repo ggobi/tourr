@@ -1,4 +1,4 @@
-#' The local tour
+#' The local tour.
 #' 
 #' The local tour never strays far from where it started.
 #' 

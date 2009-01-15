@@ -5,7 +5,8 @@
 #' You should not have to call this function unless you are writing your own
 #' tour path method.
 #' 
-#' @param generator basis generator, a function that generates a new basis,
+#' @param data the data matrix to be projected
+#' @param tour_path basis generator, a function that generates a new basis,
 #'   called with the previous projection and the data set.  For more
 #'   complicated tour paths, this will need to be a closure with local
 #'   variables.  Should return NULL if the tour should terminate
@@ -21,7 +22,7 @@
 #' @seealso \code{\link{grand_tour}}, \code{\link{guided_tour}}, 
 #'   \code{\link{local_tour}}, \code{\link{little_tour}} for concrete 
 #'   tour path implementations.
-#' @keywords hplot, dynamic
+#' @keywords hplot dynamic
 tour <- function(data, tour_path, start = NULL, velocity = 0.05, 
   total_steps = 100, step_fun = nul, target_fun = nul, ...
 ){

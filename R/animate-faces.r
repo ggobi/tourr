@@ -4,7 +4,7 @@
 #' dimensions.
 #'
 #' This function requires the \code{TeachingDemos} package to draw the
-#' Chernoff faces.  See \code{\link{faces2}} for more details.
+#' Chernoff faces.  See \code{\link[TeachingDemos]{faces2}} for more details.
 #'
 #' @param data matrix, or data frame containing numeric columns
 #' @param tour_path tour path generator, defaults to the grand tour

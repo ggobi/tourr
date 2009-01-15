@@ -1,4 +1,4 @@
-#' A grand tour path
+#' A grand tour path.
 #'
 #' This method generates target bases by randomly sampling on
 #' the space of all d-dimensional planes in p-space.
@@ -26,7 +26,7 @@
 #' tour2d(NULL, mtcars)
 #' # the data argument is just used to determine the correct dimensionality
 #' # of the output matrix
-#' tour2d(matrix(), mtcars[, 1:2])
+#' tour2d(NULL, mtcars[, 1:2])
 grand_tour <- function(d = 2) {
   generator <- function(current, data) {
     if (is.null(current)) return(basis_init(ncol(data), d))
@@ -47,6 +47,13 @@ basis_random <- function(n, d = 2) {
   orthonormalise(mvn)
 }
 
+#' Generate initial basis.
+#'
+#' First two variables are projected on first two axes.
+#'
+#' @keywords internal
+#' @param n dimensionality of data
+#' @param d dimensionality of target projection
 basis_init <- function(n, d) {
   start <- matrix(0, nrow = n, ncol = d)
   diag(start) <- 1    

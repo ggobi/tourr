@@ -1,4 +1,5 @@
-# Generate nearby bases, e.g. for simulated annealing
+#' Generate nearby bases, e.g. for simulated annealing.
+#' @keywords internal
 basis_nearby <- function(current, alpha = 0.5, method = "linear") {
   method <- match.arg(method, c("linear", "geodesic"))
   new <- basis_random(nrow(current), ncol(current))
@@ -10,7 +11,8 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 }
 
 
-#' Search for a better projection near the current projection
+#' Search for a better projection near the current projection.
+#' @keywords internal
 search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   method = "linear"
 ) {
@@ -32,7 +34,8 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   NULL
 }
 
-
+#' Search for better projection, with stochastic component.
+#' @keywords internal
 search_better_random <- function(current, alpha = 0.5, index,
   max.tries = Inf, method = "linear", eps = 0.001
 ) {

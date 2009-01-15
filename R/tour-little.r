@@ -1,4 +1,4 @@
-#' The little tour
+#' The little tour.
 #'
 #' The little tour is a planned tour that travels between all axis parallel
 #' projections.
@@ -7,8 +7,7 @@
 #' a method that works with tour paths like \code{\link{save_history}}, 
 #' or \code{\link{animate}}
 #' 
-#' @param current the starting projection
-#' @param ... other arguments passed on to \code{\link{tour}}
+#' @param d target dimensionality
 #' @examples
 #' animate_xy(flea[, 1:6], little_tour())
 #' animate_pcp(flea[, 1:6], little_tour(3))

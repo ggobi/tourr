@@ -1,3 +1,4 @@
+#' Holes index.
 holes <- function(mat) {
   n <- nrow(mat)
   d <- ncol(mat)
@@ -8,8 +9,10 @@ holes <- function(mat) {
   num/den
 }
 
+#' Central mass index.
 cm <- function(mat) 1 - holes(mat)
 
+#' LDA projection pursuit index.
 lda_pp <- function(mat, cl) {
   if (length(unique(cl)) < 2)
     return(NA)

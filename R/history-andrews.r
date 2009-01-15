@@ -46,7 +46,7 @@ history_curves <- function(history, data = attr(history, "data")) {
   projections
 }  
 
-#' Plot history curves
+#' Plot history curves.
 #' 
 #' The default plot method is a line plot with step on the x axis and 
 #' value on the y axis.  Each observation is drawn with a different line
@@ -55,7 +55,7 @@ history_curves <- function(history, data = attr(history, "data")) {
 #'
 #' For alternative ways of plotting this data, see
 #'  \code{\link{history_curves}}
-#' @keyword internal
+#' @keywords internal
 plot.history_curve <- function(x, ...) {
   ggplot2::qplot(step, value, data = x, group = obs, geom = "line") + 
     facet_grid(var ~ .) 
