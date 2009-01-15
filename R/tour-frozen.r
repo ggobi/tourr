@@ -5,6 +5,9 @@
 #' other tour methods.  This frozen tour is a frozen grand tour.  See 
 #' \code{\link{frozen_guided_tour}} for a frozen guided tour.
 #' 
+#' Usually, you will not call this function directly, but will pass it to 
+#' a method that works with tour paths like \code{\link{save_history}}, 
+#' or \code{\link{animate}}
 #' 
 #' @param d target dimensionality
 #' @param frozen matrix of frozen variables, as described in

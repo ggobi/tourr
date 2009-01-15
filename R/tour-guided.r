@@ -6,6 +6,10 @@
 #'
 #' Currently the index functions only work in 2d.
 #'
+#' Usually, you will not call this function directly, but will pass it to 
+#' a method that works with tour paths like \code{\link{save_history}}, 
+#' or \code{\link{animate}}
+#' 
 #' @param index the index function to optimise.
 #' @param d target dimensionality
 #' @param alpha the initial size of the search window, in radians

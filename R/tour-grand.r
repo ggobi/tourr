@@ -3,6 +3,10 @@
 #' This method generates target bases by randomly sampling on
 #' the space of all d-dimensional planes in p-space.
 #'
+#' Usually, you will not call this function directly, but will pass it to 
+#' a method that works with tour paths like \code{\link{save_history}}, 
+#' or \code{\link{animate}}
+#' 
 #' @param d target dimensionality
 #' @examples
 #' # All animation methods use the grand tour path by default

@@ -17,7 +17,7 @@
 #' @param generate basis generator function
 #' @param frozen matrix giving frozen variables, as described in 
 #'   \code{\link{freeze}}
-#' @keyword internal
+#' @keywords internal
 new_tour_path <- function(name, generator, frozen = NULL) { 
   
   tour_path <- function(current, data) {
@@ -50,11 +50,10 @@ new_tour_path <- function(name, generator, frozen = NULL) {
   )
 }
 
-
 #' Print tour path
 #'
 #' @method print tour-path
-#' @keyword internal
+#' @keywords internal
 "print.tour-path" <- function(x, ...) {
   cat("Tour path:", attr(x, "name"), "\n")
 

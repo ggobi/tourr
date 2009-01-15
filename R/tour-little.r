@@ -3,6 +3,10 @@
 #' The little tour is a planned tour that travels between all axis parallel
 #' projections.
 #'
+#' Usually, you will not call this function directly, but will pass it to 
+#' a method that works with tour paths like \code{\link{save_history}}, 
+#' or \code{\link{animate}}
+#' 
 #' @param current the starting projection
 #' @param ... other arguments passed on to \code{\link{tour}}
 #' @examples

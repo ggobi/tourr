@@ -1,12 +1,12 @@
 #' The planned tour
 #' 
 #' The planned tour takes you from one basis to the next in a 
-#' set order.  Once you have visited all the planned bases, you start from 
-#' the beginning once more. 
+#' set order.  Once you have visited all the planned bases, you either stop
+#' or start from the beginning once more (if \code{cycle = T}). 
 #' 
 #' Usually, you will not call this function directly, but will pass it to 
 #' a method that works with tour paths like \code{\link{save_history}}, 
-#' \code{\link{animate}}
+#' or \code{\link{animate}}
 #' 
 #' @param current the starting projection
 #' @param basis_set the set of bases as a list of projection matrices

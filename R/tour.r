@@ -1,5 +1,3 @@
-
-
 #' Generic tour method.
 #'
 #' The tour function provides the common machinery behind all tour methods:
@@ -7,7 +5,6 @@
 #' You should not have to call this function unless you are writing your own
 #' tour path method.
 #' 
-#'
 #' @param generator basis generator, a function that generates a new basis,
 #'   called with the previous projection and the data set.  For more
 #'   complicated tour paths, this will need to be a closure with local
