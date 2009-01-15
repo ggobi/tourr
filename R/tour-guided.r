@@ -12,7 +12,7 @@
 #' @param cooling the amount the size of the search window should be adjusted
 #'   by after each step
 #' @param search_f the search strategy to use
-#' @param max.tries the max number of unsuccessful attempts at finding at 
+#' @param max.tries the maximum number of unsuccessful attempts to find
 #'   a better projection before giving up
 #' @seealso \code{\link{cm}}, \code{\link{holes}} and \code{\link{lda_pp}}
 #'   for examples of index functions.  The function should take a numeric
@@ -28,7 +28,6 @@
 #' # ways
 #' f <- flea[, 1:3]
 #' tries <- replicate(5, save_history(f, guided_tour(holes)), simplify = F)
-#'
 guided_tour <- function(index_f, d = 2, alpha = 1, cooling = 0.99, max.tries = 25, search_f = search_geodesic, ...) {
 
   generator <- function(current, data) {

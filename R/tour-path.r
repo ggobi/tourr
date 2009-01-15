@@ -1,7 +1,10 @@
 #' Generate a new tour path function
 #'
 #' A tour path is a function that when called with the current projection
-#' and data set, generates sequence of \code{\link{geodesic_path}}s.  
+#' and data set, generates sequence of \code{\link{geodesic_path}}s.  The 
+#' path can either span the whole space of orthonormal matrices, the default
+#' or be restricted to a subspace with the frozen argument.  More details
+#' are given in the documentation for \code{\link{freeze}}.
 #'
 #' Subsequent frames are guaranteed to be at least 0.001 radians away from
 #' the current frame.  If after 10 tries the generator does not give a new
@@ -9,6 +12,12 @@
 #'
 #' If a suitable new basis can not be found, the path function returns NULL
 #' indicating that the tour should stop.
+#'
+#' @param name name to give tour path
+#' @param generate basis generator function
+#' @param frozen matrix giving frozen variables, as described in 
+#'   \code{\link{freeze}}
+#' @keyword internal
 new_tour_path <- function(name, generator, frozen = NULL) { 
   
   tour_path <- function(current, data) {
@@ -42,9 +51,13 @@ new_tour_path <- function(name, generator, frozen = NULL) {
 }
 
 
+#' Print tour path
+#'
+#' @method print tour-path
+#' @keyword internal
 "print.tour-path" <- function(x, ...) {
   cat("Tour path:", attr(x, "name"), "\n")
-  # 
-  # params <- as.list(environment(x))
-  # str(x)
+
+  # params <- as.list(environment(get("generator", environment(g))))
+  # str(params)
 }

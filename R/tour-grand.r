@@ -3,7 +3,7 @@
 #' This method generates target bases by randomly sampling on
 #' the space of all d-dimensional planes in p-space.
 #'
-#' @param target dimensionality
+#' @param d target dimensionality
 #' @examples
 #' # All animation methods use the grand tour path by default
 #' animate_dist(flea[, 1:6])

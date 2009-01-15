@@ -1,20 +1,15 @@
-# frozen <- matrix(NA, nrow = 4, ncol = 2)
-# frozen[3, ] <- .5
-# animate_xy(flea[, 1:4], frozen_guided_tour(frozen, holes))
-frozen_guided_tour <- function(frozen, index_f, d = 2, max.tries = 25, ...) {
-  generator <- function(current, data) {
-    if (is.null(current)) return(basis_init(ncol(data), d))    
-    
-    index <- function(proj) {
-      index_f(as.matrix(data) %*% proj)
-    }
-
-    search_frozen_geodesic(current, index, max.tries, frozen = frozen)
-  }
-  
-  new_tour_path("frozen-guided", generator, frozen = frozen)
-}
-
+#' Search for most interesting projection along frozen geodesics.
+#'
+#' These three functions perform a corresponding role to 
+#' \code{\link{search_geodesic}}, \code{\link{find_best_dir}} and 
+#' \code{\link{find_path_peak}} but for the frozen tour.  They work by 
+#' zero'ing out the frozen variables and travelling in that restricted
+#' subspace.  
+#' 
+#' @TODO eliminate these functions
+#' @keywords internal
+#' @alias find_best_frozen_dir
+#' @alias find_frozen_path_peak
 search_frozen_geodesic <- function(current, index, max.tries = 5, n = 5, frozen) {
   cur_index <- index(thaw(current, frozen))
   
