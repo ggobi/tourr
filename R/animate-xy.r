@@ -30,9 +30,10 @@ animate_xy <- function(data, tour_path = grand_tour(), center = TRUE, axes = "ce
     blank_plot(xlim = c(-2, 2), ylim = c(-2, 2))    
   }
   render_transition <- function() {
-    rect(-1.99, -1.99, 1.99, 1.99, col="#FFFFFFE6", border=NA)
+    # rect(-1.99, -1.99, 1.99, 1.99, col="#FFFFFFE6", border=NA)
   }
   render_data <- function(data, proj, geodesic) {
+    render_frame()
     # Render axes
     if (axes == "center") {
       segments(0, 0, proj[, 1], proj[, 2], col="grey50")

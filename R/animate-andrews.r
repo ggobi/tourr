@@ -24,7 +24,7 @@ animate_andrews <- function(data, tour_path = grand_tour(3), ...) {
     blank_plot(xlim = c(-pi, pi), ylim = c(-1, 1))
   }
   render_transition <- function() {
-    rect(-pi, -1, pi, 1, col="#FFFFFF", border=NA)
+    # rect(-pi, -1, pi, 1, col="#FFFFFF", border=NA)
   }
   render_data <- function(data, proj, geodesic) {    
     xd <- data %*% proj
@@ -36,6 +36,8 @@ animate_andrews <- function(data, tour_path = grand_tour(3), ...) {
         NA, NA
       )
     })
+
+    render_frame()
     segments(-pi, 0, pi, 0)
     lines(do.call("rbind", values))
   }

@@ -20,7 +20,7 @@ animate_pcp <- function(data, tour_path = grand_tour(3), ...) {
     blank_plot(xlim = c(0, 1), ylim = c(-2, 2))
   }
   render_transition <- function() {
-    rect(0, -1.99, 1, 1.99, col="#FFFFFFE6", border=NA)
+    # rect(0, -1.99, 1, 1.99, col="#FFFFFFE6", border=NA)
   }
   render_data <- function(data, proj, geodesic) { 
     d <- ncol(proj)
@@ -28,6 +28,7 @@ animate_pcp <- function(data, tour_path = grand_tour(3), ...) {
     ys <- as.vector(t(cbind(data %*% proj, NA)))
     xs <- rep(c(xpos, NA), length = length(ys))
     
+    render_frame()
     # Grid lines
     segments(xpos, 1.99, xpos, -1.99, col="grey90")
     segments(0, 0, 1, 0, col="grey90")

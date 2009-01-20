@@ -19,9 +19,10 @@ animate_stereo <- function(data, tour_path = grand_tour(3), blue = rgb(0, 0.91, 
     blank_plot(xlim = c(-1, 1), ylim = c(-1, 1))    
   }
   render_transition <- function() {
-    rect(-1, -1, 1, 1, col="#D9D9D9E6", border=NA)
+    # rect(-1, -1, 1, 1, col="#D9D9D9E6", border=NA)
   }
   render_data <- function(data, proj, geodesic) {
+    render_frame()
     anaglyph(data %*% proj, blue, red)
     
     axes <- project3d(proj)

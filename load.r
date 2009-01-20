@@ -1,3 +1,4 @@
+# source("\\\\.PSF\\.Home\\ggobi\\tourr\\load.r")
 # library(tourr)
 
 FILE <- (function() {
