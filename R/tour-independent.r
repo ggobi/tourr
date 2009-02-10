@@ -30,5 +30,5 @@ independent_tour <- function(pos) {
     mat
   }
 
-  new_tour_path("correlation", generator)
+  new_tour_path("independent", generator)
 }
