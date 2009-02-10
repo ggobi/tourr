@@ -1,6 +1,7 @@
 #' The local tour.
 #' 
-#' The local tour never strays far from where it started.
+#' The local tour alternates between the starting position and a 
+#' nearby random projection.
 #' 
 #' Usually, you will not call this function directly, but will pass it to 
 #' a method that works with tour paths like \code{\link{save_history}}, 
@@ -13,11 +14,18 @@
 #' animate_xy(flea[, 1:3], local_tour(basis_init(3, 2), 0.2))
 #' animate_xy(flea[, 1:3], local_tour(basis_random(3, 2), 0.2))
 local_tour <- function(start, angle = pi / 4) {
+  odd <- TRUE
+  
   generator <- function(current, data) {
-    if (is.null(current)) return(start)
+    if (odd) {
+      new_basis <- start
+    } else {
+      new <- basis_random(nrow(start), ncol(start))
+      new_basis <- step_angle(geodesic_info(start, new), angle)
+    }
+    odd <<- !odd
     
-    new <- basis_random(nrow(current), ncol(current))
-    step_angle(geodesic_info(start, new), angle)
+    new_basis
   }
 
   new_tour_path("local", generator) 
