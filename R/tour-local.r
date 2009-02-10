@@ -21,7 +21,8 @@ local_tour <- function(start, angle = pi / 4) {
       new_basis <- start
     } else {
       new <- basis_random(nrow(start), ncol(start))
-      new_basis <- step_angle(geodesic_info(start, new), angle)
+      dist <- runif(1, 0, angle)
+      new_basis <- step_angle(geodesic_info(start, new), dist)
     }
     odd <<- !odd
     
