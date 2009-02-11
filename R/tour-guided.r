@@ -24,8 +24,8 @@
 #' @seealso \code{\link{search_geodesic}}, \code{\link{search_better}},
 #'   \code{\link{search_better_random}} for different search strategies
 #' @examples
-#' animate_xy(flea[, 1:3], guided_tour(holes))
-#' animate_xy(flea[, 1:6], guided_tour(holes))
+#' animate_xy(flea[, 1:3], guided_tour(holes), sphere = TRUE)
+#' animate_xy(flea[, 1:6], guided_tour(holes), sphere = TRUE)
 #' 
 #' # save_history is particularly useful in conjunction with the 
 #' # guided tour as it allows us to look at the tour path in many different

@@ -21,7 +21,7 @@
 #' # The default axes are centered, like a biplot, but there are other options
 #' animate_xy(flea[, 1:6], axes = "bottomleft")
 #' animate_xy(flea[, 1:6], axes = "off")
-#' animate_xy(flea[, 1:6], independent_tour(c(1, 2, 1, 2, 1, 2)),
+#' animate_xy(flea[, 1:6], dependence_tour(c(1, 2, 1, 2, 1, 2)),
 #'   axes = "bottomleft")
 animate_xy <- function(data, tour_path = grand_tour(), center = TRUE, axes = "center", limit = NULL, ...) {
   labels <- abbreviate(colnames(data), 2)
