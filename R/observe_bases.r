@@ -237,7 +237,8 @@ observe_vectors <- function(basis_set, index_f = NULL, nbases = 2, ...) {
       diff(index_val_range)
     vec <<- t(as.matrix(basis_set[, , 1]+basis_set[, , 1]*new_index_val))
   }
-  vec <<- t(as.matrix(basis_set[, , 1]))
+  else
+    vec <<- t(as.matrix(basis_set[, , 1]))
   cat(nrow(vec), ncol(vec), n, "\n")
   bdim <<- length(basis_set[, , 1])
   # Make the background sphere
@@ -272,8 +273,15 @@ observe_vectors <- function(basis_set, index_f = NULL, nbases = 2, ...) {
       vec_edges <- rbind(vec_edges, c(1,i+1))
     lims <- 2
   }
+  else {
+    vec <- rbind(rep(0, ncol(vec)), vec)
+    vec_edges <- c(1,2)
+    for (i in 2:n)
+      vec_edges <- rbind(vec_edges, c(1,i+1))
+  }    
   vec <- rbind(vec, rep(-lims, ncol(x)), rep(lims, ncol(x)))
-
+  cat(dim(vec_edges),"\n")
+  
   rownames(vec) <- as.character(1:nrow(vec))
   rownames(vec) <- rownames(vec)
   vec_edges <- matrix(as.character(vec_edges),ncol=2)
