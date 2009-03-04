@@ -16,8 +16,7 @@ cm <- function(mat) 1 - holes(mat)
 lda_pp <- function(mat, cl) {
   if (length(unique(cl)) < 2)
     return(NA)
-#########################################change to as.matrix
-  fit <- manova(as.matrix(mat) ~ cl)                      
+  fit <- manova(mat ~ cl)                      
 
   1 - summary(fit,test="Wilks")$stats[[3]]
 }
