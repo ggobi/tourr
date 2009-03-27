@@ -23,7 +23,7 @@
 #' animate_dist(flea[, 1:6], method = "hist")
 animate_dist <- function(data, tour_path = grand_tour(1), method="density", center = TRUE, ...) {
   labels <- abbreviate(colnames(data), 2)
-  method <- match.arg(method, c("histogram", "density"))
+  method <- match.arg(method, c("histogram", "density", "ash"))
   
   # Display 
   range <- c(-2, 2)
@@ -55,6 +55,10 @@ animate_dist <- function(data, tour_path = grand_tour(1), method="density", cent
           col="black", border="white"))
     } else if (method == "density") {
       polygon(density(x), lwd = 2, col="black")
+    } else if (method == "ash") {
+      library(ash)
+      capture.output(ash <- ash1(bin1(x, range(x))))
+      lines(ash)
     }
     abline(h = 0)
     box(col="grey70")
