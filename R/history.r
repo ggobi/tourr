@@ -54,6 +54,7 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
   count <- 1
   
   target <- function(target, geodesic) {
+    if (is.null(target)) return()
     count <<- count+1
     projs[, , count] <<- target
     princ_dirs[, , count] <<- geodesic$Gz

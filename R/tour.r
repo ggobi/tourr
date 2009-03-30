@@ -33,7 +33,7 @@ tour <- function(data, tour_path, start = NULL, velocity = 0.05,
 
   # Initialise first step
   target <- tour_path(start, data)
-  target_fun(target$frame, target)
+  target_fun(target$Fz, target)
   step <- 0
   nsteps <- ceiling(target$dist / velocity)
 
@@ -46,7 +46,7 @@ tour <- function(data, tour_path, start = NULL, velocity = 0.05,
       target <- tour_path(proj, data)
       if (is.null(target)) return(invisible())
       
-      target_fun(target$frame, target)
+      target_fun(target$Fz, target)
       step <- 0
       nsteps <- ceiling(target$dist / velocity)
     }
