@@ -74,6 +74,17 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
   structure(projs, class = "history_array")
 }
 
+"[.history_array" <- function(x, ...) {
+  sub <- NextMethod()
+  class(sub) <- class(x)
+  attr(sub, "data") <- attr(x, "data")
+  sub
+}
+
+print.history_array <- function(x, ...) {
+  attr(x, "data") <- NULL
+  NextMethod()
+}
 
 as.list.history_list <- function(x, ...) x
 as.list.history_array <- function(x, ...) {

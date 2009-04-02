@@ -69,6 +69,8 @@ animate <- function(data, tour_path, aps = 1, fps = 30, max_frames = Inf, render
       render_frame()
       render_data(data, proj, geodesic)
     }
+    
+    render_target <- nul
   }
   
   # By default, only take single step if not interactive

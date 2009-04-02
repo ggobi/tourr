@@ -39,7 +39,6 @@ animate_dist <- function(data, tour_path = grand_tour(1), method="density", cent
     # rect(-1.99, -1.99, 1.99, 5, col="grey80", border=NA)
   }
   render_data <- function(data, proj, geodesic) {
-    render_frame()
     abline(h = seq(0.5, 3.5, by=0.5), col="white")
     lines(c(0,0), c(-1,0), col="white")
     lines(c(-1,-1), c(-1,0), col="white")
