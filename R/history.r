@@ -61,7 +61,7 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
   }
 
   tour(data, tour_path, start = start,
-    velocity = velocity, total_steps = max_bases + 1,
+    velocity = velocity, total_steps = max_bases,
     target_fun = target
   )
   
