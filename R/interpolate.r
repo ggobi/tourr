@@ -21,7 +21,7 @@ interpolate <- function(basis_set, angle = 0.05) {
   output <- list()
   
   get_basis <- function(i) basis_set[[i]]
-  path <- geodesic(get_basis(1), get_basis(2))
+  path <- geodesic_path(get_basis(1), get_basis(2))
   dist <- sqrt(sum(path$tau ^ 2))
 
   i <- 2
@@ -29,12 +29,12 @@ interpolate <- function(basis_set, angle = 0.05) {
   nsteps <- ceiling(dist / angle)
 
   while(i < n | step < nsteps) {
-    proj <- step_fraction(path, step / nsteps)
+    proj <- path$interpolate(step / nsteps)
     output <- append(output, list(proj))
 
     if (step == nsteps) {
       i <- i + 1
-      path <- geodesic(proj, get_basis(i))
+      path <- geodesic_path(proj, get_basis(i))
       dist <- sqrt(sum(path$tau ^ 2))
 
       step <- 0
