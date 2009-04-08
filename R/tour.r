@@ -26,6 +26,7 @@
 tour <- function(data, tour_path, start = NULL, velocity = 0.05, 
   total_steps = 100, step_fun = nul, target_fun = nul, ...
 ){
+
   stopifnot(inherits(tour_path, "tour-path"))
   if (is.null(start)) {
     start <- tour_path(NULL, data)
@@ -38,19 +39,23 @@ tour <- function(data, tour_path, start = NULL, velocity = 0.05,
   nsteps <- ceiling(target$dist / velocity)
 
   step_counter <- 0
-  while(step_counter < total_steps) {
+  while(step_counter < total_steps && !quitPushed) {
     proj <- target$interpolate(step / nsteps)
-    step_fun(step, proj, target)
-
+	step_fun(step, proj, target)
+  
     if (step == nsteps) {
       target <- tour_path(proj, data)
       if (is.null(target)) return(invisible())
-      
+        
       target_fun(target$Fz, target)
       step <- 0
       nsteps <- ceiling(target$dist / velocity)
     }
-    step <- step + 1
-    step_counter <- step_counter + 1
+
+    if(!pausePushed)
+    {
+      step <- step + 1
+      step_counter <- step_counter + 1
+    }
   }
 }
