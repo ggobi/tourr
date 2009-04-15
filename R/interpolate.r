@@ -18,19 +18,21 @@ interpolate <- function(basis_set, angle = 0.05) {
   n <- length(basis_set)
   if (n < 2) return(basis_set)
 
-  output <- list()
+  output <- list(basis_set[[1]])
+  new_basis <- c(T)
   
   get_basis <- function(i) basis_set[[i]]
   path <- geodesic_path(get_basis(1), get_basis(2))
   dist <- sqrt(sum(path$tau ^ 2))
 
   i <- 2
-  step <- 0
+  step <- 2
   nsteps <- ceiling(dist / angle)
 
   while(i < n | step < nsteps) {
     proj <- path$interpolate(step / nsteps)
     output <- append(output, list(proj))
+    new_basis <- append(new_basis, step == 1)
 
     if (step == nsteps) {
       i <- i + 1
@@ -42,9 +44,11 @@ interpolate <- function(basis_set, angle = 0.05) {
     }
     step <- step + 1
   }  
+  
   oarray <- unlist(output)
   dim(oarray) <- c(nrow(output[[1]]), ncol(output[[2]]), length(output))
   attr(oarray, "data") <- attr(basis_set, "data")
+  attr(oarray, "new_basis") <- new_basis
   class(oarray) <- c("history_array", class(oarray))
   oarray
 }

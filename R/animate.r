@@ -87,3 +87,35 @@ animate <- function(data, tour_path, aps = 1, fps = 30, max_frames = Inf, render
     step_fun = step, target_fun = render_target, ...
   )
 }
+
+animate2 <- function(tour, aps = 1, fps = 30, max_frames = Inf, ..., rescale = TRUE, sphere = FALSE) {
+  if (rescale) data <- rescale(data)
+  if (sphere) data  <- sphere(data)
+  
+  # Display on screen
+  display$init(data)
+  display$render_frame()
+  step <- function(step, proj, geodesic) {
+    display$render_transition()
+    display$render_data(data, proj, geodesic)
+    Sys.sleep(1 / fps)
+  }  
+  
+  # By default, only take single step if not interactive
+  if (!interactive() && missing(max_frames)) {
+    max_frames <- 1
+  }
+  if (max_frames == Inf) {
+    message("Press Ctrl+C to stop tour runnning\n")
+  }
+  
+  tour(
+    data = data, tour_path = tour_path, 
+    velocity = aps / fps, total_steps = max_frames,
+    step_fun = step, target_fun = display$render_target, ...
+  )
+}
+
+render <- function(data, tour_path, display, path, apf = 1/30, frames = 100) {
+  
+}
