@@ -88,7 +88,7 @@ animate <- function(data, tour_path, aps = 1, fps = 30, max_frames = Inf, render
   )
 }
 
-animate2 <- function(tour, aps = 1, fps = 30, max_frames = Inf, ..., rescale = TRUE, sphere = FALSE) {
+animate2 <- function(data, tour_path, display, aps = 1, fps = 30, max_frames = Inf, ..., rescale = TRUE, sphere = FALSE) {
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere(data)
   
