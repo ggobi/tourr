@@ -21,12 +21,25 @@
 #'
 #' # Alternatively, you can display the distribution with a histogram
 #' animate_dist(flea[, 1:6], method = "hist")
-animate_dist <- function(data, tour_path = grand_tour(1), method="density", center = TRUE, ...) {
-  labels <- abbreviate(colnames(data), 2)
+animate_dist <- function(data, tour_path = grand_tour(1), ...) {
+  animate2(
+    data = data, tour_path = tour_path,
+    display = display_dist(data,...), 
+    ...
+  )
+}
+
+
+display_dist <- function(data, method="density", center = TRUE,...)
+{
   method <- match.arg(method, c("histogram", "density", "ash"))
+  labels <- range <- NULL
+  init <- function(data) {
+    labels <<- abbreviate(colnames(data), 2)
+    range <<- c(-2, 2)
+  }
   
   # Display 
-  range <- c(-2, 2)
   render_frame <- function() {
     par(pty="m",mar=c(4,4,1,1))
     plot(
@@ -73,10 +86,12 @@ animate_dist <- function(data, tour_path = grand_tour(1), method="density", cent
     rect(-1.99, -1.99, 1.99, 5, col="#7F7F7F33", border=NA)
   }
 
-  animate(
-    data = data, tour_path = tour_path,
-    render_frame = render_frame, render_data = render_data,
-    render_transition = render_transition, render_target = render_target, 
-    ...
+
+  list(
+    init = init,
+    render_frame = render_frame,
+    render_transition = render_transition,
+    render_data = render_data,
+    render_target = render_target
   )
 }

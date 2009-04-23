@@ -20,12 +20,23 @@
 #' animate_faces(flea[1:2, 1:6], grand_tour(5))
 animate_faces <- function(data, tour_path = grand_tour(3), ...) {
   require("TeachingDemos")
-  
+  animate2(data, tour_path, display = display_faces(data,...), ...)
+}
+
+display_faces <- function(data,...)
+{
+
   render_data <- function(data, proj, geodesic) {
     x <- data %*% proj
     x <- (x + 2) / 4
     faces2(x, scale = "none")
   }
-
-  animate(data, tour_path, render_data = render_data, ...)
+  
+  list(
+    init = nul,
+    render_frame = nul,
+    render_transition = nul,
+    render_data = render_data,
+    render_target = nul
+  )
 }

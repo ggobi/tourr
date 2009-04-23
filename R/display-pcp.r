@@ -14,7 +14,22 @@
 #' animate_pcp(flea[, 1:6], grand_tour(3))
 #' animate_pcp(flea[, 1:6], grand_tour(5))
 animate_pcp <- function(data, tour_path = grand_tour(3), ...) {
-  labels <- abbreviate(colnames(data), 2)
+
+
+  animate2(
+    data = data, tour_path = tour_path, 
+    display = display_pcp(data,...), ...
+  )
+}
+
+
+display_pcp <- function(data, ...)
+{
+  labels <- NULL
+  init <- function(data)
+  {
+  	labels <<- abbreviate(colnames(data),2)
+  }
   
   render_frame <- function() {
     blank_plot(xlim = c(0, 1), ylim = c(-2, 2))
@@ -49,12 +64,16 @@ animate_pcp <- function(data, tour_path = grand_tour(3), ...) {
     lines(xs, ys)
   }
   render_target <- function(target, geodesic) {
-    rect(0, -1.99, d, 1.99, col="#7F7F7F33", border=NA)
+    rect(0, -1.99, ncol(geodesic$Fa), 1.99, col="#7F7F7F33", border=NA)
   }
-
-  animate(
-    data = data, tour_path = tour_path, 
-    render_frame = render_frame, render_data = render_data,
-    render_transition = render_transition, ...
+  
+  
+  list(
+    init = init,
+    render_frame = render_frame,
+    render_transition = render_transition,
+    render_data = render_data,
+    render_target = render_target
   )
+  
 }

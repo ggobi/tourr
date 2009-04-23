@@ -19,6 +19,7 @@
 #' animate_xy(flea[, 1:6], dependence_tour(c(1, 2, 1, 2, 1, 2)),
 #'   axes = "bottomleft")
 animate_xy <- function(data, tour_path = grand_tour(), ...) {
+print(head(data))
   animate2(data, tour_path, display_xy(data, ...), ...)
 }
 

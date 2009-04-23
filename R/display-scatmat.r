@@ -14,9 +14,26 @@
 #' animate_scatmat(flea[, 1:6], grand_tour(2))
 #' animate_scatmat(flea[, 1:6], grand_tour(6))
 animate_scatmat <- function(data, tour_path = grand_tour(3), ...) {
+  animate2(data = data, tour_path = tour_path, 
+    display = display_scatmat(data, ...), ...)
+}
+
+
+display_scatmat <- function(data, ...) {
+  
+  
   render_data <- function(data, proj, geodesic) {
     pairs(data %*% proj, pch = 20, ...)
   }
 
-  animate(data, tour_path, render_data = render_data, ...)
+  list(
+    init = nul,
+    render_frame = nul,
+    render_transition = nul,
+    render_data = render_data,
+    render_target = nul
+  )
+
+
 }
+

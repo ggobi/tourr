@@ -17,35 +17,10 @@
 #' # It's easy to experiment with different tour paths:
 #' animate_andrews(flea[, 1:6], guided_tour(cm))
 animate_andrews <- function(data, tour_path = grand_tour(3), ...) {
-  grid <- seq(-pi, pi, length = 50)
-  data <- rescale(data)
-  
-  render_frame <- function() {
-    blank_plot(xlim = c(-pi, pi), ylim = c(-1, 1))
-  }
-  render_transition <- function() {
-    # rect(-pi, -1, pi, 1, col="#FFFFFF", border=NA)
-  }
-  render_data <- function(data, proj, geodesic) {    
-    xd <- data %*% proj
-    xd <- rescale(xd)
-    
-    values <- lapply(seq_len(nrow(xd)), function(i) {
-      rbind(
-        cbind(grid, andrews(xd[i, ])(grid)),
-        NA, NA
-      )
-    })
 
-    render_frame()
-    segments(-pi, 0, pi, 0)
-    lines(do.call("rbind", values))
-  }
-
-  animate(
+  animate2(
     data = data, tour_path = tour_path, 
-    render_frame = render_frame, render_data = render_data,
-    render_transition = render_transition,  ...
+    display = display_andrews(data, ...),...
   )
 }
 
@@ -78,4 +53,43 @@ andrews <- function(x) {
     }
     y / n
   }
+}
+
+display_andrews <- function(data, ...)
+{
+  grid <- NULL
+  init <- function(data) {
+    grid <<- seq(-pi, pi, length = 50)
+    data <<- rescale(data)
+  }
+
+  render_frame <- function() {
+    blank_plot(xlim = c(-pi, pi), ylim = c(-1, 1))
+  }
+  render_transition <- function() {
+    # rect(-pi, -1, pi, 1, col="#FFFFFF", border=NA)
+  }
+  render_data <- function(data, proj, geodesic) {    
+    xd <- data %*% proj
+    xd <- rescale(xd)
+    
+    values <- lapply(seq_len(nrow(xd)), function(i) {
+      rbind(
+        cbind(grid, andrews(xd[i, ])(grid)),
+        NA, NA
+      )
+    })
+
+    render_frame()
+    segments(-pi, 0, pi, 0)
+    lines(do.call("rbind", values))
+  }
+  
+  list(
+    init = init,
+    render_frame = render_frame,
+    render_transition = render_transition,
+    render_data = render_data,
+    render_target = nul
+  )
 }
