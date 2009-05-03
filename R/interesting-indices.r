@@ -13,12 +13,14 @@ holes <- function(mat) {
 cm <- function(mat) 1 - holes(mat)
 
 #' LDA projection pursuit index.
-lda_pp <- function(mat, cl) {
-  if (length(unique(cl)) < 2)
-    return(NA)
-  fit <- manova(mat ~ cl)                      
+lda_pp <- function(cl) {
+  if (length(unique(cl)) < 2) stop("LDA index needs at least two classes")
 
-  1 - summary(fit,test="Wilks")$stats[[3]]
+  function(mat) {
+    fit <- manova(mat ~ cl)                      
+
+    1 - summary(fit,test="Wilks")$stats[[3]]    
+  }
 }
 
 
