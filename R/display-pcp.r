@@ -16,7 +16,7 @@
 animate_pcp <- function(data, tour_path = grand_tour(3), ...) {
 
 
-  animate2(
+  animate(
     data = data, tour_path = tour_path, 
     display = display_pcp(data,...), ...
   )

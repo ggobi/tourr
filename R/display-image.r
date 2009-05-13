@@ -14,33 +14,25 @@
 #' str(ozone)
 #' animate_image(ozone)
 animate_image <- function(data, tour_path = grand_tour(1), ...) {
-
-
-  animate2(
+  animate(
     data = data, tour_path = tour_path, 
-    display = display_image(data,...), ...
+    display = display_image(data, ...), ...
   )
 }
 
 
-display_image <- function(data,...)
+display_image <- function(data, ...)
 {
-
-#  xs <- ys <- zs<- NULL
-  
-    xs <<- dim(data)[1]
-    ys <<- dim(data)[2]
-    zs <<- dim(data)[3]
-print(head(data))
-    dim(data) <<- c(xs * ys, zs)
-
+  xs <<- dim(data)[1]
+  ys <<- dim(data)[2]
+  zs <<- dim(data)[3]
+  dim(data) <<- c(xs * ys, zs)
 
   render_frame <- function() { 
     blank_plot(xlim = c(1, xs), ylim = c(1, xs))
   }
   
   render_data <- function(data, proj, geodesic) {
-  print(head(data))
     z <- data %*% proj
     dim(z) <- c(xs, ys)
     image(

@@ -19,8 +19,7 @@
 #' animate_xy(flea[, 1:6], dependence_tour(c(1, 2, 1, 2, 1, 2)),
 #'   axes = "bottomleft")
 animate_xy <- function(data, tour_path = grand_tour(), ...) {
-print(head(data))
-  animate2(data, tour_path, display_xy(data, ...), ...)
+  animate(data, tour_path, display_xy(data, ...), ...)
 }
 
 #' Display tour path with a scattploer
@@ -34,9 +33,9 @@ print(head(data))
 #' @param limit limits of the projected data.  Defaults to 3 * square root
 #'  of the largest eigenvalue.
 #' @examples
-#' animate2(flea[, 1:6], grand_tour(), display_xy()
-#' animate2(flea[, 1:6], grand_tour(), display_xy(axes = "bottomleft"))
-#' animate2(flea[, 1:6], grand_tour(), display_xy(limits = c(-3, 3))
+#' animate(flea[, 1:6], grand_tour(), display_xy()
+#' animate(flea[, 1:6], grand_tour(), display_xy(axes = "bottomleft"))
+#' animate(flea[, 1:6], grand_tour(), display_xy(limits = c(-3, 3))
 display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, ...) {
   axes <- match.arg(axes, c("center", "bottomleft", "off"))
 

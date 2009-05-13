@@ -22,7 +22,7 @@
 #' # Alternatively, you can display the distribution with a histogram
 #' animate_dist(flea[, 1:6], method = "hist")
 animate_dist <- function(data, tour_path = grand_tour(1), ...) {
-  animate2(
+  animate(
     data = data, tour_path = tour_path,
     display = display_dist(data,...), 
     ...

@@ -19,7 +19,7 @@
 #'  col.stars = rep("grey50", 10), radius = FALSE)
 animate_stars <- function(data, tour_path = grand_tour(3), ...) {
 
-  animate2(
+  animate(
     data = data, tour_path = tour_path, 
     display = display_stars(data,...), ...
   )

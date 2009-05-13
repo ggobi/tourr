@@ -20,7 +20,7 @@
 #' animate_faces(flea[1:2, 1:6], grand_tour(5))
 animate_faces <- function(data, tour_path = grand_tour(3), ...) {
   require("TeachingDemos")
-  animate2(data, tour_path, display = display_faces(data,...), ...)
+  animate(data, tour_path, display = display_faces(data,...), ...)
 }
 
 display_faces <- function(data,...)

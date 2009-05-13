@@ -13,7 +13,7 @@
 #' animate_stereo(flea[, 1:6])
 animate_stereo <- function(data, tour_path = grand_tour(3), blue = rgb(0, 0.91, 0.89), red = rgb(0.98, 0.052, 0), ...) {  
 
-  animate2(
+  animate(
     data = data, tour_path = tour_path,
     display = display_stereo(data,blue, red, ...),
     ...

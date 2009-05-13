@@ -18,7 +18,7 @@
 #' animate_andrews(flea[, 1:6], guided_tour(cm))
 animate_andrews <- function(data, tour_path = grand_tour(3), ...) {
 
-  animate2(
+  animate(
     data = data, tour_path = tour_path, 
     display = display_andrews(data, ...),...
   )

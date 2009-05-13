@@ -14,7 +14,7 @@
 #' animate_scatmat(flea[, 1:6], grand_tour(2))
 #' animate_scatmat(flea[, 1:6], grand_tour(6))
 animate_scatmat <- function(data, tour_path = grand_tour(3), ...) {
-  animate2(data = data, tour_path = tour_path, 
+  animate(data = data, tour_path = tour_path, 
     display = display_scatmat(data, ...), ...)
 }
 
