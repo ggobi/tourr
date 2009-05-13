@@ -38,3 +38,33 @@ blank_plot <- function(...) {
     ...
   )  
 }
+
+
+#' Find the Platform
+#' Find the platform being used by the user
+#' keywords internal
+find_platform <- function()
+{
+	os <- R.Version()$os
+	osType <- "PC"
+
+	if(length(strsplit(os,"linux")[[1]]) > 1)
+		osType <- "Linux"
+	if(length(strsplit(os,"darwin")[[1]]) > 1)
+		osType <- "Mac"
+
+	type <- "Terminal"
+	
+	if(osType %in% c("Linux", "Mac"))
+	{
+		if(.Platform$GUI != "X11")
+			type <- "GUI"
+	}else{
+		if(.Platform$GUI == "Rgui")
+			type <- "GUI"
+	}
+
+	list(os = osType, gui = type)
+
+}
+
