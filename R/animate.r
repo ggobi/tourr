@@ -54,7 +54,7 @@ animate <- function(data, tour_path, display, aps = 1, fps = 30, max_frames = In
     max_frames <- 1
   }
   if (max_frames == Inf) {
-    message("Press Ctrl+C to stop tour runnning\n")
+    to_stop()
   }
   
   tour(

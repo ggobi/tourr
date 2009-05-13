@@ -43,28 +43,37 @@ blank_plot <- function(...) {
 #' Find the Platform
 #' Find the platform being used by the user
 #' keywords internal
-find_platform <- function()
-{
-	os <- R.Version()$os
-	osType <- "PC"
+find_platform <- function() {
+  os <- R.Version()$os
+  gui <- .Platform$GUI
+  
+  if (length(grep("linux", os)) == 1) {
+    osType <- "lin"
+  } else if (length(grep("darwin", os)) == 1) {
+    osType <- "mac"
+  } else {
+    osType <- "win"    
+  }
+    
+  if (osType %in% c("lin", "mac") && gui != "X11") {
+    type <- "gui"
+  } else if (osType == "win" && gui == "Rgui"){
+    type <- "gui"
+  } else {
+    type <- "cli"    
+  }
 
-	if(length(strsplit(os,"linux")[[1]]) > 1)
-		osType <- "Linux"
-	if(length(strsplit(os,"darwin")[[1]]) > 1)
-		osType <- "Mac"
-
-	type <- "Terminal"
-	
-	if(osType %in% c("Linux", "Mac"))
-	{
-		if(.Platform$GUI != "X11")
-			type <- "GUI"
-	}else{
-		if(.Platform$GUI == "Rgui")
-			type <- "GUI"
-	}
-
-	list(os = osType, gui = type)
-
+  list(os = osType, iface = type)
 }
 
+to_stop <- function() {
+  plat <- find_platform()
+  if(plat$os == "win") {
+    key <- "Ctrl + Break"
+  } else if (plat$os == "mac" && plat$iface == "gui") {
+    key <- "Escape"
+  } else {
+    key <- "Ctrl + C"
+  }
+  message("Press ", key, " to stop tour running")
+}
