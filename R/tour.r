@@ -82,5 +82,25 @@ tourer <- function(data, tour_path, proj = NULL, velocity = 0.05) {
     list(step = step, proj = proj, target = target)
   }
 
-  list(step = take_step)
+  cur_dist <- 0
+  target_dist <- 0
+  take_step2 <- function(step_size) {
+    if (cur_dist >= target_dist) {
+      target <<- tour_path(proj, data)
+      if (is.null(target)) return(NULL)
+
+      target_dist <<- target$dist
+      cur_dist <<- 0
+      step <<- 0
+    }
+    
+    proj <<- target$interpolate(cur_dist / target_dist)
+    step <<- step + 1
+    cur_dist <<- cur_dist + step_size
+    list(step = step, proj = proj, target = target)
+    
+  }
+
+
+  list(step = take_step, step2 = take_step2)
 }
