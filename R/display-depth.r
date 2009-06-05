@@ -26,7 +26,7 @@ display_depth <- function(data, limit = NULL,  ...)
     blank_plot(xlim = rng, ylim = rng)
   }
   render_transition <- function() {
-    rect(-1.99, -1.99, 1.99, 1.99, col="#FFFFFF", border=NA)
+    rect(-1.99, -1.99, 1.99, 1.99, col="grey80", border=NA)
   }
   render_data <- function(data, proj, geodesic) {
     x <- data %*% proj
@@ -37,9 +37,11 @@ display_depth <- function(data, limit = NULL,  ...)
     depth_std <- (depth - min(depth)) / diff(range(depth))
     size <- 0.5 + depth_std * 3
     shade <- greys[round(depth_std * 100)]
-    print(siz[1])
+    # use colour & make saturation drop
+    # info: from Graham
     
-    points(x[order(-depth), 1:2], pch = 20, cex = size, col = shade, ...)
+    ord <- order(depth_std)
+    points(x[ord, 1:2], pch = 20, cex = size[ord] , col = shade[ord], ...)
   }
   render_target <- function(target, geodesic) {
     rect(-1.99, -1.99, 1.99, 1.99, col="#7F7F7F33", border=NA)
