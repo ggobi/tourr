@@ -37,7 +37,6 @@ animate_xy <- function(data, tour_path = grand_tour(), ...) {
 #' animate(flea[, 1:6], grand_tour(), display_xy(axes = "bottomleft"))
 #' animate(flea[, 1:6], grand_tour(), display_xy(limits = c(-3, 3))
 display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, col = "black", pch  = 20) {
-  axes <- match.arg(axes, c("center", "bottomleft", "off"))
   
   labels <- rng <- limit <- NULL
   init <- function(data) {
@@ -57,30 +56,11 @@ display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, col =
     rect(-limit, -limit, limit, limit, col="#FFFFFFE6", border=NA)
   }
   render_data <- function(data, proj, geodesic) {
-    # Render axes
-    if (axes == "center") {
-      axis_scale <- 2 * limit / 3
-      axis_pos <- 0
-    } else if (axes == "bottomleft") {
-      axis_scale <- limit / 6
-      axis_pos <- -2/3 * limit
-    }
-    
-    adj <- function(x) axis_pos + x * axis_scale
-    
-    if (axes != "off") {
-      segments(adj(0), adj(0), adj(proj[, 1]), adj(proj[, 2]), col="grey50")
-      theta <- seq(0, 2 * pi, length = 50)
-      lines(adj(cos(theta)), adj(sin(theta)), col = "grey50")
-      text(adj(proj[, 1]), adj(proj[, 2]), label = labels, col = "grey50")      
-    }
+    draw_tour_axes(proj, labels, limit, axes)
 
-    g <- geodesic$Gz
-    
     # Render projected points
     x <- data %*% proj
-    if (center) x <- scale(x, center = TRUE, scale = FALSE)
-    
+    if (center) x <- scale(x, center = TRUE, scale = FALSE)    
     points(x, col = col, pch = pch)
   }
   render_target <- function(target, geodesic) {
@@ -92,6 +72,28 @@ display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, col =
     render_frame = render_frame,
     render_transition = render_transition,
     render_data = render_data,
-    render_target = render_target
+    render_target = nul
   )
+}
+
+#' Draw tour axes with base graphics
+#' @keyword internal
+draw_tour_axes <- function(proj, labels, limits, position) {
+  position <- match.arg(position, c("center", "bottomleft", "off"))
+  if (position == "off") return()
+  
+  if (position == "center") {
+    axis_scale <- 2 * limits / 3
+    axis_pos <- 0
+  } else if (position == "bottomleft") {
+    axis_scale <- limits / 6
+    axis_pos <- -2/3 * limits
+  }
+ 
+  adj <- function(x) axis_pos + x * axis_scale
+
+  segments(adj(0), adj(0), adj(proj[, 1]), adj(proj[, 2]), col="grey50")
+  theta <- seq(0, 2 * pi, length = 50)
+  lines(adj(cos(theta)), adj(sin(theta)), col = "grey50")
+  text(adj(proj[, 1]), adj(proj[, 2]), label = labels, col = "grey50")       
 }
