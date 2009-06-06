@@ -63,9 +63,6 @@ display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, col =
     if (center) x <- scale(x, center = TRUE, scale = FALSE)    
     points(x, col = col, pch = pch)
   }
-  render_target <- function(target, geodesic) {
-    rect(-1.99, -1.99, 1.99, 1.99, col="#7F7F7F33", border=NA)
-  }
   
   list(
     init = init,

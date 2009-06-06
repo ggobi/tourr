@@ -50,15 +50,12 @@ display_depth <- function(data, limit = NULL,  ...)
     ord <- order(depth_std)
     points(x[ord, 1:2], pch = 20, cex = size[ord] , col = shade[ord], ...)
   }
-  render_target <- function(target, geodesic) {
-    rect(-1.99, -1.99, 1.99, 1.99, col="#7F7F7F33", border=NA)
-  }
-  
+
   list(
     init = init,
     render_frame = render_frame,
     render_transition = render_transition,
     render_data = render_data,
-    render_target = render_target
+    render_target = nul
   )
 }

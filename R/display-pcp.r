@@ -62,18 +62,14 @@ display_pcp <- function(data, ...)
     
     # Data values
     lines(xs, ys)
-  }
-  render_target <- function(target, geodesic) {
-    rect(0, -1.99, ncol(geodesic$Fa), 1.99, col="#7F7F7F33", border=NA)
-  }
-  
+  }  
   
   list(
     init = init,
     render_frame = render_frame,
     render_transition = render_transition,
     render_data = render_data,
-    render_target = render_target
+    render_target = nul
   )
   
 }

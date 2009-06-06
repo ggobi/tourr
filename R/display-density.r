@@ -82,16 +82,12 @@ display_dist <- function(data, method="density", center = TRUE,...)
       text(1, -x, labels[i], pos=4)
     }
   }
-  render_target <- function(target, geodesic) {
-    rect(-1.99, -1.99, 1.99, 5, col="#7F7F7F33", border=NA)
-  }
-
 
   list(
     init = init,
     render_frame = render_frame,
     render_transition = render_transition,
     render_data = render_data,
-    render_target = render_target
+    render_target = nul
   )
 }

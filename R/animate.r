@@ -72,7 +72,4 @@ render <- function(data, tour_path, display, path, apf = 1/30, frames = 100) {
     render_frame()
     render_data(data, proj, geodesic)
   }
-  
-  render_target <- nul
-  
 }
