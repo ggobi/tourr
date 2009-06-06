@@ -71,7 +71,7 @@ to_stop <- function() {
   if(plat$os == "win") {
     key <- "Ctrl + Break"
   } else if (plat$os == "mac" && plat$iface == "gui") {
-    key <- "Escape"
+    key <- "Esc"
   } else {
     key <- "Ctrl + C"
   }

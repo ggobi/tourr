@@ -30,46 +30,51 @@ animate_dist <- function(data, tour_path = grand_tour(1), ...) {
 }
 
 
-display_dist <- function(data, method="density", center = TRUE,...)
+display_dist <- function(data, method="density", center = TRUE, limit = NULL, ...)
 {
   method <- match.arg(method, c("histogram", "density", "ash"))
-  labels <- range <- NULL
+  labels <- rng <- limit <- NULL
   init <- function(data) {
+    if (is.null(limit)) {
+      first_eigen <- sqrt(eigen(var(data))$values[1])
+      limit <<- 3 * first_eigen
+    }
+    rng <<- c(-limit, limit)    
     labels <<- abbreviate(colnames(data), 2)
-    range <<- c(-2, 2)
+#    range <<- c(-2, 2)
   }
   
   # Display 
   render_frame <- function() {
     par(pty="m",mar=c(4,4,1,1))
     plot(
-      x = NA, y = NA, xlim = range, ylim = c(-1.1,4), xaxs="i", yaxs="i",
+      x = NA, y = NA, xlim = rng, ylim = c(-1.1, 3*limit), xaxs="i", yaxs="i",
       xlab = "Data Projection", ylab = "Density", yaxt = "n"
     )
     axis(2, seq(0, 4, by = 1))
   }
   render_transition <- function() {
-    # rect(-1.99, -1.99, 1.99, 5, col="grey80", border=NA)
+    rect(-limit, -limit, limit, 3*limit, col="#FFFFFFE6", border=NA)
   }
   render_data <- function(data, proj, geodesic) {
-    abline(h = seq(0.5, 3.5, by=0.5), col="white")
-    lines(c(0,0), c(-1,0), col="white")
-    lines(c(-1,-1), c(-1,0), col="white")
-    lines(c(1,1), c(-1,0), col="white")
+    abline(h = seq(0.5, 3.5, by=0.5), col="grey80")
+    lines(c(0,0), c(-1,0), col="grey80")
+    lines(c(-1,-1), c(-1,0), col="grey80")
+    lines(c(1,1), c(-1,0), col="grey80")
 
     x <- data%*%proj
     if (center) x <- scale(x, center = TRUE, scale = FALSE)
     
     # Render projection data
     if (method == "histogram") {
-      bins <- hist(x, breaks = seq(-2, 2, 0.2), plot = FALSE)
+      bins <- hist(x, breaks = seq(-limit, limit, 0.2), plot = FALSE)
       with(bins, rect(mids - 0.1, 0, mids + 0.1, density,
           col="black", border="white"))
     } else if (method == "density") {
       polygon(density(x), lwd = 2, col="black")
     } else if (method == "ash") {
       library(ash)
-      capture.output(ash <- ash1(bin1(x, range(x))))
+      capture.output(ash <- ash1(bin1(x, rng)))
       lines(ash)
     }
     abline(h = 0)
