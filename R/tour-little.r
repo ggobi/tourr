@@ -22,7 +22,7 @@ little_tour <- function(d = 2) {
       # Initialise bases
       little <<- bases_little(ncol(data), d)
     }
-    step <<- step + 1     
+    step <<- (step %% length(little)) + 1
     little[[step]]
   }
   
