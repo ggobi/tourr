@@ -9,7 +9,4 @@ PATH <- dirname(FILE)
 if (!exists("ozone")) load(file.path(PATH, "data", "ozone.rda"))
 if (!exists("flea")) load(file.path(PATH, "data", "flea.rda"))
 
-source.with.err <- function(path) {
-  tryCatch(source(path), error = function(x) {print(path); print(x)})
-}
-lapply(dir(file.path(PATH, "R"), full.name=T), source.with.err)
+lapply(dir(file.path(PATH, "R"), full.name=T), source)
