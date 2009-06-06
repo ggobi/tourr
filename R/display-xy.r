@@ -45,7 +45,7 @@ display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, col =
       limit <<- 3 * first_eigen
     }
     rng <<- c(-limit, limit)    
-    labels <<- abbreviate(colnames(data), 2)
+    labels <<- abbreviate(colnames(data), 3)
   }
   
   render_frame <- function() {
