@@ -54,7 +54,7 @@ display_dist <- function(data, method="density", center = TRUE, limit = NULL, ..
     axis(2, seq(0, 4, by = 1))
   }
   render_transition <- function() {
-    rect(-limit, -limit, limit, 3*limit, col="#FFFFFFE6", border=NA)
+    rect(-limit, -1.1, limit, 4, col="#FFFFFFE6", border=NA)
   }
   render_data <- function(data, proj, geodesic) {
     abline(h = seq(0.5, 3.5, by=0.5), col="grey80")
