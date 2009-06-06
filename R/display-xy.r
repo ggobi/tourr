@@ -81,7 +81,6 @@ display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, col =
     x <- data %*% proj
     if (center) x <- scale(x, center = TRUE, scale = FALSE)
     
-    
     points(x, col = col, pch = pch)
   }
   render_target <- function(target, geodesic) {
