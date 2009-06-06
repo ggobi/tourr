@@ -1,4 +1,8 @@
 #' Display 3d projection with depth cues
+#' 
+#' Suggestion to use gray background and colour saturation (instead of 
+#' gray shading) by Graham Wills.
+#'
 #' animate_depth(flea[, 1:6])
 animate_depth <- function(data, tour_path = grand_tour(3), ...) {  
 
@@ -11,7 +15,11 @@ animate_depth <- function(data, tour_path = grand_tour(3), ...) {
 
 display_depth <- function(data, limit = NULL,  ...)
 {
-  greys <- rev(grey.colors(100, start = 0))
+  shades <- hcl(240, 
+    c = seq(0, 60, length = 100), 
+    l = seq(80, 20, length = 100)
+  )
+  
   rng <- limit <- NULL
   init <- function(data) {
     if (is.null(limit)) {
@@ -33,12 +41,11 @@ display_depth <- function(data, limit = NULL,  ...)
     x <- scale(x, center = TRUE, scale = FALSE)
 
     depth <- x[, 3]
-    # depth ranges mostly between -1 and 1
-    depth_std <- (depth - min(depth)) / diff(range(depth))
+    # depth ranges mostly between -1 and 1, 
+    # so depth_std should lie between 0 and 1
+    depth_std <- depth / 2 + 0.5 
     size <- 0.5 + depth_std * 3
-    shade <- greys[round(depth_std * 100)]
-    # use colour & make saturation drop
-    # info: from Graham
+    shade <- shades[round(depth_std * 100)]
     
     ord <- order(depth_std)
     points(x[ord, 1:2], pch = 20, cex = size[ord] , col = shade[ord], ...)
