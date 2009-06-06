@@ -30,14 +30,22 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5) {
     peak <- find_path_peak(current, direction, index)
     
     pdiff <- (peak$index - cur_index) / cur_index
+    
+    dig3 <- function(x) sprintf("%.3f", x)
+    
+    cat("Value ", dig3(peak$index), " ", 
+        sprintf("%.1f", pdiff * 100), "% better ",
+        "(", dig3(peak$dist), " away)", sep="")
     if (pdiff > 0.001) {
-      cat("New index: ", peak$index, " (", peak$dist, " away)\n", sep="")
+      cat(" - NEW BASIS\n")
       return(peak$basis)
     }
-    cat("Best was:   ", peak$index, " (", peak$dist, " away).  Trying again...\n", sep="")
+    cat("\n")
     
     try <- try + 1
   }
+  cat("No better bases found after ", max.tries, " tries.  Giving up.\n",
+   sep="") 
   
   NULL  
 }
@@ -90,6 +98,6 @@ find_path_peak <- function(old, new, index, max_dist = pi / 4) {
   list(
     basis = step_angle(interpolator, alpha$maximum),
     index = alpha$objective,
-    dist = alpha$maximum
+    dist = abs(alpha$maximum)
   )
 }
