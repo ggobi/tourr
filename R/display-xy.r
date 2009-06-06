@@ -67,11 +67,13 @@ display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, ...) 
     }
     
     adj <- function(x) axis_pos + x * axis_scale
-
-    segments(adj(0), adj(0), adj(proj[, 1]), adj(proj[, 2]), col="grey50")
-    theta <- seq(0, 2 * pi, length = 50)
-    lines(adj(cos(theta)), adj(sin(theta)), col = "grey50")
-    text(adj(proj[, 1]), adj(proj[, 2]), label = labels, col = "grey50")
+    
+    if (axes != "off") {
+      segments(adj(0), adj(0), adj(proj[, 1]), adj(proj[, 2]), col="grey50")
+      theta <- seq(0, 2 * pi, length = 50)
+      lines(adj(cos(theta)), adj(sin(theta)), col = "grey50")
+      text(adj(proj[, 1]), adj(proj[, 2]), label = labels, col = "grey50")      
+    }
 
     g <- geodesic$Gz
     
