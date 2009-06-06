@@ -10,7 +10,7 @@
 #' @examples
 #' animate_xy(flea[, 1:6])
 #' animate_xy(flea[, 1:6], little_tour())
-#' animate_xy(flea[, 1:3], guided_tour(holes))
+#' animate_xy(flea[, 1:3], guided_tour(holes), sphere = TRUE)
 #' animate_xy(flea[, 1:6], center = FALSE)
 #'
 #' # The default axes are centered, like a biplot, but there are other options
@@ -54,7 +54,7 @@ display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, ...) 
     blank_plot(xlim = rng, ylim = rng)
   }
   render_transition <- function() {
-    rect(-1.99, -1.99, 1.99, 1.99, col="#FFFFFFE6", border=NA)
+    rect(-limit, -limit, limit, limit, col="#FFFFFFE6", border=NA)
   }
   render_data <- function(data, proj, geodesic) {
     # Render axes
@@ -80,7 +80,7 @@ display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, ...) 
     # Render projected points
     x <- data %*% proj
     if (center) x <- scale(x, center = TRUE, scale = FALSE)
-    points(x, pch=20, ...)
+    points(x, pch = 20)
   }
   render_target <- function(target, geodesic) {
     rect(-1.99, -1.99, 1.99, 1.99, col="#7F7F7F33", border=NA)
