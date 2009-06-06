@@ -36,9 +36,9 @@ animate_xy <- function(data, tour_path = grand_tour(), ...) {
 #' animate(flea[, 1:6], grand_tour(), display_xy()
 #' animate(flea[, 1:6], grand_tour(), display_xy(axes = "bottomleft"))
 #' animate(flea[, 1:6], grand_tour(), display_xy(limits = c(-3, 3))
-display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, ...) {
+display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, col = "black", pch  = 20) {
   axes <- match.arg(axes, c("center", "bottomleft", "off"))
-
+  
   labels <- rng <- limit <- NULL
   init <- function(data) {
     if (is.null(limit)) {
@@ -80,7 +80,9 @@ display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, ...) 
     # Render projected points
     x <- data %*% proj
     if (center) x <- scale(x, center = TRUE, scale = FALSE)
-    points(x, pch = 20)
+    
+    
+    points(x, col = col, pch = pch)
   }
   render_target <- function(target, geodesic) {
     rect(-1.99, -1.99, 1.99, 1.99, col="#7F7F7F33", border=NA)
