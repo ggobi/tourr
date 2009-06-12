@@ -43,11 +43,20 @@ animate <- function(data, tour_path, display, aps = 1, fps = 30, max_frames = In
   # Display on screen
   display$init(data)
   display$render_frame()
-  step <- function(step, proj, geodesic) {
-    display$render_transition()
-    display$render_data(data, proj, geodesic)
-    Sys.sleep(1 / fps)
-  }  
+  
+  if (find_platform()$os == "win") {
+    step <- function(step, proj, geodesic) {
+      display$render_frame()
+      display$render_data(data, proj, geodesic)
+      Sys.sleep(1 / fps)
+    }          
+  } else {
+    step <- function(step, proj, geodesic) {
+      display$render_transition()
+      display$render_data(data, proj, geodesic)
+      Sys.sleep(1 / fps)
+    }      
+  }
   
   # By default, only take single step if not interactive
   if (!interactive() && missing(max_frames)) {
