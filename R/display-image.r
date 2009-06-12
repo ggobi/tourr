@@ -14,19 +14,19 @@
 #' str(ozone)
 #' animate_image(ozone)
 animate_image <- function(data, tour_path = grand_tour(1), ...) {
+  xs <- dim(data)[1]
+  ys <- dim(data)[2]
+  zs <- dim(data)[3]
+  dim(data) <- c(xs * ys, zs)
+
   animate(
     data = data, tour_path = tour_path, 
-    display = display_image(data, ...), ...
+    display = display_image(data, xs, ys, ...), ...
   )
 }
 
 
-display_image <- function(data, ...)
-{
-  xs <<- dim(data)[1]
-  ys <<- dim(data)[2]
-  zs <<- dim(data)[3]
-  dim(data) <<- c(xs * ys, zs)
+display_image <- function(data, xs, ys, ...) {
 
   render_frame <- function() { 
     blank_plot(xlim = c(1, xs), ylim = c(1, xs))
