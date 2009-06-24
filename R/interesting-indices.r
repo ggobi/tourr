@@ -23,4 +23,14 @@ lda_pp <- function(cl) {
   }
 }
 
+#' PDA projection pursuit index.
+pda_pp <- function(cl, lambda) {
+if (length(unique(cl)) < 2) stop("PDA index needs at least two classes")
+require(classPP)
+     function(mat){
+     PPindex.class("PDA",mat,cl,lambda=lambda)
+     }
+}
+
+
 
