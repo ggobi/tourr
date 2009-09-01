@@ -10,19 +10,11 @@
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
+#' @aliases display_pcp animate_pcp
+#'
 #' @examples
 #' animate_pcp(flea[, 1:6], grand_tour(3))
 #' animate_pcp(flea[, 1:6], grand_tour(5))
-animate_pcp <- function(data, tour_path = grand_tour(3), ...) {
-
-
-  animate(
-    data = data, tour_path = tour_path, 
-    display = display_pcp(data,...), ...
-  )
-}
-
-
 display_pcp <- function(data, ...)
 {
   labels <- NULL
@@ -72,4 +64,15 @@ display_pcp <- function(data, ...)
     render_target = nul
   )
   
+}
+
+
+#' @nord
+animate_pcp <- function(data, tour_path = grand_tour(3), ...) {
+
+
+  animate(
+    data = data, tour_path = tour_path, 
+    display = display_pcp(data,...), ...
+  )
 }

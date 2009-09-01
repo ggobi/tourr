@@ -10,15 +10,11 @@
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
+#' @aliases display_scatmat animate_scatmat
+#'
 #' @examples
 #' animate_scatmat(flea[, 1:6], grand_tour(2))
 #' animate_scatmat(flea[, 1:6], grand_tour(6))
-animate_scatmat <- function(data, tour_path = grand_tour(3), ...) {
-  animate(data = data, tour_path = tour_path, 
-    display = display_scatmat(data, ...), ...)
-}
-
-
 display_scatmat <- function(data, ...) {
   
   
@@ -37,3 +33,9 @@ display_scatmat <- function(data, ...) {
 
 }
 
+
+#' @nord
+animate_scatmat <- function(data, tour_path = grand_tour(3), ...) {
+  animate(data = data, tour_path = tour_path, 
+    display = display_scatmat(data, ...), ...)
+}

@@ -73,6 +73,8 @@ animate <- function(data, tour_path, display, aps = 1, fps = 30, max_frames = In
   )
 }
 
+
+
 render <- function(data, tour_path, display, path, apf = 1/30, frames = 100) {
   do.call(dev, c(list(file = file), dev.settings))
   on.exit(dev.off())

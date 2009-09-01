@@ -2,17 +2,17 @@
 #' 
 #' Suggestion to use gray background and colour saturation (instead of 
 #' gray shading) by Graham Wills.
+#' Animate a 3d projection with depth cues.
 #'
+#' @param data matrix, or data frame containing numeric columns
+#' @param tour_path tour path generator, defaults to the grand tour
+#' @param ... other arguments passed on to \code{\link{animate}}
+#' @seealso \code{\link{animate}} for options that apply to all animations
+#' @keywords hplot
+#' @aliases deisplay_depth animate_depth
+#' 
+#' @examples
 #' animate_depth(flea[, 1:6])
-animate_depth <- function(data, tour_path = grand_tour(3), ...) {  
-
-  animate(
-    data = data, tour_path = tour_path,
-    display = display_depth(data, ...),
-    ...
-  )
-}
-
 display_depth <- function(data, limit = NULL,  ...)
 {
   shades <- hcl(240, 
@@ -59,3 +59,15 @@ display_depth <- function(data, limit = NULL,  ...)
     render_target = nul
   )
 }
+
+
+#' @nord
+animate_depth <- function(data, tour_path = grand_tour(3), ...) {  
+
+  animate(
+    data = data, tour_path = tour_path,
+    display = display_depth(data, ...),
+    ...
+  )
+}
+

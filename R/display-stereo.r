@@ -1,25 +1,3 @@
-#' Anaglpyh tour path animation.
-#'
-#' Uses red-blue anaglyphs to display a 3d tour path.  You'll need some red-
-#' blue glasses to get much out of this displays!
-#'
-#' @param data matrix, or data frame containing numeric columns
-#' @param tour_path tour path, defaults to a 3d grand tour
-#' @param blue blue colour (for right eye)
-#' @param red red colour (for left eye)
-#' @param ... other arguments passed on to \code{\link{animate}}
-#' @keywords hplot
-#' @examples
-#' animate_stereo(flea[, 1:6])
-animate_stereo <- function(data, tour_path = grand_tour(3), blue = rgb(0, 0.91, 0.89), red = rgb(0.98, 0.052, 0), ...) {  
-
-  animate(
-    data = data, tour_path = tour_path,
-    display = display_stereo(data,blue, red, ...),
-    ...
-  )
-}
-
 #' Draw anaglyphs with base graphics.
 #'
 #' @param d3 3d numeric matrix giving position of points
@@ -57,7 +35,21 @@ project3d <- function(d3, length = par("din")[1] * 25.4, z0 = 300, d = 30) {
 }
 
 
-
+#' Anaglpyh tour path animation.
+#'
+#' Uses red-blue anaglyphs to display a 3d tour path.  You'll need some red-
+#' blue glasses to get much out of this displays!
+#'
+#' @param data matrix, or data frame containing numeric columns
+#' @param tour_path tour path, defaults to a 3d grand tour
+#' @param blue blue colour (for right eye)
+#' @param red red colour (for left eye)
+#' @param ... other arguments passed on to \code{\link{animate}}
+#' @keywords hplot
+#' @aliases display_stereo animate_stereo
+#' 
+#' @examples
+#' animate_stereo(flea[, 1:6])
 display_stereo <- function(data,blue, red, ...)
 {
 
@@ -94,6 +86,17 @@ display_stereo <- function(data,blue, red, ...)
     render_transition = render_transition,
     render_data = render_data,
     render_target = nul
+  )
+}
+
+
+#' @nord
+animate_stereo <- function(data, tour_path = grand_tour(3), blue = rgb(0, 0.91, 0.89), red = rgb(0.98, 0.052, 0), ...) {  
+
+  animate(
+    data = data, tour_path = tour_path,
+    display = display_stereo(data,blue, red, ...),
+    ...
   )
 }
 

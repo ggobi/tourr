@@ -1,7 +1,16 @@
 #' Use ggobi to display a tour path.
 #'
-#' This 
-#X  ggobi_tour(flea[,1:6])
+#' Prompts R to use rggobi as the window for the plotting
+#'
+#' @param data matrix, or data frame containing numeric columns
+#' @param tour_f 
+#' @param aps 
+#' @param fps  how many frames per second should be used
+#' @param ... other arguments passed on to \code{\link{animate}}
+#' @param rescale 
+#' @param sphere
+#' @examples
+#'  ggobi_tour(flea[,1:6])
 ggobi_tour <- function(data, tour_f = grand_tour, aps = 1, fps = 30, ..., rescale = TRUE, sphere = FALSE) {
   if(!require("rggobi", quiet = TRUE)) {
     stop("rggobi required for ggobi based tour")

@@ -1,29 +1,3 @@
-#' Andrews' curves tour path animation.
-#'
-#' Animate a nD tour path with Andrews' curves.  For more details about
-#' Andrew's curves, see \code{\link{andrews}}
-#'
-#' @param data matrix, or data frame containing numeric columns
-#' @param tour_path tour path generator, defaults to the grand tour
-#' @param ... other arguments passed on to \code{\link{animate}}
-#' @seealso \code{\link{animate}} for options that apply to all animations
-#' @keywords hplot
-#' 
-#' @examples
-#' animate_andrews(flea[, 1:6])
-#' animate_andrews(flea[, 1:6], grand_tour(d = 3))
-#' animate_andrews(flea[, 1:6], grand_tour(d = 6))
-#' 
-#' # It's easy to experiment with different tour paths:
-#' animate_andrews(flea[, 1:6], guided_tour(cm))
-animate_andrews <- function(data, tour_path = grand_tour(3), ...) {
-
-  animate(
-    data = data, tour_path = tour_path, 
-    display = display_andrews(data, ...),...
-  )
-}
-
 #' Compute Andrews' curves
 #' 
 #' This function takes a numeric vector of input, and returns a function which
@@ -55,6 +29,26 @@ andrews <- function(x) {
   }
 }
 
+
+#' Andrews' curves tour path animation.
+#'
+#' Animate a nD tour path with Andrews' curves.  For more details about
+#' Andrew's curves, see \code{\link{andrews}}
+#'
+#' @param data matrix, or data frame containing numeric columns
+#' @param tour_path tour path generator, defaults to the grand tour
+#' @param ... other arguments passed on to \code{\link{animate}}
+#' @seealso \code{\link{animate}} for options that apply to all animations
+#' @keywords hplot
+#' @aliases animate_andrews display_andrews
+#' 
+#' @examples
+#' animate_andrews(flea[, 1:6])
+#' animate_andrews(flea[, 1:6], grand_tour(d = 3))
+#' animate_andrews(flea[, 1:6], grand_tour(d = 6))
+#' 
+#' # It's easy to experiment with different tour paths:
+#' animate_andrews(flea[, 1:6], guided_tour(cm))
 display_andrews <- function(data, ...)
 {
   grid <- NULL
@@ -91,5 +85,15 @@ display_andrews <- function(data, ...)
     render_transition = render_transition,
     render_data = render_data,
     render_target = nul
+  )
+}
+
+
+#' @nord
+animate_andrews <- function(data, tour_path = grand_tour(3), ...) {
+
+  animate(
+    data = data, tour_path = tour_path, 
+    display = display_andrews(data, ...),...
   )
 }

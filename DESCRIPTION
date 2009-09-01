@@ -3,10 +3,22 @@ Type: Package
 Title: Implement tour methods in pure R code
 Version: 0.1
 Date: 2008-08-01
-Author: Dianne Cook <dicook@iastate.edu>, Hadley Wickham <h.wickham@gmail.com>
+Author: Dianne Cook <dicook@iastate.edu>, Hadley Wickham
+    <h.wickham@gmail.com>
 Maintainer: Hadley Wickham <h.wickham@gmail.com>
-Description: Implements geodesic interpolation and basis generation functions that allow you to create new tour methods from R.
+Description: Implements geodesic interpolation and basis generation
+    functions that allow you to create new tour methods from R.
 Depends: R (>= 2.7)
 Suggests: rggobi,TeachingDemos,ggplot2,ash
 License: MIT
 LazyData: true
+Collate: 'animate.r' 'display-andrews.r' 'display-density.r'
+    'display-depth.r' 'display-faces.r' 'display-image.r'
+    'display-pcp.r' 'display-scatmat.r' 'display-stars.r'
+    'display-stereo.r' 'display-xy.r' 'geodesic.r' 'ggobi.r'
+    'history-andrews.r' 'history-dist.r' 'history-index.r' 'history.r'
+    'interesting-indices.r' 'interpolate.r' 'linear-algebra.r'
+    'observe_bases.r' 'search-better.r' 'search-frozen-geodesic.r'
+    'search-geodesic.r' 'tour-dependence.r' 'tour-frozen.r'
+    'tour-grand.r' 'tour-guided.r' 'tour-little.r' 'tour-local.r'
+    'tour-path.r' 'tour-planned.r' 'tour.r' 'util.r'

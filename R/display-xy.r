@@ -74,7 +74,7 @@ display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, col =
 }
 
 #' Draw tour axes with base graphics
-#' @keyword internal
+#' @keywords internal
 draw_tour_axes <- function(proj, labels, limits, position) {
   position <- match.arg(position, c("center", "bottomleft", "off"))
   if (position == "off") return()

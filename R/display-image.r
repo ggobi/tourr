@@ -10,22 +10,11 @@
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
+#' @aliases display_image animate_image
+#' 
 #' @examples
 #' str(ozone)
 #' animate_image(ozone)
-animate_image <- function(data, tour_path = grand_tour(1), ...) {
-  xs <- dim(data)[1]
-  ys <- dim(data)[2]
-  zs <- dim(data)[3]
-  dim(data) <- c(xs * ys, zs)
-
-  animate(
-    data = data, tour_path = tour_path, 
-    display = display_image(data, xs, ys, ...), ...
-  )
-}
-
-
 display_image <- function(data, xs, ys, ...) {
 
   render_frame <- function() { 
@@ -50,4 +39,18 @@ display_image <- function(data, xs, ys, ...) {
     render_target = nul
   )
 
+}
+
+
+#' @nord
+animate_image <- function(data, tour_path = grand_tour(1), ...) {
+  xs <- dim(data)[1]
+  ys <- dim(data)[2]
+  zs <- dim(data)[3]
+  dim(data) <- c(xs * ys, zs)
+
+  animate(
+    data = data, tour_path = tour_path, 
+    display = display_image(data, xs, ys, ...), ...
+  )
 }
