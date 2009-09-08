@@ -74,6 +74,9 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
   structure(projs, class = "history_array")
 }
 
+#' Global History array
+#' 
+#' @keywords internal
 "[.history_array" <- function(x, ...) {
   sub <- NextMethod()
   class(sub) <- class(x)
@@ -81,12 +84,23 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
   sub
 }
 
+#' Prints the History Array
+#' Prints the History Array in a useful format  
+#' 
+#' @keywords internal
 print.history_array <- function(x, ...) {
   attr(x, "data") <- NULL
   NextMethod()
 }
 
+#' Make into a List from History List
+#' 
+#' @keywords internal
 as.list.history_list <- function(x, ...) x
+
+#' Make into a List from History Array
+#' 
+#' @keywords internal
 as.list.history_array <- function(x, ...) {
   n <- dim(x)[3]
   projs <- vector("list", n)
@@ -96,7 +110,15 @@ as.list.history_array <- function(x, ...) {
   structure(projs, class = "history_list", data = attr(x, "data"))
 }
 
+#' Make into an Array from History Array
+#' 
+#' @keywords internal
 as.array.history_array <- function(x, ...) x
+
+
+#' Make into an Array from History List
+#' 
+#' @keywords internal
 as.array.history_list <- function(x, ...) {
   dims <- c(nrow(x[[1]]), ncol(x[[1]]), length(x))
   projs <- array(NA, dims)

@@ -42,7 +42,7 @@ display_image <- function(data, xs, ys, ...) {
 }
 
 
-#' @nord
+# not being documented.  already aliased somewhere else
 animate_image <- function(data, tour_path = grand_tour(1), ...) {
   xs <- dim(data)[1]
   ys <- dim(data)[2]

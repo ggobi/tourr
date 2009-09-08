@@ -66,6 +66,11 @@ find_platform <- function() {
   list(os = osType, iface = type)
 }
 
+#' Prints information on how to stop the output
+#'
+#' This function prints the corresponding information on how to stop the plotting.
+#' 
+#' @keywords internal
 to_stop <- function() {
   plat <- find_platform()
   if(plat$os == "win") {

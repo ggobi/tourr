@@ -57,6 +57,9 @@ tour <- function(data, tour_path, start = NULL, velocity = 0.05,
   }
 }
 
+#' Internal Function
+#' 
+#' @keywords internal
 tourer <- function(data, tour_path, proj = NULL, velocity = 0.05) {
   stopifnot(inherits(tour_path, "tour-path"))
   if (is.null(proj)) {

@@ -1,10 +1,13 @@
-#X t1 <- save_history(flea[, 1:6], nbases = 3)
-#X t1 <- save_history(flea[, 1:6], nbases = 100, interpolate=T)
-#X t1 <- save_history(flea[, c(1,2,4,5)], nbases = 2)
-#X t1 <- save_history(flea[, c(1,2,4)], nbases = 2)
-#X t1 <- save_history(flea[, c(1,2,4)], nbases = 500)
-#X observe_2dframes(interpolate(t1))
-
+#' Di Function
+#' 
+#' @keywords internal
+#' @examples
+#' t1 <- save_history(flea[, 1:6], nbases = 3)
+#' t1 <- save_history(flea[, 1:6], nbases = 100, interpolate=T)
+#' t1 <- save_history(flea[, c(1,2,4,5)], nbases = 2)
+#' t1 <- save_history(flea[, c(1,2,4)], nbases = 2)
+#' t1 <- save_history(flea[, c(1,2,4)], nbases = 500)
+#' observe_2dframes(interpolate(t1))
 observe_2dframes <- function(basis_set, ...) {
   if (!require("rggobi")) {
     stop("rggobi required for this visualisation")
@@ -110,10 +113,15 @@ observe_2dframes <- function(basis_set, ...) {
 
 }
 
-#X t1 <- save_history(flea[, c(1,2,4)], nbases = 3, d = 1)
-#X t1 <- save_history(flea[, 1:6], nbases = 3, d = 1)
-#X observe_vectors_move(t1)
-#X observe_vectors_move(interpolate(t1))
+
+#' Di Function
+#' 
+#' @keywords internal
+#' @examples
+#' t1 <- save_history(flea[, c(1,2,4)], nbases = 3, d = 1)
+#' t1 <- save_history(flea[, 1:6], nbases = 3, d = 1)
+#' observe_vectors_move(t1)
+#' observe_vectors_move(interpolate(t1))
 observe_vectors_move <- function(basis_set, index_f = NULL, ...) {
   if (!require("rggobi")) {
     stop("rggobi required for this visualisation")
@@ -215,13 +223,18 @@ observe_vectors_move <- function(basis_set, index_f = NULL, ...) {
     total_steps = Inf, ...)
 }
 
-#X t1 <- save_history(flea[, 1:3], nbases = 50, d = 1)
-#X t1 <- save_history(flea[, 1:6], nbases = 3, d = 1, interpolate = T)
-#X observe_vectors(interpolate(t1), nbases = 3)
-#X t2 <- save_history(flea[,c(1,2,4)], tour_f = guided_tour, index_f = holes, d=1, sphere=T, basis_f = basis_geodesic_search)
-#X observe_vectors(interpolate(t2), holes)
-#X t3 <- save_history(flea[,1:6], tour_f = guided_tour, index_f = holes, d=1, sphere=T, basis_f = basis_geodesic_search)
-#X observe_vectors(interpolate(t3), holes)
+
+#' Di Function
+#' 
+#' @keywords internal
+#' @examples
+#' t1 <- save_history(flea[, 1:3], nbases = 50, d = 1)
+#' t1 <- save_history(flea[, 1:6], nbases = 3, d = 1, interpolate = T)
+#' observe_vectors(interpolate(t1), nbases = 3)
+#' t2 <- save_history(flea[,c(1,2,4)], tour_f = guided_tour, index_f = holes, d=1, sphere=T, basis_f = basis_geodesic_search)
+#' observe_vectors(interpolate(t2), holes)
+#' t3 <- save_history(flea[,1:6], tour_f = guided_tour, index_f = holes, d=1, sphere=T, basis_f = basis_geodesic_search)
+#' observe_vectors(interpolate(t3), holes)
 observe_vectors <- function(basis_set, index_f = NULL, nbases = 2, ...) {
   if (!require("rggobi")) {
     stop("rggobi required for this visualisation")
@@ -302,18 +315,26 @@ observe_vectors <- function(basis_set, index_f = NULL, nbases = 2, ...) {
   NA
 }
 
+#' Di Function
+#' 
+#' @keywords internal
 gen_sphere <- function(n = 100, p = 5) {
   t(normalise(matrix(rnorm(n * p), ncol = n)))
 }
 
-#X testdata <- matrix(rnorm(100*2), ncol=2)
-#X testdata[1:50,1] <- testdata[1:50,1] + 10
-#X testdata <- sphere(testdata)
-#X t1 <- save_history(testdata, nbases=3, d=1, rescale=F, sphere=F)
-#X observe_vectors_r(t1)
-#X observe_vectors_r(t1, plt_proj=T)
-#X t1 <- save_history(testdata, tour_f = guided_tour, index_f = holes, nbases=5, d=1, rescale=F, sphere=F, max.tries = 100, cooling = 0.95)
-#X observe_vectors_r(t1, holes)
+
+#' Di Function
+#' 
+#' @keywords internal
+#' @examples
+#' testdata <- matrix(rnorm(100*2), ncol=2)
+#' testdata[1:50,1] <- testdata[1:50,1] + 10
+#' testdata <- sphere(testdata)
+#' t1 <- save_history(testdata, nbases=3, d=1, rescale=F, sphere=F)
+#' observe_vectors_r(t1)
+#' observe_vectors_r(t1, plt_proj=T)
+#' t1 <- save_history(testdata, tour_f = guided_tour, index_f = holes, nbases=5, d=1, rescale=F, sphere=F, max.tries = 100, cooling = 0.95)
+#' observe_vectors_r(t1, holes)
 observe_vectors_r <- function(basis_set, index_f = NULL, plt_data = TRUE, plt_proj = FALSE, ...) {
   
   # Collect the vectors into one matrix
@@ -418,6 +439,10 @@ observe_vectors_r <- function(basis_set, index_f = NULL, plt_data = TRUE, plt_pr
     total_steps = Inf, ...)
 }
 
+
+#' Di Function
+#' 
+#' @keywords internal
 plot_hist_on_proj <-function(data, proj) {
   proj_data = hist(data%*%as.matrix(proj), breaks=seq(-3,3,0.5), plot=F)
   reflect <- FALSE
@@ -452,23 +477,28 @@ plot_hist_on_proj <-function(data, proj) {
   }          
 }
 
-#X t2 <- save_history(testdata, tour_f = guided_tour, index_f = holes, nbases=5, d=1, rescale=F, sphere=F, max.tries = 100, cooling = 0.95)
-#X library(rggobi)
-#X gd<-observe_pp_trace(t2, nbases=10000)
-#X gd<-observe_pp_trace(interpolate(t2), nbases=10000)
-#X d<-displays(gd)[[1]]
-#X pmode(d) <- "1D Tour"
-#X ggsgnl <- gSignalConnect(gd, "identify-point", linker)
-#X #Open a scatterplot display of the trace
-#X gSignalHandlerDisconnect(gd, ggsgnl)
-#X flea_s <- sphere(flea[,c(1,2,4)])
-#X t2 <- save_history(flea_s, tour_f = guided_tour, index_f = holes, nbases=10, d=1, rescale=F, sphere=F, max.tries = 100, cooling = 0.99)
-#X gd<-observe_pp_trace(interpolate(t2), nbases=10000)
-#X d<-displays(gd)[[1]]
-#X pmode(d) <- "1D Tour"
-#X t3 <- interpolate(t2)
-#X ggsgnl <- gSignalConnect(gd, "identify-point", linker2)
-#X gSignalHandlerDisconnect(gd, ggsgnl)
+
+#' Di Function
+#' 
+#' @keywords internal
+#' @examples
+#' t2 <- save_history(testdata, tour_f = guided_tour, index_f = holes, nbases=5, d=1, rescale=F, sphere=F, max.tries = 100, cooling = 0.95)
+#' library(rggobi)
+#' gd<-observe_pp_trace(t2, nbases=10000)
+#' gd<-observe_pp_trace(interpolate(t2), nbases=10000)
+#' d<-displays(gd)[[1]]
+#' pmode(d) <- "1D Tour"
+#' ggsgnl <- gSignalConnect(gd, "identify-point", linker)
+#' #Open a scatterplot display of the trace
+#' gSignalHandlerDisconnect(gd, ggsgnl)
+#' flea_s <- sphere(flea[,c(1,2,4)])
+#' t2 <- save_history(flea_s, tour_f = guided_tour, index_f = holes, nbases=10, d=1, rescale=F, sphere=F, max.tries = 100, cooling = 0.99)
+#' gd<-observe_pp_trace(interpolate(t2), nbases=10000)
+#' d<-displays(gd)[[1]]
+#' pmode(d) <- "1D Tour"
+#' t3 <- interpolate(t2)
+#' ggsgnl <- gSignalConnect(gd, "identify-point", linker2)
+#' gSignalHandlerDisconnect(gd, ggsgnl)
 observe_pp_trace <- function(basis_set, index_f = holes, nbases = 2, ...) {
   if (!require("rggobi")) {
     stop("rggobi required for this visualisation")
@@ -513,6 +543,9 @@ observe_pp_trace <- function(basis_set, index_f = holes, nbases = 2, ...) {
   gd
 }
 
+#' Di Function
+#' 
+#' @keywords internal
 linker <- function(gg, gplot, idx, data) {
   if (idx != -1) {
     idx <- idx + 1
@@ -520,6 +553,9 @@ linker <- function(gg, gplot, idx, data) {
   }
 }
 
+#' Di Function
+#' 
+#' @keywords internal
 linker2 <- function(gg, gplot, idx, data) {
   if (idx != -1) {
     idx <- idx + 1
@@ -527,7 +563,10 @@ linker2 <- function(gg, gplot, idx, data) {
   }
 }
 
-# This one will show the pp indices in R, and plot the vectors in ggobi
+#' Di Function
+#' This one will show the pp indices in R, and plot the vectors in ggobi
+#' 
+#' @keywords internal
 observe_pp_trace_r<- function(basis_set, index_f = holes, nbases = 2, ...) {
   
   # Collect the vectors into one matrix

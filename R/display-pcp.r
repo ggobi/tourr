@@ -67,7 +67,7 @@ display_pcp <- function(data, ...)
 }
 
 
-#' @nord
+# not being documented.  already aliased somewhere else
 animate_pcp <- function(data, tour_path = grand_tour(3), ...) {
 
 

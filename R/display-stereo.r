@@ -90,7 +90,7 @@ display_stereo <- function(data,blue, red, ...)
 }
 
 
-#' @nord
+# not being documented.  already aliased somewhere else
 animate_stereo <- function(data, tour_path = grand_tour(3), blue = rgb(0, 0.91, 0.89), red = rgb(0.98, 0.052, 0), ...) {  
 
   animate(

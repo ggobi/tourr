@@ -61,7 +61,7 @@ display_depth <- function(data, limit = NULL,  ...)
 }
 
 
-#' @nord
+# not being documented.  already aliased somewhere else
 animate_depth <- function(data, tour_path = grand_tour(3), ...) {  
 
   animate(

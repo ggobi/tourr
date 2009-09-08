@@ -39,7 +39,7 @@ display_faces <- function(data,...)
 }
 
 
-#' @nord
+# not being documented.  already aliased somewhere else
 animate_faces <- function(data, tour_path = grand_tour(3), ...) {
   require("TeachingDemos")
   animate(data, tour_path, display = display_faces(data,...), ...)

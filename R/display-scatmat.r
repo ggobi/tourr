@@ -34,7 +34,7 @@ display_scatmat <- function(data, ...) {
 }
 
 
-#' @nord
+# not being documented.  already aliased somewhere else
 animate_scatmat <- function(data, tour_path = grand_tour(3), ...) {
   animate(data = data, tour_path = tour_path, 
     display = display_scatmat(data, ...), ...)

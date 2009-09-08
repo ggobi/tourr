@@ -39,7 +39,7 @@ display_stars <- function(data,...)
 }
 
 
-#' @nord
+# not being documented.  already aliased somewhere else
 animate_stars <- function(data, tour_path = grand_tour(3), ...) {
 
   animate(

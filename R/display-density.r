@@ -90,7 +90,7 @@ display_dist <- function(data, method="density", center = TRUE, limit = NULL, ..
 }
 
 
-#' @nord
+# not being documented.  already aliased somewhere else
 animate_dist <- function(data, tour_path = grand_tour(1), ...) {
   animate(
     data = data, tour_path = tour_path,

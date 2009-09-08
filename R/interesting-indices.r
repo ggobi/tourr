@@ -1,6 +1,6 @@
 #' Holes index.
 #'
-#' Finds the holes
+#' Finds the "interesting" index
 #'
 #' @param mat matrix being used
 #' @keywords hplot
@@ -29,9 +29,9 @@ cm <- function(mat)
 
 #' LDA projection pursuit index.
 #'
+#' Calculate the LDA projection pursuit index
 #' 
-#' 
-#' @param cl 
+#' @param cl class to be used.  Such as "color"
 #' @keywords hplot
 #'
 lda_pp <- function(cl) {
@@ -47,10 +47,10 @@ lda_pp <- function(cl) {
 
 #' PDA projection pursuit index.
 #'
+#' Calculates the PDA projections pursuit index
 #'
-#'
-#' @param cl
-#' @param lambda
+#' @param cl class to be used.  Such as "color"
+#' @param lambda parameter used the "interesting" persuit.  It ranges from 0 to 1. O is lda_pp.  pda_pp is an updated form of lda_pp.
 #' @keywords hplot
 pda_pp <- function(cl, lambda) {
   if (length(unique(cl)) < 2) 
