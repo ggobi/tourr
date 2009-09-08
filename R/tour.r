@@ -19,15 +19,15 @@
 #'   new projection matrix) and target (the current target frame)
 #' @param target_fun a function that is evaluated every time a new target is 
 #'   chosen
+#' @param ... Not Used
 #' @seealso \code{\link{grand_tour}}, \code{\link{guided_tour}}, 
 #'   \code{\link{local_tour}}, \code{\link{little_tour}} for concrete 
 #'   tour path implementations.
 #' @keywords hplot dynamic
 tour <- function(data, tour_path, start = NULL, velocity = 0.05, 
-  total_steps = 100, step_fun = nul, target_fun = nul, ...
-){
+  total_steps = 100, step_fun = nul, target_fun = nul, ...){
 
-  stopifnot(inherits(tour_path, "tour-path"))
+  stopifnot(inherits(tour_path, "tour_path"))
   if (is.null(start)) {
     start <- tour_path(NULL, data)
   }
@@ -61,7 +61,7 @@ tour <- function(data, tour_path, start = NULL, velocity = 0.05,
 #' 
 #' @keywords internal
 tourer <- function(data, tour_path, proj = NULL, velocity = 0.05) {
-  stopifnot(inherits(tour_path, "tour-path"))
+  stopifnot(inherits(tour_path, "tour_path"))
   if (is.null(proj)) {
     proj <- tour_path(NULL, data)
   }

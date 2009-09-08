@@ -1,6 +1,6 @@
 \name{display_dist}
 \title{1d distribution tour path animation.}
-\usage{display_dist(data, method=density, center=TRUE, limit, ...)}
+\usage{display_dist(data, method=density, center=TRUE, ...)}
 \description{1d distribution tour path animation.}
 \details{Animate a 1d tour path with a density plot or histogram.}
 \seealso{\code{\link{animate}} for options that apply to all animations}

@@ -7,6 +7,8 @@
 #'
 #' @param data matrix, or data frame containing numeric columns
 #' @param tour_path tour path generator, defaults to the grand tour
+#' @param xs x limit that is used in making the size of the plot
+#' @param ys y limit that is used in making the size of the plot
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot

@@ -26,4 +26,5 @@ to never terminate)}
 the function should have arguments step (the number of steps), proj (the
 new projection matrix) and target (the current target frame)}
 \item{target_fun}{a function that is evaluated every time a new target is 
-chosen}}
+chosen}
+\item{...}{Not Used}}

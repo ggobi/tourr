@@ -17,7 +17,7 @@ itries <- lapply(tries, interpolate)
 paths <- histories_index(itries, holes)
 head(paths)
 
-if (requre(ggplot2)) {
+if (require(ggplot2)) {
 qplot(step, value, data=paths, group=try, geom="line")
 qplot(step, improvement, data=paths, group=try, geom="line")
 }}

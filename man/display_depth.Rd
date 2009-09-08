@@ -1,13 +1,13 @@
 \name{display_depth}
 \title{Display 3d projection with depth cues...}
-\usage{display_depth(data, limit, ...)}
+\usage{display_depth(data, ...)}
 \description{Display 3d projection with depth cues}
 \details{Suggestion to use gray background and colour saturation (instead of 
 gray shading) by Graham Wills.
 Animate a 3d projection with depth cues.}
 \seealso{\code{\link{animate}} for options that apply to all animations}
 \keyword{hplot}
-\alias{deisplay_depth}
+\alias{display_depth}
 \alias{animate_depth}
 \arguments{\item{data}{matrix, or data frame containing numeric columns}
 \item{tour_path}{tour path generator, defaults to the grand tour}

@@ -1,7 +1,7 @@
 \name{new_tour_path}
 \alias{new_tour_path}
 \title{Generate a new tour path function.}
-\usage{new_tour_path(name, generator, frozen)}
+\usage{new_tour_path(name, generator, frozen, ...)}
 \description{Generate a new tour path function.}
 \details{A tour path is a function that when called with the current projection
 and data set, generates sequence of \code{\link{geodesic_path}}s.  The 
@@ -19,4 +19,5 @@ indicating that the tour should stop.}
 \arguments{\item{name}{name to give tour path}
 \item{generate}{basis generator function}
 \item{frozen}{matrix giving frozen variables, as described in 
-\code{\link{freeze}}}}
+\code{\link{freeze}}}
+\item{...}{Not Used}}

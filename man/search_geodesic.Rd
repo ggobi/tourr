@@ -17,4 +17,4 @@ to the \code{\link{guided_tour}} as a search strategy.}
 \item{alpha}{maximum distance to travel (currently ignored)}
 \item{index}{interestingness index function}
 \item{max.tries}{maximum number of failed attempts before giving up}
-\item{number}{of random steps to take to find best direction}}
+\item{n}{number of random steps to take to find best direction}}

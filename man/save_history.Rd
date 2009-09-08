@@ -30,7 +30,7 @@ testdata <- matrix(rnorm(100*3), ncol=3)
 testdata[1:50, 1] <- testdata[1:50, 1] + 10
 testdata <- sphere(testdata)
 t2 <- save_history(testdata, guided_tour(holes, max.tries = 100), 
-max = 5, rescale=F)
+max = 5, rescale=FALSE)
 animate_xy(testdata, planned_tour(t2))
 
 # Or you can use saved histories to visualise the path that the tour took.

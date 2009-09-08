@@ -29,7 +29,7 @@
 #' testdata[1:50, 1] <- testdata[1:50, 1] + 10
 #' testdata <- sphere(testdata)
 #' t2 <- save_history(testdata, guided_tour(holes, max.tries = 100), 
-#'   max = 5, rescale=F)
+#'   max = 5, rescale=FALSE)
 #' animate_xy(testdata, planned_tour(t2))
 #'
 #' # Or you can use saved histories to visualise the path that the tour took.
@@ -87,6 +87,7 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
 #' Prints the History Array
 #' Prints the History Array in a useful format  
 #' 
+#' @S3method print history_array
 #' @keywords internal
 print.history_array <- function(x, ...) {
   attr(x, "data") <- NULL
@@ -95,11 +96,13 @@ print.history_array <- function(x, ...) {
 
 #' Make into a List from History List
 #' 
+#' @S3method "as.list" history_list
 #' @keywords internal
 as.list.history_list <- function(x, ...) x
 
 #' Make into a List from History Array
 #' 
+#' @S3method "as.list" history_array
 #' @keywords internal
 as.list.history_array <- function(x, ...) {
   n <- dim(x)[3]
@@ -112,12 +115,14 @@ as.list.history_array <- function(x, ...) {
 
 #' Make into an Array from History Array
 #' 
+#' @S3method "as.array" history_array
 #' @keywords internal
 as.array.history_array <- function(x, ...) x
 
 
 #' Make into an Array from History List
 #' 
+#' @S3method as.array history_list
 #' @keywords internal
 as.array.history_list <- function(x, ...) {
   dims <- c(nrow(x[[1]]), ncol(x[[1]]), length(x))

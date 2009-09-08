@@ -31,6 +31,7 @@ history_index <- function(history, index_f, data = attr(history, "data")) {
 
 #' Plot history index with ggplot2.
 #' 
+#' @S3method plot history_index
 #' @keywords internal hplot
 #' @method plot history_index
 plot.history_index <- function(x, ...) {
@@ -59,7 +60,7 @@ plot.history_index <- function(x, ...) {
 #' paths <- histories_index(itries, holes)
 #' head(paths)
 #' 
-#' if (requre(ggplot2)) {
+#' if (require(ggplot2)) {
 #' qplot(step, value, data=paths, group=try, geom="line")
 #' qplot(step, improvement, data=paths, group=try, geom="line")
 #' }

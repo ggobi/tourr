@@ -14,7 +14,7 @@
 #' @param alpha maximum distance to travel (currently ignored)
 #' @param index interestingness index function
 #' @param max.tries maximum number of failed attempts before giving up
-#' @param number of random steps to take to find best direction
+#' @param n number of random steps to take to find best direction
 #' @keywords optimize
 search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5) {
   cur_index <- index(current)

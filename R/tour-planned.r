@@ -12,10 +12,11 @@
 #'   or a 3d array
 #' @param cycle cycle through continuously (\code{TRUE}) or stop after 
 #'   first pass (\code{FALSE})
+#' @param ... Not Used
 #' @keywords hplot dynamic
 #' @seealso The \code{\link{little_tour}}, a special type of planned tour
-#'   which cycles between all axis parallel projections
-#' @seealso \code{save_history} for saving the output of another tour path
+#'   which cycles between all axis parallel projections.  
+#'  \code{save_history} for saving the output of another tour path
 #'   to replay later with the planned tour
 #' @examples
 #' twod <- save_history(flea[, 1:3], max = 5)
@@ -25,7 +26,7 @@
 #'
 #' oned <- save_history(flea[, 1:6], grand_tour(1), max = 3)
 #' animate_dist(flea[, 1:6], planned_tour(oned))
-planned_tour <- function(basis_set, cycle = FALSE) {
+planned_tour <- function(basis_set, cycle = FALSE, ...) {
   index <- 0
   basis_set <- as.list(basis_set)
   

@@ -12,6 +12,8 @@ mixed with the tour.}
 \alias{animate_image}
 \arguments{\item{data}{matrix, or data frame containing numeric columns}
 \item{tour_path}{tour path generator, defaults to the grand tour}
+\item{xs}{x limit that is used in making the size of the plot}
+\item{ys}{y limit that is used in making the size of the plot}
 \item{...}{other arguments passed on to \code{\link{animate}}}}
 \examples{str(ozone)
 animate_image(ozone)}

@@ -11,6 +11,7 @@
 #'
 #' @param data matrix, or data frame containing numeric columns
 #' @param tour_path tour path generator, defaults to the grand tour
+#' @param display takes the display that is suppose to be used, defaults to the xy display
 #' @param aps target angular velocity (in radians per second)
 #' @param fps target frames per second (defaults to 30)
 #' @param max_frames the maximum number of bases to generate.  Defaults to
@@ -36,7 +37,7 @@
 #' animate(f, max_frames = 10, fps = 1, aps = 0.1)
 #'
 #' animate_xy(f, max_frames = 100, file = "test.pdf", dev = pdf)
-animate <- function(data, tour_path, display, aps = 1, fps = 30, max_frames = Inf, ..., rescale = TRUE, sphere = FALSE) {
+animate <- function(data, tour_path = grand_tour(), display = display_xy() , aps = 1, fps = 30, max_frames = Inf, ..., rescale = TRUE, sphere = FALSE) {
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere(data)
   

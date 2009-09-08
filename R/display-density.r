@@ -22,7 +22,7 @@
 #'
 #' # Alternatively, you can display the distribution with a histogram
 #' animate_dist(flea[, 1:6], method = "hist")
-display_dist <- function(data, method="density", center = TRUE, limit = NULL, ...)
+display_dist <- function(data, method="density", center = TRUE, ...)
 {
   method <- match.arg(method, c("histogram", "density", "ash"))
   labels <- rng <- limit <- NULL

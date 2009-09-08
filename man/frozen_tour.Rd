@@ -1,7 +1,7 @@
 \name{frozen_tour}
 \alias{frozen_tour}
 \title{The frozen tour.}
-\usage{frozen_tour(d=2, frozen)}
+\usage{frozen_tour(d=2, frozen, ...)}
 \description{The frozen tour.}
 \details{A frozen tour fixes some of the values of the orthonormal projection
 matrix and allows the others to vary freely according to any of the
@@ -13,7 +13,8 @@ a method that works with tour paths like \code{\link{save_history}},
 or \code{\link{animate}}}
 \arguments{\item{d}{target dimensionality}
 \item{frozen}{matrix of frozen variables, as described in
-\code{\link{freeze}}}}
+\code{\link{freeze}}}
+\item{...}{Not Used}}
 \examples{frozen <- matrix(NA, nrow = 4, ncol = 2)
 frozen[3, ] <- .5
 animate_xy(flea[, 1:4], frozen_tour(2, frozen))

@@ -9,11 +9,11 @@
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
-#' @aliases deisplay_depth animate_depth
+#' @aliases display_depth animate_depth
 #' 
 #' @examples
 #' animate_depth(flea[, 1:6])
-display_depth <- function(data, limit = NULL,  ...)
+display_depth <- function(data,  ...)
 {
   shades <- hcl(240, 
     c = seq(0, 60, length = 100), 

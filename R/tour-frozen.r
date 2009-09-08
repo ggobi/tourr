@@ -12,6 +12,7 @@
 #' @param d target dimensionality
 #' @param frozen matrix of frozen variables, as described in
 #'   \code{\link{freeze}}
+#' @param ... Not Used
 #' @examples
 #' frozen <- matrix(NA, nrow = 4, ncol = 2)
 #' frozen[3, ] <- .5
@@ -46,7 +47,7 @@
 #' frozen[3, ] <- .5
 #' frozen[4, ] <- c(-.2, .2)
 #' animate_xy(flea[, 1:5], frozen_tour(2, frozen))
-frozen_tour <- function(d = 2, frozen) { 
+frozen_tour <- function(d = 2, frozen, ...) { 
   generator <- function(current, data) {
     if (is.null(current)) return(basis_init(ncol(data), d))
 
@@ -61,10 +62,11 @@ frozen_tour <- function(d = 2, frozen) {
 #'
 #' @param frozen matrix of frozen variables, as described in
 #'   \code{\link{freeze}}
-#' @param index the index function to optimise.
+#' @param index_f the index function to optimise.
 #' @param d target dimensionality
 #' @param max.tries the maximum number of unsuccessful attempts to find
 #'   a better projection before giving up
+#' @param ... not used
 #' @seealso \code{\link{cm}}, \code{\link{holes}} and \code{\link{lda_pp}}
 #'   for examples of index functions.  The function should take a numeric
 #'   matrix and return a single number, preferrably between 0 and 1.

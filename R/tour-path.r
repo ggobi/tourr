@@ -17,8 +17,9 @@
 #' @param generate basis generator function
 #' @param frozen matrix giving frozen variables, as described in 
 #'   \code{\link{freeze}}
+#' @param ... Not Used
 #' @keywords internal
-new_tour_path <- function(name, generator, frozen = NULL) { 
+new_tour_path <- function(name, generator, frozen = NULL, ...) { 
   
   tour_path <- function(current, data) {
     if (is.null(current)) {
@@ -46,15 +47,15 @@ new_tour_path <- function(name, generator, frozen = NULL) {
   structure(
     tour_path,
     name = name,
-    class = "tour-path"
+    class = "tour_path"
   )
 }
 
 #' Print tour path
 #'
-#' @method print tour-path
+#' @S3method print "tour_path"
 #' @keywords internal
-"print.tour-path" <- function(x, ...) {
+"print.tour_path" <- function(x, ...) {
   cat("Tour path:", attr(x, "name"), "\n")
 
   # params <- as.list(environment(get("generator", environment(g))))

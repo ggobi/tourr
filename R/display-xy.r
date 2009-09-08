@@ -26,17 +26,21 @@ animate_xy <- function(data, tour_path = grand_tour(), ...) {
 #'
 #' Animate a 2D tour path with a scatterplot.
 #'
+#' @param data matrix, or data frame containing numeric columns
 #' @param axes position of the axes: center, bottomleft or off
 #' @param center if TRUE, centers projected data to (0,0).  This pins the 
 #'  center of data cloud and make it easier to focus on the changing shape
 #'  rather than position.
 #' @param limit limits of the projected data.  Defaults to 3 * square root
 #'  of the largest eigenvalue.
+#' @param col color to be plotted.  Defaults to "black"
+#' @param pch size of the point to be plotted.  Defaults to 20.
+#' @param ... Not Used
 #' @examples
-#' animate(flea[, 1:6], grand_tour(), display_xy()
+#' animate(flea[, 1:6], grand_tour(), display_xy())
 #' animate(flea[, 1:6], grand_tour(), display_xy(axes = "bottomleft"))
-#' animate(flea[, 1:6], grand_tour(), display_xy(limits = c(-3, 3))
-display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, col = "black", pch  = 20) {
+#' animate(flea[, 1:6], grand_tour(), display_xy(limits = c(-3, 3)))
+display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, col = "black", pch  = 20, ...) {
   
   labels <- rng <- limit <- NULL
   init <- function(data) {

@@ -18,10 +18,11 @@
 #' @param search_f the search strategy to use
 #' @param max.tries the maximum number of unsuccessful attempts to find
 #'   a better projection before giving up
+#' @param ... arguments sent to the search_f
 #' @seealso \code{\link{cm}}, \code{\link{holes}} and \code{\link{lda_pp}}
 #'   for examples of index functions.  The function should take a numeric
-#'   matrix and return a single number, preferrably between 0 and 1.
-#' @seealso \code{\link{search_geodesic}}, \code{\link{search_better}},
+#'   matrix and return a single number, preferrably between 0 and 1.  
+#' \code{\link{search_geodesic}}, \code{\link{search_better}},
 #'   \code{\link{search_better_random}} for different search strategies
 #' @examples
 #' animate_xy(flea[, 1:3], guided_tour(holes), sphere = TRUE)
@@ -31,7 +32,7 @@
 #' # guided tour as it allows us to look at the tour path in many different
 #' # ways
 #' f <- flea[, 1:3]
-#' tries <- replicate(5, save_history(f, guided_tour(holes)), simplify = F)
+#' tries <- replicate(5, save_history(f, guided_tour(holes)), simplify = FALSE)
 guided_tour <- function(index_f, d = 2, alpha = 1, cooling = 0.99, max.tries = 25, search_f = search_geodesic, ...) {
 
   generator <- function(current, data) {
