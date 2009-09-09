@@ -60,3 +60,8 @@ plot.history_curve <- function(x, ...) {
   ggplot2::qplot(step, value, data = x, group = obs, geom = "line") + 
     facet_grid(var ~ .) 
 }
+
+
+
+
+

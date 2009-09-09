@@ -12,6 +12,8 @@
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_stars animate_stars
+#' @usage display_stars(data, ...)
+#'        animate_stars(data, tour_path = grand_tour(3), ...)
 #'
 #' @examples
 #' animate_stars(flea[1:10, 1:6])

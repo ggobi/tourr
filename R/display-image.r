@@ -13,6 +13,8 @@
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_image animate_image
+#' @usage display_image(data, xs, ys, ...)
+#'        animate_image(data, tour_path = grand_tour(1), ...)
 #' 
 #' @examples
 #' str(ozone)

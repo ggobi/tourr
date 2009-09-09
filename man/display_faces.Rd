@@ -1,6 +1,7 @@
 \name{display_faces}
 \title{Chernoff faces tour path animation.}
-\usage{display_faces(data, ...)}
+\usage{display_faces(data, ...)
+animate_faces(data, tour_path = grand_tour(3), ...)}
 \description{Chernoff faces tour path animation.}
 \details{Animate a nD tour path with Chernoff's faces.  Can display up to 18
 dimensions.

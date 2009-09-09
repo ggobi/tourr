@@ -11,6 +11,8 @@
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_pcp animate_pcp
+#' @usage display_pcp(data, ...)
+#'        animate_pcp(data, tour_path = grand_tour(3), ...)
 #'
 #' @examples
 #' animate_pcp(flea[, 1:6], grand_tour(3))

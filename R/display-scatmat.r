@@ -11,6 +11,8 @@
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_scatmat animate_scatmat
+#' @usage display_scatmat(data, ...)
+#'        animate_scatmat(data, tour_path = grand_tour(3), ...)
 #'
 #' @examples
 #' animate_scatmat(flea[, 1:6], grand_tour(2))

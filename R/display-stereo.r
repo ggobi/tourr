@@ -47,6 +47,8 @@ project3d <- function(d3, length = par("din")[1] * 25.4, z0 = 300, d = 30) {
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @keywords hplot
 #' @aliases display_stereo animate_stereo
+#' @usage display_stereo(data, blue, red, ...)
+#'        animate_stereo(data, tour_path = grand_tour(3), blue = rgb(0, 0.91, 0.89), red = rgb(0.98, 0.052, 0), ...)
 #' 
 #' @examples
 #' animate_stereo(flea[, 1:6])

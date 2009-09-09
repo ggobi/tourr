@@ -12,7 +12,8 @@
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_dist animate_dist
-#' 
+#' @usage display_dist(data, method="density", center = TRUE, ...)
+#'        animate_dist(data, tour_path = grand_tour(1), ...)
 #' @examples
 #' animate_dist(flea[, 1:6])
 #'

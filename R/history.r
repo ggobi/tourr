@@ -15,8 +15,8 @@
 #'
 #' t1 <- save_history(flea[, 1:6], max = 3)
 #' animate_xy(flea[, 1:6], planned_tour(t1))
-#' andrews_history(t1)
-#' andrews_history(interpolate(t1))
+#' ##andrews_history(t1)
+#' ##andrews_history(interpolate(t1))
 #'
 #' t1 <- save_history(flea[, 1:6], grand_tour(4), max = 3)
 #' animate_pcp(flea[, 1:6], planned_tour(t1))

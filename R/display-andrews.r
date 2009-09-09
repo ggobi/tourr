@@ -41,7 +41,8 @@ andrews <- function(x) {
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases animate_andrews display_andrews
-#' 
+#' @usage display_andrews(data, ...)
+#'        animate_andrews(data, tour_path = grand_tour(3), ...) 
 #' @examples
 #' animate_andrews(flea[, 1:6])
 #' animate_andrews(flea[, 1:6], grand_tour(d = 3))

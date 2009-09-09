@@ -1,6 +1,7 @@
 \name{display_scatmat}
 \title{Scatterplot matrix tour path animation.}
-\usage{display_scatmat(data, ...)}
+\usage{display_scatmat(data, ...)
+animate_scatmat(data, tour_path = grand_tour(3), ...)}
 \description{Scatterplot matrix tour path animation.}
 \details{Animate a nD tour path with a scatterplot matrix. 
 

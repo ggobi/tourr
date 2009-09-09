@@ -1,6 +1,7 @@
 \name{display_pcp}
 \title{Parallel coordinates tour path animation.}
-\usage{display_pcp(data, ...)}
+\usage{display_pcp(data, ...)
+animate_pcp(data, tour_path = grand_tour(3), ...)}
 \description{Parallel coordinates tour path animation.}
 \details{Animate a nD tour path with a parallel coordinates plot. 
 

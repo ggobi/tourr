@@ -18,15 +18,15 @@
 #'   Inf for interactive use (must use Ctrl + C to terminate), and 1 for 
 #'   non-interactive use.  It's recommended that you set this value to a 
 #'   finite number if you are saving the animation to disk.
-#' @param render_frame function called once at the beginning of the animation
-#'   to set up the plotting surface.  This function has no arguments.
+## @param render_frame function called once at the beginning of the animation
+##   to set up the plotting surface.  This function has no arguments.
 #' @param ... other arguments are based on to the tour path generator
 #' @param rescale if true, rescale all variables to range [0,1]?
 #' @param sphere if true, sphere all variables
-#' @param file if specified, will save frames to disk instead of displaying on
-#'   screen.  Can be of the format "Rplot\%03d.png"
-#' @param dev output device to use (e.g. \code{\link{png}}, \code{\link{pdf}})
-#' @param dev.settings a list of other options to use when initialising output
+## @param file if specified, will save frames to disk instead of displaying on
+##   screen.  Can be of the format "Rplot\%03d.png"
+## @param dev output device to use (e.g. \code{\link{png}}, \code{\link{pdf}})
+## @param dev.settings a list of other options to use when initialising output
 #'   device
 #' @examples 
 #' f <- flea[, 1:6]

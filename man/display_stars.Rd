@@ -1,6 +1,7 @@
 \name{display_stars}
 \title{Star glyph tour path animation.}
-\usage{display_stars(data, ...)}
+\usage{display_stars(data, ...)
+animate_stars(data, tour_path = grand_tour(3), ...)}
 \description{Star glyph tour path animation.}
 \details{Animate a nD tour path with star glyphs.
 

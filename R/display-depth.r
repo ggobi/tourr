@@ -10,6 +10,8 @@
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_depth animate_depth
+#' @usage display_depth(data, ...)
+#'        animate_depth(data, tour_path = grand_tour(3), ...)
 #' 
 #' @examples
 #' animate_depth(flea[, 1:6])

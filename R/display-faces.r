@@ -12,6 +12,8 @@
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_faces animate_faces
+#' @usage display_faces(data, ...)
+#'        animate_faces(data, tour_path = grand_tour(3), ...)
 #'
 #' @examples
 #' # The drawing code is fairly slow, so this animation works best with a 

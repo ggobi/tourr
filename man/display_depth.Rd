@@ -1,6 +1,7 @@
 \name{display_depth}
 \title{Display 3d projection with depth cues...}
-\usage{display_depth(data, ...)}
+\usage{display_depth(data, ...)
+animate_depth(data, tour_path = grand_tour(3), ...)}
 \description{Display 3d projection with depth cues}
 \details{Suggestion to use gray background and colour saturation (instead of 
 gray shading) by Graham Wills.
