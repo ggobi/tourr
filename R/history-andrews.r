@@ -56,6 +56,7 @@ history_curves <- function(history, data = attr(history, "data")) {
 #' For alternative ways of plotting this data, see
 #'  \code{\link{history_curves}}
 #' @keywords internal
+#' @method plot history_curve
 plot.history_curve <- function(x, ...) {
   ggplot2::qplot(step, value, data = x, group = obs, geom = "line") + 
     facet_grid(var ~ .) 

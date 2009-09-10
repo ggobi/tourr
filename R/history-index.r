@@ -31,7 +31,7 @@ history_index <- function(history, index_f, data = attr(history, "data")) {
 
 #' Plot history index with ggplot2.
 #' 
-#' @S3method plot history_index
+#' @method plot history_index
 #' @keywords internal hplot
 #' @method plot history_index
 plot.history_index <- function(x, ...) {

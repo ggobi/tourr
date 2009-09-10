@@ -1,7 +1,7 @@
 \name{plot.history_curve}
 \alias{plot.history_curve}
 \title{Plot history curves.}
-\usage{plot.history_curve(x, ...)}
+\usage{\method{plot}{history_curve} (x, ...)}
 \description{Plot history curves.}
 \details{The default plot method is a line plot with step on the x axis and 
 value on the y axis.  Each observation is drawn with a different line

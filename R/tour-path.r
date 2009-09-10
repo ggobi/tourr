@@ -53,7 +53,7 @@ new_tour_path <- function(name, generator, frozen = NULL, ...) {
 
 #' Print tour path
 #'
-#' @S3method print "tour_path"
+#' @method print tour_path
 #' @keywords internal
 "print.tour_path" <- function(x, ...) {
   cat("Tour path:", attr(x, "name"), "\n")

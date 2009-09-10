@@ -74,9 +74,12 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
   structure(projs, class = "history_array")
 }
 
-#' Global History array
+#' Subset history array
 #' 
 #' @keywords internal
+#' @method [ history_array
+#' @aliases [.history_array
+#' @name subset-history_array
 "[.history_array" <- function(x, ...) {
   sub <- NextMethod()
   class(sub) <- class(x)
@@ -87,7 +90,7 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
 #' Prints the History Array
 #' Prints the History Array in a useful format  
 #' 
-#' @S3method print history_array
+#' @method print history_array
 #' @keywords internal
 print.history_array <- function(x, ...) {
   attr(x, "data") <- NULL
@@ -96,13 +99,13 @@ print.history_array <- function(x, ...) {
 
 #' Make into a List from History List
 #' 
-#' @S3method "as.list" history_list
+#' @method as.list history_list
 #' @keywords internal
 as.list.history_list <- function(x, ...) x
 
 #' Make into a List from History Array
 #' 
-#' @S3method "as.list" history_array
+#' @method as.list history_array
 #' @keywords internal
 as.list.history_array <- function(x, ...) {
   n <- dim(x)[3]
@@ -115,14 +118,14 @@ as.list.history_array <- function(x, ...) {
 
 #' Make into an Array from History Array
 #' 
-#' @S3method "as.array" history_array
+#' @method as.array history_array
 #' @keywords internal
 as.array.history_array <- function(x, ...) x
 
 
 #' Make into an Array from History List
 #' 
-#' @S3method as.array history_list
+#' @method as.array history_list
 #' @keywords internal
 as.array.history_list <- function(x, ...) {
   dims <- c(nrow(x[[1]]), ncol(x[[1]]), length(x))
