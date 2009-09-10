@@ -5,7 +5,7 @@
 \description{The planned tour.}
 \details{The planned tour takes you from one basis to the next in a 
 set order.  Once you have visited all the planned bases, you either stop
-or start from the beginning once more (if \code{cycle = T}). 
+or start from the beginning once more (if \code{cycle = TRUE}). 
 
 Usually, you will not call this function directly, but will pass it to 
 a method that works with tour paths like \code{\link{save_history}}, 

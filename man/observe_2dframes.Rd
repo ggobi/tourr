@@ -5,7 +5,7 @@
 \description{Di Function}
 \keyword{internal}
 \examples{#t1 <- save_history(flea[, 1:6], nbases = 3)
-#t1 <- save_history(flea[, 1:6], nbases = 100, interpolate=T)
+#t1 <- save_history(flea[, 1:6], nbases = 100, interpolate=TRUE)
 #t1 <- save_history(flea[, c(1,2,4,5)], nbases = 2)
 #t1 <- save_history(flea[, c(1,2,4)], nbases = 2)
 #t1 <- save_history(flea[, c(1,2,4)], nbases = 500)

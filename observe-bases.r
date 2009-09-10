@@ -3,7 +3,7 @@
 #' @keywords internal
 #' @examples
 #' #t1 <- save_history(flea[, 1:6], nbases = 3)
-#' #t1 <- save_history(flea[, 1:6], nbases = 100, interpolate=T)
+#' #t1 <- save_history(flea[, 1:6], nbases = 100, interpolate=TRUE)
 #' #t1 <- save_history(flea[, c(1,2,4,5)], nbases = 2)
 #' #t1 <- save_history(flea[, c(1,2,4)], nbases = 2)
 #' #t1 <- save_history(flea[, c(1,2,4)], nbases = 500)
@@ -29,7 +29,7 @@ observe_2dframes <- function(basis_set, ...) {
     bases <<- rbind(bases, basis_set[, , 1][, 1],
          basis_set[, , 1][, 2], basis_set[, , 1][, 1] + basis_set[, , 1][, 2])
     bases_edges <<- matrix(c(1, 2, 1, 3, 2, 4, 4, 3, 1, 5, 1, 6, 5, 7, 7, 6),
-      ncol=2, byrow=T)
+      ncol=2, byrow=TRUE)
     for (i in 2:n) {
       bases <<- rbind(bases, basis_set[[i]][, 1], basis_set[[i]][, 2],
         basis_set[[i]][,1]+basis_set [[i]][,2])
@@ -52,7 +52,7 @@ observe_2dframes <- function(basis_set, ...) {
     bases <<- rbind(bases, basis_set[, , 1][, 1],
       basis_set[, , 1][, 2], basis_set[, , 1][, 1] + basis_set[, , 1][, 2])
     bases_edges <<- matrix(c(1, 2, 1, 3, 2, 4, 4, 3, 1, 5, 1, 6, 5, 7, 7, 6),
-      ncol=2, byrow=T)
+      ncol=2, byrow=TRUE)
     for (i in 2:n) {
       bases <<- rbind(bases, basis_set[, , i][, 1], basis_set[, , i][, 2],
         basis_set[, , i][, 1]+basis_set [, , i][, 2])
@@ -229,11 +229,11 @@ observe_vectors_move <- function(basis_set, index_f = NULL, ...) {
 #' @keywords internal
 #' @examples
 #' #t1 <- save_history(flea[, 1:3], nbases = 50, d = 1)
-#' #t1 <- save_history(flea[, 1:6], nbases = 3, d = 1, interpolate = T)
+#' #t1 <- save_history(flea[, 1:6], nbases = 3, d = 1, interpolate = TRUE)
 #' #observe_vectors(interpolate(t1), nbases = 3)
-#' #t2 <- save_history(flea[,c(1,2,4)], tour_f = guided_tour, index_f = holes, d=1, sphere=T, basis_f = basis_geodesic_search)
+#' #t2 <- save_history(flea[,c(1,2,4)], tour_f = guided_tour, index_f = holes, d=1, sphere=TRUE, basis_f = basis_geodesic_search)
 #' #observe_vectors(interpolate(t2), holes)
-#' #t3 <- save_history(flea[,1:6], tour_f = guided_tour, index_f = holes, d=1, sphere=T, basis_f = basis_geodesic_search)
+#' #t3 <- save_history(flea[,1:6], tour_f = guided_tour, index_f = holes, d=1, sphere=TRUE, basis_f = basis_geodesic_search)
 #' #observe_vectors(interpolate(t3), holes)
 observe_vectors <- function(basis_set, index_f = NULL, nbases = 2, ...) {
   if (!require("rggobi")) {
@@ -330,10 +330,10 @@ gen_sphere <- function(n = 100, p = 5) {
 #' #testdata <- matrix(rnorm(100*2), ncol=2)
 #' #testdata[1:50,1] <- testdata[1:50,1] + 10
 #' #testdata <- sphere(testdata)
-#' #t1 <- save_history(testdata, nbases=3, d=1, rescale=F, sphere=F)
+#' #t1 <- save_history(testdata, nbases=3, d=1, rescale=FALSE, sphere=FALSE)
 #' #observe_vectors_r(t1)
-#' #observe_vectors_r(t1, plt_proj=T)
-#' #t1 <- save_history(testdata, tour_f = guided_tour, index_f = holes, nbases=5, d=1, rescale=F, sphere=F, max.tries = 100, cooling = 0.95)
+#' #observe_vectors_r(t1, plt_proj=TRUE)
+#' #t1 <- save_history(testdata, tour_f = guided_tour, index_f = holes, nbases=5, d=1, rescale=FALSE, sphere=FALSE, max.tries = 100, cooling = 0.95)
 #' #observe_vectors_r(t1, holes)
 observe_vectors_r <- function(basis_set, index_f = NULL, plt_data = TRUE, plt_proj = FALSE, ...) {
   
@@ -377,7 +377,7 @@ observe_vectors_r <- function(basis_set, index_f = NULL, plt_data = TRUE, plt_pr
   if (plt_proj) lims <<- c(-2,2)
   if (!is.null(index_f)) lims <<- c(-2,2)
   plot(sph, xlab=expression(x[1]), ylab=expression(x[2]),
-    xlim=lims, ylim=lims, axes=F, frame=T)
+    xlim=lims, ylim=lims, axes=FALSE, frame=TRUE)
   rect(-10, -10, 10, 10, col="grey90")
   abline(h=seq(-2,2,0.5),col="white")
   abline(v=seq(-2,2,0.5),col="white")
@@ -444,7 +444,7 @@ observe_vectors_r <- function(basis_set, index_f = NULL, plt_data = TRUE, plt_pr
 #' 
 #' @keywords internal
 plot_hist_on_proj <-function(data, proj) {
-  proj_data = hist(data%*%as.matrix(proj), breaks=seq(-3,3,0.5), plot=F)
+  proj_data = hist(data%*%as.matrix(proj), breaks=seq(-3,3,0.5), plot=FALSE)
   reflect <- FALSE
   if (proj[1] > 0 & proj[2] > 0) {
     ang <- -acos(proj[1]) # anti-clockwise
@@ -482,7 +482,7 @@ plot_hist_on_proj <-function(data, proj) {
 #' 
 #' @keywords internal
 #' @examples
-#' #t2 <- save_history(testdata, tour_f = guided_tour, index_f = holes, nbases=5, d=1, rescale=F, sphere=F, max.tries = 100, cooling = 0.95)
+#' #t2 <- save_history(testdata, tour_f = guided_tour, index_f = holes, nbases=5, d=1, rescale=FALSE, sphere=FALSE, max.tries = 100, cooling = 0.95)
 #' #library(rggobi)
 #' #gd<-observe_pp_trace(t2, nbases=10000)
 #' #gd<-observe_pp_trace(interpolate(t2), nbases=10000)
@@ -492,7 +492,7 @@ plot_hist_on_proj <-function(data, proj) {
 #' #Open a scatterplot display of the trace
 #' #gSignalHandlerDisconnect(gd, ggsgnl)
 #' #flea_s <- sphere(flea[,c(1,2,4)])
-#' #t2 <- save_history(flea_s, tour_f = guided_tour, index_f = holes, nbases=10, d=1, rescale=F, sphere=F, max.tries = 100, cooling = 0.99)
+#' #t2 <- save_history(flea_s, tour_f = guided_tour, index_f = holes, nbases=10, d=1, rescale=FALSE, sphere=FALSE, max.tries = 100, cooling = 0.99)
 #' #gd<-observe_pp_trace(interpolate(t2), nbases=10000)
 #' #d<-displays(gd)[[1]]
 #' #pmode(d) <- "1D Tour"
@@ -589,7 +589,7 @@ observe_pp_trace_r<- function(basis_set, index_f = holes, nbases = 2, ...) {
   lims <<- c(-1,1)
   if (!is.null(index_f)) lims <<- c(-2,2)
   plot(sph, xlab=expression(x[1]), ylab=expression(x[2]),
-    xlim=lims, ylim=lims, axes=F, frame=T)
+    xlim=lims, ylim=lims, axes=FALSE, frame=TRUE)
   rect(-10, -10, 10, 10, col="grey90")
   abline(h=seq(-2,2,0.5),col="white")
   abline(v=seq(-2,2,0.5),col="white")

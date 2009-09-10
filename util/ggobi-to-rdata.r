@@ -1,6 +1,6 @@
 library(plyr)
 
-paths <- dir("~/ggobi/ggobi/data", pattern = "\\.csv$", full = T)
+paths <- dir("~/ggobi/ggobi/data", pattern = "\\.csv$", full = TRUE)
 names(paths) <- gsub("\\.csv", "", basename(paths))
 all <- llply(paths, read.csv, row.names = 1) 
 

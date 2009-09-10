@@ -19,7 +19,7 @@ interpolate <- function(basis_set, angle = 0.05) {
   if (n < 2) return(basis_set)
 
   output <- list(basis_set[[1]])
-  new_basis <- c(T)
+  new_basis <- c(TRUE)
   
   get_basis <- function(i) basis_set[[i]]
   path <- geodesic_path(get_basis(1), get_basis(2))
