@@ -57,7 +57,7 @@ tour <- function(data, tour_path, start = NULL, velocity = 0.05,
   }
 }
 
-#' Internal Function
+#' Internal function
 #' 
 #' @keywords internal
 tourer <- function(data, tour_path, proj = NULL, velocity = 0.05) {

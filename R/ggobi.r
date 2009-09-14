@@ -3,7 +3,7 @@
 #' Prompts R to use rggobi as the window for the plotting
 #'
 #' @param data matrix, or data frame containing numeric columns
-#' @param tour_f 
+#' @param tour_f function sent to perform the tour
 #' @param aps 
 #' @param fps  how many frames per second should be used
 #' @param ... other arguments passed on to \code{\link{animate}}
