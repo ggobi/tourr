@@ -24,11 +24,8 @@ she had collected to describe the laser.
 }
 
 }
-\usage{data(ozone)}
+\usage{data(laser)}
 \format{A 64 x 4 numeric array}
-
-\references{\url{http://stat-computing.org/dataexpo/2006/}}
-
 \keyword{datasets}
 \examples{
 
