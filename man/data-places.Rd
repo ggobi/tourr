@@ -79,4 +79,6 @@ costs, income growth, job growth.
 \format{A 329 x 14 numeric array}
 \keyword{datasets}
 \examples{
+head(places)
+animate_xy(places[,1:9])
 }

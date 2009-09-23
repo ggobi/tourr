@@ -1,8 +1,10 @@
 \name{Tip data}
 \docType{data}
 \alias{tips}
-\title{Tip data from Wallabys}
-\description{
+\title{Tip data}
+\description{This data is from Bryant and Smith (1995) Practical Data
+Analysis: Case Studies in business statistics. It contains data
+recorded by one waiter in one restaurant for a period of 2.5 months.
  
 \itemize{
   \item obs, record number

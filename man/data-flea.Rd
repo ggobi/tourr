@@ -24,9 +24,9 @@ Discriminant Functions in Taxonomy", Biometrics, Dec 1962, pp.455-477.
 \usage{data(flea)}
 \format{A 74 x 7 numeric array}
 
-\references{\url{http://stat-computing.org/dataexpo/2006/}}
-
 \keyword{datasets}
 \examples{
-
+head(flea)
+animate_xy(flea[,-7])
+animate_xy(flea[,-7],col=flea[,7])
 }

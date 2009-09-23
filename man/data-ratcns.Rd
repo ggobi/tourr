@@ -40,6 +40,7 @@ Reference (available on the web at pnas.org):
 \format{A 112 x 11 numeric array}
 \keyword{datasets}
 \examples{
-
+head(ratcns)
+animate_xy(ratcns[,1:8],col=ratcns[,10])
 }
 

@@ -28,6 +28,7 @@ she had collected to describe the laser.
 \format{A 64 x 4 numeric array}
 \keyword{datasets}
 \examples{
-
+head(laser)
+animate_xy(laser[,-4])
 }
 
