@@ -1,7 +1,7 @@
 #' The little tour.
 #'
 #' The little tour is a planned tour that travels between all axis parallel
-#' projections.
+#' projections. (John McDonald named this type of tour.)
 #'
 #' Usually, you will not call this function directly, but will pass it to 
 #' a method that works with tour paths like \code{\link{save_history}}, 

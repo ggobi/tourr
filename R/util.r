@@ -8,7 +8,8 @@ rescale <- function(df) {
   apply(df, 2, function(x) (x - min(x)) / diff(range(x)))
 }
 
-#' Sphere a matrix (or data frame)
+#' Sphere a matrix (or data frame) by transforming variables to
+#' principal components.
 #'
 #' Sphering is often useful in conjunction with the guided tour, as it 
 #' removes simpler patterns that may conceal more interesting findings.

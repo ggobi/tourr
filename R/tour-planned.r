@@ -5,8 +5,7 @@
 #' or start from the beginning once more (if \code{cycle = TRUE}). 
 #' 
 #' Usually, you will not call this function directly, but will pass it to 
-#' a method that works with tour paths like \code{\link{save_history}}, 
-#' or \code{\link{animate}}
+#' a method that works with tour paths like \code{\link{animate}}.
 #' 
 #' @param basis_set the set of bases as a list of projection matrices
 #'   or a 3d array

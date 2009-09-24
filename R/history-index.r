@@ -42,7 +42,7 @@ plot.history_index <- function(x, ...) {
 #    step = seq_along(x)
 #  )
 #  ggplot2::qplot(step, index, data = df, geom ="line")
-  ggplot2::qplot(unclass(x), seq_along(x), geom ="line") + labs(x = "step", y = "index")
+  ggplot2::qplot(seq_along(x), unclass(x), geom ="line") + labs(x = "step", y = "index")
 }
 
 #' Compute index value for many histories.
