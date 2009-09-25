@@ -6,7 +6,7 @@
 \description{Use ggobi to display a tour path.}
 \details{Prompts R to use rggobi as the window for the plotting}
 \arguments{\item{data}{matrix, or data frame containing numeric columns}
-\item{tour_f}{}
+\item{tour_f}{function sent to perform the tour}
 \item{aps}{}
 \item{fps}{how many frames per second should be used}
 \item{...}{other arguments passed on to \code{\link{animate}}}

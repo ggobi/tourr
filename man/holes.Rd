@@ -3,6 +3,7 @@
 \title{Holes index.}
 \usage{holes(mat)}
 \description{Holes index.}
-\details{Finds the "interesting" index}
+\details{Calculates the holes index. See Cook and Swayne (2007)
+Interactive and Dynamic Graphics for Data Analysis for equations.}
 \keyword{hplot}
 \arguments{\item{mat}{matrix being used}}
