@@ -9,7 +9,7 @@ Maintainer: Hadley Wickham <h.wickham@gmail.com>
 Description: Implements geodesic interpolation and basis generation
     functions that allow you to create new tour methods from R.
 Depends: R (>= 2.7), ggplot2
-Suggests: rggobi, TeachingDemos, ash, classPP
+Suggests: rggobi, TeachingDemos, ash
 License: MIT
 LazyData: true
 Collate: 'animate.r' 'display-andrews.r' 'display-density.r'
