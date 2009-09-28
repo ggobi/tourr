@@ -1,7 +1,7 @@
-\name{Laser measurements}
+\name{Sleep in Mammals}
 \docType{data}
 \alias{sleep}
-\title{Turnable laser measurements from Bellcore}
+\title{Sleep in Mammals: Ecological and Constitutional Correlates}
 \description{
 
 Data from which conclusions  were  drawn  in  the  article  "Sleep  in
