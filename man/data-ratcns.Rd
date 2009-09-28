@@ -35,7 +35,7 @@ Reference (available on the web at pnas.org):
   of the National Academy of Science, Vol 95, pp. 334-339,
   January 1998
 }
-\reference{http://www.pnas.org}
+\references{http://www.pnas.org}
 \usage{data(ratcns)}
 \format{A 112 x 11 numeric array}
 \keyword{datasets}

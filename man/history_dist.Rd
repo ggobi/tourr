@@ -12,11 +12,16 @@ d <- history_dist(grand)
 ord <- as.data.frame(MASS::isoMDS(d)$points)
 qplot(V1, V2, data = ord, geom="path") + 
 coord_equal() + labs(x = NULL, y = NULL)
+
+## Not run:
+library(rggobi)
 # Using a tour in ggobi
 x<-t(rbind(grand[,1,])); colnames(x)<-c("a11","a21","a31","a41","a51","a61")
 y<-t(rbind(grand[,2,])); colnames(x)<-c("a12","a22","a32","a42","a52","a62")
 z<-cbind(x,y)
-ggobi(z) 
+ggobi(z)
+## END(Not run)
+
 
 # 25 guided tours  -----------------------------
 holes1d <- guided_tour(holes, 1)
