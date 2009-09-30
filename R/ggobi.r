@@ -10,7 +10,9 @@
 #' @param rescale boolean as to put standardized data into ggobi (a transformation)
 #' @param sphere boolean as to put principle components into ggobi (a transformation)
 #' @examples
-#'  ggobi_tour(flea[,1:6])
+#' \dontrun{
+#'   ggobi_tour(flea[,1:6])
+#' }
 ggobi_tour <- function(data, tour_f = grand_tour, aps = 1, fps = 30, ..., rescale = TRUE, sphere = FALSE) {
   if(!require("rggobi", quiet = TRUE)) {
     stop("rggobi required for ggobi based tour")
