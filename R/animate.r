@@ -34,7 +34,8 @@
 #' # or in short
 #' animate(f)
 #' animate(f, max_frames = 30)
-#' animate(f, max_frames = 10, fps = 1, aps = 0.1)
+#' 
+#' \dontrun{animate(f, max_frames = 10, fps = 1, aps = 0.1)}
 #'
 #' animate_xy(f, max_frames = 100, file = "test.pdf", dev = pdf)
 animate <- function(data, tour_path = grand_tour(), display = display_xy() , aps = 1, fps = 30, max_frames = Inf, ..., rescale = TRUE, sphere = FALSE) {

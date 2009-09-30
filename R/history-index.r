@@ -55,8 +55,8 @@ plot.history_index <- function(x, ...) {
 #' @param index_f index function to apply to each projection
 #' @examples
 #' holes1d <- guided_tour(holes, 1)
-#' # Perform guided tour 10 times, saving results
-#' tries <- replicate(25, save_history(flea[, 1:6], holes1d), simplify = FALSE)
+#' # Perform guided tour 5 times, saving results
+#' tries <- replicate(5, save_history(flea[, 1:6], holes1d), simplify = FALSE)
 #' # Interpolate between target bases 
 #' itries <- lapply(tries, interpolate)
 #'

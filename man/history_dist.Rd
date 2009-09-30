@@ -2,14 +2,10 @@
 \alias{history_dist}
 \title{Compute distance matrix from bases.}
 \usage{history_dist(history)}
-
-\description{
-  Compute distance matrix from bases.
-}
-\arguments{
-  \item{history}{history of the plots}
-}
-\examples{grand <- interpolate(save_history(flea[, 1:6], max = 50), 0.2)
+\description{Compute distance matrix from bases.}
+\arguments{\item{history}{history of the plots}}
+\examples{\dontrun{
+grand <- interpolate(save_history(flea[, 1:6], max = 50), 0.2)
 # The grand tour  -----------------------------
 # Look at the tour path in a tour, how well does it cover a sphere
 # Using MDS
@@ -18,18 +14,18 @@ ord <- as.data.frame(MASS::isoMDS(d)$points)
 qplot(V1, V2, data = ord, geom="path") + 
 coord_equal() + labs(x = NULL, y = NULL)
 
-## Not run:
+
 library(rggobi)
 # Using a tour in ggobi
 x<-t(rbind(grand[,1,])); colnames(x)<-c("a11","a21","a31","a41","a51","a61")
 y<-t(rbind(grand[,2,])); colnames(x)<-c("a12","a22","a32","a42","a52","a62")
 z<-cbind(x,y)
 ggobi(z) 
-## END(Not run)
+}
 
-# 25 guided tours  -----------------------------
+# 5 guided tours  -----------------------------
 holes1d <- guided_tour(holes, 1)
-tries <- replicate(25, save_history(flea[, 1:6], holes1d), simplify = FALSE)
+tries <- replicate(5, save_history(flea[, 1:6], holes1d), simplify = FALSE)
 tries2 <- lapply(tries, interpolate, 0.2)
 
 bases <- unlist(lapply(tries2, as.list), recursive = FALSE)

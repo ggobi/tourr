@@ -20,13 +20,11 @@
 #' # generate your own.  Here are few examples of alternative displays:
 #'
 #' df <- history_curves(path2d)
-#' qplot(step, value, data = df, group = obs:var, geom = "line", colour=var)
+#' qplot(step, value, data = df, group = obs:var, geom = "line", colour=var) + facet_wrap( ~ obs) 
 #' 
 #' qplot(`1`, `2`, data = cast(df, ... ~ var)) + 
 #'   facet_wrap( ~ step) + 
 #'   coord_equal()
-#' qplot(step, value, data = df, colour = var, geom="line") + 
-#'   facet_wrap( ~ obs) 
 history_curves <- function(history, data = attr(history, "data")) {
   history <- as.list(history)
   n <- length(history)
