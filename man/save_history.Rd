@@ -3,15 +3,23 @@
 \title{Save tour history.}
 \usage{save_history(data, tour_path=grand_tour(), max_bases=100, start,
     rescale=TRUE, sphere=FALSE)}
-\description{Save tour history.}
-\details{Save a tour path so it can later be displayed in many different ways.}
-\arguments{\item{data}{matrix, or data frame containing numeric columns}
-\item{tour_path}{tour path generator, defaults to the grand tour}
-\item{max_bases}{maximum number of new bases to generate.  Some tour paths
+
+\description{
+  Save tour history.
+}
+
+\details{
+  Save a tour path so it can later be displayed in many different ways.
+}
+\arguments{
+  \item{data}{matrix, or data frame containing numeric columns}
+  \item{tour_path}{tour path generator, defaults to the grand tour}
+  \item{max_bases}{maximum number of new bases to generate.  Some tour paths
 (like the guided tour) may generate less than the maximum.}
-\item{start}{starting projection, if you want to specify one}
-\item{rescale}{if true, rescale all variables to range [0,1]?}
-\item{sphere}{if true, sphere all variables}}
+  \item{start}{starting projection, if you want to specify one}
+  \item{rescale}{if true, rescale all variables to range [0,1]?}
+  \item{sphere}{if true, sphere all variables}
+}
 \examples{# You can use a saved history to replay tours with different visualisations
 
 t1 <- save_history(flea[, 1:6], max = 3)

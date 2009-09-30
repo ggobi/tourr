@@ -2,12 +2,20 @@
 \alias{histories_index}
 \title{Compute index value for many histories.}
 \usage{histories_index(bases_list, index_f)}
-\description{Compute index value for many histories.}
-\details{This is a convenience method that returns a data frame summarising the 
-index values for multiple tour paths.}
+
+\description{
+  Compute index value for many histories.
+}
+
+\details{
+  This is a convenience method that returns a data frame summarising
+  the index values for multiple tour paths.
+}
 \keyword{internal}
-\arguments{\item{bases_list}{list of histories produced by \code{\link{save_history}}}
-\item{index_f}{index function to apply to each projection}}
+\arguments{
+  \item{bases_list}{list of histories produced by \code{\link{save_history}}}
+  \item{index_f}{index function to apply to each projection}
+}
 \examples{holes1d <- guided_tour(holes, 1)
 # Perform guided tour 10 times, saving results
 tries <- replicate(25, save_history(flea[, 1:6], holes1d), simplify = FALSE)
