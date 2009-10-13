@@ -45,7 +45,20 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5) {
     try <- try + 1
   }
   cat("No better bases found after ", max.tries, " tries.  Giving up.\n",
-   sep="") 
+   sep="")
+  cat("Final projection: \n")
+  if (ncol(current)==1) {
+    for (i in 1:length(current))
+      cat(sprintf("%.3f",current[i])," ")
+    cat("\n")
+  }
+  else {
+    for (i in 1:nrow(current)) {
+      for (j in 1:ncol(current))
+        cat(sprintf("%.3f",current[i,j])," ")
+      cat("\n")
+    }
+  }
   
   NULL  
 }
