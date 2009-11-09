@@ -17,7 +17,7 @@ rescale <- function(df) {
 #' @param df   data frame or matrix
 #' @keywords manip
 sphere <- function(df) {
-  apply(predict(princomp(df)), 2, scale)
+  apply(predict(prcomp(df)), 2, scale)
 }
 
 

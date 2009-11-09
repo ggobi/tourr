@@ -3,7 +3,7 @@
 basis_nearby <- function(current, alpha = 0.5, method = "linear") {
   method <- match.arg(method, c("linear", "geodesic"))
   new <- basis_random(nrow(current), ncol(current))
-  
+
   switch(method,
     linear =   orthonormalise((1 - alpha) * current + alpha * new),
     geodesic = step_fraction(geodesic_info(current, new), alpha)
