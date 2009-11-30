@@ -1,0 +1,7 @@
+1. displays of animate_andrews, animate_pcp, animate_stereo are flickering.
+   So are corresponding gui's.
+
+2. gui_tour are too long---solved
+
+3. local tour still has some unsolved problems.
+
