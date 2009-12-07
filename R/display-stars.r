@@ -5,7 +5,6 @@
 #' Currently, scaling doesn't seem to be computed absolutely correctly, as 
 #' centres move around as well as outside points.
 #'
-#' @param data matrix, or data frame containing numeric columns
 #' @param tour_path tour path, defaults to the grand tour
 #' @param ... other arguments passed on to \code{\link{animate}} and 
 #'   \code{\link{stars}}
@@ -21,8 +20,7 @@
 #' animate_stars(flea[, 1:6], grand_tour(5))
 #' animate_stars(flea[1:10, 1:6], grand_tour(5), 
 #'  col.stars = rep("grey50", 10), radius = FALSE)
-display_stars <- function(data,...)
-{
+display_stars <- function(...) {
 
   render_data <- function(data, proj, geodesic) {
     x <- data %*% proj
@@ -46,7 +44,7 @@ animate_stars <- function(data, tour_path = grand_tour(3), ...) {
 
   animate(
     data = data, tour_path = tour_path, 
-    display = display_stars(data,...), ...
+    display = display_stars(...), ...
   )
   
 }

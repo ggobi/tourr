@@ -5,7 +5,6 @@
 #' The lines show the observations, and the points, the values of the 
 #' projection matrix.
 #'
-#' @param data matrix, or data frame containing numeric columns
 #' @param tour_path tour path generator, defaults to the grand tour
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
@@ -17,7 +16,7 @@
 #' @examples
 #' animate_pcp(flea[, 1:6], grand_tour(3))
 #' animate_pcp(flea[, 1:6], grand_tour(5))
-display_pcp <- function(data, ...)
+display_pcp <- function(...)
 {
   labels <- NULL
   init <- function(data)
@@ -75,6 +74,6 @@ animate_pcp <- function(data, tour_path = grand_tour(3), ...) {
 
   animate(
     data = data, tour_path = tour_path, 
-    display = display_pcp(data,...), ...
+    display = display_pcp(...), ...
   )
 }

@@ -40,7 +40,6 @@ project3d <- function(d3, length = par("din")[1] * 25.4, z0 = 300, d = 30) {
 #' Uses red-blue anaglyphs to display a 3d tour path.  You'll need some red-
 #' blue glasses to get much out of this displays!
 #'
-#' @param data matrix, or data frame containing numeric columns
 #' @param tour_path tour path, defaults to a 3d grand tour
 #' @param blue blue colour (for right eye)
 #' @param red red colour (for left eye)
@@ -52,13 +51,12 @@ project3d <- function(d3, length = par("din")[1] * 25.4, z0 = 300, d = 30) {
 #' 
 #' @examples
 #' animate_stereo(flea[, 1:6])
-display_stereo <- function(data,blue, red, ...)
+display_stereo <- function(blue, red, ...)
 {
 
   labels <- NULL
-  init <- function(data,...)
-  {
-  	labels <<- abbreviate(colnames(data), 2)
+  init <- function(data,...) {
+    labels <<- abbreviate(colnames(data), 2)
   }
   render_frame <- function() {
     par(pty = "s", bg = "grey85")
@@ -97,7 +95,7 @@ animate_stereo <- function(data, tour_path = grand_tour(3), blue = rgb(0, 0.91, 
 
   animate(
     data = data, tour_path = tour_path,
-    display = display_stereo(data,blue, red, ...),
+    display = display_stereo(blue, red, ...),
     ...
   )
 }

@@ -5,7 +5,6 @@
 #' locations on a grid, and the 3rd dimension gives the observations to be 
 #' mixed with the tour.
 #'
-#' @param data matrix, or data frame containing numeric columns
 #' @param tour_path tour path generator, defaults to the grand tour
 #' @param xs x limit that is used in making the size of the plot
 #' @param ys y limit that is used in making the size of the plot
@@ -19,7 +18,7 @@
 #' @examples
 #' str(ozone)
 #' animate_image(ozone)
-display_image <- function(data, xs, ys, ...) {
+display_image <- function(xs, ys, ...) {
 
   render_frame <- function() { 
     blank_plot(xlim = c(1, xs), ylim = c(1, xs))
@@ -55,6 +54,6 @@ animate_image <- function(data, tour_path = grand_tour(1), ...) {
 
   animate(
     data = data, tour_path = tour_path, 
-    display = display_image(data, xs, ys, ...), ...
+    display = display_image(xs, ys, ...), ...
   )
 }

@@ -6,7 +6,6 @@
 #' This function requires the \code{TeachingDemos} package to draw the
 #' Chernoff faces.  See \code{\link[TeachingDemos]{faces2}} for more details.
 #'
-#' @param data matrix, or data frame containing numeric columns
 #' @param tour_path tour path generator, defaults to the grand tour
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
@@ -22,8 +21,7 @@
 #' animate_faces(flea[1:4, 1:6])
 #' 
 #' animate_faces(flea[1:2, 1:6], grand_tour(5))
-display_faces <- function(data,...)
-{
+display_faces <- function(...) {
 
   render_data <- function(data, proj, geodesic) {
     x <- data %*% proj
@@ -44,6 +42,6 @@ display_faces <- function(data,...)
 # not being documented.  already aliased somewhere else
 animate_faces <- function(data, tour_path = grand_tour(3), ...) {
   require("TeachingDemos")
-  animate(data, tour_path, display = display_faces(data,...), ...)
+  animate(data, tour_path, display = display_faces(...), ...)
 }
 

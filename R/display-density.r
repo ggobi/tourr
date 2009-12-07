@@ -2,7 +2,6 @@
 #'
 #' Animate a 1d tour path with a density plot or histogram.
 #'
-#' @param data matrix, or data frame containing numeric columns
 #' @param tour_path tour path generator, defaults to the grand tour
 #' @param method display method, histogram or density plot
 #' @param center should 1d projection be centered to have mean zero (default: TRUE).
@@ -23,8 +22,7 @@
 #'
 #' # Alternatively, you can display the distribution with a histogram
 #' animate_dist(flea[, 1:6], method = "hist")
-display_dist <- function(data, method="density", center = TRUE, ...)
-{
+display_dist <- function(method="density", center = TRUE, ...) {
   method <- match.arg(method, c("histogram", "density", "ash"))
   labels <- rng <- limit <- NULL
   init <- function(data) {
@@ -95,7 +93,7 @@ display_dist <- function(data, method="density", center = TRUE, ...)
 animate_dist <- function(data, tour_path = grand_tour(1), ...) {
   animate(
     data = data, tour_path = tour_path,
-    display = display_dist(data,...), 
+    display = display_dist(...), 
     ...
   )
 }

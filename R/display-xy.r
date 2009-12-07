@@ -2,7 +2,6 @@
 #'
 #' Animate a 2D tour path with a scatterplot.
 #'
-#' @param data matrix, or data frame containing numeric columns
 #' @param axes position of the axes: center, bottomleft or off
 #' @param center if TRUE, centers projected data to (0,0).  This pins the 
 #'  center of data cloud and make it easier to focus on the changing shape
@@ -31,7 +30,7 @@
 #' animate_xy(flea[, 1:6], axes = "off")
 #' animate_xy(flea[, 1:6], dependence_tour(c(1, 2, 1, 2, 1, 2)),
 #'   axes = "bottomleft")
-display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, col = "black", pch  = 20, ...) {
+display_xy <- function(center = TRUE, axes = "center", limit = NULL, col = "black", pch  = 20, ...) {
   
   labels <- rng <- limit <- NULL
   init <- function(data) {
@@ -70,7 +69,7 @@ display_xy <- function(data, center = TRUE, axes = "center", limit = NULL, col =
 
 # not being documented.  already aliased somewhere else
 animate_xy <- function(data, tour_path = grand_tour(), ...) {
-  animate(data, tour_path, display_xy(data, ...), ...)
+  animate(data, tour_path, display_xy(...), ...)
 }
 
 
