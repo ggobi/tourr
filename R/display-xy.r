@@ -1,4 +1,4 @@
-#' Display tour path with a scattploer
+#' Display tour path with a scatterplot
 #'
 #' Animate a 2D tour path with a scatterplot.
 #'
