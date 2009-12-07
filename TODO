@@ -7,3 +7,5 @@ Define classes for:
   
 Display methods should not take data as first argument.
 Think about qtcanvas methods for display
+
+Rename new_tour_path to geodesic_interpolator ?

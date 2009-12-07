@@ -36,15 +36,15 @@ new_tour <- function(data, tour_path, start = NULL) {
     
     # We're at (or past) the target, so generate a new one and reset counters
     if (cur_dist >= target_dist) {
-      target <<- tour_path(proj, data)
-      if (is.null(target)) return(NULL)
+      geodesic <<- tour_path(proj, data)
+      if (is.null(geodesic)) return(NULL)
 
-      target_dist <<- target$dist
+      target_dist <<- geodesic$dist
       cur_dist <<- 0
       step <<- 0
     }
     
-    proj <<- target$interpolate(cur_dist / target_dist)
+    proj <<- geodesic$interpolate(cur_dist / target_dist)
     list(proj = proj, target = target, step = step)
   }
 }

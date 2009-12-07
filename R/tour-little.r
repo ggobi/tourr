@@ -8,13 +8,12 @@
 #' or \code{\link{animate}}
 #' 
 #' @param d target dimensionality
-#' @param ... Not Used
 #' @examples
 #' animate_xy(flea[, 1:6], little_tour())
 #' animate_pcp(flea[, 1:6], little_tour(3))
 #' animate_scatmat(flea[, 1:6], little_tour(3))
 #' animate_pcp(flea[, 1:6], little_tour(4))
-little_tour <- function(d = 2, ...) {
+little_tour <- function(d = 2) {
   little <- NULL
   step <- 0
   

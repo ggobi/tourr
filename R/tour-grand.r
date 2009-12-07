@@ -8,7 +8,6 @@
 #' or \code{\link{animate}}
 #' 
 #' @param d target dimensionality
-#' @param ... Not Used
 #' @examples
 #' # All animation methods use the grand tour path by default
 #' animate_dist(flea[, 1:6])
@@ -28,7 +27,7 @@
 #' # the data argument is just used to determine the correct dimensionality
 #' # of the output matrix
 #' tour2d(NULL, mtcars[, 1:2])
-grand_tour <- function(d = 2, ...) {
+grand_tour <- function(d = 2) {
   generator <- function(current, data) {
     if (is.null(current)) return(basis_init(ncol(data), d))
 

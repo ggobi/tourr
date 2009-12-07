@@ -9,12 +9,11 @@
 #' 
 #' @param start initial projection matrix
 #' @param angle distance in radians to stay within
-#' @param ... Not Used
 #' @examples
 #' animate_xy(flea[, 1:3], local_tour(basis_init(3, 2)))
 #' animate_xy(flea[, 1:3], local_tour(basis_init(3, 2), 0.2))
 #' animate_xy(flea[, 1:3], local_tour(basis_random(3, 2), 0.2))
-local_tour <- function(start, angle = pi / 4, ...) {
+local_tour <- function(start, angle = pi / 4) {
   odd <- TRUE
   
   generator <- function(current, data) {

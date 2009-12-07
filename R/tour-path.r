@@ -17,9 +17,8 @@
 #' @param generate basis generator function
 #' @param frozen matrix giving frozen variables, as described in 
 #'   \code{\link{freeze}}
-#' @param ... Not Used
 #' @keywords internal
-new_tour_path <- function(name, generator, frozen = NULL, ...) { 
+new_tour_path <- function(name, generator, frozen = NULL) { 
   
   tour_path <- function(current, data) {
     if (is.null(current)) {
