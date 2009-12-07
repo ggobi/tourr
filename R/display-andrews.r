@@ -55,7 +55,6 @@ display_andrews <- function(data, ...)
   grid <- NULL
   init <- function(data) {
     grid <<- seq(-pi, pi, length = 50)
-    data <<- rescale(data)
   }
 
   render_frame <- function() {
