@@ -38,32 +38,20 @@
 save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start = NULL, rescale = TRUE, sphere = FALSE){
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere(data)
-  
-  # A bit inefficient, but saves changes to rest of tour code
-  # Basically ensures that we only ever jump from one basis to the next:
-  # don't use any geodesic interpolation
-  velocity <- 10
-  
-  if (is.null(start)) {
-    start <- tour_path(NULL, data)    
-  }
 
+  tour <- new_tour(data, tour_path, start)
+  start <- tour(0)$proj
+  
   projs <- array(NA, c(ncol(data), ncol(start), max_bases + 1))
   princ_dirs <- projs
-  projs[, , 1] <- start
-  count <- 1
   
-  target <- function(target, geodesic) {
-    if (is.null(target)) return()
-    count <<- count+1
-    projs[, , count] <<- target
-    princ_dirs[, , count] <<- geodesic$Gz
+  i <- 0
+  while(i < max_bases) {
+    i <- i + 1
+    step <- tour(Inf)
+    
+    projs[, , i] <- step$proj
   }
-
-  tour(data, tour_path, start = start,
-    velocity = velocity, total_steps = max_bases,
-    target_fun = target
-  )
   
   # Remove empty matrices for tours that terminated early
   # (e.g. guided tour)

@@ -1,0 +1,9 @@
+Write tests to automate checking of core functionality.
+
+Define classes for:
+  * tour step
+  * geodesic interpolator
+  * display method
+  
+Display methods should not take data as first argument.
+Think about qtcanvas methods for display

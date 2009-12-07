@@ -33,8 +33,8 @@
 #' # ways
 #' f <- flea[, 1:3]
 #' tries <- replicate(5, save_history(f, guided_tour(holes)), simplify = FALSE)
-guided_tour <- function(index_f, d = 2, alpha = 1, cooling = 0.99, max.tries = 25, search_f = search_geodesic, ...) {
-
+guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25, search_f = search_geodesic, ...) {
+  
   generator <- function(current, data) {
     if (is.null(current)) return(basis_init(ncol(data), d))    
     
