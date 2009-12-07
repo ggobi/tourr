@@ -40,7 +40,7 @@ cm <- function(mat)
 #'
 lda_pp <- function(cl) {
   if (length(unique(cl)) == 0)
-    stop("ERROR: You need to select the class variable!")
+    stop("You need to select the class variable!")
   if (length(unique(cl)) == 1)
     stop("LDA index needs at least two classes!")
 
@@ -62,10 +62,8 @@ lda_pp <- function(cl) {
 #'
 pda_pp <- function(cl, lambda=0.2)
 {
-  if (is.null(lambda)) 
-    stop("ERROR : You need to use parameter lambda!")
   if (length(unique(cl)) == 0)
-    stop("ERROR: You need to select the class variable!")
+    stop("You need to select the class variable!")
   if (length(unique(cl)) < 2)
     stop("PDA index needs at least two classes!")
 
