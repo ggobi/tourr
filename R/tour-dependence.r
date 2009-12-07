@@ -32,5 +32,5 @@ dependence_tour <- function(pos) {
     mat
   }
 
-  new_tour_path("independent", generator)
+  new_geodesic_path("independent", generator)
 }

@@ -34,7 +34,7 @@ grand_tour <- function(d = 2) {
     basis_random(ncol(data), d)      
   }
 
-  new_tour_path("grand", generator) 
+  new_geodesic_path("grand", generator) 
 }
 
 #' Generate a random basis

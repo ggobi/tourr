@@ -1,4 +1,4 @@
-#' Generate a new tour path function.
+#' Generate a geodesic path between bases supplied by generatornew tour path function.
 #'
 #' A tour path is a function that when called with the current projection
 #' and data set, generates sequence of \code{\link{geodesic_path}}s.  The 
@@ -18,7 +18,7 @@
 #' @param frozen matrix giving frozen variables, as described in 
 #'   \code{\link{freeze}}
 #' @keywords internal
-new_tour_path <- function(name, generator, frozen = NULL) { 
+new_geodesic_path <- function(name, generator, frozen = NULL) { 
   
   tour_path <- function(current, data) {
     if (is.null(current)) {
@@ -49,6 +49,7 @@ new_tour_path <- function(name, generator, frozen = NULL) {
     class = "tour_path"
   )
 }
+
 
 #' Print tour path
 #'

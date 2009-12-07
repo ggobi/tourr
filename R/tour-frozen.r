@@ -54,7 +54,7 @@ frozen_tour <- function(d = 2, frozen) {
   }
 
   check_freezer_safe(frozen)
-  new_tour_path("frozen", generator, frozen = frozen) 
+  new_geodesic_path("frozen", generator, frozen = frozen) 
 }
 
 #' The frozen guided tour
@@ -84,7 +84,7 @@ frozen_guided_tour <- function(frozen, index_f, d = 2, max.tries = 25) {
   }
   
   check_freezer_safe(frozen)
-  new_tour_path("frozen-guided", generator, frozen = frozen)
+  new_geodesic_path("frozen-guided", generator, frozen = frozen)
 }
 
 #' Check matrix is a valid frozen matrix

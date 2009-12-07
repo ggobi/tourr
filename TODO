@@ -6,5 +6,3 @@ Define classes for:
   * display method
   
 Think about qtcanvas methods for display
-
-Rename new_tour_path to geodesic_interpolator ?

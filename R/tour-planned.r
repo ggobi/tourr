@@ -42,5 +42,5 @@ planned_tour <- function(basis_set, cycle = FALSE) {
     }        
   }
         
-  new_tour_path("planned", generator)
+  new_geodesic_path("planned", generator)
 }

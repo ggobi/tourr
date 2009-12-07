@@ -1,7 +1,7 @@
-\name{new_tour_path}
-\alias{new_tour_path}
+\name{new_geodesic_path}
+\alias{new_geodesic_path}
 \title{Generate a new tour path function.}
-\usage{new_tour_path(name, generator, frozen, ...)}
+\usage{new_geodesic_path(name, generator, frozen, ...)}
 
 \description{
   Generate a new tour path function.

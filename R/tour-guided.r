@@ -48,7 +48,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
     basis
   }
   
-  new_tour_path("guided", generator)
+  new_geodesic_path("guided", generator)
 }
 
 

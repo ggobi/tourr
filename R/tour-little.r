@@ -26,7 +26,7 @@ little_tour <- function(d = 2) {
     little[[step]]
   }
   
-  new_tour_path("little", generator)
+  new_geodesic_path("little", generator)
 }
 
 #' Generate bases for the little tour

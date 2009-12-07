@@ -6,8 +6,7 @@
 #' centres move around as well as outside points.
 #'
 #' @param tour_path tour path, defaults to the grand tour
-#' @param ... other arguments passed on to \code{\link{animate}} and 
-#'   \code{\link{stars}}
+#' @param ... other arguments passed on to \code{\link{stars}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_stars animate_stars
