@@ -12,7 +12,7 @@ holes <- function(mat) {
   num <- 1 - 1/n * sum(exp(-0.5 * rowSums(mat ^ 2)))
   den <- 1 - exp(-d / 2)
   
-  num/den
+  num / den
 }
 
 
@@ -39,15 +39,15 @@ cm <- function(mat)
 #' @keywords hplot
 #'
 lda_pp <- function(cl) {
-    if (length(unique(cl)) == 0)
-      stop("ERROR: You need to select the class variable!")
-    if (length(unique(cl)) == 1)
-      stop("LDA index needs at least two classes!")
+  if (length(unique(cl)) == 0)
+    stop("ERROR: You need to select the class variable!")
+  if (length(unique(cl)) == 1)
+    stop("LDA index needs at least two classes!")
 
   function(mat) {
     fit <- manova(mat ~ cl)                      
 
-    1 - summary(fit,test="Wilks")$stats[[3]]    
+    1 - summary(fit, test = "Wilks")$stats[[3]]    
   }
 }
 
