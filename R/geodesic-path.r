@@ -1,4 +1,4 @@
-#' Generate a geodesic path between bases supplied by generatornew tour path function.
+#' Generate a geodesic path between bases supplied by generator
 #'
 #' A tour path is a function that when called with the current projection
 #' and data set, generates sequence of \code{\link{geodesic_path}}s.  The 
