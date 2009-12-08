@@ -77,6 +77,10 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
     class = class(x))
 }
 
+"[[.history_array" <- function(x, i, ...) {
+  as.matrix(.subset(x, TRUE, TRUE, i, drop = FALSE))
+}
+
 #' Prints the History Array
 #' Prints the History Array in a useful format  
 #' 
