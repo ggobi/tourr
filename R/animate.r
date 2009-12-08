@@ -67,34 +67,3 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
 }
 
 
-#' Render frames of animation to disk
-#' 
-#' @param file if specified, will save frames to disk instead of displaying on
-#'   screen.  Can be of the format "Rplot\%03d.png"
-#' @param dev output device to use (e.g. \code{\link{png}}, \code{\link{pdf}})
-#' @param ... other options used when initialising output device
-#' @keywords hplot
-#' @examples
-#' render(flea[, 1:4], grand_tour(), display_xy(), "pdf", "test.pdf")
-render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
-  if (rescale) data <- rescale(data)
-  if (sphere) data  <- sphere(data)
-  
-  dev <- match.fun(dev)
-  dev(...)
-  on.exit(dev.off())
-  
-  tour <- new_tour(data, tour_path, start)
-  step <- tour(0)
-
-  display$init(data)
-
-  i <- 0
-  while(i < frames) {
-    display$render_frame()
-    display$render_data(data, step$proj, step$target)
-
-    i <- i + 1
-    step <- tour(apf)
-  }
-}
