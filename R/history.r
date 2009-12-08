@@ -48,6 +48,8 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
   i <- 0
   while(i < max_bases) {
     i <- i + 1
+    # An infinite step size forces the tour path to generate a new basis
+    # every time, so no interpolation occurs.
     step <- tour(Inf)
     
     projs[, , i] <- step$proj
