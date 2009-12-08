@@ -52,7 +52,7 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
     # every time, so no interpolation occurs.
     step <- tour(Inf)
     
-    projs[, , i] <- step$proj
+    projs[, , i] <- step$target
   }
   
   # Remove empty matrices for tours that terminated early
@@ -70,11 +70,11 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
 #' @method [ history_array
 #' @aliases [.history_array
 #' @name subset-history_array
-"[.history_array" <- function(x, ...) {
-  sub <- NextMethod()
-  class(sub) <- class(x)
-  attr(sub, "data") <- attr(x, "data")
-  sub
+"[.history_array" <- function(x, i = TRUE, j = TRUE, k = TRUE, ...) {
+  piece <- .subset(x, i, j, k, drop = FALSE)
+  structure(piece, 
+    data = attr(x, "data"),
+    class = class(x))
 }
 
 #' Prints the History Array

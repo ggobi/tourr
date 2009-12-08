@@ -13,42 +13,52 @@
 #' dim(interpolate(t1, 0.05))
 #' dim(interpolate(t1, 0.1))
 interpolate <- function(basis_set, angle = 0.05) {
-  basis_set <- as.list(basis_set)
-
-  n <- length(basis_set)
-  if (n < 2) return(basis_set)
-
-  output <- list(basis_set[[1]])
-  new_basis <- c(TRUE)
+  basis_set <- as.array(basis_set)
+  n <- dim(basis_set)[3]
+  if (n < 2) return(basis_set)  
   
-  get_basis <- function(i) basis_set[[i]]
-  path <- geodesic_path(get_basis(1), get_basis(2))
-  dist <- sqrt(sum(path$tau ^ 2))
+  basis <- function(i) as.matrix(basis_set[, , i])
+  
+  # Estimate number of bases in output
+  dists <- sapply(2:n, function(i) {
+    proj_dist(basis(i - 1), basis(i))
+  })
+  steps <- sum(ceiling(dists / angle)) - 1
 
-  i <- 2
-  step <- 2
+  # Initialise result storage
+  projs <- array(NA_real_, c(dim(basis_set)[1:2], steps))
+  projs[, , 1] <- basis(1)
+  
+  new_basis <- rep(NA, steps)
+  new_basis[1] <- TRUE
+  
+  # Loop through bases
+  path <- geodesic_path(basis(1), basis(2))
+  dist <- proj_dist(basis(1), basis(2))
+
+  i <- 2       # Counter for bases
+  step <- 2    # Counter for steps along geodesic
+  total <- 2   # Counter for total number of steps
   nsteps <- ceiling(dist / angle)
 
   while(i < n | step < nsteps) {
     proj <- path$interpolate(step / nsteps)
-    output <- append(output, list(proj))
-    new_basis <- append(new_basis, step == 1)
+    projs[, , total] <- proj
+    new_basis[total] <- step == 1
 
     if (step == nsteps) {
       i <- i + 1
-      path <- geodesic_path(proj, get_basis(i))
-      dist <- sqrt(sum(path$tau ^ 2))
+      path <- geodesic_path(proj, basis(i))
+      dist <- proj_dist(basis(i - 1), basis(i))
 
       step <- 0
       nsteps <- ceiling(dist / angle)
     }
     step <- step + 1
+    total <- total + 1
   }  
   
-  oarray <- unlist(output)
-  dim(oarray) <- c(nrow(output[[1]]), ncol(output[[2]]), length(output))
-  attr(oarray, "data") <- attr(basis_set, "data")
-  attr(oarray, "new_basis") <- new_basis
-  class(oarray) <- c("history_array", class(oarray))
-  oarray
+  attr(projs, "new_basis") <- new_basis
+  class(projs) <- c("history_array", class(projs))
+  projs
 }

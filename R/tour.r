@@ -40,6 +40,7 @@ new_tour <- function(data, tour_path, start = NULL) {
       if (is.null(geodesic)) return(NULL)
 
       target_dist <<- geodesic$dist
+      target <<- geodesic$Fz
       cur_dist <<- 0
       step <<- 0
     }
