@@ -19,24 +19,25 @@
 display_pcp <- function(...)
 {
   labels <- NULL
-  init <- function(data)
-  {
-  	labels <<- abbreviate(colnames(data),2)
+  limit <- NULL
+  init <- function(data) {
+    labels <<- abbreviate(colnames(data),2)
+    first_eigen <- sqrt(eigen(var(data))$values[1])
+    limit <<- 3 * first_eigen
   }
   
   render_frame <- function() {
-    blank_plot(xlim = c(0, 1), ylim = c(-2, 2))
+    blank_plot(xlim = c(0, 1), ylim = c(-limit, limit))
   }
   render_transition <- function() {
-    # rect(0, -1.99, 1, 1.99, col="#FFFFFFE6", border=NA)
+    rect(0, -1.99, 1, 1.99, col="#FFFFFFE6", border=NA)
   }
   render_data <- function(data, proj, geodesic) { 
     d <- ncol(proj)
-    xpos <- seq(0, 1, length = d+ 2)[-c(1, d + 2)]
+    xpos <- 0.05 + seq(0, 0.9, length = d)
     ys <- as.vector(t(cbind(data %*% proj, NA)))
     xs <- rep(c(xpos, NA), length = length(ys))
     
-    render_frame()
     # Grid lines
     segments(xpos, 1.99, xpos, -1.99, col="grey90")
     segments(0, 0, 1, 0, col="grey90")

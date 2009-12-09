@@ -33,6 +33,8 @@ nul <- function(...) {}
 #' Set up a blank plot to display data projections
 #' @keywords internal
 blank_plot <- function(...) {
+  old <- par(mar = c(0, 0, 0, 0))
+  # on.exit(par(old))
   plot(
     x = NA, y = NA, xlab = "", ylab = "",
     axes = FALSE, frame = TRUE, xaxs = "i", yaxs = "i",
