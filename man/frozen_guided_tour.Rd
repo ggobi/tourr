@@ -1,7 +1,7 @@
 \name{frozen_guided_tour}
 \alias{frozen_guided_tour}
 \title{The frozen guided tour...}
-\usage{frozen_guided_tour(frozen, index_f, d=2, max.tries=25, ...)}
+\usage{frozen_guided_tour(frozen, index_f, d=2, max.tries=25)}
 
 \description{
   The frozen guided tour
@@ -16,7 +16,6 @@ matrix and return a single number, preferrably between 0 and 1.}
   \item{d}{target dimensionality}
   \item{max.tries}{the maximum number of unsuccessful attempts to find
 a better projection before giving up}
-  \item{...}{not used}
 }
 \examples{frozen <- matrix(NA, nrow = 4, ncol = 2)
 frozen[3, ] <- .5

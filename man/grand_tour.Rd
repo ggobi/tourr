@@ -1,7 +1,7 @@
 \name{grand_tour}
 \alias{grand_tour}
 \title{A grand tour path.}
-\usage{grand_tour(d=2, ...)}
+\usage{grand_tour(d=2)}
 
 \description{
   A grand tour path.
@@ -17,7 +17,6 @@
 }
 \arguments{
   \item{d}{target dimensionality}
-  \item{...}{Not Used}
 }
 \examples{# All animation methods use the grand tour path by default
 animate_dist(flea[, 1:6])

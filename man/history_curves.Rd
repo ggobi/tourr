@@ -2,12 +2,20 @@
 \alias{history_curves}
 \title{Draw the path that the geodesics took.}
 \usage{history_curves(history, data=attr(history, "data"))}
-\description{Draw the path that the geodesics took.}
-\details{This computes the projected values of each observation at each step, and 
-allows you to recreate static views of the animated plots.}
-\arguments{\item{history}{list of bases produced by \code{\link{save_history}} 
+
+\description{
+  Draw the path that the geodesics took.
+}
+
+\details{
+  This computes the projected values of each observation at each step,
+  and allows you to recreate static views of the animated plots.
+}
+\arguments{
+  \item{history}{list of bases produced by \code{\link{save_history}} 
 (or otherwise)}
-\item{data}{dataset to be projected on to bases}}
+  \item{data}{dataset to be projected on to bases}
+}
 \examples{path1d <- save_history(flea[, 1:6], grand_tour(1), 10)
 path2d <- save_history(flea[, 1:6], grand_tour(2), 10)
 

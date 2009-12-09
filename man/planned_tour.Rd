@@ -1,7 +1,7 @@
 \name{planned_tour}
 \alias{planned_tour}
 \title{The planned tour.}
-\usage{planned_tour(basis_set, cycle=FALSE, ...)}
+\usage{planned_tour(basis_set, cycle=FALSE)}
 
 \description{
   The planned tour.
@@ -26,7 +26,6 @@ to replay later with the planned tour}
 or a 3d array}
   \item{cycle}{cycle through continuously (\code{TRUE}) or stop after 
 first pass (\code{FALSE})}
-  \item{...}{Not Used}
 }
 \examples{twod <- save_history(flea[, 1:3], max = 5)
 str(twod)

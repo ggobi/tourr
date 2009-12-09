@@ -1,7 +1,7 @@
 \name{frozen_tour}
 \alias{frozen_tour}
 \title{The frozen tour.}
-\usage{frozen_tour(d=2, frozen, ...)}
+\usage{frozen_tour(d=2, frozen)}
 
 \description{
   The frozen tour.
@@ -21,7 +21,6 @@
   \item{d}{target dimensionality}
   \item{frozen}{matrix of frozen variables, as described in
 \code{\link{freeze}}}
-  \item{...}{Not Used}
 }
 \examples{frozen <- matrix(NA, nrow = 4, ncol = 2)
 frozen[3, ] <- .5

@@ -18,7 +18,6 @@ animate_image(data, tour_path = grand_tour(1), ...)}
 \alias{display_image}
 \alias{animate_image}
 \arguments{
-  \item{data}{matrix, or data frame containing numeric columns}
   \item{tour_path}{tour path generator, defaults to the grand tour}
   \item{xs}{x limit that is used in making the size of the plot}
   \item{ys}{y limit that is used in making the size of the plot}

@@ -2,8 +2,13 @@
 \alias{history_dist}
 \title{Compute distance matrix from bases.}
 \usage{history_dist(history)}
-\description{Compute distance matrix from bases.}
-\arguments{\item{history}{history of the plots}}
+
+\description{
+  Compute distance matrix from bases.
+}
+\arguments{
+  \item{history}{history of the plots}
+}
 \examples{\dontrun{
 grand <- interpolate(save_history(flea[, 1:6], max = 50), 0.2)
 # The grand tour  -----------------------------

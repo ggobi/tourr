@@ -17,7 +17,6 @@ animate_depth(data, tour_path = grand_tour(3), ...)}
 \alias{display_depth}
 \alias{animate_depth}
 \arguments{
-  \item{data}{matrix, or data frame containing numeric columns}
   \item{tour_path}{tour path generator, defaults to the grand tour}
   \item{...}{other arguments passed on to \code{\link{animate}}}
 }

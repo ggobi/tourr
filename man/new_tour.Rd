@@ -1,0 +1,29 @@
+\name{new_tour}
+\alias{new_tour}
+\title{Create a new tour.}
+\usage{new_tour(data, tour_path, start)}
+
+\description{
+  Create a new tour.
+}
+
+\details{
+  The tour function provides the common machinery behind all tour
+  methods: interpolating from basis to basis, and generating new bases
+  when necessary. You should not have to call this function.
+}
+\seealso{\code{\link{save_history}}, \code{\link{render}} and
+\code{\link{animate}} for examples of functions that use this function
+to run dynamic tours.}
+\keyword{hplot}
+\keyword{dynamic}
+\keyword{internal}
+\arguments{
+  \item{data}{the data matrix to be projected}
+  \item{tour_path}{basis generator, a function that generates a new basis,
+called with the previous projection and the data set.  For more
+complicated tour paths, this will need to be a closure with local
+variables.  Should return NULL if the tour should terminate}
+  \item{start}{starting projection, if omitted will use default projection 
+from generator}
+}

@@ -1,10 +1,10 @@
 \name{display_xy}
-\title{Display tour path with a scattploer...}
+\title{Display tour path with a scatterplot...}
 \usage{display_xy(data, center = TRUE, axes = "center", limit = NULL, col = "black", pch  = 20, ...)
 animate_xy(data, tour_path = grand_tour(), ...)}
 
 \description{
-  Display tour path with a scattploer
+  Display tour path with a scatterplot
 }
 
 \details{
@@ -13,7 +13,6 @@ animate_xy(data, tour_path = grand_tour(), ...)}
 \alias{display_xy}
 \alias{animate_xy}
 \arguments{
-  \item{data}{matrix, or data frame containing numeric columns}
   \item{axes}{position of the axes: center, bottomleft or off}
   \item{center}{if TRUE, centers projected data to (0,0).  This pins the 
 center of data cloud and make it easier to focus on the changing shape

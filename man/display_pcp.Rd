@@ -18,7 +18,6 @@ animate_pcp(data, tour_path = grand_tour(3), ...)}
 \alias{display_pcp}
 \alias{animate_pcp}
 \arguments{
-  \item{data}{matrix, or data frame containing numeric columns}
   \item{tour_path}{tour path generator, defaults to the grand tour}
   \item{...}{other arguments passed on to \code{\link{animate}}}
 }

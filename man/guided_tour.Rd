@@ -1,7 +1,7 @@
 \name{guided_tour}
 \alias{guided_tour}
 \title{The guided tour.}
-\usage{guided_tour(index_f, d=2, alpha=1, cooling=0.99, max.tries=25,
+\usage{guided_tour(index_f, d=2, alpha=0.5, cooling=0.99, max.tries=25,
     search_f=search_geodesic, ...)}
 
 \description{

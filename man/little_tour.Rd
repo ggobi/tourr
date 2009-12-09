@@ -1,7 +1,7 @@
 \name{little_tour}
 \alias{little_tour}
 \title{The little tour.}
-\usage{little_tour(d=2, ...)}
+\usage{little_tour(d=2)}
 
 \description{
   The little tour.
@@ -17,7 +17,6 @@
 }
 \arguments{
   \item{d}{target dimensionality}
-  \item{...}{Not Used}
 }
 \examples{animate_xy(flea[, 1:6], little_tour())
 animate_pcp(flea[, 1:6], little_tour(3))
