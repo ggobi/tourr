@@ -1,11 +1,11 @@
-#' The local tour.
+#' A local tour path.
 #' 
 #' The local tour alternates between the starting position and a 
 #' nearby random projection.
 #' 
 #' Usually, you will not call this function directly, but will pass it to 
-#' a method that works with tour paths like \code{\link{save_history}}, 
-#' or \code{\link{animate}}
+#' a method that works with tour paths like \code{\link{animate}}, 
+#' \code{\link{save_history}} or \code{\link{render}}.
 #' 
 #' @param start initial projection matrix
 #' @param angle distance in radians to stay within

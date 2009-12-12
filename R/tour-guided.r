@@ -1,4 +1,4 @@
-#' The guided tour.
+#' A guided tour path.
 #'
 #' Instead of choosing new projections at random like the grand tour, the 
 #' guided tour always tries to find a projection that is more interesting
@@ -7,8 +7,8 @@
 #' Currently the index functions only work in 2d.
 #'
 #' Usually, you will not call this function directly, but will pass it to 
-#' a method that works with tour paths like \code{\link{save_history}}, 
-#' or \code{\link{animate}}
+#' a method that works with tour paths like \code{\link{animate}}, 
+#' \code{\link{save_history}} or \code{\link{render}}.
 #' 
 #' @param index_f the index function to optimise.
 #' @param d target dimensionality

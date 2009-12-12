@@ -1,4 +1,4 @@
-#' The frozen tour.
+#' A frozen tour path.
 #'
 #' A frozen tour fixes some of the values of the orthonormal projection
 #' matrix and allows the others to vary freely according to any of the
@@ -6,8 +6,8 @@
 #' \code{\link{frozen_guided_tour}} for a frozen guided tour.
 #' 
 #' Usually, you will not call this function directly, but will pass it to 
-#' a method that works with tour paths like \code{\link{save_history}}, 
-#' or \code{\link{animate}}
+#' a method that works with tour paths like \code{\link{animate}}, 
+#' \code{\link{save_history}} or \code{\link{render}}.
 #' 
 #' @param d target dimensionality
 #' @param frozen matrix of frozen variables, as described in

@@ -15,6 +15,9 @@
 #'   \code{\link{animate}} for examples of functions that use this function
 #'   to run dynamic tours.
 #' @keywords hplot dynamic internal
+#' @return a function with single argument, step_size.  This function returns
+#'  a list containing the new projection, the currect target and the number
+#'  of steps taken towards the target.
 new_tour <- function(data, tour_path, start = NULL) {
   stopifnot(inherits(tour_path, "tour_path"))
 

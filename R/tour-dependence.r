@@ -1,4 +1,4 @@
-#' The dependence tour.
+#' A dependence tour path.
 #' 
 #' The dependence tour combines a set of independent 1d tours to produce
 #' a nd tour.  For the special case of 2d, this is known as a correlation 
@@ -7,8 +7,8 @@
 #' between groups of variables.
 #'
 #' Usually, you will not call this function directly, but will pass it to 
-#' a method that works with tour paths like \code{\link{save_history}}, 
-#' or \code{\link{animate}}
+#' a method that works with tour paths like \code{\link{animate}}, 
+#' \code{\link{save_history}} or \code{\link{render}}.
 #' 
 #' @param pos a numeric vector describing which variables are mapped to
 #'   which dimensions: 1 corresponds to first, 2 to second etc.

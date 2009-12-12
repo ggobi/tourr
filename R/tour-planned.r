@@ -1,11 +1,12 @@
-#' The planned tour.
+#' A planned tour path.
 #' 
 #' The planned tour takes you from one basis to the next in a 
 #' set order.  Once you have visited all the planned bases, you either stop
 #' or start from the beginning once more (if \code{cycle = TRUE}). 
 #' 
 #' Usually, you will not call this function directly, but will pass it to 
-#' a method that works with tour paths like \code{\link{animate}}.
+#' a method that works with tour paths like \code{\link{animate}}, 
+#' \code{\link{save_history}} or \code{\link{render}}.
 #' 
 #' @param basis_set the set of bases as a list of projection matrices
 #'   or a 3d array
@@ -14,8 +15,6 @@
 #' @keywords hplot dynamic
 #' @seealso The \code{\link{little_tour}}, a special type of planned tour
 #'   which cycles between all axis parallel projections.  
-#'  \code{save_history} for saving the output of another tour path
-#'   to replay later with the planned tour
 #' @examples
 #' twod <- save_history(flea[, 1:3], max = 5)
 #' str(twod)
