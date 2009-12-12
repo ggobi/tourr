@@ -32,6 +32,7 @@ display_depth <- function(...) {
   render_frame <- function() {
     par(pty = "s", mar = rep(1,4))
     blank_plot(xlim = rng, ylim = rng)
+    render_transition()
   }
   render_transition <- function() {
     rect(-1.99, -1.99, 1.99, 1.99, col="grey80", border=NA)
