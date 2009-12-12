@@ -23,8 +23,8 @@ display_depth <- function(...) {
   rng <- limit <- NULL
   init <- function(data) {
     if (is.null(limit)) {
-      first_eigen <- sqrt(eigen(var(data[, 1:2]))$values[1])
-      limit <<- 3 * first_eigen
+      data <- scale(data, center = TRUE, scale = FALSE)
+      limit <<- max(sqrt(colSums(data ^ 2)))
     }
     rng <<- c(-limit, limit)    
   }
@@ -35,7 +35,7 @@ display_depth <- function(...) {
     render_transition()
   }
   render_transition <- function() {
-    rect(-1.99, -1.99, 1.99, 1.99, col="grey80", border=NA)
+    rect(-limit, -limit, limit, limit, col="grey80", border=NA)
   }
   render_data <- function(data, proj, geodesic) {
     x <- data %*% proj

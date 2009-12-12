@@ -35,8 +35,10 @@ display_xy <- function(center = TRUE, axes = "center", limit = NULL, col = "blac
   labels <- rng <- limit <- NULL
   init <- function(data) {
     if (is.null(limit)) {
-      first_eigen <- sqrt(eigen(var(data))$values[1])
-      limit <<- 3 * first_eigen
+      if (center) {
+        data <- scale(data, center = TRUE, scale = FALSE)        
+      }
+      limit <<- max(sqrt(rowSums(data ^ 2)))
     }
     rng <<- c(-limit, limit)    
     labels <<- abbreviate(colnames(data), 3)
