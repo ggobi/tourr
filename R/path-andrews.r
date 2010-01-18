@@ -10,22 +10,22 @@
 #' path1d <- save_history(flea[, 1:6], grand_tour(1), 10)
 #' path2d <- save_history(flea[, 1:6], grand_tour(2), 10)
 #'
-#' plot(history_curves(path1d))
-#' plot(history_curves(interpolate(path1d)))
+#' plot(path_curves(path1d))
+#' plot(path_curves(interpolate(path1d)))
 #'
-#' plot(history_curves(path2d))
-#' plot(history_curves(interpolate(path2d)))
+#' plot(path_curves(path2d))
+#' plot(path_curves(interpolate(path2d)))
 #'
 #' # Instead of relying on the built in plot method, you might want to 
 #' # generate your own.  Here are few examples of alternative displays:
 #'
-#' df <- history_curves(path2d)
+#' df <- path_curves(path2d)
 #' qplot(step, value, data = df, group = obs:var, geom = "line", colour=var) + facet_wrap( ~ obs) 
 #' 
 #' qplot(`1`, `2`, data = cast(df, ... ~ var)) + 
 #'   facet_wrap( ~ step) + 
 #'   coord_equal()
-history_curves <- function(history, data = attr(history, "data")) {
+path_curves <- function(history, data = attr(history, "data")) {
   history <- as.list(history)
   n <- length(history)
 
@@ -39,7 +39,7 @@ history_curves <- function(history, data = attr(history, "data")) {
   }
   projections <- do.call("rbind", lapply(history, project))
   projections$step <- rep(seq_len(n), each = nrow(data) * ncol(history[[1]]))
-  class(projections) <- c("history_curve", class(projections))
+  class(projections) <- c("path_curve", class(projections))
   
   projections
 }  
@@ -52,10 +52,10 @@ history_curves <- function(history, data = attr(history, "data")) {
 #' spirit to a parallel coordinates plot or Andrews curves.
 #'
 #' For alternative ways of plotting this data, see
-#'  \code{\link{history_curves}}
+#'  \code{\link{path_curves}}
 #' @keywords internal
-#' @method plot history_curve
-plot.history_curve <- function(x, ...) {
+#' @method plot path_curve
+plot.path_curve <- function(x, ...) {
   ggplot2::qplot(step, value, data = x, group = obs, geom = "line") + 
     facet_grid(var ~ .) 
 }

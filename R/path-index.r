@@ -8,33 +8,33 @@
 #' @seealso \code{\link{save_history}} for options to save history
 #' @examples
 #' fl_holes <- save_history(flea[, 1:6], guided_tour(holes), sphere = TRUE)
-#' history_index(fl_holes, holes)
-#' history_index(fl_holes, cm)
+#' path_index(fl_holes, holes)
+#' path_index(fl_holes, cm)
 #' 
-#' plot(history_index(fl_holes, holes), type = "l")
-#' plot(history_index(fl_holes, cm), type = "l")
+#' plot(path_index(fl_holes, holes), type = "l")
+#' plot(path_index(fl_holes, cm), type = "l")
 #' 
 #' # Use interpolate to show all intermediate bases as well
-#' hi <- history_index(interpolate(fl_holes), holes)
+#' hi <- path_index(interpolate(fl_holes), holes)
 #' hi
 #' plot(hi)
-history_index <- function(history, index_f, data = attr(history, "data")) {
+path_index <- function(history, index_f, data = attr(history, "data")) {
   index <- function(proj) {
     index_f(as.matrix(data) %*% proj)
   }
   
   structure(
     apply(history, 3, index), 
-    class = "history_index"
+    class = "path_index"
   )
 }
 
 #' Plot history index with ggplot2.
 #' 
-#' @method plot history_index
+#' @method plot path_index
 #' @keywords internal hplot
-#' @method plot history_index
-plot.history_index <- function(x, ...) {
+#' @method plot path_index
+plot.path_index <- function(x, ...) {
   require(ggplot2)
   
 #  df <- data.frame(
@@ -60,15 +60,15 @@ plot.history_index <- function(x, ...) {
 #' # Interpolate between target bases 
 #' itries <- lapply(tries, interpolate)
 #'
-#' paths <- histories_index(itries, holes)
+#' paths <- paths_index(itries, holes)
 #' head(paths)
 #' 
 #' if (require(ggplot2)) {
 #' qplot(step, value, data=paths, group=try, geom="line")
 #' qplot(step, improvement, data=paths, group=try, geom="line")
 #' }
-histories_index <- function(bases_list, index_f) {
-  indices <- lapply(bases_list, history_index, index_f)
+paths_index <- function(bases_list, index_f) {
+  indices <- lapply(bases_list, path_index, index_f)
   data.frame(
     try = rep(seq_along(indices), sapply(indices, length)),
     step = unlist(sapply(indices, seq_along)), 

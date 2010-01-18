@@ -7,7 +7,7 @@
 #'  # The grand tour  -----------------------------
 #'  # Look at the tour path in a tour, how well does it cover a sphere
 #'  # Using MDS
-#'  d <- history_dist(grand)
+#'  d <- path_dist(grand)
 #'  ord <- as.data.frame(MASS::isoMDS(d)$points)
 #'  qplot(V1, V2, data = ord, geom="path") + 
 #'  coord_equal() + labs(x = NULL, y = NULL)
@@ -29,7 +29,7 @@
 #' bases <- unlist(lapply(tries2, as.list), recursive = FALSE)
 #' class(bases) <- "history_list"
 #' index_values <- histories_index(tries2, holes)
-#' d <- history_dist(bases)
+#' d <- path_dist(bases)
 #' ord <- as.data.frame(cmdscale(d, 2))
 #' 
 #' info <- cbind(ord, index_values)
@@ -38,7 +38,7 @@
 #'   geom_point(aes(size = value)) + 
 #'   coord_equal()
 #' last_plot() + facet_wrap(~ try)
-history_dist <- function(history) {
+path_dist <- function(history) {
   
   n <- dim(history)[3]
   d <- matrix(NA, nrow = n, ncol = n)
