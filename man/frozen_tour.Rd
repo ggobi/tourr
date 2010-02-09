@@ -1,10 +1,10 @@
 \name{frozen_tour}
 \alias{frozen_tour}
-\title{The frozen tour.}
+\title{A frozen tour path.}
 \usage{frozen_tour(d=2, frozen)}
 
 \description{
-  The frozen tour.
+  A frozen tour path.
 }
 
 \details{
@@ -14,8 +14,8 @@
   \code{\link{frozen_guided_tour}} for a frozen guided tour.
 
   Usually, you will not call this function directly, but will pass it
-  to a method that works with tour paths like
-  \code{\link{save_history}}, or \code{\link{animate}}
+  to a method that works with tour paths like \code{\link{animate}},
+  \code{\link{save_history}} or \code{\link{render}}.
 }
 \arguments{
   \item{d}{target dimensionality}

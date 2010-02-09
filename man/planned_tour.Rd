@@ -1,10 +1,10 @@
 \name{planned_tour}
 \alias{planned_tour}
-\title{The planned tour.}
+\title{A planned tour path.}
 \usage{planned_tour(basis_set, cycle=FALSE)}
 
 \description{
-  The planned tour.
+  A planned tour path.
 }
 
 \details{
@@ -13,14 +13,13 @@
   from the beginning once more (if \code{cycle = TRUE}).
 
   Usually, you will not call this function directly, but will pass it
-  to a method that works with tour paths like \code{\link{animate}}.
+  to a method that works with tour paths like \code{\link{animate}},
+  \code{\link{save_history}} or \code{\link{render}}.
 }
 \keyword{hplot}
 \keyword{dynamic}
 \seealso{The \code{\link{little_tour}}, a special type of planned tour
-which cycles between all axis parallel projections.  
-\code{save_history} for saving the output of another tour path
-to replay later with the planned tour}
+which cycles between all axis parallel projections.}
 \arguments{
   \item{basis_set}{the set of bases as a list of projection matrices
 or a 3d array}

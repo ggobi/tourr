@@ -1,10 +1,10 @@
 \name{dependence_tour}
 \alias{dependence_tour}
-\title{The dependence tour.}
+\title{A dependence tour path.}
 \usage{dependence_tour(pos)}
 
 \description{
-  The dependence tour.
+  A dependence tour path.
 }
 
 \details{
@@ -15,8 +15,8 @@
   investigate dependence between groups of variables.
 
   Usually, you will not call this function directly, but will pass it
-  to a method that works with tour paths like
-  \code{\link{save_history}}, or \code{\link{animate}}
+  to a method that works with tour paths like \code{\link{animate}},
+  \code{\link{save_history}} or \code{\link{render}}.
 }
 \arguments{
   \item{pos}{a numeric vector describing which variables are mapped to

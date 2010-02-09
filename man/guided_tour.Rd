@@ -1,11 +1,11 @@
 \name{guided_tour}
 \alias{guided_tour}
-\title{The guided tour.}
+\title{A guided tour path.}
 \usage{guided_tour(index_f, d=2, alpha=0.5, cooling=0.99, max.tries=25,
     search_f=search_geodesic, ...)}
 
 \description{
-  The guided tour.
+  A guided tour path.
 }
 
 \details{
@@ -16,8 +16,8 @@
   Currently the index functions only work in 2d.
 
   Usually, you will not call this function directly, but will pass it
-  to a method that works with tour paths like
-  \code{\link{save_history}}, or \code{\link{animate}}
+  to a method that works with tour paths like \code{\link{animate}},
+  \code{\link{save_history}} or \code{\link{render}}.
 }
 \seealso{\code{\link{cm}}, \code{\link{holes}} and \code{\link{lda_pp}}
 for examples of index functions.  The function should take a numeric

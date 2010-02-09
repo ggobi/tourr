@@ -1,10 +1,10 @@
 \name{local_tour}
 \alias{local_tour}
-\title{The local tour.}
+\title{A local tour path.}
 \usage{local_tour(start, angle=pi/4)}
 
 \description{
-  The local tour.
+  A local tour path.
 }
 
 \details{
@@ -12,8 +12,8 @@
   random projection.
 
   Usually, you will not call this function directly, but will pass it
-  to a method that works with tour paths like
-  \code{\link{save_history}}, or \code{\link{animate}}
+  to a method that works with tour paths like \code{\link{animate}},
+  \code{\link{save_history}} or \code{\link{render}}.
 }
 \arguments{
   \item{start}{initial projection matrix}

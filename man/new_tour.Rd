@@ -18,6 +18,9 @@ to run dynamic tours.}
 \keyword{hplot}
 \keyword{dynamic}
 \keyword{internal}
+\value{a function with single argument, step_size.  This function returns
+a list containing the new projection, the currect target and the number
+of steps taken towards the target.}
 \arguments{
   \item{data}{the data matrix to be projected}
   \item{tour_path}{basis generator, a function that generates a new basis,
