@@ -1,7 +1,6 @@
-f1 <- save_history(flea[, 1:6],grand_tour(d=1), max_bases = 10)
-x <- path1d_ggobi(f1)
-ggobi(x) 
-
+# f1 <- save_history(flea[, 1:6],grand_tour(d=1), max_bases = 10)
+# x <- path1d_ggobi(f1)
+# ggobi(x) 
 path1d_ggobi <- function(basis, interp=TRUE, support=TRUE) {
   nc <- dim(basis)[1]
 
