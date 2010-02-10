@@ -6,14 +6,10 @@
 #' This function requires the \code{TeachingDemos} package to draw the
 #' Chernoff faces.  See \code{\link[TeachingDemos]{faces2}} for more details.
 #'
-#' @param tour_path tour path generator, defaults to the grand tour
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_faces animate_faces
-#' @usage display_faces(data, ...)
-#'        animate_faces(data, tour_path = grand_tour(3), ...)
-#'
 #' @examples
 #' # The drawing code is fairly slow, so this animation works best with a 
 #' # limited number of cases
@@ -39,7 +35,6 @@ display_faces <- function(...) {
 }
 
 
-# not being documented.  already aliased somewhere else
 animate_faces <- function(data, tour_path = grand_tour(3), ...) {
   require("TeachingDemos")
   animate(data, tour_path, display = display_faces(...), ...)

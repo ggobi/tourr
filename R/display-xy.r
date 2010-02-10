@@ -12,10 +12,7 @@
 #' @param pch size of the point to be plotted.  Defaults to 20.
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
-#' @param tour_path tour path, defaults to the grand tour
 #' @aliases display_xy animate_xy
-#' @usage display_xy(data, center = TRUE, axes = "center", limit = NULL, col = "black", pch  = 20, ...)
-#'        animate_xy(data, tour_path = grand_tour(), ...)
 #' @examples
 #' animate_xy(flea[, 1:6])
 #' animate(flea[, 1:6], grand_tour(), display_xy())
@@ -69,9 +66,8 @@ display_xy <- function(center = TRUE, axes = "center", limit = NULL, col = "blac
   )
 }
 
-# not being documented.  already aliased somewhere else
 animate_xy <- function(data, tour_path = grand_tour(), ...) {
-  animate(data, tour_path, display_xy(...), ...)
+  animate(data, tour_path, display_xy(...))
 }
 
 

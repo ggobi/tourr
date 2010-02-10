@@ -14,6 +14,5 @@
 }
 \keyword{hplot}
 \arguments{
-  \item{mat}{matrix being used}
   \item{cl}{class to be used.  Such as "color"}
 }

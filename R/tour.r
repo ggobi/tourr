@@ -32,6 +32,7 @@ new_tour <- function(data, tour_path, start = NULL) {
 
   cur_dist <- 0
   target_dist <- 0
+  geodesic <- NULL
   
   function(step_size) {
     step <<- step + 1

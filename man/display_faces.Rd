@@ -1,7 +1,6 @@
 \name{display_faces}
 \title{Chernoff faces tour path animation.}
-\usage{display_faces(data, ...)
-animate_faces(data, tour_path = grand_tour(3), ...)}
+\usage{display_faces(...)}
 
 \description{
   Chernoff faces tour path animation.
@@ -20,7 +19,6 @@ animate_faces(data, tour_path = grand_tour(3), ...)}
 \alias{display_faces}
 \alias{animate_faces}
 \arguments{
-  \item{tour_path}{tour path generator, defaults to the grand tour}
   \item{...}{other arguments passed on to \code{\link{animate}}}
 }
 \examples{# The drawing code is fairly slow, so this animation works best with a 

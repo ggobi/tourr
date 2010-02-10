@@ -35,7 +35,7 @@ tries2 <- lapply(tries, interpolate, 0.2)
 
 bases <- unlist(lapply(tries2, as.list), recursive = FALSE)
 class(bases) <- "history_list"
-index_values <- histories_index(tries2, holes)
+index_values <- paths_index(tries2, holes)
 d <- path_dist(bases)
 ord <- as.data.frame(cmdscale(d, 2))
 

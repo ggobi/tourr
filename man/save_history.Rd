@@ -13,7 +13,7 @@
 }
 \arguments{
   \item{data}{matrix, or data frame containing numeric columns}
-  \item{tour_path}{tour path generator, defaults to the grand tour}
+  \item{tour_path}{tour path generator}
   \item{max_bases}{maximum number of new bases to generate.  Some tour paths
 (like the guided tour) may generate less than the maximum.}
   \item{start}{starting projection, if you want to specify one}

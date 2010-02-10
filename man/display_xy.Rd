@@ -1,7 +1,6 @@
 \name{display_xy}
 \title{Display tour path with a scatterplot...}
-\usage{display_xy(data, center = TRUE, axes = "center", limit = NULL, col = "black", pch  = 20, ...)
-animate_xy(data, tour_path = grand_tour(), ...)}
+\usage{display_xy(center=TRUE, axes="center", limit, col="black", pch=20, ...)}
 
 \description{
   Display tour path with a scatterplot
@@ -23,7 +22,6 @@ of the largest eigenvalue.}
   \item{pch}{size of the point to be plotted.  Defaults to 20.}
   \item{...}{other arguments passed on to \code{\link{animate}} and
 \code{\link{display_xy}}}
-  \item{tour_path}{tour path, defaults to the grand tour}
 }
 \examples{animate_xy(flea[, 1:6])
 animate(flea[, 1:6], grand_tour(), display_xy())

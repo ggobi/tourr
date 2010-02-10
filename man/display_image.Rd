@@ -1,7 +1,6 @@
 \name{display_image}
 \title{Image tour path animation.}
-\usage{display_image(data, xs, ys, ...)
-animate_image(data, tour_path = grand_tour(1), ...)}
+\usage{display_image(xs, ys, ...)}
 
 \description{
   Image tour path animation.
@@ -18,7 +17,6 @@ animate_image(data, tour_path = grand_tour(1), ...)}
 \alias{display_image}
 \alias{animate_image}
 \arguments{
-  \item{tour_path}{tour path generator, defaults to the grand tour}
   \item{xs}{x limit that is used in making the size of the plot}
   \item{ys}{y limit that is used in making the size of the plot}
   \item{...}{other arguments passed on to \code{\link{animate}}}

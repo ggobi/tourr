@@ -1,7 +1,6 @@
 \name{display_depth}
 \title{Display 3d projection with depth cues...}
-\usage{display_depth(data, ...)
-animate_depth(data, tour_path = grand_tour(3), ...)}
+\usage{display_depth(...)}
 
 \description{
   Display 3d projection with depth cues
@@ -17,7 +16,6 @@ animate_depth(data, tour_path = grand_tour(3), ...)}
 \alias{display_depth}
 \alias{animate_depth}
 \arguments{
-  \item{tour_path}{tour path generator, defaults to the grand tour}
   \item{...}{other arguments passed on to \code{\link{animate}}}
 }
 \examples{animate_depth(flea[, 1:6])}

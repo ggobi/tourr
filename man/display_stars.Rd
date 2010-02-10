@@ -1,7 +1,6 @@
 \name{display_stars}
 \title{Star glyph tour path animation.}
-\usage{display_stars(data, ...)
-animate_stars(data, tour_path = grand_tour(3), ...)}
+\usage{display_stars(...)}
 
 \description{
   Star glyph tour path animation.
@@ -18,7 +17,6 @@ animate_stars(data, tour_path = grand_tour(3), ...)}
 \alias{display_stars}
 \alias{animate_stars}
 \arguments{
-  \item{tour_path}{tour path, defaults to the grand tour}
   \item{...}{other arguments passed on to \code{\link{stars}}}
 }
 \examples{animate_stars(flea[1:10, 1:6])

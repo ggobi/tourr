@@ -1,7 +1,6 @@
 \name{display_pcp}
 \title{Parallel coordinates tour path animation.}
-\usage{display_pcp(data, ...)
-animate_pcp(data, tour_path = grand_tour(3), ...)}
+\usage{display_pcp(...)}
 
 \description{
   Parallel coordinates tour path animation.
@@ -18,7 +17,6 @@ animate_pcp(data, tour_path = grand_tour(3), ...)}
 \alias{display_pcp}
 \alias{animate_pcp}
 \arguments{
-  \item{tour_path}{tour path generator, defaults to the grand tour}
   \item{...}{other arguments passed on to \code{\link{animate}}}
 }
 \examples{animate_pcp(flea[, 1:6], grand_tour(3))

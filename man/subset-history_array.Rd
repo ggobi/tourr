@@ -7,3 +7,4 @@
 }
 \keyword{internal}
 \alias{[.history_array}
+\alias{[[.history_array}

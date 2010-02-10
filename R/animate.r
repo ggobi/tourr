@@ -5,13 +5,14 @@
 #' start is by looking at the code for animation methods that have already 
 #' implemented in the package.
 #'
-#' Animations can be rendered on screen, or saved to disk.  Saving an
-#' animation to disk allows you to recreate a movie that is much smoother, but
-#' takes considerably more time to generate.
+#' See \code{\link{render}} to render animations to disk.
 #'
 #' @param data matrix, or data frame containing numeric columns
-#' @param tour_path tour path generator, defaults to the grand tour
-#' @param display takes the display that is suppose to be used, defaults to the xy display
+#' @param tour_path tour path generator, defaults to 2d grand tour
+#' @param start projection to start at, if not specified, uses default 
+#'   associated with tour path
+#' @param display takes the display that is suppose to be used, defaults to
+#'   the xy display
 #' @param aps target angular velocity (in radians per second)
 #' @param fps target frames per second (defaults to 30)
 #' @param max_frames the maximum number of bases to generate.  Defaults to
@@ -19,6 +20,7 @@
 #'   non-interactive use.
 #' @param rescale if true, rescale all variables to range [0,1]?
 #' @param sphere if true, sphere all variables
+#' @param ... ignored
 #' @examples 
 #' f <- flea[, 1:6]
 #' animate(f, grand_tour(), display_xy())
@@ -27,8 +29,6 @@
 #' animate(f, max_frames = 30)
 #' 
 #' \dontrun{animate(f, max_frames = 10, fps = 1, aps = 0.1)}
-#'
-#' animate_xy(f, max_frames = 100, file = "test.pdf", dev = pdf)
 animate <- function(data, tour_path = grand_tour(), display = display_xy(), start = NULL, aps = 1, fps = 30, max_frames = Inf, rescale = TRUE, sphere = FALSE, ...) {
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere(data)

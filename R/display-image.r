@@ -5,15 +5,12 @@
 #' locations on a grid, and the 3rd dimension gives the observations to be 
 #' mixed with the tour.
 #'
-#' @param tour_path tour path generator, defaults to the grand tour
 #' @param xs x limit that is used in making the size of the plot
 #' @param ys y limit that is used in making the size of the plot
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_image animate_image
-#' @usage display_image(data, xs, ys, ...)
-#'        animate_image(data, tour_path = grand_tour(1), ...)
 #' 
 #' @examples
 #' str(ozone)
@@ -45,7 +42,6 @@ display_image <- function(xs, ys, ...) {
 }
 
 
-# not being documented.  already aliased somewhere else
 animate_image <- function(data, tour_path = grand_tour(1), ...) {
   xs <- dim(data)[1]
   ys <- dim(data)[2]

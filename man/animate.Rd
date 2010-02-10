@@ -14,14 +14,15 @@
   is by looking at the code for animation methods that have already
   implemented in the package.
 
-  Animations can be rendered on screen, or saved to disk.  Saving an
-  animation to disk allows you to recreate a movie that is much
-  smoother, but takes considerably more time to generate.
+  See \code{\link{render}} to render animations to disk.
 }
 \arguments{
   \item{data}{matrix, or data frame containing numeric columns}
-  \item{tour_path}{tour path generator, defaults to the grand tour}
-  \item{display}{takes the display that is suppose to be used, defaults to the xy display}
+  \item{tour_path}{tour path generator, defaults to 2d grand tour}
+  \item{start}{projection to start at, if not specified, uses default 
+associated with tour path}
+  \item{display}{takes the display that is suppose to be used, defaults to
+the xy display}
   \item{aps}{target angular velocity (in radians per second)}
   \item{fps}{target frames per second (defaults to 30)}
   \item{max_frames}{the maximum number of bases to generate.  Defaults to
@@ -29,6 +30,7 @@ Inf for interactive use (must use Ctrl + C to terminate), and 1 for
 non-interactive use.}
   \item{rescale}{if true, rescale all variables to range [0,1]?}
   \item{sphere}{if true, sphere all variables}
+  \item{...}{ignored}
 }
 \examples{f <- flea[, 1:6]
 animate(f, grand_tour(), display_xy())
@@ -36,6 +38,4 @@ animate(f, grand_tour(), display_xy())
 animate(f)
 animate(f, max_frames = 30)
 
-\dontrun{animate(f, max_frames = 10, fps = 1, aps = 0.1)}
-
-animate_xy(f, max_frames = 100, file = "test.pdf", dev = pdf)}
+\dontrun{animate(f, max_frames = 10, fps = 1, aps = 0.1)}}

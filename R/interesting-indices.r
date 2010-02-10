@@ -34,10 +34,8 @@ cm <- function(mat)
 #' Calculate the LDA projection pursuit index.  See Cook and Swayne (2007)
 #' Interactive and Dynamic Graphics for Data Analysis for equations.
 #' 
-#' @param mat matrix being used
 #' @param cl class to be used.  Such as "color"
 #' @keywords hplot
-#'
 lda_pp <- function(cl) {
   if (length(unique(cl)) == 0)
     stop("You need to select the class variable!")
@@ -56,10 +54,9 @@ lda_pp <- function(cl) {
 #' Calculate the PDA projection pursuit index.  See Lee and Cook (2009)
 #' A Projection Pursuit Index for Large p, Small n Data
 #' 
-#' @param mat matrix being used
 #' @param cl class to be used.  Such as "color"
+#' @param lambda
 #' @keywords hplot
-#'
 pda_pp <- function(cl, lambda=0.2)
 {
   if (length(unique(cl)) == 0)
@@ -91,7 +88,7 @@ pda_pp <- function(cl, lambda=0.2)
     groups<-length(ngroup)  # no. of classes
     gname<-names(ngroup)	  # names of classes, now is integer 1,2,3...
 
-    CalIndex(n, p, groups, mat, cl, gname, as.integer(ngroup), lambda)
+    .CalIndex(n, p, groups, mat, cl, gname, as.integer(ngroup), lambda)
 # n: no. of obs,
 # p: no. of variables,
 # groups: no. of classes,
@@ -106,7 +103,7 @@ pda_pp <- function(cl, lambda=0.2)
 # fval <==> data; groupraw <==> class: sorted class label of all data;
 # group: class label of all data; 
 # ngroup: the obs. no. in each class
-CalIndex<-function(n, p, groups, fvals, groupraw, gname, ngroup, lambda)
+.CalIndex<-function(n, p, groups, fvals, groupraw, gname, ngroup, lambda)
 { 
   # int i, j, k, right, left
   g = groups
@@ -151,7 +148,7 @@ CalIndex<-function(n, p, groups, fvals, groupraw, gname, ngroup, lambda)
   pivot = matrix(rep(0,p),p)
   det = 0
 
-  val = ludcomp(tempcov, p, pivot)
+  val = .ludcomp(tempcov, p, pivot)
 # ===========================================================
 
   for (j in 1:p)
@@ -161,7 +158,7 @@ CalIndex<-function(n, p, groups, fvals, groupraw, gname, ngroup, lambda)
           (mean[i,j] - ovmean[j]) * (mean[i,k] - ovmean[k])
 
   tempcov = cov
-  tempval = ludcomp(tempcov, p, pivot)
+  tempval = .ludcomp(tempcov, p, pivot)
   
   if (tempval < 0.00000001) {
     val = 0
@@ -174,7 +171,7 @@ CalIndex<-function(n, p, groups, fvals, groupraw, gname, ngroup, lambda)
 }
 
 #==============================================================================
-ludcomp <- function(a, n, pivot)
+.ludcomp <- function(a, n, pivot)
 {
   det = 1;
   temp = 0;

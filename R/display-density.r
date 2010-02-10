@@ -2,7 +2,6 @@
 #'
 #' Animate a 1d tour path with a density plot or histogram.
 #'
-#' @param tour_path tour path generator, defaults to the grand tour
 #' @param method display method, histogram or density plot
 #' @param center should 1d projection be centered to have mean zero (default: TRUE).
 #'   This pins the centre of distribution to the same place, and makes it
@@ -11,8 +10,6 @@
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_dist animate_dist
-#' @usage display_dist(data, method="density", center = TRUE, ...)
-#'        animate_dist(data, tour_path = grand_tour(1), ...)
 #' @examples
 #' animate_dist(flea[, 1:6])
 #'
@@ -89,7 +86,6 @@ display_dist <- function(method="density", center = TRUE, ...) {
 }
 
 
-# not being documented.  already aliased somewhere else
 animate_dist <- function(data, tour_path = grand_tour(1), ...) {
   animate(
     data = data, tour_path = tour_path,

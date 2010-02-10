@@ -10,7 +10,7 @@
 \keyword{hplot}
 \arguments{
   \item{data}{matrix, or data frame containing numeric columns}
-  \item{tour_path}{tour path generator, defaults to the grand tour}
+  \item{tour_path}{tour path generator}
   \item{display}{takes the display that is suppose to be used, defaults to
 the xy display}
   \item{dev}{name of output device to use (e.g. \code{\link{png}},

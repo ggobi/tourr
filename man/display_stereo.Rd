@@ -1,7 +1,6 @@
 \name{display_stereo}
 \title{Anaglpyh tour path animation.}
-\usage{display_stereo(data, blue, red, ...)
-animate_stereo(data, tour_path = grand_tour(3), blue = rgb(0, 0.91, 0.89), red = rgb(0.98, 0.052, 0), ...)}
+\usage{display_stereo(blue, red, ...)}
 
 \description{
   Anaglpyh tour path animation.
@@ -15,7 +14,6 @@ animate_stereo(data, tour_path = grand_tour(3), blue = rgb(0, 0.91, 0.89), red =
 \alias{display_stereo}
 \alias{animate_stereo}
 \arguments{
-  \item{tour_path}{tour path, defaults to a 3d grand tour}
   \item{blue}{blue colour (for right eye)}
   \item{red}{red colour (for left eye)}
   \item{...}{other arguments passed on to \code{\link{animate}}}

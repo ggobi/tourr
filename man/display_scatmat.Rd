@@ -1,7 +1,6 @@
 \name{display_scatmat}
 \title{Scatterplot matrix tour path animation.}
-\usage{display_scatmat(data, ...)
-animate_scatmat(data, tour_path = grand_tour(3), ...)}
+\usage{display_scatmat(...)}
 
 \description{
   Scatterplot matrix tour path animation.
@@ -18,7 +17,6 @@ animate_scatmat(data, tour_path = grand_tour(3), ...)}
 \alias{display_scatmat}
 \alias{animate_scatmat}
 \arguments{
-  \item{tour_path}{tour path generator, defaults to the grand tour}
   \item{...}{other arguments passed on to \code{\link{animate}}}
 }
 \examples{animate_scatmat(flea[, 1:6], grand_tour(2))

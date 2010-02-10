@@ -3,7 +3,7 @@
 #' Save a tour path so it can later be displayed in many different ways.
 #'
 #' @param data matrix, or data frame containing numeric columns
-#' @param tour_path tour path generator, defaults to the grand tour
+#' @param tour_path tour path generator
 #' @param max_bases maximum number of new bases to generate.  Some tour paths
 #'  (like the guided tour) may generate less than the maximum.
 #' @param start starting projection, if you want to specify one
@@ -69,6 +69,7 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
 #' @keywords internal
 #' @method [ history_array
 #' @aliases [.history_array
+#' @aliases [[.history_array
 #' @name subset-history_array
 "[.history_array" <- function(x, i = TRUE, j = TRUE, k = TRUE, ...) {
   piece <- .subset(x, i, j, k, drop = FALSE)

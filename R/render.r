@@ -1,7 +1,7 @@
 #' Render frames of animation to disk
 #' 
 #' @param data matrix, or data frame containing numeric columns
-#' @param tour_path tour path generator, defaults to the grand tour
+#' @param tour_path tour path generator
 #' @param display takes the display that is suppose to be used, defaults to
 #'   the xy display
 #' @param dev name of output device to use (e.g. \code{\link{png}},

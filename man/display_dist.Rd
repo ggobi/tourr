@@ -1,7 +1,6 @@
 \name{display_dist}
 \title{1d distribution tour path animation.}
-\usage{display_dist(data, method="density", center = TRUE, ...)
-animate_dist(data, tour_path = grand_tour(1), ...)}
+\usage{display_dist(method="density", center=TRUE, ...)}
 
 \description{
   1d distribution tour path animation.
@@ -15,7 +14,6 @@ animate_dist(data, tour_path = grand_tour(1), ...)}
 \alias{display_dist}
 \alias{animate_dist}
 \arguments{
-  \item{tour_path}{tour path generator, defaults to the grand tour}
   \item{method}{display method, histogram or density plot}
   \item{center}{should 1d projection be centered to have mean zero (default: TRUE).
 This pins the centre of distribution to the same place, and makes it

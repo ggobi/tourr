@@ -1,7 +1,6 @@
 \name{display_andrews}
 \title{Andrews' curves tour path animation.}
-\usage{display_andrews(data, ...)
-animate_andrews(data, tour_path = grand_tour(3), ...)}
+\usage{display_andrews(...)}
 
 \description{
   Andrews' curves tour path animation.
@@ -16,7 +15,6 @@ animate_andrews(data, tour_path = grand_tour(3), ...)}
 \alias{animate_andrews}
 \alias{display_andrews}
 \arguments{
-  \item{tour_path}{tour path generator, defaults to the grand tour}
   \item{...}{other arguments passed on to \code{\link{animate}}}
 }
 \examples{animate_andrews(flea[, 1:6])

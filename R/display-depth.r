@@ -4,13 +4,10 @@
 #' gray shading) by Graham Wills.
 #' Animate a 3d projection with depth cues.
 #'
-#' @param tour_path tour path generator, defaults to the grand tour
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_depth animate_depth
-#' @usage display_depth(data, ...)
-#'        animate_depth(data, tour_path = grand_tour(3), ...)
 #' 
 #' @examples
 #' animate_depth(flea[, 1:6])
@@ -62,7 +59,6 @@ display_depth <- function(...) {
 }
 
 
-# not being documented.  already aliased somewhere else
 animate_depth <- function(data, tour_path = grand_tour(3), ...) {  
 
   animate(

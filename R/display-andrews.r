@@ -35,13 +35,10 @@ andrews <- function(x) {
 #' Animate a nD tour path with Andrews' curves.  For more details about
 #' Andrew's curves, see \code{\link{andrews}}
 #'
-#' @param tour_path tour path generator, defaults to the grand tour
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases animate_andrews display_andrews
-#' @usage display_andrews(data, ...)
-#'        animate_andrews(data, tour_path = grand_tour(3), ...) 
 #' @examples
 #' animate_andrews(flea[, 1:6])
 #' animate_andrews(flea[, 1:6], grand_tour(d = 3))
@@ -87,7 +84,6 @@ display_andrews <- function(...) {
 }
 
 
-# not being documented.  already aliased somewhere else
 animate_andrews <- function(data, tour_path = grand_tour(3), ...) {
 
   animate(
