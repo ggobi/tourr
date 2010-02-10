@@ -57,6 +57,7 @@ interpolate <- function(basis_set, angle = 0.05) {
   }  
   
   attr(projs, "new_basis") <- new_basis
+  attr(projs, "data") <- attr(basis_set, "data")
   class(projs) <- c("history_array", class(projs))
   projs
 }

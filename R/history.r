@@ -103,11 +103,7 @@ as.list.history_list <- function(x, ...) x
 #' @method as.list history_array
 #' @keywords internal
 as.list.history_array <- function(x, ...) {
-  n <- dim(x)[3]
-  projs <- vector("list", n)
-  for (i in seq_len(n)) {
-    projs[[i]] <- as.matrix(x[, , i])
-  }
+  projs <- do.call("c", apply(x, 3, list))
   structure(projs, class = "history_list", data = attr(x, "data"))
 }
 
