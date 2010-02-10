@@ -14,5 +14,5 @@
 \keyword{hplot}
 \arguments{
   \item{cl}{class to be used.  Such as "color"}
-  \item{lambda}{}
+  \item{lambda}{shrinkage parameter (0 = no shrinkage, 1 = full shrinkage)}
 }

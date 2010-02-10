@@ -55,56 +55,43 @@ lda_pp <- function(cl) {
 #' A Projection Pursuit Index for Large p, Small n Data
 #' 
 #' @param cl class to be used.  Such as "color"
-#' @param lambda
+#' @param lambda shrinkage parameter (0 = no shrinkage, 1 = full shrinkage)
 #' @keywords hplot
-pda_pp <- function(cl, lambda=0.2)
-{
+pda_pp <- function(cl, lambda=0.2) {
   if (length(unique(cl)) == 0)
     stop("You need to select the class variable!")
   if (length(unique(cl)) < 2)
     stop("PDA index needs at least two classes!")
+  
+  # Convert to class to sequential integers, and sort
+  cl.i <- as.integer(as.factor(cl))
+  cl.sort <- order(cl.i)  
+  cl <- cl.i[cl.sort]
 
   function(mat) {
-    mat <- as.matrix(mat);
-    cl <- as.matrix(cl);
-    if (ncol(cl)!=1) cl<-t(cl)
+    mat <- as.matrix(mat)
 
-    p<-ncol(mat);n<-nrow(mat);	  # n: no. of obs, p: no. of variables
-    ngroup<-table(cl)             # different classes
-    groups<-length(ngroup)	  # no. of classes
-    gn<-names(table(cl))	  # names of classes
+    # Reorder so classes are adjacent
+    mat <- mat[cl.sort, ]
+    
+    ngroup <- table(cl.i)     # the obs. no. in each class, stored in table	  
+    groups <- length(ngroup)  # no. of classes
+    gname <- names(ngroup)    # names of classes, now is integer 1,2,3...
 
-    cl.i<-matrix(rep(0,n),n)
-    for (i in 1:n) {
-      for (j in 1:groups) if (cl[i, 1] == gn[j]) 
-        cl.i[i, 1] <- j
-    }
-
-    cl.sort<-sort.list(cl.i)
-# the class label after sorted, num 1,2,3... rep. different classes
-    cl<-cl.i[cl.sort]
-    mat<-mat[cl.sort,]   # sort mat according to class label 		  
-    ngroup<-table(cl.i)  # the obs. no. in each class, stored in table	  
-    groups<-length(ngroup)  # no. of classes
-    gname<-names(ngroup)	  # names of classes, now is integer 1,2,3...
-
-    .CalIndex(n, p, groups, mat, cl, gname, as.integer(ngroup), lambda)
-# n: no. of obs,
-# p: no. of variables,
-# groups: no. of classes,
-# mat: sorted mat,
-# cl: sorted class label of all mat 
-# gname: names of classes, now is integer 1,2,3...;
-#    as.integer(ngroup): the obs. no. in each class
+    .CalIndex(nrow(mat), ncol(mat), groups, mat, cl, gname,
+        as.integer(ngroup), lambda)
   }
-  #return(pda_index)
 }   
 
-# fval <==> data; groupraw <==> class: sorted class label of all data;
-# group: class label of all data; 
-# ngroup: the obs. no. in each class
-.CalIndex<-function(n, p, groups, fvals, groupraw, gname, ngroup, lambda)
-{ 
+# @param n no. of obs,
+# @param p no. of variables,
+# @param groups no. of classes,
+# @param fvals sorted matrix
+# @param groupraw sorted class label of whole matrix
+# @param gname names of classes, now is integer 1,2,3...;
+# @param ngroup the obs. no. in each class
+# @param lambda shrinkage parameter (0 = no shrinkage, 1 = full shrinkage)
+.CalIndex<-function(n, p, groups, fvals, groupraw, gname, ngroup, lambda) { 
   # int i, j, k, right, left
   g = groups
   mean = matrix(rep(0,g*p),g,p)
