@@ -42,5 +42,5 @@ max = 5, rescale=FALSE)
 animate_xy(testdata, planned_tour(t2))
 
 # Or you can use saved histories to visualise the path that the tour took.
-plot(history_index(interpolate(t2), holes))
-plot(history_curves(interpolate(t2)))}
+plot(path_index(interpolate(t2), holes))
+plot(path_curves(interpolate(t2)))}
