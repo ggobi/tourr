@@ -30,7 +30,8 @@ ggobi(z)
 
 # 5 guided tours  -----------------------------
 holes1d <- guided_tour(holes, 1)
-tries <- replicate(5, save_history(flea[, 1:6], holes1d), simplify = FALSE)
+tries <- replicate(5, save_history(flea[, 1:6], holes1d, max = 10), 
+simplify = FALSE)
 tries2 <- lapply(tries, interpolate, 0.2)
 
 bases <- unlist(lapply(tries2, as.list), recursive = FALSE)

@@ -8,3 +8,5 @@
 \keyword{internal}
 \alias{[.history_array}
 \alias{[[.history_array}
+\alias{length.history_array}
+\alias{str.history_array}

@@ -68,8 +68,8 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
 #' 
 #' @keywords internal
 #' @method [ history_array
-#' @aliases [.history_array
-#' @aliases [[.history_array
+#' @aliases [.history_array [[.history_array length.history_array
+#'   str.history_array
 #' @name subset-history_array
 "[.history_array" <- function(x, i = TRUE, j = TRUE, k = TRUE, ...) {
   piece <- .subset(x, i, j, k, drop = FALSE)
@@ -81,6 +81,9 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
 "[[.history_array" <- function(x, i, ...) {
   as.matrix(.subset(x, TRUE, TRUE, i, drop = FALSE))
 }
+
+length.history_array <- function(x) dim(x)[3]
+str.history_array <- function(object, ...) str(unclass(object))
 
 #' Prints the History Array
 #' Prints the History Array in a useful format  
