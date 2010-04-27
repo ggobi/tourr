@@ -13,5 +13,6 @@ test_that("correct number of bases are returned", {
   expect_that(steps(0.01), equals(ceiling(dist / 0.01)))
   expect_that(steps(0.05), equals(ceiling(dist / 0.05)))
   expect_that(steps(0.1), equals(ceiling(dist / 0.1)))
+  expect_that(steps(1), equals(ceiling(dist)))
   
 })
