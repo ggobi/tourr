@@ -49,6 +49,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
   display$init(data)
   display$render_frame()
   display$render_data(data, start$proj, start$target)
+  os <- find_platform()$os
 
   i <- 0
   while(i < max_frames) {
@@ -56,7 +57,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
     step <- tour(aps / fps)
     if (is.null(step)) return(invisible())
     
-    if (find_platform()$os == "win") {
+    if (os == "win") {
       display$render_frame()
     } else {
       display$render_transition()
