@@ -31,12 +31,7 @@ display_xy <- function(center = TRUE, axes = "center", limit = NULL, col = "blac
   
   labels <- rng <- limit <- NULL
   init <- function(data) {
-    if (is.null(limit)) {
-      if (center) {
-        data <- scale(data, center = TRUE, scale = FALSE)        
-      }
-      limit <<- max(sqrt(rowSums(data ^ 2)))
-    }
+    limit <<- xy_limits(data, limit, center)
     rng <<- c(-limit, limit)    
     labels <<- abbreviate(colnames(data), 3)
   }
@@ -92,4 +87,14 @@ draw_tour_axes <- function(proj, labels, limits, position) {
   theta <- seq(0, 2 * pi, length = 50)
   lines(adj(cos(theta)), adj(sin(theta)), col = "grey50")
   text(adj(proj[, 1]), adj(proj[, 2]), label = labels, col = "grey50")       
+}
+
+
+xy_limits <- function(data, limits = NULL, center = FALSE) {
+  if (!is.null(limits)) return(limits)
+  
+  if (center) {
+    data <- scale(data, center = TRUE, scale = FALSE)        
+  }
+  max(sqrt(rowSums(data ^ 2)))
 }
