@@ -35,7 +35,7 @@
 #' # Or you can use saved histories to visualise the path that the tour took.
 #' plot(path_index(interpolate(t2), holes))
 #' plot(path_curves(interpolate(t2)))
-save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start = NULL, rescale = TRUE, sphere = FALSE){
+save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start = NULL, rescale = TRUE, sphere = FALSE, step_size = Inf){
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere(data)
 
@@ -50,7 +50,8 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
     i <- i + 1
     # An infinite step size forces the tour path to generate a new basis
     # every time, so no interpolation occurs.
-    step <- tour(Inf)
+    step <- tour(step_size)    
+    if (is.null(step)) break
     
     projs[, , i] <- step$target
   }

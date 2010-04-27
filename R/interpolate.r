@@ -22,7 +22,7 @@ interpolate <- function(basis_set, angle = 0.05) {
     proj_dist(basis_set[[i - 1]], basis_set[[i]])
   })
   steps <- sum(ceiling(dists / angle)) - 1
-
+  
   # Initialise result storage
   projs <- array(NA_real_, c(dim(basis_set)[1:2], steps))
   projs[, , 1] <- basis_set[[1]]
@@ -33,22 +33,22 @@ interpolate <- function(basis_set, angle = 0.05) {
   # Loop through bases
   path <- geodesic_path(basis_set[[1]], basis_set[[2]])
   dist <- proj_dist(basis_set[[1]], basis_set[[2]])
-
+  
   i <- 2       # Counter for bases
   step <- 2    # Counter for steps along geodesic
   total <- 2   # Counter for total number of steps
   nsteps <- ceiling(dist / angle)
-
+  
   while(i < n | step < nsteps) {
     proj <- path$interpolate(step / nsteps)
     projs[, , total] <- proj
     new_basis[total] <- step == 1
-
+  
     if (step == nsteps) {
       i <- i + 1
       path <- geodesic_path(proj, basis_set[[i]])
       dist <- proj_dist(basis_set[[i - 1]], basis_set[[i]])
-
+  
       step <- 0
       nsteps <- ceiling(dist / angle)
     }
