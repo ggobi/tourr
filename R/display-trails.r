@@ -44,7 +44,9 @@ display_trails <- function(center = TRUE, axes = "center", limit = NULL, col = "
     if (!is.null(last_x)) {
       segments(last_x[, 1], last_x[, 2], x[, 1], x[, 2], col = col, pch = pch)
     }
-    past_x <<- c(past_x[2:5], list(x))
+    points(x, col = col, pch = pch, cex = 0.5)
+    
+    past_x <<- c(past_x[2:past], list(x))
   }
   
   list(
