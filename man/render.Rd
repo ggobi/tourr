@@ -11,8 +11,8 @@
 \arguments{
   \item{data}{matrix, or data frame containing numeric columns}
   \item{tour_path}{tour path generator}
-  \item{display}{takes the display that is suppose to be used, defaults to
-the xy display}
+  \item{display}{the method used to render the projected data, 
+e.g. \code{\link{display_xy}}, \code{\link{display_pcp}}}
   \item{dev}{name of output device to use (e.g. \code{\link{png}},
 \code{\link{pdf}})}
   \item{...}{other options passed to output device}
@@ -22,4 +22,5 @@ the xy display}
   \item{sphere}{if true, sphere all variables}
   \item{start}{starting projection.  If \code{NULL}, uses path default.}
 }
-\examples{render(flea[, 1:4], grand_tour(), display_xy(), "pdf", "test.pdf")}
+\examples{render(flea[, 1:4], grand_tour(), display_xy(), "pdf", "test.pdf")
+render(flea[, 1:4], grand_tour(), display_xy(), "png", "test-\%03d.png")}

@@ -1,12 +1,12 @@
 #' Compute maximum distance from data to origin.
 #' @keywords internal
-#' @examples
 max_dist <- function(data, center = FALSE) {
   max(sqrt(rowSums(data ^ 2)))
 }
 
 #' Calculate distribution of ranges of projected data
-#' @keyword internal
+#' @keywords internal
+#' @examples
 #' data <- rescale(as.matrix(flea[, 1:5]))
 #' ranges <- range_dist(data, 10000)
 #' qplot(c(scaled_limits), geom = "freqpoly", binwidth = 0.1) + expand_limits(x = c(-1,1))

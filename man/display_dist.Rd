@@ -1,6 +1,6 @@
 \name{display_dist}
 \title{1d distribution tour path animation.}
-\usage{display_dist(method="density", center=TRUE, ...)}
+\usage{display_dist(method="density", center=TRUE, half_range, rug=FALSE, ...)}
 
 \description{
   1d distribution tour path animation.
@@ -18,6 +18,9 @@
   \item{center}{should 1d projection be centered to have mean zero (default: TRUE).
 This pins the centre of distribution to the same place, and makes it
 easier to focus on the shape of the distribution.}
+  \item{half_range}{half range to use when calculating limits of projected.
+If not set, defaults to maximum distance from origin to each row of data.}
+  \item{rug}{draw rug plot showing position of actual data points?}
   \item{...}{other arguments passed on to \code{\link{animate}}}
 }
 \examples{animate_dist(flea[, 1:6])

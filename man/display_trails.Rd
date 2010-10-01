@@ -1,0 +1,28 @@
+\name{display_trails}
+\title{Display tour path with trails...}
+\usage{display_trails(center=TRUE, axes="center", half_range, col="black",
+    pch=20, past=3, ...)}
+
+\description{
+  Display tour path with trails
+}
+
+\details{
+  Animate a 2D tour path with a point trails
+}
+\alias{display_xy}
+\alias{animate_xy}
+\arguments{
+  \item{axes}{position of the axes: center, bottomleft or off}
+  \item{center}{if TRUE, centers projected data to (0,0).  This pins the 
+center of data cloud and make it easier to focus on the changing shape
+rather than position.}
+  \item{limit}{limits of the projected data.  Defaults to 3 * square root
+of the largest eigenvalue.}
+  \item{col}{color to be plotted.  Defaults to "black"}
+  \item{pch}{size of the point to be plotted.  Defaults to 20.}
+  \item{past}{draw line between current projection and projection \code{past}
+steps ago}
+  \item{...}{other arguments passed on to \code{\link{animate}} and
+\code{\link{display_xy}}}
+}
