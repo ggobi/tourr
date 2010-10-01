@@ -36,5 +36,7 @@ render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, 
 
     i <- i + 1
     step <- tour(apf)
+    if (is.null(step)) return(invisible())
   }
+  invisible()
 }
