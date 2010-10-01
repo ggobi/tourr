@@ -30,13 +30,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL, col = 
   
   labels <- NULL
   init <- function(data) {
-    if (is.null(half_range)) {
-      if (center) {
-        data <- center(data)
-      }
-      half_range <<- max_dist(data, center)
-      message("Using half_range ", format(half_range, digits = 2))
-    }
+    half_range <<- compute_half_range(half_range, data, center)
     labels <<- abbreviate(colnames(data), 3)
   }
   
