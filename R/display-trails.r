@@ -16,28 +16,24 @@
 #'   \code{\link{display_xy}}
 #' @aliases display_xy animate_xy
 #' @examples
-display_trails <- function(center = TRUE, axes = "center", limit = NULL, col = "black", pch  = 20, past = 3, ...) {
+display_trails <- function(center = TRUE, axes = "center", half_range = NULL, col = "black", pch  = 20, past = 3, ...) {
   
-  past_x <- vector("list", past)
-  labels <- rng <- limit <- NULL
-  init <- function(data) {
-    limit <<- xy_limits(data, limit, center)
-    rng <<- c(-limit, limit)    
-    labels <<- abbreviate(colnames(data), 3)
-  }
+  # Inherit most behaviour from display_xy.  This is a little hacky, but
+  # the only way until tourr switch to a proper object system.
+  xy <- display_xy(center = center, axes = axes, half_range = half_range, 
+    col = col, pch = pch, ...)
+  xy_env <- environment(xy$init)
   
-  render_frame <- function() {
-    par(pty = "s", mar = rep(1,4))
-    blank_plot(xlim = rng, ylim = rng)
-  }
-  render_transition <- function() {
-    rect(-limit, -limit, limit, limit, col="#FFFFFFE6", border=NA)
-  }
+  xy_env$past <- past
+  xy_env$past_x <- vector("list", past)
+  
+  # Only difference is the display method
   render_data <- function(data, proj, geodesic) {
-    draw_tour_axes(proj, labels, limit, axes)
+    draw_tour_axes(proj, labels, 1, axes)
     
     x <- data %*% proj
-    if (center) x <- scale(x, center = TRUE, scale = FALSE)    
+    if (center) x <- center(x)
+    x <- x / half_range
     
     # Render projected points
     last_x <- past_x[[1]]
@@ -47,15 +43,11 @@ display_trails <- function(center = TRUE, axes = "center", limit = NULL, col = "
     points(x, col = col, pch = pch, cex = 0.5)
     
     past_x <<- c(past_x[2:past], list(x))
-  }
+  }  
+  environment(render_data) <- xy_env
   
-  list(
-    init = init,
-    render_frame = render_frame,
-    render_transition = render_transition,
-    render_data = render_data,
-    render_target = nul
-  )
+  xy$render_data <- render_data
+  xy
 }
 
 animate_trails <- function(data, tour_path = grand_tour(), ...) {

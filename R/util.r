@@ -8,6 +8,10 @@ rescale <- function(df) {
   apply(df, 2, function(x) (x - min(x)) / diff(range(x)))
 }
 
+center <- function(x) {
+  scale(x, center = TRUE, scale = FALSE)
+}
+
 #' Sphere a matrix (or data frame) by transforming variables to
 #' principal components.
 #'
