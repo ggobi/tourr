@@ -8,6 +8,7 @@
 #' \code{\link{save_history}} or \code{\link{render}}.
 #' 
 #' @param d target dimensionality
+#' @export
 #' @examples
 #' animate_xy(flea[, 1:6], little_tour())
 #' animate_pcp(flea[, 1:6], little_tour(3))

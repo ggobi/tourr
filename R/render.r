@@ -13,6 +13,7 @@
 #' @param sphere if true, sphere all variables
 #' @param start starting projection.  If \code{NULL}, uses path default.
 #' @keywords hplot
+#' @export
 #' @examples
 #' render(flea[, 1:4], grand_tour(), display_xy(), "pdf", "test.pdf")
 #' render(flea[, 1:4], grand_tour(), display_xy(), "png", "test-%03d.png")

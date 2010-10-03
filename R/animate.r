@@ -20,6 +20,7 @@
 #'   non-interactive use.
 #' @param rescale if true, rescale all variables to range [0,1]?
 #' @param sphere if true, sphere all variables
+#' @export
 #' @examples 
 #' f <- flea[, 1:6]
 #' animate(f, grand_tour(), display_xy())

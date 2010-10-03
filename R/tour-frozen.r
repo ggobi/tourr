@@ -12,6 +12,7 @@
 #' @param d target dimensionality
 #' @param frozen matrix of frozen variables, as described in
 #'   \code{\link{freeze}}
+#' @export
 #' @examples
 #' frozen <- matrix(NA, nrow = 4, ncol = 2)
 #' frozen[3, ] <- .5

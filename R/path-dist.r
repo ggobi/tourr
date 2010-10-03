@@ -1,6 +1,7 @@
 #' Compute distance matrix from bases.
 #' 
 #' @param history history of the plots
+#' @export
 #' @examples
 #' \dontrun{
 #'  grand <- interpolate(save_history(flea[, 1:6], max = 50), 0.2)

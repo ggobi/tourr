@@ -9,7 +9,7 @@
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_scatmat animate_scatmat
-#'
+#' @export display_scatmat animate_scatmat
 #' @examples
 #' animate_scatmat(flea[, 1:6], grand_tour(2))
 #' animate_scatmat(flea[, 1:6], grand_tour(6))

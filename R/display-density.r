@@ -13,6 +13,7 @@
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_dist animate_dist
+#' @export display_dist animate_dist
 #' @examples
 #' animate_dist(flea[, 1:6])
 #'

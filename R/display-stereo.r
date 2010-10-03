@@ -45,7 +45,7 @@ project3d <- function(d3, length = par("din")[1] * 25.4, z0 = 300, d = 30) {
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @keywords hplot
 #' @aliases display_stereo animate_stereo
-#' 
+#' @export display_stereo animate_stereo
 #' @examples
 #' animate_stereo(flea[, 1:6])
 display_stereo <- function(blue, red, ...)

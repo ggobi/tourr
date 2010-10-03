@@ -12,6 +12,7 @@
 #' 
 #' @param pos a numeric vector describing which variables are mapped to
 #'   which dimensions: 1 corresponds to first, 2 to second etc.
+#' @export
 #' @examples
 #' animate_xy(flea[, 1:3], dependence_tour(c(1, 2, 2)))
 #' animate_xy(flea[, 1:4], dependence_tour(c(1, 2, 1, 2)))

@@ -4,6 +4,7 @@
 #'
 #' @param ...  other arguments passed on to \code{\link{animate}}
 #' @aliases display_ggobi animate_ggobi
+#' @export display_ggobi animate_ggobi
 #' @examples
 #' \dontrun{
 #' animate_ggobi(flea[, 1:6])

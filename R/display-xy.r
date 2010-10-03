@@ -12,6 +12,7 @@
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
 #' @aliases display_xy animate_xy
+#' @export display_xy animate_xy
 #' @examples
 #' animate_xy(flea[, 1:6])
 #' animate(flea[, 1:6], grand_tour(), display_xy())

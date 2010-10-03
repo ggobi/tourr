@@ -18,6 +18,7 @@
 #' @return a function with single argument, step_size.  This function returns
 #'  a list containing the new projection, the currect target and the number
 #'  of steps taken towards the target.
+#' @export
 new_tour <- function(data, tour_path, start = NULL) {
   stopifnot(inherits(tour_path, "tour_path"))
 

@@ -10,6 +10,7 @@
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_faces animate_faces
+#' @export display_faces animate_faces
 #' @examples
 #' # The drawing code is fairly slow, so this animation works best with a 
 #' # limited number of cases

@@ -17,6 +17,8 @@
 #' @param generate basis generator function
 #' @param frozen matrix giving frozen variables, as described in 
 #'   \code{\link{freeze}}
+#' @export
+#' @S3method print tour_path
 #' @keywords internal
 new_geodesic_path <- function(name, generator, frozen = NULL) { 
   
@@ -51,10 +53,6 @@ new_geodesic_path <- function(name, generator, frozen = NULL) {
 }
 
 
-#' Print tour path
-#'
-#' @method print tour_path
-#' @keywords internal
 "print.tour_path" <- function(x, ...) {
   cat("Tour path:", attr(x, "name"), "\n")
 

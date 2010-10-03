@@ -9,7 +9,7 @@
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_stars animate_stars
-#'
+#' @export display_stars animate_stars
 #' @examples
 #' animate_stars(flea[1:10, 1:6])
 #' animate_stars(flea[1:10, 1:6], grand_tour(5))

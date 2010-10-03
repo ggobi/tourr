@@ -11,7 +11,7 @@
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_image animate_image
-#' 
+#' @export display_image animate_image
 #' @examples
 #' str(ozone)
 #' animate_image(ozone)

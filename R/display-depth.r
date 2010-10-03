@@ -12,7 +12,7 @@
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
 #' @aliases display_depth animate_depth
-#' 
+#' @export display_depth animate_depth
 #' @examples
 #' animate_depth(flea[, 1:6])
 display_depth <- function(center = TRUE, half_range = NULL, ...) {

@@ -6,6 +6,7 @@
 #' @param data dataset to be projected on to bases
 #' @keywords hplot
 #' @seealso \code{\link{save_history}} for options to save history
+#' @export
 #' @examples
 #' fl_holes <- save_history(flea[, 1:6], guided_tour(holes), sphere = TRUE)
 #' path_index(fl_holes, holes)
@@ -31,9 +32,9 @@ path_index <- function(history, index_f, data = attr(history, "data")) {
 
 #' Plot history index with ggplot2.
 #' 
-#' @method plot path_index
 #' @keywords internal hplot
 #' @method plot path_index
+#' @S3method plot path_index
 plot.path_index <- function(x, ...) {
   require(ggplot2)
   
@@ -53,6 +54,7 @@ plot.path_index <- function(x, ...) {
 #' @keywords internal
 #' @param bases_list list of histories produced by \code{\link{save_history}}
 #' @param index_f index function to apply to each projection
+#' @export
 #' @examples
 #' holes1d <- guided_tour(holes, 1)
 #' # Perform guided tour 5 times, saving results
@@ -76,7 +78,4 @@ paths_index <- function(bases_list, index_f) {
     improvement = unlist(lapply(indices, function(x) c(0, diff(x))))
   )  
 }
-
-
-
 

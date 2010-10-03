@@ -15,6 +15,7 @@
 #' @keywords hplot dynamic
 #' @seealso The \code{\link{little_tour}}, a special type of planned tour
 #'   which cycles between all axis parallel projections.  
+#' @export
 #' @examples
 #' twod <- save_history(flea[, 1:3], max = 5)
 #' str(twod)

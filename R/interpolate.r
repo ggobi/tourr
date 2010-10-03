@@ -6,6 +6,7 @@
 #' @param basis_set input basis set
 #' @param angle target distance (in radians) between bases
 #' @keywords hplot
+#' @export
 #' @examples
 #' t1 <- save_history(flea[, 1:6], grand_tour(1), max = 10)
 #' dim(t1)

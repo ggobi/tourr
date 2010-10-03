@@ -24,6 +24,7 @@
 #'   matrix and return a single number, preferrably between 0 and 1.  
 #' \code{\link{search_geodesic}}, \code{\link{search_better}},
 #'   \code{\link{search_better_random}} for different search strategies
+#' @export
 #' @examples
 #' animate_xy(flea[, 1:3], guided_tour(holes), sphere = TRUE)
 #' animate_xy(flea[, 1:6], guided_tour(holes), sphere = TRUE)

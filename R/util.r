@@ -4,10 +4,12 @@
 #' 
 #' @param df data frame or matrix
 #' @keywords manip
+#' @export
 rescale <- function(df) {
   apply(df, 2, function(x) (x - min(x)) / diff(range(x)))
 }
 
+#' @export
 center <- function(x) {
   scale(x, center = TRUE, scale = FALSE)
 }
@@ -20,6 +22,7 @@ center <- function(x) {
 #'
 #' @param df   data frame or matrix
 #' @keywords manip
+#' @export
 sphere <- function(df) {
   apply(predict(prcomp(df)), 2, scale)
 }

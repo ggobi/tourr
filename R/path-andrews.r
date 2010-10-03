@@ -6,6 +6,7 @@
 #' @param history list of bases produced by \code{\link{save_history}} 
 #'   (or otherwise)
 #' @param data dataset to be projected on to bases
+#' @export
 #' @examples
 #' path1d <- save_history(flea[, 1:6], grand_tour(1), 10)
 #' path2d <- save_history(flea[, 1:6], grand_tour(2), 10)
@@ -55,12 +56,9 @@ path_curves <- function(history, data = attr(history, "data")) {
 #'  \code{\link{path_curves}}
 #' @keywords internal
 #' @method plot path_curve
+#' @S3method plot path_curve
 plot.path_curve <- function(x, ...) {
   ggplot2::qplot(step, value, data = x, group = obs, geom = "line") + 
     facet_grid(var ~ .) 
 }
-
-
-
-
 
