@@ -20,6 +20,7 @@
 #'   non-interactive use.
 #' @param rescale if true, rescale all variables to range [0,1]?
 #' @param sphere if true, sphere all variables
+#' @return an (invisible) list of bases visited during this tour
 #' @export
 #' @examples 
 #' f <- flea[, 1:6]
@@ -41,31 +42,48 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
   if (max_frames == Inf) {
     to_stop()
   }
-  
-  tour <- new_tour(data, tour_path, start)
-  # Initialise display
-  start <- tour(0)
 
+  tour <- new_tour(data, tour_path, start)
+  start <- tour(0)
+  bs <- 1
+  bases <- array(NA, c(ncol(data), ncol(start$target), bs))
+
+  # Initialise display
   display$init(data)
   display$render_frame()
   display$render_data(data, start$proj, start$target)
   os <- find_platform()$os
-
+  
+  b <- 0
   i <- 0
-  while(i < max_frames) {
-    i <- i + 1
-    step <- tour(aps / fps)
-    if (is.null(step)) return(invisible())
+  
+  tryCatch({
+    while(i < max_frames) {
+      i <- i + 1
+      step <- tour(aps / fps)
+      if (is.null(step)) break
+      if (step$step == 1) {
+        b <- b + 1
+        if (b > bs) {
+          bases <- c(bases, rep(NA, bs * dim(bases)[1] * dim(bases)[2]))
+          dim(bases) <- c(ncol(data), ncol(start$target), 2 * bs)
+          bs <- 2 * bs
+        }
+        bases[, , b] <- step$target
+      }
     
-    if (os == "win") {
-      display$render_frame()
-    } else {
-      display$render_transition()
+      if (os == "win") {
+        display$render_frame()
+      } else {
+        display$render_transition()
+      }
+      display$render_data(data, step$proj, step$target)
+    
+      Sys.sleep(1 / fps)    
     }
-    display$render_data(data, step$proj, step$target)
-    
-    Sys.sleep(1 / fps)
-  }
+  }, interrupt = function(cond) return())
+  
+  invisible(bases[, , seq_len(b)])
 }
 
 
