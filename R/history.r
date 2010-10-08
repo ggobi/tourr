@@ -11,8 +11,8 @@
 #' @param sphere if true, sphere all variables
 #'
 #' @export
-#' @S3method [ history_array
-#' @S3method [[ history_array
+#' @S3method "[" history_array
+#' @S3method "[[" history_array
 #' @S3method length history_array
 #' @S3method str history_array
 #' @S3method print history_array
