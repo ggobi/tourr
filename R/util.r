@@ -85,7 +85,7 @@ find_platform <- function() {
 to_stop <- function() {
   plat <- find_platform()
   if(plat$os == "win") {
-    key <- "Ctrl + Break"
+    key <- "Esc"
   } else if (plat$os == "mac" && plat$iface == "gui") {
     key <- "Esc"
   } else {
