@@ -24,7 +24,7 @@ interpolate <- function(basis_set, angle = 0.05) {
   dists <- sapply(2:n, function(i) {
     proj_dist(basis_set[[i - 1]], basis_set[[i]])
   })
-  steps <- sum(floor(dists / angle))
+  steps <- sum(ceiling(dists / angle)) + 1
   
   new_basis <- rep(NA, steps)
   new_basis[1] <- TRUE
