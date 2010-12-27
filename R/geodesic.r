@@ -10,6 +10,7 @@
 #' @param new_target_f function that generates new frame, with previous 
 #'   frame as argument
 #' @keywords internal
+#' @export
 #' @return
 #'   \item{interpolate}{A function with single parameter in [0, 1] that 
 #'     returns an interpolated frame between the current and future frames.

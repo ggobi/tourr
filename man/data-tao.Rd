@@ -18,6 +18,4 @@ to be removed, or imputed before running a tour.
 \format{A 736 x 8 numeric array}
 \references{http://www.pmel.noaa.gov/tao/}
 \keyword{datasets}
-\examples{
-}
 

@@ -3,7 +3,7 @@
 \title{Animate a tour path.}
 \usage{animate(data, tour_path=grand_tour(), display=display_xy(),
     start, aps=1, fps=30, max_frames=Inf, rescale=TRUE,
-    sphere=FALSE)}
+    sphere=FALSE, ...)}
 
 \description{
   Animate a tour path.
@@ -33,6 +33,7 @@ Inf for interactive use (must use Ctrl + C to terminate), and 1 for
 non-interactive use.}
   \item{rescale}{if true, rescale all variables to range [0,1]?}
   \item{sphere}{if true, sphere all variables}
+  \item{...}{ignored}
 }
 \examples{f <- flea[, 1:6]
 animate(f, grand_tour(), display_xy())

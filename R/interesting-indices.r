@@ -16,8 +16,6 @@ holes <- function(mat) {
   num / den
 }
 
-
-
 #' Central mass index.
 #'
 #' Calculates the central mass index.  See Cook and Swayne (2007)
@@ -28,8 +26,6 @@ holes <- function(mat) {
 #' @export
 cm <- function(mat)
   1 - holes(mat)
-
-
 
 #' LDA projection pursuit index.
 #'

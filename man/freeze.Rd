@@ -1,5 +1,4 @@
 \name{freeze}
-\alias{freeze}
 \title{Freeze and thaw matrices...}
 \usage{freeze(input, frozen)}
 
@@ -18,6 +17,8 @@
   fixed values.
 }
 \keyword{internal}
+\alias{freeze}
+\alias{thaw}
 \examples{frozen <- matrix(NA, nrow = 4, ncol = 2)
 frozen[3, ] <- .5
 

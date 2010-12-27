@@ -69,6 +69,7 @@ frozen_tour <- function(d = 2, frozen) {
 #' @seealso \code{\link{cm}}, \code{\link{holes}} and \code{\link{lda_pp}}
 #'   for examples of index functions.  The function should take a numeric
 #'   matrix and return a single number, preferrably between 0 and 1.
+#' @export
 #' @examples 
 #' frozen <- matrix(NA, nrow = 4, ncol = 2)
 #' frozen[3, ] <- .5
@@ -112,6 +113,8 @@ check_freezer_safe <- function(frozen) {
 #' be set to their fixed values.
 #'
 #' @keywords internal
+#' @aliases freeze thaw
+#' @export freeze thaw
 #' @examples
 #' frozen <- matrix(NA, nrow = 4, ncol = 2)
 #' frozen[3, ] <- .5
@@ -126,8 +129,6 @@ freeze <- function(input, frozen) {
   input
 }
 
-#' Thaw a frozen matrix
-#' @keywords internal
 thaw <- function(input, frozen) {
   fixed <- !is.na(frozen)
 

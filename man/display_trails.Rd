@@ -10,15 +10,15 @@
 \details{
   Animate a 2D tour path with a point trails
 }
-\alias{display_xy}
-\alias{animate_xy}
+\alias{display_trails}
+\alias{animate_trails}
 \arguments{
   \item{axes}{position of the axes: center, bottomleft or off}
   \item{center}{if TRUE, centers projected data to (0,0).  This pins the 
 center of data cloud and make it easier to focus on the changing shape
 rather than position.}
-  \item{limit}{limits of the projected data.  Defaults to 3 * square root
-of the largest eigenvalue.}
+  \item{half_range}{half range to use when calculating limits of projected.
+If not set, defaults to maximum distance from origin to each row of data.}
   \item{col}{color to be plotted.  Defaults to "black"}
   \item{pch}{size of the point to be plotted.  Defaults to 20.}
   \item{past}{draw line between current projection and projection \code{past}

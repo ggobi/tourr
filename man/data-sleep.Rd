@@ -50,7 +50,3 @@ rjohnson@carleton.edu
 \usage{data(sleep)}
 \format{A 62 x 10 numeric array}
 \keyword{datasets}
-\examples{
-
-}
-

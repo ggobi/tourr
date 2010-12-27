@@ -20,6 +20,8 @@
   \item{start}{starting projection, if you want to specify one}
   \item{rescale}{if true, rescale all variables to range [0,1]?}
   \item{sphere}{if true, sphere all variables}
+  \item{step_size}{distance between each step - defaults to \code{Inf} which
+forces new basis generation at each step.}
 }
 \examples{# You can use a saved history to replay tours with different visualisations
 

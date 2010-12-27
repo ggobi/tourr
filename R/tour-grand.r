@@ -43,6 +43,7 @@ grand_tour <- function(d = 2) {
 #' @keywords internal
 #' @param n dimensionality of data
 #' @param d dimensionality of target projection
+#' @export
 basis_random <- function(n, d = 2) {  
   mvn <- matrix(rnorm(n * d), ncol = d)
   orthonormalise(mvn)
@@ -55,6 +56,7 @@ basis_random <- function(n, d = 2) {
 #' @keywords internal
 #' @param n dimensionality of data
 #' @param d dimensionality of target projection
+#' @export
 basis_init <- function(n, d) {
   start <- matrix(0, nrow = n, ncol = d)
   diag(start) <- 1    

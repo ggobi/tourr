@@ -6,7 +6,7 @@
 #'
 #' @param x input a new parameter
 #' @return a function with single argument, theta
-#'
+#' @export
 #' @examples
 #' a <- andrews(1:2)
 #' a(0)

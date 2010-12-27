@@ -9,7 +9,9 @@
 #' @param start starting projection, if you want to specify one
 #' @param rescale if true, rescale all variables to range [0,1]?
 #' @param sphere if true, sphere all variables
-#'
+#' @param step_size distance between each step - defaults to \code{Inf} which
+#'   forces new basis generation at each step.
+#
 #' @export
 #' @S3method "[" history_array
 #' @S3method "[[" history_array

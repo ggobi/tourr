@@ -9,6 +9,9 @@ rescale <- function(df) {
   apply(df, 2, function(x) (x - min(x)) / diff(range(x)))
 }
 
+#' Center a numeric vector by subtracting off its mean.
+#' 
+#' @param x numeric vector
 #' @export
 center <- function(x) {
   scale(x, center = TRUE, scale = FALSE)
