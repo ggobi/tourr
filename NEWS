@@ -1,0 +1,15 @@
+ggplot2 0.2 
+------------------------------------------------------------------------------
+
+* many bug fixes in tour algorithms, interpolation and history saving
+
+* `animate` now invisibly returns the bases it displayed when it terminates
+
+* `tourr` now has better NAMESPACE so should play better with other packages
+
+* `display_xy` and `display_dist` do a better at guessing the display
+  range
+
+* new `display_trails` rendering
+
+* `display_dist` gains a rug option
