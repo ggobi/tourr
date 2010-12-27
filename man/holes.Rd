@@ -8,8 +8,9 @@
 }
 
 \details{
-  Calculates the holes index. See Cook and Swayne (2007) Interactive
-  and Dynamic Graphics for Data Analysis for equations.
+  Calculates the holes index. See Cook and Swayne (2007)
+  Interactive and Dynamic Graphics for Data Analysis for
+  equations.
 }
 \keyword{hplot}
 \arguments{

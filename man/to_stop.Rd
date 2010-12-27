@@ -7,7 +7,7 @@
 }
 
 \details{
-  This function prints the corresponding information on how to stop the
-  plotting.
+  This function prints the corresponding information on how
+  to stop the plotting.
 }
 \keyword{internal}

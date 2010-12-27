@@ -8,9 +8,10 @@
 }
 
 \details{
-  The tour function provides the common machinery behind all tour
-  methods: interpolating from basis to basis, and generating new bases
-  when necessary. You should not have to call this function.
+  The tour function provides the common machinery behind
+  all tour methods: interpolating from basis to basis, and
+  generating new bases when necessary. You should not have
+  to call this function.
 }
 \seealso{\code{\link{save_history}}, \code{\link{render}} and
 \code{\link{animate}} for examples of functions that use this function

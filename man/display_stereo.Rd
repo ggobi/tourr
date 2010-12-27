@@ -7,8 +7,9 @@
 }
 
 \details{
-  Uses red-blue anaglyphs to display a 3d tour path.  You'll need some
-  red- blue glasses to get much out of this displays!
+  Uses red-blue anaglyphs to display a 3d tour path.
+  You'll need some red- blue glasses to get much out of
+  this displays!
 }
 \keyword{hplot}
 \alias{display_stereo}

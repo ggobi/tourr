@@ -8,9 +8,10 @@
 }
 
 \details{
-  This function takes a numeric vector of input, and returns a function
-  which allows you to compute the value of the Andrew's curve at every
-  point along its path from -pi to pi.
+  This function takes a numeric vector of input, and
+  returns a function which allows you to compute the value
+  of the Andrew's curve at every point along its path from
+  -pi to pi.
 }
 \value{a function with single argument, theta}
 \arguments{

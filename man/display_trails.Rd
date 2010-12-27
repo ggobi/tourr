@@ -1,7 +1,7 @@
 \name{display_trails}
 \title{Display tour path with trails...}
-\usage{display_trails(center=TRUE, axes="center", half_range, col="black",
-    pch=20, past=3, ...)}
+\usage{display_trails(center=TRUE, axes="center", half_range,
+    col="black", pch=20, past=3, ...)}
 
 \description{
   Display tour path with trails

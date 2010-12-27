@@ -1,15 +1,16 @@
 \name{save_history}
 \alias{save_history}
 \title{Save tour history.}
-\usage{save_history(data, tour_path=grand_tour(), max_bases=100, start,
-    rescale=TRUE, sphere=FALSE, step_size=Inf)}
+\usage{save_history(data, tour_path=grand_tour(), max_bases=100,
+    start, rescale=TRUE, sphere=FALSE, step_size=Inf)}
 
 \description{
   Save tour history.
 }
 
 \details{
-  Save a tour path so it can later be displayed in many different ways.
+  Save a tour path so it can later be displayed in many
+  different ways.
 }
 \arguments{
   \item{data}{matrix, or data frame containing numeric columns}

@@ -8,8 +8,9 @@
 }
 
 \details{
-  Calculate the PDA projection pursuit index.  See Lee and Cook (2009)
-  A Projection Pursuit Index for Large p, Small n Data
+  Calculate the PDA projection pursuit index.  See Lee and
+  Cook (2009) A Projection Pursuit Index for Large p, Small
+  n Data
 }
 \keyword{hplot}
 \arguments{

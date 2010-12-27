@@ -8,8 +8,9 @@
 }
 
 \details{
-  This computes the projected values of each observation at each step,
-  and allows you to recreate static views of the animated plots.
+  This computes the projected values of each observation at
+  each step, and allows you to recreate static views of the
+  animated plots.
 }
 \arguments{
   \item{history}{list of bases produced by \code{\link{save_history}} 

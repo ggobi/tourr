@@ -8,7 +8,8 @@
 }
 
 \details{
-  This function does nothing, and is a useful default callback function
+  This function does nothing, and is a useful default
+  callback function
 }
 \keyword{internal}
 \arguments{

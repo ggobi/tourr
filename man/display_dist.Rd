@@ -1,6 +1,7 @@
 \name{display_dist}
 \title{1d distribution tour path animation.}
-\usage{display_dist(method="density", center=TRUE, half_range, rug=FALSE, ...)}
+\usage{display_dist(method="density", center=TRUE, half_range,
+    rug=FALSE, ...)}
 
 \description{
   1d distribution tour path animation.

@@ -7,8 +7,8 @@
 }
 
 \details{
-  Animate a nD tour path with Andrews' curves.  For more details about
-  Andrew's curves, see \code{\link{andrews}}
+  Animate a nD tour path with Andrews' curves.  For more
+  details about Andrew's curves, see \code{\link{andrews}}
 }
 \seealso{\code{\link{animate}} for options that apply to all animations}
 \keyword{hplot}

@@ -7,10 +7,11 @@
 }
 
 \details{
-  Animate a 1d tour path with an image plot.  This animation requires a
-  different input data structure, a 3d array.  The first two dimensions
-  are locations on a grid, and the 3rd dimension gives the observations
-  to be mixed with the tour.
+  Animate a 1d tour path with an image plot.  This
+  animation requires a different input data structure, a 3d
+  array.  The first two dimensions are locations on a grid,
+  and the 3rd dimension gives the observations to be mixed
+  with the tour.
 }
 \seealso{\code{\link{animate}} for options that apply to all animations}
 \keyword{hplot}

@@ -9,8 +9,8 @@
 \details{
   Animate a nD tour path with a scatterplot matrix.
 
-  The lines show the observations, and the points, the values of the
-  projection matrix.
+  The lines show the observations, and the points, the
+  values of the projection matrix.
 }
 \seealso{\code{\link{animate}} for options that apply to all animations}
 \keyword{hplot}

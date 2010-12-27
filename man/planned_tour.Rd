@@ -8,13 +8,15 @@
 }
 
 \details{
-  The planned tour takes you from one basis to the next in a set order.
-  Once you have visited all the planned bases, you either stop or start
-  from the beginning once more (if \code{cycle = TRUE}).
+  The planned tour takes you from one basis to the next in
+  a set order.  Once you have visited all the planned
+  bases, you either stop or start from the beginning once
+  more (if \code{cycle = TRUE}).
 
-  Usually, you will not call this function directly, but will pass it
-  to a method that works with tour paths like \code{\link{animate}},
-  \code{\link{save_history}} or \code{\link{render}}.
+  Usually, you will not call this function directly, but
+  will pass it to a method that works with tour paths like
+  \code{\link{animate}}, \code{\link{save_history}} or
+  \code{\link{render}}.
 }
 \keyword{hplot}
 \keyword{dynamic}

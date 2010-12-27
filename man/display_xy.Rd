@@ -1,7 +1,7 @@
 \name{display_xy}
 \title{Display tour path with a scatterplot...}
-\usage{display_xy(center=TRUE, axes="center", half_range, col="black", pch=20,
-    ...)}
+\usage{display_xy(center=TRUE, axes="center", half_range,
+    col="black", pch=20, ...)}
 
 \description{
   Display tour path with a scatterplot

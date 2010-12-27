@@ -8,9 +8,9 @@
 }
 
 \details{
-  Calculate the LDA projection pursuit index.  See Cook and Swayne
-  (2007) Interactive and Dynamic Graphics for Data Analysis for
-  equations.
+  Calculate the LDA projection pursuit index.  See Cook and
+  Swayne (2007) Interactive and Dynamic Graphics for Data
+  Analysis for equations.
 }
 \keyword{hplot}
 \arguments{

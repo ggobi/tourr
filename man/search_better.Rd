@@ -5,6 +5,7 @@
     method="linear")}
 
 \description{
-  Search for a better projection near the current projection.
+  Search for a better projection near the current
+  projection.
 }
 \keyword{internal}

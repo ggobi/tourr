@@ -8,10 +8,11 @@
 }
 
 \details{
-  Use \code{\link{optimize}} to find the most interesting projection
-  amongst all projections on a geodesic.  This method assumes that the
-  function is continuous with a single maximum, but seems to do ok even
-  if there are multiple maxima.
+  Use \code{\link{optimize}} to find the most interesting
+  projection amongst all projections on a geodesic.  This
+  method assumes that the function is continuous with a
+  single maximum, but seems to do ok even if there are
+  multiple maxima.
 }
 \keyword{optimize}
 \keyword{internal}

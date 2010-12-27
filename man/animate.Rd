@@ -1,21 +1,24 @@
 \name{animate}
 \alias{animate}
 \title{Animate a tour path.}
-\usage{animate(data, tour_path=grand_tour(), display=display_xy(), start,
-    aps=1, fps=30, max_frames=Inf, rescale=TRUE, sphere=FALSE)}
+\usage{animate(data, tour_path=grand_tour(), display=display_xy(),
+    start, aps=1, fps=30, max_frames=Inf, rescale=TRUE,
+    sphere=FALSE)}
 
 \description{
   Animate a tour path.
 }
 
 \details{
-  This is the function that powers all of the tour animations.  If you
-  want to write your own tour animation method, the best place to start
-  is by looking at the code for animation methods that have already
-  implemented in the package.
+  This is the function that powers all of the tour
+  animations.  If you want to write your own tour animation
+  method, the best place to start is by looking at the code
+  for animation methods that have already implemented in
+  the package.
 
   See \code{\link{render}} to render animations to disk.
 }
+\value{an (invisible) list of bases visited during this tour}
 \arguments{
   \item{data}{matrix, or data frame containing numeric columns}
   \item{tour_path}{tour path generator, defaults to 2d grand tour}

@@ -8,10 +8,10 @@
 }
 
 \details{
-  Starting from the current projection, pick \code{tries} random
-  location and take a small step towards and away from each location.
-  The most promising direction has the highest value of the
-  \code{index} function.
+  Starting from the current projection, pick \code{tries}
+  random location and take a small step towards and away
+  from each location.  The most promising direction has the
+  highest value of the \code{index} function.
 }
 \keyword{optimize}
 \keyword{internal}

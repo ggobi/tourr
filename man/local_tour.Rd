@@ -8,12 +8,13 @@
 }
 
 \details{
-  The local tour alternates between the starting position and a nearby
-  random projection.
+  The local tour alternates between the starting position
+  and a nearby random projection.
 
-  Usually, you will not call this function directly, but will pass it
-  to a method that works with tour paths like \code{\link{animate}},
-  \code{\link{save_history}} or \code{\link{render}}.
+  Usually, you will not call this function directly, but
+  will pass it to a method that works with tour paths like
+  \code{\link{animate}}, \code{\link{save_history}} or
+  \code{\link{render}}.
 }
 \arguments{
   \item{start}{initial projection matrix}

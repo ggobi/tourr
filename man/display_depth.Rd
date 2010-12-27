@@ -7,8 +7,8 @@
 }
 
 \details{
-  Suggestion to use gray background and colour saturation (instead of
-  gray shading) by Graham Wills.
+  Suggestion to use gray background and colour saturation
+  (instead of gray shading) by Graham Wills.
 }
 \seealso{\code{\link{animate}} for options that apply to all animations}
 \keyword{hplot}

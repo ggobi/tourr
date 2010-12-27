@@ -8,8 +8,8 @@
 }
 
 \details{
-  This is a convenience method that returns a data frame summarising
-  the index values for multiple tour paths.
+  This is a convenience method that returns a data frame
+  summarising the index values for multiple tour paths.
 }
 \keyword{internal}
 \arguments{

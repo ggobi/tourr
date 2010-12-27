@@ -8,8 +8,8 @@
 }
 
 \details{
-  This ensures that each column in x is orthogonal to the corresponding
-  column in by.
+  This ensures that each column in x is orthogonal to the
+  corresponding column in by.
 }
 \keyword{internal}
 \keyword{algebra}

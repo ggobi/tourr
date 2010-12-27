@@ -9,8 +9,9 @@
 \details{
   Animate a nD tour path with star glyphs.
 
-  Currently, scaling doesn't seem to be computed absolutely correctly,
-  as centres move around as well as outside points.
+  Currently, scaling doesn't seem to be computed absolutely
+  correctly, as centres move around as well as outside
+  points.
 }
 \seealso{\code{\link{animate}} for options that apply to all animations}
 \keyword{hplot}

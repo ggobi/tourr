@@ -4,7 +4,8 @@
 \usage{step_fraction(interp, fraction)}
 
 \description{
-  Step along an interpolated path by fraction of path length.
+  Step along an interpolated path by fraction of path
+  length.
 }
 \keyword{internal}
 \arguments{
