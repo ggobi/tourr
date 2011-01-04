@@ -1,5 +1,8 @@
-tourr 0.3
+tourr 0.2.1
 ------------------------------------------------------------------------------
+
+* change documentation file name for `nul` to avoid problems in Windows 7
+  (thanks to Brian Ripley)
 
 tourr 0.2 
 ------------------------------------------------------------------------------

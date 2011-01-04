@@ -36,6 +36,7 @@ sphere <- function(df) {
 #' This function does nothing, and is a useful default callback function
 #' 
 #' @param ... all arguments to \code{...} are ignore
+#' @name xnul
 #' @keywords internal
 nul <- function(...) {}
 

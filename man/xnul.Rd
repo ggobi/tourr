@@ -1,5 +1,5 @@
-\name{nul}
-\alias{nul}
+\name{xnul}
+\alias{xnul}
 \title{A null function...}
 \usage{nul(...)}
 
