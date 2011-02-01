@@ -1,26 +1,23 @@
 \name{find_best_dir}
 \alias{find_best_dir}
 \title{Find the most promising direction to travel in.}
-\usage{find_best_dir(old, index, dist = 0.01, tries = 5)
-find_best_dir(old, index, dist=0.01, tries=5)
+\usage{find_best_dir(old, index, dist=0.01, tries=5)}
+
+\description{
+  Find the most promising direction to travel in.
 }
-\description{Find the most promising direction to travel in.}
-\details{Starting from the current projection, pick \code{tries} random location
-and take a small step towards and away from each location.  The most 
-promising direction has the highest value of the \code{index} function.\code{find_best_dir}: Starting from the current projection, pick \code{tries} random location
-and take a small step towards and away from each location.  The most 
-promising direction has the highest value of the \code{index} function.
 
-
+\details{
+  Starting from the current projection, pick \code{tries}
+  random location and take a small step towards and away
+  from each location.  The most promising direction has the
+  highest value of the \code{index} function.
 }
 \keyword{optimize}
 \keyword{internal}
-\arguments{\item{old}{current projection}
-\item{index}{interestingness index function}
-\item{dist}{step size in radians, should be small}
-\item{number}{of random steps to take}
+\arguments{
+  \item{old}{current projection}
+  \item{index}{interestingness index function}
+  \item{dist}{step size in radians, should be small}
+  \item{number}{of random steps to take}
 }
-\alias{find_best_dir}
-\keyword{optimize}
-\keyword{internal}
-

@@ -1,96 +1,35 @@
 \name{new_geodesic_path}
 \alias{new_geodesic_path}
 \title{Generate a geodesic path between bases supplied by generator...}
-\usage{new_geodesic_path(name, generator, frozen)
-new_geodesic_path(name, generator, frozen)
-new_geodesic_path(name, generator, frozen)
-new_geodesic_path(name, generator, frozen)
-new_geodesic_path(name, generator, frozen)
+\usage{new_geodesic_path(name, generator, frozen)}
+
+\description{
+  Generate a geodesic path between bases supplied by
+  generator
 }
-\description{Generate a geodesic path between bases supplied by generator}
-\details{A tour path is a function that when called with the current projection
-and data set, generates sequence of \code{\link{geodesic_path}}s.  The 
-path can either span the whole space of orthonormal matrices, the default
-or be restricted to a subspace with the frozen argument.  More details
-are given in the documentation for \code{\link{freeze}}.
 
-Subsequent frames are guaranteed to be at least 0.001 radians away from
-the current frame.  If after 10 tries the generator does not give a new
-basis at least this far away then we give up.
+\details{
+  A tour path is a function that when called with the
+  current projection and data set, generates sequence of
+  \code{\link{geodesic_path}}s.  The path can either span
+  the whole space of orthonormal matrices, the default or
+  be restricted to a subspace with the frozen argument.
+  More details are given in the documentation for
+  \code{\link{freeze}}.
 
-If a suitable new basis can not be found, the path function returns NULL
-indicating that the tour should stop.\code{new_geodesic_path}: A tour path is a function that when called with the current projection
-and data set, generates sequence of \code{\link{geodesic_path}}s.  The 
-path can either span the whole space of orthonormal matrices, the default
-or be restricted to a subspace with the frozen argument.  More details
-are given in the documentation for \code{\link{freeze}}.
+  Subsequent frames are guaranteed to be at least 0.001
+  radians away from the current frame.  If after 10 tries
+  the generator does not give a new basis at least this far
+  away then we give up.
 
-Subsequent frames are guaranteed to be at least 0.001 radians away from
-the current frame.  If after 10 tries the generator does not give a new
-basis at least this far away then we give up.
-
-If a suitable new basis can not be found, the path function returns NULL
-indicating that the tour should stop.
-
-
-\code{new_geodesic_path}: A tour path is a function that when called with the current projection
-and data set, generates sequence of \code{\link{geodesic_path}}s.  The 
-path can either span the whole space of orthonormal matrices, the default
-or be restricted to a subspace with the frozen argument.  More details
-are given in the documentation for \code{\link{freeze}}.
-
-Subsequent frames are guaranteed to be at least 0.001 radians away from
-the current frame.  If after 10 tries the generator does not give a new
-basis at least this far away then we give up.
-
-If a suitable new basis can not be found, the path function returns NULL
-indicating that the tour should stop.
-
-
-\code{new_geodesic_path}: A tour path is a function that when called with the current projection
-and data set, generates sequence of \code{\link{geodesic_path}}s.  The 
-path can either span the whole space of orthonormal matrices, the default
-or be restricted to a subspace with the frozen argument.  More details
-are given in the documentation for \code{\link{freeze}}.
-
-Subsequent frames are guaranteed to be at least 0.001 radians away from
-the current frame.  If after 10 tries the generator does not give a new
-basis at least this far away then we give up.
-
-If a suitable new basis can not be found, the path function returns NULL
-indicating that the tour should stop.
-
-
-\code{new_geodesic_path}: A tour path is a function that when called with the current projection
-and data set, generates sequence of \code{\link{geodesic_path}}s.  The 
-path can either span the whole space of orthonormal matrices, the default
-or be restricted to a subspace with the frozen argument.  More details
-are given in the documentation for \code{\link{freeze}}.
-
-Subsequent frames are guaranteed to be at least 0.001 radians away from
-the current frame.  If after 10 tries the generator does not give a new
-basis at least this far away then we give up.
-
-If a suitable new basis can not be found, the path function returns NULL
-indicating that the tour should stop.
-
-
+  If a suitable new basis can not be found, the path
+  function returns NULL indicating that the tour should
+  stop.
 }
 \keyword{internal}
-\arguments{\item{name}{name to give tour path}
-\item{generate}{basis generator function}
-\item{frozen}{matrix giving frozen variables, as described in 
+\arguments{
+  \item{name}{name to give tour path}
+  \item{generate}{basis generator function}
+  \item{frozen}{matrix giving frozen variables, as described in 
 \code{\link{freeze}}}
 }
-\alias{new_geodesic_path}
-\keyword{internal}
-
-\alias{new_geodesic_path}
-\keyword{internal}
-
-\alias{new_geodesic_path}
-\keyword{internal}
-
-\alias{new_geodesic_path}
-\keyword{internal}
-

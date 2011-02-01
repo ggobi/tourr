@@ -1,60 +1,25 @@
 \name{display_depth}
-\alias{display_depth}
 \title{Display 3d projection with depth cues...}
-\usage{display_depth(center = TRUE, half_range, ...)
-display_depth(center=TRUE, half_range, ...)
-display_depth(center=TRUE, half_range, ...)
-display_depth(center=TRUE, half_range, ...)
-display_depth(center=TRUE, half_range, ...)
+\usage{display_depth(center=TRUE, half_range, ...)}
+
+\description{
+  Display 3d projection with depth cues
 }
-\description{Display 3d projection with depth cues}
-\details{Suggestion to use gray background and colour saturation (instead of 
-gray shading) by Graham Wills.\code{display_depth}: Suggestion to use gray background and colour saturation (instead of 
-gray shading) by Graham Wills.
 
-
-\code{display_depth}: Suggestion to use gray background and colour saturation (instead of 
-gray shading) by Graham Wills.
-
-
-\code{display_depth}: Suggestion to use gray background and colour saturation (instead of 
-gray shading) by Graham Wills.
-
-
-\code{display_depth}: Suggestion to use gray background and colour saturation (instead of 
-gray shading) by Graham Wills.
-
-
+\details{
+  Suggestion to use gray background and colour saturation
+  (instead of gray shading) by Graham Wills.
 }
-\seealso{\code{\link{animate}} for options that apply to all animations\code{\link{animate}} for options that apply to all animations\code{\link{animate}} for options that apply to all animations\code{\link{animate}} for options that apply to all animations\code{\link{animate}} for options that apply to all animations}
+\seealso{\code{\link{animate}} for options that apply to all animations}
 \keyword{hplot}
 \alias{display_depth}
 \alias{animate_depth}
-\arguments{\item{center}{should projected data be centered to have mean zero (default:
+\arguments{
+  \item{center}{should projected data be centered to have mean zero (default:
 TRUE). This pins the centre of the data to the same place, and makes it
 easier to focus on the shape.}
-\item{half_range}{half range to use when calculating limits of projected.
+  \item{half_range}{half range to use when calculating limits of projected.
 If not set, defaults to maximum distance from origin to each row of data.}
-\item{...}{other arguments passed on to \code{\link{animate}}}
+  \item{...}{other arguments passed on to \code{\link{animate}}}
 }
-\examples{animate_depth(flea[, 1:6])animate_depth(flea[, 1:6])animate_depth(flea[, 1:6])animate_depth(flea[, 1:6])animate_depth(flea[, 1:6])}
-\alias{display_depth}
-\keyword{hplot}
-\alias{display_depth}
-\alias{animate_depth}
-
-\alias{display_depth}
-\keyword{hplot}
-\alias{display_depth}
-\alias{animate_depth}
-
-\alias{display_depth}
-\keyword{hplot}
-\alias{display_depth}
-\alias{animate_depth}
-
-\alias{display_depth}
-\keyword{hplot}
-\alias{display_depth}
-\alias{animate_depth}
-
+\examples{animate_depth(flea[, 1:6])}

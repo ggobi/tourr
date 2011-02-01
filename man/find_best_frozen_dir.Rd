@@ -1,12 +1,10 @@
 \name{find_best_frozen_dir}
 \alias{find_best_frozen_dir}
 \title{Find most promising direction in frozen space.}
-\usage{find_best_frozen_dir(old, frozen, index, dist = 0.01, 
-    tries = 5)
-find_best_frozen_dir(old, frozen, index, dist=0.01, tries=5)
-}
-\description{Find most promising direction in frozen space.}
-\keyword{internal}
-\alias{find_best_frozen_dir}
-\keyword{internal}
+\usage{find_best_frozen_dir(old, frozen, index, dist=0.01,
+    tries=5)}
 
+\description{
+  Find most promising direction in frozen space.
+}
+\keyword{internal}

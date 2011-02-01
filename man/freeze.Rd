@@ -1,50 +1,28 @@
 \name{freeze}
-\alias{freeze}
 \title{Freeze and thaw matrices...}
-\usage{freeze(input, frozen)
-freeze(input, frozen)
+\usage{freeze(input, frozen)}
+
+\description{
+  Freeze and thaw matrices
 }
-\description{Freeze and thaw matrices}
-\details{Some terminology:
-* frozen variables: the variables that have fixed values
-* warm variables: the remaining variables that vary freely
 
-A frozen matrix specifies which variables to fix in a projection matrix.
-Warm variables should be missing (\code{NA}) while frozen variables should
-be set to their fixed values.\code{freeze}: Some terminology:
-* frozen variables: the variables that have fixed values
-* warm variables: the remaining variables that vary freely
+\details{
+  Some terminology: * frozen variables: the variables that
+  have fixed values * warm variables: the remaining
+  variables that vary freely
 
-A frozen matrix specifies which variables to fix in a projection matrix.
-Warm variables should be missing (\code{NA}) while frozen variables should
-be set to their fixed values.
-
-
+  A frozen matrix specifies which variables to fix in a
+  projection matrix. Warm variables should be missing
+  (\code{NA}) while frozen variables should be set to their
+  fixed values.
 }
 \keyword{internal}
 \alias{freeze}
 \alias{thaw}
 \examples{frozen <- matrix(NA, nrow = 4, ncol = 2)
-frozen[3, ] <- 0.5
-
-input <- basis_random(4, 2)
-freeze(input, frozen)
-thaw(input, frozen)
-freeze(basis_random(4, 2), frozen)frozen <- matrix(NA, nrow = 4, ncol = 2)
 frozen[3, ] <- .5
 
 input <- basis_random(4, 2)
 freeze(input, frozen)
 thaw(input, frozen)
 freeze(basis_random(4, 2), frozen)}
-
-
-
-
-
-
-\alias{freeze}
-\keyword{internal}
-\alias{freeze}
-\alias{thaw}
-

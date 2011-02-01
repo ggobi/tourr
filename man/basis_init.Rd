@@ -1,18 +1,17 @@
 \name{basis_init}
 \alias{basis_init}
 \title{Generate initial basis.}
-\usage{basis_init(n, d)
-basis_init(n, d)
+\usage{basis_init(n, d)}
+
+\description{
+  Generate initial basis.
 }
-\description{Generate initial basis.}
-\details{First two variables are projected on first two axes.\code{basis_init}: First two variables are projected on first two axes.
 
-
+\details{
+  First two variables are projected on first two axes.
 }
 \keyword{internal}
-\arguments{\item{n}{dimensionality of data}
-\item{d}{dimensionality of target projection}
+\arguments{
+  \item{n}{dimensionality of data}
+  \item{d}{dimensionality of target projection}
 }
-\alias{basis_init}
-\keyword{internal}
-

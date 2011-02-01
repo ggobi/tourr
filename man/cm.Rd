@@ -1,43 +1,18 @@
 \name{cm}
 \alias{cm}
 \title{Central mass index.}
-\usage{cm(mat)
-cm(mat)
-cm(mat)
-cm(mat)
-cm(mat)
+\usage{cm(mat)}
+
+\description{
+  Central mass index.
 }
-\description{Central mass index.}
-\details{Calculates the central mass index.  See Cook and Swayne (2007)
-Interactive and Dynamic Graphics for Data Analysis for equations.\code{cm}: Calculates the central mass index.  See Cook and Swayne (2007)
-Interactive and Dynamic Graphics for Data Analysis for equations.
 
-
-\code{cm}: Calculates the central mass index.  See Cook and Swayne (2007)
-Interactive and Dynamic Graphics for Data Analysis for equations.
-
-
-\code{cm}: Calculates the central mass index.  See Cook and Swayne (2007)
-Interactive and Dynamic Graphics for Data Analysis for equations.
-
-
-\code{cm}: Calculates the central mass index.  See Cook and Swayne (2007)
-Interactive and Dynamic Graphics for Data Analysis for equations.
-
-
+\details{
+  Calculates the central mass index.  See Cook and Swayne
+  (2007) Interactive and Dynamic Graphics for Data Analysis
+  for equations.
 }
 \keyword{hplot}
-\arguments{\item{mat}{matrix being used}
+\arguments{
+  \item{mat}{matrix being used}
 }
-\alias{cm}
-\keyword{hplot}
-
-\alias{cm}
-\keyword{hplot}
-
-\alias{cm}
-\keyword{hplot}
-
-\alias{cm}
-\keyword{hplot}
-

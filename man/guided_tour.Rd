@@ -1,63 +1,43 @@
 \name{guided_tour}
 \alias{guided_tour}
 \title{A guided tour path.}
-\usage{guided_tour(index_f, d = 2, alpha = 0.5, cooling = 0.99, 
-    max.tries = 25, search_f = search_geodesic, ...)
+\usage{guided_tour(index_f, d=2, alpha=0.5, cooling=0.99,
+    max.tries=25, search_f=search_geodesic, ...)}
 
-guided_tour(index_f, d=2, alpha=0.5, cooling=0.99, max.tries=25,
-    search_f=search_geodesic, ...)
+\description{
+  A guided tour path.
 }
-\description{A guided tour path.}
-\details{Instead of choosing new projections at random like the grand tour, the 
-guided tour always tries to find a projection that is more interesting
-than the current projection.
 
-Currently the index functions only work in 2d.
+\details{
+  Instead of choosing new projections at random like the
+  grand tour, the guided tour always tries to find a
+  projection that is more interesting than the current
+  projection.
 
-Usually, you will not call this function directly, but will pass it to 
-a method that works with tour paths like \code{\link{animate}}, 
-\code{\link{save_history}} or \code{\link{render}}.\code{guided_tour}: Instead of choosing new projections at random like the grand tour, the 
-guided tour always tries to find a projection that is more interesting
-than the current projection.
+  Currently the index functions only work in 2d.
 
-Currently the index functions only work in 2d.
-
-Usually, you will not call this function directly, but will pass it to 
-a method that works with tour paths like \code{\link{animate}}, 
-\code{\link{save_history}} or \code{\link{render}}.
-
-
+  Usually, you will not call this function directly, but
+  will pass it to a method that works with tour paths like
+  \code{\link{animate}}, \code{\link{save_history}} or
+  \code{\link{render}}.
 }
 \seealso{\code{\link{cm}}, \code{\link{holes}} and \code{\link{lda_pp}}
 for examples of index functions.  The function should take a numeric
 matrix and return a single number, preferrably between 0 and 1.  
 \code{\link{search_geodesic}}, \code{\link{search_better}},
-\code{\link{search_better_random}} for different search strategies\code{\link{cm}}, \code{\link{holes}} and \code{\link{lda_pp}}
-for examples of index functions.  The function should take a numeric
-matrix and return a single number, preferrably between 0 and 1.  
-\code{\link{search_geodesic}}, \code{\link{search_better}},
 \code{\link{search_better_random}} for different search strategies}
-\arguments{\item{index_f}{the index function to optimise.}
-\item{d}{target dimensionality}
-\item{alpha}{the initial size of the search window, in radians}
-\item{cooling}{the amount the size of the search window should be adjusted
+\arguments{
+  \item{index_f}{the index function to optimise.}
+  \item{d}{target dimensionality}
+  \item{alpha}{the initial size of the search window, in radians}
+  \item{cooling}{the amount the size of the search window should be adjusted
 by after each step}
-\item{search_f}{the search strategy to use}
-\item{max.tries}{the maximum number of unsuccessful attempts to find
+  \item{search_f}{the search strategy to use}
+  \item{max.tries}{the maximum number of unsuccessful attempts to find
 a better projection before giving up}
-\item{...}{arguments sent to the search_f}
+  \item{...}{arguments sent to the search_f}
 }
 \examples{animate_xy(flea[, 1:3], guided_tour(holes), sphere = TRUE)
-animate_xy(flea[, 1:6], guided_tour(holes), sphere = TRUE)
-
-# save_history is particularly useful in conjunction
-#   with the
-# guided tour as it allows us to look at the tour path
-#   in many different
-# ways
-f <- flea[, 1:3]
-tries <- replicate(5, save_history(f, guided_tour(holes)), 
-    simplify = FALSE)animate_xy(flea[, 1:3], guided_tour(holes), sphere = TRUE)
 animate_xy(flea[, 1:6], guided_tour(holes), sphere = TRUE)
 
 # save_history is particularly useful in conjunction with the 
@@ -65,12 +45,3 @@ animate_xy(flea[, 1:6], guided_tour(holes), sphere = TRUE)
 # ways
 f <- flea[, 1:3]
 tries <- replicate(5, save_history(f, guided_tour(holes)), simplify = FALSE)}
-
-
-
-
-
-
-
-\alias{guided_tour}
-

@@ -1,59 +1,20 @@
 \name{display_ggobi}
-\alias{display_ggobi}
 \title{Display tour path with ggobi...}
-\description{Display tour path with ggobi}
-\details{Use ggobi to display a 2D tour.\code{display_ggobi}: Use ggobi to display a 2D tour.
 
+\description{
+  Display tour path with ggobi
+}
 
-\code{display_ggobi}: Use ggobi to display a 2D tour.
-
-
-\code{display_ggobi}: Use ggobi to display a 2D tour.
-
-
-\code{display_ggobi}: Use ggobi to display a 2D tour.
-
-
+\details{
+  Use ggobi to display a 2D tour.
 }
 \alias{display_ggobi}
 \alias{animate_ggobi}
-\arguments{\item{...}{other arguments passed on to \code{\link{animate}}}
+\arguments{
+  \item{...}{other arguments passed on to \code{\link{animate}}}
 }
 \examples{\dontrun{
-    animate_ggobi(flea[, 1:6])
-    # Spelling things out explicitly
-    animate(flea[, 1:6], grand_tour(), display_ggobi())
-}\dontrun{
-animate_ggobi(flea[, 1:6])
-# Spelling things out explicitly
-animate(flea[, 1:6], grand_tour(), display_ggobi())
-}\dontrun{
-animate_ggobi(flea[, 1:6])
-# Spelling things out explicitly
-animate(flea[, 1:6], grand_tour(), display_ggobi())
-}\dontrun{
-animate_ggobi(flea[, 1:6])
-# Spelling things out explicitly
-animate(flea[, 1:6], grand_tour(), display_ggobi())
-}\dontrun{
 animate_ggobi(flea[, 1:6])
 # Spelling things out explicitly
 animate(flea[, 1:6], grand_tour(), display_ggobi())
 }}
-
-\alias{display_ggobi}
-\alias{display_ggobi}
-\alias{animate_ggobi}
-
-\alias{display_ggobi}
-\alias{display_ggobi}
-\alias{animate_ggobi}
-
-\alias{display_ggobi}
-\alias{display_ggobi}
-\alias{animate_ggobi}
-
-\alias{display_ggobi}
-\alias{display_ggobi}
-\alias{animate_ggobi}
-
