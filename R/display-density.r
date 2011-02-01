@@ -68,7 +68,7 @@ display_dist <- function(method="density", center = TRUE, half_range = NULL, rug
     box(col="grey70")
     
     if (rug) {
-      segments(x, 0, x, 0.1)
+      segments(x, 0, x, 0.1, ...)
     }
     
     # Render tour axes

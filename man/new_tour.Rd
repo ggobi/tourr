@@ -1,19 +1,21 @@
 \name{new_tour}
 \alias{new_tour}
 \title{Create a new tour.}
-\usage{new_tour(data, tour_path, start)}
-
-\description{
-  Create a new tour.
+\usage{new_tour(data, tour_path, start)
+new_tour(data, tour_path, start)
 }
+\description{Create a new tour.}
+\details{The tour function provides the common machinery behind all tour methods:
+interpolating from basis to basis, and generating new bases when necessary.
+You should not have to call this function.\code{new_tour}: The tour function provides the common machinery behind all tour methods:
+interpolating from basis to basis, and generating new bases when necessary.
+You should not have to call this function.
 
-\details{
-  The tour function provides the common machinery behind
-  all tour methods: interpolating from basis to basis, and
-  generating new bases when necessary. You should not have
-  to call this function.
+
 }
 \seealso{\code{\link{save_history}}, \code{\link{render}} and
+\code{\link{animate}} for examples of functions that use this function
+to run dynamic tours.\code{\link{save_history}}, \code{\link{render}} and
 \code{\link{animate}} for examples of functions that use this function
 to run dynamic tours.}
 \keyword{hplot}
@@ -21,13 +23,22 @@ to run dynamic tours.}
 \keyword{internal}
 \value{a function with single argument, step_size.  This function returns
 a list containing the new projection, the currect target and the number
-of steps taken towards the target.}
-\arguments{
-  \item{data}{the data matrix to be projected}
-  \item{tour_path}{basis generator, a function that generates a new basis,
+of steps taken towards the target.\code{new_tour}: a function with single argument, step_size.  This function returns
+a list containing the new projection, the currect target and the number
+of steps taken towards the target.
+
+
+}
+\arguments{\item{data}{the data matrix to be projected}
+\item{tour_path}{basis generator, a function that generates a new basis,
 called with the previous projection and the data set.  For more
 complicated tour paths, this will need to be a closure with local
 variables.  Should return NULL if the tour should terminate}
-  \item{start}{starting projection, if omitted will use default projection 
+\item{start}{starting projection, if omitted will use default projection 
 from generator}
 }
+\alias{new_tour}
+\keyword{hplot}
+\keyword{dynamic}
+\keyword{internal}
+
