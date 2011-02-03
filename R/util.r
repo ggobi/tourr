@@ -58,6 +58,7 @@ blank_plot <- function(...) {
 #' Find the platform being used by the user
 #' 
 #' @keywords internal
+#' @export
 find_platform <- function() {
   os <- R.Version()$os
   gui <- .Platform$GUI
