@@ -1,7 +1,7 @@
 Package: tourr
 Type: Package
 Title: Implement tour methods in pure R code
-Version: 0.3.1
+Version: 0.4
 Author: Dianne Cook <dicook@iastate.edu>, Hadley Wickham
     <h.wickham@gmail.com>
 Maintainer: Hadley Wickham <h.wickham@gmail.com>
