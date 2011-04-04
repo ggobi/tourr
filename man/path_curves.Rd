@@ -20,6 +20,7 @@
 \examples{path1d <- save_history(flea[, 1:6], grand_tour(1), 10)
 path2d <- save_history(flea[, 1:6], grand_tour(2), 10)
 
+if (require("ggplot2")) {
 plot(path_curves(path1d))
 plot(path_curves(interpolate(path1d)))
 
@@ -34,4 +35,5 @@ qplot(step, value, data = df, group = obs:var, geom = "line", colour=var) + face
 
 qplot(`1`, `2`, data = cast(df, ... ~ var)) + 
 facet_wrap( ~ step) + 
-coord_equal()}
+coord_equal()
+}}

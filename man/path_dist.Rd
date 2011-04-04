@@ -41,8 +41,10 @@ d <- path_dist(bases)
 ord <- as.data.frame(cmdscale(d, 2))
 
 info <- cbind(ord, index_values)
+if (require("ggplot2")) {
 qplot(step, value, data = info, geom="line", group = try)
 qplot(V1, V2, data = info, geom="path", group = try) + 
 geom_point(aes(size = value)) + 
 coord_equal()
-last_plot() + facet_wrap(~ try)}
+last_plot() + facet_wrap(~ try)
+}}
