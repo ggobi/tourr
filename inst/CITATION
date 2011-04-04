@@ -1,0 +1,21 @@
+citHeader("To cite tourr in publications use:")
+
+citEntry(entry = "Article",
+  title        = "{tourr}: An {R} Package for Exploring Multivariate Data with Projections} ",
+  author       = personList(as.person("Hadley Wickham"),
+                   as.person("Dianne Cook"),
+                   as.person("Heike Hofmann"),
+                   as.person("Andreas Buja")),
+  journal      = "Journal of Statistical Software",
+  year         = "2011",
+  volume       = "40",
+  number       = "2",
+  pages        = "1--18",
+  url          = "http://www.jstatsoft.org/v40/i02/",
+
+  textVersion  =
+  paste("Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja (2011).",
+        "tourr: An R Package for Exploring Multivariate Data with Projections .",
+        "Journal of Statistical Software, 40(2), 1-18.",
+        "URL http://www.jstatsoft.org/v40/i02/.")
+)
