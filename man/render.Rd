@@ -8,6 +8,10 @@
   Render frames of animation to disk
 }
 \keyword{hplot}
+\references{Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
+(2011). tourr: An R Package for Exploring Multivariate Data with
+Projections. Journal of Statistical Software, 40(2), 1-18. 
+\url{http://www.jstatsoft.org/v40/i02/}.}
 \arguments{
   \item{data}{matrix, or data frame containing numeric columns}
   \item{tour_path}{tour path generator}
