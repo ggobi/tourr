@@ -17,5 +17,8 @@
   They work by zero'ing out the frozen variables and
   travelling in that restricted subspace.
 }
+\section{To do}{
+  eliminate these functions
+}
 \keyword{internal}
 

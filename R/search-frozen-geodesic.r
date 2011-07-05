@@ -6,7 +6,7 @@
 #' zero'ing out the frozen variables and travelling in that restricted
 #' subspace.  
 #' 
-#' @TODO eliminate these functions
+#' @section To do: eliminate these functions
 #' @keywords internal
 search_frozen_geodesic <- function(current, index, max.tries = 5, n = 5, frozen) {
   cur_index <- index(thaw(current, frozen))
