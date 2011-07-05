@@ -1,13 +1,21 @@
 \name{new_geodesic_path}
 \alias{new_geodesic_path}
 \title{Generate a geodesic path between bases supplied by generator...}
-\usage{new_geodesic_path(name, generator, frozen)}
+\usage{
+  new_geodesic_path(name, generator, frozen = NULL)
+}
+\arguments{
+  \item{name}{name to give tour path}
 
+  \item{generate}{basis generator function}
+
+  \item{frozen}{matrix giving frozen variables, as
+  described in \code{\link{freeze}}}
+}
 \description{
   Generate a geodesic path between bases supplied by
   generator
 }
-
 \details{
   A tour path is a function that when called with the
   current projection and data set, generates sequence of
@@ -27,9 +35,4 @@
   stop.
 }
 \keyword{internal}
-\arguments{
-  \item{name}{name to give tour path}
-  \item{generate}{basis generator function}
-  \item{frozen}{matrix giving frozen variables, as described in 
-\code{\link{freeze}}}
-}
+

@@ -8,21 +8,51 @@ Maintainer: Hadley Wickham <h.wickham@gmail.com>
 Description: Implements geodesic interpolation and basis
     generation functions that allow you to create new tour
     methods from R.
-Depends: R (>= 2.7)
-Suggests: rggobi, TeachingDemos, ash, testthat, colorspace,
+Depends:
+    R (>= 2.7)
+Suggests:
+    rggobi,
+    TeachingDemos,
+    ash,
+    testthat,
+    colorspace,
     ggplot2
 License: MIT
 LazyData: true
-Collate: 'animate.r' 'display-andrews.r'
-    'display-density.r' 'display-depth.r' 'display-faces.r'
-    'display-ggobi.r' 'display-image.r' 'display-pcp.r'
-    'display-scatmat.r' 'display-stars.r'
-    'display-stereo.r' 'display-trails.r' 'display-xy.r'
-    'geodesic-path.r' 'geodesic.r' 'history.r'
-    'interesting-indices.r' 'interpolate.r'
-    'linear-algebra.r' 'path-andrews.r' 'path-dist.r'
-    'path-index.r' 'range.r' 'render.r' 'search-better.r'
-    'search-frozen-geodesic.r' 'search-geodesic.r'
-    'tour-dependence.r' 'tour-frozen.r' 'tour-grand.r'
-    'tour-guided.r' 'tour-little.r' 'tour-local.r'
-    'tour-planned.r' 'tour.r' 'util.r'
+Collate:
+    'animate.r'
+    'display-andrews.r'
+    'display-density.r'
+    'display-depth.r'
+    'display-faces.r'
+    'display-ggobi.r'
+    'display-image.r'
+    'display-pcp.r'
+    'display-scatmat.r'
+    'display-stars.r'
+    'display-stereo.r'
+    'display-trails.r'
+    'display-xy.r'
+    'geodesic-path.r'
+    'geodesic.r'
+    'history.r'
+    'interesting-indices.r'
+    'interpolate.r'
+    'linear-algebra.r'
+    'path-andrews.r'
+    'path-dist.r'
+    'path-index.r'
+    'range.r'
+    'render.r'
+    'search-better.r'
+    'search-frozen-geodesic.r'
+    'search-geodesic.r'
+    'tour-dependence.r'
+    'tour-frozen.r'
+    'tour-grand.r'
+    'tour-guided.r'
+    'tour-little.r'
+    'tour-local.r'
+    'tour-planned.r'
+    'tour.r'
+    'util.r'

@@ -1,33 +1,43 @@
 \name{new_tour}
 \alias{new_tour}
 \title{Create a new tour.}
-\usage{new_tour(data, tour_path, start)}
+\usage{
+  new_tour(data, tour_path, start = NULL)
+}
+\arguments{
+  \item{data}{the data matrix to be projected}
 
+  \item{tour_path}{basis generator, a function that
+  generates a new basis, called with the previous
+  projection and the data set.  For more complicated tour
+  paths, this will need to be a closure with local
+  variables.  Should return NULL if the tour should
+  terminate}
+
+  \item{start}{starting projection, if omitted will use
+  default projection from generator}
+}
+\value{
+  a function with single argument, step_size.  This
+  function returns a list containing the new projection,
+  the currect target and the number of steps taken towards
+  the target.
+}
 \description{
   Create a new tour.
 }
-
 \details{
   The tour function provides the common machinery behind
   all tour methods: interpolating from basis to basis, and
   generating new bases when necessary. You should not have
   to call this function.
 }
-\seealso{\code{\link{save_history}}, \code{\link{render}} and
-\code{\link{animate}} for examples of functions that use this function
-to run dynamic tours.}
-\keyword{hplot}
-\keyword{dynamic}
-\keyword{internal}
-\value{a function with single argument, step_size.  This function returns
-a list containing the new projection, the currect target and the number
-of steps taken towards the target.}
-\arguments{
-  \item{data}{the data matrix to be projected}
-  \item{tour_path}{basis generator, a function that generates a new basis,
-called with the previous projection and the data set.  For more
-complicated tour paths, this will need to be a closure with local
-variables.  Should return NULL if the tour should terminate}
-  \item{start}{starting projection, if omitted will use default projection 
-from generator}
+\seealso{
+  \code{\link{save_history}}, \code{\link{render}} and
+  \code{\link{animate}} for examples of functions that use
+  this function to run dynamic tours.
 }
+\keyword{dynamic}
+\keyword{hplot}
+\keyword{internal}
+

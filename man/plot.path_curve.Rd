@@ -1,12 +1,12 @@
 \name{plot.path_curve}
 \alias{plot.path_curve}
 \title{Plot history curves.}
-\usage{\method{plot}{path_curve} (x, ...)}
-
+\usage{
+  \method{plot}{path_curve} (x, ...)
+}
 \description{
   Plot history curves.
 }
-
 \details{
   The default plot method is a line plot with step on the x
   axis and value on the y axis.  Each observation is drawn
@@ -18,3 +18,4 @@
   \code{\link{path_curves}}
 }
 \keyword{internal}
+

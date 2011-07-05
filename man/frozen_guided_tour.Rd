@@ -1,22 +1,33 @@
 \name{frozen_guided_tour}
 \alias{frozen_guided_tour}
 \title{The frozen guided tour...}
-\usage{frozen_guided_tour(frozen, index_f, d=2, max.tries=25)}
+\usage{
+  frozen_guided_tour(frozen, index_f, d = 2, max.tries =
+  25)
+}
+\arguments{
+  \item{frozen}{matrix of frozen variables, as described in
+  \code{\link{freeze}}}
 
+  \item{index_f}{the index function to optimise.}
+
+  \item{d}{target dimensionality}
+
+  \item{max.tries}{the maximum number of unsuccessful
+  attempts to find a better projection before giving up}
+}
 \description{
   The frozen guided tour
 }
-\seealso{\code{\link{cm}}, \code{\link{holes}} and \code{\link{lda_pp}}
-for examples of index functions.  The function should take a numeric
-matrix and return a single number, preferrably between 0 and 1.}
-\arguments{
-  \item{frozen}{matrix of frozen variables, as described in
-\code{\link{freeze}}}
-  \item{index_f}{the index function to optimise.}
-  \item{d}{target dimensionality}
-  \item{max.tries}{the maximum number of unsuccessful attempts to find
-a better projection before giving up}
-}
-\examples{frozen <- matrix(NA, nrow = 4, ncol = 2)
+\examples{
+frozen <- matrix(NA, nrow = 4, ncol = 2)
 frozen[3, ] <- .5
-animate_xy(flea[, 1:4], frozen_guided_tour(frozen, holes))}
+animate_xy(flea[, 1:4], frozen_guided_tour(frozen, holes))
+}
+\seealso{
+  \code{\link{cm}}, \code{\link{holes}} and
+  \code{\link{lda_pp}} for examples of index functions.
+  The function should take a numeric matrix and return a
+  single number, preferrably between 0 and 1.
+}
+

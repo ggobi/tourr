@@ -1,12 +1,17 @@
 \name{local_tour}
 \alias{local_tour}
 \title{A local tour path.}
-\usage{local_tour(start, angle=pi/4)}
+\usage{
+  local_tour(start, angle = pi/4)
+}
+\arguments{
+  \item{start}{initial projection matrix}
 
+  \item{angle}{distance in radians to stay within}
+}
 \description{
   A local tour path.
 }
-
 \details{
   The local tour alternates between the starting position
   and a nearby random projection.
@@ -16,10 +21,9 @@
   \code{\link{animate}}, \code{\link{save_history}} or
   \code{\link{render}}.
 }
-\arguments{
-  \item{start}{initial projection matrix}
-  \item{angle}{distance in radians to stay within}
-}
-\examples{animate_xy(flea[, 1:3], local_tour(basis_init(3, 2)))
+\examples{
+animate_xy(flea[, 1:3], local_tour(basis_init(3, 2)))
 animate_xy(flea[, 1:3], local_tour(basis_init(3, 2), 0.2))
-animate_xy(flea[, 1:3], local_tour(basis_random(3, 2), 0.2))}
+animate_xy(flea[, 1:3], local_tour(basis_random(3, 2), 0.2))
+}
+

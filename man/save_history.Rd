@@ -1,33 +1,42 @@
 \name{save_history}
 \alias{save_history}
 \title{Save tour history.}
-\usage{save_history(data, tour_path=grand_tour(), max_bases=100,
-    start, rescale=TRUE, sphere=FALSE, step_size=Inf)}
+\usage{
+  save_history(data, tour_path = grand_tour(), max_bases =
+  100, start = NULL, rescale = TRUE, sphere = FALSE,
+  step_size = Inf)
+}
+\arguments{
+  \item{data}{matrix, or data frame containing numeric
+  columns}
 
+  \item{tour_path}{tour path generator}
+
+  \item{max_bases}{maximum number of new bases to generate.
+  Some tour paths (like the guided tour) may generate less
+  than the maximum.}
+
+  \item{start}{starting projection, if you want to specify
+  one}
+
+  \item{rescale}{if true, rescale all variables to range
+  [0,1]?}
+
+  \item{sphere}{if true, sphere all variables}
+
+  \item{step_size}{distance between each step - defaults to
+  \code{Inf} which forces new basis generation at each
+  step.}
+}
 \description{
   Save tour history.
 }
-
 \details{
   Save a tour path so it can later be displayed in many
   different ways.
 }
-\references{Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
-(2011). tourr: An R Package for Exploring Multivariate Data with
-Projections. Journal of Statistical Software, 40(2), 1-18. 
-\url{http://www.jstatsoft.org/v40/i02/}.}
-\arguments{
-  \item{data}{matrix, or data frame containing numeric columns}
-  \item{tour_path}{tour path generator}
-  \item{max_bases}{maximum number of new bases to generate.  Some tour paths
-(like the guided tour) may generate less than the maximum.}
-  \item{start}{starting projection, if you want to specify one}
-  \item{rescale}{if true, rescale all variables to range [0,1]?}
-  \item{sphere}{if true, sphere all variables}
-  \item{step_size}{distance between each step - defaults to \code{Inf} which
-forces new basis generation at each step.}
-}
-\examples{# You can use a saved history to replay tours with different visualisations
+\examples{
+# You can use a saved history to replay tours with different visualisations
 
 t1 <- save_history(flea[, 1:6], max = 3)
 animate_xy(flea[, 1:6], planned_tour(t1))
@@ -44,10 +53,18 @@ animate_dist(flea[, 1:6], planned_tour(t1))
 testdata <- matrix(rnorm(100*3), ncol=3)
 testdata[1:50, 1] <- testdata[1:50, 1] + 10
 testdata <- sphere(testdata)
-t2 <- save_history(testdata, guided_tour(holes, max.tries = 100), 
+t2 <- save_history(testdata, guided_tour(holes, max.tries = 100),
 max = 5, rescale=FALSE)
 animate_xy(testdata, planned_tour(t2))
 
 # Or you can use saved histories to visualise the path that the tour took.
 plot(path_index(interpolate(t2), holes))
-plot(path_curves(interpolate(t2)))}
+plot(path_curves(interpolate(t2)))
+}
+\references{
+  Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
+  (2011). tourr: An R Package for Exploring Multivariate
+  Data with Projections. Journal of Statistical Software,
+  40(2), 1-18. \url{http://www.jstatsoft.org/v40/i02/}.
+}
+

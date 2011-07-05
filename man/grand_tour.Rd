@@ -1,12 +1,15 @@
 \name{grand_tour}
 \alias{grand_tour}
 \title{A grand tour path.}
-\usage{grand_tour(d=2)}
-
+\usage{
+  grand_tour(d = 2)
+}
+\arguments{
+  \item{d}{target dimensionality}
+}
 \description{
   A grand tour path.
 }
-
 \details{
   This method generates target bases by randomly sampling
   on the space of all d-dimensional planes in p-space.
@@ -16,10 +19,8 @@
   \code{\link{animate}}, \code{\link{save_history}} or
   \code{\link{render}}.
 }
-\arguments{
-  \item{d}{target dimensionality}
-}
-\examples{# All animation methods use the grand tour path by default
+\examples{
+# All animation methods use the grand tour path by default
 animate_dist(flea[, 1:6])
 animate_xy(flea[, 1:6])
 animate_pcp(flea[, 1:6])
@@ -36,4 +37,6 @@ args(tour2d)
 tour2d(NULL, mtcars)
 # the data argument is just used to determine the correct dimensionality
 # of the output matrix
-tour2d(NULL, mtcars[, 1:2])}
+tour2d(NULL, mtcars[, 1:2])
+}
+

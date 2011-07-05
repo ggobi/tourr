@@ -1,12 +1,17 @@
 \name{dependence_tour}
 \alias{dependence_tour}
 \title{A dependence tour path.}
-\usage{dependence_tour(pos)}
-
+\usage{
+  dependence_tour(pos)
+}
+\arguments{
+  \item{pos}{a numeric vector describing which variables
+  are mapped to which dimensions: 1 corresponds to first, 2
+  to second etc.}
+}
 \description{
   A dependence tour path.
 }
-
 \details{
   The dependence tour combines a set of independent 1d
   tours to produce a nd tour.  For the special case of 2d,
@@ -20,10 +25,9 @@
   \code{\link{animate}}, \code{\link{save_history}} or
   \code{\link{render}}.
 }
-\arguments{
-  \item{pos}{a numeric vector describing which variables are mapped to
-which dimensions: 1 corresponds to first, 2 to second etc.}
-}
-\examples{animate_xy(flea[, 1:3], dependence_tour(c(1, 2, 2)))
+\examples{
+animate_xy(flea[, 1:3], dependence_tour(c(1, 2, 2)))
 animate_xy(flea[, 1:4], dependence_tour(c(1, 2, 1, 2)))
-animate_pcp(flea[, 1:6], dependence_tour(c(1, 2, 3, 2, 1, 3)))}
+animate_pcp(flea[, 1:6], dependence_tour(c(1, 2, 3, 2, 1, 3)))
+}
+
