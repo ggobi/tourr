@@ -23,7 +23,7 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5) {
   while(try < max.tries) {
     # Try 5 random directions and pick the one that has the highest
     # index after a small step in either direction
-    direction <- find_best_dir(current, index, n)
+    direction <- find_best_dir(current, index, tries = n)
     
     # Travel halfway round (pi / 4 radians) the sphere in that direction
     # looking for the best projection

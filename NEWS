@@ -1,3 +1,10 @@
+Version 0.4.1
+------------------------------------------------------------------------------
+
+* `search_geodesic` was passing the wrong parameter to `find_best_dir` causing
+  it to search very far away instead of very close, and negatively impacting
+  performance (thanks to Mohit Dayal for reporting the bug)
+
 Version 0.4
 ------------------------------------------------------------------------------
 
