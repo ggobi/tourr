@@ -8,9 +8,6 @@
   \item{x}{numeric matrix or vector}
 }
 \description{
-  Normalise a numeric matrix.
-}
-\details{
   Ensure that columns of a numeric matrix have norm 1
 }
 \keyword{algebra}

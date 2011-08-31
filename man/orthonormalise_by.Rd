@@ -10,9 +10,6 @@
   \item{by}{numeric matrix, same size as x}
 }
 \description{
-  Orthonnormalise one matrix by another.
-}
-\details{
   This ensures that each column in x is orthogonal to the
   corresponding column in by.
 }

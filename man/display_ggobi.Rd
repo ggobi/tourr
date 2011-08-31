@@ -1,15 +1,12 @@
 \name{display_ggobi}
 \alias{animate_ggobi}
 \alias{display_ggobi}
-\title{Display tour path with ggobi...}
+\title{Display tour path with ggobi}
 \arguments{
   \item{...}{other arguments passed on to
   \code{\link{animate}}}
 }
 \description{
-  Display tour path with ggobi
-}
-\details{
   Use ggobi to display a 2D tour.
 }
 \examples{

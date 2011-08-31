@@ -1,6 +1,6 @@
 \name{basis_random}
 \alias{basis_random}
-\title{Generate a random basis...}
+\title{Generate a random basis}
 \usage{
   basis_random(n, d = 2)
 }

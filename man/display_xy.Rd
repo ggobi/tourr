@@ -1,7 +1,7 @@
 \name{display_xy}
 \alias{animate_xy}
 \alias{display_xy}
-\title{Display tour path with a scatterplot...}
+\title{Display tour path with a scatterplot}
 \usage{
   display_xy(center = TRUE, axes = "center", half_range =
   NULL, col = "black", pch = 20, ...)
@@ -27,9 +27,6 @@
   \code{\link{animate}} and \code{\link{display_xy}}}
 }
 \description{
-  Display tour path with a scatterplot
-}
-\details{
   Animate a 2D tour path with a scatterplot.
 }
 \examples{

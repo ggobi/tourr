@@ -16,9 +16,6 @@
   \code{\link{animate}}}
 }
 \description{
-  Image tour path animation.
-}
-\details{
   Animate a 1d tour path with an image plot.  This
   animation requires a different input data structure, a 3d
   array.  The first two dimensions are locations on a grid,

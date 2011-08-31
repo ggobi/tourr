@@ -10,16 +10,14 @@
   to second etc.}
 }
 \description{
-  A dependence tour path.
-}
-\details{
   The dependence tour combines a set of independent 1d
   tours to produce a nd tour.  For the special case of 2d,
   this is known as a correlation tour.  This tour
   corresponds to the multivariate method known as
   generalised canonical correlation, and is used to
   investigate dependence between groups of variables.
-
+}
+\details{
   Usually, you will not call this function directly, but
   will pass it to a method that works with tour paths like
   \code{\link{animate}}, \code{\link{save_history}} or

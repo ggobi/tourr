@@ -1,6 +1,6 @@
 \name{project3d}
 \alias{project3d}
-\title{Stereographic projection...}
+\title{Stereographic projection}
 \usage{
   project3d(d3, length = par("din")[1] * 25.4, z0 = 300, d
   = 30)
@@ -15,9 +15,6 @@
   \item{d}{half interpupilary distance, mm}
 }
 \description{
-  Stereographic projection
-}
-\details{
   Math from http://dogfeathers.com/java/3dproj.html
 }
 \keyword{internal}

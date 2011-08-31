@@ -14,9 +14,6 @@
   \code{\link{animate}}}
 }
 \description{
-  Anaglpyh tour path animation.
-}
-\details{
   Uses red-blue anaglyphs to display a 3d tour path.
   You'll need some red- blue glasses to get much out of
   this displays!

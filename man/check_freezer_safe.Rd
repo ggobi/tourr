@@ -1,6 +1,6 @@
 \name{check_freezer_safe}
 \alias{check_freezer_safe}
-\title{Check matrix is a valid frozen matrix...}
+\title{Check matrix is a valid frozen matrix}
 \usage{
   check_freezer_safe(frozen)
 }

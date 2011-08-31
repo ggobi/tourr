@@ -1,6 +1,6 @@
 \name{new_geodesic_path}
 \alias{new_geodesic_path}
-\title{Generate a geodesic path between bases supplied by generator...}
+\title{Generate a geodesic path between bases supplied by generator}
 \usage{
   new_geodesic_path(name, generator, frozen = NULL)
 }
@@ -13,10 +13,6 @@
   described in \code{\link{freeze}}}
 }
 \description{
-  Generate a geodesic path between bases supplied by
-  generator
-}
-\details{
   A tour path is a function that when called with the
   current projection and data set, generates sequence of
   \code{\link{geodesic_path}}s.  The path can either span
@@ -24,7 +20,8 @@
   be restricted to a subspace with the frozen argument.
   More details are given in the documentation for
   \code{\link{freeze}}.
-
+}
+\details{
   Subsequent frames are guaranteed to be at least 0.001
   radians away from the current frame.  If after 10 tries
   the generator does not give a new basis at least this far

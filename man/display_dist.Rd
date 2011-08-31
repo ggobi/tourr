@@ -25,9 +25,6 @@
   \code{\link{animate}}}
 }
 \description{
-  1d distribution tour path animation.
-}
-\details{
   Animate a 1d tour path with a density plot or histogram.
 }
 \examples{

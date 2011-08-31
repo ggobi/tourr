@@ -10,11 +10,9 @@
   \code{\link{stars}}}
 }
 \description{
-  Star glyph tour path animation.
+  Animate a nD tour path with star glyphs.
 }
 \details{
-  Animate a nD tour path with star glyphs.
-
   Currently, scaling doesn't seem to be computed absolutely
   correctly, as centres move around as well as outside
   points.

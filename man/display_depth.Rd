@@ -1,7 +1,7 @@
 \name{display_depth}
 \alias{animate_depth}
 \alias{display_depth}
-\title{Display 3d projection with depth cues...}
+\title{Display 3d projection with depth cues}
 \usage{
   display_depth(center = TRUE, half_range = NULL, ...)
 }
@@ -19,9 +19,6 @@
   \code{\link{animate}}}
 }
 \description{
-  Display 3d projection with depth cues
-}
-\details{
   Suggestion to use gray background and colour saturation
   (instead of gray shading) by Graham Wills.
 }

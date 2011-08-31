@@ -39,15 +39,13 @@
   an (invisible) list of bases visited during this tour
 }
 \description{
-  Animate a tour path.
-}
-\details{
   This is the function that powers all of the tour
   animations.  If you want to write your own tour animation
   method, the best place to start is by looking at the code
   for animation methods that have already implemented in
   the package.
-
+}
+\details{
   See \code{\link{render}} to render animations to disk.
 }
 \examples{

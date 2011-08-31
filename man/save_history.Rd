@@ -29,9 +29,6 @@
   step.}
 }
 \description{
-  Save tour history.
-}
-\details{
   Save a tour path so it can later be displayed in many
   different ways.
 }

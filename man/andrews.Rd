@@ -1,6 +1,6 @@
 \name{andrews}
 \alias{andrews}
-\title{Compute Andrews' curves...}
+\title{Compute Andrews' curves}
 \usage{
   andrews(x)
 }
@@ -11,9 +11,6 @@
   a function with single argument, theta
 }
 \description{
-  Compute Andrews' curves
-}
-\details{
   This function takes a numeric vector of input, and
   returns a function which allows you to compute the value
   of the Andrew's curve at every point along its path from

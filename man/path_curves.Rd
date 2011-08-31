@@ -11,9 +11,6 @@
   \item{data}{dataset to be projected on to bases}
 }
 \description{
-  Draw the path that the geodesics took.
-}
-\details{
   This computes the projected values of each observation at
   each step, and allows you to recreate static views of the
   animated plots.

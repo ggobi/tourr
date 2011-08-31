@@ -6,10 +6,6 @@
   5, frozen)
 }
 \description{
-  Search for most interesting projection along frozen
-  geodesics.
-}
-\details{
   These three functions perform a corresponding role to
   \code{\link{search_geodesic}},
   \code{\link{find_best_dir}} and

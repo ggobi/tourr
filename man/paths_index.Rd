@@ -12,9 +12,6 @@
   projection}
 }
 \description{
-  Compute index value for many histories.
-}
-\details{
   This is a convenience method that returns a data frame
   summarising the index values for multiple tour paths.
 }

@@ -10,9 +10,6 @@
   \item{angle}{target distance (in radians) between bases}
 }
 \description{
-  Interpolate geodesically between bases.
-}
-\details{
   This function takes a set of bases and produces a tour by
   geodesically interpolating between each basis
 }

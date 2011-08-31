@@ -1,6 +1,6 @@
 \name{frozen_guided_tour}
 \alias{frozen_guided_tour}
-\title{The frozen guided tour...}
+\title{The frozen guided tour}
 \usage{
   frozen_guided_tour(frozen, index_f, d = 2, max.tries =
   25)

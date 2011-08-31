@@ -10,9 +10,6 @@
   \code{\link{animate}}}
 }
 \description{
-  Andrews' curves tour path animation.
-}
-\details{
   Animate a nD tour path with Andrews' curves.  For more
   details about Andrew's curves, see \code{\link{andrews}}
 }

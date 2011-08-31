@@ -8,12 +8,10 @@
   \item{d}{target dimensionality}
 }
 \description{
-  A grand tour path.
-}
-\details{
   This method generates target bases by randomly sampling
   on the space of all d-dimensional planes in p-space.
-
+}
+\details{
   Usually, you will not call this function directly, but
   will pass it to a method that works with tour paths like
   \code{\link{animate}}, \code{\link{save_history}} or

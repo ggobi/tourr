@@ -1,18 +1,16 @@
 \name{freeze}
 \alias{freeze}
 \alias{thaw}
-\title{Freeze and thaw matrices...}
+\title{Freeze and thaw matrices}
 \usage{
   freeze(input, frozen)
 }
 \description{
-  Freeze and thaw matrices
-}
-\details{
   Some terminology: * frozen variables: the variables that
   have fixed values * warm variables: the remaining
   variables that vary freely
-
+}
+\details{
   A frozen matrix specifies which variables to fix in a
   projection matrix. Warm variables should be missing
   (\code{NA}) while frozen variables should be set to their

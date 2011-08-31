@@ -1,6 +1,6 @@
 \name{draw_tour_axes}
 \alias{draw_tour_axes}
-\title{Draw tour axes with base graphics...}
+\title{Draw tour axes with base graphics}
 \usage{
   draw_tour_axes(proj, labels, limits, position)
 }

@@ -24,9 +24,6 @@
   the target.
 }
 \description{
-  Create a new tour.
-}
-\details{
   The tour function provides the common machinery behind
   all tour methods: interpolating from basis to basis, and
   generating new bases when necessary. You should not have

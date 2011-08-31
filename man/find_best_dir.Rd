@@ -14,9 +14,6 @@
   \item{number}{of random steps to take}
 }
 \description{
-  Find the most promising direction to travel in.
-}
-\details{
   Starting from the current projection, pick \code{tries}
   random location and take a small step towards and away
   from each location.  The most promising direction has the

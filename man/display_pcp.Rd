@@ -10,11 +10,9 @@
   \code{\link{animate}}}
 }
 \description{
-  Parallel coordinates tour path animation.
+  Animate a nD tour path with a parallel coordinates plot.
 }
 \details{
-  Animate a nD tour path with a parallel coordinates plot.
-
   The lines show the observations, and the points, the
   values of the projection matrix.
 }

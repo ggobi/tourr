@@ -10,11 +10,9 @@
   \code{\link{animate}}}
 }
 \description{
-  Scatterplot matrix tour path animation.
+  Animate a nD tour path with a scatterplot matrix.
 }
 \details{
-  Animate a nD tour path with a scatterplot matrix.
-
   The lines show the observations, and the points, the
   values of the projection matrix.
 }

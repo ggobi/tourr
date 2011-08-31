@@ -10,9 +10,6 @@
   \item{d}{dimensionality of target projection}
 }
 \description{
-  Generate initial basis.
-}
-\details{
   First two variables are projected on first two axes.
 }
 \keyword{internal}

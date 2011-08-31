@@ -20,10 +20,6 @@
   direction}
 }
 \description{
-  Search for most interesting projection along random
-  geodesics.
-}
-\details{
   This is a novel method for finding more interesting
   projections for the guided tour.  It works by first
   taking a small step in \code{n} random directions, and
@@ -32,7 +28,8 @@
   best direction is found, it performs a linear search
   along the geodesic in that direction, traveling up to
   half way around the sphere.
-
+}
+\details{
   You should not to have call this function directly, but
   should supply it to the \code{\link{guided_tour}} as a
   search strategy.

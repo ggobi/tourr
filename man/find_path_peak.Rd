@@ -15,9 +15,6 @@
   radians}
 }
 \description{
-  Find the most interesting projection along a geodesic.
-}
-\details{
   Use \code{\link{optimize}} to find the most interesting
   projection amongst all projections on a geodesic.  This
   method assumes that the function is continuous with a

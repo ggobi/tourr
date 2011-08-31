@@ -1,6 +1,6 @@
 \name{xnul}
 \alias{xnul}
-\title{A null function...}
+\title{A null function}
 \usage{
   nul(...)
 }
@@ -8,9 +8,6 @@
   \item{...}{all arguments to \code{...} are ignore}
 }
 \description{
-  A null function
-}
-\details{
   This function does nothing, and is a useful default
   callback function
 }

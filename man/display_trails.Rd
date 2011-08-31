@@ -1,7 +1,7 @@
 \name{display_trails}
 \alias{animate_trails}
 \alias{display_trails}
-\title{Display tour path with trails...}
+\title{Display tour path with trails}
 \usage{
   display_trails(center = TRUE, axes = "center", half_range
   = NULL, col = "black", pch = 20, past = 3, ...)
@@ -30,9 +30,6 @@
   \code{\link{animate}} and \code{\link{display_xy}}}
 }
 \description{
-  Display tour path with trails
-}
-\details{
   Animate a 2D tour path with a point trails
 }
 

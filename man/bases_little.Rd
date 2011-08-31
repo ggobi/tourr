@@ -1,6 +1,6 @@
 \name{bases_little}
 \alias{bases_little}
-\title{Generate bases for the little tour...}
+\title{Generate bases for the little tour}
 \usage{
   bases_little(p, d = 2)
 }

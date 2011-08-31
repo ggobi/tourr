@@ -24,14 +24,12 @@
   \item{...}{arguments sent to the search_f}
 }
 \description{
-  A guided tour path.
-}
-\details{
   Instead of choosing new projections at random like the
   grand tour, the guided tour always tries to find a
   projection that is more interesting than the current
   projection.
-
+}
+\details{
   Currently the index functions only work in 2d.
 
   Usually, you will not call this function directly, but
