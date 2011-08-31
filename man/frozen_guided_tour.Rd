@@ -25,7 +25,7 @@ frozen[3, ] <- .5
 animate_xy(flea[, 1:4], frozen_guided_tour(frozen, holes))
 }
 \seealso{
-  \code{\link{cm}}, \code{\link{holes}} and
+  \code{\link{cmass}}, \code{\link{holes}} and
   \code{\link{lda_pp}} for examples of index functions.
   The function should take a numeric matrix and return a
   single number, preferrably between 0 and 1.

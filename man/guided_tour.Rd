@@ -48,7 +48,7 @@ f <- flea[, 1:3]
 tries <- replicate(5, save_history(f, guided_tour(holes)), simplify = FALSE)
 }
 \seealso{
-  \code{\link{cm}}, \code{\link{holes}} and
+  \code{\link{cmass}}, \code{\link{holes}} and
   \code{\link{lda_pp}} for examples of index functions.
   The function should take a numeric matrix and return a
   single number, preferrably between 0 and 1.
