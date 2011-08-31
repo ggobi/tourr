@@ -46,7 +46,7 @@ andrews <- function(x) {
 #' animate_andrews(flea[, 1:6], grand_tour(d = 6))
 #' 
 #' # It's easy to experiment with different tour paths:
-#' animate_andrews(flea[, 1:6], guided_tour(cm))
+#' animate_andrews(flea[, 1:6], guided_tour(cmass))
 display_andrews <- function(...) {
   grid <- NULL
   init <- function(data) {

@@ -24,7 +24,7 @@ holes <- function(mat) {
 #' @param mat matrix being used
 #' @keywords hplot
 #' @export
-cm <- function(mat)
+cmass <- function(mat)
   1 - holes(mat)
 
 #' LDA projection pursuit index.
