@@ -6,6 +6,8 @@
   display_trails(center = TRUE, axes = "center",
     half_range = NULL, col = "black", pch = 20, past = 3,
     ...)
+
+  animate_trails(data, tour_path = grand_tour(), ...)
 }
 \arguments{
   \item{axes}{position of the axes: center, bottomleft or
@@ -29,6 +31,12 @@
 
   \item{...}{other arguments passed on to
   \code{\link{animate}} and \code{\link{display_xy}}}
+
+  \item{data}{matrix, or data frame containing numeric
+  columns}
+
+  \item{tour_path}{tour path generator, defaults to 2d
+  grand tour}
 }
 \description{
   Animate a 2D tour path with a point trails

@@ -8,8 +8,7 @@
 #' @param ... other arguments passed on to \code{\link{stars}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
-#' @aliases display_stars animate_stars
-#' @export display_stars animate_stars
+#' @export
 #' @examples
 #' animate_stars(flea[1:10, 1:6])
 #' animate_stars(flea[1:10, 1:6], grand_tour(5))
@@ -35,6 +34,9 @@ display_stars <- function(...) {
 }
 
 
+#' @rdname display_stars
+#' @inheritParams animate
+#' @export
 animate_stars <- function(data, tour_path = grand_tour(3), ...) {
 
   animate(

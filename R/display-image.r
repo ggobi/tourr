@@ -10,8 +10,7 @@
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
-#' @aliases display_image animate_image
-#' @export display_image animate_image
+#' @export
 #' @examples
 #' str(ozone)
 #' animate_image(ozone)
@@ -42,6 +41,9 @@ display_image <- function(xs, ys, ...) {
 }
 
 
+#' @rdname display_image
+#' @inheritParams animate
+#' @export
 animate_image <- function(data, tour_path = grand_tour(1), ...) {
   xs <- dim(data)[1]
   ys <- dim(data)[2]

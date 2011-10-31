@@ -8,8 +8,7 @@
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
-#' @aliases display_scatmat animate_scatmat
-#' @export display_scatmat animate_scatmat
+#' @export
 #' @examples
 #' animate_scatmat(flea[, 1:6], grand_tour(2))
 #' animate_scatmat(flea[, 1:6], grand_tour(6))
@@ -31,6 +30,9 @@ display_scatmat <- function(...) {
 }
 
 
+#' @rdname display_scatmat
+#' @inheritParams animate
+#' @export
 animate_scatmat <- function(data, tour_path = grand_tour(3), ...) {
   animate(data = data, tour_path = tour_path, 
     display = display_scatmat(...), ...)

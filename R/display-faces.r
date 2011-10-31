@@ -9,8 +9,7 @@
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
-#' @aliases display_faces animate_faces
-#' @export display_faces animate_faces
+#' @export
 #' @examples
 #' # The drawing code is fairly slow, so this animation works best with a 
 #' # limited number of cases
@@ -36,6 +35,9 @@ display_faces <- function(...) {
 }
 
 
+#' @rdname display_faces
+#' @inheritParams animate
+#' @export
 animate_faces <- function(data, tour_path = grand_tour(3), ...) {
   require("TeachingDemos")
   animate(data, tour_path, display = display_faces(...), ...)

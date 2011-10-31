@@ -11,8 +11,7 @@
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
-#' @aliases display_depth animate_depth
-#' @export display_depth animate_depth
+#' @export
 #' @examples
 #' animate_depth(flea[, 1:6])
 display_depth <- function(center = TRUE, half_range = NULL, ...) {
@@ -59,6 +58,9 @@ display_depth <- function(center = TRUE, half_range = NULL, ...) {
 }
 
 
+#' @rdname display_depth
+#' @inheritParams animate
+#' @export
 animate_depth <- function(data, tour_path = grand_tour(3), ...) {  
 
   animate(

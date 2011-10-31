@@ -4,6 +4,8 @@
 \title{Image tour path animation.}
 \usage{
   display_image(xs, ys, ...)
+
+  animate_image(data, tour_path = grand_tour(1), ...)
 }
 \arguments{
   \item{xs}{x limit that is used in making the size of the
@@ -14,6 +16,12 @@
 
   \item{...}{other arguments passed on to
   \code{\link{animate}}}
+
+  \item{data}{matrix, or data frame containing numeric
+  columns}
+
+  \item{tour_path}{tour path generator, defaults to 2d
+  grand tour}
 }
 \description{
   Animate a 1d tour path with an image plot.  This

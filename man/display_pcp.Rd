@@ -4,10 +4,18 @@
 \title{Parallel coordinates tour path animation.}
 \usage{
   display_pcp(...)
+
+  animate_pcp(data, tour_path = grand_tour(3), ...)
 }
 \arguments{
   \item{...}{other arguments passed on to
   \code{\link{animate}}}
+
+  \item{data}{matrix, or data frame containing numeric
+  columns}
+
+  \item{tour_path}{tour path generator, defaults to 2d
+  grand tour}
 }
 \description{
   Animate a nD tour path with a parallel coordinates plot.

@@ -12,8 +12,7 @@
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
-#' @aliases display_dist animate_dist
-#' @export display_dist animate_dist
+#' @export
 #' @examples
 #' animate_dist(flea[, 1:6])
 #'
@@ -89,6 +88,9 @@ display_dist <- function(method="density", center = TRUE, half_range = NULL, rug
 }
 
 
+#' @rdname display_dist
+#' @inheritParams animate
+#' @export
 animate_dist <- function(data, tour_path = grand_tour(1), ...) {
   animate(
     data = data, tour_path = tour_path,

@@ -3,8 +3,7 @@
 #' Use ggobi to display a 2D tour.
 #'
 #' @param ...  other arguments passed on to \code{\link{animate}}
-#' @aliases display_ggobi animate_ggobi
-#' @export display_ggobi animate_ggobi
+#' @export
 #' @examples
 #' \dontrun{
 #' animate_ggobi(flea[, 1:6])
@@ -37,6 +36,9 @@ display_ggobi <- function() {
   )
 }
 
+#' @rdname display_ggobi
+#' @inheritParams animate
+#' @export
 animate_ggobi <- function(data, tour_path = grand_tour(), ...) {
   animate(data, tour_path, display_ggobi(...), ...)
 }

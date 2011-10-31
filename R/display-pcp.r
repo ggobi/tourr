@@ -8,9 +8,7 @@
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
-#' @aliases display_pcp animate_pcp
-#' @export display_pcp animate_pcp
-#'
+#' @export
 #' @examples
 #' animate_pcp(flea[, 1:6], grand_tour(3))
 #' animate_pcp(flea[, 1:6], grand_tour(5))
@@ -66,6 +64,9 @@ display_pcp <- function(...)
 }
 
 
+#' @rdname display_pcp
+#' @inheritParams animate
+#' @export
 animate_pcp <- function(data, tour_path = grand_tour(3), ...) {
 
 

@@ -14,8 +14,7 @@
 #'   steps ago 
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
-#' @aliases display_trails animate_trails
-#' @export display_trails animate_trails
+#' @export
 display_trails <- function(center = TRUE, axes = "center", half_range = NULL, col = "black", pch  = 20, past = 3, ...) {
   
   # Inherit most behaviour from display_xy.  This is a little hacky, but
@@ -50,6 +49,9 @@ display_trails <- function(center = TRUE, axes = "center", half_range = NULL, co
   xy
 }
 
+#' @rdname display_trails
+#' @inheritParams animate
+#' @export
 animate_trails <- function(data, tour_path = grand_tour(), ...) {
   animate(data, tour_path, display_trails(...), ...)
 }

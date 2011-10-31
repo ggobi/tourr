@@ -38,8 +38,7 @@ andrews <- function(x) {
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
-#' @aliases animate_andrews display_andrews
-#' @export animate_andrews display_andrews
+#' @export
 #' @examples
 #' animate_andrews(flea[, 1:6])
 #' animate_andrews(flea[, 1:6], grand_tour(d = 3))
@@ -85,6 +84,9 @@ display_andrews <- function(...) {
 }
 
 
+#' @rdname display_andrews
+#' @inheritParams animate
+#' @export
 animate_andrews <- function(data, tour_path = grand_tour(3), ...) {
 
   animate(

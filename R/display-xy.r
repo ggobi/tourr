@@ -11,8 +11,7 @@
 #' @param pch size of the point to be plotted.  Defaults to 20.
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
-#' @aliases display_xy animate_xy
-#' @export display_xy animate_xy
+#' @export
 #' @examples
 #' animate_xy(flea[, 1:6])
 #' animate(flea[, 1:6], grand_tour(), display_xy())
@@ -64,6 +63,9 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL, col = 
   )
 }
 
+#' @rdname display_xy
+#' @inheritParams animate
+#' @export
 animate_xy <- function(data, tour_path = grand_tour(), ...) {
   animate(data, tour_path, display_xy(...))
 }

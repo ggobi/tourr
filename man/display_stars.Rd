@@ -4,10 +4,18 @@
 \title{Star glyph tour path animation.}
 \usage{
   display_stars(...)
+
+  animate_stars(data, tour_path = grand_tour(3), ...)
 }
 \arguments{
   \item{...}{other arguments passed on to
   \code{\link{stars}}}
+
+  \item{data}{matrix, or data frame containing numeric
+  columns}
+
+  \item{tour_path}{tour path generator, defaults to 2d
+  grand tour}
 }
 \description{
   Animate a nD tour path with star glyphs.
