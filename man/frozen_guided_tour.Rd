@@ -2,8 +2,8 @@
 \alias{frozen_guided_tour}
 \title{The frozen guided tour}
 \usage{
-  frozen_guided_tour(frozen, index_f, d = 2, max.tries =
-  25)
+  frozen_guided_tour(frozen, index_f, d = 2,
+    max.tries = 25)
 }
 \arguments{
   \item{frozen}{matrix of frozen variables, as described in

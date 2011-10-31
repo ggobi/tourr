@@ -2,8 +2,8 @@
 \alias{search_frozen_geodesic}
 \title{Search for most interesting projection along frozen geodesics.}
 \usage{
-  search_frozen_geodesic(current, index, max.tries = 5, n =
-  5, frozen)
+  search_frozen_geodesic(current, index, max.tries = 5,
+    n = 5, frozen)
 }
 \description{
   These three functions perform a corresponding role to

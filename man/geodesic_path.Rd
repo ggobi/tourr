@@ -11,7 +11,7 @@
 \value{
   \item{interpolate}{A function with single parameter in
   [0, 1] that returns an interpolated frame between the
-  current and future frames. 0 gives the current plane, 1
+  current and future frames.  0 gives the current plane, 1
   gives the new target frame in plane of current frame.}
   \item{dist}{The distance, in radians, between the current
   and target frames.} \item{Fa}{The current frame.}

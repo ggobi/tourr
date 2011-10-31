@@ -12,7 +12,7 @@
   the shape.}
 
   \item{half_range}{half range to use when calculating
-  limits of projected. If not set, defaults to maximum
+  limits of projected.  If not set, defaults to maximum
   distance from origin to each row of data.}
 
   \item{...}{other arguments passed on to

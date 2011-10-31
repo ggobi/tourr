@@ -4,18 +4,18 @@
 \title{1d distribution tour path animation.}
 \usage{
   display_dist(method = "density", center = TRUE,
-  half_range = NULL, rug = FALSE, ...)
+    half_range = NULL, rug = FALSE, ...)
 }
 \arguments{
   \item{method}{display method, histogram or density plot}
 
   \item{center}{should 1d projection be centered to have
-  mean zero (default: TRUE). This pins the centre of
+  mean zero (default: TRUE).  This pins the centre of
   distribution to the same place, and makes it easier to
   focus on the shape of the distribution.}
 
   \item{half_range}{half range to use when calculating
-  limits of projected. If not set, defaults to maximum
+  limits of projected.  If not set, defaults to maximum
   distance from origin to each row of data.}
 
   \item{rug}{draw rug plot showing position of actual data

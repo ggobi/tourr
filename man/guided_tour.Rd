@@ -3,7 +3,7 @@
 \title{A guided tour path.}
 \usage{
   guided_tour(index_f, d = 2, alpha = 0.5, cooling = 0.99,
-  max.tries = 25, search_f = search_geodesic, ...)
+    max.tries = 25, search_f = search_geodesic, ...)
 }
 \arguments{
   \item{index_f}{the index function to optimise.}

@@ -3,8 +3,8 @@
 \title{Render frames of animation to disk}
 \usage{
   render(data, tour_path, display, dev, ..., apf = 1/10,
-  frames = 50, rescale = TRUE, sphere = FALSE, start =
-  NULL)
+    frames = 50, rescale = TRUE, sphere = FALSE,
+    start = NULL)
 }
 \arguments{
   \item{data}{matrix, or data frame containing numeric
@@ -44,7 +44,7 @@ render(flea[, 1:4], grand_tour(), display_xy(), "png", "test-\%03d.png")
   Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
   (2011). tourr: An R Package for Exploring Multivariate
   Data with Projections. Journal of Statistical Software,
-  40(2), 1-18. \url{http://www.jstatsoft.org/v40/i02/}.
+  40(2), 1-18.  \url{http://www.jstatsoft.org/v40/i02/}.
 }
 \keyword{hplot}
 

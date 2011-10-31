@@ -3,8 +3,9 @@
 \alias{display_trails}
 \title{Display tour path with trails}
 \usage{
-  display_trails(center = TRUE, axes = "center", half_range
-  = NULL, col = "black", pch = 20, past = 3, ...)
+  display_trails(center = TRUE, axes = "center",
+    half_range = NULL, col = "black", pch = 20, past = 3,
+    ...)
 }
 \arguments{
   \item{axes}{position of the axes: center, bottomleft or
@@ -15,7 +16,7 @@
   focus on the changing shape rather than position.}
 
   \item{half_range}{half range to use when calculating
-  limits of projected. If not set, defaults to maximum
+  limits of projected.  If not set, defaults to maximum
   distance from origin to each row of data.}
 
   \item{col}{color to be plotted.  Defaults to "black"}

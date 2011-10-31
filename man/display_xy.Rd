@@ -3,8 +3,8 @@
 \alias{display_xy}
 \title{Display tour path with a scatterplot}
 \usage{
-  display_xy(center = TRUE, axes = "center", half_range =
-  NULL, col = "black", pch = 20, ...)
+  display_xy(center = TRUE, axes = "center",
+    half_range = NULL, col = "black", pch = 20, ...)
 }
 \arguments{
   \item{axes}{position of the axes: center, bottomleft or
@@ -15,7 +15,7 @@
   focus on the changing shape rather than position.}
 
   \item{half_range}{half range to use when calculating
-  limits of projected. If not set, defaults to maximum
+  limits of projected.  If not set, defaults to maximum
   distance from origin to each row of data. #'}
 
   \item{col}{color to be plotted.  Defaults to "black"}
@@ -42,7 +42,7 @@ animate_xy(flea[, 1:6], center = FALSE)
 animate_xy(flea[, 1:6], axes = "bottomleft")
 animate_xy(flea[, 1:6], axes = "off")
 animate_xy(flea[, 1:6], dependence_tour(c(1, 2, 1, 2, 1, 2)),
-axes = "bottomleft")
+  axes = "bottomleft")
 require(colorspace)
 pal <- rainbow_hcl(length(levels(flea$species)))
 col <- pal[as.numeric(flea$species)]

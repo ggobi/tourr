@@ -2,8 +2,8 @@
 \alias{project3d}
 \title{Stereographic projection}
 \usage{
-  project3d(d3, length = par("din")[1] * 25.4, z0 = 300, d
-  = 30)
+  project3d(d3, length = par("din")[1] * 25.4, z0 = 300,
+    d = 30)
 }
 \arguments{
   \item{d3}{3d numeric matrix giving position of points}

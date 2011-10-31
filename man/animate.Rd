@@ -2,9 +2,10 @@
 \alias{animate}
 \title{Animate a tour path.}
 \usage{
-  animate(data, tour_path = grand_tour(), display =
-  display_xy(), start = NULL, aps = 1, fps = 30, max_frames
-  = Inf, rescale = TRUE, sphere = FALSE, ...)
+  animate(data, tour_path = grand_tour(),
+    display = display_xy(), start = NULL, aps = 1,
+    fps = 30, max_frames = Inf, rescale = TRUE,
+    sphere = FALSE, ...)
 }
 \arguments{
   \item{data}{matrix, or data frame containing numeric
@@ -61,6 +62,6 @@ animate(f, max_frames = 30)
   Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
   (2011). tourr: An R Package for Exploring Multivariate
   Data with Projections. Journal of Statistical Software,
-  40(2), 1-18. \url{http://www.jstatsoft.org/v40/i02/}.
+  40(2), 1-18.  \url{http://www.jstatsoft.org/v40/i02/}.
 }
 

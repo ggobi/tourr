@@ -3,7 +3,7 @@
 \title{Search for most interesting projection along random geodesics.}
 \usage{
   search_geodesic(current, alpha = 1, index, max.tries = 5,
-  n = 5)
+    n = 5)
 }
 \arguments{
   \item{current}{starting projection}

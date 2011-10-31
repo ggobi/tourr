@@ -2,6 +2,9 @@
 \alias{animate_ggobi}
 \alias{display_ggobi}
 \title{Display tour path with ggobi}
+\usage{
+  display_ggobi()
+}
 \arguments{
   \item{...}{other arguments passed on to
   \code{\link{animate}}}
