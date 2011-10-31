@@ -1,3 +1,6 @@
+* try using `dev.hold()` and `dev.flush()` to see if it improves drawing
+  performance. It doesn't seem to on quartz devices.
+
 Version 0.5
 ------------------------------------------------------------------------------
 

@@ -76,17 +76,23 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
         }
         bases[, , b] <- step$target
       }
-    
+      
+      dev.hold()
+      on.exit(dev.flush())
       if (os == "win") {
         display$render_frame()
       } else {
         display$render_transition()
       }
       display$render_data(data, step$proj, step$target)
+      dev.flush()
     
       Sys.sleep(1 / fps)    
     }
-  }, interrupt = function(cond) return())
+  }, interrupt = function(cond) {
+    dev.flush()
+    return()
+  })
   
   invisible(bases[, , seq_len(b)])
 }
