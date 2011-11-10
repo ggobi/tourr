@@ -33,19 +33,20 @@ display_dist <- function(method="density", center = TRUE, half_range = NULL, rug
   render_frame <- function() {
     par(pty="m",mar=c(4,4,1,1))
     plot(
-      x = NA, y = NA, xlim = c(-1, 1), ylim = c(-1.1, 3), xaxs="i", yaxs="i",
+      x = NA, y = NA, xlim = c(-1, 1.2), ylim = c(-1.1, 3), 
+      xaxs = "i", yaxs = "i",
       xlab = "Data Projection", ylab = "Density", yaxt = "n"
     )
     axis(2, seq(0, 4, by = 1))
   }
   render_transition <- function() {
-    rect(-1, -1.1, 1, 4, col="#FFFFFFE6", border=NA)
+    rect(-1, -1.1, 1.2, 4, col="#FFFFFFE6", border=NA)
   }
   render_data <- function(data, proj, geodesic) {
     abline(h = seq(0.5, 3.5, by=0.5), col="grey80")
     lines(c(0,0), c(-1,0), col="grey80")
-    lines(c(-1,-1), c(-1,0), col="grey80")
-    lines(c(1,1), c(-1,0), col="grey80")
+    lines(c(-1,-1), c(-1.1,0), col="grey80")
+    lines(c(1,1), c(-1.1,0), col="grey80")
 
     x <- data %*% proj
     if (center) x <- center(x)
@@ -71,11 +72,9 @@ display_dist <- function(method="density", center = TRUE, half_range = NULL, rug
     }
     
     # Render tour axes
-    for (i in 1:length(proj)) {
-      x <- i / length(proj)
-      lines(c(0, proj[i]), c(-x, -x), col="black", lwd=3)
-      text(1, -x, labels[i], pos=4)
-    }
+    x <- seq_along(proj) / length(proj)
+    segments(0, -x, proj, -x, col="black", lwd=3)
+    text(1.0, -x, labels, pos = 4)
   }
 
   list(
