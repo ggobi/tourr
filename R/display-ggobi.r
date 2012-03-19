@@ -11,7 +11,7 @@
 #' animate(flea[, 1:6], grand_tour(), display_ggobi())
 #' }
 display_ggobi <- function() {
-  if(!require("rggobi", quiet = TRUE)) {
+  if(!require("rggobi", quietly = TRUE)) {
     stop("rggobi required for ggobi based tour")
   }
   

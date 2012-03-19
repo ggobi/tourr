@@ -46,7 +46,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL, col = 
     rect(-1, -1, 1, 1, col="#FFFFFFE6", border=NA)
   }
   render_data <- function(data, proj, geodesic) {
-    draw_tour_axes(proj, labels, limit = 1, axes)
+    draw_tour_axes(proj, labels, limits = 1, axes)
 
     # Render projected points
     x <- data %*% proj
