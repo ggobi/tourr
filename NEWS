@@ -1,3 +1,8 @@
+Version 0.5.1
+------------------------------------------------------------------------------
+
+* minor example fix for ggplot2 0.9 compatibility
+
 * try using `dev.hold()` and `dev.flush()` to see if it improves drawing
   performance. It doesn't seem to on quartz devices.
 
