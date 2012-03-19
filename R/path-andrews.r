@@ -24,7 +24,8 @@
 #' df <- path_curves(path2d)
 #' qplot(step, value, data = df, group = obs:var, geom = "line", colour=var) + facet_wrap( ~ obs) 
 #' 
-#' qplot(`1`, `2`, data = cast(df, ... ~ var)) + 
+#' library(reshape2)
+#' qplot(`1`, `2`, data = dcast(df, ... ~ var)) + 
 #'   facet_wrap( ~ step) + 
 #'   coord_equal()
 #' }

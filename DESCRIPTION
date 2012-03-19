@@ -1,7 +1,7 @@
 Package: tourr
 Type: Package
 Title: Implement tour methods in pure R code
-Version: 0.5
+Version: 0.5.1
 Author: Dianne Cook <dicook@iastate.edu>, Hadley Wickham
     <h.wickham@gmail.com>
 Maintainer: Hadley Wickham <h.wickham@gmail.com>
@@ -18,7 +18,8 @@ Suggests:
     ash,
     testthat,
     colorspace,
-    ggplot2
+    ggplot2,
+    reshape2
 License: MIT
 LazyData: true
 Collate:
