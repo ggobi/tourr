@@ -48,7 +48,7 @@ new_geodesic_path <- function(name, generator, frozen = NULL) {
   structure(
     tour_path,
     name = name,
-    class = "tour_path"
+    class = c("tour_path", "function")
   )
 }
 
