@@ -86,4 +86,5 @@ orthonormalise_by <- function(x, by) {
 #' @param x projection matrix a
 #' @param y projection matrix b
 #' @keywords algebra
+#' @export
 proj_dist <- function(x, y) sqrt(sum((x %*% t(x) - y %*% t(y)) ^ 2))
