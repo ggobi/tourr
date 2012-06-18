@@ -22,7 +22,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   try <- 1
   while(try < max.tries) {
     new_basis <- basis_nearby(current, alpha, method)
-    
+
     new_index <- index(new_basis)
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")

@@ -28,6 +28,7 @@
 #' @examples
 #' animate_xy(flea[, 1:3], guided_tour(holes), sphere = TRUE)
 #' animate_xy(flea[, 1:6], guided_tour(holes), sphere = TRUE)
+#' animate_dist(flea[, 1:6], guided_tour(holes, 1), sphere = TRUE)
 #' 
 #' # save_history is particularly useful in conjunction with the 
 #' # guided tour as it allows us to look at the tour path in many different
@@ -38,7 +39,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
   
   generator <- function(current, data) {
     if (is.null(current)) return(basis_init(ncol(data), d))    
-    
+   
     index <- function(proj) {
       index_f(as.matrix(data) %*% proj)
     }

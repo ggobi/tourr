@@ -42,9 +42,15 @@ lda_pp <- function(cl) {
     stop("LDA index needs at least two classes!")
 
   function(mat) {
-    fit <- manova(mat ~ cl)                      
+    if (ncol(mat) > 1) {
+      fit <- manova(mat ~ cl)                      
 
-    1 - summary(fit, test = "Wilks")$stats[[3]]    
+      1 - summary(fit, test = "Wilks")$stats[[3]]
+    }
+    else {
+      fit <- aov(mat~cl)
+      summary(aov(mat ~ cl))[[1]][4]
+    }
   }
 }
 
