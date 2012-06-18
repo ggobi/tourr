@@ -76,7 +76,6 @@ orthonormalise_by <- function(x, by) {
   normalise(x)
 }
 
-
 #' Calculate the distance between two bases.
 #'
 #' Computes the Frobenius norm between two bases.  This is equals to the

@@ -72,9 +72,9 @@ display_dist <- function(method="density", center = TRUE, half_range = NULL, rug
     }
     
     # Render tour axes
-    x <- seq_along(proj) / length(proj)
-    segments(0, -x, proj, -x, col="black", lwd=3)
-    text(1.0, -x, labels, pos = 4)
+    ax <- seq_along(proj) / length(proj)
+    segments(0, -ax, proj, -ax, col="black", lwd=3)
+    text(1.0, -ax, labels, pos = 4)
   }
 
   list(
