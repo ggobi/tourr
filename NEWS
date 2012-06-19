@@ -1,3 +1,12 @@
+Version 0.5.2
+------------------------------------------------------------------------------
+
+* Fixed an error in axis drawing in the desnity tour
+
+* Fixed the calculate of lda_pp when projection dimension is 1
+
+* Changed explanation of proj_dist function
+
 Version 0.5.1
 ------------------------------------------------------------------------------
 
