@@ -7,6 +7,8 @@ Version 0.5.2
 
 * Changed explanation of proj_dist function
 
+* fix missing export for `proj_dist`
+
 Version 0.5.1
 ------------------------------------------------------------------------------
 
