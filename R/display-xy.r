@@ -40,7 +40,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL, col = 
   }
 
   render_frame <- function() {
-    par(pty = "s", mar = rep(1,4))
+    par(pty = "s", mar = rep(0.1, 4))
     blank_plot(xlim = c(-1, 1), ylim = c(-1, 1))
   }
   render_transition <- function() {
