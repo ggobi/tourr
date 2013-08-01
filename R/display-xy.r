@@ -7,7 +7,8 @@
 #'  center of data cloud and make it easier to focus on the changing shape
 #'  rather than position.
 #' @param half_range half range to use when calculating limits of projected.
-#'   If not set, defaults to maximum distance from origin to each row of data. #' @param col color to be plotted.  Defaults to "black"
+#'   If not set, defaults to maximum distance from origin to each row of data.
+#' @param col color to be plotted.  Defaults to "black"
 #' @param pch size of the point to be plotted.  Defaults to 20.
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
