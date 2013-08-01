@@ -3,7 +3,7 @@
 #' Animate a 2D tour path with a scatterplot.
 #'
 #' @param axes position of the axes: center, bottomleft or off
-#' @param center if TRUE, centers projected data to (0,0).  This pins the 
+#' @param center if TRUE, centers projected data to (0,0).  This pins the
 #'  center of data cloud and make it easier to focus on the changing shape
 #'  rather than position.
 #' @param half_range half range to use when calculating limits of projected.
@@ -31,13 +31,13 @@
 #' col <- pal[as.numeric(flea$species)]
 #' animate_xy(flea[,-7], col=col)
 display_xy <- function(center = TRUE, axes = "center", half_range = NULL, col = "black", pch  = 20, ...) {
-  
+
   labels <- NULL
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)
     labels <<- abbreviate(colnames(data), 3)
   }
-  
+
   render_frame <- function() {
     par(pty = "s", mar = rep(1,4))
     blank_plot(xlim = c(-1, 1), ylim = c(-1, 1))
@@ -53,7 +53,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL, col = 
     if (center) x <- center(x)
     points(x / half_range, col = col, pch = pch)
   }
-  
+
   list(
     init = init,
     render_frame = render_frame,
@@ -75,7 +75,7 @@ animate_xy <- function(data, tour_path = grand_tour(), ...) {
 draw_tour_axes <- function(proj, labels, limits, position) {
   position <- match.arg(position, c("center", "bottomleft", "off"))
   if (position == "off") return()
-  
+
   if (position == "center") {
     axis_scale <- 2 * limits / 3
     axis_pos <- 0
@@ -83,11 +83,11 @@ draw_tour_axes <- function(proj, labels, limits, position) {
     axis_scale <- limits / 6
     axis_pos <- -2/3 * limits
   }
- 
+
   adj <- function(x) axis_pos + x * axis_scale
 
   segments(adj(0), adj(0), adj(proj[, 1]), adj(proj[, 2]), col="grey50")
   theta <- seq(0, 2 * pi, length = 50)
   lines(adj(cos(theta)), adj(sin(theta)), col = "grey50")
-  text(adj(proj[, 1]), adj(proj[, 2]), label = labels, col = "grey50")       
+  text(adj(proj[, 1]), adj(proj[, 2]), label = labels, col = "grey50")
 }
