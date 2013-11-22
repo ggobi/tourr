@@ -2,7 +2,7 @@
 \alias{plot.path_curve}
 \title{Plot history curves.}
 \usage{
-  \method{plot}{path_curve} (x, ...)
+\method{plot}{path_curve}(x, ...)
 }
 \description{
   The default plot method is a line plot with step on the x
@@ -16,4 +16,3 @@
   \code{\link{path_curves}}
 }
 \keyword{internal}
-

@@ -3,9 +3,9 @@
 \alias{display_faces}
 \title{Chernoff faces tour path animation.}
 \usage{
-  display_faces(...)
+display_faces(...)
 
-  animate_faces(data, tour_path = grand_tour(3), ...)
+animate_faces(data, tour_path = grand_tour(3), ...)
 }
 \arguments{
   \item{...}{other arguments passed on to
@@ -27,8 +27,8 @@
   \code{\link[TeachingDemos]{faces2}} for more details.
 }
 \examples{
-# The drawing code is fairly slow, so this animation works best with a
-# limited number of cases
+# The drawing code is fairly slow, so this animation works best with a limited
+# number of cases
 animate_faces(flea[1:2, 1:6])
 animate_faces(flea[1:4, 1:6])
 
@@ -39,4 +39,3 @@ animate_faces(flea[1:2, 1:6], grand_tour(5))
   animations
 }
 \keyword{hplot}
-

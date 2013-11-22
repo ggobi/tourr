@@ -2,11 +2,10 @@
 \alias{plot.path_index}
 \title{Plot history index with ggplot2.}
 \usage{
-  \method{plot}{path_index} (x, ...)
+\method{plot}{path_index}(x, ...)
 }
 \description{
   Plot history index with ggplot2.
 }
 \keyword{hplot}
 \keyword{internal}
-

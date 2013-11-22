@@ -2,7 +2,7 @@
 \alias{find_best_dir}
 \title{Find the most promising direction to travel in.}
 \usage{
-  find_best_dir(old, index, dist = 0.01, tries = 5)
+find_best_dir(old, index, dist = 0.01, tries = 5)
 }
 \arguments{
   \item{old}{current projection}
@@ -21,4 +21,3 @@
 }
 \keyword{internal}
 \keyword{optimize}
-

@@ -2,7 +2,7 @@
 \alias{xnul}
 \title{A null function}
 \usage{
-  nul(...)
+nul(...)
 }
 \arguments{
   \item{...}{all arguments to \code{...} are ignore}
@@ -12,4 +12,3 @@
   callback function
 }
 \keyword{internal}
-

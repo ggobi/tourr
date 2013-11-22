@@ -3,9 +3,9 @@
 \alias{display_pcp}
 \title{Parallel coordinates tour path animation.}
 \usage{
-  display_pcp(...)
+display_pcp(...)
 
-  animate_pcp(data, tour_path = grand_tour(3), ...)
+animate_pcp(data, tour_path = grand_tour(3), ...)
 }
 \arguments{
   \item{...}{other arguments passed on to
@@ -33,4 +33,3 @@ animate_pcp(flea[, 1:6], grand_tour(5))
   animations
 }
 \keyword{hplot}
-

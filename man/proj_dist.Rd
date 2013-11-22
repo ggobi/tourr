@@ -2,7 +2,7 @@
 \alias{proj_dist}
 \title{Calculate the distance between two bases.}
 \usage{
-  proj_dist(x, y)
+proj_dist(x, y)
 }
 \arguments{
   \item{x}{projection matrix a}
@@ -10,9 +10,8 @@
   \item{y}{projection matrix b}
 }
 \description{
-  Computes the Frobenius norm between two bases.  This is
-  equals to the Euclidean norm of the vector of sines of
-  principal angles between the two subspaces.
+  Computes the Frobenius norm between two bases, in
+  radians.  This is equals to the Euclidean norm of the
+  vector of principal angles between the two subspaces.
 }
 \keyword{algebra}
-

@@ -3,9 +3,9 @@
 \alias{display_scatmat}
 \title{Scatterplot matrix tour path animation.}
 \usage{
-  display_scatmat(...)
+display_scatmat(...)
 
-  animate_scatmat(data, tour_path = grand_tour(3), ...)
+animate_scatmat(data, tour_path = grand_tour(3), ...)
 }
 \arguments{
   \item{...}{other arguments passed on to
@@ -33,4 +33,3 @@ animate_scatmat(flea[, 1:6], grand_tour(6))
   animations
 }
 \keyword{hplot}
-

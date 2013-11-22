@@ -2,7 +2,7 @@
 \alias{little_tour}
 \title{A little tour path.}
 \usage{
-  little_tour(d = 2)
+little_tour(d = 2)
 }
 \arguments{
   \item{d}{target dimensionality}
@@ -24,4 +24,3 @@ animate_pcp(flea[, 1:6], little_tour(3))
 animate_scatmat(flea[, 1:6], little_tour(3))
 animate_pcp(flea[, 1:6], little_tour(4))
 }
-

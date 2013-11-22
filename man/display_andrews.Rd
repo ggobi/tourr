@@ -3,9 +3,9 @@
 \alias{display_andrews}
 \title{Andrews' curves tour path animation.}
 \usage{
-  display_andrews(...)
+display_andrews(...)
 
-  animate_andrews(data, tour_path = grand_tour(3), ...)
+animate_andrews(data, tour_path = grand_tour(3), ...)
 }
 \arguments{
   \item{...}{other arguments passed on to
@@ -34,4 +34,3 @@ animate_andrews(flea[, 1:6], guided_tour(cmass))
   animations
 }
 \keyword{hplot}
-

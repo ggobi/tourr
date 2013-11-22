@@ -2,8 +2,7 @@
 \alias{path_index}
 \title{Compute index values for a tour history.}
 \usage{
-  path_index(history, index_f,
-    data = attr(history, "data"))
+path_index(history, index_f, data = attr(history, "data"))
 }
 \arguments{
   \item{history}{list of bases produced by
@@ -33,4 +32,3 @@ plot(hi)
   \code{\link{save_history}} for options to save history
 }
 \keyword{hplot}
-

@@ -3,10 +3,9 @@
 \alias{display_dist}
 \title{1d distribution tour path animation.}
 \usage{
-  display_dist(method = "density", center = TRUE,
-    half_range = NULL, rug = FALSE, ...)
+display_dist(method = "density", center = TRUE, half_range = NULL, rug = FALSE, ...)
 
-  animate_dist(data, tour_path = grand_tour(1), ...)
+animate_dist(data, tour_path = grand_tour(1), ...)
 }
 \arguments{
   \item{method}{display method, histogram or density plot}
@@ -50,4 +49,3 @@ animate_dist(flea[, 1:6], method = "hist")
   animations
 }
 \keyword{hplot}
-

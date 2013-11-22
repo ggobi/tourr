@@ -17,6 +17,7 @@
 #' animate_xy(flea[, 1:6])
 #' animate(flea[, 1:6], grand_tour(), display_xy())
 #' animate(flea[, 1:6], grand_tour(), display_xy(axes = "bottomleft"))
+#' animate(flea[, 1:6], edges=matrix(c(1:5, 2:6), ncol=2, byrow=T), grand_tour(), display_xy(axes = "bottomleft"))
 #' animate(flea[, 1:6], grand_tour(), display_xy(half_range = 0.5))
 #' animate_xy(flea[, 1:6], little_tour())
 #' animate_xy(flea[, 1:3], guided_tour(holes), sphere = TRUE)
@@ -46,13 +47,19 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL, col = 
   render_transition <- function() {
     rect(-1, -1, 1, 1, col="#FFFFFFE6", border=NA)
   }
-  render_data <- function(data, proj, geodesic) {
+  render_data <- function(data, edges, proj, geodesic) {
     draw_tour_axes(proj, labels, limits = 1, axes)
 
     # Render projected points
     x <- data %*% proj
     if (center) x <- center(x)
     points(x / half_range, col = col, pch = pch)
+    if (!is.null(edges)) {
+      if (ncol(edges) == 2) 
+        lines(x[edges, 1] / half_range, x[edges, 2] / half_range)
+      else
+          message("Failing to draw edges. Edges matrix needs two columns, from and to, only.")
+    }
   }
 
   list(
@@ -67,8 +74,8 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL, col = 
 #' @rdname display_xy
 #' @inheritParams animate
 #' @export
-animate_xy <- function(data, tour_path = grand_tour(), ...) {
-  animate(data, tour_path, display_xy(...))
+animate_xy <- function(data, edges, tour_path = grand_tour(), ...) {
+  animate(data, edges, tour_path, display_xy(...))
 }
 
 #' Draw tour axes with base graphics

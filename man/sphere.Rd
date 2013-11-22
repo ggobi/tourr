@@ -3,7 +3,7 @@
 \title{Sphere a matrix (or data frame) by transforming variables to
 principal components.}
 \usage{
-  sphere(df)
+sphere(df)
 }
 \arguments{
   \item{df}{data frame or matrix}
@@ -14,4 +14,3 @@ principal components.}
   more interesting findings.
 }
 \keyword{manip}
-

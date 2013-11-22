@@ -2,7 +2,7 @@
 \alias{orthonormalise_by}
 \title{Orthonnormalise one matrix by another.}
 \usage{
-  orthonormalise_by(x, by)
+orthonormalise_by(x, by)
 }
 \arguments{
   \item{x}{numeric matrix}
@@ -15,4 +15,3 @@
 }
 \keyword{algebra}
 \keyword{internal}
-

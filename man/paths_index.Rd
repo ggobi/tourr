@@ -2,7 +2,7 @@
 \alias{paths_index}
 \title{Compute index value for many histories.}
 \usage{
-  paths_index(bases_list, index_f)
+paths_index(bases_list, index_f)
 }
 \arguments{
   \item{bases_list}{list of histories produced by
@@ -26,9 +26,8 @@ paths <- paths_index(itries, holes)
 head(paths)
 
 if (require(ggplot2)) {
-qplot(step, value, data=paths, group=try, geom="line")
-qplot(step, improvement, data=paths, group=try, geom="line")
+    qplot(step, value, data = paths, group = try, geom = "line")
+    qplot(step, improvement, data = paths, group = try, geom = "line")
 }
 }
 \keyword{internal}
-

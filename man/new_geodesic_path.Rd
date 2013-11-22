@@ -2,7 +2,7 @@
 \alias{new_geodesic_path}
 \title{Generate a geodesic path between bases supplied by generator}
 \usage{
-  new_geodesic_path(name, generator, frozen = NULL)
+new_geodesic_path(name, generator, frozen = NULL)
 }
 \arguments{
   \item{name}{name to give tour path}
@@ -32,4 +32,3 @@
   stop.
 }
 \keyword{internal}
-
