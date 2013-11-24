@@ -23,7 +23,7 @@
 #' @examples
 #' render(flea[, 1:4], grand_tour(), display_xy(), "pdf", "test.pdf")
 #' render(flea[, 1:4], grand_tour(), display_xy(), "png", "test-%03d.png")
-render <- function(data, edges=NULL, tour_path, display, dev, ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
+render <- function(data, edges = NULL, tour_path, display, dev, ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere(data)
   
