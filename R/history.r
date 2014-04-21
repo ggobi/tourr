@@ -13,18 +13,9 @@
 #'   forces new basis generation at each step.
 #
 #' @export
-#' @S3method "[" history_array
-#' @S3method "[[" history_array
-#' @S3method length history_array
-#' @S3method str history_array
-#' @S3method print history_array
-#' @S3method as.list history_list
-#' @S3method as.list history_array
-#' @S3method as.array history_array
-#' @S3method as.array history_list
 #' @references Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
 #'   (2011). tourr: An R Package for Exploring Multivariate Data with
-#'   Projections. Journal of Statistical Software, 40(2), 1-18. 
+#'   Projections. Journal of Statistical Software, 40(2), 1-18.
 #'   \url{http://www.jstatsoft.org/v40/i02/}.
 #' @examples
 #' # You can use a saved history to replay tours with different visualisations
@@ -44,7 +35,7 @@
 #' testdata <- matrix(rnorm(100*3), ncol=3)
 #' testdata[1:50, 1] <- testdata[1:50, 1] + 10
 #' testdata <- sphere(testdata)
-#' t2 <- save_history(testdata, guided_tour(holes, max.tries = 100), 
+#' t2 <- save_history(testdata, guided_tour(holes, max.tries = 100),
 #'   max = 5, rescale=FALSE)
 #' animate_xy(testdata, planned_tour(t2))
 #'
@@ -57,59 +48,68 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
 
   tour <- new_tour(data, tour_path, start)
   start <- tour(0)$proj
-  
+
   projs <- array(NA, c(ncol(data), ncol(start), max_bases + 1))
   princ_dirs <- projs
-  
+
   i <- 0
   while(i < max_bases) {
     i <- i + 1
     # An infinite step size forces the tour path to generate a new basis
     # every time, so no interpolation occurs.
-    step <- tour(step_size)    
+    step <- tour(step_size)
     if (is.null(step)) break
-    
+
     projs[, , i] <- step$target
   }
-  
+
   # Remove empty matrices for tours that terminated early
   # (e.g. guided tour)
   empty <- apply(projs, 3, function(x) all(is.na(x)))
   projs <- projs[, , !empty, drop = FALSE]
-  
+
   attr(projs, "data") <- data
   structure(projs, class = "history_array")
 }
 
+#' @export
 "[.history_array" <- function(x, i = TRUE, j = TRUE, k = TRUE, ...) {
   piece <- .subset(x, i, j, k, drop = FALSE)
-  structure(piece, 
+  structure(piece,
     data = attr(x, "data"),
     class = class(x))
 }
 
+#' @export
 "[[.history_array" <- function(x, i, ...) {
   as.matrix(.subset(x, TRUE, TRUE, i, drop = FALSE))
 }
 
+#' @export
 length.history_array <- function(x) dim(x)[3]
 
+#' @export
 str.history_array <- function(object, ...) str(unclass(object))
 
+#' @export
 print.history_array <- function(x, ...) {
   attr(x, "data") <- NULL
   NextMethod()
 }
 
+#' @export
 as.list.history_list <- function(x, ...) x
 
+#' @export
 as.list.history_array <- function(x, ...) {
   projs <- do.call("c", apply(x, 3, list))
   structure(projs, class = "history_list", data = attr(x, "data"))
 }
 
+#' @export
 as.array.history_array <- function(x, ...) x
 
+#' @export
 as.array.history_list <- function(x, ...) {
   dims <- c(nrow(x[[1]]), ncol(x[[1]]), length(x))
   projs <- array(NA, dims)

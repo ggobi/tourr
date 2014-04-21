@@ -1,7 +1,7 @@
 #' Generate a geodesic path between bases supplied by generator
 #'
 #' A tour path is a function that when called with the current projection
-#' and data set, generates sequence of \code{\link{geodesic_path}}s.  The 
+#' and data set, generates sequence of \code{\link{geodesic_path}}s.  The
 #' path can either span the whole space of orthonormal matrices, the default
 #' or be restricted to a subspace with the frozen argument.  More details
 #' are given in the documentation for \code{\link{freeze}}.
@@ -15,36 +15,35 @@
 #'
 #' @param name name to give tour path
 #' @param generate basis generator function
-#' @param frozen matrix giving frozen variables, as described in 
+#' @param frozen matrix giving frozen variables, as described in
 #'   \code{\link{freeze}}
 #' @export
-#' @S3method print tour_path
 #' @keywords internal
-new_geodesic_path <- function(name, generator, frozen = NULL) { 
-  
+new_geodesic_path <- function(name, generator, frozen = NULL) {
+
   tour_path <- function(current, data) {
     if (is.null(current)) {
       return(generator(NULL, data))
     }
-    
-    # Keep trying until we get a frame that's not too close to the 
+
+    # Keep trying until we get a frame that's not too close to the
     # current frame
     dist <- 0; tries <- 0
     while (dist < 1e-3) {
       target <- generator(current, data)
 
       # generator has run out, so give up
-      if (is.null(target)) return(NULL) 
-      
+      if (is.null(target)) return(NULL)
+
       tries <- tries + 1
       # give up, generator produced 10 equivalent frames in a row
       if (tries > 10) return(NULL)
-      
+
       dist <- proj_dist(current, target)
     }
     geodesic_path(current, target, frozen)
   }
-  
+
   structure(
     tour_path,
     name = name,
@@ -53,6 +52,7 @@ new_geodesic_path <- function(name, generator, frozen = NULL) {
 }
 
 
+#' @export
 "print.tour_path" <- function(x, ...) {
   cat("Tour path:", attr(x, "name"), "\n")
 
