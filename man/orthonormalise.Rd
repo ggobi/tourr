@@ -2,7 +2,7 @@
 \alias{orthonormalise}
 \title{Orthonormalise using modified Gram-Schmidt process.}
 \usage{
-  orthonormalise(x)
+orthonormalise(x)
 }
 \arguments{
   \item{x}{numeric matrix}
@@ -12,4 +12,3 @@
 }
 \keyword{algebra}
 \keyword{internal}
-

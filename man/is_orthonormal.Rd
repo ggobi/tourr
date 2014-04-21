@@ -2,7 +2,7 @@
 \alias{is_orthonormal}
 \title{Test if a numeric matrix is orthonormal.}
 \usage{
-  is_orthonormal(x, tol = 0.001)
+is_orthonormal(x, tol = 0.001)
 }
 \arguments{
   \item{x}{numeric matrix}
@@ -15,4 +15,3 @@
 }
 \keyword{algebra}
 \keyword{internal}
-

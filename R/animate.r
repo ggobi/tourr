@@ -8,6 +8,8 @@
 #' See \code{\link{render}} to render animations to disk.
 #'
 #' @param data matrix, or data frame containing numeric columns
+#' @param edges matrix, contains ids of rows that should be 
+#'  connected with line segments
 #' @param tour_path tour path generator, defaults to 2d grand tour
 #' @param start projection to start at, if not specified, uses default 
 #'   associated with tour path
@@ -35,7 +37,7 @@
 #' animate(f, max_frames = 30)
 #' 
 #' \dontrun{animate(f, max_frames = 10, fps = 1, aps = 0.1)}
-animate <- function(data, tour_path = grand_tour(), display = display_xy(), start = NULL, aps = 1, fps = 30, max_frames = Inf, rescale = TRUE, sphere = FALSE, ...) {
+animate <- function(data, edges = NULL, tour_path = grand_tour(), display = display_xy(), start = NULL, aps = 1, fps = 30, max_frames = Inf, rescale = TRUE, sphere = FALSE, ...) {
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere(data)
   
@@ -56,7 +58,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
   # Initialise display
   display$init(data)
   display$render_frame()
-  display$render_data(data, start$proj, start$target)
+  display$render_data(data, edges, start$proj, start$target)
   os <- find_platform()$os
   
   b <- 0
@@ -84,7 +86,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
       } else {
         display$render_transition()
       }
-      display$render_data(data, step$proj, step$target)
+      display$render_data(data, edges, step$proj, step$target)
       dev.flush()
     
       Sys.sleep(1 / fps)    

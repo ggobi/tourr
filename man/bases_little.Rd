@@ -2,7 +2,7 @@
 \alias{bases_little}
 \title{Generate bases for the little tour}
 \usage{
-  bases_little(p, d = 2)
+bases_little(p, d = 2)
 }
 \arguments{
   \item{n}{dimensionality of data}
@@ -13,4 +13,3 @@
   Generate bases for the little tour
 }
 \keyword{internal}
-

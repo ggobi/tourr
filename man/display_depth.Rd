@@ -3,9 +3,9 @@
 \alias{display_depth}
 \title{Display 3d projection with depth cues}
 \usage{
-  display_depth(center = TRUE, half_range = NULL, ...)
+display_depth(center = TRUE, half_range = NULL, ...)
 
-  animate_depth(data, tour_path = grand_tour(3), ...)
+animate_depth(data, tour_path = grand_tour(3), ...)
 }
 \arguments{
   \item{center}{should projected data be centered to have
@@ -38,4 +38,3 @@ animate_depth(flea[, 1:6])
   animations
 }
 \keyword{hplot}
-

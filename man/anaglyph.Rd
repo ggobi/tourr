@@ -2,7 +2,7 @@
 \alias{anaglyph}
 \title{Draw anaglyphs with base graphics.}
 \usage{
-  anaglyph(d3, blue, red)
+anaglyph(d3, blue, red)
 }
 \arguments{
   \item{d3}{3d numeric matrix giving position of points}
@@ -15,4 +15,3 @@
   Draw anaglyphs with base graphics.
 }
 \keyword{internal}
-

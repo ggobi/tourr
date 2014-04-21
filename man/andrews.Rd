@@ -2,7 +2,7 @@
 \alias{andrews}
 \title{Compute Andrews' curves}
 \usage{
-  andrews(x)
+andrews(x)
 }
 \arguments{
   \item{x}{input a new parameter}
@@ -26,4 +26,3 @@ a(grid)
 plot(grid, andrews(1:2)(grid), type = "l")
 plot(grid, andrews(runif(5))(grid), type = "l")
 }
-

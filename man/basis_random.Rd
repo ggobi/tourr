@@ -2,7 +2,7 @@
 \alias{basis_random}
 \title{Generate a random basis}
 \usage{
-  basis_random(n, d = 2)
+basis_random(n, d = 2)
 }
 \arguments{
   \item{n}{dimensionality of data}
@@ -13,4 +13,3 @@
   Generate a random basis
 }
 \keyword{internal}
-

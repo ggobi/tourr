@@ -2,7 +2,7 @@
 \alias{step_fraction}
 \title{Step along an interpolated path by fraction of path length.}
 \usage{
-  step_fraction(interp, fraction)
+step_fraction(interp, fraction)
 }
 \arguments{
   \item{interp}{interpolated path}
@@ -15,4 +15,3 @@
   length.
 }
 \keyword{internal}
-

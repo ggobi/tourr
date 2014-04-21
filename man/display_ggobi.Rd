@@ -3,9 +3,9 @@
 \alias{display_ggobi}
 \title{Display tour path with ggobi}
 \usage{
-  display_ggobi()
+display_ggobi()
 
-  animate_ggobi(data, tour_path = grand_tour(), ...)
+animate_ggobi(data, tour_path = grand_tour(), ...)
 }
 \arguments{
   \item{...}{other arguments passed on to
@@ -27,4 +27,3 @@ animate_ggobi(flea[, 1:6])
 animate(flea[, 1:6], grand_tour(), display_ggobi())
 }
 }
-

@@ -2,7 +2,7 @@
 \alias{pda_pp}
 \title{PDA projection pursuit index.}
 \usage{
-  pda_pp(cl, lambda = 0.2)
+pda_pp(cl, lambda = 0.2)
 }
 \arguments{
   \item{cl}{class to be used.  Such as "color"}
@@ -16,4 +16,3 @@
   n Data
 }
 \keyword{hplot}
-

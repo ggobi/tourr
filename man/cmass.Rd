@@ -2,7 +2,7 @@
 \alias{cmass}
 \title{Central mass index.}
 \usage{
-  cmass(mat)
+cmass(mat)
 }
 \arguments{
   \item{mat}{matrix being used}
@@ -13,4 +13,3 @@
   for equations.
 }
 \keyword{hplot}
-

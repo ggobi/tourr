@@ -3,7 +3,7 @@
 \alias{thaw}
 \title{Freeze and thaw matrices}
 \usage{
-  freeze(input, frozen)
+freeze(input, frozen)
 }
 \description{
   Some terminology: * frozen variables: the variables that
@@ -18,7 +18,7 @@
 }
 \examples{
 frozen <- matrix(NA, nrow = 4, ncol = 2)
-frozen[3, ] <- .5
+frozen[3, ] <- 0.5
 
 input <- basis_random(4, 2)
 freeze(input, frozen)
@@ -26,4 +26,3 @@ thaw(input, frozen)
 freeze(basis_random(4, 2), frozen)
 }
 \keyword{internal}
-

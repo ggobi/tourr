@@ -2,7 +2,7 @@
 \alias{planned_tour}
 \title{A planned tour path.}
 \usage{
-  planned_tour(basis_set, cycle = FALSE)
+planned_tour(basis_set, cycle = FALSE)
 }
 \arguments{
   \item{basis_set}{the set of bases as a list of projection
@@ -38,4 +38,3 @@ animate_dist(flea[, 1:6], planned_tour(oned))
 }
 \keyword{dynamic}
 \keyword{hplot}
-

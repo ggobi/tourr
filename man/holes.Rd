@@ -2,7 +2,7 @@
 \alias{holes}
 \title{Holes index.}
 \usage{
-  holes(mat)
+holes(mat)
 }
 \arguments{
   \item{mat}{matrix being used}
@@ -13,4 +13,3 @@
   equations.
 }
 \keyword{hplot}
-

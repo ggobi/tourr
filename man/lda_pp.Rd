@@ -2,7 +2,7 @@
 \alias{lda_pp}
 \title{LDA projection pursuit index.}
 \usage{
-  lda_pp(cl)
+lda_pp(cl)
 }
 \arguments{
   \item{cl}{class to be used.  Such as "color"}
@@ -13,4 +13,3 @@
   Analysis for equations.
 }
 \keyword{hplot}
-

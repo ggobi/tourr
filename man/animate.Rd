@@ -2,14 +2,16 @@
 \alias{animate}
 \title{Animate a tour path.}
 \usage{
-  animate(data, tour_path = grand_tour(),
-    display = display_xy(), start = NULL, aps = 1,
-    fps = 30, max_frames = Inf, rescale = TRUE,
-    sphere = FALSE, ...)
+animate(data, edges = NULL, tour_path = grand_tour(), display = display_xy(), 
+    start = NULL, aps = 1, fps = 30, max_frames = Inf, rescale = TRUE, sphere = FALSE, 
+    ...)
 }
 \arguments{
   \item{data}{matrix, or data frame containing numeric
   columns}
+
+  \item{edges}{matrix, contains ids of rows that should be
+  connected with line segments}
 
   \item{tour_path}{tour path generator, defaults to 2d
   grand tour}
@@ -56,7 +58,9 @@ animate(f, grand_tour(), display_xy())
 animate(f)
 animate(f, max_frames = 30)
 
-\dontrun{animate(f, max_frames = 10, fps = 1, aps = 0.1)}
+\dontrun{
+animate(f, max_frames = 10, fps = 1, aps = 0.1)
+}
 }
 \references{
   Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
@@ -64,4 +68,3 @@ animate(f, max_frames = 30)
   Data with Projections. Journal of Statistical Software,
   40(2), 1-18.  \url{http://www.jstatsoft.org/v40/i02/}.
 }
-

@@ -2,7 +2,7 @@
 \alias{interpolate}
 \title{Interpolate geodesically between bases.}
 \usage{
-  interpolate(basis_set, angle = 0.05)
+interpolate(basis_set, angle = 0.05)
 }
 \arguments{
   \item{basis_set}{input basis set}
@@ -21,4 +21,3 @@ dim(interpolate(t1, 0.05))
 dim(interpolate(t1, 0.1))
 }
 \keyword{hplot}
-

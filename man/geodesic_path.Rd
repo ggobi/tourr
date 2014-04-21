@@ -2,7 +2,7 @@
 \alias{geodesic_path}
 \title{Generate geodesic path.}
 \usage{
-  geodesic_path(current, target, frozen = NULL)
+geodesic_path(current, target, frozen = NULL)
 }
 \arguments{
   \item{new_target_f}{function that generates new frame,
@@ -42,4 +42,3 @@ all.equal(a, path$interpolate(0))
 all.equal(b, path$interpolate(1))
 }
 \keyword{internal}
-

@@ -2,8 +2,7 @@
 \alias{frozen_guided_tour}
 \title{The frozen guided tour}
 \usage{
-  frozen_guided_tour(frozen, index_f, d = 2,
-    max.tries = 25)
+frozen_guided_tour(frozen, index_f, d = 2, max.tries = 25)
 }
 \arguments{
   \item{frozen}{matrix of frozen variables, as described in
@@ -21,7 +20,7 @@
 }
 \examples{
 frozen <- matrix(NA, nrow = 4, ncol = 2)
-frozen[3, ] <- .5
+frozen[3, ] <- 0.5
 animate_xy(flea[, 1:4], frozen_guided_tour(frozen, holes))
 }
 \seealso{
@@ -30,4 +29,3 @@ animate_xy(flea[, 1:4], frozen_guided_tour(frozen, holes))
   The function should take a numeric matrix and return a
   single number, preferrably between 0 and 1.
 }
-

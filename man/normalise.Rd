@@ -2,7 +2,7 @@
 \alias{normalise}
 \title{Normalise a numeric matrix.}
 \usage{
-  normalise(x)
+normalise(x)
 }
 \arguments{
   \item{x}{numeric matrix or vector}
@@ -12,4 +12,3 @@
 }
 \keyword{algebra}
 \keyword{internal}
-

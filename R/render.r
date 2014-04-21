@@ -1,6 +1,8 @@
 #' Render frames of animation to disk
 #' 
 #' @param data matrix, or data frame containing numeric columns
+#' @param edges matrix, contains ids of rows that should be 
+#'  connected with line segments
 #' @param tour_path tour path generator
 #' @param display the method used to render the projected data, 
 #'   e.g. \code{\link{display_xy}}, \code{\link{display_pcp}}
@@ -21,7 +23,7 @@
 #' @examples
 #' render(flea[, 1:4], grand_tour(), display_xy(), "pdf", "test.pdf")
 #' render(flea[, 1:4], grand_tour(), display_xy(), "png", "test-%03d.png")
-render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
+render <- function(data, edges = NULL, tour_path, display, dev, ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere(data)
   
@@ -37,7 +39,7 @@ render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, 
   i <- 0
   while(i < frames) {
     display$render_frame()
-    display$render_data(data, step$proj, step$target)
+    display$render_data(data, edges, step$proj, step$target)
 
     i <- i + 1
     step <- tour(apf)

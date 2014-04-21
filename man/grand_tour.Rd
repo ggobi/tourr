@@ -2,7 +2,7 @@
 \alias{grand_tour}
 \title{A grand tour path.}
 \usage{
-  grand_tour(d = 2)
+grand_tour(d = 2)
 }
 \arguments{
   \item{d}{target dimensionality}
@@ -30,11 +30,10 @@ is.function(tour2d)
 
 # with two parameters, the previous projection and the data set
 args(tour2d)
-# if the previous projection is null, it will generate a starting
-# basis, otherwise the argument is ignored
+# if the previous projection is null, it will generate a starting basis,
+# otherwise the argument is ignored
 tour2d(NULL, mtcars)
-# the data argument is just used to determine the correct dimensionality
-# of the output matrix
+# the data argument is just used to determine the correct dimensionality of the
+# output matrix
 tour2d(NULL, mtcars[, 1:2])
 }
-
