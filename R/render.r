@@ -1,10 +1,8 @@
 #' Render frames of animation to disk
-#' 
+#'
 #' @param data matrix, or data frame containing numeric columns
-#' @param edges matrix, contains ids of rows that should be 
-#'  connected with line segments
 #' @param tour_path tour path generator
-#' @param display the method used to render the projected data, 
+#' @param display the method used to render the projected data,
 #'   e.g. \code{\link{display_xy}}, \code{\link{display_pcp}}
 #' @param dev name of output device to use (e.g. \code{\link{png}},
 #'   \code{\link{pdf}})
@@ -18,19 +16,19 @@
 #' @export
 #' @references Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
 #'   (2011). tourr: An R Package for Exploring Multivariate Data with
-#'   Projections. Journal of Statistical Software, 40(2), 1-18. 
+#'   Projections. Journal of Statistical Software, 40(2), 1-18.
 #'   \url{http://www.jstatsoft.org/v40/i02/}.
 #' @examples
 #' render(flea[, 1:4], grand_tour(), display_xy(), "pdf", "test.pdf")
 #' render(flea[, 1:4], grand_tour(), display_xy(), "png", "test-%03d.png")
-render <- function(data, edges = NULL, tour_path, display, dev, ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
+render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere(data)
-  
+
   dev <- match.fun(dev)
   dev(...)
   on.exit(dev.off())
-  
+
   tour <- new_tour(data, tour_path, start)
   step <- tour(0)
 
@@ -39,7 +37,7 @@ render <- function(data, edges = NULL, tour_path, display, dev, ..., apf = 1/10,
   i <- 0
   while(i < frames) {
     display$render_frame()
-    display$render_data(data, edges, step$proj, step$target)
+    display$render_data(data, step$proj, step$target)
 
     i <- i + 1
     step <- tour(apf)

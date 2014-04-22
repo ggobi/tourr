@@ -3,15 +3,12 @@
 \alias{animate}
 \title{Animate a tour path.}
 \usage{
-animate(data, edges = NULL, tour_path = grand_tour(),
-  display = display_xy(), start = NULL, aps = 1, fps = 30,
-  max_frames = Inf, rescale = TRUE, sphere = FALSE, ...)
+animate(data, tour_path = grand_tour(), display = display_xy(),
+  start = NULL, aps = 1, fps = 30, max_frames = Inf, rescale = TRUE,
+  sphere = FALSE, ...)
 }
 \arguments{
 \item{data}{matrix, or data frame containing numeric columns}
-
-\item{edges}{matrix, contains ids of rows that should be
-connected with line segments}
 
 \item{tour_path}{tour path generator, defaults to 2d grand tour}
 

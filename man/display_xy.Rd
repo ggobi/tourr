@@ -7,7 +7,7 @@
 display_xy(center = TRUE, axes = "center", half_range = NULL,
   col = "black", pch = 20, ...)
 
-animate_xy(data, edges = NULL, tour_path = grand_tour(), ...)
+animate_xy(data, tour_path = grand_tour(), ...)
 }
 \arguments{
 \item{axes}{position of the axes: center, bottomleft or off}
@@ -28,9 +28,6 @@ If not set, defaults to maximum distance from origin to each row of data.}
 
 \item{data}{matrix, or data frame containing numeric columns}
 
-\item{edges}{matrix, contains ids of rows that should be
-connected with line segments}
-
 \item{tour_path}{tour path generator, defaults to 2d grand tour}
 }
 \description{
@@ -41,8 +38,6 @@ animate_xy(flea[, 1:6])
 animate(flea[, 1:6], tour_path=grand_tour(), display=display_xy())
 animate(flea[, 1:6], tour_path=grand_tour(),
   display=display_xy(axes = "bottomleft"))
-animate(flea[, 1:6], edges=matrix(c(1:5, 2:6), ncol=2, byrow=T),
-  tour_path=grand_tour(), display=display_xy(axes = "bottomleft"))
 animate(flea[, 1:6], tour_path=grand_tour(),
   display=display_xy(half_range = 0.5))
 animate_xy(flea[, 1:6], tour_path=little_tour())

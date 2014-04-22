@@ -3,14 +3,11 @@
 \alias{render}
 \title{Render frames of animation to disk}
 \usage{
-render(data, edges = NULL, tour_path, display, dev, ..., apf = 1/10,
-  frames = 50, rescale = TRUE, sphere = FALSE, start = NULL)
+render(data, tour_path, display, dev, ..., apf = 1/10, frames = 50,
+  rescale = TRUE, sphere = FALSE, start = NULL)
 }
 \arguments{
 \item{data}{matrix, or data frame containing numeric columns}
-
-\item{edges}{matrix, contains ids of rows that should be
-connected with line segments}
 
 \item{tour_path}{tour path generator}
 
