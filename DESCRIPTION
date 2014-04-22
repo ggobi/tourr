@@ -13,7 +13,6 @@ Depends:
 Imports:
     methods
 Suggests:
-    rggobi,
     TeachingDemos,
     ash,
     testthat,
