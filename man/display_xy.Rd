@@ -5,7 +5,7 @@
 \title{Display tour path with a scatterplot}
 \usage{
 display_xy(center = TRUE, axes = "center", half_range = NULL,
-  col = "black", pch = 20, ...)
+  col = "black", pch = 20, edges = NULL, ...)
 
 animate_xy(data, tour_path = grand_tour(), ...)
 }
@@ -18,6 +18,8 @@ rather than position.}
 
 \item{half_range}{half range to use when calculating limits of projected.
 If not set, defaults to maximum distance from origin to each row of data.}
+
+\item{edges}{A two column integer matrix giving indices of ends of lines.}
 
 \item{col}{color to be plotted.  Defaults to "black"}
 
@@ -53,5 +55,10 @@ require(colorspace)
 pal <- rainbow_hcl(length(levels(flea$species)))
 col <- pal[as.numeric(flea$species)]
 animate_xy(flea[,-7], col=col)
+
+# You can also draw lines
+edges <- matrix(c(1:5, 2:6), ncol = 2)
+animate(flea[, 1:6], grand_tour(),
+  display_xy(axes = "bottomleft", edges = edges))
 }
 

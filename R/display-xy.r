@@ -8,6 +8,7 @@
 #'  rather than position.
 #' @param half_range half range to use when calculating limits of projected.
 #'   If not set, defaults to maximum distance from origin to each row of data.
+#' @param edges A two column integer matrix giving indices of ends of lines.
 #' @param col color to be plotted.  Defaults to "black"
 #' @param pch size of the point to be plotted.  Defaults to 20.
 #' @param ...  other arguments passed on to \code{\link{animate}} and
@@ -33,12 +34,24 @@
 #' pal <- rainbow_hcl(length(levels(flea$species)))
 #' col <- pal[as.numeric(flea$species)]
 #' animate_xy(flea[,-7], col=col)
-display_xy <- function(center = TRUE, axes = "center", half_range = NULL, col = "black", pch  = 20, ...) {
+#'
+#' # You can also draw lines
+#' edges <- matrix(c(1:5, 2:6), ncol = 2)
+#' animate(flea[, 1:6], grand_tour(),
+#'   display_xy(axes = "bottomleft", edges = edges))
+display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
+                       col = "black", pch  = 20, edges = NULL, ...) {
 
   labels <- NULL
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)
     labels <<- abbreviate(colnames(data), 3)
+  }
+
+  if (!is.null(edges)) {
+    if (!is.matrix(edges) && ncol(edges) == 2) {
+      stop("Edges matrix needs two columns, from and to, only.")
+    }
   }
 
   render_frame <- function() {
@@ -56,6 +69,10 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL, col = 
     if (center) x <- center(x)
     x <- x / half_range
     points(x, col = col, pch = pch)
+
+    if (!is.null(edges)) {
+      lines(x[edges, 1], x[edges, 2])
+    }
   }
 
   list(

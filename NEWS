@@ -3,6 +3,9 @@ Version 0.5.3
 
 * Removed rggobi from dependencies.
 
+* `display_xy()` gains new edges argument to optionally draw lines between
+  specified points.
+
 Version 0.5.2
 ------------------------------------------------------------------------------
 
