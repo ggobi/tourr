@@ -16,9 +16,12 @@
 #' @examples
 #' animate_xy(flea[, 1:6])
 #' animate(flea[, 1:6], tour_path=grand_tour(), display=display_xy())
-#' animate(flea[, 1:6], tour_path=grand_tour(), display=display_xy(axes = "bottomleft"))
-#' animate(flea[, 1:6], edges=matrix(c(1:5, 2:6), ncol=2, byrow=T), tour_path=grand_tour(), display=display_xy(axes = "bottomleft"))
-#' animate(flea[, 1:6], tour_path=grand_tour(), display=display_xy(half_range = 0.5))
+#' animate(flea[, 1:6], tour_path=grand_tour(),
+#'   display=display_xy(axes = "bottomleft"))
+#' animate(flea[, 1:6], edges=matrix(c(1:5, 2:6), ncol=2, byrow=T),
+#'   tour_path=grand_tour(), display=display_xy(axes = "bottomleft"))
+#' animate(flea[, 1:6], tour_path=grand_tour(),
+#'   display=display_xy(half_range = 0.5))
 #' animate_xy(flea[, 1:6], tour_path=little_tour())
 #' animate_xy(flea[, 1:3], tour_path=guided_tour(holes), sphere = TRUE)
 #' animate_xy(flea[, 1:6], center = FALSE)
