@@ -19,6 +19,6 @@ Suggests:
     colorspace,
     ggplot2,
     reshape2
-License: MIT
+License: MIT + file LICENSE
 LazyData: true
 Roxygen: list(wrap = FALSE)
