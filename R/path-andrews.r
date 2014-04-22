@@ -65,4 +65,4 @@ plot.path_curve <- function(x, ...) {
   qplot(step, value, data = x, group = obs, geom = "line") +
     facet_grid(var ~ .)
 }
-
+globalVariables(c("value", "obs"))
