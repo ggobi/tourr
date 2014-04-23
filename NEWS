@@ -1,6 +1,8 @@
 Version 0.5.3
 ------------------------------------------------------------------------------
 
+* Better rstudio support.
+
 * Removed rggobi from dependencies.
 
 * `display_xy()` gains new edges argument to optionally draw lines between

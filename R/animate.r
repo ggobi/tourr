@@ -47,6 +47,11 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
   if (max_frames == Inf) {
     to_stop()
   }
+  plat <- find_platform()
+  if (plat$iface == "rstudio" && fps > 19) {
+    warning("Rstudio supports maximum fps of 19", call. = FALSE)
+    fps <- 19
+  }
 
   tour <- new_tour(data, tour_path, start)
   start <- tour(0)
@@ -57,7 +62,6 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
   display$init(data)
   display$render_frame()
   display$render_data(data, start$proj)
-  os <- find_platform()$os
 
   b <- 0
   i <- 0
@@ -79,7 +83,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
 
       dev.hold()
       on.exit(dev.flush())
-      if (os == "win") {
+      if (plat$os == "win" || plat$iface == "rstudio") {
         display$render_frame()
       } else {
         display$render_transition()
