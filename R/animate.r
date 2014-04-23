@@ -48,8 +48,8 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
     to_stop()
   }
   plat <- find_platform()
-  if (plat$iface == "rstudio" && fps > 19) {
-    warning("Rstudio supports maximum fps of 19", call. = FALSE)
+  if (rstudio_gd() && fps > 19) {
+    warning("Rstudio graphics device supports maximum fps of 19", call. = FALSE)
     fps <- 19
   }
 
@@ -101,4 +101,4 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
   invisible(bases[, , seq_len(b)])
 }
 
-
+rstudio_gd <- function() identical(names(dev.cur()), "RStudioGD")
