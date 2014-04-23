@@ -91,7 +91,7 @@ find_platform <- function() {
 #' @keywords internal
 to_stop <- function() {
   plat <- find_platform()
-  if(plat$os %in% c("rstudio", "win")) {
+  if(plat$os == "win" || plat$iface == "rstudio") {
     key <- "Esc"
   } else if (plat$os == "mac" && plat$iface == "gui") {
     key <- "Esc"
