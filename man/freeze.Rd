@@ -5,6 +5,8 @@
 \title{Freeze and thaw matrices}
 \usage{
 freeze(input, frozen)
+
+thaw(input, frozen)
 }
 \description{
 Some terminology:

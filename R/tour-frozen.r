@@ -2,13 +2,13 @@
 #'
 #' A frozen tour fixes some of the values of the orthonormal projection
 #' matrix and allows the others to vary freely according to any of the
-#' other tour methods.  This frozen tour is a frozen grand tour.  See 
+#' other tour methods.  This frozen tour is a frozen grand tour.  See
 #' \code{\link{frozen_guided_tour}} for a frozen guided tour.
-#' 
-#' Usually, you will not call this function directly, but will pass it to 
-#' a method that works with tour paths like \code{\link{animate}}, 
+#'
+#' Usually, you will not call this function directly, but will pass it to
+#' a method that works with tour paths like \code{\link{animate}},
 #' \code{\link{save_history}} or \code{\link{render}}.
-#' 
+#'
 #' @param d target dimensionality
 #' @param frozen matrix of frozen variables, as described in
 #'   \code{\link{freeze}}
@@ -17,26 +17,26 @@
 #' frozen <- matrix(NA, nrow = 4, ncol = 2)
 #' frozen[3, ] <- .5
 #' animate_xy(flea[, 1:4], frozen_tour(2, frozen))
-#' 
+#'
 #' \dontrun{
 #'   # Doesn't work - a bug?
 #'   frozen <- matrix(NA, nrow = 4, ncol = 2)
 #'   frozen[1, 1] <- 0.5
 #'   animate_xy(flea[, 1:4], frozen_tour(2, frozen))
-#'   
+#'
 #'   # Doesn't work - a bug?
 #'   frozen <- matrix(NA, nrow = 4, ncol = 2)
 #'   frozen[, 1] <- 1/2
 #'   animate_xy(flea[, 1:4], frozen_tour(2, frozen))
-#'   
+#'
 #'   # Doesn't work - a bug?
 #'   frozen[3, ] <- c(0, 1)
 #'   animate_xy(flea[, 1:4], frozen_tour(2, frozen))
-#'   
+#'
 #'   # Doesn't move, which is correct - no free variables
 #'   frozen[4, ] <- .2
 #'   animate_xy(flea[, 1:4], frozen_tour(2, frozen))
-#'   
+#'
 #'   # Doesn't work - a bug?
 #'   frozen <- matrix(NA, nrow = 4, ncol = 2)
 #'   frozen[, 1] <- 1/2
@@ -47,7 +47,7 @@
 #' frozen[3, ] <- .5
 #' frozen[4, ] <- c(-.2, .2)
 #' animate_xy(flea[, 1:5], frozen_tour(2, frozen))
-frozen_tour <- function(d = 2, frozen) { 
+frozen_tour <- function(d = 2, frozen) {
   generator <- function(current, data) {
     if (is.null(current)) return(basis_init(ncol(data), d))
 
@@ -55,7 +55,7 @@ frozen_tour <- function(d = 2, frozen) {
   }
 
   check_freezer_safe(frozen)
-  new_geodesic_path("frozen", generator, frozen = frozen) 
+  new_geodesic_path("frozen", generator, frozen = frozen)
 }
 
 #' The frozen guided tour
@@ -70,21 +70,21 @@ frozen_tour <- function(d = 2, frozen) {
 #'   for examples of index functions.  The function should take a numeric
 #'   matrix and return a single number, preferrably between 0 and 1.
 #' @export
-#' @examples 
+#' @examples
 #' frozen <- matrix(NA, nrow = 4, ncol = 2)
 #' frozen[3, ] <- .5
 #' animate_xy(flea[, 1:4], frozen_guided_tour(frozen, holes))
 frozen_guided_tour <- function(frozen, index_f, d = 2, max.tries = 25) {
   generator <- function(current, data) {
-    if (is.null(current)) return(basis_init(ncol(data), d))    
-    
+    if (is.null(current)) return(basis_init(ncol(data), d))
+
     index <- function(proj) {
       index_f(as.matrix(data) %*% proj)
     }
 
     search_frozen_geodesic(current, index, max.tries, frozen = frozen)
   }
-  
+
   check_freezer_safe(frozen)
   new_geodesic_path("frozen-guided", generator, frozen = frozen)
 }
@@ -95,7 +95,7 @@ frozen_guided_tour <- function(frozen, index_f, d = 2, max.tries = 25) {
 #' @param frozen matrix to check for freezability
 check_freezer_safe <- function(frozen) {
   stopifnot(is.matrix(frozen))
-  
+
   lengths <- colSums(frozen ^ 2, na.rm = TRUE)
   if (any(lengths >= 1)) {
     stop("Columns of frozen matrix must have squared norm < 1", call. = FALSE)
@@ -107,14 +107,13 @@ check_freezer_safe <- function(frozen) {
 #' Some terminology:
 #'   * frozen variables: the variables that have fixed values
 #'   * warm variables: the remaining variables that vary freely
-#' 
+#'
 #' A frozen matrix specifies which variables to fix in a projection matrix.
 #' Warm variables should be missing (\code{NA}) while frozen variables should
 #' be set to their fixed values.
 #'
 #' @keywords internal
-#' @aliases freeze thaw
-#' @export freeze thaw
+#' @export
 #' @examples
 #' frozen <- matrix(NA, nrow = 4, ncol = 2)
 #' frozen[3, ] <- .5
@@ -129,14 +128,16 @@ freeze <- function(input, frozen) {
   input
 }
 
+#' @export
+#' @rdname freeze
 thaw <- function(input, frozen) {
   fixed <- !is.na(frozen)
 
   input <- normalise(input)
   frozen_lengths <- colSums(frozen ^ 2, na.rm = TRUE)
-  
+
   input <- sweep(input, 2, sqrt(1 - frozen_lengths), "*")
   input[fixed] <- frozen[fixed]
-  
+
   input
 }
