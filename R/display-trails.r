@@ -44,6 +44,8 @@ display_trails <- function(center = TRUE, axes = "center", half_range = NULL, co
     past_x <<- c(past_x[2:past], list(x))
   }
   environment(render_data) <- xy_env
+  # Quiet R CMD check note:
+  past_x <- NULL
 
   xy$render_data <- render_data
   xy
