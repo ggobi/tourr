@@ -8,4 +8,4 @@ There were no ERRORs, WARNINGs or NOTEs.
 
 ## Downstream dependencies
 I have also run R CMD check on four all downstream dependencies of tourr 
-(https://github.com/hadley/tourr/blob/master/revdep/summary.md). I get a lot of notes, but none of them seem to be related to tourr. The only changes in this version were to fix `R CMD check` NOTEs. I've notified the maintainers of the problems.
+(https://github.com/ggobi/tourr/blob/master/revdep/summary.md). I get a lot of notes, but none of them seem to be related to tourr. The only changes in this version were to fix `R CMD check` NOTEs. I've notified the maintainers of the problems.
