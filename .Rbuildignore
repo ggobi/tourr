@@ -2,4 +2,5 @@
 ^\.Rproj\.user$
 ^\.travis\.yml$
 ^util$
-^rcmd-notes\.md$
+^cran-comments\.md$
+^revdep$
