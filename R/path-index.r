@@ -35,10 +35,8 @@ path_index <- function(history, index_f, data = attr(history, "data")) {
 #' @keywords internal hplot
 #' @export
 plot.path_index <- function(x, ...) {
-  require(ggplot2)
-
-  qplot(seq_along(x), unclass(x), geom = "line") +
-    labs(x = "step", y = "index")
+  ggplot2::qplot(seq_along(x), unclass(x), geom = "line") +
+    ggplot2::labs(x = "step", y = "index")
 }
 
 #' Compute index value for many histories.

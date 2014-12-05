@@ -60,9 +60,7 @@ path_curves <- function(history, data = attr(history, "data")) {
 #' @keywords internal
 #' @export
 plot.path_curve <- function(x, ...) {
-  require("ggplot2")
-
-  qplot(step, value, data = x, group = obs, geom = "line") +
-    facet_grid(var ~ .)
+  ggplot2::qplot(step, value, data = x, group = obs, geom = "line") +
+    ggplot2::facet_grid(var ~ .)
 }
 globalVariables(c("value", "obs"))
