@@ -1,6 +1,5 @@
 Package: tourr
-Type: Package
-Title: Implement tour methods in pure R code
+Title: Implement Tour Methods in R Code
 Version: 0.5.4
 Author: Dianne Cook <dicook@iastate.edu>, Hadley Wickham
     <h.wickham@gmail.com>
@@ -19,4 +18,3 @@ Suggests:
     reshape2
 License: MIT + file LICENSE
 LazyData: true
-Roxygen: list(wrap = FALSE)
