@@ -11,20 +11,23 @@
 #' @keywords hplot
 #' @export
 #' @examples
-#' # The drawing code is fairly slow, so this animation works best with a 
+#' # The drawing code is fairly slow, so this animation works best with a
 #' # limited number of cases
 #' animate_faces(flea[1:2, 1:6])
 #' animate_faces(flea[1:4, 1:6])
-#' 
+#'
 #' animate_faces(flea[1:2, 1:6], grand_tour(5))
 display_faces <- function(...) {
+  if (!requireNamespace("TeachingDemos", quietly = TRUE)) {
+    stop("Please install the TeachingDemos package", call. = FALSE)
+  }
 
   render_data <- function(data, proj, geodesic) {
     x <- data %*% proj
     x <- (x + 2) / 4
-    faces2(x, scale = "none")
+    TeachingDemos::faces2(x, scale = "none")
   }
-  
+
   list(
     init = nul,
     render_frame = nul,

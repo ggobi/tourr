@@ -16,24 +16,28 @@
 #' @examples
 #' animate_dist(flea[, 1:6])
 #'
-#' # When the distribution is not centred, it tends to wander around in a 
+#' # When the distribution is not centred, it tends to wander around in a
 #' # distracting manner
 #' animate_dist(flea[, 1:6], center = FALSE)
-#' 
+#'
 #' # Alternatively, you can display the distribution with a histogram
 #' animate_dist(flea[, 1:6], method = "hist")
 display_dist <- function(method="density", center = TRUE, half_range = NULL, rug = FALSE, ...) {
+  if (!requireNamespace("ash", quietly = TRUE)) {
+    stop("Please install the ash package", call. = FALSE)
+  }
+
   method <- match.arg(method, c("histogram", "density", "ash"))
   labels <- NULL
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)
     labels <<- abbreviate(colnames(data), 2)
   }
-  
+
   render_frame <- function() {
     par(pty="m",mar=c(4,4,1,1))
     plot(
-      x = NA, y = NA, xlim = c(-1, 1.2), ylim = c(-1.1, 3), 
+      x = NA, y = NA, xlim = c(-1, 1.2), ylim = c(-1.1, 3),
       xaxs = "i", yaxs = "i",
       xlab = "Data Projection", ylab = "Density", yaxt = "n"
     )
@@ -51,7 +55,7 @@ display_dist <- function(method="density", center = TRUE, half_range = NULL, rug
     x <- data %*% proj
     if (center) x <- center(x)
     x <- x / half_range
-    
+
     # Render projection data
     if (method == "histogram") {
       bins <- hist(x, breaks = seq(-1, 1, 0.2), plot = FALSE)
@@ -61,16 +65,16 @@ display_dist <- function(method="density", center = TRUE, half_range = NULL, rug
       polygon(density(x), lwd = 2, col="black")
     } else if (method == "ash") {
       library(ash)
-      capture.output(ash <- ash1(bin1(x, c(-half_range, half_range))))
+      capture.output(ash <- ash::ash1(ash::bin1(x, c(-half_range, half_range))))
       lines(ash)
     }
     abline(h = 0)
     box(col="grey70")
-    
+
     if (rug) {
       segments(x, 0, x, 0.1, ...)
     }
-    
+
     # Render tour axes
     ax <- seq_along(proj) / length(proj)
     segments(0, -ax, proj, -ax, col="black", lwd=3)
@@ -93,7 +97,7 @@ display_dist <- function(method="density", center = TRUE, half_range = NULL, rug
 animate_dist <- function(data, tour_path = grand_tour(1), ...) {
   animate(
     data = data, tour_path = tour_path,
-    display = display_dist(...), 
+    display = display_dist(...),
     ...
   )
 }
