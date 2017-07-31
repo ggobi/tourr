@@ -23,7 +23,7 @@ orthonormalise <- function(x) {
   if (ncol(x) > 1) {
     for (j in seq_len(ncol(x))) {
       for (i in seq_len(j - 1)) {
-        x[, j] <- x[, j] - crossprod(x[, j], x[, i]) * x[, i]
+        x[, j] <- x[, j] - as.vector(crossprod(x[, j], x[, i])) * x[, i]
       }
     }
   }
@@ -70,7 +70,7 @@ orthonormalise_by <- function(x, by) {
   x <- normalise(x)
 
   for (j in seq_len(ncol(x))) {
-    x[, j] <- x[, j] - crossprod(x[, j], by[, j]) * by[, j]
+    x[, j] <- x[, j] - as.vector(crossprod(x[, j], by[, j])) * by[, j]
   }
 
   normalise(x)
