@@ -20,3 +20,4 @@ License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/ggobi/tourr/
 BugReports: https://github.com/ggobi/tourr/
+RoxygenNote: 6.0.1
