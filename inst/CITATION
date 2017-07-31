@@ -1,7 +1,7 @@
 citHeader("To cite tourr in publications use:")
 
 citEntry(entry = "Article",
-  title        = "{tourr}: An {R} Package for Exploring Multivariate Data with Projections} ",
+  title        = "{tourr}: An {R} Package for Exploring Multivariate Data with Projections",
   author       = personList(as.person("Hadley Wickham"),
                    as.person("Dianne Cook"),
                    as.person("Heike Hofmann"),
