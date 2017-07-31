@@ -7,9 +7,9 @@
 search_frozen_geodesic(current, index, max.tries = 5, n = 5, frozen)
 }
 \description{
-These three functions perform a corresponding role to 
-\code{\link{search_geodesic}}, \code{\link{find_best_dir}} and 
-\code{\link{find_path_peak}} but for the frozen tour.  They work by 
+These three functions perform a corresponding role to
+\code{\link{search_geodesic}}, \code{\link{find_best_dir}} and
+\code{\link{find_path_peak}} but for the frozen tour.  They work by
 zero'ing out the frozen variables and travelling in that restricted
 subspace.
 }

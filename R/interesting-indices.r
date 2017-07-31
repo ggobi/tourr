@@ -12,7 +12,7 @@ holes <- function(mat) {
 
   num <- 1 - 1/n * sum(exp(-0.5 * rowSums(mat ^ 2)))
   den <- 1 - exp(-d / 2)
-  
+
   num / den
 }
 
@@ -31,7 +31,7 @@ cmass <- function(mat)
 #'
 #' Calculate the LDA projection pursuit index.  See Cook and Swayne (2007)
 #' Interactive and Dynamic Graphics for Data Analysis for equations.
-#' 
+#'
 #' @param cl class to be used.  Such as "color"
 #' @keywords hplot
 #' @export
@@ -43,12 +43,12 @@ lda_pp <- function(cl) {
 
   function(mat) {
     if (ncol(mat) > 1) {
-      fit <- manova(mat ~ cl)                      
+      fit <- manova(mat ~ cl)
 
       1 - summary(fit, test = "Wilks")$stats[[3]]
     }
     else {
-      fit <- aov(mat~cl)
+      fit <- stats::aov(mat ~ cl)
       summary(aov(mat ~ cl))[[1]][4]
     }
   }
@@ -58,7 +58,7 @@ lda_pp <- function(cl) {
 #'
 #' Calculate the PDA projection pursuit index.  See Lee and Cook (2009)
 #' A Projection Pursuit Index for Large p, Small n Data
-#' 
+#'
 #' @param cl class to be used.  Such as "color"
 #' @param lambda shrinkage parameter (0 = no shrinkage, 1 = full shrinkage)
 #' @keywords hplot
@@ -71,7 +71,7 @@ pda_pp <- function(cl, lambda=0.2) {
 
   # Convert class to sequential integers, and sort
   cl.i <- as.integer(as.factor(cl))
-  cl.sort <- order(cl.i)  
+  cl.sort <- order(cl.i)
   cl <- cl.i[cl.sort]
 
   function(mat) {
@@ -83,14 +83,14 @@ pda_pp <- function(cl, lambda=0.2) {
     else
       mat <- mat[cl.sort, ]
 
-    ngroup <- table(cl.i)     # the obs. no. in each class, stored in table	  
+    ngroup <- table(cl.i)     # the obs. no. in each class, stored in table
     groups <- length(ngroup)  # no. of classes
     gname <- names(ngroup)    # names of classes, now is integer 1,2,3...
 
     .CalIndex(nrow(mat), ncol(mat), groups, mat, cl, gname,
         as.integer(ngroup), lambda)
   }
-}   
+}
 
 # @param n no. of obs,
 # @param p no. of variables,
@@ -100,7 +100,7 @@ pda_pp <- function(cl, lambda=0.2) {
 # @param gname names of classes, now is integer 1,2,3...;
 # @param ngroup the obs. no. in each class
 # @param lambda shrinkage parameter (0 = no shrinkage, 1 = full shrinkage)
-.CalIndex<-function(n, p, groups, fvals, groupraw, gname, ngroup, lambda) { 
+.CalIndex<-function(n, p, groups, fvals, groupraw, gname, ngroup, lambda) {
   # int i, j, k, right, left
   g <- groups
   mean <- matrix(rep(0, g*p), g, p)
@@ -109,9 +109,9 @@ pda_pp <- function(cl, lambda=0.2) {
 
   right <- n-1
   left <- 0
- 
+
   group <- groupraw;
-  
+
   val <- 0
 
 # Calculate mean for within class and the overall mean
@@ -134,7 +134,7 @@ pda_pp <- function(cl, lambda=0.2) {
       }
     }
   }
-  
+
   for (j in 1:p)
     cov[j,j] <- cov[j,j] + lambda*n
 
@@ -158,18 +158,18 @@ pda_pp <- function(cl, lambda=0.2) {
           (mean[i,j] - ovmean[j]) * (mean[i,k] - ovmean[k])
 
   tempcov <- cov
-  if (ncol(tempcov) > 1) 
+  if (ncol(tempcov) > 1)
     tempval <- .ludcomp(tempcov, p, pivot)
   else
     tempval <- tempcov
-  
+
   if (tempval < 0.00000001) {
     val <- 0
     print ("ZERO VARIANCE!")
   }
   else
     val <- 1 - val/tempval
-  
+
   return(val)
 }
 
@@ -182,7 +182,7 @@ pda_pp <- function(cl, lambda=0.2) {
   for (i in 1:n) {
     s[i] <- a[i,1+1]
     for (j in 2:n)
-      if (s[i] < a[i,j]) 
+      if (s[i] < a[i,j])
         s[i] <- a[i,j]
   }
 
@@ -223,7 +223,7 @@ pda_pp <- function(cl, lambda=0.2) {
   }
 
   det <- det * a[n,n]
-  
+
   return(det)
 
 }

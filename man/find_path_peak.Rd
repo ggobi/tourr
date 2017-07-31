@@ -17,8 +17,8 @@ find_path_peak(old, new, index, max_dist = pi/4)
 }
 \description{
 Use \code{\link{optimize}} to find the most interesting projection amongst
-all projections on a geodesic.  This method assumes that the function is 
-continuous with a single maximum, but seems to do ok even if there are 
+all projections on a geodesic.  This method assumes that the function is
+continuous with a single maximum, but seems to do ok even if there are
 multiple maxima.
 }
 \keyword{internal}

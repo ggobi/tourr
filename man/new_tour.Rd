@@ -14,7 +14,7 @@ called with the previous projection and the data set.  For more
 complicated tour paths, this will need to be a closure with local
 variables.  Should return NULL if the tour should terminate}
 
-\item{start}{starting projection, if omitted will use default projection 
+\item{start}{starting projection, if omitted will use default projection
 from generator}
 }
 \value{

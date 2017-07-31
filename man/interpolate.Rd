@@ -12,7 +12,7 @@ interpolate(basis_set, angle = 0.05)
 \item{angle}{target distance (in radians) between bases}
 }
 \description{
-This function takes a set of bases and produces a tour by geodesically 
+This function takes a set of bases and produces a tour by geodesically
 interpolating between each basis
 }
 \examples{

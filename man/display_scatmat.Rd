@@ -20,7 +20,7 @@ animate_scatmat(data, tour_path = grand_tour(3), ...)
 Animate a nD tour path with a scatterplot matrix.
 }
 \details{
-The lines show the observations, and the points, the values of the 
+The lines show the observations, and the points, the values of the
 projection matrix.
 }
 \examples{

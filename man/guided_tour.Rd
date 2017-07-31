@@ -25,15 +25,15 @@ a better projection before giving up}
 \item{...}{arguments sent to the search_f}
 }
 \description{
-Instead of choosing new projections at random like the grand tour, the 
+Instead of choosing new projections at random like the grand tour, the
 guided tour always tries to find a projection that is more interesting
 than the current projection.
 }
 \details{
 Currently the index functions only work in 2d.
 
-Usually, you will not call this function directly, but will pass it to 
-a method that works with tour paths like \code{\link{animate}}, 
+Usually, you will not call this function directly, but will pass it to
+a method that works with tour paths like \code{\link{animate}},
 \code{\link{save_history}} or \code{\link{render}}.
 }
 \examples{
@@ -41,7 +41,7 @@ animate_xy(flea[, 1:3], guided_tour(holes), sphere = TRUE)
 animate_xy(flea[, 1:6], guided_tour(holes), sphere = TRUE)
 animate_dist(flea[, 1:6], guided_tour(holes, 1), sphere = TRUE)
 
-# save_history is particularly useful in conjunction with the 
+# save_history is particularly useful in conjunction with the
 # guided tour as it allows us to look at the tour path in many different
 # ways
 f <- flea[, 1:3]
@@ -50,7 +50,7 @@ tries <- replicate(5, save_history(f, guided_tour(holes)), simplify = FALSE)
 \seealso{
 \code{\link{cmass}}, \code{\link{holes}} and \code{\link{lda_pp}}
   for examples of index functions.  The function should take a numeric
-  matrix and return a single number, preferrably between 0 and 1.  
+  matrix and return a single number, preferrably between 0 and 1.
 \code{\link{search_geodesic}}, \code{\link{search_better}},
   \code{\link{search_better_random}} for different search strategies
 }

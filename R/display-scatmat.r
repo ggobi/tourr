@@ -1,8 +1,8 @@
 #' Scatterplot matrix tour path animation.
 #'
-#' Animate a nD tour path with a scatterplot matrix. 
+#' Animate a nD tour path with a scatterplot matrix.
 #'
-#' The lines show the observations, and the points, the values of the 
+#' The lines show the observations, and the points, the values of the
 #' projection matrix.
 #'
 #' @param ... other arguments passed on to \code{\link{animate}}
@@ -13,7 +13,7 @@
 #' animate_scatmat(flea[, 1:6], grand_tour(2))
 #' animate_scatmat(flea[, 1:6], grand_tour(6))
 display_scatmat <- function(...) {
-  
+
   render_data <- function(data, proj, geodesic) {
     pairs(data %*% proj, pch = 20, ...)
   }
@@ -34,6 +34,6 @@ display_scatmat <- function(...) {
 #' @inheritParams animate
 #' @export
 animate_scatmat <- function(data, tour_path = grand_tour(3), ...) {
-  animate(data = data, tour_path = tour_path, 
+  animate(data = data, tour_path = tour_path,
     display = display_scatmat(...), ...)
 }

@@ -24,7 +24,7 @@ If not set, defaults to maximum distance from origin to each row of data.}
 \item{tour_path}{tour path generator, defaults to 2d grand tour}
 }
 \description{
-Suggestion to use gray background and colour saturation (instead of 
+Suggestion to use gray background and colour saturation (instead of
 gray shading) by Graham Wills.
 }
 \examples{

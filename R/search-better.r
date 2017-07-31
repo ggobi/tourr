@@ -17,7 +17,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   method = "linear"
 ) {
   cur_index <- index(current)
-  
+
   cat("Old", cur_index, "\n")
   try <- 1
   while(try < max.tries) {
@@ -30,7 +30,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
     }
     try <- try + 1
   }
-  
+
   NULL
 }
 
@@ -40,7 +40,7 @@ search_better_random <- function(current, alpha = 0.5, index,
   max.tries = Inf, method = "linear", eps = 0.001
 ) {
   cur_index <- index(current)
-  
+
   cat("Old", cur_index, "\n")
   try <- 1
   while(try < max.tries) {
@@ -57,7 +57,7 @@ search_better_random <- function(current, alpha = 0.5, index,
     }
     try <- try + 1
   }
-  
+
   NULL
 }
 

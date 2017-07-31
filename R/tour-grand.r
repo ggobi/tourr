@@ -3,10 +3,10 @@
 #' This method generates target bases by randomly sampling on
 #' the space of all d-dimensional planes in p-space.
 #'
-#' Usually, you will not call this function directly, but will pass it to 
-#' a method that works with tour paths like \code{\link{animate}}, 
+#' Usually, you will not call this function directly, but will pass it to
+#' a method that works with tour paths like \code{\link{animate}},
 #' \code{\link{save_history}} or \code{\link{render}}.
-#' 
+#'
 #' @param d target dimensionality
 #' @export
 #' @examples
@@ -19,7 +19,7 @@
 #' # The grand tour is a function:
 #' tour2d <- grand_tour(2)
 #' is.function(tour2d)
-#' 
+#'
 #' # with two parameters, the previous projection and the data set
 #' args(tour2d)
 #' # if the previous projection is null, it will generate a starting
@@ -32,10 +32,10 @@ grand_tour <- function(d = 2) {
   generator <- function(current, data) {
     if (is.null(current)) return(basis_init(ncol(data), d))
 
-    basis_random(ncol(data), d)      
+    basis_random(ncol(data), d)
   }
 
-  new_geodesic_path("grand", generator) 
+  new_geodesic_path("grand", generator)
 }
 
 #' Generate a random basis
@@ -44,7 +44,7 @@ grand_tour <- function(d = 2) {
 #' @param n dimensionality of data
 #' @param d dimensionality of target projection
 #' @export
-basis_random <- function(n, d = 2) {  
+basis_random <- function(n, d = 2) {
   mvn <- matrix(rnorm(n * d), ncol = d)
   orthonormalise(mvn)
 }
@@ -59,6 +59,6 @@ basis_random <- function(n, d = 2) {
 #' @export
 basis_init <- function(n, d) {
   start <- matrix(0, nrow = n, ncol = d)
-  diag(start) <- 1    
+  diag(start) <- 1
   start
 }

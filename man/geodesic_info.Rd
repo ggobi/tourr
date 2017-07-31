@@ -16,7 +16,7 @@ geodesic_info(Fa, Fz, epsilon = 1e-06)
 to 0}
 }
 \description{
-The methdology is outlined in 
+The methdology is outlined in
 \url{http:www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-algs.pdf}
 and
 \url{http:www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-math.pdf},

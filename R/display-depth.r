@@ -1,8 +1,8 @@
 #' Display 3d projection with depth cues
-#' 
-#' Suggestion to use gray background and colour saturation (instead of 
+#'
+#' Suggestion to use gray background and colour saturation (instead of
 #' gray shading) by Graham Wills.
-# 
+#
 #' @param center should projected data be centered to have mean zero (default:
 #'   TRUE). This pins the centre of the data to the same place, and makes it
 #'   easier to focus on the shape.
@@ -15,15 +15,15 @@
 #' @examples
 #' animate_depth(flea[, 1:6])
 display_depth <- function(center = TRUE, half_range = NULL, ...) {
-  shades <- hcl(240, 
-    c = seq(0, 60, length = 100), 
+  shades <- hcl(240,
+    c = seq(0, 60, length = 100),
     l = seq(80, 20, length = 100)
   )
-  
+
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)
   }
-  
+
   render_frame <- function() {
     par(pty = "s", mar = rep(1,4))
     blank_plot(xlim = c(-1, 1), ylim = c(-1, 1))
@@ -38,12 +38,12 @@ display_depth <- function(center = TRUE, half_range = NULL, ...) {
     x <- x / half_range
 
     depth <- x[, 3]
-    # depth ranges between -1 and 1, 
+    # depth ranges between -1 and 1,
     # so depth_std should lie between 0 and 1
-    depth_std <- depth / 2 + 0.5 
+    depth_std <- depth / 2 + 0.5
     size <- 0.5 + depth_std * 3
     shade <- shades[round(depth_std * 100)]
-    
+
     ord <- order(depth_std)
     points(x[ord, 1:2], pch = 20, cex = size[ord] , col = shade[ord], ...)
   }
@@ -61,7 +61,7 @@ display_depth <- function(center = TRUE, half_range = NULL, ...) {
 #' @rdname display_depth
 #' @inheritParams animate
 #' @export
-animate_depth <- function(data, tour_path = grand_tour(3), ...) {  
+animate_depth <- function(data, tour_path = grand_tour(3), ...) {
 
   animate(
     data = data, tour_path = tour_path,

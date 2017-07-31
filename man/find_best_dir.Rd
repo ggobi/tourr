@@ -17,7 +17,7 @@ find_best_dir(old, index, dist = 0.01, tries = 5)
 }
 \description{
 Starting from the current projection, pick \code{tries} random location
-and take a small step towards and away from each location.  The most 
+and take a small step towards and away from each location.  The most
 promising direction has the highest value of the \code{index} function.
 }
 \keyword{internal}

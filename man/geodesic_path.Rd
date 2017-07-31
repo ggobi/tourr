@@ -7,15 +7,15 @@
 geodesic_path(current, target, frozen = NULL)
 }
 \arguments{
-\item{new_target_f}{function that generates new frame, with previous 
+\item{new_target_f}{function that generates new frame, with previous
 frame as argument}
 }
 \value{
-\item{interpolate}{A function with single parameter in [0, 1] that 
+\item{interpolate}{A function with single parameter in [0, 1] that
     returns an interpolated frame between the current and future frames.
-    0 gives the current plane, 1 gives the new target frame in plane of 
+    0 gives the current plane, 1 gives the new target frame in plane of
     current frame.}
-  \item{dist}{The distance, in radians, between the current and target 
+  \item{dist}{The distance, in radians, between the current and target
     frames.}
  \item{Fa}{The current frame.}
  \item{Fz}{The new target frame.}
@@ -24,7 +24,7 @@ frame as argument}
  \item{Gz}{The target plane.}
 }
 \description{
-Wrap basis generation method with a function that keeps computes the 
+Wrap basis generation method with a function that keeps computes the
 geodesic interpolation from the previous frame to the next frame, and
 provides convenient access to all the information about the path.
 }

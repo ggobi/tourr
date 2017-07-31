@@ -1,7 +1,7 @@
 #' Normalise a numeric matrix.
 #'
 #' Ensure that columns of a numeric matrix have norm 1
-#' 
+#'
 #' @keywords internal algebra
 #' @param x numeric matrix or vector
 normalise <- function(x) {
@@ -9,7 +9,7 @@ normalise <- function(x) {
     lengths <- sqrt(colSums(x ^ 2, na.rm = TRUE))
     sweep(x, 2, lengths, "/")
   } else {
-    x / sqrt(sum(x ^ 2))    
+    x / sqrt(sum(x ^ 2))
   }
 }
 
@@ -19,7 +19,7 @@ normalise <- function(x) {
 #' @param x numeric matrix
 orthonormalise <- function(x) {
   x <- normalise(x) # to be conservative
-  
+
   if (ncol(x) > 1) {
     for (j in seq_len(ncol(x))) {
       for (i in seq_len(j - 1)) {
@@ -27,7 +27,7 @@ orthonormalise <- function(x) {
       }
     }
   }
-  
+
   normalise(x)
 }
 
@@ -43,15 +43,15 @@ is_orthonormal <- function(x, tol = 0.001) {
   for (j in seq_len(ncol(x))) {
     if (sqrt(sum(x[, j] ^ 2)) < 1 - tol) return(FALSE)
   }
-  
+
   if (ncol(x) > 1) {
     for (j in 2:ncol(x)) {
       for (i in 1:(ncol(x) - 1)) {
         if (abs(sum(x[, j] * x[, i])) > tol) return(FALSE)
       }
-    }    
+    }
   }
-  
+
   TRUE
 }
 
@@ -68,7 +68,7 @@ orthonormalise_by <- function(x, by) {
   stopifnot(nrow(x) == nrow(by))
 
   x <- normalise(x)
-  
+
   for (j in seq_len(ncol(x))) {
     x[, j] <- x[, j] - crossprod(x[, j], by[, j]) * by[, j]
   }
@@ -78,10 +78,10 @@ orthonormalise_by <- function(x, by) {
 
 #' Calculate the distance between two bases.
 #'
-#' Computes the Frobenius norm between two bases, in radians.  This is 
-#' equals to the Euclidean norm of the vector of principal angles between 
+#' Computes the Frobenius norm between two bases, in radians.  This is
+#' equals to the Euclidean norm of the vector of principal angles between
 #' the two subspaces.
-# 
+#
 #' @param x projection matrix a
 #' @param y projection matrix b
 #' @keywords algebra

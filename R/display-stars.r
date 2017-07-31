@@ -2,7 +2,7 @@
 #'
 #' Animate a nD tour path with star glyphs.
 #'
-#' Currently, scaling doesn't seem to be computed absolutely correctly, as 
+#' Currently, scaling doesn't seem to be computed absolutely correctly, as
 #' centres move around as well as outside points.
 #'
 #' @param ... other arguments passed on to \code{\link{stars}}
@@ -13,7 +13,7 @@
 #' animate_stars(flea[1:10, 1:6])
 #' animate_stars(flea[1:10, 1:6], grand_tour(5))
 #' animate_stars(flea[, 1:6], grand_tour(5))
-#' animate_stars(flea[1:10, 1:6], grand_tour(5), 
+#' animate_stars(flea[1:10, 1:6], grand_tour(5),
 #'  col.stars = rep("grey50", 10), radius = FALSE)
 display_stars <- function(...) {
 
@@ -22,7 +22,7 @@ display_stars <- function(...) {
     x <- (x + 2) / 4
     stars(x, scale = FALSE, ...)
   }
- 
+
   list(
     init = nul,
     render_frame = nul,
@@ -30,7 +30,7 @@ display_stars <- function(...) {
     render_data = render_data,
     render_target = nul
   )
-  
+
 }
 
 
@@ -40,8 +40,8 @@ display_stars <- function(...) {
 animate_stars <- function(data, tour_path = grand_tour(3), ...) {
 
   animate(
-    data = data, tour_path = tour_path, 
+    data = data, tour_path = tour_path,
     display = display_stars(...), ...
   )
-  
+
 }

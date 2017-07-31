@@ -12,12 +12,12 @@ local_tour(start, angle = pi/4)
 \item{angle}{distance in radians to stay within}
 }
 \description{
-The local tour alternates between the starting position and a 
+The local tour alternates between the starting position and a
 nearby random projection.
 }
 \details{
-Usually, you will not call this function directly, but will pass it to 
-a method that works with tour paths like \code{\link{animate}}, 
+Usually, you will not call this function directly, but will pass it to
+a method that works with tour paths like \code{\link{animate}},
 \code{\link{save_history}} or \code{\link{render}}.
 }
 \examples{

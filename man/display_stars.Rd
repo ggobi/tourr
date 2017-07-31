@@ -20,14 +20,14 @@ animate_stars(data, tour_path = grand_tour(3), ...)
 Animate a nD tour path with star glyphs.
 }
 \details{
-Currently, scaling doesn't seem to be computed absolutely correctly, as 
+Currently, scaling doesn't seem to be computed absolutely correctly, as
 centres move around as well as outside points.
 }
 \examples{
 animate_stars(flea[1:10, 1:6])
 animate_stars(flea[1:10, 1:6], grand_tour(5))
 animate_stars(flea[, 1:6], grand_tour(5))
-animate_stars(flea[1:10, 1:6], grand_tour(5), 
+animate_stars(flea[1:10, 1:6], grand_tour(5),
  col.stars = rep("grey50", 10), radius = FALSE)
 }
 \seealso{

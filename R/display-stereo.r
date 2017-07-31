@@ -26,9 +26,9 @@ project3d <- function(d3, length = par("din")[1] * 25.4, z0 = 300, d = 30) {
   y <- d3[, 2] * length
   # Squash z dimension a bit more
   z <- (1.5 + d3[, 3]) * length / 2
-    
+
   d2 <- data.frame(
-    left =  (z0 * x - z * d) / (z0 - z), 
+    left =  (z0 * x - z * d) / (z0 - z),
     right = (z0 * x + z * d) / (z0 - z),
     y =     (z0 * y)         / (z0 - z)
   ) / length * 0.5
@@ -56,7 +56,7 @@ display_stereo <- function(blue, red, ...)
   }
   render_frame <- function() {
     par(pty = "s", bg = "grey85")
-    blank_plot(xlim = c(-1, 1), ylim = c(-1, 1))    
+    blank_plot(xlim = c(-1, 1), ylim = c(-1, 1))
   }
   render_transition <- function() {
     # rect(-1, -1, 1, 1, col="#D9D9D9E6", border=NA)
@@ -64,7 +64,7 @@ display_stereo <- function(blue, red, ...)
   render_data <- function(data, proj, geodesic) {
     render_frame()
     anaglyph(data %*% proj, blue, red)
-    
+
     axes <- project3d(proj)
     with(axes, {
       segments(0, 0, right, y, col=blue)
@@ -75,7 +75,7 @@ display_stereo <- function(blue, red, ...)
   }
 
 
-  
+
   list(
     init = init,
     render_frame = render_frame,
@@ -89,7 +89,7 @@ display_stereo <- function(blue, red, ...)
 #' @rdname display_stereo
 #' @inheritParams animate
 #' @export
-animate_stereo <- function(data, tour_path = grand_tour(3), blue = rgb(0, 0.91, 0.89), red = rgb(0.98, 0.052, 0), ...) {  
+animate_stereo <- function(data, tour_path = grand_tour(3), blue = rgb(0, 0.91, 0.89), red = rgb(0.98, 0.052, 0), ...) {
 
   animate(
     data = data, tour_path = tour_path,

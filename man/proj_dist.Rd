@@ -12,8 +12,8 @@ proj_dist(x, y)
 \item{y}{projection matrix b}
 }
 \description{
-Computes the Frobenius norm between two bases, in radians.  This is 
-equals to the Euclidean norm of the vector of principal angles between 
+Computes the Frobenius norm between two bases, in radians.  This is
+equals to the Euclidean norm of the vector of principal angles between
 the two subspaces.
 }
 \keyword{algebra}
