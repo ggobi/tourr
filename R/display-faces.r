@@ -42,7 +42,6 @@ display_faces <- function(...) {
 #' @inheritParams animate
 #' @export
 animate_faces <- function(data, tour_path = grand_tour(3), ...) {
-  require("TeachingDemos")
   animate(data, tour_path, display = display_faces(...), ...)
 }
 

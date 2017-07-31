@@ -64,7 +64,6 @@ display_dist <- function(method="density", center = TRUE, half_range = NULL, rug
     } else if (method == "density") {
       polygon(stats::density(x), lwd = 2, col="black")
     } else if (method == "ash") {
-      library(ash)
       utils::capture.output(ash <- ash::ash1(ash::bin1(x, c(-half_range, half_range))))
       lines(ash)
     }
