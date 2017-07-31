@@ -37,6 +37,6 @@ little_tour <- function(d = 2) {
 #' @param d dimensionality of target projection
 bases_little <- function(p, d = 2) {
   b <- diag(rep(1, p))
-  vars <- combn(p, d)
+  vars <- utils::combn(p, d)
   lapply(seq_len(ncol(vars)), function(i) b[, vars[, i]] )
 }

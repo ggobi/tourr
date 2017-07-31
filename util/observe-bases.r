@@ -1,5 +1,5 @@
 #' Di Function
-#' 
+#'
 #' @keywords internal
 #' @examples
 #' #t1 <- save_history(flea[, 1:6], nbases = 3)
@@ -13,7 +13,7 @@ observe_2dframes <- function(basis_set, ...) {
     stop("rggobi required for this visualisation")
   }
   if (is.null(basis_set)) return(NA)
-  
+
   # Draw all target bases
   if (is.list(basis_set)) {
     current = basis_set[[1]]
@@ -35,7 +35,7 @@ observe_2dframes <- function(basis_set, ...) {
         basis_set[[i]][,1]+basis_set [[i]][,2])
       bases_edges <<- rbind(bases_edges, c(1,(i-2)*3+1+7), c(1,(i-2)*3+2+7),
         c((i-2)*3+1+7, (i-2)*3+3+7), c((i-2)*3+3+7, (i-2)*3+2+7))
-    }    
+    }
     bases_edges <<- rbind(bases_edges, bases_edges)
   } else {
     current = basis_set[, , 1]
@@ -80,7 +80,7 @@ observe_2dframes <- function(basis_set, ...) {
   edges(g) <- bases_edges
   cat("To watch the frame interpolation, pause the tour \n")
   cat("at a good view of the frames, and turn on edges \n")
-  
+
   firstime <<- TRUE
   # Then draw the interpolation frame at each step
   step <- function(step, proj, geodesic) {
@@ -115,7 +115,7 @@ observe_2dframes <- function(basis_set, ...) {
 
 
 #' Di Function
-#' 
+#'
 #' @keywords internal
 #' @examples
 #' #t1 <- save_history(flea[, c(1,2,4)], nbases = 3, d = 1)
@@ -126,7 +126,7 @@ observe_vectors_move <- function(basis_set, index_f = NULL, ...) {
   if (!require("rggobi")) {
     stop("rggobi required for this visualisation")
   }
-  
+
   # Collect the vectors into one matrix
   if (is.list(basis_set)) {
     current = matrix(basis_set[[1]])
@@ -168,7 +168,7 @@ observe_vectors_move <- function(basis_set, index_f = NULL, ...) {
   vec <- rbind(vec, sph)
   if (!is.null(index_f)) {
     index_val <- NULL
-    for (i in 1:1000) 
+    for (i in 1:1000)
       index_val <- c(index_val,index_f(x%*%as.matrix(sph[i,])))
     index_val_range <<- range(index_val)
     index_val <- (index_val-index_val_range[1])/diff(index_val_range)
@@ -180,7 +180,7 @@ observe_vectors_move <- function(basis_set, index_f = NULL, ...) {
     lims <- 1
   }
   vec <- rbind(vec, rep(-lims, ncol(x)), rep(lims, ncol(x)))
-  
+
   # Load structures into ggobi, color
   rownames(vec) <- as.character(1:nrow(vec))
   rownames(vec) <- rownames(vec)
@@ -197,7 +197,7 @@ observe_vectors_move <- function(basis_set, index_f = NULL, ...) {
   edges(g) <- vec_edges
   cat("To watch the frame interpolation, turn on edges and pause the tour. \n")
   cat("Set the limits of all variables to be -2, 2, to maintain the sphere. \n")
-  
+
   firstime <<- TRUE
   # Then draw the interpolation frame at each step
   step <- function(step, proj, geodesic) {
@@ -208,7 +208,7 @@ observe_vectors_move <- function(basis_set, index_f = NULL, ...) {
       ans <<- "n"
     }
     firstime <<- FALSE
-    for (j in 1:nrow(proj)) 
+    for (j in 1:nrow(proj))
       g[2,j] <<- proj[j]
   }
   target <- function(target, geodesic) {
@@ -225,7 +225,7 @@ observe_vectors_move <- function(basis_set, index_f = NULL, ...) {
 
 
 #' Di Function
-#' 
+#'
 #' @keywords internal
 #' @examples
 #' #t1 <- save_history(flea[, 1:3], nbases = 50, d = 1)
@@ -239,7 +239,7 @@ observe_vectors <- function(basis_set, index_f = NULL, nbases = 2, ...) {
   if (!require("rggobi")) {
     stop("rggobi required for this visualisation")
   }
-  
+
   # Collect the vectors into one matrix
   current = matrix(basis_set[, , 1])
   n <- dim(basis_set)[3]
@@ -258,7 +258,7 @@ observe_vectors <- function(basis_set, index_f = NULL, nbases = 2, ...) {
   sph <- gen_sphere(1000, bdim)
   if (!is.null(index_f)) {
     index_val <- NULL
-    for (i in 1:1000) 
+    for (i in 1:1000)
       index_val <- c(index_val,index_f(x%*%as.matrix(sph[i,])))
     index_val_range <<- range(index_val)
     index_val <- (index_val-index_val_range[1])/diff(index_val_range)
@@ -291,14 +291,14 @@ observe_vectors <- function(basis_set, index_f = NULL, nbases = 2, ...) {
     vec_edges <- c(1,2)
     for (i in 2:n)
       vec_edges <- rbind(vec_edges, c(1,i+1))
-  }    
+  }
   vec <- rbind(vec, rep(-lims, ncol(x)), rep(lims, ncol(x)))
   cat(dim(vec_edges),"\n")
-  
+
   rownames(vec) <- as.character(1:nrow(vec))
   rownames(vec) <- rownames(vec)
   vec_edges <- matrix(as.character(vec_edges),ncol=2)
-   
+
   # Load structures into ggobi, color
   gd <- ggobi(vec)
   d <- displays(gd)[[1]]
@@ -311,20 +311,20 @@ observe_vectors <- function(basis_set, index_f = NULL, nbases = 2, ...) {
   gtype <- c(rep(6, n+1+2000+nrow(x)), 1, 1)
   glyph_type(g) <- gtype
   edges(g) <- vec_edges
-    
+
   NA
 }
 
 #' Di Function
-#' 
+#'
 #' @keywords internal
 gen_sphere <- function(n = 100, p = 5) {
-  t(normalise(matrix(rnorm(n * p), ncol = n)))
+  t(normalise(matrix(stats::rnorm(n * p), ncol = n)))
 }
 
 
 #' Di Function
-#' 
+#'
 #' @keywords internal
 #' @examples
 #' #testdata <- matrix(rnorm(100*2), ncol=2)
@@ -336,7 +336,7 @@ gen_sphere <- function(n = 100, p = 5) {
 #' #t1 <- save_history(testdata, tour_f = guided_tour, index_f = holes, nbases=5, d=1, rescale=FALSE, sphere=FALSE, max.tries = 100, cooling = 0.95)
 #' #observe_vectors_r(t1, holes)
 observe_vectors_r <- function(basis_set, index_f = NULL, plt_data = TRUE, plt_proj = FALSE, ...) {
-  
+
   # Collect the vectors into one matrix
   if (is.list(basis_set)) {
     current = matrix(basis_set[[1]])
@@ -346,17 +346,17 @@ observe_vectors_r <- function(basis_set, index_f = NULL, plt_data = TRUE, plt_pr
       basis_set[[1]])
     colnames(vec) <- paste("V", 1:length(basis_set[[1]]), sep="")
     bdim <<- length(basis_set[[1]])
-    for (i in 2:n) 
+    for (i in 2:n)
       vec <<- rbind(vec, basis_set[[i]])
   } else {
     current = matrix(basis_set[, , 1])
     n <- dim(basis_set)[3]
     pdim <- ncol(basis_set[[1]])
-    vec <<- rbind(rep(0, length(basis_set[[1]])), 
+    vec <<- rbind(rep(0, length(basis_set[[1]])),
       basis_set[, , 1])
     colnames(vec) <<- paste("V", 1:length(basis_set[, , 1]), sep="")
     bdim <<- length(basis_set[, , 1])
-    for (i in 2:n) 
+    for (i in 2:n)
       vec <<- rbind(vec, basis_set[, , i])
     x <<- attr(basis_set, "data")
   }
@@ -365,7 +365,7 @@ observe_vectors_r <- function(basis_set, index_f = NULL, plt_data = TRUE, plt_pr
   sph <- gen_sphere(1000, bdim)
   if (!is.null(index_f)) {
     index_val <- NULL
-    for (i in 1:1000) 
+    for (i in 1:1000)
       index_val <- c(index_val,index_f(x%*%as.matrix(sph[i,])))
     index_val_range <<- range(index_val)
     index_val <- (index_val-index_val_range[1])/diff(index_val_range)
@@ -386,7 +386,7 @@ observe_vectors_r <- function(basis_set, index_f = NULL, plt_data = TRUE, plt_pr
     points(sph+sph*index_val, pch=16, col="grey70")
   }
   if (plt_proj) {
-    for (i in 2:nrow(vec)) 
+    for (i in 2:nrow(vec))
       plot_hist_on_proj(x, vec[i,])
   }
   for (i in 2:nrow(vec)) {
@@ -406,7 +406,7 @@ observe_vectors_r <- function(basis_set, index_f = NULL, plt_data = TRUE, plt_pr
   if (plt_data) {
     points(x[,1]/3,x[,2]/3, pch=16, cex=2, col="grey70")
   }
-  
+
   firstime <<- TRUE
   # Then draw the interpolation frame at each step
   step <- function(step, proj, geodesic) {
@@ -441,7 +441,7 @@ observe_vectors_r <- function(basis_set, index_f = NULL, plt_data = TRUE, plt_pr
 
 
 #' Di Function
-#' 
+#'
 #' @keywords internal
 plot_hist_on_proj <-function(data, proj) {
   proj_data = hist(data%*%as.matrix(proj), breaks=seq(-3,3,0.5), plot=FALSE)
@@ -470,16 +470,16 @@ plot_hist_on_proj <-function(data, proj) {
       proj_data$breaks[j]*cos(ang) + cen[1])
     vertices <- cbind(vertices, c(-proj_data$breaks[j]*sin(ang) + cen[2],
       -proj_data$breaks[j+1]*sin(ang) + cen[2],
-      -proj_data$breaks[j+1]*sin(ang) + proj_data$density[j]*cos(ang) + cen[2],                         
+      -proj_data$breaks[j+1]*sin(ang) + proj_data$density[j]*cos(ang) + cen[2],
       -proj_data$breaks[j]*sin(ang) + proj_data$density[j]*cos(ang) + cen[2],
       -proj_data$breaks[j]*sin(ang) + cen[2]))
     polygon(vertices[,1], vertices[,2], col="grey70", border="white")
-  }          
+  }
 }
 
 
 #' Di Function
-#' 
+#'
 #' @keywords internal
 #' @examples
 #' #t2 <- save_history(testdata, tour_f = guided_tour, index_f = holes, nbases=5, d=1, rescale=FALSE, sphere=FALSE, max.tries = 100, cooling = 0.95)
@@ -503,7 +503,7 @@ observe_pp_trace <- function(basis_set, index_f = holes, nbases = 2, ...) {
   if (!require("rggobi")) {
     stop("rggobi required for this visualisation")
   }
-  
+
   # Collect the vectors into one matrix
   current = matrix(basis_set[, , 1])
   n <- min(dim(basis_set)[3], nbases)
@@ -544,7 +544,7 @@ observe_pp_trace <- function(basis_set, index_f = holes, nbases = 2, ...) {
 }
 
 #' Di Function
-#' 
+#'
 #' @keywords internal
 linker <- function(gg, gplot, idx, data) {
   if (idx != -1) {
@@ -554,7 +554,7 @@ linker <- function(gg, gplot, idx, data) {
 }
 
 #' Di Function
-#' 
+#'
 #' @keywords internal
 linker2 <- function(gg, gplot, idx, data) {
   if (idx != -1) {
@@ -565,10 +565,10 @@ linker2 <- function(gg, gplot, idx, data) {
 
 #' Di Function
 #' This one will show the pp indices in R, and plot the vectors in ggobi
-#' 
+#'
 #' @keywords internal
 observe_pp_trace_r<- function(basis_set, index_f = holes, nbases = 2, ...) {
-  
+
   # Collect the vectors into one matrix
   current = matrix(basis_set[, , 1])
   n <- min(dim(basis_set)[3], nbases)
@@ -606,7 +606,7 @@ observe_pp_trace_r<- function(basis_set, index_f = holes, nbases = 2, ...) {
     text(vec[i, 1], vec[i, 2], labels = lab, pos=pos)
     lines(-vec[c(1,i),1], -vec[c(1, i), 2], col="black", lty=2, lwd=2)
   }
-  
+
   firstime <<- TRUE
   # Then draw the interpolation frame at each step
   step <- function(step, proj, geodesic) {

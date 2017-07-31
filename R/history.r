@@ -89,7 +89,7 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
 length.history_array <- function(x) dim(x)[3]
 
 #' @export
-str.history_array <- function(object, ...) str(unclass(object))
+str.history_array <- function(object, ...) utils::str(unclass(object))
 
 #' @export
 print.history_array <- function(x, ...) {

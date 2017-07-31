@@ -60,3 +60,8 @@ new_tour <- function(data, tour_path, start = NULL) {
     list(proj = proj, target = target, step = step)
   }
 }
+
+#' @importFrom grDevices dev.cur dev.flush dev.hold dev.off hcl rgb
+#' @importFrom graphics abline axis box hist image lines pairs par plot points
+#'   polygon rect segments stars text
+NULL

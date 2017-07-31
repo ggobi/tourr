@@ -14,11 +14,10 @@
 #' dim(interpolate(t1, 0.05))
 #' dim(interpolate(t1, 0.1))
 interpolate <- function(basis_set, angle = 0.05) {
-  tour <- new_tour(data, planned_tour(basis_set))
-
   basis_set <- as.array(basis_set)
   n <- dim(basis_set)[3]
   if (n < 2) return(basis_set)
+
 
   # Estimate number of bases in output
   dists <- sapply(2:n, function(i) {
@@ -33,9 +32,10 @@ interpolate <- function(basis_set, angle = 0.05) {
   projs <- array(NA_real_, c(dim(basis_set)[1:2], steps))
 
   i <- 1
+  tour <- new_tour(basis_set[, , 1], planned_tour(basis_set))
   step <- tour(0)
 
-  while(!is.null(step)) {
+  while (!is.null(step)) {
     new_basis[i] <- step$step == 0
     projs[, , i] <- step$proj
 

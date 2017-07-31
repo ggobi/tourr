@@ -60,6 +60,8 @@ path_curves <- function(history, data = attr(history, "data")) {
 #' @keywords internal
 #' @export
 plot.path_curve <- function(x, ...) {
+  step <- NULL # quiet R CMD check warning
+
   ggplot2::qplot(step, value, data = x, group = obs, geom = "line") +
     ggplot2::facet_grid(var ~ .)
 }

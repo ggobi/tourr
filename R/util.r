@@ -27,7 +27,7 @@ center <- function(x) {
 #' @keywords manip
 #' @export
 sphere <- function(df) {
-  apply(predict(prcomp(df)), 2, scale)
+  apply(stats::predict(stats::prcomp(df)), 2, scale)
 }
 
 

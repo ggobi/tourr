@@ -60,7 +60,7 @@ find_frozen_path_peak <- function(old, new, frozen, index, max_dist = pi / 4) {
     index(thaw(step_angle(interpolator, alpha), frozen))
   }
 
-  alpha <- optimize(index_pos, c(-max_dist, max_dist), maximum = TRUE, tol = 0.01)
+  alpha <- stats::optimize(index_pos, c(-max_dist, max_dist), maximum = TRUE, tol = 0.01)
 
   # xgrid <- seq(-max_dist, max_dist, length = 100)
   # index <- sapply(xgrid, index_pos)

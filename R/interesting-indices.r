@@ -43,13 +43,11 @@ lda_pp <- function(cl) {
 
   function(mat) {
     if (ncol(mat) > 1) {
-      fit <- manova(mat ~ cl)
+      fit <- stats::manova(mat ~ cl)
 
       1 - summary(fit, test = "Wilks")$stats[[3]]
-    }
-    else {
-      fit <- stats::aov(mat ~ cl)
-      summary(aov(mat ~ cl))[[1]][4]
+    } else {
+      summary(stats::aov(mat ~ cl))[[1]][4]
     }
   }
 }

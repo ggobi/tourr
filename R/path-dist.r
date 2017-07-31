@@ -44,7 +44,7 @@ path_dist <- function(history) {
       d[i, j] <- proj_dist(history[[i]], history[[j]])
     }
   }
-  as.dist(d)
+  stats::as.dist(d)
 }
 
 

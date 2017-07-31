@@ -106,7 +106,7 @@ find_path_peak <- function(old, new, index, max_dist = pi / 4) {
 
   index_pos <- function(alpha) index(step_angle(interpolator, alpha))
 
-  alpha <- optimize(index_pos, c(-max_dist, max_dist), maximum = TRUE, tol = 0.01)
+  alpha <- stats::optimize(index_pos, c(-max_dist, max_dist), maximum = TRUE, tol = 0.01)
 
   list(
     basis = step_angle(interpolator, alpha$maximum),
