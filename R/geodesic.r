@@ -67,9 +67,9 @@ geodesic_path <- function(current, target, frozen = NULL) {
 #' two frames.
 #'
 #' The methdology is outlined in
-#' \url{http:www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-algs.pdf}
+#' \url{http://www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-algs.pdf}
 #' and
-#' \url{http:www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-math.pdf},
+#' \url{http://www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-math.pdf},
 #' and the code follows the notation outlined in those papers:
 #'
 #' \itemize{

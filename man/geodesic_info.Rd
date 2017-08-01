@@ -17,9 +17,9 @@ to 0}
 }
 \description{
 The methdology is outlined in
-\url{http:www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-algs.pdf}
+\url{http://www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-algs.pdf}
 and
-\url{http:www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-math.pdf},
+\url{http://www-stat.wharton.upenn.edu/~buja/PAPERS/paper-dyn-proj-math.pdf},
 and the code follows the notation outlined in those papers:
 }
 \details{
