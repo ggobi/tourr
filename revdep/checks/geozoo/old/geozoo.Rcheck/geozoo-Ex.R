@@ -1,0 +1,493 @@
+pkgname <- "geozoo"
+source(file.path(R.home("share"), "R", "examples-header.R"))
+options(warn = 1)
+library('geozoo')
+
+base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+cleanEx()
+nameEx("boy.surface")
+### * boy.surface
+
+flush(stderr()); flush(stdout())
+
+### Name: boy.surface
+### Title: Boy Surface
+### Aliases: boy.surface
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a Boy Surface
+boy.surface(n = 1000)
+
+
+
+
+cleanEx()
+nameEx("conic.spiral")
+### * conic.spiral
+
+flush(stderr()); flush(stdout())
+
+### Name: conic.spiral
+### Title: Conic Spiral
+### Aliases: conic.spiral
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a Conic Spiral
+conic.spiral(n = 1000)
+
+
+
+
+cleanEx()
+nameEx("conic.spiral.nautilus")
+### * conic.spiral.nautilus
+
+flush(stderr()); flush(stdout())
+
+### Name: conic.spiral.nautilus
+### Title: Conic Spiral (Nautilus Shape)
+### Aliases: conic.spiral.nautilus
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a Nautilus Conic Spiral
+conic.spiral.nautilus( n = 1000 )
+
+
+
+
+cleanEx()
+nameEx("cross.cap")
+### * cross.cap
+
+flush(stderr()); flush(stdout())
+
+### Name: cross.cap
+### Title: Cross Cap
+### Aliases: cross.cap
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a Cross Cap
+cross.cap( n = 1000 )
+
+
+
+
+cleanEx()
+nameEx("cross.polytope")
+### * cross.polytope
+
+flush(stderr()); flush(stdout())
+
+### Name: cross.polytope
+### Title: Cross Polytope
+### Aliases: cross.polytope
+### Keywords: dynamic
+
+### ** Examples
+
+# Generates a 3-D Cross Polytope
+cross.polytope(p = 3)
+
+
+
+
+cleanEx()
+nameEx("cube.dotline")
+### * cube.dotline
+
+flush(stderr()); flush(stdout())
+
+### Name: cube.dotline
+### Title: Cube with points along the wire frame
+### Aliases: cube.dotline
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a cube with points along its wire frame
+cube.dotline(p = 3)
+
+
+
+
+cleanEx()
+nameEx("cube.face")
+### * cube.face
+
+flush(stderr()); flush(stdout())
+
+### Name: cube.face
+### Title: Cube with points on the 'face'
+### Aliases: cube.face
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a cube with points on its face
+cube.face(p = 3)
+
+
+
+
+cleanEx()
+nameEx("cube.iterate")
+### * cube.iterate
+
+flush(stderr()); flush(stdout())
+
+### Name: cube.iterate
+### Title: Cube
+### Aliases: cube.iterate
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a cube
+cube.iterate(p = 3)
+
+
+
+
+cleanEx()
+nameEx("cube.solid.grid")
+### * cube.solid.grid
+
+flush(stderr()); flush(stdout())
+
+### Name: cube.solid.grid
+### Title: Equidistant Solid Cube
+### Aliases: cube.solid.grid
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a solid cube with equidistant points
+cube.solid.grid(p = 3, n = 8)
+
+
+
+
+cleanEx()
+nameEx("cube.solid.random")
+### * cube.solid.random
+
+flush(stderr()); flush(stdout())
+
+### Name: cube.solid.random
+### Title: Solid Cube
+### Aliases: cube.solid.random
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a solid cube with random points
+cube.solid.random(p = 3, n = 1000)
+
+
+
+
+cleanEx()
+nameEx("dini.surface")
+### * dini.surface
+
+flush(stderr()); flush(stdout())
+
+### Name: dini.surface
+### Title: Dini Surface
+### Aliases: dini.surface
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a Dini Surface
+dini.surface(n = 1000, a = 1, b = 1)
+
+
+
+
+cleanEx()
+nameEx("ellipsoid")
+### * ellipsoid
+
+flush(stderr()); flush(stdout())
+
+### Name: ellipsoid
+### Title: Ellipsoid
+### Aliases: ellipsoid
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates an ellipsoid
+ellipsoid(n = 1000, a = 1, b = 1, c = 3)
+
+
+
+
+cleanEx()
+nameEx("enneper.surface")
+### * enneper.surface
+
+flush(stderr()); flush(stdout())
+
+### Name: enneper.surface
+### Title: Enneper's Surface
+### Aliases: enneper.surface
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates an Enneper Surface
+enneper.surface(n = 1000, a = 4)
+
+
+
+
+cleanEx()
+nameEx("klein.fig.eight")
+### * klein.fig.eight
+
+flush(stderr()); flush(stdout())
+
+### Name: klein.fig.eight
+### Title: Figure Eight Klein Bottle
+### Aliases: klein.fig.eight
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a figure eight Klein bottle.
+klein.fig.eight(n = 1000, a = 3, b = 1)
+
+
+
+
+cleanEx()
+nameEx("mobius")
+### * mobius
+
+flush(stderr()); flush(stdout())
+
+### Name: mobius
+### Title: Mobius
+### Aliases: mobius
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a mobius strip.
+mobius(3, n = 1000)
+
+
+
+
+cleanEx()
+nameEx("mobius.experiment")
+### * mobius.experiment
+
+flush(stderr()); flush(stdout())
+
+### Name: mobius.experiment
+### Title: Mobius Experiment
+### Aliases: mobius.experiment
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a mobius strip.
+mobius.experiment(5, n = 1000)
+
+
+
+
+cleanEx()
+nameEx("print.geozoo")
+### * print.geozoo
+
+flush(stderr()); flush(stdout())
+
+### Name: print.geozoo
+### Title: Print
+### Aliases: print.geozoo
+### Keywords: dynamic
+
+### ** Examples
+
+## Not run: 
+##D example(boy.surface)
+##D example(cube.face)
+## End(Not run)
+
+
+
+cleanEx()
+nameEx("print.geozooNoScale")
+### * print.geozooNoScale
+
+flush(stderr()); flush(stdout())
+
+### Name: print.geozooNoScale
+### Title: Print Without Rescale
+### Aliases: print.geozooNoScale
+### Keywords: dynamic
+
+### ** Examples
+
+## Not run: 
+##D torus()
+## End(Not run)
+
+
+
+cleanEx()
+nameEx("roman.surface")
+### * roman.surface
+
+flush(stderr()); flush(stdout())
+
+### Name: roman.surface
+### Title: Roman Surface
+### Aliases: roman.surface
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a Roman surface.
+roman.surface(n = 1000, a = 1)
+
+
+
+
+cleanEx()
+nameEx("simplex")
+### * simplex
+
+flush(stderr()); flush(stdout())
+
+### Name: simplex
+### Title: Simplex
+### Aliases: simplex
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a simplex
+simplex(p = 3)
+
+
+
+
+cleanEx()
+nameEx("sphere.hollow")
+### * sphere.hollow
+
+flush(stderr()); flush(stdout())
+
+### Name: sphere.hollow
+### Title: Sphere
+### Aliases: sphere.hollow
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a sphere with points on the surface
+sphere.hollow(p = 3, n = 1000)
+
+
+
+
+cleanEx()
+nameEx("sphere.solid.grid")
+### * sphere.solid.grid
+
+flush(stderr()); flush(stdout())
+
+### Name: sphere.solid.grid
+### Title: Solid Sphere with Equidistant Points
+### Aliases: sphere.solid.grid
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a solid sphere with equidistant points
+sphere.solid.grid(p = 3, n = 8)
+
+
+
+
+cleanEx()
+nameEx("sphere.solid.random")
+### * sphere.solid.random
+
+flush(stderr()); flush(stdout())
+
+### Name: sphere.solid.random
+### Title: Solid sphere with Random Points
+### Aliases: sphere.solid.random
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a solid sphere with random points.
+sphere.solid.random(p = 3, n = 1000)
+
+
+
+
+cleanEx()
+nameEx("torus")
+### * torus
+
+flush(stderr()); flush(stdout())
+
+### Name: torus
+### Title: Torus
+### Aliases: torus
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a torus
+torus(p = 3, n = 1000)
+
+
+
+
+cleanEx()
+nameEx("torus.flat")
+### * torus.flat
+
+flush(stderr()); flush(stdout())
+
+### Name: torus.flat
+### Title: Flat Torus
+### Aliases: torus.flat
+### Keywords: dynamic
+
+### ** Examples
+
+## Generates a Flat Torus
+torus.flat(p = 4, n = 1000)
+
+
+
+
+### * <FOOTER>
+###
+options(digits = 7L)
+base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+grDevices::dev.off()
+###
+### Local variables: ***
+### mode: outline-minor ***
+### outline-regexp: "\\(> \\)?### [*]+" ***
+### End: ***
+quit('no')
