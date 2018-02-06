@@ -71,7 +71,8 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
     points(x, col = col, pch = pch)
 
     if (!is.null(edges)) {
-      lines(x[edges, 1], x[edges, 2])
+      segments(x[edges[,1], 1], x[edges[,1], 2],
+               x[edges[,2], 1], x[edges[,2], 2])
     }
   }
 
