@@ -5,11 +5,13 @@
 \alias{animate_andrews}
 \title{Andrews' curves tour path animation.}
 \usage{
-display_andrews(...)
+display_andrews(col = "black", ...)
 
-animate_andrews(data, tour_path = grand_tour(3), ...)
+animate_andrews(data, tour_path = grand_tour(3), col = "black", ...)
 }
 \arguments{
+\item{col}{color to be plotted.  Defaults to "black"}
+
 \item{...}{other arguments passed on to \code{\link{animate}}}
 
 \item{data}{matrix, or data frame containing numeric columns}
