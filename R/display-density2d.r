@@ -9,9 +9,11 @@
 #' @param half_range half range to use when calculating limits of projected.
 #'   If not set, defaults to maximum distance from origin to each row of data.
 #' @param edges A two column integer matrix giving indices of ends of lines.
-#' @param col color to be plotted.  Defaults to "black"
+#' @param col color to be plotted.  Defaults to "black". Each unique color is 
+#'   given a new group of contours.
 #' @param pch size of the point to be plotted.  Defaults to 20.
-#' @param contour_quartile Vector of quartiles to plot the contours at. Defaults to 5.
+#' @param contour_quantile vector of quantiles to plot the contours at.
+#'   Defaults to c(.68, .95).
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_density2d}}
 #' @export
@@ -40,8 +42,11 @@
 #' edges <- matrix(c(1:5, 2:6), ncol = 2)
 #' animate(flea[, 1:6], grand_tour(),
 #'   display_density2d(axes = "bottomleft", edges = edges))
+#' 
+#' # or change the contour quantiles
+#' animate_density2d(f, col = col, pch = pch, contour_quantile = c(.25, .5, .75))
 display_density2d <- function(center = TRUE, axes = "center", half_range = NULL,
-                       col = "black", pch  = 20, contour_quartile = c(.25, .5, .75),
+                       col = "black", pch  = 20, contour_quantile = c(.6827, .9545),
                        edges = NULL, ...) {
 
   labels <- NULL
@@ -77,7 +82,7 @@ display_density2d <- function(center = TRUE, axes = "center", half_range = NULL,
       xd <- kde2d(x[,1],x[,2])
 
       contour(xd, col = col,
-              levels = quantile(xd$z, probs = contour_quartile),
+              levels = quantile(xd$z, probs = contour_quantile),
               axes=FALSE)
     }
     else {
@@ -86,7 +91,7 @@ display_density2d <- function(center = TRUE, axes = "center", half_range = NULL,
         xd <- kde2d(x.sub[,1],x.sub[,2])
 
         contour(xd, col = colrs[i],
-                levels = quantile(xd$z, probs = contour_quartile),
+                levels = quantile(xd$z, probs = contour_quantile),
                 axes=FALSE, add=TRUE)
       }
     }
