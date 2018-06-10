@@ -11,6 +11,8 @@
 #' @param edges A two column integer matrix giving indices of ends of lines.
 #' @param col color to be plotted.  Defaults to "black"
 #' @param pch size of the point to be plotted.  Defaults to 20.
+#' @param origin_line row number(s) of data points to draw to the origin. Adopts
+#'   the color of the point. If used \code{axes = "bottomleft"} is suggested.
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
 #' @export
@@ -39,8 +41,13 @@
 #' edges <- matrix(c(1:5, 2:6), ncol = 2)
 #' animate(flea[, 1:6], grand_tour(),
 #'   display_xy(axes = "bottomleft", edges = edges))
+#'
+#' # Adding lines to the origin
+#' animate_xy(flea[,-7], col=col, axes = "bottomleft",
+#'   origin_line = c(5, 30, 60))
 display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
-                       col = "black", pch  = 20, edges = NULL, ...) {
+                       col = "black", pch  = 20, edges = NULL,
+                       origin_line = NULL, ...) {
 
   labels <- NULL
   init <- function(data) {
@@ -69,6 +76,13 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
     if (center) x <- center(x)
     x <- x / half_range
     points(x, col = col, pch = pch)
+
+    if (!is.null(origin_line)) {
+      if (length(col) > 1) lcol = col[origin_line]
+      else lcol = col
+      segments(0, 0, x[origin_line, 1], x[origin_line, 2],
+               col = lcol)
+    }
 
     if (!is.null(edges)) {
       segments(x[edges[,1], 1], x[edges[,1], 2],
