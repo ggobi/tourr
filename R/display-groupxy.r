@@ -15,6 +15,7 @@
 #' @param col color to be plotted.  Defaults to "black"
 #' @param pch size of the point to be plotted.  Defaults to 20.
 #' @param group_by variable to group by. Must have less than 25 unique values.
+#' @param plot_gps vector of unique levels of the group_by variable to plot.
 #' @param plot_xgp if TRUE, plots points from other groups in light grey.
 #' @param gp_legend if TRUE, adds a legend of the group at the top left.
 #' @param ...  other arguments passed on to \code{\link{animate}} and
@@ -52,8 +53,8 @@
 #' animate_groupxy(f, col = col, pch = pch, group_by = gp, gp_legend = FALSE)
 display_groupxy <- function(center = TRUE, axes = "center", half_range = NULL,
                             col = "black", pch  = 20, edges = NULL,
-                            group_by = NULL, plot_xgp = TRUE, gp_legend = TRUE,
-                            ...) {
+                            group_by = NULL, plot_gps = "all", plot_xgp = TRUE,
+                            gp_legend = TRUE, ...) {
 labels <- NULL
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)
@@ -80,7 +81,12 @@ labels <- NULL
   render_data <- function(data, proj, geodesic) {
     gps <- unique(group_by[!is.na(group_by)])
     ngps <- length(gps)
-    if(ngps>24){stop("Choose a group with 24 or less levels.")}
+    if (plot_gps != "all") {
+      gps <- unique(group_by[!is.na(plot_gps)])
+      ngps <- length(plot_gps)
+    }
+
+    if (ngps>24) {stop("Choose a group_by variable with 24 or less levels.")}
     grid <- ceiling(sqrt(ngps+1))
     par(mfrow=c(grid, grid))
 
