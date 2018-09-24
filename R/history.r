@@ -58,9 +58,9 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
     # An infinite step size forces the tour path to generate a new basis
     # every time, so no interpolation occurs.
     step <- tour(step_size)
-    if (is.null(step)) break
 
     projs[, , i] <- step$target
+    if (step$step < 0) break #already appended final projection, break directly
   }
 
   # Remove empty matrices for tours that terminated early

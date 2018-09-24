@@ -34,13 +34,16 @@ interpolate <- function(basis_set, angle = 0.05) {
   i <- 1
   tour <- new_tour(basis_set[, , 1], planned_tour(basis_set))
   step <- tour(0)
+  stop_next <- FALSE #use bool to stop after adding final projection
 
-  while (!is.null(step)) {
-    new_basis[i] <- step$step == 0
+  while (TRUE) { #need to add final projection after generator runs out, so using break instead of while condition
+    new_basis[i] <- step$step <= 0
     projs[, , i] <- step$proj
 
     i <- i + 1
+    if (stop_next) break
     step <- tour(angle)
+    if (step$step == -1) stop_next <- TRUE
   }
 
   # Trim off extra bases
