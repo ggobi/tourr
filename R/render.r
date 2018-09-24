@@ -43,7 +43,7 @@ render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, 
     if (stop_next) return(invisible())
     i <- i + 1
     step <- tour(apf)
-    if (if step$step < 0) stop_next <- TRUE
+    if (step$step < 0) stop_next <- TRUE
   }
   invisible()
 }
