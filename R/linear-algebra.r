@@ -4,6 +4,7 @@
 #'
 #' @keywords internal algebra
 #' @param x numeric matrix or vector
+#' @export
 normalise <- function(x) {
   if (is.matrix(x)) {
     lengths <- sqrt(colSums(x ^ 2, na.rm = TRUE))
@@ -17,6 +18,7 @@ normalise <- function(x) {
 #'
 #' @keywords internal algebra
 #' @param x numeric matrix
+#' @export
 orthonormalise <- function(x) {
   x <- normalise(x) # to be conservative
 
@@ -37,6 +39,7 @@ orthonormalise <- function(x) {
 #' @keywords internal algebra
 #' @param x numeric matrix
 #' @param tol tolerance used to test floating point differences
+#' @export
 is_orthonormal <- function(x, tol = 0.001) {
   stopifnot(is.matrix(x))
 
@@ -63,6 +66,7 @@ is_orthonormal <- function(x, tol = 0.001) {
 #' @keywords internal algebra
 #' @param x numeric matrix
 #' @param by numeric matrix, same size as x
+#' @export
 orthonormalise_by <- function(x, by) {
   stopifnot(ncol(x) == ncol(by))
   stopifnot(nrow(x) == nrow(by))

@@ -26,20 +26,21 @@
 #'
 #' animate_groupxy(f, col = col, pch = pch, group_by = flea$species)
 #' animate_groupxy(f, col = col, pch = pch, group_by = flea$species, plot_xgp = FALSE)
-display_groupxy <- function(center = TRUE, axes = "center", half_range = NULL,
+display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
                             col = "black", pch  = 20, edges = NULL,
                             group_by = NULL, plot_xgp = TRUE, ...) {
-labels <- NULL
+  labels <- NULL
   init <- function(data) {
-    half_range <<- compute_half_range(half_range, data, center)
+    half_range <<- compute_half_range(half_range, data, centr)
     labels <<- abbreviate(colnames(data), 3)
   }
 
   if (!is.null(edges)) {
-    if (!is.matrix(edges) && ncol(edges) == 2) {
+    if (!is.matrix(edges) && ncol(edges) >= 2) {
       stop("Edges matrix needs two columns, from and to, only.")
     }
   }
+  cat(nrow(edges), plot_xgp, "\n")
 
   render_frame <- function() {
     par(pty = "s", mar = rep(0.1, 4))
@@ -48,15 +49,21 @@ labels <- NULL
     rect(-1, -1, 1, 1, col="#FFFFFFE6", border=NA)
   }
   render_data <- function(data, proj, geodesic) {
+    cat("2 ", "\n")
+
     gps <- unique(group_by)
     ngps <- length(gps)
-    if(ngps>24){stop("Please choose a group with 24 or less levels.")}
+    if (ngps > 24) {
+      stop("Please choose a group with 24 or less levels.\n")
+    }
+    cat("3 ", nrow(edges), centr, "\n")
     grid <- ceiling(sqrt(ngps+1))
     par(mfrow=c(grid, grid))
 
     # Render projected points
     x <- data %*% proj
-    if (center) x <- center(x)
+    cat(ncol(x), centr, "\n")
+    if (centr) x <- center(x)
     x <- x / half_range
 
     blank_plot(xlim = c(-1, 1), ylim = c(-1, 1))
@@ -64,24 +71,32 @@ labels <- NULL
 
     if (ngps < 2) {
       points(x, col = col, pch = pch, new = FALSE)
+      if (!is.null(edges)) {
+          segments(x[edges[,1], 1], x[edges[,1], 2],
+               x[edges[,2], 1], x[edges[,2], 2])
+      }
     }
     else {
-      for(i in 1:ngps){
+      for(i in 1:ngps) {
         x.sub <- x[group_by == gps[i],]
         col.sub  <- if (length(col) == nrow(x)) col[group_by == gps[i]] else col
         pch.sub  <- if (length(pch) == nrow(x)) pch[group_by == gps[i]] else pch
 
         blank_plot(xlim = c(-1, 1), ylim = c(-1, 1))
-        if (plot_xgp) {points(x[group_by != gps[i],], col = "#DEDEDEDE", new = FALSE,
-                              pch = if (length(pch) >1) pch[group_by != gps[i]] else pch) }
+        if (plot_xgp) {
+          points(x[group_by != gps[i],], col = "#DEDEDEDE", new = FALSE,
+            pch = if (length(pch) >1) pch[group_by != gps[i]] else pch)
+        }
         points(x.sub, col = col.sub, pch = pch.sub, new = FALSE)
+
+        if (!is.null(edges)) {
+          edge.sub <- edges[group_by == gps[i],]
+          segments(x[edges.sub[,1], 1], x[edges.sub[,1], 2],
+                   x[edges.sub[,2], 1], x[edges.sub[,2], 2])
+        }
       }
     }
 
-    if (!is.null(edges)) {
-      segments(x[edges[,1], 1], x[edges[,1], 2],
-               x[edges[,2], 1], x[edges[,2], 2])
-    }
   }
 
   list(
