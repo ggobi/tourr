@@ -70,7 +70,6 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
     while(i < max_frames) {
       i <- i + 1
       step <- tour(aps / fps)
-      if (is.null(step)) break
       if (step$step == 1) {
         b <- b + 1
         if (b > bs) {
@@ -90,7 +89,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
       }
       display$render_data(data, step$proj, step$target)
       dev.flush()
-
+      if (step$step < 0) break #break after rendering final projection
       Sys.sleep(1 / fps)
     }
   }, interrupt = function(cond) {
