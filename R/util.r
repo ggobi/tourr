@@ -26,7 +26,7 @@ center <- function(x) {
 #' @param df   data frame or matrix
 #' @keywords manip
 #' @export
-sphere <- function(df) {
+sphere_data <- function(df) {
   apply(stats::predict(stats::prcomp(df)), 2, scale)
 }
 

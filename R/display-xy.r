@@ -39,8 +39,7 @@
 #' edges <- matrix(c(1:5, 2:6), ncol = 2)
 #' animate(flea[, 1:6], grand_tour(),
 #'   display_xy(axes = "bottomleft", edges = edges))
-display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
-                       col = "black", pch  = 20, edges = NULL, ...) {
+display_xy <- function(center = TRUE, axes = "center", half_range = NULL, col = "black", pch  = 20, edges = NULL, ...) {
 
   labels <- NULL
   init <- function(data) {
@@ -89,7 +88,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
 #' @inheritParams animate
 #' @export
 animate_xy <- function(data, tour_path = grand_tour(), ...) {
-  animate(data, tour_path, display_xy(...))
+  animate(data, tour_path, display_xy(...), ...)
 }
 
 #' Draw tour axes with base graphics
