@@ -14,9 +14,9 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 #' Search for a better projection near the current projection.
 #' @keywords internal
 search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
-  method = "linear"
+  method = "linear", cur_index = NA
 ) {
-  cur_index <- index(current)
+  if (is.na(cur_index)) cur_index <- index(current)
 
   cat("Old", cur_index, "\n")
   try <- 1
@@ -37,9 +37,9 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
 #' Search for better projection, with stochastic component.
 #' @keywords internal
 search_better_random <- function(current, alpha = 0.5, index,
-  max.tries = Inf, method = "linear", eps = 0.001
+  max.tries = Inf, method = "linear", eps = 0.001, cur_index = NA
 ) {
-  cur_index <- index(current)
+  if (is.na(cur_index)) cur_index <- index(current)
 
   cat("Old", cur_index, "\n")
   try <- 1

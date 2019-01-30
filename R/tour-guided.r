@@ -18,6 +18,7 @@
 #' @param search_f the search strategy to use
 #' @param max.tries the maximum number of unsuccessful attempts to find
 #'   a better projection before giving up
+#' @param max.i the maximum index value, stop search if a larger value is found
 #' @param ... arguments sent to the search_f
 #' @seealso \code{\link{cmass}}, \code{\link{holes}} and \code{\link{lda_pp}}
 #'   for examples of index functions.  The function should take a numeric
@@ -35,7 +36,7 @@
 #' # ways
 #' f <- flea[, 1:3]
 #' tries <- replicate(5, save_history(f, guided_tour(holes)), simplify = FALSE)
-guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25, search_f = search_geodesic, ...) {
+guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25, max.i = Inf, search_f = search_geodesic, ...) {
 
   generator <- function(current, data) {
     if (is.null(current)) return(basis_init(ncol(data), d))
@@ -44,7 +45,28 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
       index_f(as.matrix(data) %*% proj)
     }
 
-    basis <- search_f(current, alpha, index, max.tries, ...)
+    cur_index <- index(current)
+
+    if (cur_index > max.i){
+      cat("Found index ", cur_index, ", larger than selected maximum ", max.i, ". Stopping search.\n",
+          sep="")
+      cat("Final projection: \n")
+      if (ncol(current)==1) {
+        for (i in 1:length(current))
+          cat(sprintf("%.3f",current[i])," ")
+        cat("\n")
+      }
+      else {
+        for (i in 1:nrow(current)) {
+          for (j in 1:ncol(current))
+            cat(sprintf("%.3f",current[i,j])," ")
+          cat("\n")
+        }
+      }
+      return(NULL)
+    }
+
+    basis <- search_f(current, alpha, index, max.tries, cur_index=cur_index, ...)
     alpha <<- alpha * cooling
 
     basis

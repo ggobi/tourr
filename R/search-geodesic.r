@@ -15,15 +15,18 @@
 #' @param index interestingness index function
 #' @param max.tries maximum number of failed attempts before giving up
 #' @param n number of random steps to take to find best direction
+#' @param stepS step size for evaluation of best direction
+#' @param cur_index index value for starting projection, set NA if it needs to
+#'   be calculated
 #' @keywords optimize
-search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5) {
-  cur_index <- index(current)
+search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5, stepS = 0.01, cur_index = NA) {
+  if (is.na(cur_index)) cur_index <- index(current)
 
   try <- 1
   while(try < max.tries) {
     # Try 5 random directions and pick the one that has the highest
     # index after a small step in either direction
-    direction <- find_best_dir(current, index, tries = n)
+    direction <- find_best_dir(current, index, tries = n, dist=stepS)
 
     # Travel halfway round (pi / 4 radians) the sphere in that direction
     # looking for the best projection
