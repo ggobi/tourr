@@ -15,14 +15,14 @@
 #' }
 #'
 #' # 5 guided tours  -----------------------------
-#' holes1d <- guided_tour(holes, 1)
+#' holes1d <- guided_tour(holes(), 1)
 #' tries <- replicate(5, save_history(flea[, 1:6], holes1d, max = 10),
 #'   simplify = FALSE)
 #' tries2 <- lapply(tries, interpolate, 0.2)
 #'
 #' bases <- unlist(lapply(tries2, as.list), recursive = FALSE)
 #' class(bases) <- "history_list"
-#' index_values <- paths_index(tries2, holes)
+#' index_values <- paths_index(tries2, holes())
 #' d <- path_dist(bases)
 #' ord <- as.data.frame(cmdscale(d, 2))
 #'

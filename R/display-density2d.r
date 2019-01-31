@@ -25,7 +25,8 @@
 #' animate(flea[, 1:6], tour_path=grand_tour(),
 #'   display=display_density2d(half_range = 0.5))
 #' animate_density2d(flea[, 1:6], tour_path=little_tour())
-#' animate_density2d(flea[, 1:3], tour_path=guided_tour(holes), sphere = TRUE)
+#'
+#' animate_density2d(flea[, 1:3], tour_path=guided_tour(holes()), sphere = TRUE)
 #' animate_density2d(flea[, 1:6], center = FALSE)
 #'
 #' # The default axes are centered, like a biplot, but there are other options
@@ -76,7 +77,7 @@ display_density2d <- function(center = TRUE, axes = "center", half_range = NULL,
     colrs <- unique(col)
     ngps <- length(colrs)
     if (ngps == 1) {
-      xd <- kde2d(x[,1],x[,2])
+      xd <- MASS::kde2d(x[,1],x[,2])
 
       contour(xd, col = col,
               levels = quantile(xd$z, probs = contour_quartile),
@@ -85,7 +86,7 @@ display_density2d <- function(center = TRUE, axes = "center", half_range = NULL,
     else {
       for (i in 1:ngps) {
         x.sub <- x[col == colrs[i],]
-        xd <- kde2d(x.sub[,1],x.sub[,2])
+        xd <- MASS::kde2d(x.sub[,1],x.sub[,2])
 
         contour(xd, col = colrs[i],
                 levels = quantile(xd$z, probs = contour_quartile),

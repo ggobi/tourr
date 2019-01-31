@@ -1,3 +1,10 @@
+Version 0.5.6
+------------------------------------------------------------------------------
+
+Indexes holes and cmass functions now follow the same style as lda_pp and pda_pp, which means that you need to use them with holes(), and cmass()
+
+A new display type, groupxy has been added, which will run the same tour on subsets of the data in a split plot window
+
 Version 0.5.4.9000
 ------------------------------------------------------------------------------
 

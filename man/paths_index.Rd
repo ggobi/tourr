@@ -16,13 +16,13 @@ This is a convenience method that returns a data frame summarising the
 index values for multiple tour paths.
 }
 \examples{
-holes1d <- guided_tour(holes, 1)
+holes1d <- guided_tour(holes(), 1)
 # Perform guided tour 5 times, saving results
 tries <- replicate(5, save_history(flea[, 1:6], holes1d), simplify = FALSE)
 # Interpolate between target bases
 itries <- lapply(tries, interpolate)
 
-paths <- paths_index(itries, holes)
+paths <- paths_index(itries, holes())
 head(paths)
 
 if (require(ggplot2)) {

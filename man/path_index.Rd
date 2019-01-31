@@ -18,15 +18,15 @@ path_index(history, index_f, data = attr(history, "data"))
 Compute index values for a tour history.
 }
 \examples{
-fl_holes <- save_history(flea[, 1:6], guided_tour(holes), sphere = TRUE)
-path_index(fl_holes, holes)
-path_index(fl_holes, cmass)
+fl_holes <- save_history(flea[, 1:6], guided_tour(holes()), sphere = TRUE)
+path_index(fl_holes, holes())
+path_index(fl_holes, cmass())
 
-plot(path_index(fl_holes, holes), type = "l")
-plot(path_index(fl_holes, cmass), type = "l")
+plot(path_index(fl_holes, holes()), type = "l")
+plot(path_index(fl_holes, cmass()), type = "l")
 
 # Use interpolate to show all intermediate bases as well
-hi <- path_index(interpolate(fl_holes), holes)
+hi <- path_index(interpolate(fl_holes), holes())
 hi
 plot(hi)
 }

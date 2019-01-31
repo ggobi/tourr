@@ -73,7 +73,7 @@ frozen_tour <- function(d = 2, frozen) {
 #' @examples
 #' frozen <- matrix(NA, nrow = 4, ncol = 2)
 #' frozen[3, ] <- .5
-#' animate_xy(flea[, 1:4], frozen_guided_tour(frozen, holes))
+#' animate_xy(flea[, 1:4], frozen_guided_tour(frozen, holes()))
 frozen_guided_tour <- function(frozen, index_f, d = 2, max.tries = 25) {
   generator <- function(current, data) {
     if (is.null(current)) return(basis_init(ncol(data), d))

@@ -22,7 +22,7 @@
 #' animate(flea[, 1:6], tour_path=grand_tour(),
 #'   display=display_xy(half_range = 0.5))
 #' animate_xy(flea[, 1:6], tour_path=little_tour())
-#' animate_xy(flea[, 1:3], tour_path=guided_tour(holes), sphere = TRUE)
+#' animate_xy(flea[, 1:3], tour_path=guided_tour(holes()), sphere = TRUE)
 #' animate_xy(flea[, 1:6], center = FALSE)
 #'
 #' # The default axes are centered, like a biplot, but there are other options

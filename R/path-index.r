@@ -8,15 +8,15 @@
 #' @seealso \code{\link{save_history}} for options to save history
 #' @export
 #' @examples
-#' fl_holes <- save_history(flea[, 1:6], guided_tour(holes), sphere = TRUE)
-#' path_index(fl_holes, holes)
-#' path_index(fl_holes, cmass)
+#' fl_holes <- save_history(flea[, 1:6], guided_tour(holes()), sphere = TRUE)
+#' path_index(fl_holes, holes())
+#' path_index(fl_holes, cmass())
 #'
-#' plot(path_index(fl_holes, holes), type = "l")
-#' plot(path_index(fl_holes, cmass), type = "l")
+#' plot(path_index(fl_holes, holes()), type = "l")
+#' plot(path_index(fl_holes, cmass()), type = "l")
 #'
 #' # Use interpolate to show all intermediate bases as well
-#' hi <- path_index(interpolate(fl_holes), holes)
+#' hi <- path_index(interpolate(fl_holes), holes())
 #' hi
 #' plot(hi)
 path_index <- function(history, index_f, data = attr(history, "data")) {
@@ -49,13 +49,13 @@ plot.path_index <- function(x, ...) {
 #' @param index_f index function to apply to each projection
 #' @export
 #' @examples
-#' holes1d <- guided_tour(holes, 1)
+#' holes1d <- guided_tour(holes(), 1)
 #' # Perform guided tour 5 times, saving results
 #' tries <- replicate(5, save_history(flea[, 1:6], holes1d), simplify = FALSE)
 #' # Interpolate between target bases
 #' itries <- lapply(tries, interpolate)
 #'
-#' paths <- paths_index(itries, holes)
+#' paths <- paths_index(itries, holes())
 #' head(paths)
 #'
 #' if (require(ggplot2)) {

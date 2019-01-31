@@ -4,10 +4,7 @@
 \alias{holes}
 \title{Holes index.}
 \usage{
-holes(mat)
-}
-\arguments{
-\item{mat}{matrix being used}
+holes()
 }
 \description{
 Calculates the holes index. See Cook and Swayne (2007)

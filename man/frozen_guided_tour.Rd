@@ -23,7 +23,7 @@ The frozen guided tour
 \examples{
 frozen <- matrix(NA, nrow = 4, ncol = 2)
 frozen[3, ] <- .5
-animate_xy(flea[, 1:4], frozen_guided_tour(frozen, holes))
+animate_xy(flea[, 1:4], frozen_guided_tour(frozen, holes()))
 }
 \seealso{
 \code{\link{cmass}}, \code{\link{holes}} and \code{\link{lda_pp}}

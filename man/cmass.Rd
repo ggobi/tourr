@@ -4,10 +4,7 @@
 \alias{cmass}
 \title{Central mass index.}
 \usage{
-cmass(mat)
-}
-\arguments{
-\item{mat}{matrix being used}
+cmass()
 }
 \description{
 Calculates the central mass index.  See Cook and Swayne (2007)

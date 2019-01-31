@@ -3,17 +3,19 @@
 #' Calculates the holes index. See Cook and Swayne (2007)
 #' Interactive and Dynamic Graphics for Data Analysis for equations.
 #'
-#' @param mat matrix being used
 #' @keywords hplot
 #' @export
-holes <- function(mat) {
-  n <- nrow(mat)
-  d <- ncol(mat)
+holes <- function() {
 
-  num <- 1 - 1/n * sum(exp(-0.5 * rowSums(mat ^ 2)))
-  den <- 1 - exp(-d / 2)
+  function(mat) {
+    n <- nrow(mat)
+    d <- ncol(mat)
 
-  num / den
+    num <- 1 - 1/n * sum(exp(-0.5 * rowSums(mat ^ 2)))
+    den <- 1 - exp(-d / 2)
+
+    num / den
+  }
 }
 
 #' Central mass index.
@@ -21,11 +23,19 @@ holes <- function(mat) {
 #' Calculates the central mass index.  See Cook and Swayne (2007)
 #' Interactive and Dynamic Graphics for Data Analysis for equations.
 #'
-#' @param mat matrix being used
 #' @keywords hplot
 #' @export
-cmass <- function(mat)
-  1 - holes(mat)
+cmass <- function() {
+  function(mat) {
+    n <- nrow(mat)
+    d <- ncol(mat)
+
+    num <- 1 - 1/n * sum(exp(-0.5 * rowSums(mat ^ 2)))
+    den <- 1 - exp(-d / 2)
+
+    1 - num / den
+  }
+}
 
 #' LDA projection pursuit index.
 #'
