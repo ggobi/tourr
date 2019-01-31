@@ -72,6 +72,8 @@ display_andrews <- function(col="black", ...) {
 
     render_frame()
     segments(-pi, 0, pi, 0)
+    if (length(col) == 1)
+      col <- rep(col, nrow(data))
     clrs <- rep(col, rep(52, nrow(data)))
     nclrs <- unique(clrs)
     ldat <- do.call("rbind", values)

@@ -4,8 +4,8 @@
 \alias{guided_tour}
 \title{A guided tour path.}
 \usage{
-guided_tour(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
-  search_f = search_geodesic, ...)
+guided_tour(index_f, d = 2, alpha = 0.5, cooling = 0.99,
+  max.tries = 25, max.i = Inf, search_f = search_geodesic, ...)
 }
 \arguments{
 \item{index_f}{the index function to optimise.}
@@ -19,6 +19,8 @@ by after each step}
 
 \item{max.tries}{the maximum number of unsuccessful attempts to find
 a better projection before giving up}
+
+\item{max.i}{the maximum index value, stop search if a larger value is found}
 
 \item{search_f}{the search strategy to use}
 

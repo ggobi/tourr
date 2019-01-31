@@ -6,7 +6,7 @@
 #'  contours overlaid.
 #'
 #' @param axes position of the axes: center, bottomleft or off
-#' @param center if TRUE, centers projected data to (0,0).  This pins the
+#' @param centr if TRUE, centers projected data to (0,0).  This pins the
 #'  center of data cloud and make it easier to focus on the changing shape
 #'  rather than position.
 #' @param half_range half range to use when calculating limits of projected.

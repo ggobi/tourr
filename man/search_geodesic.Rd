@@ -4,7 +4,8 @@
 \alias{search_geodesic}
 \title{Search for most interesting projection along random geodesics.}
 \usage{
-search_geodesic(current, alpha = 1, index, max.tries = 5, n = 5)
+search_geodesic(current, alpha = 1, index, max.tries = 5, n = 5,
+  stepS = 0.01, cur_index = NA)
 }
 \arguments{
 \item{current}{starting projection}
@@ -16,6 +17,11 @@ search_geodesic(current, alpha = 1, index, max.tries = 5, n = 5)
 \item{max.tries}{maximum number of failed attempts before giving up}
 
 \item{n}{number of random steps to take to find best direction}
+
+\item{stepS}{step size for evaluation of best direction}
+
+\item{cur_index}{index value for starting projection, set NA if it needs to
+be calculated}
 }
 \description{
 This is a novel method for finding more interesting projections for the

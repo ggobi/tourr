@@ -9,6 +9,8 @@ Description: Implements geodesic interpolation and basis
     methods from R.
 Depends:
     R (>= 2.14)
+Imports:
+    MASS 
 Suggests:
     TeachingDemos,
     ash,
@@ -20,4 +22,5 @@ License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/ggobi/tourr
 BugReports: https://github.com/ggobi/tourr/issues
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
+Encoding: UTF-8

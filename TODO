@@ -1,8 +1,10 @@
+Update version to 0.5.6
+
+-----
 Write tests to automate checking of core functionality.
 
 Define classes for:
   * tour step
   * geodesic interpolator
   * display method
-  
-Think about qtcanvas methods for display
+

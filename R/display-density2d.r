@@ -14,6 +14,8 @@
 #' @param contour_quartile Vector of quartiles to plot the contours at. Defaults to 5.
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_density2d}}
+#' @importFrom graphics contour
+#' @importFrom stats quantile
 #' @export
 #' @examples
 #' animate_density2d(flea[, 1:6])
