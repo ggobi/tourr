@@ -2,33 +2,35 @@
 
 |field    |value                        |
 |:--------|:----------------------------|
-|version  |R version 3.4.1 (2017-06-30) |
-|os       |macOS Sierra 10.12.6         |
+|version  |R version 3.5.2 (2018-12-20) |
+|os       |macOS Mojave 10.14           |
 |system   |x86_64, darwin15.6.0         |
 |ui       |RStudio                      |
 |language |(EN)                         |
-|collate  |en_US.UTF-8                  |
-|tz       |America/Chicago              |
-|date     |2017-07-31                   |
+|collate  |en_AU.UTF-8                  |
+|ctype    |en_AU.UTF-8                  |
+|tz       |Australia/Melbourne          |
+|date     |2019-02-08                   |
 
 # Dependencies
 
-|package |old   |new        |Δ  |
-|:-------|:-----|:----------|:--|
-|tourr   |0.5.4 |0.5.4.9000 |*  |
+|package |old   |new |Δ  |
+|:-------|:-----|:---|:--|
+|tourr   |0.5.5 |NA  |*  |
 
 # Revdeps
 
-## Broken (0)
+## Couldn't check (1)
 
-|package |version |error |warning |note |
-|:-------|:-------|:-----|:-------|:----|
+|package                        |version |error |warning |note |
+|:------------------------------|:-------|:-----|:-------|:----|
+|[REPPlab](problems.md#repplab) |0.9.4   |1     |        |     |
 
 ## All (3)
 
-|package  |version |error |warning |note |
-|:--------|:-------|:-----|:-------|:----|
-|geozoo   |0.5.1   |      |        |     |
-|REPPlab  |0.9.4   |1     |        |     |
-|tourrGui |0.4     |1     |        |     |
+|package                          |version |error |warning |note |
+|:--------------------------------|:-------|:-----|:-------|:----|
+|geozoo                           |0.5.1   |      |        |     |
+|[REPPlab](problems.md#repplab)   |0.9.4   |1     |        |     |
+|[tourrGui](problems.md#tourrgui) |0.4     |1     |        |     |
 

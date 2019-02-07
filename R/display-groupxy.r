@@ -40,7 +40,6 @@ display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
       stop("Edges matrix needs two columns, from and to, only.")
     }
   }
-  cat(nrow(edges), plot_xgp, "\n")
 
   render_frame <- function() {
     par(pty = "s", mar = rep(0.1, 4))
@@ -49,20 +48,17 @@ display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
     rect(-1, -1, 1, 1, col="#FFFFFFE6", border=NA)
   }
   render_data <- function(data, proj, geodesic) {
-    cat("2 ", "\n")
 
     gps <- unique(group_by)
     ngps <- length(gps)
     if (ngps > 24) {
       stop("Please choose a group with 24 or less levels.\n")
     }
-    cat("3 ", nrow(edges), centr, "\n")
     grid <- ceiling(sqrt(ngps+1))
     par(mfrow=c(grid, grid))
 
     # Render projected points
     x <- data %*% proj
-    cat(ncol(x), centr, "\n")
     if (centr) x <- center(x)
     x <- x / half_range
 
@@ -90,9 +86,8 @@ display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
         points(x.sub, col = col.sub, pch = pch.sub, new = FALSE)
 
         if (!is.null(edges)) {
-          edge.sub <- edges[group_by == gps[i],]
-          segments(x[edges.sub[,1], 1], x[edges.sub[,1], 2],
-                   x[edges.sub[,2], 1], x[edges.sub[,2], 2])
+          segments(x[edges[group_by == gps[i],1], 1], x[edges[group_by == gps[i],1], 2],
+                   x[edges[group_by == gps[i],2], 1], x[edges[group_by == gps[i],2], 2])
         }
       }
     }

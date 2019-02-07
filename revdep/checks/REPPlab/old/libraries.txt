@@ -1,8 +1,0 @@
-Library: /Users/hadley/Documents/visualisation/tourr/revdep/library/tourr/old
-tourr (0.5.4)
-
-Library: /Users/hadley/Documents/visualisation/tourr/revdep/library/REPPlab
-amap     (0.8-14)
-lattice  (0.20-35)
-LDRTools (0.2)
-rJava    (0.9-8)
