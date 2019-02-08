@@ -1,3 +1,7 @@
+## Maintainer change
+
+Di Cook has taken over from Hadley Wickham as the maintainer of this package.
+
 ## Test environments
 * local OS X install, R 3.5.2
 * win-builder (devel)
