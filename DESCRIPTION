@@ -1,9 +1,11 @@
 Package: tourr
 Title: Implement Tour Methods in R Code
 Version: 0.5.6
-Author: Dianne Cook <dicook@iastate.edu>, Hadley Wickham
-    <h.wickham@gmail.com>
-Maintainer: Hadley Wickham <h.wickham@gmail.com>
+Authors@R:c(
+    person("Hadley", "Wickham", email = "h.wickham@gmail.com", role = c("aut", "ctb")),
+    person("Di", "Cook", email = "dicook@monash.edu", role = c("aut", "cre")),
+    person("Nick", "Spyrison", email = "nicholas.spyrison@monash.edu", role = "ctb"),
+    person("Ursula", "Laa", email = "ursula.laa@monash.edu", role = "ctb"))
 Description: Implements geodesic interpolation and basis
     generation functions that allow you to create new tour
     methods from R.
