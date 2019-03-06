@@ -1,6 +1,13 @@
+^README\.Rmd$
+^CRAN-RELEASE$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
 ^util$
 ^cran-comments\.md$
 ^revdep$
+^\.gitignore$
+^\.Rhistory$
+^\.git$
+^..Rcheck$
+^README\.md$
