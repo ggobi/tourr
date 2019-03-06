@@ -20,7 +20,7 @@ You can install the released version of tourr from
 install.packages("tourr")
 ```
 
-You can install the development version of nullabor from github with:
+You can install the development version of tourr from github with:
 
 ``` r
 # install.packages("devtools")
