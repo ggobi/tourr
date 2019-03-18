@@ -24,7 +24,8 @@ Suggests:
     testthat,
     colorspace,
     ggplot2,
-    reshape2
+    reshape2,
+    gifski
 License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/ggobi/tourr
