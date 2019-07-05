@@ -6,7 +6,7 @@
 \title{Display tour path with a scatterplot}
 \usage{
 display_xy(center = TRUE, axes = "center", half_range = NULL,
-  col = "black", pch = 20, edges = NULL, ...)
+  col = "black", pch = 20, edges = NULL, edges.col = "black", ...)
 
 animate_xy(data, tour_path = grand_tour(), ...)
 }
@@ -25,6 +25,8 @@ If not set, defaults to maximum distance from origin to each row of data.}
 \item{pch}{size of the point to be plotted.  Defaults to 20.}
 
 \item{edges}{A two column integer matrix giving indices of ends of lines.}
+
+\item{edges.col}{colour of edges to be plotted, Defaults to "black"}
 
 \item{...}{other arguments passed on to \code{\link{animate}} and
 \code{\link{display_xy}}}

@@ -47,3 +47,53 @@ render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, 
   }
   invisible()
 }
+
+
+#' Render frames of animation to a gif file
+#'
+#' @param data matrix, or data frame containing numeric columns
+#' @param tour_path tour path generator
+#' @param display the method used to render the projected data,
+#'   e.g. \code{\link{display_xy}}, \code{\link{display_pcp}}
+#' @param gif_file Name of gif file (default = "animation.gif")
+#' @param ... other options passed to \code{\link{png}}
+#' @param apf angle (in radians) per frame
+#' @param frames number of frames in output
+#' @param rescale if true, rescale all variables to range [0,1]
+#' @param sphere if true, sphere all variables
+#' @param start starting projection.  If \code{NULL}, uses path default.
+#'
+#' @examples
+#' gif_file <- file.path(tempdir(), "test.gif")
+#' render_gif(flea[, 1:4], grand_tour(), display_xy(), gif_file )
+#' utils::browseURL(gif_file)
+#'
+#' @export
+render_gif <- function(data, tour_path, display, gif_file = "animation.gif", ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
+
+  if (!requireNamespace("gifski", quietly = TRUE)) {
+    stop("To use this function please install the 'gifski' package", quietly = TRUE)
+  }
+
+  # temp png files
+  dir <- tempdir()
+  png_path <- file.path(dir, "frame%03d.png")
+
+  render(data= data,
+         tour_path = tour_path,
+         display = display,
+         dev = "png",
+         png_path,
+         ...,
+         apf = apf,
+         frames = frames,
+         rescale = rescale,
+         sphere = sphere,
+         start = start
+  )
+
+  png_files <- sprintf(png_path, 1:frames)
+  on.exit(unlink(png_files))
+
+  gifski::gifski(png_files, gif_file, delay = apf, progress = TRUE)
+}
