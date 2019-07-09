@@ -41,5 +41,8 @@ devtools::install_github("ggobi/tourr")
 To display the tour, when using the RStudio IDE, you may need to use a different graphics device. On a Mac, I run `quartz()` before starting a tour. On Windows, `X11()` may be the best.
 
 ``` r
+if(Sys.getenv("RSTUDIO") == "1" & # check if running in RStudio
+       .Platform$OS.type == "unix") quartz() else X11()
+library(tourr)
 animate_xy(flea[, 1:6])
 ```
