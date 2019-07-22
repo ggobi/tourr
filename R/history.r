@@ -58,6 +58,7 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
     # An infinite step size forces the tour path to generate a new basis
     # every time, so no interpolation occurs.
     step <- tour(step_size)
+    if (is.null(step$target)) break # this can happen if no better basis is found in guided tour
 
     projs[, , i] <- step$target
     if (step$step < 0) break #already appended final projection, break directly
@@ -67,6 +68,7 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
   # (e.g. guided tour)
   empty <- apply(projs, 3, function(x) all(is.na(x)))
   projs <- projs[, , !empty, drop = FALSE]
+  if (length(projs) == 0) return(NULL)
 
   attr(projs, "data") <- data
   structure(projs, class = "history_array")
