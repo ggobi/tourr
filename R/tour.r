@@ -39,6 +39,9 @@ new_tour <- function(data, tour_path, start = NULL) {
     step <<- step + 1
     cur_dist <<- cur_dist + step_size
 
+    if (target_dist == 0 & step > 1){ # should only happen for guided tour when no better basis is found (relative to starting plane)
+      return(list(proj = proj, target = target, step = -1)) #use negative step size to signal that we have reached the final target
+    }
     # We're at (or past) the target, so generate a new one and reset counters
     if (step_size > 0 & is.finite(step_size) & cur_dist >= target_dist) {
       proj <<- geodesic$interpolate(1.) #make sure next starting plane is previous target

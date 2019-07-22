@@ -97,7 +97,9 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
     return()
   })
 
-  invisible(bases[, , seq_len(b)])
+  if (b != 0){
+    invisible(bases[, , seq_len(b)])
+  }
 }
 
 rstudio_gd <- function() identical(names(dev.cur()), "RStudioGD")
