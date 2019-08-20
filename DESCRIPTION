@@ -25,7 +25,8 @@ Suggests:
     colorspace,
     ggplot2,
     reshape2,
-    gifski
+    gifski,
+    geozoo
 License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/ggobi/tourr
