@@ -15,7 +15,7 @@
 #'   Defaults to 20.
 #' @param pch_other marker for plotting points outside the slice.
 #'   Defaults to 46.
-#' @param eps volume of the slice. Defaults to 0.001.
+#' @param eps volume of the slice. Defaults to 0.1.
 #' @param anchor A vector specifying the reference point to anchor the slice.
 #'   If NULL (default) the slice will be anchored at the origin.
 #' @param rescale if true, rescale all variables to range [0,1]. For the slice
@@ -41,11 +41,11 @@
 #' anchor5 <- rep(0.3, 5)
 #' animate_slice(sphere3, anchor = anchor3)
 #' # Animate with thicker slice to capture more points in each view
-#' animate_slice(sphere5, anchor = anchor5, esp = 0.01)
+#' animate_slice(sphere5, anchor = anchor5, esp = 0.2)
 
 
 display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
-                             col = "black", pch_slice  = 20, pch_other = 46, eps = 0.001,
+                             col = "black", pch_slice  = 20, pch_other = 46, eps = 0.1,
                              anchor = NULL, edges = NULL, edges.col = "black",...) {
 
   labels <- NULL
@@ -72,7 +72,7 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
     draw_tour_axes(proj, labels, limits = 1, axes)
 
     # Translate volume eps to cutoff h
-    h <- eps^(1/ncol(data))
+    h <- eps^(1/(ncol(data)-2))
 
     # Render projected points
     x <- data %*% proj
