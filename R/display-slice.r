@@ -15,7 +15,8 @@
 #'   Defaults to 20.
 #' @param pch_other marker for plotting points outside the slice.
 #'   Defaults to 46.
-#' @param eps volume of the slice. If not set, defaults to half_range/10.
+#' @param eps volume of the slice. If not set, suggested value is caluclated and
+#'   printed to the screen.
 #' @param anchor A vector specifying the reference point to anchor the slice.
 #'   If NULL (default) the slice will be anchored at the origin.
 #' @param rescale if true, rescale all variables to range [0,1]. For the slice
@@ -53,10 +54,10 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)
     labels <<- abbreviate(colnames(data), 3)
-    eps <<- compute_epsilon(eps, half_range)
+    eps <<- compute_epsilon(eps, half_range, ncol(data))
     # Translate volume eps to cutoff h
     h <<- eps^(1/(ncol(data)-2))
-    message("Using eps=", format(eps, digits = 2), ", corresponding to a cutoff h=", format(eps, digits = 2))
+    message("Using eps=", format(eps, digits = 2), ", corresponding to a cutoff h=", format(h, digits = 2))
   }
 
   if (!is.null(edges)) {
@@ -107,6 +108,6 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
 #' @rdname display_slice
 #' @inheritParams animate
 #' @export
-animate_slice <- function(data, tour_path = grand_tour(), rescale = FALSE, ...) {
+animate_slice <- function(data, tour_path = grand_tour(), rescale = TRUE, ...) {
   animate(data, tour_path, display_slice(...), rescale = rescale)
 }
