@@ -6,10 +6,10 @@
 \title{Display tour path with a sliced scatterplot}
 \usage{
 display_slice(center = TRUE, axes = "center", half_range = NULL,
-  col = "black", pch_slice = 20, pch_other = 46, eps = 0.001,
+  col = "black", pch_slice = 20, pch_other = 46, eps = NULL,
   anchor = NULL, edges = NULL, edges.col = "black", ...)
 
-animate_slice(data, tour_path = grand_tour(), rescale = FALSE, ...)
+animate_slice(data, tour_path = grand_tour(), rescale = TRUE, ...)
 }
 \arguments{
 \item{center}{if TRUE, centers projected data to (0,0).  This pins the
@@ -29,7 +29,8 @@ Defaults to 20.}
 \item{pch_other}{marker for plotting points outside the slice.
 Defaults to 46.}
 
-\item{eps}{volume of the slice. Defaults to 0.001.}
+\item{eps}{volume of the slice. If not set, suggested value is caluclated and
+printed to the screen.}
 
 \item{anchor}{A vector specifying the reference point to anchor the slice.
 If NULL (default) the slice will be anchored at the origin.}
@@ -45,8 +46,7 @@ If NULL (default) the slice will be anchored at the origin.}
 
 \item{tour_path}{tour path generator, defaults to 2d grand tour}
 
-\item{rescale}{if true, rescale all variables to range [0,1]. For the slice
-display this defaults to FALSE as data should ideally be centered.}
+\item{rescale}{if true, rescale all variables to range [0,1].}
 }
 \description{
 Animate a 2D tour path with a sliced scatterplot.
@@ -69,5 +69,5 @@ anchor3 <- rep(0.7, 3)
 anchor5 <- rep(0.3, 5)
 animate_slice(sphere3, anchor = anchor3)
 # Animate with thicker slice to capture more points in each view
-animate_slice(sphere5, anchor = anchor5, esp = 0.01)
+animate_slice(sphere5, anchor = anchor5, eps = 0.02)
 }
