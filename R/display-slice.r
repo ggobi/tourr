@@ -19,8 +19,7 @@
 #'   printed to the screen.
 #' @param anchor A vector specifying the reference point to anchor the slice.
 #'   If NULL (default) the slice will be anchored at the origin.
-#' @param rescale if true, rescale all variables to range [0,1]. For the slice
-#'   display this defaults to FALSE as data should ideally be centered.
+#' @param rescale if true, rescale all variables to range [0,1].
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_slice}}
 #' @export
@@ -42,7 +41,7 @@
 #' anchor5 <- rep(0.3, 5)
 #' animate_slice(sphere3, anchor = anchor3)
 #' # Animate with thicker slice to capture more points in each view
-#' animate_slice(sphere5, anchor = anchor5, eps = 0.2)
+#' animate_slice(sphere5, anchor = anchor5, eps = 0.02)
 
 
 display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
