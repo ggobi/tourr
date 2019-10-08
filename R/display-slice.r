@@ -15,7 +15,7 @@
 #'   Defaults to 20.
 #' @param pch_other marker for plotting points outside the slice.
 #'   Defaults to 46.
-#' @param eps volume of the slice. Defaults to 0.1.
+#' @param eps volume of the slice. If not set, defaults to half_range/10.
 #' @param anchor A vector specifying the reference point to anchor the slice.
 #'   If NULL (default) the slice will be anchored at the origin.
 #' @param rescale if true, rescale all variables to range [0,1]. For the slice
@@ -41,17 +41,22 @@
 #' anchor5 <- rep(0.3, 5)
 #' animate_slice(sphere3, anchor = anchor3)
 #' # Animate with thicker slice to capture more points in each view
-#' animate_slice(sphere5, anchor = anchor5, esp = 0.2)
+#' animate_slice(sphere5, anchor = anchor5, eps = 0.2)
 
 
 display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
-                             col = "black", pch_slice  = 20, pch_other = 46, eps = 0.1,
+                             col = "black", pch_slice  = 20, pch_other = 46, eps = NULL,
                              anchor = NULL, edges = NULL, edges.col = "black",...) {
 
   labels <- NULL
+  h <- NULL
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)
     labels <<- abbreviate(colnames(data), 3)
+    eps <<- compute_epsilon(eps, half_range)
+    # Translate volume eps to cutoff h
+    h <<- eps^(1/(ncol(data)-2))
+    message("Using eps=", format(eps, digits = 2), ", corresponding to a cutoff h=", format(eps, digits = 2))
   }
 
   if (!is.null(edges)) {
@@ -71,8 +76,6 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
   render_data <- function(data, proj, geodesic) {
     draw_tour_axes(proj, labels, limits = 1, axes)
 
-    # Translate volume eps to cutoff h
-    h <- eps^(1/(ncol(data)-2))
 
     # Render projected points
     x <- data %*% proj

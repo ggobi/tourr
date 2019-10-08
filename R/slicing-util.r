@@ -41,3 +41,12 @@ anchored_orthogonal_distance <- function(plane, data, anchor=NULL){
   #putting all three components together we can calculate the anchored distance
   sqrt(dist_sq + alpha_sq - xterm)
 }
+
+#' If not set, compute epsilon as 10% of half_range
+#'
+#' @keywords internal
+compute_epsilon <- function(eps, half_range){
+  if (!is.null(eps)) return(eps)
+
+  half_range / 10.
+}
