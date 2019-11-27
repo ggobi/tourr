@@ -10,7 +10,8 @@
 #'   If not set, defaults to maximum distance from origin to each row of data.
 #' @param edges A two column integer matrix giving indices of ends of lines.
 #' @param col color to be plotted.  Defaults to "black"
-#' @param pch size of the point to be plotted.  Defaults to 20.
+#' @param pch shape of the point to be plotted.  Defaults to 20.
+#' @param cex size of the point to be plotted.  Defaults to 1.
 #' @param contour_quartile Vector of quartiles to plot the contours at. Defaults to 5.
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_density2d}}
@@ -44,8 +45,8 @@
 #' animate(flea[, 1:6], grand_tour(),
 #'   display_density2d(axes = "bottomleft", edges = edges))
 display_density2d <- function(center = TRUE, axes = "center", half_range = NULL,
-                       col = "black", pch  = 20, contour_quartile = c(.25, .5, .75),
-                       edges = NULL, ...) {
+                       col = "black", pch  = 20, cex = 1,
+                       contour_quartile = c(.25, .5, .75), edges = NULL, ...) {
 
   labels <- NULL
   init <- function(data) {
@@ -93,7 +94,7 @@ display_density2d <- function(center = TRUE, axes = "center", half_range = NULL,
                 axes=FALSE, add=TRUE)
       }
     }
-    points(x, col = col, pch = pch)
+    points(x, col = col, pch = pch, cex = cex)
 
     if (!is.null(edges)) {
       segments(x[edges[,1], 1], x[edges[,1], 2],

@@ -3,12 +3,13 @@
 #' @param d3 3d numeric matrix giving position of points
 #' @param blue blue colour (for right eye)
 #' @param red red colour (for left eye)
+#' @param cex size of the point to be plotted.  Defaults to 1.
 #' @keywords internal
-anaglyph <- function(d3, blue, red) {
+anaglyph <- function(d3, blue, red, cex = 1) {
   d2 <- project3d(d3)
 
-  with(d2, points(right, y, col=blue, pch = 20))
-  with(d2, points(left, y, col=red, pch=20))
+  with(d2, points(right, y, col = blue, pch = 20, cex = cex))
+  with(d2, points(left , y, col = red , pch = 20, cex = cex))
 }
 
 #' Stereographic projection
@@ -42,12 +43,13 @@ project3d <- function(d3, length = par("din")[1] * 25.4, z0 = 300, d = 30) {
 #'
 #' @param blue blue colour (for right eye)
 #' @param red red colour (for left eye)
+#' @param cex size of the point to be plotted.  Defaults to 1.
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @keywords hplot
 #' @export
 #' @examples
 #' animate_stereo(flea[, 1:6])
-display_stereo <- function(blue, red, ...)
+display_stereo <- function(blue, red, cex = 1, ...)
 {
 
   labels <- NULL
@@ -63,7 +65,7 @@ display_stereo <- function(blue, red, ...)
   }
   render_data <- function(data, proj, geodesic) {
     render_frame()
-    anaglyph(data %*% proj, blue, red)
+    anaglyph(data %*% proj, blue, red, cex = cex)
 
     axes <- project3d(proj)
     with(axes, {

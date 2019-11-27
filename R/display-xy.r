@@ -10,7 +10,8 @@
 #'   If not set, defaults to maximum distance from origin to each row of data.
 #' @param edges A two column integer matrix giving indices of ends of lines.
 #' @param col color to be plotted.  Defaults to "black"
-#' @param pch size of the point to be plotted.  Defaults to 20.
+#' @param pch shape of the point to be plotted.  Defaults to 20.
+#' @param cex size of the point to be plotted.  Defaults to 1.
 #' @param edges.col colour of edges to be plotted, Defaults to "black"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
@@ -40,7 +41,7 @@
 #' edges <- matrix(c(1:5, 2:6), ncol = 2)
 #' animate(flea[, 1:6], grand_tour(),
 #'   display_xy(axes = "bottomleft", edges = edges))
-display_xy <- function(center = TRUE, axes = "center", half_range = NULL, col = "black", pch  = 20, edges = NULL, edges.col = "black", ...) {
+display_xy <- function(center = TRUE, axes = "center", half_range = NULL, col = "black", pch = 20, cex = 1, edges = NULL, edges.col = "black", ...) {
 
   labels <- NULL
   init <- function(data) {
@@ -68,7 +69,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL, col = 
     x <- data %*% proj
     if (center) x <- center(x)
     x <- x / half_range
-    points(x, col = col, pch = pch)
+    points(x, col = col, pch = pch, cex = cex)
 
     if (!is.null(edges)) {
       segments(x[edges[,1], 1], x[edges[,1], 2],
