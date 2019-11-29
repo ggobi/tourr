@@ -15,6 +15,8 @@
 #'   Defaults to 20.
 #' @param pch_other marker for plotting points outside the slice.
 #'   Defaults to 46.
+#' @param cex_slice size of the points inside the slice. Defaults to 2.
+#' @param cex_other size if the points outside the slice. Defaults to 1.
 #' @param eps volume of the slice. If not set, suggested value is caluclated and
 #'   printed to the screen.
 #' @param anchor A vector specifying the reference point to anchor the slice.
@@ -45,8 +47,9 @@
 
 
 display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
-                             col = "black", pch_slice  = 20, pch_other = 46, eps = NULL,
-                             anchor = NULL, edges = NULL, edges.col = "black",...) {
+                          col = "black", pch_slice  = 20, pch_other = 46,
+                          cex_slice = 2, cex_other = 1, eps = NULL,
+                          anchor = NULL, edges = NULL, edges.col = "black", ...) {
 
   labels <- NULL
   h <- NULL
@@ -82,9 +85,11 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
     d <- anchored_orthogonal_distance(proj, data, anchor)
     pch <- rep(pch_other, nrow(x))
     pch[d < h] <- pch_slice
+    cex <- rep(cex_other, nrow(x))
+    cex[d < h] <- cex_slice
     if (center) x <- center(x)
     x <- x / half_range
-    points(x, col = col, pch = pch)
+    points(x, col = col, pch = pch, cex = cex)
 
     if (!is.null(edges)) {
       segments(x[edges[,1], 1], x[edges[,1], 2],

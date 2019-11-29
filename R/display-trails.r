@@ -9,13 +9,13 @@
 #' @param half_range half range to use when calculating limits of projected.
 #'   If not set, defaults to maximum distance from origin to each row of data.
 #' @param col color to be plotted.  Defaults to "black"
-#' @param pch size of the point to be plotted.  Defaults to 20.
+#' @param pch shape of the point to be plotted.  Defaults to 20.
 #' @param past draw line between current projection and projection \code{past}
 #'   steps ago
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
 #' @export
-display_trails <- function(center = TRUE, axes = "center", half_range = NULL, col = "black", pch  = 20, past = 3, ...) {
+display_trails <- function(center = TRUE, axes = "center", half_range = NULL, col = "black", pch  = 20, cex = 1, past = 3, ...) {
 
   # Inherit most behaviour from display_xy.  This is a little hacky, but
   # the only way until tourr switch to a proper object system.
