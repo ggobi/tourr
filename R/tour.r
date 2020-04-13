@@ -38,6 +38,9 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   function(step_size, verbose = FALSE) {
     #browser()
 
+    tries <- rlang::sym("tries")
+    index_val <- rlang::sym("index_val")
+
     if(verbose) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
 
     step <<- step + 1
@@ -53,6 +56,20 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
     if (cur_dist >= target_dist) {
 
+      if(tries != 0){
+        row <- record %>%
+          dplyr::filter(tries = !!tries, info == "interpolation") %>%
+          dplyr::filter(index_val == max(!!index_val))
+
+        proj <- row$basis[[1]]
+        max_val <- row$index_val
+        max_id <- which(record$index_val == max_val)
+
+        record <<- record %>%
+          dplyr::mutate(id = dplyr::row_number()) %>%
+          dplyr::filter(id <= max_id)
+
+      }
 
       tour_path_obj <<- tour_path(proj, data, ...)
       geodesic <<- tour_path_obj[["geo"]]
@@ -75,7 +92,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
     proj <<- geodesic$interpolate(cur_dist / target_dist)
 
-    tries <- rlang::sym("tries")
+
     record <- record %>% dplyr::add_row(basis = list(proj),
                                  index_val = index(proj),
                                  info = "interpolation",
