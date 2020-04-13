@@ -15,8 +15,6 @@
 #'   Defaults to 20.
 #' @param pch_other marker for plotting points outside the slice.
 #'   Defaults to 46.
-#' @param cex_slice size of the points inside the slice. Defaults to 2.
-#' @param cex_other size if the points outside the slice. Defaults to 1.
 #' @param eps volume of the slice. If not set, suggested value is caluclated and
 #'   printed to the screen.
 #' @param anchor A vector specifying the reference point to anchor the slice.
@@ -46,10 +44,9 @@
 #' animate_slice(sphere5, anchor = anchor5, eps = 0.02)
 
 
-display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
-                          col = "black", pch_slice  = 20, pch_other = 46,
-                          cex_slice = 2, cex_other = 1, eps = NULL,
-                          anchor = NULL, edges = NULL, edges.col = "black", ...) {
+display_slice_bin <- function(center = TRUE, axes = "center", half_range = NULL,
+                             col = "black", pch_slice  = 20, pch_other = 46, eps = NULL,
+                             anchor = NULL, edges = NULL, nbin = 30, edges.col = "black",...) {
 
   labels <- NULL
   h <- NULL
@@ -77,26 +74,27 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
   }
 
   render_data <- function(data, proj, geodesic) {
-    draw_tour_axes(proj, labels, limits = 1, axes)
-
 
     # Render projected points
     x <- data %*% proj
     d <- anchored_orthogonal_distance(proj, data, anchor)
-    pch <- rep(pch_other, nrow(x))
-    pch[d < h] <- pch_slice
-    cex <- rep(cex_other, nrow(x))
-    cex[d < h] <- cex_slice
-    if (center) x <- center(x)
+    x <- center(x)
     x <- x / half_range
-    points(x, col = col, pch = pch, cex = cex)
+    binvec <- seq(-1, 1, length.out = nbin+1) #defining the bins along one axis
+    xbins <- cut(x[,1], binvec) #binning along x
+    ybins <- cut(x[,2], binvec) #binning along y
+    hbins <- as.data.frame(table(xbins, ybins)) #use table function to get 2D binning
+    z <- matrix(hbins$Freq, nrow=nbin) #read off frequency and write in a matrix for image function
+    par(mfrow=c(2,1))
+    par(mar=c(0, 5, 5, 5)) # by default image will fill the full space, so setting margins
+    image(binvec, binvec, # first two arguments repeat bin boundaries
+          z, # filling based on matrix with histogram counts
+          col = rev(gray.colors(20, start = 0, end = 1)), # generate color scale from white to black
+          axes=FALSE, xlab = "", ylab = "") # turn off axes and labels
+    par(mar=c(5, 5, 0, 5)) # by default image will fill the full space, so setting margins
+    par(xaxs="i")
+    draw_tour_axes(proj, labels, limits = 1, axes)
 
-    if (!is.null(edges)) {
-      segments(x[edges[,1], 1], x[edges[,1], 2],
-               x[edges[,2], 1], x[edges[,2], 2],
-               col = edges.col
-      )
-    }
   }
 
 
@@ -112,6 +110,6 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
 #' @rdname display_slice
 #' @inheritParams animate
 #' @export
-animate_slice <- function(data, tour_path = grand_tour(), rescale = TRUE, ...) {
-  animate(data, tour_path, display_slice(...), rescale = rescale)
+animate_slice_bin <- function(data, tour_path = grand_tour(), rescale = TRUE, ...) {
+  animate(data, tour_path, display_slice_bin(...), rescale = rescale)
 }
