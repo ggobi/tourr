@@ -5,8 +5,15 @@
 \alias{animate_trails}
 \title{Display tour path with trails}
 \usage{
-display_trails(center = TRUE, axes = "center", half_range = NULL,
-  col = "black", pch = 20, past = 3, ...)
+display_trails(
+  center = TRUE,
+  axes = "center",
+  half_range = NULL,
+  col = "black",
+  pch = 20,
+  past = 3,
+  ...
+)
 
 animate_trails(data, tour_path = grand_tour(), ...)
 }

@@ -5,8 +5,16 @@
 \alias{animate_xy}
 \title{Display tour path with a scatterplot}
 \usage{
-display_xy(center = TRUE, axes = "center", half_range = NULL,
-  col = "black", pch = 20, edges = NULL, edges.col = "black", ...)
+display_xy(
+  center = TRUE,
+  axes = "center",
+  half_range = NULL,
+  col = "black",
+  pch = 20,
+  edges = NULL,
+  edges.col = "black",
+  ...
+)
 
 animate_xy(data, tour_path = grand_tour(), ...)
 }

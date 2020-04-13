@@ -4,8 +4,18 @@
 \alias{render}
 \title{Render frames of animation to disk}
 \usage{
-render(data, tour_path, display, dev, ..., apf = 1/10, frames = 50,
-  rescale = TRUE, sphere = FALSE, start = NULL)
+render(
+  data,
+  tour_path,
+  display,
+  dev,
+  ...,
+  apf = 1/10,
+  frames = 50,
+  rescale = TRUE,
+  sphere = FALSE,
+  start = NULL
+)
 }
 \arguments{
 \item{data}{matrix, or data frame containing numeric columns}
