@@ -4,7 +4,7 @@
 \alias{new_tour}
 \title{Create a new tour.}
 \usage{
-new_tour(data, tour_path, start = NULL)
+new_tour(data, tour_path, start = NULL, ...)
 }
 \arguments{
 \item{data}{the data matrix to be projected}

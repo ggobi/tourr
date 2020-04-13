@@ -4,8 +4,15 @@
 \alias{save_history}
 \title{Save tour history.}
 \usage{
-save_history(data, tour_path = grand_tour(), max_bases = 100,
-  start = NULL, rescale = TRUE, sphere = FALSE, step_size = Inf)
+save_history(
+  data,
+  tour_path = grand_tour(),
+  max_bases = 100,
+  start = NULL,
+  rescale = TRUE,
+  sphere = FALSE,
+  step_size = Inf
+)
 }
 \arguments{
 \item{data}{matrix, or data frame containing numeric columns}
