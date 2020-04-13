@@ -35,7 +35,9 @@
 #' animate(f, max_frames = 30)
 #'
 #' \dontrun{animate(f, max_frames = 10, fps = 1, aps = 0.1)}
-animate <- function(data, tour_path = grand_tour(), display = display_xy(), start = NULL, aps = 1, fps = 30, max_frames = Inf, rescale = TRUE, sphere = FALSE, ...) {
+animate <- function(data, tour_path = grand_tour(), display = display_xy(), start = NULL, aps = 1, fps = 30, max_frames = Inf, rescale = TRUE, sphere = FALSE, print = TRUE, ...) {
+
+  #browser()
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere_data(data)
 
@@ -53,8 +55,8 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
     fps <- 19
   }
 
-  tour <- new_tour(data, tour_path, start)
-  start <- tour(0)
+  tour <- new_tour(data, tour_path, start, ...)
+  start <- tour(0, ...)
   bs <- 1
   bases <- array(NA, c(ncol(data), ncol(start$target), bs))
 
@@ -69,7 +71,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
   tryCatch({
     while(i < max_frames) {
       i <- i + 1
-      step <- tour(aps / fps)
+      step <- tour(aps / fps, ...)
       if (step$step == 1) {
         b <- b + 1
         if (b > bs) {
@@ -100,6 +102,8 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
   if (b != 0){
     invisible(bases[, , seq_len(b)])
   }
+
+  if(print) return(record)
 }
 
 rstudio_gd <- function() identical(names(dev.cur()), "RStudioGD")

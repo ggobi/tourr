@@ -41,12 +41,28 @@
 #' tries <- replicate(5, save_history(f, guided_tour(holes())), simplify = FALSE)
 guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25, max.i = Inf, search_f = search_geodesic, ...) {
 
-  generator <- function(current, data) {
-    if (is.null(current)) return(basis_init(ncol(data), d))
+  generator <- function(current, data, ...) {
 
-    index <- function(proj) {
+    index <<- function(proj) {
       index_f(as.matrix(data) %*% proj)
     }
+
+    if (is.null(current)){
+      current <- basis_random(ncol(data), d)
+      cur_index <- index(current)
+
+      record <<- tibble::tibble(basis = list(current),
+                                index_val = cur_index,
+                                tries = 1,
+                                info = "start",
+                                loop = NA)
+
+      tries <<-0
+
+      return(current)
+    }
+
+
 
     cur_index <- index(current)
 
@@ -69,11 +85,13 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
       return(NULL)
     }
 
+    tries <<- tries
     basis <- search_f(current, alpha, index, max.tries, cur_index=cur_index, ...)
     alpha <<- alpha * cooling
+    ### there was record!!!S
 
-    basis
+    basis$target
   }
 
-  new_geodesic_path("guided", generator)
+  new_geodesic_path("guided", generator, ...)
 }

@@ -96,9 +96,7 @@ display_dist <- function(method="density", center = TRUE, half_range = NULL, rug
 animate_dist <- function(data, tour_path = grand_tour(1), ...) {
   animate(
     data = data, tour_path = tour_path,
-    display = display_dist(...),
-    ...
-  )
+    display = display_dist(...),...)
 }
 
 
