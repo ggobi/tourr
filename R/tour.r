@@ -80,7 +80,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
                                  index_val = index(proj),
                                  info = "interpolation",
                                  tries = tries) %>%
-      mutate(id = row_number()) ### it was double assign here!
+      mutate(id = row_number())
 
     list(proj = proj, target = target, step = step, record = record)
   }

@@ -45,7 +45,7 @@ new_geodesic_path <- function(name, generator, frozen = NULL, verbose = FALSE) {
 
     }
     geo <- geodesic_path(current, target, frozen)
-    ### there is a record here!
+
     list(geo = geo, record = record)
   }
 
