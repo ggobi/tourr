@@ -53,7 +53,6 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
     if (cur_dist >= target_dist) {
 
-      # add the interruption here!
 
       tour_path_obj <<- tour_path(proj, data, ...)
       geodesic <<- tour_path_obj[["geo"]]
@@ -76,11 +75,12 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
     proj <<- geodesic$interpolate(cur_dist / target_dist)
 
-    record <- record %>% add_row(basis = list(proj),
+    tries <- rlang::sym("tries")
+    record <- record %>% dplyr::add_row(basis = list(proj),
                                  index_val = index(proj),
                                  info = "interpolation",
-                                 tries = tries) %>%
-      mutate(id = row_number())
+                                 tries = !!tries) %>%
+      dplyr::mutate(id = dplyr::row_number())
 
     list(proj = proj, target = target, step = step, record = record)
   }

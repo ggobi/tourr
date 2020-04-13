@@ -1,0 +1,62 @@
+---
+title: "global-structure"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{global-structure}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(tourr)
+```
+
+```{r}
+set.seed(1234)
+x1 <- rnorm(1000, 0, 1)
+x2 <- c(rnorm(500, -3, 1), rnorm(500, 3, 1))
+x8 <- rnorm(1000, 0, 1)
+x9 <- rnorm(1000, 0, 1)
+x10 <- rnorm(1000, 0, 1)
+
+
+data <- tibble::tibble(x1 = x1, x2 = x2, x8 = x8,
+                       x9 = x9, x10 = x10) %>% purrr::map_df(scale) %>% as.matrix()
+```
+
+
+```{r eval = FALSE}
+devtools::load_all()
+set.seed(123456)
+a <- animate_dist(data, tour_path = guided_tour(holes(), d = 1,
+                                           search_f =  search_geodesic),
+                  rescale = FALSE, verbose = TRUE)
+
+devtools::load_all()
+set.seed(123456)
+a <- animate_dist(data, tour_path = guided_tour(holes(), d = 1,
+                                           search_f =  search_geodesic),
+                  rescale = FALSE)
+
+
+```
+
+
+
+
+
+
+
+
+
+
+

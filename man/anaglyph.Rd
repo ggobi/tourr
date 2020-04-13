@@ -4,7 +4,7 @@
 \alias{anaglyph}
 \title{Draw anaglyphs with base graphics.}
 \usage{
-anaglyph(d3, blue, red)
+anaglyph(d3, blue, red, cex = 1)
 }
 \arguments{
 \item{d3}{3d numeric matrix giving position of points}
@@ -12,6 +12,8 @@ anaglyph(d3, blue, red)
 \item{blue}{blue colour (for right eye)}
 
 \item{red}{red colour (for left eye)}
+
+\item{cex}{size of the point to be plotted.  Defaults to 1.}
 }
 \description{
 Draw anaglyphs with base graphics.

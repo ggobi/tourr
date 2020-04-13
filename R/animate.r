@@ -20,6 +20,8 @@
 #'   non-interactive use.
 #' @param rescale if true, rescale all variables to range [0,1]?
 #' @param sphere if true, sphere all variables
+#' @param print if true, a dataframe with all the bases, index values and
+#' counters will be printed after the tour
 #' @param ... ignored
 #' @return an (invisible) list of bases visited during this tour
 #' @references Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
@@ -42,7 +44,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
     message("Converting input data to the required matrix format.")
     data <- as.matrix(data)
   }
-  
+
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere_data(data)
 

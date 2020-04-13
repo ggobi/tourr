@@ -15,6 +15,11 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 #' @keywords internal
 search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   method = "linear", cur_index = NA) {
+
+  tries <- rlang::sym("tries")
+  info <- rlang::sym("info")
+  basis <- rlang::sym("basis")
+
   if (is.na(cur_index)) cur_index <- index(current)
 
   cat("Old", cur_index, "\n")
@@ -27,17 +32,17 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
     record <- record %>% dplyr::add_row(basis = list(new_basis),
                                           index_val = new_index,
                                           info = "random_search",
-                                          tries = tries,
+                                          tries = !!tries,
                                           loop = try)
 
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
       record <- record %>%
-        dplyr::mutate(row = row_number(),
-                      info = ifelse(row == max(row), "new_basis", info)) %>%
+        dplyr::mutate(row = dplyr::row_number(),
+                      info = ifelse(row == max(row), "new_basis", !!info)) %>%
         dplyr::select(-row)
 
-      target <- record %>% tail(1) %>% pull(basis)
+      target <- record %>% utils::tail(1) %>% dplyr::pull(!!basis)
       return(list(record = record,
                   target = target[[1]]))
     }
@@ -52,6 +57,12 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
 search_better_random <- function(current, alpha = 0.5, index,
   max.tries = Inf, method = "linear", eps = 0.001, cur_index = NA
 ) {
+
+  tries <- rlang::sym("tries")
+  info <- rlang::sym("info")
+  basis <- rlang::sym("basis")
+
+
   if (is.na(cur_index)) cur_index <- index(current)
 
   cat("Old", cur_index, "\n")
@@ -63,18 +74,18 @@ search_better_random <- function(current, alpha = 0.5, index,
     record <- record %>% dplyr::add_row(basis = list(new_basis),
                                         index_val = new_index,
                                         info = "random_search",
-                                        tries = tries,
+                                        tries = !!tries,
                                         loop = try)
 
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
 
       record <- record %>%
-        dplyr::mutate(row = row_number(),
+        dplyr::mutate(row = dplyr::row_number(),
                       info = ifelse(row == max(row), "new_basis", info)) %>%
         dplyr::select(-row)
 
-      target <- record %>% tail(1) %>% pull(basis)
+      target <- record %>% utils::tail(1) %>% dplyr::pull(basis)
       return(list(record = record,
                   target = target[[1]]))
     }
@@ -88,7 +99,7 @@ search_better_random <- function(current, alpha = 0.5, index,
                                           tries = tries,
                                           loop = try)
 
-      target <- record %>% tail(1) %>% pull(basis)
+      target <- record %>% utils::tail(1) %>% dplyr::pull(basis)
       return(list(record = record,
                   target = target[[1]]))
     }

@@ -41,6 +41,9 @@ non-interactive use.}
 
 \item{sphere}{if true, sphere all variables}
 
+\item{print}{if true, a dataframe with all the bases, index values and
+counters will be printed after the tour}
+
 \item{...}{ignored}
 }
 \value{

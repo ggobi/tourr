@@ -28,6 +28,7 @@ Functions in Taxonomy", Biometrics, Dec 1962, pp.455-477.
 \examples{
 
 head(flea)
+quartz()
 animate_xy(flea[,-7])
 animate_xy(flea[,-7],col=flea[,7])
 

@@ -11,6 +11,7 @@ display_density2d(
   half_range = NULL,
   col = "black",
   pch = 20,
+  cex = 1,
   contour_quartile = c(0.25, 0.5, 0.75),
   edges = NULL,
   ...
@@ -30,7 +31,9 @@ If not set, defaults to maximum distance from origin to each row of data.}
 
 \item{col}{color to be plotted.  Defaults to "black"}
 
-\item{pch}{size of the point to be plotted.  Defaults to 20.}
+\item{pch}{shape of the point to be plotted.  Defaults to 20.}
+
+\item{cex}{size of the point to be plotted.  Defaults to 1.}
 
 \item{contour_quartile}{Vector of quartiles to plot the contours at. Defaults to 5.}
 

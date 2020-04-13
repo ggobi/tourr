@@ -11,6 +11,7 @@ display_trails(
   half_range = NULL,
   col = "black",
   pch = 20,
+  cex = 1,
   past = 3,
   ...
 )
@@ -29,7 +30,7 @@ If not set, defaults to maximum distance from origin to each row of data.}
 
 \item{col}{color to be plotted.  Defaults to "black"}
 
-\item{pch}{size of the point to be plotted.  Defaults to 20.}
+\item{pch}{shape of the point to be plotted.  Defaults to 20.}
 
 \item{past}{draw line between current projection and projection \code{past}
 steps ago}

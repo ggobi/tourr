@@ -18,7 +18,11 @@ Depends:
     R (>= 3.5)
 Imports:
     MASS,
-    magrittr
+    magrittr,
+    purrr,
+    tibble,
+    rlang,
+    dplyr
 Suggests:
     TeachingDemos,
     ash,
