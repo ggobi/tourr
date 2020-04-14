@@ -18,6 +18,9 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(tourr)
+library(tidyverse)
+load(here::here("vignettes", "data", "temp.rda"))
+load(here::here("vignettes", "data", "temp_polish.rda"))
 ```
 
 ```{r}
@@ -33,28 +36,75 @@ data <- tibble::tibble(x1 = x1, x2 = x2, x8 = x8,
                        x9 = x9, x10 = x10) %>% purrr::map_df(scale) %>% as.matrix()
 ```
 
+The latest tour package has implemented a global structure that captures all the information generated during the optimisation routine. This information will be stored and printed when the optimisation ends and can be turned off via `print = FALSE`. Additional messages during the optimisation can be displayed via `verbose = TRUE`.
+
+## Global Structure
+
+Below I presented an example using simulated data. Four variables are simulated via normal distribution and the only informative variable `x2` is simulated via a bi-modal normal distribution centred at -3 and 3. The data has been pre-processed to have variance of 1.  
+
 
 ```{r eval = FALSE}
 devtools::load_all()
 set.seed(123456)
-a <- animate_dist(data, tour_path = guided_tour(holes(), d = 1,
+temp <- animate_dist(data, tour_path = guided_tour(holes(), d = 1,
                                            search_f =  search_geodesic),
-                  rescale = FALSE, verbose = TRUE)
+                  rescale = FALSE, verbose = FALSE)
 
-devtools::load_all()
-set.seed(123456)
-a <- animate_dist(data, tour_path = guided_tour(holes(), d = 1,
-                                           search_f =  search_geodesic),
-                  rescale = FALSE)
+save(temp, file = here::here("vignettes", "data", "temp.rda"))
+```
 
+The first five rows of the global structure is printed below. Column `basis` and `index_val` records the basis tried during the optimisation and its corresponding index value using the index function specified in the tour type. `Info` provides metadata on the stage the current basis is in. All the tour have common stage of  `start` and `interpolation` while different searching methods will given different infos
+
+- `serach_geodesic`
+  - `direction_search`: a general infinitesimal direction search based on five randomly sampled direction 
+  - `best_direction_search`: the direction_search with the highest index value that will be supplied into the line search
+  - `line_search`: five randomly sampled points on the geodesic interpolation path given by the best_direction_search
+  - `best_line_search`: the basis with the highest index value on the geodesic interpolation path 
+  
+- `search_better`
+  - `random_serach`: a basis generated as a nearby basis of the current. 
+  - `new_basis`: a basis that has index value greater than the current basis.
+  
+`tries` is updated once the generator is called and `loop` is updated on every iteration in the searching process.  `id` shows the row number of each row and makes it easier to plot diagnoses of the optimisation.
+
+
+```{r}
+temp %>% head(5)
 
 ```
 
 
+The final basis can also be extracted as follows:
 
+```{r}
+final <- temp %>% filter(info == "interpolation") %>% pull(basis) %>% tail(1)
+final[[1]]
 
+temp %>% filter(info == "interpolation") %>% mutate(id = row_number())%>%
+  ggplot(aes(x =id, y = index_val)) + geom_line()
+```
 
+## Search Polish
 
+A new searching method, search polish, is proposed in the generator. Search polish uses an alpha parameter to sample 1000 points near the current basis and picks the basis with the largest index value greater than the one for the current basis to interpolate. If no basis is found, the alpha will be shrunk by a cooling parameter until no better basis is found after 25 times.
+
+```{r eval = FALSE}
+devtools::load_all()
+set.seed(123456)
+temp_polish <- animate_dist(data, tour_path = guided_tour(holes(), d = 1,
+                                           search_f =  search_polish),
+                  rescale = FALSE, verbose = FALSE)
+
+save(temp_polish, file = here::here("vignettes", "data", "temp_polish.rda"))
+```
+
+```{r}
+final <- temp_polish %>% filter(info == "interpolation") %>% pull(basis) %>% tail(1)
+final[[1]]
+
+temp_polish %>% filter(info == "interpolation") %>% mutate(id = row_number())%>% 
+  ggplot(aes(x =id, y = index_val)) + geom_line()
+```
 
 
 
