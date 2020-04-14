@@ -17,11 +17,13 @@
 #' @param generate basis generator function
 #' @param frozen matrix giving frozen variables, as described in
 #'   \code{\link{freeze}}
+#' @param verbose if messages during the optimisation should be printed or not
 #' @export
 #' @keywords internal
 new_geodesic_path <- function(name, generator, frozen = NULL, verbose = FALSE) {
 
   tour_path <- function(current, data, verbose = FALSE) {
+
     if (is.null(current)) {
       return(generator(NULL, data))
     }
