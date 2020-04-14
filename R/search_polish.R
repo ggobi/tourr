@@ -17,9 +17,7 @@ search_polish <- function(current, polish_alpha = 0.05, index, max.tries = 5,
                           cur_index = NA, n_sample = 1000, polish_cooling = 1, ...){
 
   basis <- rlang::sym("basis")
-  polish_alpha <- rlang::sym("polish_alpha")
   index_val <- rlang::sym("index_val")
-  tries <- rlang::sym("tries")
   try <- rlang::sym("try")
 
   if (is.na(cur_index)) cur_index <- index(current)
@@ -36,7 +34,7 @@ search_polish <- function(current, polish_alpha = 0.05, index, max.tries = 5,
     best_row <- polish %>% dplyr::filter(index_val == max(index_val))
 
     if(best_row$index_val > cur_index){
-      if(proj_dist(current, best_row$basis[[1]] < 1e-3)){
+      if(proj_dist(current, best_row$basis[[1]]) < 1e-3){
         cat("The new basis is too close to the current one! \n")
       }else{
         cur_index <<- best_row$index_val
@@ -55,6 +53,7 @@ search_polish <- function(current, polish_alpha = 0.05, index, max.tries = 5,
 
     try <- try + 1
 
+    polish_cooling <-  polish_cooling * 0.9
     polish_alpha <<- polish_alpha * polish_cooling
     cat("new polish alpha: ", polish_alpha * polish_cooling, "\n")
 

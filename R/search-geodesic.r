@@ -22,9 +22,7 @@
 search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5, delta = 0.01, cur_index = NA) {
   if (is.na(cur_index)) cur_index <- index(current)
 
-  tries <- rlang::sym("tries")
   basis <- rlang::sym("basis")
-  record <- rlang::sym("record")
 
 
   try <- 1
@@ -38,11 +36,11 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5, del
     # Travel halfway round (pi / 4 radians) the sphere in that direction
     # looking for the best projection
     peak <- find_path_peak(current, best_dir, index) %>%
-      dplyr::mutate(tries = !!tries, loop = try)
+      dplyr::mutate(tries = tries, loop = try)
     new_index <- peak$index_val %>% utils::tail(1)
 
 
-    record <<- dplyr::bind_rows(!!record, direction_search, peak)
+    record <<- dplyr::bind_rows(record, direction_search, peak)
 
 
     pdiff <- (new_index - cur_index) / cur_index
@@ -92,8 +90,8 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5, del
 #' @param dist step size in radians, should be small
 #' @param number of random steps to take
 find_best_dir <- function(old, index, dist = 0.01, counter = 5) {
+
   # change the original parameter tries to counter since it conflicts with the tries in geodesic-path.r
-  tries <- rlang::sym("tries")
   info <- rlang::sym("info")
   index_val <- rlang::sym("index_val")
 
@@ -101,6 +99,7 @@ find_best_dir <- function(old, index, dist = 0.01, counter = 5) {
     simplify = FALSE)
 
   score <- function(new) {
+
     interpolator <- geodesic_info(old, new)
     forward <- step_angle(interpolator, dist)
     backward <- step_angle(interpolator, -dist)
@@ -110,12 +109,12 @@ find_best_dir <- function(old, index, dist = 0.01, counter = 5) {
     tibble::tibble(basis = c(list(forward), list(backward)),
                    index_val = c(index(forward), index(backward)),
                    info = "direction_search",
-                   tries = !!tries)
+                   tries = tries)
 
   }
 
   purrr::map_df(bases, score) %>%
-    dplyr::mutate(info = ifelse(!!index_val == max(!!index_val),
+    dplyr::mutate(info = ifelse(index_val == max(!!index_val),
                           "best_direction_search", !!info))
 
 
