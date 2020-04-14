@@ -5,7 +5,7 @@ Author: Hadley Wickham [aut, ctb],
     Di Cook  [aut, cre], 
     Nick Spyrison [ctb],
     Ursula Laa [ctb]
-Authors@R:c(
+Authors@R: c(
     person("Hadley", "Wickham", email = "h.wickham@gmail.com", role = c("aut", "ctb"), comment = c(ORCID = "0000-0003-4757-117X")),
     person("Di", "Cook", email = "dicook@monash.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-3813-7155")),
     person("Nick", "Spyrison", email = "nicholas.spyrison@monash.edu", role = "ctb"),
@@ -17,7 +17,12 @@ Description: Implements geodesic interpolation and basis
 Depends:
     R (>= 3.5)
 Imports:
-    MASS 
+    MASS,
+    magrittr,
+    purrr,
+    tibble,
+    rlang,
+    dplyr
 Suggests:
     TeachingDemos,
     ash,
@@ -26,10 +31,13 @@ Suggests:
     ggplot2,
     reshape2,
     gifski,
-    geozoo
+    geozoo,
+    knitr,
+    rmarkdown
 License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/ggobi/tourr
 BugReports: https://github.com/ggobi/tourr/issues
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Encoding: UTF-8
+VignetteBuilder: knitr

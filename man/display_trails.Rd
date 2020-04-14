@@ -5,8 +5,16 @@
 \alias{animate_trails}
 \title{Display tour path with trails}
 \usage{
-display_trails(center = TRUE, axes = "center", half_range = NULL,
-  col = "black", pch = 20, past = 3, ...)
+display_trails(
+  center = TRUE,
+  axes = "center",
+  half_range = NULL,
+  col = "black",
+  pch = 20,
+  cex = 1,
+  past = 3,
+  ...
+)
 
 animate_trails(data, tour_path = grand_tour(), ...)
 }
@@ -22,7 +30,7 @@ If not set, defaults to maximum distance from origin to each row of data.}
 
 \item{col}{color to be plotted.  Defaults to "black"}
 
-\item{pch}{size of the point to be plotted.  Defaults to 20.}
+\item{pch}{shape of the point to be plotted.  Defaults to 20.}
 
 \item{past}{draw line between current projection and projection \code{past}
 steps ago}

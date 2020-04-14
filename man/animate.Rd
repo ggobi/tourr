@@ -4,9 +4,19 @@
 \alias{animate}
 \title{Animate a tour path.}
 \usage{
-animate(data, tour_path = grand_tour(), display = display_xy(),
-  start = NULL, aps = 1, fps = 30, max_frames = Inf,
-  rescale = TRUE, sphere = FALSE, ...)
+animate(
+  data,
+  tour_path = grand_tour(),
+  display = display_xy(),
+  start = NULL,
+  aps = 1,
+  fps = 30,
+  max_frames = Inf,
+  rescale = TRUE,
+  sphere = FALSE,
+  print = TRUE,
+  ...
+)
 }
 \arguments{
 \item{data}{matrix, or data frame containing numeric columns}
@@ -30,6 +40,9 @@ non-interactive use.}
 \item{rescale}{if true, rescale all variables to range [0,1]?}
 
 \item{sphere}{if true, sphere all variables}
+
+\item{print}{if true, a dataframe with all the bases, index values and
+counters will be printed after the tour}
 
 \item{...}{ignored}
 }
