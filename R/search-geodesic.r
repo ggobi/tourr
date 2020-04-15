@@ -41,27 +41,35 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
     new_index <- peak$index_val %>% utils::tail(1)
     new_basis <- peak$basis %>% utils::tail(1)
 
+
+
     if (verbose)
       record <<- dplyr::bind_rows(record, direction_search, peak)
 
-    pdiff <- (new_index - cur_index) / cur_index
+    if (cur_index == 0 | new_index == 0){
+      warning("either the cur_index or the new_index is zero!")
+    }else{
+      pdiff <- (new_index - cur_index) / cur_index
 
-    dig3 <- function(x) sprintf("%.3f", x)
+      dig3 <- function(x) sprintf("%.3f", x)
 
-    cat("Value ", dig3(new_index), " ",
-        sprintf("%.1f", pdiff * 100), "% better ")
-    if (pdiff > 0.001) { #FIXME: pdiff should pbly be a changeable parameter
-      cat(" - NEW BASIS\n")
+      cat("Value ", dig3(new_index), " ",
+          sprintf("%.1f", pdiff * 100), "% better ")
+      if (pdiff > 0.001) { #FIXME: pdiff should pbly be a changeable parameter
+        cat(" - NEW BASIS\n")
 
-      if (verbose) {
-        return(list(record = record, target = new_basis[[1]]))
-      }else{
-        return(list(target = new_basis[[1]]))
+        if (verbose) {
+          return(list(record = record, target = new_basis[[1]]))
+        }else{
+          return(list(target = new_basis[[1]]))
+        }
       }
-    }
-    cat("\n")
+      cat("\n")
 
-    try <- try + 1
+    }
+
+  try <- try + 1
+
   }
   cat("No better bases found after ", max.tries, " tries.  Giving up.\n",
    sep="")

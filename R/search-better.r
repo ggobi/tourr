@@ -21,6 +21,10 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
 
   if (is.na(cur_index)) cur_index <- index(current)
 
+  if(cur_index == 0){
+    warning("cur_index is zero!")
+  }
+
   cat("Old", cur_index, "\n")
   try <- 1
 
@@ -83,6 +87,10 @@ search_better_random <- function(current, alpha = 0.5, index,
 
 
   if (is.na(cur_index)) cur_index <- index(current)
+
+  if(cur_index == 0){
+    warning("cur_index is zero!")
+  }
 
   cat("Old", cur_index, "\n")
   try <- 1
