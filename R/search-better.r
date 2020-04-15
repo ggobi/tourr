@@ -16,11 +16,14 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   method = "linear", cur_index = NA, ...) {
 
-  tries <- rlang::sym("tries")
   info <- rlang::sym("info")
   basis <- rlang::sym("basis")
 
   if (is.na(cur_index)) cur_index <- index(current)
+
+  if(cur_index == 0){
+    warning("cur_index is zero!")
+  }
 
   cat("Old", cur_index, "\n")
   try <- 1
@@ -33,7 +36,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
       record <- record %>% dplyr::add_row(basis = list(new_basis),
                                           index_val = new_index,
                                           info = "random_search",
-                                          tries = !!tries,
+                                          tries = tries,
                                           loop = try)
 
     if (new_index > cur_index) {
@@ -45,12 +48,28 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
                       info = ifelse(row == max(row), "new_basis", !!info)) %>%
           dplyr::select(-row)
 
-        target <- record %>% utils::tail(1) %>% dplyr::pull(!!basis)
-        return(list(record = record,
-                  target = target[[1]]))
+        return(list(record = record, target = new_basis))
+      }else{
+        return(list(target = new_basis))
       }
     }
     try <- try + 1
+  }
+
+  cat("No better bases found after ", max.tries, " tries.  Giving up.\n",
+      sep="")
+  cat("Final projection: \n")
+  if (ncol(current)==1) {
+    for (i in 1:length(current))
+      cat(sprintf("%.3f",current[i])," ")
+    cat("\n")
+  }
+  else {
+    for (i in 1:nrow(current)) {
+      for (j in 1:ncol(current))
+        cat(sprintf("%.3f",current[i,j])," ")
+      cat("\n")
+    }
   }
 
   NULL
@@ -63,12 +82,15 @@ search_better_random <- function(current, alpha = 0.5, index,
   ...
 ) {
 
-  tries <- rlang::sym("tries")
   info <- rlang::sym("info")
   basis <- rlang::sym("basis")
 
 
   if (is.na(cur_index)) cur_index <- index(current)
+
+  if(cur_index == 0){
+    warning("cur_index is zero!")
+  }
 
   cat("Old", cur_index, "\n")
   try <- 1
@@ -80,7 +102,7 @@ search_better_random <- function(current, alpha = 0.5, index,
       record <<- record %>% dplyr::add_row(basis = list(new_basis),
                                         index_val = new_index,
                                         info = "random_search",
-                                        tries = !!tries,
+                                        tries = tries,
                                         loop = try)
 
     if (new_index > cur_index) {
@@ -92,9 +114,9 @@ search_better_random <- function(current, alpha = 0.5, index,
                       info = ifelse(row == max(row), "new_basis", info)) %>%
           dplyr::select(-row)
 
-          target <- record %>% utils::tail(1) %>% dplyr::pull(basis)
-        return(list(record = record,
-                  target = target[[1]]))
+        return(list(record = record, target = new_basis))
+      }else{
+        return(list(target = new_basis))
       }
     }
     else if (abs(new_index-cur_index) < eps) {
@@ -108,12 +130,28 @@ search_better_random <- function(current, alpha = 0.5, index,
                                           tries = tries,
                                           loop = try)
 
-        target <- record %>% utils::tail(1) %>% dplyr::pull(basis)
-        return(list(record = record,
-                  target = target[[1]]))
+        return(list(record = record, target = new_basis))
+      }else{
+        return(list(target = new_basis))
       }
     }
     try <- try + 1
+  }
+
+  cat("No better bases found after ", max.tries, " tries.  Giving up.\n",
+      sep="")
+  cat("Final projection: \n")
+  if (ncol(current)==1) {
+    for (i in 1:length(current))
+      cat(sprintf("%.3f",current[i])," ")
+    cat("\n")
+  }
+  else {
+    for (i in 1:nrow(current)) {
+      for (j in 1:ncol(current))
+        cat(sprintf("%.3f",current[i,j])," ")
+      cat("\n")
+    }
   }
 
   NULL
