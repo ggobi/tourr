@@ -3,7 +3,9 @@ Version 0.5.7
 
 A slice tour is now available using the function animate_slice().
 
-A new record option is available to print out diagnostic information for every step. Use print = TRUE when starting a tour.
+A new record option is available to print out diagnostic information for every step. Use verbose = TRUE when starting a tour.
+
+Set the default fps to 15, to compatibly draw with RStudio window
 
 Version 0.5.6
 ------------------------------------------------------------------------------
