@@ -4,7 +4,7 @@
 \alias{geodesic_path}
 \title{Generate geodesic path.}
 \usage{
-geodesic_path(current, target, frozen = NULL)
+geodesic_path(current, target, frozen = NULL, ...)
 }
 \arguments{
 \item{new_target_f}{function that generates new frame, with previous

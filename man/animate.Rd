@@ -10,11 +10,11 @@ animate(
   display = display_xy(),
   start = NULL,
   aps = 1,
-  fps = 30,
+  fps = 15,
   max_frames = Inf,
   rescale = TRUE,
   sphere = FALSE,
-  print = TRUE,
+  verbose = FALSE,
   ...
 )
 }
@@ -31,7 +31,7 @@ associated with tour path}
 
 \item{aps}{target angular velocity (in radians per second)}
 
-\item{fps}{target frames per second (defaults to 30)}
+\item{fps}{target frames per second (defaults to 15, to accommodate RStudio graphics device)}
 
 \item{max_frames}{the maximum number of bases to generate.  Defaults to
 Inf for interactive use (must use Ctrl + C to terminate), and 1 for
@@ -41,7 +41,7 @@ non-interactive use.}
 
 \item{sphere}{if true, sphere all variables}
 
-\item{print}{if true, a dataframe with all the bases, index values and
+\item{verbose}{if true, a dataframe with all the bases, index values and
 counters will be printed after the tour}
 
 \item{...}{ignored}

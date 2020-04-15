@@ -11,7 +11,8 @@ search_geodesic(
   max.tries = 5,
   n = 5,
   delta = 0.01,
-  cur_index = NA
+  cur_index = NA,
+  ...
 )
 }
 \arguments{

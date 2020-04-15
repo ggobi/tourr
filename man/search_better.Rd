@@ -10,7 +10,8 @@ search_better(
   index,
   max.tries = Inf,
   method = "linear",
-  cur_index = NA
+  cur_index = NA,
+  ...
 )
 }
 \description{

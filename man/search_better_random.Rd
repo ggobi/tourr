@@ -11,7 +11,8 @@ search_better_random(
   max.tries = Inf,
   method = "linear",
   eps = 0.001,
-  cur_index = NA
+  cur_index = NA,
+  ...
 )
 }
 \description{

@@ -4,7 +4,7 @@
 \alias{find_path_peak}
 \title{Find the most interesting projection along a geodesic.}
 \usage{
-find_path_peak(old, new, index, max_dist = pi/4)
+find_path_peak(old, new, index, max_dist = pi/4, ...)
 }
 \arguments{
 \item{old}{currention project}

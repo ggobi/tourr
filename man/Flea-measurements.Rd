@@ -5,9 +5,7 @@
 \alias{Flea measurements}
 \alias{flea}
 \title{Flea beatle measurements}
-\format{
-A 74 x 7 numeric array
-}
+\format{A 74 x 7 numeric array}
 \description{
 This data is from a paper by A. A. Lubischew, "On the Use of Discriminant
 Functions in Taxonomy", Biometrics, Dec 1962, pp.455-477.
@@ -28,7 +26,6 @@ Functions in Taxonomy", Biometrics, Dec 1962, pp.455-477.
 \examples{
 
 head(flea)
-quartz()
 animate_xy(flea[,-7])
 animate_xy(flea[,-7],col=flea[,7])
 
