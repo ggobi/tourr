@@ -39,6 +39,7 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
     peak <- find_path_peak(current, best_dir, index) %>%
       dplyr::mutate(tries = tries, loop = try)
     new_index <- peak$index_val %>% utils::tail(1)
+    new_basis <- peak$basis %>% utils::tail(1)
 
     if (verbose)
       record <<- dplyr::bind_rows(record, direction_search, peak)
@@ -53,9 +54,9 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
       cat(" - NEW BASIS\n")
 
       if (verbose) {
-        target <- record %>% utils::tail(1) %>% dplyr::pull(!!basis)
-        return(list(record = record,
-                  target = target[[1]]))
+        return(list(record = record, target = new_basis[[1]]))
+      }else{
+        return(list(target = new_basis[[1]]))
       }
     }
     cat("\n")
