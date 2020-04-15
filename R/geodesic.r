@@ -32,7 +32,7 @@
 #' all.equal(a, path$interpolate(0))
 #' # Not true generally - a rotated into plane of b
 #' all.equal(b, path$interpolate(1))
-geodesic_path <- function(current, target, frozen = NULL) {
+geodesic_path <- function(current, target, frozen = NULL, ...) {
   if (is.null(frozen)) {
     # Regular geodesic
     geodesic <- geodesic_info(current, target)

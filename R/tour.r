@@ -35,12 +35,11 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   target_dist <- 0
   geodesic <- NULL
 
-  function(step_size, verbose = FALSE) {
-    #browser()
+  function(step_size) {
 
     index_val <- rlang::sym("index_val")
 
-    if(verbose) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
+    if (verbose) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
 
     step <<- step + 1
     cur_dist <<- cur_dist + step_size
@@ -55,21 +54,21 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
     if (cur_dist >= target_dist) {
 
-      row <- record %>%
-        dplyr::filter(tries == tries, info == "interpolation") %>%
-        dplyr::filter(index_val == max(!!index_val))
+      if (verbose) {
+        row <- record %>%
+          dplyr::filter(tries == tries, info == "interpolation") %>%
+          dplyr::filter(index_val == max(!!index_val))
 
+        if(nrow(row) != 0){
 
-      if(nrow(row) != 0){
+          proj <- row$basis[[1]]
+          max_val <- row$index_val
+          max_id <- which(record$index_val == max_val)
 
-        proj <- row$basis[[1]]
-        max_val <- row$index_val
-        max_id <- which(record$index_val == max_val)
-
-        record <<- record %>%
-          dplyr::mutate(id = dplyr::row_number()) %>%
-          dplyr::filter(id <= max_id)
-
+          record <<- record %>%
+            dplyr::mutate(id = dplyr::row_number()) %>%
+            dplyr::filter(id <= max_id)
+        }
       }
 
       tour_path_obj <<- tour_path(proj, data, ...)
@@ -93,14 +92,17 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
     proj <<- geodesic$interpolate(cur_dist / target_dist)
 
+    ret <- list(proj = proj, target = target, step = step)
 
-    record <<- record %>% dplyr::add_row(basis = list(proj),
+    if (verbose) {
+      record <<- record %>% dplyr::add_row(basis = list(proj),
                                  index_val = index(proj),
                                  info = "interpolation",
                                  tries = !!tries) %>%
-      dplyr::mutate(id = dplyr::row_number())
-
-    list(proj = proj, target = target, step = step, record = record)
+        dplyr::mutate(id = dplyr::row_number())
+      ret <- list(proj = proj, target = target, step = step, record = record)
+    }
+    ret
   }
 }
 

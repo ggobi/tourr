@@ -14,14 +14,14 @@
 #' @param display takes the display that is suppose to be used, defaults to
 #'   the xy display
 #' @param aps target angular velocity (in radians per second)
-#' @param fps target frames per second (defaults to 30)
+#' @param fps target frames per second (defaults to 15, to accommodate RStudio graphics device)
 #' @param max_frames the maximum number of bases to generate.  Defaults to
 #'   Inf for interactive use (must use Ctrl + C to terminate), and 1 for
 #'   non-interactive use.
 #' @param rescale if true, rescale all variables to range [0,1]?
 #' @param sphere if true, sphere all variables
-#' @param print if true, a dataframe with all the bases, index values and
-#' counters will be printed after the tour
+#' @param verbose if true, a dataframe with all the bases, index values and
+#'   counters will be printed after the tour
 #' @param ... ignored
 #' @return an (invisible) list of bases visited during this tour
 #' @references Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
@@ -37,8 +37,10 @@
 #' animate(f, max_frames = 30)
 #'
 #' \dontrun{animate(f, max_frames = 10, fps = 1, aps = 0.1)}
-
-animate <- function(data, tour_path = grand_tour(), display = display_xy(), start = NULL, aps = 1, fps = 30, max_frames = Inf, rescale = TRUE, sphere = FALSE, print = TRUE, ...) {
+animate <- function(data, tour_path = grand_tour(), display = display_xy(),
+                    start = NULL, aps = 1, fps = 15, max_frames = Inf,
+                    rescale = TRUE, sphere = FALSE, verbose = FALSE, ...) {
+  verbose <<- verbose
 
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
@@ -110,7 +112,9 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(), star
     invisible(bases[, , seq_len(b)])
   }
 
-  if(print) return(record)
+  if (verbose) return(record)
 }
 
 rstudio_gd <- function() identical(names(dev.cur()), "RStudioGD")
+
+globalVariables(c("verbose", "record"))

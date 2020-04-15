@@ -41,7 +41,9 @@
 #' edges <- matrix(c(1:5, 2:6), ncol = 2)
 #' animate(flea[, 1:6], grand_tour(),
 #'   display_xy(axes = "bottomleft", edges = edges))
-display_xy <- function(center = TRUE, axes = "center", half_range = NULL, col = "black", pch = 20, cex = 1, edges = NULL, edges.col = "black", ...) {
+display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
+                       col = "black", pch = 20, cex = 1,
+                       edges = NULL, edges.col = "black", ...) {
 
   labels <- NULL
   init <- function(data) {

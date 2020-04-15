@@ -42,7 +42,8 @@
 #' # Or you can use saved histories to visualise the path that the tour took.
 #' plot(path_index(interpolate(t2), holes()))
 #' plot(path_curves(interpolate(t2)))
-save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start = NULL, rescale = TRUE, sphere = FALSE, step_size = Inf){
+save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start = NULL,
+                         rescale = TRUE, sphere = FALSE, step_size = Inf){
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
     data <- as.matrix(data)

@@ -1,3 +1,10 @@
+Version 0.5.7
+------------------------------------------------------------------------------
+
+A slice tour is now available using the function animate_slice().
+
+A new record option is available to print out diagnostic information for every step. Use print = TRUE when starting a tour.
+
 Version 0.5.6
 ------------------------------------------------------------------------------
 

@@ -17,22 +17,21 @@
 #' @param generate basis generator function
 #' @param frozen matrix giving frozen variables, as described in
 #'   \code{\link{freeze}}
-#' @param verbose if messages during the optimisation should be printed or not
 #' @export
 #' @keywords internal
-new_geodesic_path <- function(name, generator, frozen = NULL, verbose = FALSE) {
-
-  tour_path <- function(current, data, verbose = FALSE) {
-
+new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
+  #  FIXME: why is verbose being reset?
+  tour_path <- function(current, data, ...) {
+    #browser()
     if (is.null(current)) {
-      return(generator(NULL, data))
+      return(generator(NULL, data, ...))
     }
 
     # Keep trying until we get a frame that's not too close to the
     # current frame
     dist <- 0; tries <<- tries + 1
     while (dist < 1e-3) {
-      target <- generator(current, data)
+      target <- generator(current, data, ...)
 
       # generator has run out, so give up
       if (is.null(target)) return(NULL)
@@ -43,12 +42,15 @@ new_geodesic_path <- function(name, generator, frozen = NULL, verbose = FALSE) {
 
       dist <- proj_dist(current, target)
 
-      if(verbose) cat("generation:  dist =  ", dist, "\n")
+      if (verbose) cat("generation:  dist =  ", dist, "\n")
 
     }
-    geo <- geodesic_path(current, target, frozen)
+    geo <- geodesic_path(current, target, frozen, ...)
 
-    list(geo = geo, record = record)
+    if (verbose)
+      list(geo = geo, record = record)
+    else
+      list(geo = geo)
   }
 
   structure(
