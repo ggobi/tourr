@@ -45,8 +45,8 @@ anchored_orthogonal_distance <- function(plane, data, anchor=NULL){
 #' If not set, compute epsilon based on half_range
 #'
 #' @keywords internal
-compute_epsilon <- function(eps, half_range, n){
-  if (!is.null(eps)) return(eps)
+compute_v_rel <- function(v_rel, half_range, n){
+  if (!is.null(v_rel)) return(v_rel)
 
   (half_range ^ (n-2)) / 10.
 }
