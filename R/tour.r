@@ -35,7 +35,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   target_dist <- 0
   geodesic <- NULL
 
-  function(step_size) {
+  function(step_size, ...) {
 
     index_val <- rlang::sym("index_val")
 

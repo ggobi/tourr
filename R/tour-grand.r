@@ -29,7 +29,7 @@
 #' # of the output matrix
 #' tour2d(NULL, mtcars[, 1:2])
 grand_tour <- function(d = 2) {
-  generator <- function(current, data) {
+  generator <- function(current, data, ...) {
     if (is.null(current)) return(basis_init(ncol(data), d))
 
     basis_random(ncol(data), d)
