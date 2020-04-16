@@ -35,8 +35,8 @@
 #' animate_density2d(flea[, 1:6], axes = "off")
 #' animate_density2d(flea[, 1:6], dependence_tour(c(1, 2, 1, 2, 1, 2)),
 #'   axes = "bottomleft")
-#' require(colorspace)
-#' pal <- rainbow_hcl(length(levels(flea$species)))
+#'
+#' pal <- c("#1B9E77","#D95F02","#7570B3")
 #' col <- pal[as.numeric(flea$species)]
 #' animate_density2d(flea[,-7], col=col)
 #'

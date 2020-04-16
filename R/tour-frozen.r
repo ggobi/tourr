@@ -48,7 +48,7 @@
 #' frozen[4, ] <- c(-.2, .2)
 #' animate_xy(flea[, 1:5], frozen_tour(2, frozen))
 frozen_tour <- function(d = 2, frozen) {
-  generator <- function(current, data) {
+  generator <- function(current, data, ...) {
     if (is.null(current)) return(basis_init(ncol(data), d))
 
     basis_random(ncol(data), d)

@@ -22,7 +22,7 @@ dependence_tour <- function(pos) {
   stopifnot(all.equal(pos, trunc(pos)))
 
   d <- max(pos)
-  generator <- function(current, data) {
+  generator <- function(current, data, ...) {
     if (is.null(current)) return(basis_init(ncol(data), d))
 
     mat <- matrix(0, ncol = d, nrow = length(pos))

@@ -18,7 +18,7 @@ little_tour <- function(d = 2) {
   little <- NULL
   step <- 0
 
-  generator <- function(current, data) {
+  generator <- function(current, data, ...) {
     if (is.null(little)) {
       # Initialise bases
       little <<- bases_little(ncol(data), d)

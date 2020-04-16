@@ -17,7 +17,7 @@
 local_tour <- function(start, angle = pi / 4) {
   odd <- TRUE
 
-  generator <- function(current, data) {
+  generator <- function(current, data, ...) {
     if (odd) {
       new_basis <- start
     } else {
