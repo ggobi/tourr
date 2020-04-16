@@ -59,7 +59,6 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
                                   info = "start",
                                   loop = NA)
       }
-      tries <<-0
 
       return(current)
     }
