@@ -17,8 +17,8 @@
 #'   Defaults to 46.
 #' @param cex_slice size of the points inside the slice. Defaults to 2.
 #' @param cex_other size if the points outside the slice. Defaults to 1.
-#' @param eps volume of the slice. If not set, suggested value is caluclated and
-#'   printed to the screen.
+#' @param v_rel relative volume of the slice. If not set, suggested value
+#'   is caluclated and printed to the screen.
 #' @param anchor A vector specifying the reference point to anchor the slice.
 #'   If NULL (default) the slice will be anchored at the origin.
 #' @param rescale if true, rescale all variables to range [0,1].
@@ -43,12 +43,12 @@
 #' anchor5 <- rep(0.3, 5)
 #' animate_slice(sphere3, anchor = anchor3)
 #' # Animate with thicker slice to capture more points in each view
-#' animate_slice(sphere5, anchor = anchor5, eps = 0.02)
+#' animate_slice(sphere5, anchor = anchor5, v_rel = 0.02)
 
 
 display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
                           col = "black", pch_slice  = 20, pch_other = 46,
-                          cex_slice = 2, cex_other = 1, eps = NULL,
+                          cex_slice = 2, cex_other = 1, v_rel = NULL,
                           anchor = NULL, edges = NULL, edges.col = "black", ...) {
 
   labels <- NULL
@@ -56,10 +56,10 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)
     labels <<- abbreviate(colnames(data), 3)
-    eps <<- compute_epsilon(eps, half_range, ncol(data))
-    # Translate volume eps to cutoff h
-    h <<- eps^(1/(ncol(data)-2))
-    message("Using eps=", format(eps, digits = 2), ", corresponding to a cutoff h=", format(h, digits = 2))
+    v_rel <<- compute_v_rel(v_rel, half_range, ncol(data))
+    # Translate volume v_rel to cutoff h
+    h <<- v_rel^(1/(ncol(data)-2))
+    message("Using v_rel=", format(v_rel, digits = 2), ", corresponding to a cutoff h=", format(h, digits = 2))
   }
 
   if (!is.null(edges)) {
