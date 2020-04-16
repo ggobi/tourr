@@ -20,25 +20,28 @@
 #' @export
 #' @keywords internal
 new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
-  #  FIXME: why is verbose being reset?
   tour_path <- function(current, data, ...) {
     #browser()
     if (is.null(current)) {
+      if (name == "guided") tries <<- 0
       return(generator(NULL, data, ...))
     }
 
     # Keep trying until we get a frame that's not too close to the
     # current frame
-    dist <- 0; tries <<- tries + 1
+    dist <- 0
     while (dist < 1e-3) {
+
+      if(name == "guided") tries <<- tries + 1
+
       target <- generator(current, data, ...)
 
       # generator has run out, so give up
       if (is.null(target)) return(NULL)
 
-      tries <- tries + 1
       # give up, generator produced 10 equivalent frames in a row
-      if (tries > 10) return(NULL)
+
+      if (name == "guided") if (tries > 10) return(NULL)
 
       dist <- proj_dist(current, target)
 
