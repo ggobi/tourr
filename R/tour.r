@@ -64,21 +64,20 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
     if (cur_dist >= target_dist) {
 
-      if (verbose) {
-        row <- record %>%
-          dplyr::filter(tries == tries, info == "interpolation") %>%
-          dplyr::filter(index_val == max(!!index_val))
+      # interrupt
+      row <- record %>%
+        dplyr::filter(tries == tries, info == "interpolation") %>%
+        dplyr::filter(index_val == max(!!index_val))
 
-        if(nrow(row) != 0){
+      if(nrow(row) != 0){
 
-          proj <- row$basis[[1]]
-          max_val <- row$index_val
-          max_id <- which(record$index_val == max_val)
+        proj <- row$basis[[1]]
+        max_val <- row$index_val
+        max_id <- which(record$index_val == max_val)
 
-          record <<- record %>%
-            dplyr::mutate(id = dplyr::row_number()) %>%
-            dplyr::filter(id <= max_id)
-        }
+        record <<- record %>%
+          dplyr::mutate(id = dplyr::row_number()) %>%
+          dplyr::filter(id <= max_id)
       }
 
       tour_path_obj <<- tour_path(proj, data, ...)
