@@ -1,0 +1,271 @@
+---
+title: "Optim"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(patchwork)
+load(here::here("vignettes", "data" ,"data.rda"))
+load(here::here("vignettes", "data" ,"data_mult.rda"))
+load(here::here("vignettes", "data" ,"kol_geodesic.rda"))
+load(here::here("vignettes", "data" ,"kol_geodesic_polish.rda"))
+load(here::here("vignettes", "data" ,"kol_better.rda"))
+load(here::here("vignettes", "data" ,"kol_better_polish.rda"))
+load(here::here("vignettes", "data" ,"kol_cdf_better.rda"))
+load(here::here("vignettes", "data" ,"kol_cdf_better_polish.rda"))
+
+load(here::here("vignettes", "data" ,"kol_2var_better.rda"))
+load(here::here("vignettes", "data" ,"kol_2var_better2.rda"))
+load(here::here("vignettes", "data" ,"kol_2var_better_random.rda"))
+
+source(here::here("vignettes","indice.r"))
+```
+
+
+# Creation of complex index 
+
+## `kol` index 
+
+`kol` index bins the projection matrix into 100 intervals and compare the binning count with a randomly generated normal distribution. The sum of squared difference is divided by the number of rows of the projection matrix before outputed. The stability of the index depends on the number of intervals to bin and it has been changed from 10 to 100 to reduce the variation. 
+
+Noticing that setting a seed in the generation of normal distribution would causes the generation of nearby basis to be fixed as well. Thus in the tour implementation, seed is not set. 
+
+## `kol_cdf` index 
+
+`kol_cdf` index is based on the Kolmogorov test, which compares if two 1d samples come from the same distribution. Here we use it to examine how different is our porjection matrix from a sample generated from normal distribution. The test statistic is used as the index value. [Here](http://www.stats.ox.ac.uk/~massa/Lecture%2013.pdf) is a good matrial to understand the test 
+
+These are two methods to compare the how different the projection is away from a normal sample - `kol` compares the histogram, which will depends on how the binning is conducted; `kol_cdf` compare the cummulated distribution function based on the kolmogorov test. 
+
+ 
+# Optimisation on one informative variable
+
+For 1D projection with one informative variable, 
+
+- The range of `kol` index is larger than `kol_cdf` index
+- `search_geodesic` fails to optimise these complex indices well 
+- `search_better` is doing a good job in the optimisation and polishing procedure makes it even better
+- The index value of the final basis will exceed the index value of the theoretical best basis
+
+```{r echo = FALSE}
+#theoretical best
+basis_0 <- matrix(c(0, 1, 0, 0, 0))
+theo_kol <- calc_kol(basis_0, data = data)
+theo_kol_cdf <- calc_kol_cdf(basis_0, data = data)
+```
+
+
+```{r echo = FALSE}
+p1 <- kol_geodesic %>% 
+  filter(info %in% c("interpolation", "polish_best")) %>% 
+  mutate(id = row_number())  %>%
+  ggplot(aes(x = id, y = index_val)) + 
+  geom_point(aes(col = info)) + 
+  geom_line() + 
+  geom_hline(yintercept = theo_kol, alpha = 0.5) + 
+  ggtitle("kol index, search_geodesic without polish") + 
+  ylim(c(0, 15))
+
+p2 <- kol_geodesic_polish %>% 
+  filter(info %in% c("interpolation", "polish_best")) %>% 
+  mutate(id = row_number())  %>%
+  ggplot(aes(x = id, y = index_val)) + 
+  geom_point(aes(col = info)) + 
+  geom_line() + 
+  geom_hline(yintercept = theo_kol, alpha = 0.5) + 
+  ggtitle("kol index, search_geodesic with polish") + 
+  ylim(c(0, 15))
+
+p3 <- kol_better %>% 
+  filter(info %in% c("interpolation", "polish_best")) %>% 
+  mutate(id = row_number())  %>%
+  ggplot(aes(x = id, y = index_val)) + 
+  geom_point(aes(col = info)) +  
+  geom_line() + 
+  geom_hline(yintercept = theo_kol, alpha = 0.5) + 
+  ggtitle("kol index, search_better without polish") + 
+  ylim(c(0, 15))
+
+p4 <- kol_better_polish %>% 
+  filter(info %in% c("interpolation", "polish_best")) %>% 
+  mutate(id = row_number())  %>%
+  ggplot(aes(x = id, y = index_val)) + 
+  geom_point(aes(col = info)) + 
+  geom_line() + 
+  geom_hline(yintercept = theo_kol, alpha = 0.5) + 
+  ggtitle("kol index, search_better with polish") + 
+  ylim(c(0, 15))
+
+p5 <- kol_cdf_better %>% 
+  filter(info %in% c("interpolation", "polish_best")) %>% 
+  mutate(id = row_number())  %>%
+  ggplot(aes(x = id, y = index_val)) + 
+  geom_point(aes(col = info)) + 
+  geom_line() + 
+  geom_hline(yintercept = theo_kol_cdf, alpha = 0.5) + 
+  ggtitle("kol_cdf index, search_better without polish") + 
+  ylim(c(0, 0.22))
+
+p6 <- kol_cdf_better_polish %>% 
+  filter(info %in% c("interpolation", "polish_best")) %>% 
+  mutate(id = row_number())  %>%
+  ggplot(aes(x = id, y = index_val))  + 
+  geom_point(aes(col = info)) + 
+  geom_line() + 
+  geom_hline(yintercept = theo_kol_cdf, alpha = 0.5) + 
+  ggtitle("kol_cdf index, search_better with polish") + 
+  ylim(c(0, 0.22))
+
+
+(p1 | p2) / (p3 | p4) / (p5 | p6) + 
+  plot_layout(guides = "collect") + 
+  plot_annotation(title = "1D projection on one informative variable")
+
+#ggsave(filename = "vignettes/figure/1d_tracing.png")
+
+```
+
+
+```{r eval = FALSE, echo = FALSE}
+# some codes for pulling out basis & index_val
+first_one <- kol_cdf_better_polish %>% filter(info == "interpolation") %>% pull(basis) %>% head(1) %>% .[[1]]
+last_one <- kol_cdf_better %>% filter(info == "interpolation") %>% pull(basis) %>% tail(1) %>% .[[1]]
+basis_0 <- matrix(c(0, 1, 0, 0, 0))
+
+kol_cdf_better %>% filter(info == "interpolation") %>% pull(index_val) %>% head(1) 
+kol_cdf_better %>% filter(info == "interpolation") %>% pull(index_val) %>% tail(1) 
+
+calc_kol_cdf(basis_0, data = data)
+calc_kol_cdf(first_one, data = data)
+calc_kol_cdf(last_one, data = data)
+```
+
+
+# Optimisation on two informative variables
+
+`search_better_random` is likely to generate good result because it allows the optim to jump out of the local searching area when multiple maximum are presented.
+
+- need to increase `max.tries` toallow the procedure try enough time 
+
+
+When the index function is not smooth, the interpolation is also not smooth. In general the interpolation doesn't follow the gradually increase pattern as we saw when using the holes index. Moving a small angle will causes the index value to change abruptly. The interpolation path may end up in two situations: 
+
+1) Throughout the interpolation, no basis can get to the index_val of a new_basis 
+2) In the interpolation, there is a basis get to the index_val higher than that of the new_basis
+
+```{r}
+kol_2var_better %>% filter(info %in% c("interpolation", "new_basis"), tries == 2)  
+kol_2var_better %>% filter(info %in% c("interpolation", "new_basis"), tries == 3)  
+```
+
+If situation 1, the target basis will be added as the final point of the interpolation and the next iteration will start with it as the current basis. If situation 2, the interruption will be triggered and the basis with the largest index value will be the current basis in the next iteration.
+
+Because of the messy index, we won't be able to guarantee that index value increases gradually in the interpolation but we can make sure that the ending value of each interpolation is increasing.
+
+```{r echo = FALSE}
+p1 <- kol_2var_better %>% 
+  filter(info == "interpolation") %>% 
+  mutate(id = row_number())  %>% 
+  ggplot(aes(x = id, y = index_val)) + geom_line() + geom_point(aes(col = as.factor(tries))) + 
+  ggtitle("kol index, better, no polish")
+
+p1_end <- kol_2var_better %>% group_by(tries) %>% mutate(id = row_number()) %>% 
+  filter(id == max(id)) %>% ungroup() %>% filter(tries < max(tries)) %>% mutate(id = row_number()) %>% 
+  ggplot(aes(x = id, y = index_val)) + 
+  geom_point(aes(col = as.factor(tries))) + 
+  geom_line() + 
+  scale_x_continuous(breaks = seq(1, 10, 2)) + 
+  ggtitle("ending points of each interpolation")
+
+p2 <- kol_2var_better_random %>% 
+  filter(info == "interpolation") %>%
+  mutate(id = row_number())  %>%
+  ggplot(aes(x = id, y = index_val)) + geom_line() + geom_point(aes(col = as.factor(tries))) + 
+  ggtitle("kol index, better_random, no polish")
+
+p2_end <- kol_2var_better_random %>% group_by(tries) %>% mutate(id = row_number()) %>% 
+  filter(id == max(id)) %>% ungroup() %>% filter(tries < max(tries)) %>% mutate(id = row_number()) %>% 
+  ggplot(aes(x = id, y = index_val)) + 
+  geom_point(aes(col = as.factor(tries))) + 
+  geom_line() + 
+  scale_x_continuous(breaks = seq(1, 10, 2)) + 
+  ggtitle("ending points of each interpolation")
+
+(p1 | p1_end) / (p2 | p2_end) + 
+  plot_layout(guides = "collect")
+
+#ggsave(filename = "vignettes/figure/1d_2var_tracing.png")
+
+```
+
+```{r}
+# theoretical best when find x2
+calc_kol(matrix(c(0, 1, 0 ,0, 0, 0)), data = data_mult[,c(1,2,7:10)])
+
+# theoretical best when find x7
+calc_kol(matrix(c(0, 0, 1 ,0, 0, 0)), data = data_mult[,c(1,2,7:10)])
+
+# what has been found is x2
+kol_2var_better %>% arrange(-index_val) %>% head(1) %>% pull(basis) %>% .[[1]]
+kol_2var_better_random %>% arrange(-index_val) %>% head(1) %>% pull(basis) %>% .[[1]]
+```
+
+```{r}
+kol_2var_better %>% mutate(seed = "123456") %>% 
+  bind_rows(kol_2var_better2 %>% mutate(seed = "12345")) %>% 
+  filter(info == "interpolation") %>% 
+  group_by(seed) %>% 
+  mutate(id = row_number()) %>% 
+  ggplot(aes(x = id, y = index_val)) + geom_line() + geom_point(aes(col = as.factor(tries))) + 
+  facet_wrap(vars(seed), scales = "free_x") + 
+  ggtitle("kol index, better, no polish, different seeds")
+
+#ggsave(filename = "vignettes/figure/1d_2var_tracing_seed.png")
+
+# using a different seed finds x7
+kol_2var_better2 %>% arrange(-index_val) %>% head(1) %>% pull(basis) %>% .[[1]]
+
+```
+
+
+```{r eval = FALSE}
+
+kol_2var_better %>% filter(info == "interpolation") %>% view
+kol_2var_cdf_better_random_polish %>% filter(info == "interpolation", id == 65) %>% pull(basis) 
+
+
+kol_2var_cdf_better_random_polish %>% filter(info != "polish") %>% 
+  mutate(id = row_number())  %>%
+  ggplot(aes(x = id, y = index_val)) + geom_line() + geom_point(aes(col = info))
+
+
+kol_2var_cdf_better_polish %>% filter(info == "interpolation") %>% pull(basis) %>% tail(1) %>% .[[1]]
+kol_2var_cdf_better_polish %>% filter(info == "polish_best") %>% pull(basis) %>% tail(1) %>% .[[1]]
+
+
+devtools::load_all()
+set.seed(123456)
+kol_2var_better_polish <- animate_dist(data_mult[,c(1,2,7:10)], 
+                                                tour_path = guided_tour(kol(), d = 1,
+                                                                        search_f = search_better, 
+                                                                        max.tries = 1000),
+                                       rescale = FALSE, verbose = TRUE, polish = FALSE)
+
+devtools::load_all()
+set.seed(123456)
+kol_2var_better_random_polish <- animate_dist(data_mult[,c(1,2,7:10)], 
+                                                tour_path = guided_tour(kol(), d = 1,
+                                                                        search_f = search_better_random, 
+                                                                        max.tries = 1000),
+                                       rescale = FALSE, verbose = TRUE, polish = FALSE)
+
+calc_kol(matrix(c(0, 1, 0, 0, 0, 0), nrow = 6), data = data_mult[,c(1,2,7:10)])
+calc_kol(matrix(c(0, 0, 1, 0, 0, 0), nrow = 6), data = data_mult[,c(1,2,7:10)])
+calc_kol(matrix(c(-0.028, 0.991, 0.097, -0.037, -0.014, 0.079), nrow = 6), data = data_mult[,c(1,2,7:10)])
+
+```
+
+
