@@ -21,6 +21,7 @@
 #' @keywords optimize
 search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
                             delta = 0.01, cur_index = NA, ...) {
+   #browser()
   if (is.na(cur_index)) cur_index <- index(current)
 
   basis <- rlang::sym("basis")
@@ -56,6 +57,7 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
       cat("Value ", dig3(new_index), " ",
           sprintf("%.1f", pdiff * 100), "% better ")
       if (pdiff > 0.001) { #FIXME: pdiff should pbly be a changeable parameter
+        cur_index <<- new_index
         cat(" - NEW BASIS\n")
 
         if (verbose) {
