@@ -16,14 +16,24 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, echo = FALSE}
 library(tourr)
 library(tidyverse)
+library(patchwork)
+
 load(here::here("vignettes", "data", "temp.rda"))
-load(here::here("vignettes", "data", "temp_polish.rda"))
+load(here::here("vignettes", "data", "polish_1d.rda"))
+load(here::here("vignettes", "data", "polish_2d.rda"))
+load(here::here("vignettes", "data", "interrupt_no.rda"))
+load(here::here("vignettes", "data", "interrupt_yes.rda"))
 ```
 
-```{r}
+
+The latest tour package has implemented a global structure that captures all the information generated during the optimisation routine. This information will be stored and printed when the optimisation ends and can be turned off via `print = FALSE`. Additional messages during the optimisation can be displayed via `verbose = TRUE`.
+
+All the examples below uses simulated data and the histogram of each is presented
+
+```{r echo= FALSE}
 set.seed(1234)
 x1 <- rnorm(1000, 0, 1)
 x2 <- c(rnorm(500, -3, 1), rnorm(500, 3, 1))
@@ -36,7 +46,39 @@ data <- tibble::tibble(x1 = x1, x2 = x2, x8 = x8,
                        x9 = x9, x10 = x10) %>% purrr::map_df(scale) %>% as.matrix()
 ```
 
-The latest tour package has implemented a global structure that captures all the information generated during the optimisation routine. This information will be stored and printed when the optimisation ends and can be turned off via `print = FALSE`. Additional messages during the optimisation can be displayed via `verbose = TRUE`.
+```{r echo= FALSE}
+set.seed(1234)
+x1 <- rnorm(1000, 0, 1)
+x2 <- sample(c(rnorm(500, -3, 1), rnorm(500, 3, 1)), size = 1000)
+x3 <- sample(c(rep(-1, 500), rep(1, 500)), size = 1000)
+x4 <- sample(c(rnorm(250, -3, 1), rnorm(750, 3, 1)), size = 1000)
+x5 <- sample(c(rnorm(330, -5, 1), rnorm(340, 0, 1), rnorm(330, 5, 1)), size = 1000)
+x6 <- sample(c(rnorm(450, -5, 1), rnorm(100, 0, 1), rnorm(450, 5, 1)), size = 1000)
+x7 <- sample(c(rnorm(500, -5, 1), rnorm(500, 5, 1)), size = 1000)
+x8 <- rnorm(1000, 0, 1)
+x9 <- rnorm(1000, 0, 1)
+x10 <- rnorm(1000, 0, 1)
+
+
+data_mult <- tibble::tibble(x1 = x1, x2 = x2, x3 = x3,
+                            x4 = x4, x5 = x5, x6 = x6, x7 = x7,
+                            x8 = x8, x9 = x9, x10 = x10) %>% map_df(scale)
+```
+
+```{r}
+origin_dt_bi <- data_mult %>% 
+  dplyr::select(-x3) %>% 
+  gather(names, values) %>%
+  mutate(names = as_factor(names))
+  
+origin_dt_bi %>%
+  ggplot(aes(x = values)) +
+  geom_histogram(binwidth = 0.3) +
+  geom_density(aes(y = 0.3 * ..count..)) +
+  facet_wrap(vars(names), ncol = 3)
+```
+
+
 
 ## Global Structure
 
@@ -48,7 +90,7 @@ devtools::load_all()
 set.seed(123456)
 temp <- animate_dist(data, tour_path = guided_tour(holes(), d = 1,
                                            search_f =  search_geodesic),
-                  rescale = FALSE, verbose = FALSE)
+                  rescale = FALSE, verbose = TRUE)
 
 save(temp, file = here::here("vignettes", "data", "temp.rda"))
 ```
@@ -86,7 +128,14 @@ temp %>% filter(info == "interpolation") %>% mutate(id = row_number())%>%
 
 ## Search Polish
 
-A new searching method, search polish, is proposed in the generator. Search polish uses an alpha parameter to sample 1000 points near the current basis and picks the basis with the largest index value greater than the one for the current basis to interpolate. If no basis is found, the alpha will be shrunk by a cooling parameter until no better basis is found after 25 times.
+A new searching method, search polish, is proposed in the generator to polish the last basis to the absoluate maximum. Search polish samples `n_sample` number of points near the current basis (The searching neighbourhood is controlled by the parameter `polish_alpha`) and picks the one with the largest index value as the current basis for the next iteration. If no basis is found to have a larger index value than the current basis, the neighbourhood parameter `polish_alpha` will shrink by a cooling parameter (`polish_cooling`) and the searching will continue. The polishing procedure will terminate, when any of the four conditions met: 
+
+- The geodesic distance between the current and newly-found basis (`proj_dist(current, target)`) is less than  1e-3; 
+- The percentage improvement from the current basis (`(target - cur_index)/cur_index`) is less than 1e-10;
+- The searching neighbourhood (`polish_alpha`) is less than 0.001;
+- The process reaches the largest number of iteration: `while(try < polish_max_tries)`
+
+Below presents two examples for 1D and 2D projection.
 
 ```{r eval = FALSE}
 devtools::load_all()
@@ -104,17 +153,131 @@ temp_polish <- animate_dist(data, tour_path = guided_tour(holes(), d = 1,
                   rescale = FALSE, verbose = TRUE, start = last_basis)
 
 #save(temp_polish, file = here::here("vignettes", "data", "temp_polish.rda"))
+
 ```
 
 ```{r}
-final <- temp_polish %>% filter(info == "interpolation") %>% pull(basis) %>% tail(1)
-final[[1]]
+# index_val
+polish_1d %>% filter(info == "interpolation") %>% pull(index_val) %>% tail(1)
+polish_1d %>% filter(info == "polish_best") %>% pull(index_val) %>% tail(1)
 
-temp_polish %>% filter(info == "interpolation") %>% mutate(id = row_number())%>% 
-  ggplot(aes(x =id, y = index_val)) + geom_line()
+# basis
+tour_end_1d <- polish_1d %>% filter(info == "interpolation") %>% pull(basis) %>% tail(1)
+polish_end_1d <- polish_1d %>% filter(info == "polish_best") %>% pull(basis) %>% tail(1)
+theory_1d <- matrix(c(0, 1, 0, 0, 0), nrow = 5, ncol = 1)
+proj_dist(tour_end_1d[[1]], theory_1d)
+proj_dist(polish_end_1d[[1]], theory_1d)
+
+interp <- polish_1d %>% 
+  filter(info %in% c("interpolation", "polish_best")) %>% 
+  mutate(id = row_number()) 
+
+
+p1 <- interp %>% 
+  ggplot(aes(x = id, y = index_val)) + 
+  geom_line() + 
+  geom_point(aes(col = info), alpha = 0.5) + 
+  scale_x_continuous(breaks = seq(0, 75, 10))
+  #facet_zoom(xy = info == "polish_best",zoom.size = 0.5, ylim = c(0.9375, 0.9385))
+
+p2 <- interp %>% 
+  filter(info == "polish_best") %>% 
+  ggplot(aes(x = id, y = index_val)) + 
+  geom_line() + 
+  geom_point(aes(col = info), alpha = 0.5) + 
+  scale_color_manual(values = "#00BFC4") + 
+  scale_x_continuous(breaks = seq(66, 74, 2))
+
+p1 / p2 + 
+  plot_layout(ncol = 2, widths = c(2, 1), guides = "collect")
+  
 ```
 
 
 
+```{r eval = FALSE}
+devtools::load_all()
+set.seed(123456)
+polish_2d <- animate_xy(data_mult[,c(1,2, 7:10)], tour_path = guided_tour(holes(), d = 2,
+                                           search_f =  search_geodesic),
+                  rescale = FALSE, verbose = TRUE, polish = TRUE)
 
+save(polish_2d, file = here::here("vignettes", "data", "polish_2d.rda"))
+```
+
+```{r}
+# index_Val
+polish_2d %>% filter(info == "interpolation") %>% pull(index_val) %>% tail(1)
+polish_2d %>% filter(info == "polish_best") %>% pull(index_val) %>% tail(1)
+
+# basis
+tour_end_2d <- polish_2d %>% filter(info == "interpolation") %>% pull(basis) %>% tail(1)
+polish_end_2d <- polish_2d %>% filter(info == "polish_best") %>% pull(basis) %>% tail(1)
+theory_2d <- matrix(c(0, 1, 0, 0, 0, 0, 
+                      0, 0, 1, 0, 0, 0 ), nrow = 6, ncol = 2)
+proj_dist(tour_end_2d[[1]], theory_2d)
+proj_dist(polish_end_2d[[1]], theory_2d)
+
+interp <- polish_2d %>% 
+  filter(info %in% c("interpolation", "polish_best")) %>% 
+  mutate(id = row_number()) 
+
+
+p1 <- interp %>% 
+  ggplot(aes(x = id, y = index_val)) + 
+  geom_line() +
+  geom_point(aes(col = info), alpha = 0.5)
+  #facet_zoom(xy = info == "polish_best",zoom.size = 0.5, ylim = c(0.9375, 0.9385))
+
+p2 <- interp %>% 
+  filter(info == "polish_best") %>% 
+  ggplot(aes(x = id, y = index_val)) + 
+  geom_line() + 
+  geom_point(aes(col = info), alpha = 0.5) + 
+  scale_color_manual(values = "#00BFC4")
+
+p1 / p2 + 
+  plot_layout(ncol = 2, widths = c(2, 1), guides = "collect")
+  
+```
+
+
+## Interruption
+
+In search_better, it is likely that a basis with even higher index value can be found on the interpolation path from the current to the target basis. This is shown as a "hill" shape on the tracing plot. An interruption is implemented to allows the next iteration to start from the basis with the highest index value rather than from the ending basis. With this interruption, the search function is likely to find basis with higher index_val in the end. 
+
+```{r eval =FALSE}
+devtools::load_all()
+set.seed(123456)
+interrupt_no <- animate_dist(data, tour_path = guided_tour(holes(), d = 1,
+                                           search_f =  search_better),
+                  rescale = FALSE, verbose = TRUE)
+
+save(interrupt_no, file = here::here("vignettes", "data", "interrupt_no.rda"))
+
+devtools::load_all()
+set.seed(123456)
+interrupt_yes <- animate_dist(data, tour_path = guided_tour(holes(), d = 1,
+                                           search_f =  search_better),
+                  rescale = FALSE, verbose = TRUE)
+save(interrupt_yes, file = here::here("vignettes", "data", "interrupt_yes.rda"))
+
+```
+
+
+```{r}
+interrupt_no %>% filter(info == "interpolation") %>% pull(index_val) %>% tail(1)
+interrupt_yes %>% filter(info == "interpolation") %>% pull(index_val) %>% tail(1)
+
+p1 <- interrupt_no %>% filter(info == "interpolation") %>% mutate(id = row_number()) %>%
+  ggplot(aes(x =id, y = index_val)) + geom_line() + 
+  ggtitle("no interruption")
+
+p2 <- interrupt_yes %>% filter(info == "interpolation") %>% mutate(id = row_number()) %>%
+  ggplot(aes(x =id, y = index_val)) + geom_line() + 
+  ggtitle("with interruption")
+
+p1 / p2 + 
+  plot_layout(ncol = 2)
+```
 
