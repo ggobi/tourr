@@ -39,7 +39,8 @@
 #' \dontrun{animate(f, max_frames = 10, fps = 1, aps = 0.1)}
 animate <- function(data, tour_path = grand_tour(), display = display_xy(),
                     start = NULL, aps = 1, fps = 15, max_frames = Inf,
-                    rescale = TRUE, sphere = FALSE, verbose = FALSE, ...) {
+                    rescale = TRUE, sphere = FALSE, verbose = FALSE,...) {
+  #browser()
   verbose <<- verbose
 
   if (!is.matrix(data)) {
