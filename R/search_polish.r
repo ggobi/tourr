@@ -28,13 +28,8 @@ search_polish <- function(current, polish_alpha = 0.5, index, polish_max_tries =
     polish <- purrr::map_dfr(1:n_sample, ~tibble::tibble(basis = list(basis_nearby(current,
                                                                                    alpha = polish_alpha)))) %>%
       dplyr::mutate(index_val = purrr::map_dbl(basis, ~index(.x)),
-<<<<<<< HEAD
                     polish_alpha = polish_alpha, tries = !! tries, info = "polish",
                     loop = try)
-=======
-                    polish_alpha = polish_alpha, tries = tries, info = "polish",
-                    loop = try, id = 0)
->>>>>>> f72f27ced3dd7db30aa613888896b9f7d0ced0f8
 
     best_row <- polish %>% dplyr::filter(index_val == max(index_val))
 
@@ -51,7 +46,6 @@ search_polish <- function(current, polish_alpha = 0.5, index, polish_max_tries =
 
       if(polish_dist <  1e-3){
         cat("The new basis is too close to the current one! \n")
-<<<<<<< HEAD
         if (verbose){
           cat("current basis: ", current, "cur_index: ", cur_index, "\n")
           return(list(record = record, target = current))
@@ -59,14 +53,11 @@ search_polish <- function(current, polish_alpha = 0.5, index, polish_max_tries =
           cat("current basis: ", current, "cur_index: ", cur_index, "\n")
           return(list(target = current))
         }
-=======
-        if (verbose) return(record)
->>>>>>> f72f27ced3dd7db30aa613888896b9f7d0ced0f8
+
 
       }
 
       #check condition 2: there needs to be certain improvement
-<<<<<<< HEAD
 
       if (polish_pdiff < 1e-10){
         cat("The improvement is too small! \n")
@@ -102,30 +93,7 @@ search_polish <- function(current, polish_alpha = 0.5, index, polish_max_tries =
           cat("current basis: ", current, "cur_index: ", cur_index, "\n")
           return(list(target = current))
         }
-=======
 
-      if (polish_pdiff < 1e-10){
-        cat("The improvement is too small! \n")
-        if (verbose) return(record)
-      }
-
-      cat("better basis found, index_val = ", best_row$index_val, "\n")
-
-      record <- record %>% dplyr::bind_rows(polish) %>%
-        dplyr::bind_rows(best_row %>% dplyr::mutate(info = "polish_best"))
-
-    }else{
-
-      polish_cooling <-  polish_cooling * 0.95
-      polish_alpha <- polish_alpha * polish_cooling
-      cat("polish_alpha gets updated to", polish_alpha, "\n")
-
-      # check condition 3: polish_alpha can't be too small
-
-      if (polish_alpha < 0.01){
-        cat("polish_alpha is", polish_alpha, "and it is too small! \n")
-        if (verbose) return(record)
->>>>>>> f72f27ced3dd7db30aa613888896b9f7d0ced0f8
       }
 
     }
