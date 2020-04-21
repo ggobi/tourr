@@ -34,16 +34,17 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
 
       if(name == "guided") tries <<- tries + 1
 
-      target <- generator(current, data, ...)
+      gen <- generator(current, data, ...)
+      target <- gen$target
 
       # generator has run out, so give up
       if (is.null(target)) return(NULL)
 
       # give up, generator produced 10 equivalent frames in a row
 
-      if (name == "guided") if (tries > 10) return(NULL)
+      if (name == "guided") if (tries > 20) return(NULL)
 
-      dist <- proj_dist(current, target)
+      if ("polish_alpha" %in% gen$arg) dist <- 0 else dist <- proj_dist(current, target)
 
       if (verbose) cat("generation:  dist =  ", dist, "\n")
 

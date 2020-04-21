@@ -91,11 +91,19 @@ A new searching method, search polish, is proposed in the generator. Search poli
 ```{r eval = FALSE}
 devtools::load_all()
 set.seed(123456)
+temp_geo <- animate_dist(data, tour_path = guided_tour(holes(), d = 1,
+                                           search_f =  search_geodesic),
+                  rescale = FALSE, verbose = TRUE)
+
+last_basis <- temp_geo %>% filter(info == "interpolation") %>% tail(1) %>% pull(basis) %>% .[[1]] 
+
+devtools::load_all()
+set.seed(123456)
 temp_polish <- animate_dist(data, tour_path = guided_tour(holes(), d = 1,
                                            search_f =  search_polish),
-                  rescale = FALSE, verbose = FALSE)
+                  rescale = FALSE, verbose = TRUE, start = last_basis)
 
-save(temp_polish, file = here::here("vignettes", "data", "temp_polish.rda"))
+#save(temp_polish, file = here::here("vignettes", "data", "temp_polish.rda"))
 ```
 
 ```{r}

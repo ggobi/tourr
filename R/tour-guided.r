@@ -90,7 +90,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
     basis <- search_f(current, alpha, index, max.tries, cur_index=cur_index, ...)
     alpha <<- alpha * cooling
 
-    basis$target
+    list(basis$target, arg = names(formals(search_f)))
   }
 
   new_geodesic_path("guided", generator)
