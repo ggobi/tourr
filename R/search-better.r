@@ -14,7 +14,7 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 #' Search for a better projection near the current projection.
 #' @keywords internal
 search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
-  method = "linear", cur_index = NA, ...) {
+  method = "linear", cur_index = NA, cooling = 0.99, ...) {
 
   info <- rlang::sym("info")
   basis <- rlang::sym("basis")
@@ -28,12 +28,12 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   cat("Old", cur_index, "\n")
   try <- 1
 
-  while(try < max.tries) {
-    new_basis <- basis_nearby(current, alpha, method)
+  while (try < max.tries) {
+    new_basis <- basis_nearby(current, alpha)
     new_index <- index(new_basis)
 
     if (verbose)
-      record <- record %>% dplyr::add_row(basis = list(new_basis),
+      record <<- record %>% dplyr::add_row(basis = list(new_basis),
                                           index_val = new_index,
                                           info = "random_search",
                                           tries = tries,
@@ -43,7 +43,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
       cat("New", new_index, "try", try, "\n")
 
       if (verbose) {
-        record <- record %>%
+        record <<- record %>%
           dplyr::mutate(row = dplyr::row_number(),
                       info = ifelse(row == max(row), "new_basis", !!info)) %>%
           dplyr::select(-row)
@@ -52,6 +52,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
       }else{
         return(list(target = new_basis))
       }
+
     }
     try <- try + 1
   }
@@ -109,7 +110,7 @@ search_better_random <- function(current, alpha = 0.5, index,
       cat("New", new_index, "try", try, "\n")
 
       if (verbose) {
-        record <- record %>%
+        record <<- record %>%
           dplyr::mutate(row = dplyr::row_number(),
                       info = ifelse(row == max(row), "new_basis", info)) %>%
           dplyr::select(-row)
@@ -119,21 +120,22 @@ search_better_random <- function(current, alpha = 0.5, index,
         return(list(target = new_basis))
       }
     }
-    else if (abs(new_index-cur_index) < eps) {
-      cat("insert random step since abs(new_index-cur_index) < eps")
-      new_basis <- basis_random(nrow(current), ncol(current))
+    else if (try > 900) {
+      new_basis <- basis_nearby(current, alpha, method)
+      cat("insert random step, index_val = ", index(new_basis), "\n")
 
       if (verbose) {
-        record <- record %>% dplyr::add_row(basis = list(new_basis),
-                                          index_val = new_index,
-                                          info = "random_search",
-                                          tries = tries,
-                                          loop = try)
+        record <<- record %>% dplyr::add_row(basis = list(new_basis),
+                                             index_val = new_index,
+                                             info = "random_step",
+                                             tries = tries,
+                                             loop = try)
 
         return(list(record = record, target = new_basis))
       }else{
         return(list(target = new_basis))
       }
+
     }
     try <- try + 1
   }
