@@ -111,7 +111,7 @@ search_polish <- function(current, polish_alpha = 0.5, index, polish_max_tries =
 
       cat("better basis found, index_val = ", best_row$index_val, "\n")
 
-      record <<- record %>% dplyr::bind_rows(polish) %>%
+      record <- record %>% dplyr::bind_rows(polish) %>%
         dplyr::bind_rows(best_row %>% dplyr::mutate(info = "polish_best"))
 
     }else{
@@ -122,7 +122,7 @@ search_polish <- function(current, polish_alpha = 0.5, index, polish_max_tries =
 
       # check condition 3: polish_alpha can't be too small
 
-      if (polish_alpha < 0.001){
+      if (polish_alpha < 0.01){
         cat("polish_alpha is", polish_alpha, "and it is too small! \n")
         if (verbose) return(record)
 >>>>>>> f72f27ced3dd7db30aa613888896b9f7d0ced0f8
