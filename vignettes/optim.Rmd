@@ -174,21 +174,7 @@ p1_end <- kol_2var_better %>% group_by(tries) %>% mutate(id = row_number()) %>%
   scale_x_continuous(breaks = seq(1, 10, 2)) + 
   ggtitle("ending points of each interpolation")
 
-p2 <- kol_2var_better_random %>% 
-  filter(info == "interpolation") %>%
-  mutate(id = row_number())  %>%
-  ggplot(aes(x = id, y = index_val)) + geom_line() + geom_point(aes(col = as.factor(tries))) + 
-  ggtitle("kol index, better_random, no polish")
-
-p2_end <- kol_2var_better_random %>% group_by(tries) %>% mutate(id = row_number()) %>% 
-  filter(id == max(id)) %>% ungroup() %>% filter(tries < max(tries)) %>% mutate(id = row_number()) %>% 
-  ggplot(aes(x = id, y = index_val)) + 
-  geom_point(aes(col = as.factor(tries))) + 
-  geom_line() + 
-  scale_x_continuous(breaks = seq(1, 10, 2)) + 
-  ggtitle("ending points of each interpolation")
-
-(p1 | p1_end) / (p2 | p2_end) + 
+(p1 /p1_end) + 
   plot_layout(guides = "collect")
 
 #ggsave(filename = "vignettes/figure/1d_2var_tracing.png")
@@ -202,64 +188,65 @@ calc_kol(matrix(c(0, 1, 0 ,0, 0, 0)), data = data_mult[,c(1,2,7:10)])
 # theoretical best when find x7
 calc_kol(matrix(c(0, 0, 1 ,0, 0, 0)), data = data_mult[,c(1,2,7:10)])
 
-# what has been found is x2
+# seed 123456 finds x2
 kol_2var_better %>% arrange(-index_val) %>% head(1) %>% pull(basis) %>% .[[1]]
-kol_2var_better_random %>% arrange(-index_val) %>% head(1) %>% pull(basis) %>% .[[1]]
+
+# seed 12345 finds x7
+kol_2var_better2 %>% arrange(-index_val) %>% head(1) %>% pull(basis) %>% .[[1]]
 ```
 
-```{r}
+```{r echo = FALSE}
 kol_2var_better %>% mutate(seed = "123456") %>% 
   bind_rows(kol_2var_better2 %>% mutate(seed = "12345")) %>% 
+  mutate(seed = fct_relevel(seed, c("123456", "12345"))) %>% 
   filter(info == "interpolation") %>% 
   group_by(seed) %>% 
   mutate(id = row_number()) %>% 
   ggplot(aes(x = id, y = index_val)) + geom_line() + geom_point(aes(col = as.factor(tries))) + 
-  facet_wrap(vars(seed), scales = "free_x") + 
+  facet_wrap(vars(seed),nrow = 2,  scales = "free_x") + 
   ggtitle("kol index, better, no polish, different seeds")
 
 #ggsave(filename = "vignettes/figure/1d_2var_tracing_seed.png")
 
-# using a different seed finds x7
-kol_2var_better2 %>% arrange(-index_val) %>% head(1) %>% pull(basis) %>% .[[1]]
+```
+
+
+## MH on search_better_random
+
+<some text here>
+
+
+```{r echo = FALSE}
+kol_2var_better_random %>%
+  filter(info == "interpolation") %>%
+  mutate(id = row_number())  %>%
+  ggplot(aes(x = id, y = index_val)) + geom_line() + geom_point(aes(col = info)) + 
+  ggtitle("kol index, better_random, no polish")
+```
+
+```{r eval = FALSE}
+largest <- kol_2var_better_random %>% filter(info == "interpolation") %>% tail(1) %>% pull(basis) %>% .[[1]]
+
+basis <- basis_random(ncol(data_mult[,c(1,2,7:10)]), d = 1)
+basis[which.max(abs(as.vector(largest)))] <- max(abs(as.vector(largest)))
+
+devtools::load_all()
+set.seed(123456)
+kol_2var_better_random_2 <- animate_dist(data_mult[,c(1,2,7:10)],
+                                       tour_path = guided_tour(kol(), d = 1,
+                                                               search_f = search_better_random,
+                                                               max.tries = 100),
+                                       rescale = FALSE, verbose = TRUE, start = basis)
+
 
 ```
 
 
 ```{r eval = FALSE}
-
-kol_2var_better %>% filter(info == "interpolation") %>% view
-kol_2var_cdf_better_random_polish %>% filter(info == "interpolation", id == 65) %>% pull(basis) 
-
-
-kol_2var_cdf_better_random_polish %>% filter(info != "polish") %>% 
+kol_2var_better_random_2 %>%
+  filter(info == "interpolation") %>%
   mutate(id = row_number())  %>%
-  ggplot(aes(x = id, y = index_val)) + geom_line() + geom_point(aes(col = info))
-
-
-kol_2var_cdf_better_polish %>% filter(info == "interpolation") %>% pull(basis) %>% tail(1) %>% .[[1]]
-kol_2var_cdf_better_polish %>% filter(info == "polish_best") %>% pull(basis) %>% tail(1) %>% .[[1]]
-
-
-devtools::load_all()
-set.seed(123456)
-kol_2var_better_polish <- animate_dist(data_mult[,c(1,2,7:10)], 
-                                                tour_path = guided_tour(kol(), d = 1,
-                                                                        search_f = search_better, 
-                                                                        max.tries = 1000),
-                                       rescale = FALSE, verbose = TRUE, polish = FALSE)
-
-devtools::load_all()
-set.seed(123456)
-kol_2var_better_random_polish <- animate_dist(data_mult[,c(1,2,7:10)], 
-                                                tour_path = guided_tour(kol(), d = 1,
-                                                                        search_f = search_better_random, 
-                                                                        max.tries = 1000),
-                                       rescale = FALSE, verbose = TRUE, polish = FALSE)
-
-calc_kol(matrix(c(0, 1, 0, 0, 0, 0), nrow = 6), data = data_mult[,c(1,2,7:10)])
-calc_kol(matrix(c(0, 0, 1, 0, 0, 0), nrow = 6), data = data_mult[,c(1,2,7:10)])
-calc_kol(matrix(c(-0.028, 0.991, 0.097, -0.037, -0.014, 0.079), nrow = 6), data = data_mult[,c(1,2,7:10)])
-
+  ggplot(aes(x = id, y = index_val)) + geom_line() + geom_point(aes(col = info)) + 
+  ggtitle("kol index, better_random, no polish")
 ```
-
 

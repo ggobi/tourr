@@ -93,12 +93,11 @@ search_better_random <- function(current, alpha = 0.5, index,
     warning("cur_index is zero!")
   }
 
-  cat("Old", cur_index, "\n")
   try <- 1
   while(try < max.tries) {
     new_basis <- basis_nearby(current, alpha, method)
+    temperature <<- temperature + 1
     new_index <- index(new_basis)
-
     if (verbose)
       record <<- record %>% dplyr::add_row(basis = list(new_basis),
                                         index_val = new_index,
@@ -106,34 +105,45 @@ search_better_random <- function(current, alpha = 0.5, index,
                                         tries = tries,
                                         loop = try)
 
+    cat("cur_index = ", cur_index, "new_index = ",new_index ,"\n")
+
     if (new_index > cur_index) {
-      cat("New", new_index, "try", try, "\n")
+      cat("new_index = ", new_index, "try", try, "\n")
+      cat("ACCEPT - Find a better basis \n")
 
       if (verbose) {
         record <<- record %>%
           dplyr::mutate(row = dplyr::row_number(),
                       info = ifelse(row == max(row), "new_basis", info)) %>%
           dplyr::select(-row)
-
         return(list(record = record, target = new_basis))
       }else{
         return(list(target = new_basis))
       }
-    }
-    else if (try > 900) {
-      new_basis <- basis_nearby(current, alpha, method)
-      cat("insert random step, index_val = ", index(new_basis), "\n")
+    }else {
+      cat("temperature = ", temperature, "\n")
+      M <-  exp(-(abs(new_index - cur_index))/(2* temperature))
+      rand <- runif(1)
 
-      if (verbose) {
-        record <<- record %>% dplyr::add_row(basis = list(new_basis),
-                                             index_val = new_index,
-                                             info = "random_step",
-                                             tries = tries,
-                                             loop = try)
-
-        return(list(record = record, target = new_basis))
-      }else{
-        return(list(target = new_basis))
+      if (M < rand) {
+        cat("ACCEPT with MH probability: M = ", M, "rand = ", rand, "\n")
+        if (verbose) {
+          record <<- record %>%
+            dplyr::mutate(row = dplyr::row_number(),
+                          info = ifelse(row == max(row), "new_basis_with_prob", info)) %>%
+            dplyr::select(-row)
+          return(list(record = record, target = new_basis))
+        }else{
+          return(list(target = new_basis))
+        }
+      } else{
+        cat("DON'T ACCEPT: M = ", M, "rand = ", rand, "\n")
+        if (verbose) {
+          record <<- record
+          return(list(record = record, target = current))
+        }else{
+          return(list(target = current))
+        }
       }
 
     }

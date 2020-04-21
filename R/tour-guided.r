@@ -41,9 +41,8 @@
 #' tries <- replicate(5, save_history(f, guided_tour(holes())), simplify = FALSE)
 guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
                         max.i = Inf, search_f = search_geodesic, ...) {
-#browser()
+
     generator <- function(current, data, ...) {
-      #browser()
 
     index <<- function(proj) {
       index_f(as.matrix(data) %*% proj)
@@ -52,6 +51,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
     if (is.null(current)){
       current <- basis_random(ncol(data), d)
       cur_index <<- index(current)
+      temperature <<- 0
 
       if (verbose) {
         record <<- tibble::tibble(basis = list(current),
