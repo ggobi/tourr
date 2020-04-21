@@ -5,7 +5,9 @@ A slice tour is now available using the function animate_slice().
 
 A new record option is available to print out diagnostic information for every step. Use verbose = TRUE when starting a tour.
 
-Set the default fps to 15, to compatibly draw with RStudio window
+Improvements to the optimisation functions have been  made: search_better has an interrupt if a higher index is achieved mid-path; search_polish takes a best basis from another routine, and makes small steps to get a very best projection close by.
+
+Set the default fps to 15, to compatibly draw with RStudio window.
 
 Version 0.5.6
 ------------------------------------------------------------------------------
