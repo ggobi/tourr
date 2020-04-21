@@ -63,21 +63,38 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     }
 
     if (cur_dist >= target_dist) {
+      #browser()
 
       # interrupt
-      row <- record %>%
-        dplyr::filter(tries == tries, info == "interpolation") %>%
-        dplyr::filter(index_val == max(!!index_val))
+      if ("new_basis" %in% record$info){
+        row <- record %>%
+          dplyr::filter(tries == max(tries), info == "interpolation") %>%
+          dplyr::filter(index_val == max(!!index_val))
 
-      if(nrow(row) != 0){
+        new_basis <-  record %>%
+          dplyr::filter(tries == max(tries), info %in% c("new_basis", "random_step", "new_basis_with_prob"))
 
-        proj <- row$basis[[1]]
-        max_val <- row$index_val
-        max_id <- which(record$index_val == max_val)
+        if (new_basis$index_val > row$index_val) {
+          record <<- record %>% dplyr::add_row(new_basis %>% mutate(info = "interpolation"))
 
-        record <<- record %>%
-          dplyr::mutate(id = dplyr::row_number()) %>%
-          dplyr::filter(id <= max_id)
+          current <<- record %>% tail(1) %>% pull(basis) %>% .[[1]]
+          cur_index <<- record %>% tail(1) %>% pull(index_val)
+        }
+
+        if(nrow(row) != 0 & new_basis$index_val < row$index_val){
+
+          proj <- row$basis[[1]]
+          max_val <- row$index_val
+          max_id <- which(record$index_val == max_val)
+
+          record <<- record %>%
+            dplyr::mutate(id = dplyr::row_number()) %>%
+            dplyr::filter(id <= max_id)
+
+          current <<- record %>% tail(1) %>% pull(basis) %>% .[[1]]
+          cur_index <<- record %>% tail(1) %>% pull(index_val)
+        }
+
       }
 
       tour_path_obj <<- tour_path(proj, data, ...)
