@@ -44,6 +44,8 @@ x10 <- rnorm(1000, 0, 1)
 
 data <- tibble::tibble(x1 = x1, x2 = x2, x8 = x8,
                        x9 = x9, x10 = x10) %>% purrr::map_df(scale) %>% as.matrix()
+
+save(data, file = "vignettes/data/data.rda")
 ```
 
 ```{r echo= FALSE}
@@ -63,6 +65,7 @@ x10 <- rnorm(1000, 0, 1)
 data_mult <- tibble::tibble(x1 = x1, x2 = x2, x3 = x3,
                             x4 = x4, x5 = x5, x6 = x6, x7 = x7,
                             x8 = x8, x9 = x9, x10 = x10) %>% map_df(scale)
+save(data_mult, file = "vignettes/data/data_mult.rda")
 ```
 
 ```{r}
