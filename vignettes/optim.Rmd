@@ -57,9 +57,27 @@ theo_kol <- calc_kol(basis_0, data = data)
 theo_kol_cdf <- calc_kol_cdf(basis_0, data = data)
 ```
 
+```{r eval = FALSE}
+## kol index, geodesic, no polish
+set.seed(123456)
+kol_geodesic <- animate_dist(data, tour_path = guided_tour(kol(), d = 1,
+                                                           search_f = search_geodesic),
+                             rescale = FALSE, verbose = TRUE) %>%
+  mutate(search = "geodesic", polish = FALSE, index = "kol")
+
+###############
+## kol index, geodesic, with polish
+last_basis <- kol_geodesic %>% filter(info == "interpolation") %>% tail(1) %>% pull(basis) %>% .[[1]]
+
+set.seed(123456)
+kol_geodesic_polish <- animate_dist(data, tour_path = guided_tour(kol(), d = 1,
+                                                              search_f =  search_polish),
+                                rescale = FALSE, verbose = TRUE, start = last_basis) %>%
+  mutate(search = "geodesic", polish = TRUE, index = "kol")
+```
 
 ```{r echo = FALSE}
-p1 <- kol_geodesic %>% 
+p1 <- bind_rows(kol_geodesic, kol_geodesic_polish) %>% 
   filter(info %in% c("interpolation", "polish_best")) %>% 
   mutate(id = row_number())  %>%
   ggplot(aes(x = id, y = index_val)) + 
@@ -69,17 +87,7 @@ p1 <- kol_geodesic %>%
   ggtitle("kol index, search_geodesic without polish") + 
   ylim(c(0, 15))
 
-p2 <- kol_geodesic_polish %>% 
-  filter(info %in% c("interpolation", "polish_best")) %>% 
-  mutate(id = row_number())  %>%
-  ggplot(aes(x = id, y = index_val)) + 
-  geom_point(aes(col = info)) + 
-  geom_line() + 
-  geom_hline(yintercept = theo_kol, alpha = 0.5) + 
-  ggtitle("kol index, search_geodesic with polish") + 
-  ylim(c(0, 15))
-
-p3 <- kol_better %>% 
+p2 <- bind_rows(kol_better, kol_better_polish) %>% 
   filter(info %in% c("interpolation", "polish_best")) %>% 
   mutate(id = row_number())  %>%
   ggplot(aes(x = id, y = index_val)) + 
@@ -89,17 +97,8 @@ p3 <- kol_better %>%
   ggtitle("kol index, search_better without polish") + 
   ylim(c(0, 15))
 
-p4 <- kol_better_polish %>% 
-  filter(info %in% c("interpolation", "polish_best")) %>% 
-  mutate(id = row_number())  %>%
-  ggplot(aes(x = id, y = index_val)) + 
-  geom_point(aes(col = info)) + 
-  geom_line() + 
-  geom_hline(yintercept = theo_kol, alpha = 0.5) + 
-  ggtitle("kol index, search_better with polish") + 
-  ylim(c(0, 15))
 
-p5 <- kol_cdf_better %>% 
+p3 <- bind_rows(kol_cdf_better, kol_cdf_better_polish) %>% 
   filter(info %in% c("interpolation", "polish_best")) %>% 
   mutate(id = row_number())  %>%
   ggplot(aes(x = id, y = index_val)) + 
@@ -109,22 +108,17 @@ p5 <- kol_cdf_better %>%
   ggtitle("kol_cdf index, search_better without polish") + 
   ylim(c(0, 0.22))
 
-p6 <- kol_cdf_better_polish %>% 
-  filter(info %in% c("interpolation", "polish_best")) %>% 
-  mutate(id = row_number())  %>%
-  ggplot(aes(x = id, y = index_val))  + 
-  geom_point(aes(col = info)) + 
-  geom_line() + 
-  geom_hline(yintercept = theo_kol_cdf, alpha = 0.5) + 
-  ggtitle("kol_cdf index, search_better with polish") + 
-  ylim(c(0, 0.22))
-
-
-(p1 | p2) / (p3 | p4) / (p5 | p6) + 
-  plot_layout(guides = "collect") + 
-  plot_annotation(title = "1D projection on one informative variable")
+# p1/ p2 / p3 + 
+#   plot_layout(guides = "collect") + 
+#   plot_annotation(title = "1D projection on one informative variable")
 
 #ggsave(filename = "vignettes/figure/1d_tracing.png")
+
+p1
+
+p2
+
+p3
 
 ```
 
