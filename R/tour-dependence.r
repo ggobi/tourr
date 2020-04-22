@@ -30,7 +30,8 @@ dependence_tour <- function(pos) {
       mat[pos == i, i] <- basis_random(sum(pos == i), 1)
     }
 
-    mat
+    target <- mat
+    list(target = target)
   }
 
   new_geodesic_path("independent", generator)

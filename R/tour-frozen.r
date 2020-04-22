@@ -51,7 +51,8 @@ frozen_tour <- function(d = 2, frozen) {
   generator <- function(current, data, ...) {
     if (is.null(current)) return(basis_init(ncol(data), d))
 
-    basis_random(ncol(data), d)
+    target <- basis_random(ncol(data), d)
+    list(target = target)
   }
 
   check_freezer_safe(frozen)
