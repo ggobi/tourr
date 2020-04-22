@@ -32,7 +32,8 @@ grand_tour <- function(d = 2) {
   generator <- function(current, data, ...) {
     if (is.null(current)) return(basis_init(ncol(data), d))
 
-    basis_random(ncol(data), d)
+    target <- basis_random(ncol(data), d)
+    list(target = target)
   }
 
   new_geodesic_path("grand", generator)
