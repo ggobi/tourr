@@ -33,7 +33,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
     new_index <- index(new_basis)
 
     if (verbose)
-      record <- record %>% dplyr::add_row(basis = list(new_basis),
+      record <<- record %>% dplyr::add_row(basis = list(new_basis),
                                           index_val = new_index,
                                           info = "random_search",
                                           tries = tries,
@@ -43,7 +43,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
       cat("New", new_index, "try", try, "\n")
 
       if (verbose) {
-        record <- record %>%
+        record <<- record %>%
           dplyr::mutate(row = dplyr::row_number(),
                       info = ifelse(row == max(row), "new_basis", !!info)) %>%
           dplyr::select(-row)

@@ -1,3 +1,35 @@
+#' Kolmogorov index.
+#'
+#' Calculates the Kolmogorov index.
+#'
+#' @keywords hplot
+#' @export
+#'
+kol <- function() {
+
+
+  function(mat){
+
+    norm_bin_count <- ash::bin1(rnorm(nrow(mat)) %>% scale(), c(min(mat), max(mat)), 100)$nc
+
+    mat_bin_count <- ash::bin1(mat %>% scale(), c(min(mat), max(mat)), 100)$nc
+    diff <- sum((mat_bin_count - norm_bin_count)^2)/nrow(mat)
+
+    diff
+  }
+}
+
+
+
+kol_cdf <- function() {
+
+  function(mat){
+    norm <- rnorm(nrow(mat))
+
+    as.numeric(ks.test(mat, norm)$statistic)
+  }
+}
+
 #' Holes index.
 #'
 #' Calculates the holes index. See Cook and Swayne (2007)
