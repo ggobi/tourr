@@ -51,7 +51,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
 
     if (is.null(current)){
       current <- basis_random(ncol(data), d)
-      cur_index <- index(current)
+      cur_index <<- index(current)
 
       if (verbose) {
         record <<- tibble::tibble(basis = list(current),
@@ -63,8 +63,6 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
 
       return(current)
     }
-
-    cur_index <- index(current)
 
     if (cur_index > max.i){
       cat("Found index ", cur_index, ", larger than selected maximum ", max.i, ". Stopping search.\n",

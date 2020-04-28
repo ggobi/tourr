@@ -27,7 +27,8 @@ local_tour <- function(start, angle = pi / 4) {
     }
     odd <<- !odd
 
-    new_basis
+    target <- new_basis
+    list(target = target)
   }
 
   new_geodesic_path("local", generator)
