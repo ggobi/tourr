@@ -4,16 +4,8 @@
 \alias{search_geodesic}
 \title{Search for most interesting projection along random geodesics.}
 \usage{
-search_geodesic(
-  current,
-  alpha = 1,
-  index,
-  max.tries = 5,
-  n = 5,
-  delta = 0.01,
-  cur_index = NA,
-  ...
-)
+search_geodesic(current, alpha = 1, index, max.tries = 5, n = 5,
+  delta = 0.01, cur_index = NA, ...)
 }
 \arguments{
 \item{current}{starting projection}

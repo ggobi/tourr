@@ -5,21 +5,10 @@
 \alias{animate_slice}
 \title{Display tour path with a sliced scatterplot}
 \usage{
-display_slice(
-  center = TRUE,
-  axes = "center",
-  half_range = NULL,
-  col = "black",
-  pch_slice = 20,
-  pch_other = 46,
-  cex_slice = 2,
-  cex_other = 1,
-  eps = NULL,
-  anchor = NULL,
-  edges = NULL,
-  edges.col = "black",
-  ...
-)
+display_slice(center = TRUE, axes = "center", half_range = NULL,
+  col = "black", pch_slice = 20, pch_other = 46, cex_slice = 2,
+  cex_other = 1, v_rel = NULL, anchor = NULL, edges = NULL,
+  edges.col = "black", ...)
 
 animate_slice(data, tour_path = grand_tour(), rescale = TRUE, ...)
 }
@@ -45,11 +34,11 @@ Defaults to 46.}
 
 \item{cex_other}{size if the points outside the slice. Defaults to 1.}
 
-\item{eps}{volume of the slice. If not set, suggested value is caluclated and
-printed to the screen.}
+\item{v_rel}{relative volume of the slice. If not set, suggested value
+is caluclated and printed to the screen.}
 
 \item{anchor}{A vector specifying the reference point to anchor the slice.
-If NULL (default) the slice will be anchored at the origin.}
+If NULL (default) the slice will be anchored at the data center.}
 
 \item{edges}{A two column integer matrix giving indices of ends of lines.}
 
@@ -85,5 +74,5 @@ anchor3 <- rep(0.7, 3)
 anchor5 <- rep(0.3, 5)
 animate_slice(sphere3, anchor = anchor3)
 # Animate with thicker slice to capture more points in each view
-animate_slice(sphere5, anchor = anchor5, eps = 0.02)
+animate_slice(sphere5, anchor = anchor5, v_rel = 0.02)
 }
