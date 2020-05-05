@@ -20,7 +20,7 @@
 #' @param v_rel relative volume of the slice. If not set, suggested value
 #'   is caluclated and printed to the screen.
 #' @param anchor A vector specifying the reference point to anchor the slice.
-#'   If NULL (default) the slice will be anchored at the origin.
+#'   If NULL (default) the slice will be anchored at the data center.
 #' @param rescale if true, rescale all variables to range [0,1].
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_slice}}
