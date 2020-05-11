@@ -42,7 +42,12 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
                     rescale = TRUE, sphere = FALSE, verbose = FALSE,...) {
   #browser()
   verbose <<- verbose
-  record <<- tibble::tibble()
+  record <<- tibble::tibble(basis = list(),
+                            index_val = numeric(),
+                            tries = numeric(),
+                            info = character(),
+                            loop = numeric(),
+                            method = character())
 
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
