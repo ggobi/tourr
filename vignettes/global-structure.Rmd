@@ -87,7 +87,7 @@ devtools::load_all()
 set.seed(123456)
 temp <- animate_dist(data, tour_path = guided_tour(holes(), d = 1,
                                            search_f =  search_geodesic),
-                  rescale = FALSE, verbose = FALSE)
+                  rescale = FALSE, verbose = TRUE)
 
 #save(temp, file = here::here("vignettes", "data", "temp.rda"))
 ```

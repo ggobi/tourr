@@ -103,7 +103,8 @@ search_better_random <- function(current, alpha = 0.5, index,
                                         index_val = new_index,
                                         info = "random_search",
                                         tries = tries,
-                                        loop = try)
+                                        loop = try,
+                                        method = "search_better_random")
 
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
@@ -128,7 +129,8 @@ search_better_random <- function(current, alpha = 0.5, index,
                                           index_val = new_index,
                                           info = "random_search",
                                           tries = tries,
-                                          loop = try)
+                                          loop = try,
+                                          method = "search_better_random")
 
         return(list(record = record, target = new_basis))
       }else{

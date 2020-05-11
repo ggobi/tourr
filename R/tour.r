@@ -27,7 +27,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   }
 
   if (attr(tour_path, "name") == "guided"){
-    if (verbose)
+    if (verbose & is.null(record))
       record <<- tibble::tibble(basis = list(start),
                        index_val = index(start),
                        tries = 1,
