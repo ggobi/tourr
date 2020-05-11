@@ -20,6 +20,7 @@
 #'  of steps taken towards the target.
 #' @export
 new_tour <- function(data, tour_path, start = NULL, ...) {
+  #browser()
   stopifnot(inherits(tour_path, "tour_path"))
 
   if (is.null(start)) {
@@ -46,6 +47,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   geodesic <- NULL
 
   function(step_size, ...) {
+    #browser()
 
     index_val <- rlang::sym("index_val")
 
@@ -75,8 +77,10 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
             dplyr::filter(index_val == max(!!index_val))
 
           new_basis <-  record %>%
-            dplyr::filter(tries == max(tries), info %in% c("new_basis", "random_step", "new_basis_with_prob"))
+            dplyr::filter(tries == max(tries), info == "new_basis")
 
+          # deem the target basis as the new current basis if the interpolation doesn't reach the target basis
+          # used when the index_f is not smooth
           if (new_basis$index_val > row$index_val) {
             record <<- record %>% dplyr::add_row(new_basis %>% mutate(info = "interpolation"))
 
@@ -85,7 +89,6 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
           }
 
           if(nrow(row) != 0 & new_basis$index_val < row$index_val){
-
             proj <- row$basis[[1]]
             max_val <- row$index_val
             max_id <- which(record$index_val == max_val)
