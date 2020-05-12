@@ -29,7 +29,7 @@ search_polish <- function(current, polish_alpha = 0.5, index, polish_max_tries =
                                                                                    alpha = polish_alpha)))) %>%
       dplyr::mutate(index_val = purrr::map_dbl(basis, ~index(.x)),
                     polish_alpha = polish_alpha, tries = !! tries, info = "polish",
-                    loop = try)
+                    loop = try, method = "search_polish")
 
 
     best_row <- polish %>% dplyr::filter(index_val == max(index_val))
@@ -74,7 +74,7 @@ search_polish <- function(current, polish_alpha = 0.5, index, polish_max_tries =
 
       if (verbose)
         record <<- record %>% dplyr::bind_rows(polish) %>%
-          dplyr::bind_rows(best_row %>% dplyr::mutate(info = "polish_best"))
+          dplyr::bind_rows(best_row %>% dplyr::mutate(info = "polish_best", method = "search_polish"))
 
     }else{
 
