@@ -258,36 +258,33 @@ p1 + p2 +
 In search_better, it is likely that a basis with even higher index value can be found on the interpolation path from the current to the target basis. This is shown as a "hill" shape on the tracing plot. An interruption is implemented to allows the next iteration to start from the basis with the highest index value rather than from the ending basis. With this interruption, the search function is likely to find basis with higher index_val in the end. 
 
 ```{r eval =FALSE}
-# comment the interrupt and then run!
 devtools::load_all()
 set.seed(123456)
-interrupt_no <- animate_dist(data, tour_path = guided_tour(holes(), d = 1,
-                                           search_f =  search_better),
-                  rescale = FALSE, verbose = TRUE)
+interrupt_no <- animate_xy(data_mult[,c(1,2, 7:10)], 
+                           tour_path = guided_tour(holes(), d = 2,
+                                                   search_f =  search_better),
+                              rescale = FALSE, verbose = TRUE)
+
+devtools::load_all()
+set.seed(123456)
+interrupt_yes <- animate_xy(data_mult[,c(1,2, 7:10)], 
+                            tour_path = guided_tour(holes(), d = 2,
+                                                    search_f =  search_better),
+                           rescale = FALSE, verbose = TRUE)
 
 #save(interrupt_no, file = here::here("vignettes", "data", "interrupt_no.rda"))
-
-devtools::load_all()
-set.seed(123456)
-interrupt_yes <- animate_dist(data, tour_path = guided_tour(holes(), d = 1,
-                                           search_f =  search_better),
-                  rescale = FALSE, verbose = TRUE)
 #save(interrupt_yes, file = here::here("vignettes", "data", "interrupt_yes.rda"))
 
 ```
 
 
 ```{r}
-interrupt_no %>% filter(info == "interpolation") %>% pull(index_val) %>% tail(1)
-interrupt_yes %>% filter(info == "interpolation") %>% pull(index_val) %>% tail(1)
-p1 <- interrupt_no %>% filter(info == "interpolation") %>% mutate(id = row_number()) %>%
-  ggplot(aes(x =id, y = index_val)) + geom_line() + 
-  ggtitle("no interruption")
-p2 <- interrupt_yes %>% filter(info == "interpolation") %>% mutate(id = row_number()) %>%
-  ggplot(aes(x =id, y = index_val)) + geom_line() + 
-  ggtitle("with interruption")
-p1 / p2 + 
-  plot_layout(ncol = 2)
+library(ferrn)
+library(patchwork)
+p1 <- interrupt_no %>% filter(info == "interpolation") %>% explore_trace_interp() + ylim(0.8, 0.9) + xlim(0, 80)
+p2 <- interrupt_yes %>% filter(info == "interpolation") %>% explore_trace_interp() + ylim(0.8, 0.9) + xlim(0, 80)
+p1 | p2
+
 ```
 
 
