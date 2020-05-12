@@ -54,13 +54,12 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
       cur_index <<- index(current)
       t0 <<- 0.01
       if (verbose) {
-        method <- rlang::fn_fmls(guided_tour)$search_f %>% as.character()
         record <<- record %>% dplyr::add_row(basis = list(current),
                                   index_val = cur_index,
                                   tries = 1,
                                   info = "start",
                                   loop = NA,
-                                  method = method)
+                                  method = NA)
       }
 
       return(current)

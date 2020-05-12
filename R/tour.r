@@ -20,7 +20,6 @@
 #'  of steps taken towards the target.
 #' @export
 new_tour <- function(data, tour_path, start = NULL, ...) {
-  #browser()
   stopifnot(inherits(tour_path, "tour_path"))
 
   if (is.null(start)) {
@@ -28,7 +27,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   }
 
   if (attr(tour_path, "name") == "guided"){
-    if (verbose & is.null(record))
+    if (verbose & nrow(record) == 0)
       record <<- tibble::tibble(basis = list(start),
                        index_val = index(start),
                        tries = 1,
@@ -131,7 +130,8 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
       record <<- record %>% dplyr::add_row(basis = list(proj),
                                  index_val = index(proj),
                                  info = "interpolation",
-                                 tries = !!tries) %>%
+                                 tries = !!tries,
+                                 method = last(record$method)) %>%
         dplyr::mutate(id = dplyr::row_number())
       ret <- list(proj = proj, target = target, step = step, record = record)
     }
