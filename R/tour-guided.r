@@ -52,15 +52,14 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
     if (is.null(current)){
       current <- basis_random(ncol(data), d)
       cur_index <<- index(current)
-
+      t0 <<- 0.01
       if (verbose) {
-        method <- rlang::fn_fmls(guided_tour)$search_f %>% as.character()
         record <<- record %>% dplyr::add_row(basis = list(current),
                                   index_val = cur_index,
                                   tries = 1,
                                   info = "start",
                                   loop = NA,
-                                  method = method)
+                                  method = NA)
       }
 
       return(current)
@@ -89,7 +88,16 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
 
    # current, alpha = 1, index, max.tries = 5, n = 5, delta = 0.01, cur_index = NA, ...
     basis <- search_f(current, alpha, index, max.tries, cur_index=cur_index, ...)
-    alpha <<- alpha * cooling
+
+    if (as.character(rlang::fn_fmls(guided_tour)$search_f) != "search_posse"){
+      alpha <<- alpha * cooling
+    }else{
+      if (!is.null(basis$h)){
+        if (basis$h > 30){
+          alpha <<- alpha * cooling
+        }
+      }
+    }
 
     list(target = basis$target, arg = names(formals(search_f)))
   }

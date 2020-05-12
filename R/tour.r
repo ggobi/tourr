@@ -27,7 +27,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   }
 
   if (attr(tour_path, "name") == "guided"){
-    if (verbose & is.null(record))
+    if (verbose & nrow(record) == 0)
       record <<- tibble::tibble(basis = list(start),
                        index_val = index(start),
                        tries = 1,
@@ -46,6 +46,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   geodesic <- NULL
 
   function(step_size, ...) {
+    #browser()
 
     index_val <- rlang::sym("index_val")
 
@@ -75,8 +76,10 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
             dplyr::filter(index_val == max(!!index_val))
 
           new_basis <-  record %>%
-            dplyr::filter(tries == max(tries), info %in% c("new_basis", "random_step", "new_basis_with_prob"))
+            dplyr::filter(tries == max(tries), info == "new_basis")
 
+          # deem the target basis as the new current basis if the interpolation doesn't reach the target basis
+          # used when the index_f is not smooth
           if (new_basis$index_val > row$index_val) {
             record <<- record %>% dplyr::add_row(new_basis %>% mutate(info = "interpolation"))
 
@@ -85,7 +88,6 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
           }
 
           if(nrow(row) != 0 & new_basis$index_val < row$index_val){
-
             proj <- row$basis[[1]]
             max_val <- row$index_val
             max_id <- which(record$index_val == max_val)
@@ -128,7 +130,8 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
       record <<- record %>% dplyr::add_row(basis = list(proj),
                                  index_val = index(proj),
                                  info = "interpolation",
-                                 tries = !!tries) %>%
+                                 tries = !!tries,
+                                 method = last(record$method)) %>%
         dplyr::mutate(id = dplyr::row_number())
       ret <- list(proj = proj, target = target, step = step, record = record)
     }

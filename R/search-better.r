@@ -15,6 +15,7 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 #' @keywords internal
 search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   method = "linear", cur_index = NA, ...) {
+  #browser()
 
   info <- rlang::sym("info")
   basis <- rlang::sym("basis")
@@ -37,7 +38,8 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
                                           index_val = new_index,
                                           info = "random_search",
                                           tries = tries,
-                                          loop = try)
+                                          loop = try,
+                                          method = "search_better")
 
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
@@ -75,7 +77,15 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   NULL
 }
 
-#' Search for better projection, with stochastic component.
+#' Search for a better projection based on simulataed annealing
+#'
+#' Given an initial \eqn{t0}, the cooling scheme updates temperature at \deqn{T = t0 /\log(i + 1)}
+#' The candidate basis is sampled via \deqn{B_j = (1 - \alpha) * B_i + \alpha * B} where alpha defines the neighbourhood, \eqn{B_i} is the current basis, B is a randomly generated basis
+#' The acceptance probability is calculated as \deqn{prob = \exp{-abs(I(B_i) - I(B_j))/ T}}
+#' For more information, see
+#' \url{https://sci2s.ugr.es/sites/default/files/files/Teaching/GraduatesCourses/Metaheuristicas/Bibliography/1983-Science-Kirkpatrick-sim_anneal.pdf}
+#' and
+#' \url{https://projecteuclid.org/download/pdf_1/euclid.ss/1177011077}
 #' @keywords internal
 search_better_random <- function(current, alpha = 0.5, index,
   max.tries = Inf, method = "linear", eps = 0.001, cur_index = NA,
@@ -97,6 +107,7 @@ search_better_random <- function(current, alpha = 0.5, index,
   while(try < max.tries) {
     new_basis <- basis_nearby(current, alpha, method)
     new_index <- index(new_basis)
+    temperature <- t0 / log(try + 1)
 
     if (verbose)
       record <<- record %>% dplyr::add_row(basis = list(new_basis),
@@ -108,9 +119,10 @@ search_better_random <- function(current, alpha = 0.5, index,
 
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
+      cat("Accept \n")
 
       if (verbose) {
-        record <- record %>%
+        record <<- record %>%
           dplyr::mutate(row = dplyr::row_number(),
                       info = ifelse(row == max(row), "new_basis", info)) %>%
           dplyr::select(-row)
@@ -120,21 +132,24 @@ search_better_random <- function(current, alpha = 0.5, index,
         return(list(target = new_basis))
       }
     }
-    else if (abs(new_index-cur_index) < eps) {
-      cat("insert random step since abs(new_index-cur_index) < eps")
-      new_basis <- basis_random(nrow(current), ncol(current))
+    else{
+      prob <- min(exp(-abs(cur_index - new_index) / temperature), 1)
+      rand <- runif(1)
 
-      if (verbose) {
-        record <- record %>% dplyr::add_row(basis = list(new_basis),
-                                          index_val = new_index,
-                                          info = "random_search",
-                                          tries = tries,
-                                          loop = try,
-                                          method = "search_better_random")
+      if (prob > rand){
+        cat("New", new_index, "try", try, "\n")
+        cat("Accept with probability, prob =", prob,"\n")
 
-        return(list(record = record, target = new_basis))
-      }else{
-        return(list(target = new_basis))
+        if (verbose) {
+          record <<- record %>%
+            dplyr::mutate(row = dplyr::row_number(),
+                          info = ifelse(row == max(row), "new_basis", info)) %>%
+            dplyr::select(-row)
+
+          return(list(record = record, target = new_basis))
+        }else{
+          return(list(target = new_basis))
+        }
       }
     }
     try <- try + 1
