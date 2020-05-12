@@ -15,6 +15,7 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 #' @keywords internal
 search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   method = "linear", cur_index = NA, ...) {
+  #browser()
 
   info <- rlang::sym("info")
   basis <- rlang::sym("basis")
@@ -37,7 +38,8 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
                                           index_val = new_index,
                                           info = "random_search",
                                           tries = tries,
-                                          loop = try)
+                                          loop = try,
+                                          method = "search_better")
 
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
