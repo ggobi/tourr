@@ -58,6 +58,9 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
       if (pdiff > 0.001) { #FIXME: pdiff should pbly be a changeable parameter
         cat(" - NEW BASIS\n")
 
+        current <<- new_basis
+        cur_index <<- new_index
+
         if (verbose) {
           return(list(record = record, target = new_basis[[1]]))
         }else{
