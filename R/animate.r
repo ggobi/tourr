@@ -47,7 +47,8 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
                             tries = numeric(),
                             info = character(),
                             loop = numeric(),
-                            method = character())
+                            method = character(),
+                            alpha = numeric())
 
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
