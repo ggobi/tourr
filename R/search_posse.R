@@ -22,7 +22,8 @@ search_posse <- function(current, alpha = 0.5, index, max.tries = 300, cur_index
                                            info = "random_search",
                                            tries = tries,
                                            loop = try,
-                                           method = "search_posse")
+                                           method = "search_posse",
+                                           alpha = round(alpha,4))
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
 

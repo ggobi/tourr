@@ -41,7 +41,6 @@
 #' tries <- replicate(5, save_history(f, guided_tour(holes())), simplify = FALSE)
 guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
                         max.i = Inf, search_f = search_geodesic, ...) {
-#browser()
     generator <- function(current, data, ...) {
       #browser()
 
@@ -59,7 +58,8 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
                                   tries = 1,
                                   info = "start",
                                   loop = NA,
-                                  method = NA)
+                                  method = NA,
+                                  alpha = rlang::fn_fmls(guided_tour)$alpha)
       }
 
       return(current)

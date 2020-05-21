@@ -39,7 +39,8 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
                                           info = "random_search",
                                           tries = tries,
                                           loop = try,
-                                          method = "search_better")
+                                          method = "search_better",
+                                          alpha = round(alpha,4))
 
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
@@ -115,7 +116,8 @@ search_better_random <- function(current, alpha = 0.5, index,
                                         info = "random_search",
                                         tries = tries,
                                         loop = try,
-                                        method = "search_better_random")
+                                        method = "search_better_random",
+                                        alpha = as.factor(round(alpha,4)))
 
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
