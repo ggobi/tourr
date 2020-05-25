@@ -120,6 +120,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
     invisible(bases[, , seq_len(b)])
   }
 
+  record <- record %>% dplyr::mutate(id = dplyr::row_number())
   if (verbose) return(record)
 }
 
