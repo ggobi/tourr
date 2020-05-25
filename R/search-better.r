@@ -92,6 +92,7 @@ search_better_random <- function(current, alpha = 0.5, index,
   max.tries = Inf, method = "linear", eps = 0.001, cur_index = NA,
   ...
 ) {
+  #browser()
 
   info <- rlang::sym("info")
   basis <- rlang::sym("basis")
@@ -117,7 +118,7 @@ search_better_random <- function(current, alpha = 0.5, index,
                                         tries = tries,
                                         loop = try,
                                         method = "search_better_random",
-                                        alpha = as.factor(round(alpha,4)))
+                                        alpha = round(alpha,4))
 
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
