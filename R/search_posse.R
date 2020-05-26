@@ -1,6 +1,6 @@
 #' Search for a better projection based on Poss, 1995
 #' @keywords internal
-search_posse <- function(current, alpha = 0.5, index, max.tries = 300, cur_index = NA,
+search_posse <- function(current, posse_alpha = 0.5, index, max.tries = 300, cur_index = NA,
                          cooling = 0.9){
   #browser()
 
@@ -13,7 +13,7 @@ search_posse <- function(current, alpha = 0.5, index, max.tries = 300, cur_index
   h <- 0
 
   while (try < max.tries){
-    new_basis <- orthonormalise(current + alpha * basis_random(nrow(current), ncol(current)))
+    new_basis <- orthonormalise(current + posse_alpha * basis_random(nrow(current), ncol(current)))
     new_index <- index(new_basis)
 
     if (verbose)
@@ -23,7 +23,7 @@ search_posse <- function(current, alpha = 0.5, index, max.tries = 300, cur_index
                                            tries = tries,
                                            loop = try,
                                            method = "search_posse",
-                                           alpha = round(alpha,4))
+                                           alpha = round(posse_alpha,4))
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
 

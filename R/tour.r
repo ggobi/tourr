@@ -20,6 +20,7 @@
 #'  of steps taken towards the target.
 #' @export
 new_tour <- function(data, tour_path, start = NULL, ...) {
+
   stopifnot(inherits(tour_path, "tour_path"))
 
   if (is.null(start)) {
@@ -46,7 +47,6 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   geodesic <- NULL
 
   function(step_size, ...) {
-    #browser()
 
     index_val <- rlang::sym("index_val")
 
@@ -64,42 +64,56 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     }
 
     if (cur_dist >= target_dist) {
-
+      #browser()
 
       ## interrupt
       if (verbose) {
 
         if ("new_basis" %in% record$info){
 
-          row <- record %>%
-            dplyr::filter(tries == max(tries), info == "interpolation") %>%
-            dplyr::filter(index_val == max(!!index_val))
+          #browser()
+          last_two <- record %>% filter(info == "new_basis") %>% tail(2)
 
-          new_basis <-  record %>%
-            dplyr::filter(tries == max(tries), info == "new_basis")
+          if (nrow(last_two) == 1){
+              record <<- record
+              current <<- last_two$basis[[1]]
+              cur_index <<- last_two$index_val[1]
 
-          # deem the target basis as the new current basis if the interpolation doesn't reach the target basis
-          # used when the index_f is not smooth
-          if (new_basis$index_val > row$index_val) {
-            record <<- record %>% dplyr::add_row(new_basis %>% mutate(info = "interpolation"))
+          } else if (nrow(last_two) == 2 & last_two$index_val[1] > last_two$index_val[2]){
+            record <<- record
+            current <<- last_two$basis[[2]]
+            cur_index <<- last_two$index_val[2]
 
-            current <<- record %>% tail(1) %>% pull(basis) %>% .[[1]]
-            cur_index <<- record %>% tail(1) %>% pull(index_val)
+          }else{
+            row <- record %>%
+              dplyr::filter(tries == max(tries), info == "interpolation") %>%
+              dplyr::filter(index_val == max(!!index_val))
+
+            new_basis <-  record %>%
+              dplyr::filter(tries == max(tries), info == "new_basis")
+
+            # deem the target basis as the new current basis if the interpolation doesn't reach the target basis
+            # used when the index_f is not smooth
+            if (new_basis$index_val > row$index_val) {
+              record <<- record %>% dplyr::add_row(new_basis %>% mutate(info = "interpolation"))
+
+              current <<- record %>% tail(1) %>% pull(basis) %>% .[[1]]
+              cur_index <<- record %>% tail(1) %>% pull(index_val)
+            }
+
+            if(nrow(row) != 0 & new_basis$index_val < row$index_val){
+              proj <- row$basis[[1]]
+              max_val <- row$index_val
+              max_id <- which(record$index_val == max_val)
+
+              record <<- record %>%
+                dplyr::mutate(id = dplyr::row_number()) %>%
+                dplyr::filter(id <= max_id)
+
+              current <<- record %>% tail(1) %>% pull(basis) %>% .[[1]]
+              cur_index <<- record %>% tail(1) %>% pull(index_val)
+            }
           }
-
-          if(nrow(row) != 0 & new_basis$index_val < row$index_val){
-            proj <- row$basis[[1]]
-            max_val <- row$index_val
-            max_id <- which(record$index_val == max_val)
-
-            record <<- record %>%
-              dplyr::mutate(id = dplyr::row_number()) %>%
-              dplyr::filter(id <= max_id)
-
-            current <<- record %>% tail(1) %>% pull(basis) %>% .[[1]]
-            cur_index <<- record %>% tail(1) %>% pull(index_val)
-          }
-
         }
       }
 

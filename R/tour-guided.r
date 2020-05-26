@@ -41,8 +41,7 @@
 #' tries <- replicate(5, save_history(f, guided_tour(holes())), simplify = FALSE)
 guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
                         max.i = Inf, search_f = search_geodesic, ...) {
-    generator <- function(current, data, ...) {
-      #browser()
+  generator <- function(current, data, ...) {
 
     index <<- function(proj) {
       index_f(as.matrix(data) %*% proj)
@@ -89,14 +88,16 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
    # current, alpha = 1, index, max.tries = 5, n = 5, delta = 0.01, cur_index = NA, ...
     basis <- search_f(current, alpha, index, max.tries, cur_index=cur_index, ...)
 
-    if (as.character(rlang::fn_fmls(guided_tour)$search_f) != "search_posse"){
-      alpha <<- alpha * cooling
-    }else{
+    if ("posse_alpha" %in% names(as.list(rlang::enexpr(search_f)))){
       if (!is.null(basis$h)){
         if (basis$h > 30){
           alpha <<- alpha * cooling
         }
       }
+    }else if ("polish_alpha" %in% names(as.list(rlang::enexpr(search_f)))){
+     alpha <<- basis$alpha
+    }else{
+      polish_alpha <<- polish_alpha * cooling
     }
 
     list(target = basis$target, arg = names(formals(search_f)))
