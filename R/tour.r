@@ -64,7 +64,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     }
 
     if (cur_dist >= target_dist) {
-
+      #browser()
 
       ## interrupt
       if (verbose) {
@@ -75,12 +75,10 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
           last_two <- record %>% filter(info == "new_basis") %>% tail(2)
 
           if (nrow(last_two) == 1){
-            if (last_two$index_val[1] < record %>% filter(info == "start") %>% pull(index_val)){
               record <<- record
-              current <<- last_two$basis[[2]]
-              cur_index <<- last_Two$index_val[2]
+              current <<- last_two$basis[[1]]
+              cur_index <<- last_two$index_val[1]
 
-            }
           } else if (nrow(last_two) == 2 & last_two$index_val[1] > last_two$index_val[2]){
             record <<- record
             current <<- last_two$basis[[2]]
