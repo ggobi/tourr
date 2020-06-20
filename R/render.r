@@ -21,7 +21,7 @@
 #' @examples
 #' render(flea[, 1:4], grand_tour(), display_xy(), "pdf", "test.pdf")
 #' render(flea[, 1:4], grand_tour(), display_xy(), "png", "test-%03d.png")
-render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
+render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL, verbose = FALSE) {
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
     data <- as.matrix(data)
@@ -29,12 +29,14 @@ render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, 
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere_data(data)
 
+  verbose <<- verbose
+
   dev <- match.fun(dev)
   dev(...)
   on.exit(dev.off())
 
-  tour <- new_tour(data, tour_path, start)
-  step <- tour(0)
+  tour <- new_tour(data, tour_path, start, ...)
+  step <- tour(0, ...)
 
   display$init(data)
 
