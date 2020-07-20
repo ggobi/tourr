@@ -1,3 +1,42 @@
+#' Distance correlation index.
+#'
+#' Computes the distance correlation based index on
+#' 2D projections of the data.
+#'
+#' @keywords hplot
+#' @export
+dcor2d <- function(){
+  function(mat){
+    xy <-  na.omit(data.frame(x = mat[,1], y = mat[,2]))
+    measure <- with(xy, energy::dcor(x,y))
+    return(measure)
+  }
+}
+
+#' Spline based index.
+#'
+#' Compares the variance in residuals of a fitted
+#' spline model to the overall variance to find
+#' functional dependence in 2D projections
+#' of the data.
+#'
+#' @keywords hplot
+#' @export
+splines2d <- function(){
+  function(mat){
+    x <- mat[,1]
+    y <- mat[,2]
+    kx <- ifelse(length(unique(x[!is.na(x)]))<20,3,10)
+    ky <- ifelse(length(unique(y[!is.na(y)]))<20,3,10)
+    mgam1 <- mgcv::gam(y ~ s(x,bs="cr",k=kx))
+    mgam2 <- mgcv::gam(x ~ s(y,bs="cr",k=ky))
+    measure <- max(1-var(residuals(mgam1),na.rm=T)/var(y,na.rm=T), 1-var(residuals(mgam2),na.rm=T)/var(x,na.rm=T))
+    return(measure)
+  }
+}
+
+
+
 #' Kolmogorov index.
 #'
 #' Calculates the Kolmogorov index.

@@ -30,9 +30,11 @@ Imports:
 Suggests:
     TeachingDemos,
     ash,
+    energy,
     testthat,
     colorspace,
     ggplot2,
+    mgcv,
     reshape2,
     gifski,
     geozoo,

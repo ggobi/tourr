@@ -5,7 +5,9 @@
 \alias{Olive oil measurements}
 \alias{olive}
 \title{Olive oil samples from Italy}
-\format{A 572 x 10 numeric array}
+\format{
+A 572 x 10 numeric array
+}
 \description{
 This data is from a paper by Forina, Armanino, Lanteri, Tiscornia (1983)
 Classification of Olive Oils from their Fatty Acid Composition, in Martens

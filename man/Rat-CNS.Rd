@@ -5,7 +5,9 @@
 \alias{Rat CNS}
 \alias{ratcns}
 \title{Rat CNS Gene Expression}
-\format{A 112 x 11 numeric array}
+\format{
+A 112 x 11 numeric array
+}
 \description{
 Columns:
 }

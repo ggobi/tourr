@@ -4,9 +4,19 @@
 \alias{animate}
 \title{Animate a tour path.}
 \usage{
-animate(data, tour_path = grand_tour(), display = display_xy(),
-  start = NULL, aps = 1, fps = 15, max_frames = Inf,
-  rescale = TRUE, sphere = FALSE, verbose = FALSE, ...)
+animate(
+  data,
+  tour_path = grand_tour(),
+  display = display_xy(),
+  start = NULL,
+  aps = 1,
+  fps = 15,
+  max_frames = Inf,
+  rescale = TRUE,
+  sphere = FALSE,
+  verbose = FALSE,
+  ...
+)
 }
 \arguments{
 \item{data}{matrix, or data frame containing numeric columns}

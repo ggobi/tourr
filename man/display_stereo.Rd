@@ -7,8 +7,13 @@
 \usage{
 display_stereo(blue, red, cex = 1, ...)
 
-animate_stereo(data, tour_path = grand_tour(3), blue = rgb(0, 0.91,
-  0.89), red = rgb(0.98, 0.052, 0), ...)
+animate_stereo(
+  data,
+  tour_path = grand_tour(3),
+  blue = rgb(0, 0.91, 0.89),
+  red = rgb(0.98, 0.052, 0),
+  ...
+)
 }
 \arguments{
 \item{blue}{blue colour (for right eye)}

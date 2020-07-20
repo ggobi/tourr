@@ -5,7 +5,9 @@
 \alias{Tropical Atmosphere Ocean}
 \alias{tao}
 \title{Tropical Atmosphere Ocean data}
-\format{A 736 x 8 numeric array}
+\format{
+A 736 x 8 numeric array
+}
 \description{
 This is a subset of data taken from the NOAA web site
 http://www.pmel.noaa.gov/tao/. The data is generated from recording

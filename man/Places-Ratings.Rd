@@ -5,7 +5,9 @@
 \alias{Places Ratings}
 \alias{places}
 \title{Ratings of different locations across North America}
-\format{A 329 x 14 numeric array}
+\format{
+A 329 x 14 numeric array
+}
 \description{
 The "places data" were distribed to interested ASA members a few years ago
 so that they could apply contemporary data analytic methods to describe
