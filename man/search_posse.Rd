@@ -6,7 +6,7 @@
 \usage{
 search_posse(
   current,
-  alpha = 0.5,
+  posse_alpha = 0.5,
   index,
   max.tries = 300,
   cur_index = NA,

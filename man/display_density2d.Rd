@@ -5,9 +5,17 @@
 \alias{animate_density2d}
 \title{Display tour path with a density and scatterplot}
 \usage{
-display_density2d(center = TRUE, axes = "center", half_range = NULL,
-  col = "black", pch = 20, cex = 1, contour_quartile = c(0.25, 0.5,
-  0.75), edges = NULL, ...)
+display_density2d(
+  center = TRUE,
+  axes = "center",
+  half_range = NULL,
+  col = "black",
+  pch = 20,
+  cex = 1,
+  contour_quartile = c(0.25, 0.5, 0.75),
+  edges = NULL,
+  ...
+)
 
 animate_density2d(data, tour_path = grand_tour(), ...)
 }

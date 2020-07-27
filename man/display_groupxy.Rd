@@ -5,9 +5,18 @@
 \alias{animate_groupxy}
 \title{Display 2D tour projections displayed separately by groups}
 \usage{
-display_groupxy(centr = TRUE, axes = "center", half_range = NULL,
-  col = "black", pch = 20, cex = 1, edges = NULL,
-  group_by = NULL, plot_xgp = TRUE, ...)
+display_groupxy(
+  centr = TRUE,
+  axes = "center",
+  half_range = NULL,
+  col = "black",
+  pch = 20,
+  cex = 1,
+  edges = NULL,
+  group_by = NULL,
+  plot_xgp = TRUE,
+  ...
+)
 
 animate_groupxy(data, tour_path = grand_tour(), ...)
 }

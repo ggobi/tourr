@@ -5,7 +5,9 @@
 \alias{Ozone measurements}
 \alias{ozone}
 \title{Monthly ozone measurements over Central America}
-\format{A 24 x 24 x 72 numeric array}
+\format{
+A 24 x 24 x 72 numeric array
+}
 \description{
 This data set is a subset of the data from the 2006 ASA Data expo challenge,
 \url{http://stat-computing.org/dataexpo/2006/}. The data are monthly ozone

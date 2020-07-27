@@ -4,8 +4,16 @@
 \alias{slice_index}
 \title{Section pursuit index.}
 \usage{
-slice_index(breaks_x, breaks_y, eps, bintype = "polar", power = 1,
-  flip = 1, reweight = FALSE, p = 4)
+slice_index(
+  breaks_x,
+  breaks_y,
+  eps,
+  bintype = "polar",
+  power = 1,
+  flip = 1,
+  reweight = FALSE,
+  p = 4
+)
 }
 \arguments{
 \item{breaks_x}{binning on the first variable (x or radius).}

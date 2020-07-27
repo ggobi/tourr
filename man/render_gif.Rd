@@ -4,9 +4,18 @@
 \alias{render_gif}
 \title{Render frames of animation to a gif file}
 \usage{
-render_gif(data, tour_path, display, gif_file = "animation.gif", ...,
-  apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE,
-  start = NULL)
+render_gif(
+  data,
+  tour_path,
+  display,
+  gif_file = "animation.gif",
+  ...,
+  apf = 1/10,
+  frames = 50,
+  rescale = TRUE,
+  sphere = FALSE,
+  start = NULL
+)
 }
 \arguments{
 \item{data}{matrix, or data frame containing numeric columns}

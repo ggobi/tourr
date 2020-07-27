@@ -4,9 +4,18 @@
 \alias{guided_section_tour}
 \title{A guided section tour path.}
 \usage{
-guided_section_tour(index_f, d = 2, alpha = 0.5, cooling = 0.99,
-  max.tries = 25, max.i = Inf, v_rel = NULL, anchor = NULL,
-  search_f = search_geodesic, ...)
+guided_section_tour(
+  index_f,
+  d = 2,
+  alpha = 0.5,
+  cooling = 0.99,
+  max.tries = 25,
+  max.i = Inf,
+  v_rel = NULL,
+  anchor = NULL,
+  search_f = search_geodesic,
+  ...
+)
 }
 \arguments{
 \item{index_f}{the section purusit index function to optimise. The function

@@ -4,9 +4,16 @@
 \alias{search_polish}
 \title{Search for most interesting projection along random geodesics.}
 \usage{
-search_polish(current, polish_alpha = 0.5, index,
-  polish_max_tries = 30, cur_index = NA, n_sample = 1000,
-  polish_cooling = 1, ...)
+search_polish(
+  current,
+  polish_alpha = 0.5,
+  index,
+  polish_max_tries = 30,
+  cur_index = NA,
+  n_sample = 1000,
+  polish_cooling = 1,
+  ...
+)
 }
 \arguments{
 \item{current}{the current projeciton basis}
