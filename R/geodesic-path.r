@@ -22,7 +22,7 @@
 new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
   tour_path <- function(current, data, ...) {
     if (is.null(current)) {
-      if (name == "guided") tries <<- 0
+      if (name == "guided") tries <<- 1
       return(generator(NULL, data, ...))
     }
 

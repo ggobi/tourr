@@ -56,9 +56,9 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
       if (verbose) {
         record <<- record %>% dplyr::add_row(basis = list(current),
                                   index_val = cur_index,
-                                  tries = 1,
-                                  info = "start",
-                                  loop = NA,
+                                  tries = tries,
+                                  info = "new_basis",
+                                  loop = 1,
                                   method = NA,
                                   alpha = rlang::fn_fmls(guided_tour)$alpha)
       }
