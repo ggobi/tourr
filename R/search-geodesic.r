@@ -55,7 +55,7 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
 
       cat("Value ", dig3(new_index), " ",
           sprintf("%.1f", pdiff * 100), "% better ")
-      if (pdiff > 0.001) { #FIXME: pdiff should pbly be a changeable parameter
+      if (pdiff > 0.001 & proj_dist(current, new_basis[[1]]) > 1e-2) { #FIXME: pdiff should pbly be a changeable parameter
         cat(" - NEW BASIS\n")
 
         current <<- new_basis
