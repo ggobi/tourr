@@ -1,6 +1,8 @@
 Version 0.5.7
 ------------------------------------------------------------------------------
 
+Two new projection pursuit indexes have ben added, based on function from the archived package mbgraphic. 
+
 A slice tour is now available using the function animate_slice(). A new index for searching for interesting slices is available.
 
 A new record option is available to print out diagnostic information for every step. Use verbose = TRUE when starting a tour.
