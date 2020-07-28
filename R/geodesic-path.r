@@ -51,12 +51,7 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
       if (verbose) cat("generation:  dist =  ", dist, "\n")
 
     }
-    geo <- geodesic_path(current, target, frozen, ...)
-
-    if (verbose)
-      list(geo = geo, record = record)
-    else
-      list(geo = geo)
+    geodesic_path(current, target, frozen, ...)
   }
 
   structure(
