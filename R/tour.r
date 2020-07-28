@@ -49,7 +49,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
   function(step_size, ...) {
 
-    #browser()
+  #browser()
     index_val <- rlang::sym("index_val")
 
     if (verbose) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
@@ -65,12 +65,12 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
       ## interrupt
       if (verbose){
-        if ("new_basis" %in% record$info){
+        if ("new_basis" %in% record$info & record$method[2] != "search_geodesic"){
 
           last_two <- record %>% filter(info == "new_basis") %>% tail(2)
 
           if (last_two$index_val[1] > last_two$index_val[2]){
-            # do nothing if the new basis is not increasing - for noisy index
+            # search_better_random may give probalistic acceptance
             current <<- last_two$basis[[2]]
             cur_index <<- last_two$index_val[[2]]
           }else{
@@ -102,6 +102,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
           }
         }
       }
+      proj <<- geodesic$interpolate(1.) #make sure next starting plane is previous target
     }
 
     if (cur_dist >= target_dist) {
