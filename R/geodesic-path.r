@@ -22,7 +22,7 @@
 new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
   tour_path <- function(current, data, ...) {
     if (is.null(current)) {
-      if (name == "guided") tries <<- 0
+      if (name == "guided") tries <<- 1
       return(generator(NULL, data, ...))
     }
 
@@ -51,12 +51,7 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
       if (verbose) cat("generation:  dist =  ", dist, "\n")
 
     }
-    geo <- geodesic_path(current, target, frozen, ...)
-
-    if (verbose)
-      list(geo = geo, record = record)
-    else
-      list(geo = geo)
+    geodesic_path(current, target, frozen, ...)
   }
 
   structure(

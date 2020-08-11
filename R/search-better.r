@@ -51,9 +51,9 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
                       info = ifelse(row == max(row), "new_basis", !!info)) %>%
           dplyr::select(-row)
 
-        return(list(record = record, target = new_basis))
+        return(list(record = record, target = new_basis, alpha = alpha))
       }else{
-        return(list(target = new_basis))
+        return(list(target = new_basis, alpha = alpha))
       }
     }
     try <- try + 1
@@ -130,9 +130,9 @@ search_better_random <- function(current, alpha = 0.5, index,
                       info = ifelse(row == max(row), "new_basis", info)) %>%
           dplyr::select(-row)
 
-        return(list(record = record, target = new_basis))
+        return(list(record = record, target = new_basis, alpha = alpha))
       }else{
-        return(list(target = new_basis))
+        return(list(target = new_basis, alpha = alpha))
       }
     }
     else{
@@ -149,9 +149,9 @@ search_better_random <- function(current, alpha = 0.5, index,
                           info = ifelse(row == max(row), "new_basis", info)) %>%
             dplyr::select(-row)
 
-          return(list(record = record, target = new_basis))
+          return(list(record = record, target = new_basis, alpha = alpha))
         }else{
-          return(list(target = new_basis))
+          return(list(target = new_basis, alpha = alpha))
         }
       }
     }
