@@ -58,7 +58,7 @@ is_orthonormal <- function(x, tol = 0.001) {
   TRUE
 }
 
-#' Orthonnormalise one matrix by another.
+#' Orthonormalise one matrix by another.
 #'
 #' This ensures that each column in x is orthogonal to the corresponding
 #' column in by.

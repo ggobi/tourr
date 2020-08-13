@@ -9,6 +9,17 @@ rescale <- function(df) {
   apply(df, 2, function(x) (x - min(x)) / diff(range(x)))
 }
 
+#' Standardise a matrix or data frame
+#'
+#' Standardise each column to have mean 0 and var 1
+#'
+#' @param df data frame or matrix
+#' @keywords manip
+#' @export
+standdise <- function(df) {
+  as.matrix(apply(df, 2, function(x) (x - mean(x)) / sd(x)))
+}
+
 #' Center a numeric vector by subtracting off its mean.
 #'
 #' @param x numeric vector

@@ -2,7 +2,7 @@
 % Please edit documentation in R/linear-algebra.r
 \name{orthonormalise_by}
 \alias{orthonormalise_by}
-\title{Orthonnormalise one matrix by another.}
+\title{Orthonormalise one matrix by another.}
 \usage{
 orthonormalise_by(x, by)
 }
