@@ -13,7 +13,7 @@
 #' dim(interpolate(t1, 0.01))
 #' dim(interpolate(t1, 0.05))
 #' dim(interpolate(t1, 0.1))
-interpolate <- function(basis_set, angle = 0.05) {
+interpolate <- function(basis_set, angle = 0.05, cycle = FALSE) {
   basis_set <- as.array(basis_set)
   n <- dim(basis_set)[3]
   if (n < 2) return(basis_set)
@@ -32,7 +32,7 @@ interpolate <- function(basis_set, angle = 0.05) {
   projs <- array(NA_real_, c(dim(basis_set)[1:2], steps))
 
   i <- 1
-  tour <- new_tour(basis_set[, , 1], planned_tour(basis_set))
+  tour <- new_tour(basis_set[, , 1], planned_tour(basis_set, cycle))
   step <- tour(0)
   stop_next <- FALSE #use bool to stop after adding final projection
 
