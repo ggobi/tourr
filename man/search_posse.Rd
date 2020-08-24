@@ -16,4 +16,4 @@ search_posse(
 \description{
 Search for a better projection based on Poss, 1995
 }
-\keyword{internal}
+\keyword{optimize}

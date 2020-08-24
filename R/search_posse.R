@@ -1,5 +1,6 @@
 #' Search for a better projection based on Poss, 1995
-#' @keywords internal
+#' @keywords optimize
+#' @export
 search_posse <- function(current, posse_alpha = 0.5, index, max.tries = 300, cur_index = NA,
                          cooling = 0.9){
   #browser()

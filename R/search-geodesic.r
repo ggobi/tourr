@@ -19,6 +19,7 @@
 #' @param cur_index index value for starting projection, set NA if it needs to
 #'   be calculated
 #' @keywords optimize
+#' @export
 search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
                             delta = 0.01, cur_index = NA, ...) {
   if (is.na(cur_index)) cur_index <- index(current)

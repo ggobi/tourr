@@ -8,11 +8,7 @@
 #' @param n_sample number of samples to generate
 #' @param polish_cooling percentage of reductio in polish_alpha when no better basis is found
 #' @keywords optimize
-#'
-#' You should not to have call this function directly, but should supply it
-#' to the \code{\link{guided_tour}} as a search strategy.
-
-
+#' @export
 search_polish <- function(current, polish_alpha = 0.5, index, polish_max_tries = 30,
                           cur_index = NA, n_sample = 1000, polish_cooling = 1, ...){
 
