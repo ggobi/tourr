@@ -37,14 +37,17 @@ splines2d <- function(){
 
 
 
-#' Kolmogorov index.
+#' Normality index.
 #'
-#' Calculates the Kolmogorov index.
+#' Compares the similarity between the projected distribution and a normal distribution.
+#' \itemize{
+#' \item{norm_bin }{compares the count in 100 histogram bins}
+#' \item{norm_kol }{compares the cdf based on the Kolmogorov–Smirnov test (KS test)}
+#'}
 #'
 #' @keywords hplot
 #' @export
-#'
-kol <- function() {
+norm_bin <- function() {
 
 
   function(mat){
@@ -59,8 +62,9 @@ kol <- function() {
 }
 
 
-
-kol_cdf <- function() {
+#' @export
+#' @rdname norm_bin
+norm_kol <- function() {
 
   function(mat){
     norm <- rnorm(nrow(mat))
