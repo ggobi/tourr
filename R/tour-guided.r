@@ -97,7 +97,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
         }
       }
     }else if ("polish_alpha" %in% names(as.list(rlang::enexpr(search_f)))){
-      polish_alpha <<- polish_alpha * cooling
+      polish_alpha <<- alpha * cooling
     }else{
       alpha <<- basis$alpha
     }
