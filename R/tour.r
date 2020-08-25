@@ -33,7 +33,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
       record <<- tibble::tibble(basis = list(start),
                        index_val = index(start),
                        tries = 1,
-                       info = "start",
+                       info = "new_basis",
                        loop = NA)
   }
 
@@ -48,8 +48,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   geodesic <- NULL
 
   function(step_size, ...) {
-
-  #browser()
+    #browser()
     index_val <- rlang::sym("index_val")
 
     if (verbose) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
