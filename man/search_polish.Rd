@@ -33,22 +33,4 @@ search_polish(
 \description{
 Search for most interesting projection along random geodesics.
 }
-\keyword{You}
-\keyword{\code{\link{guided_tour}}}
-\keyword{a}
-\keyword{as}
-\keyword{but}
-\keyword{call}
-\keyword{directly,}
-\keyword{function}
-\keyword{have}
-\keyword{it}
-\keyword{not}
 \keyword{optimize}
-\keyword{search}
-\keyword{should}
-\keyword{strategy.}
-\keyword{supply}
-\keyword{the}
-\keyword{this}
-\keyword{to}

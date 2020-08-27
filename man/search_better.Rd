@@ -17,4 +17,4 @@ search_better(
 \description{
 Search for a better projection near the current projection.
 }
-\keyword{internal}
+\keyword{optimize}

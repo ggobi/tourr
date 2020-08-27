@@ -8,13 +8,10 @@
 #' @param n_sample number of samples to generate
 #' @param polish_cooling percentage of reductio in polish_alpha when no better basis is found
 #' @keywords optimize
-#'
-#' You should not to have call this function directly, but should supply it
-#' to the \code{\link{guided_tour}} as a search strategy.
-
-
-search_polish <- function(current, polish_alpha = 0.5, index, polish_max_tries = 30,
+#' @export
+search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
                           cur_index = NA, n_sample = 1000, polish_cooling = 1, ...){
+  #browser()
 
   basis <- rlang::sym("basis")
   index_val <- rlang::sym("index_val")
@@ -26,9 +23,9 @@ search_polish <- function(current, polish_alpha = 0.5, index, polish_max_tries =
   while (try <= polish_max_tries){
 
     polish <- purrr::map_dfr(1:n_sample, ~tibble::tibble(basis = list(basis_nearby(current,
-                                                                                   alpha = polish_alpha)))) %>%
+                                                                                   alpha = alpha)))) %>%
       dplyr::mutate(index_val = purrr::map_dbl(basis, ~index(.x)),
-                    alpha = round(polish_alpha, 4), tries = !! tries, info = "polish",
+                    alpha = round(alpha, 4), tries = !! tries, info = "polish",
                     loop = try, method = "search_polish")
 
 
@@ -52,12 +49,12 @@ search_polish <- function(current, polish_alpha = 0.5, index, polish_max_tries =
           cur_index <<- cur_index
           current <<- current
 
-          return(list(record = record, target = current, alpha = polish_alpha))
+          return(list(record = record, target = current, alpha = alpha))
         } else {
           cat("current basis: ", current, "cur_index: ", cur_index, "\n")
           cur_index <<- cur_index
           current <<- current
-          return(list(target = current, alpha = polish_alpha))
+          return(list(target = current, alpha = alpha))
         }
 
       }
@@ -71,12 +68,12 @@ search_polish <- function(current, polish_alpha = 0.5, index, polish_max_tries =
           cur_index <<- cur_index
           current <<- current
 
-          return(list(record = record, target = current, alpha = polish_alpha))
+          return(list(record = record, target = current, alpha = alpha))
         } else {
           cat("current basis: ", current, "cur_index: ", cur_index, "\n")
           cur_index <<- cur_index
           current <<- current
-          return(list(target = current, alpha = polish_alpha))
+          return(list(target = current, alpha = alpha))
         }
       }
 
@@ -92,8 +89,8 @@ search_polish <- function(current, polish_alpha = 0.5, index, polish_max_tries =
     }else{
 
       polish_cooling <-  polish_cooling * 0.95
-      polish_alpha <- polish_alpha * polish_cooling
-      cat("alpha gets updated to", polish_alpha, "\n")
+      alpha <- alpha * polish_cooling
+      cat("alpha gets updated to", alpha, "\n")
 
       # check condition 3: alpha can't be too small
 
@@ -104,12 +101,12 @@ search_polish <- function(current, polish_alpha = 0.5, index, polish_max_tries =
           cur_index <<- cur_index
           current <<- current
 
-          return(list(record = record, target = current, alpha = polish_alpha))
+          return(list(record = record, target = current, alpha = alpha))
         } else {
           cat("current basis: ", current, "cur_index: ", cur_index, "\n")
           cur_index <<- cur_index
           current <<- current
-          return(list(target = current, alpha = polish_alpha))
+          return(list(target = current, alpha = alpha))
         }
       }
     }

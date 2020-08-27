@@ -12,7 +12,8 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 
 
 #' Search for a better projection near the current projection.
-#' @keywords internal
+#' @keywords optimize
+#' @export
 search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   method = "linear", cur_index = NA, ...) {
   #browser()
@@ -87,7 +88,8 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
 #' \url{https://sci2s.ugr.es/sites/default/files/files/Teaching/GraduatesCourses/Metaheuristicas/Bibliography/1983-Science-Kirkpatrick-sim_anneal.pdf}
 #' and
 #' \url{https://projecteuclid.org/download/pdf_1/euclid.ss/1177011077}
-#' @keywords internal
+#' @keywords optimize
+#' @export
 search_better_random <- function(current, alpha = 0.5, index,
   max.tries = Inf, method = "linear", eps = 0.001, cur_index = NA,
   ...
