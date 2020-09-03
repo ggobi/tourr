@@ -51,9 +51,8 @@ norm_bin <- function() {
 
 
   function(mat){
-
-    norm_bin_count <- ash::bin1(rnorm(nrow(mat)) %>% scale(), c(min(mat), max(mat)), 100)$nc
-
+    norm <- norm[1:nrow(mat)]
+    norm_bin_count <- ash::bin1(norm %>% scale(), c(min(mat), max(mat)), 100)$nc
     mat_bin_count <- ash::bin1(mat %>% scale(), c(min(mat), max(mat)), 100)$nc
     diff <- sum((mat_bin_count - norm_bin_count)^2)/nrow(mat)
 
@@ -67,8 +66,7 @@ norm_bin <- function() {
 norm_kol <- function() {
 
   function(mat){
-    norm <- rnorm(nrow(mat))
-
+    norm <- norm[1:nrow(mat)]
     as.numeric(ks.test(mat, norm)$statistic)
   }
 }
