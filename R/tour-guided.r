@@ -27,18 +27,18 @@
 #'   \code{\link{search_better_random}} for different search strategies
 #' @export
 #' @examples
-#' animate_xy(flea[, 1:3], guided_tour(holes()), sphere = TRUE)
-#' animate_xy(flea[, 1:6], guided_tour(holes()), sphere = TRUE)
-#' animate_dist(flea[, 1:6], guided_tour(holes(), 1), sphere = TRUE)
+#' animate_xy(flea[, 1:3], guided_tour(holes(), search_f = search_geodesic), sphere = TRUE)
+#' animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_geodesic), sphere = TRUE)
+#' animate_dist(flea[, 1:6], guided_tour(holes(), 1, search_f = search_geodesic), sphere = TRUE)
 #' clrs <- c("#486030", "#c03018", "#f0a800")
 #' col <- clrs[as.numeric(flea$species)]
-#' animate_xy(flea[, 1:6], guided_tour(lda_pp(flea[,7])), sphere = TRUE, col=col)
+#' animate_xy(flea[, 1:6], guided_tour(lda_pp(flea[,7]), search_f = search_geodesic), sphere = TRUE, col=col)
 #'
 #' # save_history is particularly useful in conjunction with the
 #' # guided tour as it allows us to look at the tour path in many different
 #' # ways
 #' f <- flea[, 1:3]
-#' tries <- replicate(5, save_history(f, guided_tour(holes())), simplify = FALSE)
+#' tries <- replicate(5, save_history(f, guided_tour(holes(), search_f = search_geodesic)), simplify = FALSE)
 guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
                         max.i = Inf, search_f = c("search_geodesic", "search_better", "search_polish", "search_better_random", "search_posse"), ...) {
   #browser()
@@ -48,6 +48,11 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
     index <<- function(proj) {
       index_f(as.matrix(data) %*% proj)
     }
+
+
+    search_funs <- eval(rlang::fn_fmls(guided_tour)$search_f)
+    method <-  search_funs[purrr::map_lgl(.x = search_funs, ~identical(get(.x), search_f))]
+
 
     if (is.null(current)){
       current <- basis_random(ncol(data), d)
@@ -59,7 +64,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
                                   tries = tries,
                                   info = "new_basis",
                                   loop = 1,
-                                  method = NA,
+                                  method = method,
                                   alpha = rlang::fn_fmls(guided_tour)$alpha)
       }
 
@@ -89,9 +94,6 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
 
     #current, alpha = 1, index, max.tries = 5, n = 5, delta = 0.01, cur_index = NA, ..
     basis <- search_f(current, alpha, index, max.tries, cur_index=cur_index, ...)
-
-    search_funs <- eval(rlang::fn_fmls(guided_tour)$search_f)
-    method <-  search_funs[purrr::map_lgl(.x = search_funs, ~identical(get(.x), search_f))]
 
 
     if (method == "search_posse"){
