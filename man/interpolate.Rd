@@ -4,7 +4,7 @@
 \alias{interpolate}
 \title{Interpolate geodesically between bases.}
 \usage{
-interpolate(basis_set, angle = 0.05)
+interpolate(basis_set, angle = 0.05, cycle = FALSE)
 }
 \arguments{
 \item{basis_set}{input basis set}
