@@ -6,7 +6,7 @@
 \usage{
 search_polish(
   current,
-  polish_alpha = 0.5,
+  alpha = 0.5,
   index,
   polish_max_tries = 30,
   cur_index = NA,
@@ -18,8 +18,6 @@ search_polish(
 \arguments{
 \item{current}{the current projeciton basis}
 
-\item{polish_alpha}{the angle used to search the target basis from the current basis}
-
 \item{index}{index function}
 
 \item{cur_index}{the index value of the current basis}
@@ -27,6 +25,8 @@ search_polish(
 \item{n_sample}{number of samples to generate}
 
 \item{polish_cooling}{percentage of reductio in polish_alpha when no better basis is found}
+
+\item{polish_alpha}{the angle used to search the target basis from the current basis}
 
 \item{max.tries}{maximum number of iteration before giving up}
 }
