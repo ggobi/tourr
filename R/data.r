@@ -262,3 +262,14 @@ NULL
 #' @keywords datasets
 NULL
 
+
+#' A generated random sequence
+#'
+#' This sequence is used in norm_bin() and norm_kol() to ensure the index for
+#' a fixed projection is always the same
+#' @name norm
+#' @docType data
+#' @format A vector of length 1000
+set.seed(123)
+norm <- rnorm(1000)
+save(norm, file = here::here("data", "random_num.rda"))
