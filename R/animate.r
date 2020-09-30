@@ -40,8 +40,9 @@
 animate <- function(data, tour_path = grand_tour(), display = display_xy(),
                     start = NULL, aps = 1, fps = 15, max_frames = Inf,
                     rescale = TRUE, sphere = FALSE, verbose = FALSE,...) {
-  #browser()
+
   verbose <<- verbose
+
   record <<- tibble::tibble(basis = list(),
                             index_val = numeric(),
                             tries = numeric(),
@@ -72,7 +73,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
     fps <- 19
   }
 
-  tour <- new_tour(data, tour_path, start, ...)
+  tour <- new_tour(data, tour_path, start, verbose, ...)
   start <- tour(0, ...)
   bs <- 1
   bases <- array(NA, c(ncol(data), ncol(start$target), bs))
