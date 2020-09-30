@@ -49,6 +49,7 @@ is_orthonormal <- function (x, tol = 0.001) {
       return(FALSE)
   }
   if (nc > 1) {
+    # dot product between columns is close to zero
     for (j in iter[2:nc]) {
       rem <- setdiff(iter, j)
       for (i in rem) {
