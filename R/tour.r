@@ -12,7 +12,7 @@
 #' @param start starting projection, if omitted will use default projection
 #'   from generator
 #' @param verbose if true, a `data.frame` with all the bases, index values and
-#'   counters will be printed hile running the tour
+#'   counters will be printed while running the tour
 #' @seealso \code{\link{save_history}}, \code{\link{render}} and
 #'   \code{\link{animate}} for examples of functions that use this function
 #'   to run dynamic tours.

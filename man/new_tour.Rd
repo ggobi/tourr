@@ -18,11 +18,11 @@ variables.  Should return NULL if the tour should terminate}
 from generator}
 
 \item{verbose}{if true, a `data.frame` with all the bases, index values and
-counters will be printed hile running the tour}
+counters will be printed while running the tour}
 }
 \value{
 a function with single argument, step_size.  This function returns
- a list containing the new projection, the correct target and the number
+ a list containing the new projection, the current target and the number
  of steps taken towards the target.
 }
 \description{
