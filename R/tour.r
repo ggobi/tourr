@@ -11,15 +11,17 @@
 #'   variables.  Should return NULL if the tour should terminate
 #' @param start starting projection, if omitted will use default projection
 #'   from generator
+#' @param verbose if true, a `data.frame` with all the bases, index values and
+#'   counters will be printed while running the tour
 #' @seealso \code{\link{save_history}}, \code{\link{render}} and
 #'   \code{\link{animate}} for examples of functions that use this function
 #'   to run dynamic tours.
 #' @keywords hplot dynamic internal
 #' @return a function with single argument, step_size.  This function returns
-#'  a list containing the new projection, the currect target and the number
+#'  a list containing the new projection, the current target and the number
 #'  of steps taken towards the target.
 #' @export
-new_tour <- function(data, tour_path, start = NULL, ...) {
+new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
   #browser()
 
   stopifnot(inherits(tour_path, "tour_path"))
