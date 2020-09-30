@@ -12,6 +12,8 @@
 #' @param rescale if true, rescale all variables to range [0,1]
 #' @param sphere if true, sphere all variables
 #' @param start starting projection.  If \code{NULL}, uses path default.
+#' @param verbose if true, a `data.frame` with all the bases, index values and
+#'  counters will be returned after running the tour
 #' @keywords hplot
 #' @export
 #' @references Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
@@ -29,13 +31,11 @@ render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, 
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere_data(data)
 
-  verbose <<- verbose
-
   dev <- match.fun(dev)
   dev(...)
   on.exit(dev.off())
 
-  tour <- new_tour(data, tour_path, start, ...)
+  tour <- new_tour(data, tour_path, start, verbose, ...)
   step <- tour(0, ...)
 
   display$init(data)
