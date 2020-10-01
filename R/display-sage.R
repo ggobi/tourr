@@ -59,7 +59,7 @@ display_sage <- function(axes = "center", half_range = NULL,
     ang <- atan2(x[,2], x[,1])
     rad <- pmin(rad, R)
     # transform with cumulative to get uniform distribution in radius
-    rad <- cumulative_radial(rad, half_range, peff)
+    rad <- cumulative_radial(rad, R, peff)
     # square-root is the inverse of the cumulative of a uniform disk (rescaling to maximum radius = 1)
     rad <- sqrt(rad)
     # transform back to x, y coordinates
