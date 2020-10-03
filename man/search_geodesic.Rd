@@ -30,6 +30,8 @@ search_geodesic(
 
 \item{cur_index}{index value for starting projection, set NA if it needs to
 be calculated}
+
+\item{...}{other arguments being passed into the \code{search_geodesic()}}
 }
 \description{
 This is a novel method for finding more interesting projections for the

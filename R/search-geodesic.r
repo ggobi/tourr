@@ -18,6 +18,7 @@
 #' @param delta step size for evaluation of best direction
 #' @param cur_index index value for starting projection, set NA if it needs to
 #'   be calculated
+#'@param ... other arguments being passed into the \code{search_geodesic()}
 #' @keywords optimize
 #' @export
 search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
@@ -166,3 +167,4 @@ find_path_peak <- function(old, new, index, max_dist = pi / 4, ...) {
     dplyr::bind_rows(best)
 
 }
+globalVariables("tries")

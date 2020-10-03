@@ -18,7 +18,11 @@ search_polish(
 \arguments{
 \item{current}{the current projeciton basis}
 
+\item{alpha}{the angle used to search the target basis from the current basis}
+
 \item{index}{index function}
+
+\item{polish_max_tries}{maximum number of iteration before giving up}
 
 \item{cur_index}{the index value of the current basis}
 
@@ -26,9 +30,7 @@ search_polish(
 
 \item{polish_cooling}{percentage of reductio in polish_alpha when no better basis is found}
 
-\item{polish_alpha}{the angle used to search the target basis from the current basis}
-
-\item{max.tries}{maximum number of iteration before giving up}
+\item{...}{other arguments being passed into the \code{search_polish()}}
 }
 \description{
 Search for most interesting projection along random geodesics.

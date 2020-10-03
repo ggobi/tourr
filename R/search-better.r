@@ -12,6 +12,13 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 
 
 #' Search for a better projection near the current projection.
+#' @param current starting projection
+#' @param alpha the angle used to search the target basis from the current basis
+#' @param index index function
+#' @param max.tries maximum number of iteration before giving up
+#' @param method whether the nearby bases are found by a linear/ geodesic formulation
+#' @param cur_index the index value of the current basis
+#' @param ... other arguments being passed into the \code{search_better()}
 #' @keywords optimize
 #' @export
 search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
@@ -84,6 +91,16 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
 #' \url{https://sci2s.ugr.es/sites/default/files/files/Teaching/GraduatesCourses/Metaheuristicas/Bibliography/1983-Science-Kirkpatrick-sim_anneal.pdf}
 #' and
 #' \url{https://projecteuclid.org/download/pdf_1/euclid.ss/1177011077}
+#'
+#' @param current starting projection
+#' @param alpha the angle used to search the target basis from the current basis
+#' @param index index function
+#' @param max.tries maximum number of iteration before giving up
+#' @param method whether the nearby bases are found by a linear/ geodesic formulation
+#' @param eps ???
+#' @param cur_index the index value of the current basis
+#' @param ... other arguments being passed into the \code{search_better_random()}
+#'
 #' @keywords optimize
 #' @export
 search_better_random <- function(current, alpha = 0.5, index,
@@ -130,7 +147,7 @@ search_better_random <- function(current, alpha = 0.5, index,
     }
     else{
       prob <- min(exp(-abs(cur_index - new_index) / temperature), 1)
-      rand <- runif(1)
+      rand <- stats::runif(1)
 
       if (prob > rand){
         cat("New", new_index, "try", try, "\n")
@@ -169,4 +186,4 @@ search_better_random <- function(current, alpha = 0.5, index,
 
   NULL
 }
-
+globalVariables(c("t0","tries", "info", "runif"))

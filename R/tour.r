@@ -66,7 +66,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
       if (verbose){
         if ("new_basis" %in% record$info & record$method[2] != "search_geodesic"){
 
-          last_two <- record %>% dplyr::filter(info == "new_basis") %>% tail(2)
+          last_two <- record %>% dplyr::filter(info == "new_basis") %>% utils::tail(2)
 
           if (last_two$index_val[1] > last_two$index_val[2]){
             # search_better_random may give probalistic acceptance
@@ -136,6 +136,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
     list(proj = proj, target = target, step = step)
   }
 }
+globalVariables(c("basis", "id", "index", "index_val"))
 
 #' @importFrom grDevices dev.cur dev.flush dev.hold dev.off hcl rgb
 #' @importFrom graphics abline axis box hist image lines pairs par plot points

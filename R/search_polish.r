@@ -3,10 +3,11 @@
 #' @param current the current projeciton basis
 #' @param alpha the angle used to search the target basis from the current basis
 #' @param index index function
-#' @param max.tries maximum number of iteration before giving up
+#' @param polish_max_tries maximum number of iteration before giving up
 #' @param cur_index the index value of the current basis
 #' @param n_sample number of samples to generate
 #' @param polish_cooling percentage of reductio in polish_alpha when no better basis is found
+#' @param ... other arguments being passed into the \code{search_polish()}
 #' @keywords optimize
 #' @export
 search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
@@ -130,3 +131,4 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
   if (verbose) return(record)
 
 }
+globalVariables("index_val")

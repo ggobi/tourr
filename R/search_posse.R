@@ -1,8 +1,13 @@
 #' Search for a better projection based on Poss, 1995
+#' @param current starting projection
+#' @param alpha the angle used to search the target basis from the current basis
+#' @param index index function
+#' @param max.tries maximum number of iteration before giving up
+#' @param cur_index the index value of the current basis
+#' @param ... other arguments being passed into the \code{search_better()}
 #' @keywords optimize
 #' @export
-search_posse <- function(current, posse_alpha = 0.5, index, max.tries = 300, cur_index = NA,
-                         cooling = 0.9){
+search_posse <- function(current, alpha = 0.5, index, max.tries = 300, cur_index = NA, ...){
   #browser()
 
   if (is.na(cur_index)) cur_index <- index(current)
@@ -11,7 +16,7 @@ search_posse <- function(current, posse_alpha = 0.5, index, max.tries = 300, cur
   h <- 0
 
   while (try < max.tries){
-    new_basis <- orthonormalise(current + posse_alpha * basis_random(nrow(current), ncol(current)))
+    new_basis <- orthonormalise(current + alpha * basis_random(nrow(current), ncol(current)))
     new_index <- index(new_basis)
 
     if (verbose)
@@ -21,7 +26,7 @@ search_posse <- function(current, posse_alpha = 0.5, index, max.tries = 300, cur
                                            tries = tries,
                                            loop = try,
                                            method = "search_posse",
-                                           alpha = round(posse_alpha,4))
+                                           alpha = round(alpha,4))
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
 
