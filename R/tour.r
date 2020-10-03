@@ -31,7 +31,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
 
   if (attr(tour_path, "name") == "guided"){
     if (verbose & is.null(record))
-      record <<- tibble::tibble(basis = list(start),
+      record <<- dplyr::tibble(basis = list(start),
                        index_val = index(start),
                        tries = 1,
                        info = "new_basis",

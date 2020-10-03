@@ -22,7 +22,7 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
 
   while (try <= polish_max_tries){
 
-    basis <- lapply(1:5, function(x) {tibble::tibble(basis = list(basis_random(n = 5)))})
+    basis <- lapply(1:5, function(x) {dplyr::tibble(basis = list(basis_random(n = 5)))})
     polish <- do.call(rbind, basis) %>%
       dplyr::mutate(index_val = vapply(basis, function(x) index(x), double(1)),
                     alpha = round(alpha, 4), tries = !! tries, info = "polish",

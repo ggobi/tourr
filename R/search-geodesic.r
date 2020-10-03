@@ -122,7 +122,7 @@ find_best_dir <- function(old, index, dist = 0.01, counter = 5, ...) {
 
     larger <- max(index(forward), index(backward))
 
-    tibble::tibble(basis = c(list(forward), list(backward)),
+    dplyr::tibble(basis = c(list(forward), list(backward)),
                    index_val = c(index(forward), index(backward)),
                    info = "direction_search",
                    tries = tries,
@@ -158,14 +158,15 @@ find_path_peak <- function(old, new, index, max_dist = pi / 4, ...) {
 
   alpha <- stats::optimize(index_pos, c(-max_dist, max_dist), maximum = TRUE, tol = 0.01)
 
-  best <- tibble::tibble(basis = list(step_angle(interpolator, alpha$maximum)),
+  best <- dplyr::tibble(basis = list(step_angle(interpolator, alpha$maximum)),
                  index_val = alpha$objective,
                  info = "best_line_search",
                  method = "search_geodesic")
 
   angle <- sample(seq(-max_dist, max_dist, 0.01), 5)
 
-  tibble::enframe(lapply(angle, function(x) step_angle(interpolator, x)), value = "basis") %>%
+  bases <- lapply(angle, function(x) dplyr::tibble(basis = list(step_angle(interpolator, x))))
+  do.call(rbind, bases) %>%
     dplyr::select(!!basis) %>%
     dplyr::mutate(index_val = vapply(basis, index, double(1)),
            info = "line_search", method = "search_geodesic") %>%

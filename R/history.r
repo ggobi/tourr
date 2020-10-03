@@ -52,7 +52,7 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
   if (rescale) data <- rescale(data)
   if (sphere) data  <- sphere_data(data)
 
-  record <<- tibble::tibble(basis = list(),
+  record <<- dplyr::tibble(basis = list(),
                             index_val = numeric(),
                             tries = numeric(),
                             info = character(),
