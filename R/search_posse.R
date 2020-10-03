@@ -5,9 +5,6 @@ search_posse <- function(current, posse_alpha = 0.5, index, max.tries = 300, cur
                          cooling = 0.9){
   #browser()
 
-  info <- rlang::sym("info")
-  basis <- rlang::sym("basis")
-
   if (is.na(cur_index)) cur_index <- index(current)
 
   try <- 1
@@ -31,7 +28,7 @@ search_posse <- function(current, posse_alpha = 0.5, index, max.tries = 300, cur
       if (verbose) {
         record <<- record %>%
           dplyr::mutate(row = dplyr::row_number(),
-                        info = ifelse(row == max(row), "new_basis", !!info)) %>%
+                        info = ifelse(row == max(row), "new_basis", info)) %>%
           dplyr::select(-row)
 
         return(list(record = record, target = new_basis, h = h))

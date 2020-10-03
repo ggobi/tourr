@@ -50,7 +50,6 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
 
   function(step_size, ...) {
     #browser()
-    index_val <- rlang::sym("index_val")
 
     if (verbose) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
 
@@ -76,7 +75,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
           }else{
             interp <- record %>%
               dplyr::filter(tries == max(tries), info == "interpolation") %>%
-              dplyr::filter(index_val == max(!!index_val))
+              dplyr::filter(index_val == max(index_val))
 
             target <- record %>%
               dplyr::filter(tries == max(tries), info == "new_basis")
@@ -127,7 +126,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
       record <<- record %>% dplyr::add_row(basis = list(proj),
                                  index_val = index(proj),
                                  info = "interpolation",
-                                 tries = !!tries,
+                                 tries = tries,
                                  method = dplyr::last(record$method),
                                  loop = step + 1) %>% # start the counter for loop from 1
         dplyr::mutate(id = dplyr::row_number())

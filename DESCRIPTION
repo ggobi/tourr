@@ -22,9 +22,7 @@ Depends:
     R (>= 3.5)
 Imports:
     MASS,
-    magrittr,
     tibble,
-    rlang,
     dplyr
 Suggests:
     TeachingDemos,

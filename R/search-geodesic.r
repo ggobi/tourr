@@ -24,9 +24,6 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
                             delta = 0.01, cur_index = NA, ...) {
   if (is.na(cur_index)) cur_index <- index(current)
 
-  basis <- rlang::sym("basis")
-
-
   try <- 1
   while(try < max.tries) {
     # Try 5 random directions and pick the one that has the highest
@@ -108,8 +105,6 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
 find_best_dir <- function(old, index, dist = 0.01, counter = 5, ...) {
 
   # change the original parameter tries to counter since it conflicts with the tries in geodesic-path.r
-  info <- rlang::sym("info")
-  index_val <- rlang::sym("index_val")
 
   bases <- replicate(counter, basis_random(nrow(old), ncol(old)),
     simplify = FALSE)
@@ -131,8 +126,8 @@ find_best_dir <- function(old, index, dist = 0.01, counter = 5, ...) {
   }
 
   do.call(rbind, lapply(bases, score)) %>%
-    dplyr::mutate(info = ifelse(index_val == max(!!index_val),
-                          "best_direction_search", !!info))
+    dplyr::mutate(info = ifelse(index_val == max(index_val),
+                                "best_direction_search", info))
 
 
 }
@@ -150,7 +145,6 @@ find_best_dir <- function(old, index, dist = 0.01, counter = 5, ...) {
 #' @param max_dist maximum distance to travel along in radians
 #' @keywords optimize internal
 find_path_peak <- function(old, new, index, max_dist = pi / 4, ...) {
-  basis <- rlang::sym("basis")
 
   interpolator <- geodesic_info(old, new)
 
@@ -167,7 +161,6 @@ find_path_peak <- function(old, new, index, max_dist = pi / 4, ...) {
 
   bases <- lapply(angle, function(x) dplyr::tibble(basis = list(step_angle(interpolator, x))))
   do.call(rbind, bases) %>%
-    dplyr::select(!!basis) %>%
     dplyr::mutate(index_val = vapply(basis, index, double(1)),
            info = "line_search", method = "search_geodesic") %>%
     dplyr::bind_rows(best)

@@ -16,10 +16,6 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 #' @export
 search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   method = "linear", cur_index = NA, ...) {
-  #browser()
-
-  info <- rlang::sym("info")
-  basis <- rlang::sym("basis")
 
   if (is.na(cur_index)) cur_index <- index(current)
 
@@ -49,7 +45,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
       if (verbose) {
         record <<- record %>%
           dplyr::mutate(row = dplyr::row_number(),
-                      info = ifelse(row == max(row), "new_basis", !!info)) %>%
+                      info = ifelse(row == max(row), "new_basis", info)) %>%
           dplyr::select(-row)
 
         return(list(record = record, target = new_basis, alpha = alpha))
@@ -94,11 +90,6 @@ search_better_random <- function(current, alpha = 0.5, index,
   max.tries = Inf, method = "linear", eps = 0.001, cur_index = NA,
   ...
 ) {
-  #browser()
-
-  info <- rlang::sym("info")
-  basis <- rlang::sym("basis")
-
 
   if (is.na(cur_index)) cur_index <- index(current)
 

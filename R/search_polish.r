@@ -1,7 +1,7 @@
 #' Search for most interesting projection along random geodesics.
 
 #' @param current the current projeciton basis
-#' @param polish_alpha the angle used to search the target basis from the current basis
+#' @param alpha the angle used to search the target basis from the current basis
 #' @param index index function
 #' @param max.tries maximum number of iteration before giving up
 #' @param cur_index the index value of the current basis
@@ -11,21 +11,17 @@
 #' @export
 search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
                           cur_index = NA, n_sample = 1000, polish_cooling = 1, ...){
-  #browser()
-
-  basis <- rlang::sym("basis")
-  index_val <- rlang::sym("index_val")
-  try <- rlang::sym("try")
 
   if (is.na(cur_index)) cur_index <- index(current)
   try <- 1
 
   while (try <= polish_max_tries){
 
-    basis <- lapply(1:5, function(x) {dplyr::tibble(basis = list(basis_random(n = 5)))})
+    basis <- lapply(1:5, function(x) {dplyr::tibble(basis = list(basis_nearby(current,
+                                                                              alpha = alpha)))})
     polish <- do.call(rbind, basis) %>%
       dplyr::mutate(index_val = vapply(basis, function(x) index(x), double(1)),
-                    alpha = round(alpha, 4), tries = !! tries, info = "polish",
+                    alpha = round(alpha, 4), tries = tries, info = "polish",
                     loop = try, method = "search_polish")
 
 
@@ -94,7 +90,7 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
 
       # check condition 3: alpha can't be too small
 
-      if (polish_alpha < 0.01){
+      if (alpha < 0.01){
         cat("alpha is", alpha, "and it is too small! \n")
         if (verbose){
           cat("current basis: ", current, "cur_index: ", cur_index, "\n")
