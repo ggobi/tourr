@@ -23,7 +23,6 @@ Depends:
 Imports:
     MASS,
     magrittr,
-    purrr,
     tibble,
     rlang,
     dplyr

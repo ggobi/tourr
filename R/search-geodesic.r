@@ -130,7 +130,7 @@ find_best_dir <- function(old, index, dist = 0.01, counter = 5, ...) {
 
   }
 
-  purrr::map_df(bases, score) %>%
+  do.call(rbind, lapply(bases, score)) %>%
     dplyr::mutate(info = ifelse(index_val == max(!!index_val),
                           "best_direction_search", !!info))
 
@@ -165,9 +165,9 @@ find_path_peak <- function(old, new, index, max_dist = pi / 4, ...) {
 
   angle <- sample(seq(-max_dist, max_dist, 0.01), 5)
 
-  tibble::enframe(purrr::map(angle, function(x) step_angle(interpolator, x)), value = "basis") %>%
+  tibble::enframe(lapply(angle, function(x) step_angle(interpolator, x)), value = "basis") %>%
     dplyr::select(!!basis) %>%
-    dplyr::mutate(index_val = purrr::map_dbl(!!basis,index),
+    dplyr::mutate(index_val = vapply(basis, index, double(1)),
            info = "line_search", method = "search_geodesic") %>%
     dplyr::bind_rows(best)
 
