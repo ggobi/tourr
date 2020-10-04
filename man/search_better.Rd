@@ -14,6 +14,21 @@ search_better(
   ...
 )
 }
+\arguments{
+\item{current}{starting projection}
+
+\item{alpha}{the angle used to search the target basis from the current basis}
+
+\item{index}{index function}
+
+\item{max.tries}{maximum number of iteration before giving up}
+
+\item{method}{whether the nearby bases are found by a linear/ geodesic formulation}
+
+\item{cur_index}{the index value of the current basis}
+
+\item{...}{other arguments being passed into the \code{search_better()}}
+}
 \description{
 Search for a better projection near the current projection.
 }

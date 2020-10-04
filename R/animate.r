@@ -43,7 +43,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
 
   verbose <<- verbose
 
-  record <<- tibble::tibble(basis = list(),
+  record <<- dplyr::tibble(basis = list(),
                             index_val = numeric(),
                             tries = numeric(),
                             info = character(),

@@ -67,7 +67,7 @@ norm_kol <- function() {
 
   function(mat){
     norm <- norm[1:nrow(mat)]
-    as.numeric(ks.test(mat, norm)$statistic)
+    as.numeric(stats::ks.test(mat, norm)$statistic)
   }
 }
 

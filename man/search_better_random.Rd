@@ -15,6 +15,23 @@ search_better_random(
   ...
 )
 }
+\arguments{
+\item{current}{starting projection}
+
+\item{alpha}{the angle used to search the target basis from the current basis}
+
+\item{index}{index function}
+
+\item{max.tries}{maximum number of iteration before giving up}
+
+\item{method}{whether the nearby bases are found by a linear/ geodesic formulation}
+
+\item{eps}{???}
+
+\item{cur_index}{the index value of the current basis}
+
+\item{...}{other arguments being passed into the \code{search_better_random()}}
+}
 \description{
 Given an initial \eqn{t0}, the cooling scheme updates temperature at \deqn{T = t0 /\log(i + 1)}
 The candidate basis is sampled via \deqn{B_j = (1 - \alpha) * B_i + \alpha * B} where alpha defines the neighbourhood, \eqn{B_i} is the current basis, B is a randomly generated basis

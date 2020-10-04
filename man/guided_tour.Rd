@@ -11,8 +11,7 @@ guided_tour(
   cooling = 0.99,
   max.tries = 25,
   max.i = Inf,
-  search_f = c("search_geodesic", "search_better", "search_polish",
-    "search_better_random", "search_posse"),
+  search_f = search_geodesic,
   ...
 )
 }

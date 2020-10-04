@@ -4,14 +4,20 @@
 \alias{search_posse}
 \title{Search for a better projection based on Poss, 1995}
 \usage{
-search_posse(
-  current,
-  posse_alpha = 0.5,
-  index,
-  max.tries = 300,
-  cur_index = NA,
-  cooling = 0.9
-)
+search_posse(current, alpha = 0.5, index, max.tries = 300, cur_index = NA, ...)
+}
+\arguments{
+\item{current}{starting projection}
+
+\item{alpha}{the angle used to search the target basis from the current basis}
+
+\item{index}{index function}
+
+\item{max.tries}{maximum number of iteration before giving up}
+
+\item{cur_index}{the index value of the current basis}
+
+\item{...}{other arguments being passed into the \code{search_better()}}
 }
 \description{
 Search for a better projection based on Poss, 1995

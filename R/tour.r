@@ -22,7 +22,6 @@
 #'  of steps taken towards the target.
 #' @export
 new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
-  #browser()
 
   stopifnot(inherits(tour_path, "tour_path"))
 
@@ -32,7 +31,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
 
   if (attr(tour_path, "name") == "guided"){
     if (verbose & is.null(record))
-      record <<- tibble::tibble(basis = list(start),
+      record <<- dplyr::tibble(basis = list(start),
                        index_val = index(start),
                        tries = 1,
                        info = "new_basis",
@@ -51,7 +50,6 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
 
   function(step_size, ...) {
     #browser()
-    index_val <- rlang::sym("index_val")
 
     if (verbose) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
 
@@ -68,7 +66,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
       if (verbose){
         if ("new_basis" %in% record$info & record$method[2] != "search_geodesic"){
 
-          last_two <- record %>% filter(info == "new_basis") %>% tail(2)
+          last_two <- record %>% dplyr::filter(info == "new_basis") %>% utils::tail(2)
 
           if (last_two$index_val[1] > last_two$index_val[2]){
             # search_better_random may give probalistic acceptance
@@ -77,7 +75,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
           }else{
             interp <- record %>%
               dplyr::filter(tries == max(tries), info == "interpolation") %>%
-              dplyr::filter(index_val == max(!!index_val))
+              dplyr::filter(index_val == max(index_val))
 
             target <- record %>%
               dplyr::filter(tries == max(tries), info == "new_basis")
@@ -87,17 +85,17 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
             if (target$index_val > interp$index_val) {
               proj <<- geodesic$interpolate(1.) #make sure next starting plane is previous target
 
-              record <<- record %>% dplyr::add_row(target %>% mutate(info = "interpolation", loop = step))
-              current <<- record %>% tail(1) %>% pull(basis) %>% .[[1]]
-              cur_index <<- record %>% tail(1) %>% pull(index_val)
+              record <<- record %>% dplyr::add_row(target %>% dplyr::mutate(info = "interpolation", loop = step))
+              current <<- record %>% tail(1) %>% dplyr::pull(basis) %>% .[[1]]
+              cur_index <<- record %>% tail(1) %>% dplyr::pull(index_val)
 
             } else if (target$index_val < interp$index_val & nrow(interp) != 0){
               # the interrupt
               proj <<- interp$basis[[1]]
 
               record <<- record %>% dplyr::filter(id <= which(record$index_val == interp$index_val))
-              current <<- record %>% tail(1) %>% pull(basis) %>% .[[1]]
-              cur_index <<- record %>% tail(1) %>% pull(index_val)
+              current <<- record %>% tail(1) %>% dplyr::pull(basis) %>% .[[1]]
+              cur_index <<- record %>% tail(1) %>% dplyr::pull(index_val)
             }
           }
         }
@@ -128,8 +126,8 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
       record <<- record %>% dplyr::add_row(basis = list(proj),
                                  index_val = index(proj),
                                  info = "interpolation",
-                                 tries = !!tries,
-                                 method = last(record$method),
+                                 tries = tries,
+                                 method = dplyr::last(record$method),
                                  loop = step + 1) %>% # start the counter for loop from 1
         dplyr::mutate(id = dplyr::row_number())
     }
@@ -138,6 +136,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
     list(proj = proj, target = target, step = step)
   }
 }
+globalVariables(c("basis", "id", "index", "index_val"))
 
 #' @importFrom grDevices dev.cur dev.flush dev.hold dev.off hcl rgb
 #' @importFrom graphics abline axis box hist image lines pairs par plot points
