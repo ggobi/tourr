@@ -1,6 +1,8 @@
 Version 0.5.7
 ------------------------------------------------------------------------------
 
+Little tour now cycles twice through variable list, in a randomised order.
+
 Two new projection pursuit indexes have ben added, based on function from the archived package mbgraphic.
 
 A slice tour is now available using the function animate_slice(). A new index for searching for interesting slices is available.
@@ -11,7 +13,7 @@ A new record option is available to print out diagnostic information for every s
 
 Improvements to the optimisation functions have been  made: search_better has an interrupt if a higher index is achieved mid-path; search_polish takes a best basis from another routine, and makes small steps to get a very best projection close by.
 
-Set the default fps to 15, to compatibly draw with RStudio window.
+Set the default fps to 10, to compatibly draw with RStudio window.
 
 Version 0.5.6
 ------------------------------------------------------------------------------

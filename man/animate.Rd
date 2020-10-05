@@ -10,7 +10,7 @@ animate(
   display = display_xy(),
   start = NULL,
   aps = 1,
-  fps = 15,
+  fps = 10,
   max_frames = Inf,
   rescale = TRUE,
   sphere = FALSE,
