@@ -41,8 +41,8 @@ non-interactive use.}
 
 \item{sphere}{if true, sphere all variables}
 
-\item{verbose}{if true, a dataframe with all the bases, index values and
-counters will be printed after the tour}
+\item{verbose}{if true, a `data.frame` with all the bases, index values and
+counters will be returned after the animation is escaped.}
 
 \item{...}{ignored}
 }

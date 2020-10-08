@@ -11,3 +11,5 @@
 ^\.git$
 ^..Rcheck$
 ^README\.md$
+^docs$
+^_config.yml$
