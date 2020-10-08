@@ -70,15 +70,19 @@ render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, 
 #' @param start starting projection.  If \code{NULL}, uses path default.
 #'
 #' @examples
-#' gif_file <- file.path(tempdir(), "test.gif")
-#' render_gif(flea[, 1:4], grand_tour(), display_xy(), gif_file )
-#' utils::browseURL(gif_file)
-#'
+#' # gifski needs to be installed to render a gif
+#' if (requireNamespace("gifski", quietly = TRUE)) {
+#'  gif_file <- file.path(tempdir(), "test.gif")
+#'  render_gif(flea[, 1:4], grand_tour(), display_xy(), gif_file )
+#'  utils::browseURL(gif_file)
+#'  unlink(gif_file)
+#' }
 #' @export
 render_gif <- function(data, tour_path, display, gif_file = "animation.gif", ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
 
   if (!requireNamespace("gifski", quietly = TRUE)) {
-    stop("To use this function please install the 'gifski' package", quietly = TRUE)
+    stop("To use this function please install the 'gifski' package",
+         call. = FALSE)
   }
 
   # temp png files

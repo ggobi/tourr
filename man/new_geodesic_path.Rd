@@ -4,13 +4,15 @@
 \alias{new_geodesic_path}
 \title{Generate a geodesic path between bases supplied by generator}
 \usage{
-new_geodesic_path(name, generator, frozen = NULL, ...)
+new_geodesic_path(name, generator, frozen = NULL, verbose = FALSE, ...)
 }
 \arguments{
 \item{name}{name to give tour path}
 
 \item{frozen}{matrix giving frozen variables, as described in
 \code{\link{freeze}}}
+
+\item{verbose}{if true, the the current geodesic distance is printed to the console.}
 
 \item{generate}{basis generator function}
 }
