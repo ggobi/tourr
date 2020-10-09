@@ -48,7 +48,7 @@ slice_index <- function(breaks_x, breaks_y, eps, bintype="polar", power=1, flip=
 
     if (bintype == "polar" && reweight){
       # get bin-wise weights
-      w_in <- weights_bincount_radial(mat_in, p)
+      w_in <- weights_bincount_radial(mat_in, 2)
       w_out <- weights_bincount_radial(mat_out, p)
       # rescale and normalise n
       mat_in$n <- w_in * mat_in$n / sum(mat_in$n)
@@ -133,7 +133,7 @@ slice_binning <- function(mat, dists, h, breaks_x, breaks_y, bintype="square"){
   }
 
   # track which points are inside the current slice
-  inSlice <- factor(dists > h)
+  inSlice <- factor(dists < h)
 
   # return binned data
   ret <- as.data.frame(table(xbin, ybin, inSlice, useNA = "no"))
@@ -192,13 +192,7 @@ weights_bincount_radial <- function(histo, p){
   for (i in 1:nrow(histo)){
     r1 <- as.numeric( sub("\\((.+),.*", "\\1", histo$xbin[[i]]))
     r2 <- as.numeric( sub("[^,]*,([^]]*)\\]", "\\1", histo$xbin[[i]]))
-    # bins inside the slice are rescaled with weights for p=2
-    if (histo$inSlice[[i]] == TRUE){
-      w[i] <-  radial_bin_weight_inv(r1, r2, R, 2)
-    }
-    else {
-      w[i] <-  radial_bin_weight_inv(r1, r2, R, p)
-    }
+    w[i] <-  radial_bin_weight_inv(r1, r2, R, p)
   }
   1 / (n*w)
 }
