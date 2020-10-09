@@ -66,11 +66,11 @@ slice_index <- function(breaks_x, breaks_y, eps, bintype="polar", power=1, flip=
                    mat_in$n^(1/power))
       y <- flip*(mat_out$n -
                    mat_in$n)
-      x <- ifelse(y>eps, x, 0) # dropping bins based on y
+      x[y<eps] <- 0 # dropping bins based on y
     }
     else {
       x <- flip*(mat_out$n - mat_in$n)
-      x <- ifelse(x>eps, x, 0)
+      x[x<eps] <- 0
     }
     if (power!=1)
       resc * sum(x^power)
@@ -136,8 +136,9 @@ slice_binning <- function(mat, dists, h, breaks_x, breaks_y, bintype="square"){
   inSlice <- factor(dists < h)
 
   # return binned data
-  ret <- as.data.frame(table(xbin, ybin, inSlice, useNA = "no"))
-  colnames(ret) <- c("xbin", "ybin", "inSlice", "n")
+  # to match order of radial rescaling vector we pass in ybin first
+  ret <- as.data.frame(table(ybin, xbin, inSlice, useNA = "no"))
+  colnames(ret) <- c("ybin", "xbin", "inSlice", "n")
   ret
 }
 
