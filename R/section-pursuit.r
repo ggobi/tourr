@@ -40,32 +40,37 @@ slice_index <- function(breaks_x, breaks_y, eps, bintype="polar", power=1, flip=
     if (length(mat_tab) == 1 && mat_tab == 0) return(0)
 
     # no result if no points inside the slice
-    if (length(mat_tab$n[mat_tab$inSlice=="1"])==0) return(0)
+    if (length(mat_tab$n[mat_tab$inSlice==TRUE])==0) return(0)
+
+    # splitting into in and out of slice
+    mat_in <- mat_tab[mat_tab$inSlice==TRUE,]
+    mat_out <- mat_tab[mat_tab$inSlice==FALSE,]
 
     if (bintype == "polar" && reweight){
-      mat_tab <- mat_tab %>%
-        tibble::add_column(w = weights_bincount_radial(mat_tab, p)) %>%
-        dplyr::group_by(inSlice) %>%
-        dplyr::mutate(n_tot = n/sum(n)) %>%
-        dplyr::mutate(n = n_tot * w)
+      # get bin-wise weights
+      w_in <- weights_bincount_radial(mat_in, 2)
+      w_out <- weights_bincount_radial(mat_out, p)
+      # rescale and normalise n
+      mat_in$n <- w_in * mat_in$n / sum(mat_in$n)
+      mat_out$n <- w_out * mat_out$n / sum(mat_out$n)
     }
     else{
-      mat_tab <- mat_tab %>%
-        dplyr::group_by(inSlice) %>%
-        dplyr::mutate(n = n/sum(n))
+      # normalise n
+      mat_in$n <- mat_in$n / sum(mat_in$n)
+      mat_out$n <- mat_out$n / sum(mat_out$n)
     }
 
     # getting binwise density differences
     if (power!=1) {
-      x <- flip*(mat_tab$n[mat_tab$inSlice=="0"]^(1/power) -
-                   mat_tab$n[mat_tab$inSlice=="1"]^(1/power))
-      y <- flip*(mat_tab$n[mat_tab$inSlice=="0"] -
-                   mat_tab$n[mat_tab$inSlice=="1"])
-      x <- dplyr::if_else(y>eps, x, 0) # dropping bins based on y
+      x <- flip*(mat_out$n^(1/power) -
+                   mat_in$n^(1/power))
+      y <- flip*(mat_out$n -
+                   mat_in$n)
+      x[y<eps] <- 0 # dropping bins based on y
     }
     else {
-      x <- flip*(mat_tab$n[mat_tab$inSlice=="0"] - mat_tab$n[mat_tab$inSlice=="1"])
-      x <- dplyr::if_else(x>eps, x, 0)
+      x <- flip*(mat_out$n - mat_in$n)
+      x[x<eps] <- 0
     }
     if (power!=1)
       resc * sum(x^power)
@@ -108,20 +113,19 @@ estimate_eps <- function(N, p, res, K, K_theta, r_breaks){
 #' @keywords internal
 slice_binning <- function(mat, dists, h, breaks_x, breaks_y, bintype="square"){
 
-  # names and centering
-  colnames(mat) <- c("x","y")
+  # centering
   mat <- apply(mat, 2, function(x) (x-mean(x)))
-  mat <- tibble::as_tibble(mat)
 
   if (bintype == "square") {
-    mat$xbin <- cut(mat$x, breaks_x)
-    mat$ybin <- cut(mat$y, breaks_y)
+
+    xbin <- cut(mat[,1], breaks_x)
+    ybin <- cut(mat[,2], breaks_y)
   }
   else if (bintype == "polar") {
-    rad <- sqrt(mat$x^2+mat$y^2)
-    ang <- atan2(mat$y, mat$x)
-    mat$xbin <- cut(rad, breaks_x)
-    mat$ybin <- cut(ang, breaks_y)
+    rad <- sqrt(mat[,1]^2+mat[,2]^2)
+    ang <- atan2(mat[,2], mat[,1])
+    xbin <- cut(rad, breaks_x)
+    ybin <- cut(ang, breaks_y)
   }
   else {
     cat(bintype, " is not a recognised bin type\n")
@@ -129,12 +133,13 @@ slice_binning <- function(mat, dists, h, breaks_x, breaks_y, bintype="square"){
   }
 
   # track which points are inside the current slice
-  mat$inSlice <- factor(dplyr::if_else(dists > h, 0, 1))
+  inSlice <- factor(dists < h)
 
   # return binned data
-  mat %>%
-    dplyr::count(xbin, ybin, inSlice, .drop=FALSE) %>%
-    dplyr::filter(!is.na(xbin))
+  # to match order of radial rescaling vector we pass in ybin first
+  ret <- as.data.frame(table(ybin, xbin, inSlice, useNA = "no"))
+  colnames(ret) <- c("ybin", "xbin", "inSlice", "n")
+  ret
 }
 
 #' Returns n equidistant bins between -pi and pi
@@ -188,13 +193,7 @@ weights_bincount_radial <- function(histo, p){
   for (i in 1:nrow(histo)){
     r1 <- as.numeric( sub("\\((.+),.*", "\\1", histo$xbin[[i]]))
     r2 <- as.numeric( sub("[^,]*,([^]]*)\\]", "\\1", histo$xbin[[i]]))
-    # bins inside the slice are rescaled with weights for p=2
-    if (histo$inSlice[[i]] == 1){
-      w[i] <-  radial_bin_weight_inv(r1, r2, R, 2)
-    }
-    else {
-      w[i] <-  radial_bin_weight_inv(r1, r2, R, p)
-    }
+    w[i] <-  radial_bin_weight_inv(r1, r2, R, p)
   }
   1 / (n*w)
 }
