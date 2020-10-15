@@ -25,20 +25,20 @@ A tour animates a display of interpolated low-dimensional projections from high-
 
 To get started we can simply generate a tour animation for any numeric data matrix. Here we look at the flea data available in the package, drop the last column (the grouping variable), and call
 
-```{r, animation.hook="gifski"}
+```{r}
 f <- flea[, 1:6]
-animate(f, max_frames = 30)
+animate(f)
 ```
 
-The second argument we used when calling `animate` limits the number of frames generated for the purpose of this vignette. In practice, when running a tour live, you can omitt the `max_frames` argument and watch the stream of new bases as they are generated.
+Here we only see the first frame that is generated on the tour path, but if you call `animate` in your console you will launch a tour animation that you can view in your graphics window.
 
 We could have also launched the same tour by specifying the default selection explicitly
 
 ```{r}
 animate(f,
         tour_path = grand_tour(),
-        display = display_xy(),
-        max_frames = 30)
+        display = display_xy()
+        )
 ```
 
 The most common application is to use a grand tour, which means that the projections (or bases) are randomly selected and give a global overview of the distribution. The typical display is a scatterplot display, i.e. working with 2-dimensional projections.
@@ -61,7 +61,6 @@ animate(f,
         display = display_xy())
 ```
 
-In this case we do not need to specify the `max_frames` argument, because the tour will automatically stop once it has found the best view.
 
 ## Display types
 
@@ -72,14 +71,14 @@ When changing the display type via the `display` argument, we need to make sure 
 ```{r}
 animate(f,
         tour_path = grand_tour(d = 1),
-        display = display_dist(),
-        max_frames = 30)
+        display = display_dist()
+        )
 ```
 
 but there is also a shortcut available
 
-```{r, animation.hook="gifski"}
-animate_dist(f, max_frames = 30)
+```{r}
+animate_dist(f)
 ```
 
 ## Saving a tour
