@@ -40,7 +40,7 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
     new_index <- peak$index_val %>% utils::tail(1)
     new_basis <- peak$basis %>% utils::tail(1)
 
-    if (verbose) record <<- dplyr::bind_rows(record, direction_search, peak)
+    if (getOption("tourr.verbose", default = FALSE)) record <<- dplyr::bind_rows(record, direction_search, peak)
 
     if (cur_index == 0 | new_index == 0){
       warning("either the cur_index or the new_index is zero!")
@@ -57,7 +57,7 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
         current <<- new_basis
         cur_index <<- new_index
 
-        if (verbose) {
+        if (getOption("tourr.verbose", default = FALSE)) {
           return(list(record = record, target = new_basis[[1]]))
         }else{
           return(list(target = new_basis[[1]]))

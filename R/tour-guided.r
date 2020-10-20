@@ -41,9 +41,7 @@
 #' tries <- replicate(5, save_history(f, guided_tour(holes())), simplify = FALSE)
 guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
                         max.i = Inf, search_f = search_geodesic, ...) {
-  #browser()
   generator <- function(current, data, ...) {
-    #browser()
     index <<- function(proj) {
 
       index_f(as.matrix(data) %*% proj)
@@ -60,7 +58,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
 
       cur_index <<- index(current)
       t0 <<- 0.01
-      if (verbose) {
+      if (getOption("tourr.verbose", default = FALSE)) {
         record <<- record %>% dplyr::add_row(basis = list(current),
                                   index_val = cur_index,
                                   tries = tries,

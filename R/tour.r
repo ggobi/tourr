@@ -11,8 +11,6 @@
 #'   variables.  Should return NULL if the tour should terminate
 #' @param start starting projection, if omitted will use default projection
 #'   from generator
-#' @param verbose if true, a `data.frame` with all the bases, index values and
-#'   counters will be printed while running the tour
 #' @seealso \code{\link{save_history}}, \code{\link{render}} and
 #'   \code{\link{animate}} for examples of functions that use this function
 #'   to run dynamic tours.
@@ -21,7 +19,7 @@
 #'  a list containing the new projection, the current target and the number
 #'  of steps taken towards the target.
 #' @export
-new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
+new_tour <- function(data, tour_path, start = NULL, ...) {
 
   stopifnot(inherits(tour_path, "tour_path"))
 
@@ -30,7 +28,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
   }
 
   if (attr(tour_path, "name") == "guided"){
-    if (verbose & is.null(record))
+    if (getOption("tourr.verbose", default = FALSE) & is.null(record))
       record <<- dplyr::tibble(basis = list(start),
                        index_val = index(start),
                        tries = 1,
@@ -51,7 +49,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
   function(step_size, ...) {
     #browser()
 
-    if (verbose) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
+    if (getOption("tourr.verbose", default = FALSE)) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
 
     step <<- step + 1
     cur_dist <<- cur_dist + step_size
@@ -63,7 +61,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
     if (step_size > 0 & is.finite(step_size) & cur_dist >= target_dist) {
 
       ## interrupt
-      if (verbose){
+      if (getOption("tourr.verbose", default = FALSE)){
         if ("new_basis" %in% record$info & record$method[2] != "search_geodesic"){
 
           last_two <- record %>% dplyr::filter(info == "new_basis") %>% utils::tail(2)
@@ -122,7 +120,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
 
     proj <<- geodesic$interpolate(cur_dist / target_dist)
 
-    if (verbose) {
+    if (getOption("tourr.verbose", default = FALSE)) {
       record <<- record %>% dplyr::add_row(basis = list(proj),
                                  index_val = index(proj),
                                  info = "interpolation",

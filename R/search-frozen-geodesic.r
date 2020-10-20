@@ -25,14 +25,14 @@ search_frozen_geodesic <- function(current, alpha, index, max.tries = 5, n = 5, 
     new_index <- line_search$index_val %>% utils::tail(1)
     new_basis <- line_search$basis %>% utils::tail(1)
 
-    if (verbose) record <<- dplyr::bind_rows(record, direction_search, line_search)
+    if (getOption("tourr.verbose", default = FALSE)) record <<- dplyr::bind_rows(record, direction_search, line_search)
     dig3 <- function(x) sprintf("%.3f", x)
     pdiff <- (new_index - cur_index) / cur_index
     if (pdiff > 0.001) {
       cat("New index: ", dig3(new_index), " (", dig3(peak$alpha$maximum), " away)\n", sep="")
       current <<- new_basis
       cur_index <<- new_index
-      if (verbose){
+      if (getOption("tourr.verbose", default = FALSE)){
         return(list(record = record, target = new_basis[[1]]))
       } else{
         return(list(target = new_basis[[1]]))

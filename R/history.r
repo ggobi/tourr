@@ -11,8 +11,6 @@
 #' @param sphere if true, sphere all variables
 #' @param step_size distance between each step - defaults to \code{Inf} which
 #'   forces new basis generation at each step.
-#' @param verbose if true, a `data.frame` with all the bases, index values and
-#'  counters will be returned after running the tour
 #' @export
 #' @references Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
 #'   (2011). tourr: An R Package for Exploring Multivariate Data with
@@ -44,7 +42,7 @@
 #' plot(path_index(interpolate(t2), holes()))
 #' plot(path_curves(interpolate(t2)))
 save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start = NULL,
-                         rescale = TRUE, sphere = FALSE, step_size = Inf, verbose = FALSE, ...){
+                         rescale = TRUE, sphere = FALSE, step_size = Inf,  ...){
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
     data <- as.matrix(data)
@@ -60,7 +58,7 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
                             method = character(),
                             alpha = numeric())
 
-  tour <- new_tour(data, tour_path, start, verbose, ...)
+  tour <- new_tour(data, tour_path, start, ...)
   start <- tour(0)$proj
 
   projs <- array(NA, c(ncol(data), ncol(start), max_bases + 1))
