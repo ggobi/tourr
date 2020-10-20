@@ -40,10 +40,7 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
     new_index <- peak$index_val %>% utils::tail(1)
     new_basis <- peak$basis %>% utils::tail(1)
 
-
-
-    if (verbose)
-      record <<- dplyr::bind_rows(record, direction_search, peak)
+    if (verbose) record <<- dplyr::bind_rows(record, direction_search, peak)
 
     if (cur_index == 0 | new_index == 0){
       warning("either the cur_index or the new_index is zero!")
@@ -158,13 +155,7 @@ find_path_peak <- function(old, new, index, max_dist = pi / 4, ...) {
                  info = "best_line_search",
                  method = "search_geodesic")
 
-  angle <- sample(seq(-max_dist, max_dist, 0.01), 5)
-
-  bases <- lapply(angle, function(x) dplyr::tibble(basis = list(step_angle(interpolator, x))))
-  do.call(rbind, bases) %>%
-    dplyr::mutate(index_val = vapply(basis, index, double(1)),
-           info = "line_search", method = "search_geodesic") %>%
-    dplyr::bind_rows(best)
+  best
 
 }
 globalVariables("tries")
