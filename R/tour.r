@@ -36,7 +36,8 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
                        loop = NA)
   }
 
-  proj <- start
+  proj <- list()
+  proj[[1]] <- start
 
   # Initialise first step
   target <- NULL
@@ -48,14 +49,13 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
   function(step_size, ...) {
     #browser()
-
     if (getOption("tourr.verbose", default = FALSE)) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
 
     step <<- step + 1
     cur_dist <<- cur_dist + step_size
 
     if (target_dist == 0 & step > 1){ # should only happen for guided tour when no better basis is found (relative to starting plane)
-      return(list(proj = proj, target = target, step = -1)) #use negative step size to signal that we have reached the final target
+      return(list(proj = proj[[-1]], target = target, step = -1)) #use negative step size to signal that we have reached the final target
     }
     # We're at (or past) the target, so generate a new one and reset counters
     if (step_size > 0 & is.finite(step_size) & cur_dist >= target_dist) {
@@ -97,13 +97,19 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
             }
           }
         }
+      } else{
+        index_val <- vapply(proj, index, numeric(1))
+        current <<- proj[[which.max(index_val)]]
+        cur_index <<- max(index_val)
+        proj[[length(proj) + 1]] <<- geodesic$interpolate(1.)
+
       }
     }
 
     if (cur_dist >= target_dist) {
-      geodesic <<- tour_path(proj, data, ...)
+      geodesic <<- tour_path(proj[[length(proj)]], data, ...)
       if (is.null(geodesic)) {
-        return(list(proj = proj, target = target, step = -1)) #use negative step size to signal that we have reached the final target
+        return(list(proj = proj[[length(proj)]], target = target, step = -1)) #use negative step size to signal that we have reached the final target
       }
 
       target_dist <<- geodesic$dist
@@ -116,13 +122,15 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
       }
 
       step <<- 0
+      proj <<- list(); proj[[1]] <<- start
     }
 
-    proj <<- geodesic$interpolate(cur_dist / target_dist)
+    proj[[step + 2]] <<- geodesic$interpolate(cur_dist / target_dist)
+    #cat("update: step = ", step + 2, "proj = ", proj [[step + 2]], "\n")
 
     if (getOption("tourr.verbose", default = FALSE)) {
-      record <<- record %>% dplyr::add_row(basis = list(proj),
-                                 index_val = index(proj),
+      record <<- record %>% dplyr::add_row(basis = list(proj[[step +2]]),
+                                 index_val = index(proj[[step + 2]]),
                                  info = "interpolation",
                                  tries = tries,
                                  method = dplyr::last(record$method),
@@ -131,7 +139,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     }
 
 
-    list(proj = proj, target = target, step = step)
+    list(proj = proj[[length(proj)]], target = target, step = step)
   }
 }
 globalVariables(c("basis", "id", "index", "index_val"))
