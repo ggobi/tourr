@@ -48,13 +48,11 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
     }
 
     valid_fun <- c("search_geodesic", "search_better", "search_better_random",
-                   "search_polish", "search_posse", "search_frozen_geodesic")
+                   "search_polish", "search_posse")
     method <- valid_fun[vapply(valid_fun, function(x) { identical(get(x), search_f)}, logical(1))]
 
     if (is.null(current)){
-      if (method == "search_frozen_geodesic"){
-        current <- thaw(freeze(basis_random(ncol(data), d), frozen), frozen)
-      }else{current <- basis_random(ncol(data), d)}
+      current <- basis_random(ncol(data), d)
 
       cur_index <<- index(current)
       t0 <<- 0.01

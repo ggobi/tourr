@@ -22,7 +22,7 @@
 new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
   tour_path <- function(current, data, ...) {
     if (is.null(current)) {
-      if (name == "guided") tries <<- 1
+      if (name %in% c("guided", "frozen-guided")) tries <<- 1
       return(generator(NULL, data, ...))
     }
 
@@ -31,7 +31,7 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
     dist <- 0
     while (dist < 1e-3) {
 
-      if(name == "guided") tries <<- tries + 1
+      if (name %in% c("guided", "frozen-guided")) tries <<- tries + 1
 
       gen <- generator(current, data, ...)
       target <- gen$target

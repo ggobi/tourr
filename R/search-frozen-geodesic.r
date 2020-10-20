@@ -8,7 +8,8 @@
 #'
 #' @section To do: eliminate these functions
 #' @keywords internal
-search_frozen_geodesic <- function(current, alpha, index, max.tries = 5, n = 5, frozen, cur_index = NA, ...) {
+search_frozen_geodesic <- function(current, index, max.tries = 5, n = 5, frozen, cur_index = NA, ...) {
+  #browser()
   cur_index <- index(thaw(current, frozen))
 
   try <- 1
