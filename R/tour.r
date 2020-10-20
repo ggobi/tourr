@@ -48,7 +48,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   geodesic <- NULL
 
   function(step_size, ...) {
-    #browser()
+
     if (getOption("tourr.verbose", default = FALSE)) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
 
     step <<- step + 1
@@ -98,11 +98,13 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
           }
         }
       } else{
-        index_val <- vapply(proj, index, numeric(1))
-        current <<- proj[[which.max(index_val)]]
-        cur_index <<- max(index_val)
+        if(exists("index")){
+          index_val <- vapply(proj, index, numeric(1))
+          current <<- proj[[which.max(index_val)]]
+          cur_index <<- max(index_val)
+          proj[[length(proj) + 1]] <<- geodesic$interpolate(1.)
+        }
         proj[[length(proj) + 1]] <<- geodesic$interpolate(1.)
-
       }
     }
 
