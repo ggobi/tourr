@@ -81,7 +81,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
             # deem the target basis as the new current basis if the interpolation doesn't reach the target basis
             # used when the index_f is not smooth
             if (target$index_val > interp$index_val) {
-              proj <<- geodesic$interpolate(1.) #make sure next starting plane is previous target
+              proj[[length(proj) +1]] <<- geodesic$interpolate(1.) #make sure next starting plane is previous target
 
               record <<- record %>% dplyr::add_row(target %>% dplyr::mutate(info = "interpolation", loop = step))
               current <<- record %>% tail(1) %>% dplyr::pull(basis) %>% .[[1]]
@@ -89,7 +89,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
             } else if (target$index_val < interp$index_val & nrow(interp) != 0){
               # the interrupt
-              proj <<- interp$basis[[1]]
+              proj[[length(proj) +1]] <<- interp$basis[[1]]
 
               record <<- record %>% dplyr::filter(id <= which(record$index_val == interp$index_val))
               current <<- record %>% tail(1) %>% dplyr::pull(basis) %>% .[[1]]
