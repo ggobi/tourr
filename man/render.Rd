@@ -14,8 +14,7 @@ render(
   frames = 50,
   rescale = TRUE,
   sphere = FALSE,
-  start = NULL,
-  verbose = FALSE
+  start = NULL
 )
 }
 \arguments{
@@ -40,9 +39,6 @@ e.g. \code{\link{display_xy}}, \code{\link{display_pcp}}}
 \item{sphere}{if true, sphere all variables}
 
 \item{start}{starting projection.  If \code{NULL}, uses path default.}
-
-\item{verbose}{if true, a `data.frame` with all the bases, index values and
-counters will be returned after running the tour}
 }
 \description{
 Render frames of animation to disk

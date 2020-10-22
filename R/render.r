@@ -12,8 +12,6 @@
 #' @param rescale if true, rescale all variables to range [0,1]
 #' @param sphere if true, sphere all variables
 #' @param start starting projection.  If \code{NULL}, uses path default.
-#' @param verbose if true, a `data.frame` with all the bases, index values and
-#'  counters will be returned after running the tour
 #' @keywords hplot
 #' @export
 #' @references Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
@@ -23,7 +21,7 @@
 #' @examples
 #' render(flea[, 1:4], grand_tour(), display_xy(), "pdf", "test.pdf")
 #' render(flea[, 1:4], grand_tour(), display_xy(), "png", "test-%03d.png")
-render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL, verbose = FALSE) {
+render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
     data <- as.matrix(data)
@@ -35,7 +33,7 @@ render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, 
   dev(...)
   on.exit(dev.off())
 
-  tour <- new_tour(data, tour_path, start, verbose, ...)
+  tour <- new_tour(data, tour_path, start, ...)
   step <- tour(0, ...)
 
   display$init(data)

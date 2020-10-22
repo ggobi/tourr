@@ -11,8 +11,6 @@
 #'   variables.  Should return NULL if the tour should terminate
 #' @param start starting projection, if omitted will use default projection
 #'   from generator
-#' @param verbose if true, a `data.frame` with all the bases, index values and
-#'   counters will be printed while running the tour
 #' @seealso \code{\link{save_history}}, \code{\link{render}} and
 #'   \code{\link{animate}} for examples of functions that use this function
 #'   to run dynamic tours.
@@ -21,7 +19,7 @@
 #'  a list containing the new projection, the current target and the number
 #'  of steps taken towards the target.
 #' @export
-new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
+new_tour <- function(data, tour_path, start = NULL, ...) {
 
   stopifnot(inherits(tour_path, "tour_path"))
 
@@ -30,7 +28,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
   }
 
   if (attr(tour_path, "name") == "guided"){
-    if (verbose & is.null(record))
+    if (getOption("tourr.verbose", default = FALSE) & is.null(record))
       record <<- dplyr::tibble(basis = list(start),
                        index_val = index(start),
                        tries = 1,
@@ -38,7 +36,8 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
                        loop = NA)
   }
 
-  proj <- start
+  proj <- list()
+  proj[[1]] <- start
 
   # Initialise first step
   target <- NULL
@@ -51,19 +50,19 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
   function(step_size, ...) {
     #browser()
 
-    if (verbose) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
+    if (getOption("tourr.verbose", default = FALSE)) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
 
     step <<- step + 1
     cur_dist <<- cur_dist + step_size
 
     if (target_dist == 0 & step > 1){ # should only happen for guided tour when no better basis is found (relative to starting plane)
-      return(list(proj = proj, target = target, step = -1)) #use negative step size to signal that we have reached the final target
+      return(list(proj = proj[[-1]], target = target, step = -1)) #use negative step size to signal that we have reached the final target
     }
     # We're at (or past) the target, so generate a new one and reset counters
     if (step_size > 0 & is.finite(step_size) & cur_dist >= target_dist) {
 
       ## interrupt
-      if (verbose){
+      if (getOption("tourr.verbose", default = FALSE)){
         if ("new_basis" %in% record$info & record$method[2] != "search_geodesic"){
 
           last_two <- record %>% dplyr::filter(info == "new_basis") %>% utils::tail(2)
@@ -83,7 +82,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
             # deem the target basis as the new current basis if the interpolation doesn't reach the target basis
             # used when the index_f is not smooth
             if (target$index_val > interp$index_val) {
-              proj <<- geodesic$interpolate(1.) #make sure next starting plane is previous target
+              proj[[length(proj) +1]] <<- geodesic$interpolate(1.) #make sure next starting plane is previous target
 
               record <<- record %>% dplyr::add_row(target %>% dplyr::mutate(info = "interpolation", loop = step))
               current <<- record %>% tail(1) %>% dplyr::pull(basis) %>% .[[1]]
@@ -91,7 +90,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
 
             } else if (target$index_val < interp$index_val & nrow(interp) != 0){
               # the interrupt
-              proj <<- interp$basis[[1]]
+              proj[[length(proj) +1]] <<- interp$basis[[1]]
 
               record <<- record %>% dplyr::filter(id <= which(record$index_val == interp$index_val))
               current <<- record %>% tail(1) %>% dplyr::pull(basis) %>% .[[1]]
@@ -99,13 +98,21 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
             }
           }
         }
+      } else{
+        if(exists("index")){
+          index_val <- vapply(proj, index, numeric(1))
+          current <<- proj[[which.max(index_val)]]
+          cur_index <<- max(index_val)
+          if (which.max(index_val) == length(proj)) proj[[length(proj) + 1]] <<- geodesic$interpolate(1.)
+        }
+        proj[[length(proj) + 1]] <<- geodesic$interpolate(1.)
       }
     }
 
     if (cur_dist >= target_dist) {
-      geodesic <<- tour_path(proj, data, ...)
+      geodesic <<- tour_path(proj[[length(proj)]], data, ...)
       if (is.null(geodesic)) {
-        return(list(proj = proj, target = target, step = -1)) #use negative step size to signal that we have reached the final target
+        return(list(proj = proj[[length(proj)]], target = target, step = -1)) #use negative step size to signal that we have reached the final target
       }
 
       target_dist <<- geodesic$dist
@@ -115,16 +122,23 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
       # to the target straight away
       if (!is.finite(step_size)) {
         cur_dist <<- target_dist
+        if (exists("index")){
+          current <<- target
+          cur_index <<- index(target)
+        }
+
       }
 
       step <<- 0
+      proj <<- list(); proj[[1]] <<- start
     }
 
-    proj <<- geodesic$interpolate(cur_dist / target_dist)
+    proj[[step + 2]] <<- geodesic$interpolate(cur_dist / target_dist)
 
-    if (verbose) {
-      record <<- record %>% dplyr::add_row(basis = list(proj),
-                                 index_val = index(proj),
+
+    if (getOption("tourr.verbose", default = FALSE)) {
+      record <<- record %>% dplyr::add_row(basis = list(proj[[step +2]]),
+                                 index_val = index(proj[[step + 2]]),
                                  info = "interpolation",
                                  tries = tries,
                                  method = dplyr::last(record$method),
@@ -133,7 +147,7 @@ new_tour <- function(data, tour_path, start = NULL, verbose = FALSE, ...) {
     }
 
 
-    list(proj = proj, target = target, step = step)
+    list(proj = proj[[length(proj)]], target = target, step = step)
   }
 }
 globalVariables(c("basis", "id", "index", "index_val"))

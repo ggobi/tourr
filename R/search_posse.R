@@ -19,7 +19,7 @@ search_posse <- function(current, alpha = 0.5, index, max.tries = 300, cur_index
     new_basis <- orthonormalise(current + alpha * basis_random(nrow(current), ncol(current)))
     new_index <- index(new_basis)
 
-    if (verbose)
+    if (getOption("tourr.verbose", default = FALSE))
       record <<- record %>% dplyr::add_row(basis = list(new_basis),
                                            index_val = new_index,
                                            info = "random_search",
@@ -30,7 +30,7 @@ search_posse <- function(current, alpha = 0.5, index, max.tries = 300, cur_index
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
 
-      if (verbose) {
+      if (getOption("tourr.verbose", default = FALSE)) {
         record <<- record %>%
           dplyr::mutate(row = dplyr::row_number(),
                         info = ifelse(row == max(row), "new_basis", info)) %>%
