@@ -6,7 +6,6 @@
 \usage{
 search_frozen_geodesic(
   current,
-  alpha,
   index,
   max.tries = 5,
   n = 5,
