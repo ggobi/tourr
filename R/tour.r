@@ -48,6 +48,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   geodesic <- NULL
 
   function(step_size, ...) {
+    #browser()
 
     if (getOption("tourr.verbose", default = FALSE)) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
 
@@ -102,7 +103,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
           index_val <- vapply(proj, index, numeric(1))
           current <<- proj[[which.max(index_val)]]
           cur_index <<- max(index_val)
-          proj[[length(proj) + 1]] <<- geodesic$interpolate(1.)
+          if (which.max(index_val) == length(proj)) proj[[length(proj) + 1]] <<- geodesic$interpolate(1.)
         }
         proj[[length(proj) + 1]] <<- geodesic$interpolate(1.)
       }
@@ -121,6 +122,11 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
       # to the target straight away
       if (!is.finite(step_size)) {
         cur_dist <<- target_dist
+        if (exists("index")){
+          current <<- target
+          cur_index <<- index(target)
+        }
+
       }
 
       step <<- 0
@@ -128,7 +134,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     }
 
     proj[[step + 2]] <<- geodesic$interpolate(cur_dist / target_dist)
-    #cat("update: step = ", step + 2, "proj = ", proj [[step + 2]], "\n")
+
 
     if (getOption("tourr.verbose", default = FALSE)) {
       record <<- record %>% dplyr::add_row(basis = list(proj[[step +2]]),
