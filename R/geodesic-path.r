@@ -27,10 +27,11 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
     }
 
     # initalise cur_index and tries for polish
-    if (!exists("tries")) {
+    if (name %in% c("guided") & !exists("tries")){
       cur_index <<- index(current)
       tries <<- 1
     }
+
     # Keep trying until we get a frame that's not too close to the
     # current frame
     dist <- 0
