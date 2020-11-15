@@ -128,7 +128,16 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
     }
   }
 
-  if (getOption("tourr.verbose", default = FALSE)) return(record)
+  if (getOption("tourr.verbose", default = FALSE)){
+    cur_index <<- cur_index
+    current <<- current
+    return(list(record = record, target = current, alpha = alpha))
+  } else {
+    cat("current basis: ", current, "cur_index: ", cur_index, "\n")
+    cur_index <<- cur_index
+    current <<- current
+    return(list(target = current, alpha = alpha))
+  }
 
 }
 globalVariables("index_val")

@@ -135,7 +135,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     proj[[step + 2]] <<- geodesic$interpolate(cur_dist / target_dist)
 
 
-    if (getOption("tourr.verbose", default = FALSE)) {
+    if (getOption("tourr.verbose", default = FALSE) & exists("index")) {
       record <<- record %>% dplyr::add_row(basis = list(proj[[step +2]]),
                                  index_val = index(proj[[step + 2]]),
                                  info = "interpolation",
