@@ -93,7 +93,7 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
 
       if (alpha < 0.01){
         cat("alpha is", alpha, "and it is too small! \n")
-        if (getOption("tourr.verbose")){
+        if (getOption("tourr.verbose", default = FALSE)){
           cat("current basis: ", current, "cur_index: ", cur_index, "\n")
           cur_index <<- cur_index
           current <<- current
