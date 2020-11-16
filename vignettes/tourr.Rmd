@@ -16,7 +16,6 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(tourr)
-#verbose <- F
 ```
 
 A tour animates a display of interpolated low-dimensional projections from high-dimensional data, to explore the shape of the distribution. This vignette shows how to use the `tourr` package to generate animations using different tour and display types.
