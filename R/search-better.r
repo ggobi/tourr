@@ -37,7 +37,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
     new_basis <- basis_nearby(current, alpha, method)
     new_index <- index(new_basis)
 
-    if (verbose)
+    if (getOption("tourr.verbose", default = FALSE))
       record <<- record %>% dplyr::add_row(basis = list(new_basis),
                                           index_val = new_index,
                                           info = "random_search",
@@ -49,7 +49,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
 
-      if (verbose) {
+      if (getOption("tourr.verbose", default = FALSE)) {
         record <<- record %>%
           dplyr::mutate(row = dplyr::row_number(),
                       info = ifelse(row == max(row), "new_basis", info)) %>%
@@ -121,7 +121,7 @@ search_better_random <- function(current, alpha = 0.5, index,
     new_index <- index(new_basis)
     temperature <- t0 / log(try + 1)
 
-    if (verbose)
+    if (getOption("tourr.verbose", default = FALSE))
       record <<- record %>% dplyr::add_row(basis = list(new_basis),
                                         index_val = new_index,
                                         info = "random_search",
@@ -134,7 +134,7 @@ search_better_random <- function(current, alpha = 0.5, index,
       cat("New", new_index, "try", try, "\n")
       cat("Accept \n")
 
-      if (verbose) {
+      if (getOption("tourr.verbose", default = FALSE)) {
         record <<- record %>%
           dplyr::mutate(row = dplyr::row_number(),
                       info = ifelse(row == max(row), "new_basis", info)) %>%
@@ -153,7 +153,7 @@ search_better_random <- function(current, alpha = 0.5, index,
         cat("New", new_index, "try", try, "\n")
         cat("Accept with probability, prob =", prob,"\n")
 
-        if (verbose) {
+        if (getOption("tourr.verbose", default = FALSE)) {
           record <<- record %>%
             dplyr::mutate(row = dplyr::row_number(),
                           info = ifelse(row == max(row), "new_basis", info)) %>%

@@ -17,13 +17,12 @@
 #' @param generate basis generator function
 #' @param frozen matrix giving frozen variables, as described in
 #'   \code{\link{freeze}}
-#' @param verbose if true, the the current geodesic distance is printed to the console.
 #' @export
 #' @keywords internal
-new_geodesic_path <- function(name, generator, frozen = NULL, verbose = FALSE, ...) {
+new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
   tour_path <- function(current, data, ...) {
     if (is.null(current)) {
-      if (name == "guided") tries <<- 1
+      if (name %in% c("guided", "frozen-guided")) tries <<- 1
       return(generator(NULL, data, ...))
     }
 
@@ -32,7 +31,7 @@ new_geodesic_path <- function(name, generator, frozen = NULL, verbose = FALSE, .
     dist <- 0
     while (dist < 1e-3) {
 
-      if(name == "guided") tries <<- tries + 1
+      if (name %in% c("guided", "frozen-guided")) tries <<- tries + 1
 
       gen <- generator(current, data, ...)
       target <- gen$target
@@ -49,7 +48,7 @@ new_geodesic_path <- function(name, generator, frozen = NULL, verbose = FALSE, .
       dist <- proj_dist(current, target)
       if (dist < 1e-2) return(NULL)
 
-      if (verbose) cat("generation:  dist =  ", dist, "\n")
+      if (getOption("tourr.verbose", default = FALSE)) cat("generation:  dist =  ", dist, "\n")
 
     }
     geodesic_path(current, target, frozen, ...)

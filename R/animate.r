@@ -20,8 +20,6 @@
 #'   non-interactive use.
 #' @param rescale if true, rescale all variables to range [0,1]?
 #' @param sphere if true, sphere all variables
-#' @param verbose if true, a `data.frame` with all the bases, index values and
-#'   counters will be returned after the animation is escaped.
 #' @param ... ignored
 #' @return an (invisible) list of bases visited during this tour
 #' @references Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
@@ -39,9 +37,7 @@
 #' \dontrun{animate(f, max_frames = 10, fps = 1, aps = 0.1)}
 animate <- function(data, tour_path = grand_tour(), display = display_xy(),
                     start = NULL, aps = 1, fps = 10, max_frames = Inf,
-                    rescale = TRUE, sphere = FALSE, verbose = FALSE,...) {
-
-  # verbose <<- verbose
+                    rescale = TRUE, sphere = FALSE, ...) {
 
   record <<- dplyr::tibble(basis = list(),
                             index_val = numeric(),
@@ -73,7 +69,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
     fps <- 19
   }
 
-  tour <- new_tour(data, tour_path, start, verbose, ...)
+  tour <- new_tour(data, tour_path, start, ...)
   start <- tour(0, ...)
   bs <- 1
   bases <- array(NA, c(ncol(data), ncol(start$target), bs))
@@ -122,9 +118,9 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
   }
 
   record <- record %>% dplyr::mutate(id = dplyr::row_number())
-  if (verbose) return(record)
+  if (getOption("tourr.verbose", default = FALSE)) return(record)
 }
 
 rstudio_gd <- function() identical(names(dev.cur()), "RStudioGD")
 
-globalVariables(c("verbose", "record"))
+globalVariables("record")

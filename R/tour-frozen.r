@@ -82,6 +82,7 @@ frozen_guided_tour <- function(frozen, index_f, d = 2, max.tries = 25) {
     index <- function(proj) {
       index_f(as.matrix(data) %*% proj)
     }
+    tries <<- tries
 
     search_frozen_geodesic(current, index, max.tries, frozen = frozen)
   }

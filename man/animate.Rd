@@ -14,7 +14,6 @@ animate(
   max_frames = Inf,
   rescale = TRUE,
   sphere = FALSE,
-  verbose = FALSE,
   ...
 )
 }
@@ -40,9 +39,6 @@ non-interactive use.}
 \item{rescale}{if true, rescale all variables to range [0,1]?}
 
 \item{sphere}{if true, sphere all variables}
-
-\item{verbose}{if true, a `data.frame` with all the bases, index values and
-counters will be returned after the animation is escaped.}
 
 \item{...}{ignored}
 }

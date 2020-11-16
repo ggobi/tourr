@@ -12,7 +12,6 @@ save_history(
   rescale = TRUE,
   sphere = FALSE,
   step_size = Inf,
-  verbose = FALSE,
   ...
 )
 }
@@ -32,9 +31,6 @@ save_history(
 
 \item{step_size}{distance between each step - defaults to \code{Inf} which
 forces new basis generation at each step.}
-
-\item{verbose}{if true, a `data.frame` with all the bases, index values and
-counters will be returned after running the tour}
 }
 \description{
 Save a tour path so it can later be displayed in many different ways.

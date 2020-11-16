@@ -28,7 +28,7 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
 
     best_row <- polish %>% dplyr::filter(index_val == max(index_val))
 
-    if (verbose)
+    if (getOption("tourr.verbose", default = FALSE))
       record <<- record %>% dplyr::bind_rows(polish) %>%
       dplyr::bind_rows(best_row %>% dplyr::mutate(info = "loop_best", method = "search_polish"))
 
@@ -41,7 +41,7 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
 
       if(polish_dist <  1e-3){
         cat("The new basis is too close to the current one! \n")
-        if (verbose){
+        if (getOption("tourr.verbose", default = FALSE)){
           cat("current basis: ", current, "cur_index: ", cur_index, "\n")
           cur_index <<- cur_index
           current <<- current
@@ -60,7 +60,7 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
 
       if (polish_pdiff < 1e-5){
         cat("The improvement is too small! \n")
-        if (verbose){
+        if (getOption("tourr.verbose", default = FALSE)){
           cat("current basis: ", current, "cur_index: ", cur_index, "\n")
           cur_index <<- cur_index
           current <<- current
@@ -78,7 +78,7 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
 
       cur_index <- best_row$index_val
       current <- best_row$basis[[1]]
-      if (verbose)
+      if (getOption("tourr.verbose", default = FALSE))
         record <<- record %>%
         dplyr::bind_rows(best_row %>% dplyr::mutate(info = "polish_best", method = "search_polish"))
 
@@ -93,7 +93,7 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
 
       if (alpha < 0.01){
         cat("alpha is", alpha, "and it is too small! \n")
-        if (verbose){
+        if (getOption("tourr.verbose")){
           cat("current basis: ", current, "cur_index: ", cur_index, "\n")
           cur_index <<- cur_index
           current <<- current
@@ -128,7 +128,7 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
     }
   }
 
-  if (verbose) return(record)
+  if (getOption("tourr.verbose", default = FALSE)) return(record)
 
 }
 globalVariables("index_val")

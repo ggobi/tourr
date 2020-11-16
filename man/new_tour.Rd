@@ -4,7 +4,7 @@
 \alias{new_tour}
 \title{Create a new tour.}
 \usage{
-new_tour(data, tour_path, start = NULL, verbose = FALSE, ...)
+new_tour(data, tour_path, start = NULL, ...)
 }
 \arguments{
 \item{data}{the data matrix to be projected}
@@ -16,9 +16,6 @@ variables.  Should return NULL if the tour should terminate}
 
 \item{start}{starting projection, if omitted will use default projection
 from generator}
-
-\item{verbose}{if true, a `data.frame` with all the bases, index values and
-counters will be printed while running the tour}
 }
 \value{
 a function with single argument, step_size.  This function returns
