@@ -21,8 +21,8 @@
 #'   \code{\link{display_slice}}
 #' @export
 #' @examples
-#' flea_std <- standdise(flea[,1:6])
-#' flea_pca <- prcomp(flea_std, center=FALSE)
+#' flea_std <- scale(flea[,1:6])
+#' flea_pca <- prcomp(flea_std, center=FALSE, )
 #' flea_coefs <- flea_pca$rotation[,1:3]
 #' flea_scores <- flea_pca$x[,1:3]
 #' animate_pca(flea_scores, pc_coefs = flea_coefs)
