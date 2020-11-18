@@ -11,14 +11,14 @@
 #' @keywords optimize
 #' @export
 search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
-                          cur_index = NA, n_sample = 1000, polish_cooling = 1, ...){
+                          cur_index = NA, n_sample = 5, polish_cooling = 1, ...){
 
   if (is.na(cur_index)) cur_index <- index(current)
   try <- 1
 
   while (try <= polish_max_tries){
 
-    basis <- lapply(1:5, function(x) {dplyr::tibble(basis = list(basis_nearby(current,
+    basis <- lapply(1:n_sample, function(x) {dplyr::tibble(basis = list(basis_nearby(current,
                                                                               alpha = alpha)))})
     polish <- do.call(rbind, basis) %>%
       dplyr::mutate(index_val = vapply(basis, function(x) index(x), double(1)),
@@ -93,7 +93,7 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
 
       if (alpha < 0.01){
         cat("alpha is", alpha, "and it is too small! \n")
-        if (getOption("tourr.verbose")){
+        if (getOption("tourr.verbose", default = FALSE)){
           cat("current basis: ", current, "cur_index: ", cur_index, "\n")
           cur_index <<- cur_index
           current <<- current
@@ -128,7 +128,16 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
     }
   }
 
-  if (getOption("tourr.verbose", default = FALSE)) return(record)
+  if (getOption("tourr.verbose", default = FALSE)){
+    cur_index <<- cur_index
+    current <<- current
+    return(list(record = record, target = current, alpha = alpha))
+  } else {
+    cat("current basis: ", current, "cur_index: ", cur_index, "\n")
+    cur_index <<- cur_index
+    current <<- current
+    return(list(target = current, alpha = alpha))
+  }
 
 }
 globalVariables("index_val")

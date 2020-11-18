@@ -10,7 +10,7 @@ search_polish(
   index,
   polish_max_tries = 30,
   cur_index = NA,
-  n_sample = 1000,
+  n_sample = 5,
   polish_cooling = 1,
   ...
 )

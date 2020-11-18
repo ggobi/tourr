@@ -48,7 +48,6 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   geodesic <- NULL
 
   function(step_size, ...) {
-    #browser()
 
     if (getOption("tourr.verbose", default = FALSE)) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
 
@@ -56,7 +55,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     cur_dist <<- cur_dist + step_size
 
     if (target_dist == 0 & step > 1){ # should only happen for guided tour when no better basis is found (relative to starting plane)
-      return(list(proj = proj[[-1]], target = target, step = -1)) #use negative step size to signal that we have reached the final target
+      return(list(proj = tail(proj, 1) %>% .[[1]], target = target, step = -1)) #use negative step size to signal that we have reached the final target
     }
     # We're at (or past) the target, so generate a new one and reset counters
     if (step_size > 0 & is.finite(step_size) & cur_dist >= target_dist) {
@@ -136,7 +135,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     proj[[step + 2]] <<- geodesic$interpolate(cur_dist / target_dist)
 
 
-    if (getOption("tourr.verbose", default = FALSE)) {
+    if (getOption("tourr.verbose", default = FALSE) & exists("index")) {
       record <<- record %>% dplyr::add_row(basis = list(proj[[step +2]]),
                                  index_val = index(proj[[step + 2]]),
                                  info = "interpolation",

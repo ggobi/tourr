@@ -40,7 +40,7 @@
 #' f <- flea[, 1:3]
 #' tries <- replicate(5, save_history(f, guided_tour(holes())), simplify = FALSE)
 guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
-                        max.i = Inf, search_f = search_geodesic, ...) {
+                        max.i = Inf, search_f = search_geodesic, n_sample = n_sample, ...) {
   generator <- function(current, data, ...) {
     index <<- function(proj) {
 
@@ -91,7 +91,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
     tries <<- tries
 
     #current, alpha = 1, index, max.tries = 5, n = 5, delta = 0.01, cur_index = NA, ..
-    basis <- search_f(current, alpha, index, max.tries, cur_index=cur_index,frozen = frozen, ...)
+    basis <- search_f(current, alpha, index, max.tries, cur_index=cur_index,frozen = frozen, n_sample = n_sample, ...)
 
 
     if (method == "search_posse"){
