@@ -19,6 +19,7 @@
 #' @param max.tries the maximum number of unsuccessful attempts to find
 #'   a better projection before giving up
 #' @param max.i the maximum index value, stop search if a larger value is found
+#' @param n_sample number of samples to generate for \code{\link{search_polish}}
 #' @param ... arguments sent to the search_f
 #' @seealso \code{\link{cmass}}, \code{\link{holes}} and \code{\link{lda_pp}}
 #'   for examples of index functions.  The function should take a numeric
