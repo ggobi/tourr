@@ -17,29 +17,30 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
   try <- 1
 
   while (try <= polish_max_tries){
-
+    # could use replicate here
     basis <- lapply(1:n_sample, function(x) {dplyr::tibble(basis = list(basis_nearby(current,
                                                                               alpha = alpha)))})
-    polish <- do.call(rbind, basis) %>%
-      dplyr::mutate(index_val = vapply(basis, function(x) index(x), double(1)),
-                    alpha = round(alpha, 4), tries = tries, info = "polish",
-                    loop = try, method = "search_polish")
+    polish <-  dplyr::mutate(dplyr::bind_rows(basis),
+                             index_val = vapply(basis, function(x) index(x), double(1)),
+                             alpha = round(alpha, 4), tries = tries, info = "polish",
+                             loop = try, method = "search_polish")
 
-
-    best_row <- polish %>% dplyr::filter(index_val == max(index_val))
+    # could use which.max
+    best_row <- dplyr::filter(polish, index_val == max(index_val))
 
     if (getOption("tourr.verbose", default = FALSE))
-      record <<- record %>% dplyr::bind_rows(polish) %>%
-      dplyr::bind_rows(best_row %>% dplyr::mutate(info = "loop_best", method = "search_polish"))
-
-    if(best_row$index_val > cur_index){
+      best_row <- dplyr::mutate(best_row,
+                                info = "loop_best",
+                                method = "search_polish")
+      record <<- dplyr::bind_rows(polish, record, best_row)
+    if (best_row$index_val > cur_index) {
 
       polish_dist <- proj_dist(current, best_row$basis[[1]])
       polish_pdiff <-  (best_row$index_val - cur_index)/cur_index
 
       # check condition 1: the two bases can't be too close
 
-      if(polish_dist <  1e-3){
+      if (polish_dist <  1e-3) {
         cat("The new basis is too close to the current one! \n")
         if (getOption("tourr.verbose", default = FALSE)){
           cat("current basis: ", current, "cur_index: ", cur_index, "\n")
@@ -79,11 +80,13 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
       cur_index <- best_row$index_val
       current <- best_row$basis[[1]]
       if (getOption("tourr.verbose", default = FALSE))
-        record <<- record %>%
-        dplyr::bind_rows(best_row %>% dplyr::mutate(info = "polish_best", method = "search_polish"))
+        best_row <- dplyr::mutate(best_row,
+                                  info = "loop_best",
+                                  method = "search_polish")
+        record <<- dplyr::bind_rows(record, best_row)
 
 
-    }else{
+    } else {
 
       polish_cooling <-  polish_cooling * 0.95
       alpha <- alpha * polish_cooling

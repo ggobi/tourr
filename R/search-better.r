@@ -20,6 +20,7 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 #' @param cur_index the index value of the current basis
 #' @param ... other arguments being passed into the \code{search_better()}
 #' @keywords optimize
+#' @importFrom utils tail globalVariables
 #' @export
 search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   method = "linear", cur_index = NA, ...) {
@@ -38,7 +39,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
     new_index <- index(new_basis)
 
     if (getOption("tourr.verbose", default = FALSE))
-      record <<- record %>% dplyr::add_row(basis = list(new_basis),
+      record <<- dplyr::add_row(record,  basis = list(new_basis),
                                           index_val = new_index,
                                           info = "random_search",
                                           tries = tries,
@@ -50,10 +51,10 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
       cat("New", new_index, "try", try, "\n")
 
       if (getOption("tourr.verbose", default = FALSE)) {
-        record <<- record %>%
-          dplyr::mutate(row = dplyr::row_number(),
-                      info = ifelse(row == max(row), "new_basis", info)) %>%
-          dplyr::select(-row)
+        # new basis?
+        nr <- nrow(record)
+        record[nr, "info"] <<- "new_basis"
+
 
         return(list(record = record, target = new_basis, alpha = alpha))
       }else{
@@ -122,7 +123,7 @@ search_better_random <- function(current, alpha = 0.5, index,
     temperature <- t0 / log(try + 1)
 
     if (getOption("tourr.verbose", default = FALSE))
-      record <<- record %>% dplyr::add_row(basis = list(new_basis),
+      record <<- dplyr::add_row(record, basis = list(new_basis),
                                         index_val = new_index,
                                         info = "random_search",
                                         tries = tries,
@@ -135,10 +136,10 @@ search_better_random <- function(current, alpha = 0.5, index,
       cat("Accept \n")
 
       if (getOption("tourr.verbose", default = FALSE)) {
-        record <<- record %>%
-          dplyr::mutate(row = dplyr::row_number(),
-                      info = ifelse(row == max(row), "new_basis", info)) %>%
-          dplyr::select(-row)
+
+        # new basis?
+        nr <- nrow(record)
+        record[nr, "info"] <<- "new_basis"
 
         return(list(record = record, target = new_basis, alpha = alpha))
       }else{
@@ -154,10 +155,9 @@ search_better_random <- function(current, alpha = 0.5, index,
         cat("Accept with probability, prob =", prob,"\n")
 
         if (getOption("tourr.verbose", default = FALSE)) {
-          record <<- record %>%
-            dplyr::mutate(row = dplyr::row_number(),
-                          info = ifelse(row == max(row), "new_basis", info)) %>%
-            dplyr::select(-row)
+          # new basis?
+          nr <- nrow(record)
+          record[nr, "info"] <<- "new_basis"
 
           return(list(record = record, target = new_basis, alpha = alpha))
         }else{
@@ -186,4 +186,5 @@ search_better_random <- function(current, alpha = 0.5, index,
 
   NULL
 }
+
 globalVariables(c("t0","tries", "info", "runif"))

@@ -4,6 +4,7 @@
 #' 2D projections of the data.
 #'
 #' @keywords hplot
+#' @importFrom stats na.omit
 #' @export
 dcor2d <- function(){
   function(mat){
@@ -21,6 +22,7 @@ dcor2d <- function(){
 #' of the data.
 #'
 #' @keywords hplot
+#' @importFrom stats residuals var
 #' @export
 splines2d <- function(){
   function(mat){
@@ -51,9 +53,10 @@ norm_bin <- function() {
 
 
   function(mat){
-    norm <- norm[1:nrow(mat)]
-    norm_bin_count <- ash::bin1(norm %>% scale(), c(min(mat), max(mat)), 100)$nc
-    mat_bin_count <- ash::bin1(mat %>% scale(), c(min(mat), max(mat)), 100)$nc
+    norm <- scale(norm[1:nrow(mat)])
+    mat_s <- scale(mat)
+    norm_bin_count <- ash::bin1(norm, c(min(mat), max(mat)), 100)$nc
+    mat_bin_count <- ash::bin1(mat_s, c(min(mat), max(mat)), 100)$nc
     diff <- sum((mat_bin_count - norm_bin_count)^2)/nrow(mat)
 
     diff

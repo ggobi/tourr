@@ -57,7 +57,8 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
       cur_index <<- index(current)
       t0 <<- 0.01
       if (getOption("tourr.verbose", default = FALSE)) {
-        record <<- record %>% dplyr::add_row(basis = list(current),
+        record <<- dplyr::add_row(record,
+                                  basis = list(current),
                                   index_val = cur_index,
                                   tries = tries,
                                   info = "new_basis",
