@@ -83,7 +83,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
             if (target$index_val > interp$index_val) {
               proj[[length(proj) +1]] <<- geodesic$interpolate(1.) #make sure next starting plane is previous target
 
-              record <<- record %>% dplyr::add_row(target %>% dplyr::mutate(info = "interpolation", loop = step))
+              record <<- record %>% dplyr::add_row(target %>% dplyr::mutate(info = "interpolation", loop = step + 1))
               current <<- record %>% tail(1) %>% dplyr::pull(basis) %>% .[[1]]
               cur_index <<- record %>% tail(1) %>% dplyr::pull(index_val)
 
