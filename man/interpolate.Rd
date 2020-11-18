@@ -10,6 +10,8 @@ interpolate(basis_set, angle = 0.05, cycle = FALSE)
 \item{basis_set}{input basis set}
 
 \item{angle}{target distance (in radians) between bases}
+
+\item{cycle}{For \code{\link{planned_tour}} cycle through continuously (TRUE) or stop after first pass (FALSE)}
 }
 \description{
 This function takes a set of bases and produces a tour by geodesically

@@ -31,6 +31,8 @@ save_history(
 
 \item{step_size}{distance between each step - defaults to \code{Inf} which
 forces new basis generation at each step.}
+
+\item{...}{additional arguments passed to tour path}
 }
 \description{
 Save a tour path so it can later be displayed in many different ways.

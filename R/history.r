@@ -11,6 +11,7 @@
 #' @param sphere if true, sphere all variables
 #' @param step_size distance between each step - defaults to \code{Inf} which
 #'   forces new basis generation at each step.
+#' @param ... additional arguments passed to tour path
 #' @export
 #' @references Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
 #'   (2011). tourr: An R Package for Exploring Multivariate Data with
