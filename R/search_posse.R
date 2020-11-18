@@ -20,21 +20,21 @@ search_posse <- function(current, alpha = 0.5, index, max.tries = 300, cur_index
     new_index <- index(new_basis)
 
     if (getOption("tourr.verbose", default = FALSE))
-      record <<- record %>% dplyr::add_row(basis = list(new_basis),
-                                           index_val = new_index,
-                                           info = "random_search",
-                                           tries = tries,
-                                           loop = try,
-                                           method = "search_posse",
-                                           alpha = round(alpha,4))
+      record <<- dplyr::add_row(record,
+                                basis = list(new_basis),
+                                index_val = new_index,
+                                info = "random_search",
+                                tries = tries,
+                                loop = try,
+                                method = "search_posse",
+                                alpha = round(alpha,4))
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
 
       if (getOption("tourr.verbose", default = FALSE)) {
-        record <<- record %>%
-          dplyr::mutate(row = dplyr::row_number(),
-                        info = ifelse(row == max(row), "new_basis", info)) %>%
-          dplyr::select(-row)
+        # new basis?
+        nr <- nrow(record)
+        record[nr, "info"] <<- "new_basis"
 
         return(list(record = record, target = new_basis, h = h))
       }else{
