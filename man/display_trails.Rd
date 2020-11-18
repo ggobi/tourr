@@ -32,6 +32,8 @@ If not set, defaults to maximum distance from origin to each row of data.}
 
 \item{pch}{shape of the point to be plotted.  Defaults to 20.}
 
+\item{cex}{magnification of plotting text relative to default. Defaults to 1.}
+
 \item{past}{draw line between current projection and projection \code{past}
 steps ago}
 
