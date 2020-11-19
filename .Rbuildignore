@@ -16,3 +16,5 @@
 ^codecov\.yml$
 ^\.github$
 ^data-raw$
+^doc$
+^Meta$
