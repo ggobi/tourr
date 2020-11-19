@@ -139,7 +139,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
 
     if (getOption("tourr.verbose", default = FALSE) & exists("index")) {
-      record <<- add_row(record,
+      record <<- dplyr::add_row(record,
                          basis = list(proj[[step +2]]),
                          index_val = index(proj[[step + 2]]),
                          info = "interpolation",
