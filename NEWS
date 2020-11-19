@@ -1,6 +1,8 @@
 Version 0.6.0
 ------------------------------------------------------------------------------
 
+Two vignettes have been added to help users get started.
+
 Little tour now cycles twice through variable list, in a randomised order.
 
 Two new projection pursuit indexes have ben added, based on function from the archived package mbgraphic.
