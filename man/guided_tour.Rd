@@ -33,6 +33,8 @@ a better projection before giving up}
 
 \item{search_f}{the search strategy to use}
 
+\item{n_sample}{number of samples to generate for \code{\link{search_polish}}}
+
 \item{...}{arguments sent to the search_f}
 }
 \description{

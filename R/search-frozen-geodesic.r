@@ -18,13 +18,13 @@ search_frozen_geodesic <- function(current, index, max.tries = 5, n = 5, frozen,
     # index after a small step in either direction
     direction <- find_best_frozen_dir(current, frozen, index, n)
     best_dir <- direction$basis[[which.max(direction$index_val)]]
-    direction_search <- direction %>% dplyr::mutate(loop = try)
+    direction_search <-  dplyr::mutate(direction, loop = try)
     # Travel halfway round (pi / 4 radians) the sphere in that direction
     # looking for the best projection
     peak <- find_frozen_path_peak(current, best_dir, frozen, index)
-    line_search <- peak$best %>% dplyr::mutate(tries = tries, loop = try)
-    new_index <- line_search$index_val %>% utils::tail(1)
-    new_basis <- line_search$basis %>% utils::tail(1)
+    line_search <- dplyr::mutate(peak$best, tries = tries, loop = try)
+    new_index <- tail(line_search$index_val, 1)
+    new_basis <- tail(line_search$basis , 1)
 
     if (getOption("tourr.verbose", default = FALSE)) record <<- dplyr::bind_rows(record, direction_search, line_search)
     dig3 <- function(x) sprintf("%.3f", x)
@@ -68,10 +68,9 @@ find_best_frozen_dir <- function(old, frozen, index, dist = 0.01, tries = 5) {
                   method = "search_frozen_geodesic")
   }
 
-  do.call(rbind, lapply(bases, score)) %>%
-    dplyr::mutate(info = ifelse(index_val == max(index_val),
-                                "best_direction_search", info))
-
+  ans <- dplyr::bind_rows(lapply(bases, score))
+  ans[which.max(ans$index_val), "info"] <-  "best_direction_search"
+  ans
 
 }
 

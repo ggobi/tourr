@@ -117,7 +117,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
     invisible(bases[, , seq_len(b)])
   }
 
-  record <- record %>% dplyr::mutate(id = dplyr::row_number())
+  record <- dplyr::mutate(record, id = dplyr::row_number())
   suppressWarnings(rm(tries, cur_index, current, t0, record, envir = globalenv()))
   if (getOption("tourr.verbose", default = FALSE)) return(record)
 }

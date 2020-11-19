@@ -31,14 +31,13 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
     # index after a small step in either direction
     direction <- find_best_dir(current, index, counter = n, dist = delta)
     best_dir <- direction$basis[[which.max(direction$index_val)]]
-    direction_search <- direction %>% dplyr::mutate(loop = try)
+    direction_search <- dplyr::mutate(direction, loop = try)
 
     # Travel halfway round (pi / 4 radians) the sphere in that direction
     # looking for the best projection
-    peak <- find_path_peak(current, best_dir, index) %>%
-      dplyr::mutate(tries = tries, loop = try)
-    new_index <- peak$index_val %>% utils::tail(1)
-    new_basis <- peak$basis %>% utils::tail(1)
+    peak <- dplyr::mutate(find_path_peak(current, best_dir, index),  tries = tries, loop = try)
+    new_index <- tail(peak$index_val, 1)
+    new_basis <- tail(peak$basis, 1)
 
     if (getOption("tourr.verbose", default = FALSE)) record <<- dplyr::bind_rows(record, direction_search, peak)
 
@@ -123,11 +122,9 @@ find_best_dir <- function(old, index, dist = 0.01, counter = 5, ...) {
 
   }
 
-  do.call(rbind, lapply(bases, score)) %>%
-    dplyr::mutate(info = ifelse(index_val == max(index_val),
-                                "best_direction_search", info))
-
-
+  ans <- dplyr::bind_rows(lapply(bases, score))
+  ans[which.max(ans$index_val), "info"] <- "best_direction_search"
+  ans
 }
 
 #' Find the most interesting projection along a geodesic.
