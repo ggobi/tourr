@@ -13,3 +13,5 @@
 ^README\.md$
 ^docs$
 ^_config.yml$
+^codecov\.yml$
+^\.github$
