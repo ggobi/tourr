@@ -100,3 +100,27 @@ to_stop <- function() {
   }
   message("Press ", key, " to stop tour running")
 }
+
+#' Test if all entries are colors
+#'
+#' @param x vector
+#' @export
+areColors <- function(x) {
+  all(
+    sapply(x, function(X) {
+      tryCatch(is.matrix(col2rgb(X)),
+               error = function(e) FALSE)
+      })
+  )
+}
+
+#' Map vector of factors to color
+#'
+#' @param x vector
+#' @export
+mapColors <- function(x) {
+  n <- length(unique(x))
+  pal <- grDevices::rainbow(n, 1)
+  pal[as.numeric(as.factor(x))]
+}
+

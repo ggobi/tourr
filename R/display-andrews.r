@@ -53,6 +53,8 @@ display_andrews <- function(col="black", ...) {
     grid <<- seq(-pi, pi, length = 50)
   }
 
+  if(!areColors(col)) col = mapColors(col)
+
   render_frame <- function() {
     blank_plot(xlim = c(-pi, pi), ylim = c(-1, 1))
   }
