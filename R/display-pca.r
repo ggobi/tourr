@@ -32,6 +32,9 @@ display_pca <- function(center = TRUE, axes = "center", half_range = NULL,
                         edges = NULL, edges.col = "black", ...) {
 
   labels <- NULL
+
+  if(!areColors(col)) col = mapColors(col)
+
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)
     labels <<- abbreviate(rownames(pc_coefs), 3)

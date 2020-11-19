@@ -31,6 +31,9 @@ display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
                             col = "black", pch = 20, cex = 1, edges = NULL,
                             group_by = NULL, plot_xgp = TRUE, ...) {
   labels <- NULL
+
+  if(!areColors(col)) col = mapColors(col)
+
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, centr)
     labels <<- abbreviate(colnames(data), 3)
