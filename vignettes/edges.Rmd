@@ -1,5 +1,6 @@
 ---
 title: "Edges in scatterplot displays"
+author: "Ursula Laa"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{edges}

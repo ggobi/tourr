@@ -1,5 +1,6 @@
 ---
 title: "Introduction to tourr"
+author: "Ursula Laa"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{tourr}
