@@ -12,6 +12,7 @@
 #' @param pch shape of the point to be plotted.  Defaults to 20.
 #' @param past draw line between current projection and projection \code{past}
 #'   steps ago
+#' @param cex magnification of plotting text relative to default. Defaults to 1.
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
 #' @export

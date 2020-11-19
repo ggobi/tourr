@@ -19,8 +19,9 @@
 #'   Projections. Journal of Statistical Software, 40(2), 1-18.
 #'   \url{http://www.jstatsoft.org/v40/i02/}.
 #' @examples
-#' render(flea[, 1:4], grand_tour(), display_xy(), "pdf", "test.pdf")
-#' render(flea[, 1:4], grand_tour(), display_xy(), "png", "test-%03d.png")
+#' tmp_path <- tempdir()
+#' render(flea[, 1:4], grand_tour(), display_xy(), "pdf", file.path(tmp_path, "test.pdf"))
+#' render(flea[, 1:4], grand_tour(), display_xy(), "png", file.path(tmp_path, "test-%03d.png"))
 render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")

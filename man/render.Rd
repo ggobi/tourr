@@ -44,8 +44,9 @@ e.g. \code{\link{display_xy}}, \code{\link{display_pcp}}}
 Render frames of animation to disk
 }
 \examples{
-render(flea[, 1:4], grand_tour(), display_xy(), "pdf", "test.pdf")
-render(flea[, 1:4], grand_tour(), display_xy(), "png", "test-\%03d.png")
+tmp_path <- tempdir()
+render(flea[, 1:4], grand_tour(), display_xy(), "pdf", file.path(tmp_path, "test.pdf"))
+render(flea[, 1:4], grand_tour(), display_xy(), "png", file.path(tmp_path, "test-\%03d.png"))
 }
 \references{
 Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja

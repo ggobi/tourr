@@ -5,6 +5,7 @@
 #'
 #' @param basis_set input basis set
 #' @param angle target distance (in radians) between bases
+#' @param cycle For \code{\link{planned_tour}} cycle through continuously (TRUE) or stop after first pass (FALSE)
 #' @keywords hplot
 #' @export
 #' @examples

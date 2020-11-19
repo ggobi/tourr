@@ -1,6 +1,6 @@
 Package: tourr
 Title: Tour Methods for Multivariate Data Visualisation
-Version: 0.5.9
+Version: 0.6.0
 Author: Hadley Wickham [aut, ctb], 
     Di Cook  [aut, cre], 
     Nick Spyrison [ctb],
@@ -22,9 +22,10 @@ Depends:
     R (>= 3.5)
 Imports:
     MASS,
-    magrittr,
     tibble,
-    dplyr
+    dplyr,
+    stats,
+    utils
 Suggests:
     TeachingDemos,
     ash,
@@ -37,7 +38,8 @@ Suggests:
     gifski,
     geozoo,
     knitr,
-    rmarkdown
+    rmarkdown,
+    covr
 License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/ggobi/tourr

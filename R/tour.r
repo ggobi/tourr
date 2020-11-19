@@ -48,7 +48,6 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   geodesic <- NULL
 
   function(step_size, ...) {
-    #browser()
 
     if (getOption("tourr.verbose", default = FALSE)) cat("target_dist - cur_dist:", target_dist - cur_dist,  "\n")
 
@@ -56,7 +55,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     cur_dist <<- cur_dist + step_size
 
     if (target_dist == 0 & step > 1){ # should only happen for guided tour when no better basis is found (relative to starting plane)
-      return(list(proj = proj[[-1]], target = target, step = -1)) #use negative step size to signal that we have reached the final target
+      return(list(proj = tail(proj, 1)[[1]], target = target, step = -1)) #use negative step size to signal that we have reached the final target
     }
     # We're at (or past) the target, so generate a new one and reset counters
     if (step_size > 0 & is.finite(step_size) & cur_dist >= target_dist) {
@@ -65,36 +64,39 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
       if (getOption("tourr.verbose", default = FALSE)){
         if ("new_basis" %in% record$info & record$method[2] != "search_geodesic"){
 
-          last_two <- record %>% dplyr::filter(info == "new_basis") %>% utils::tail(2)
+          last_two <- tail(dplyr::filter(record, info == "new_basis"), 2)
 
           if (last_two$index_val[1] > last_two$index_val[2]){
-            # search_better_random may give probalistic acceptance
+            # search_better_random may give probabilistic acceptance
             current <<- last_two$basis[[2]]
             cur_index <<- last_two$index_val[[2]]
           }else{
-            interp <- record %>%
-              dplyr::filter(tries == max(tries), info == "interpolation") %>%
-              dplyr::filter(index_val == max(index_val))
+            interp <- dplyr::filter(record,
+                                    tries == max(tries),
+                                    info == "interpolation",
+                                    index_val == max(index_val))
 
-            target <- record %>%
-              dplyr::filter(tries == max(tries), info == "new_basis")
+            target <- dplyr::filter(record,
+                                    tries == max(tries),
+                                    info == "new_basis")
 
             # deem the target basis as the new current basis if the interpolation doesn't reach the target basis
             # used when the index_f is not smooth
             if (target$index_val > interp$index_val) {
               proj[[length(proj) +1]] <<- geodesic$interpolate(1.) #make sure next starting plane is previous target
 
-              record <<- record %>% dplyr::add_row(target %>% dplyr::mutate(info = "interpolation", loop = step))
-              current <<- record %>% tail(1) %>% dplyr::pull(basis) %>% .[[1]]
-              cur_index <<- record %>% tail(1) %>% dplyr::pull(index_val)
+              target <- dplyr::mutate(target, info = "interpolation", loop = step)
+              record <<- dplyr::add_row(record, target)
+              current <<- tail(record$basis, 1)[[1]]
+              cur_index <<- tail(record$index_val, 1)
 
             } else if (target$index_val < interp$index_val & nrow(interp) != 0){
               # the interrupt
               proj[[length(proj) +1]] <<- interp$basis[[1]]
 
-              record <<- record %>% dplyr::filter(id <= which(record$index_val == interp$index_val))
-              current <<- record %>% tail(1) %>% dplyr::pull(basis) %>% .[[1]]
-              cur_index <<- record %>% tail(1) %>% dplyr::pull(index_val)
+              record <<- dplyr::filter(record, id <= which(record$index_val == interp$index_val))
+              current <<-  tail(record$basis, 1)[[1]]
+              cur_index <<- tail(record$index_val, 1)
             }
           }
         }
@@ -136,14 +138,15 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     proj[[step + 2]] <<- geodesic$interpolate(cur_dist / target_dist)
 
 
-    if (getOption("tourr.verbose", default = FALSE)) {
-      record <<- record %>% dplyr::add_row(basis = list(proj[[step +2]]),
-                                 index_val = index(proj[[step + 2]]),
-                                 info = "interpolation",
-                                 tries = tries,
-                                 method = dplyr::last(record$method),
-                                 loop = step + 1) %>% # start the counter for loop from 1
-        dplyr::mutate(id = dplyr::row_number())
+    if (getOption("tourr.verbose", default = FALSE) & exists("index")) {
+      record <<- dplyr::add_row(record,
+                         basis = list(proj[[step +2]]),
+                         index_val = index(proj[[step + 2]]),
+                         info = "interpolation",
+                         tries = tries,
+                         method = dplyr::last(record$method),
+                         loop = step + 1,
+                         id = nrow(record) + 1)
     }
 
 

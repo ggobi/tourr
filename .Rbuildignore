@@ -13,5 +13,6 @@
 ^README\.md$
 ^docs$
 ^_config.yml$
-^doc$
-^Meta$
+^codecov\.yml$
+^\.github$
+^data-raw$

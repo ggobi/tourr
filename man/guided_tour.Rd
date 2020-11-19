@@ -12,6 +12,7 @@ guided_tour(
   max.tries = 25,
   max.i = Inf,
   search_f = search_geodesic,
+  n_sample = 5,
   ...
 )
 }
@@ -31,6 +32,8 @@ a better projection before giving up}
 \item{max.i}{the maximum index value, stop search if a larger value is found}
 
 \item{search_f}{the search strategy to use}
+
+\item{n_sample}{number of samples to generate for \code{\link{search_polish}}}
 
 \item{...}{arguments sent to the search_f}
 }

@@ -19,6 +19,7 @@
 #' @param max.tries the maximum number of unsuccessful attempts to find
 #'   a better projection before giving up
 #' @param max.i the maximum index value, stop search if a larger value is found
+#' @param n_sample number of samples to generate for \code{\link{search_polish}}
 #' @param ... arguments sent to the search_f
 #' @seealso \code{\link{cmass}}, \code{\link{holes}} and \code{\link{lda_pp}}
 #'   for examples of index functions.  The function should take a numeric
@@ -40,7 +41,7 @@
 #' f <- flea[, 1:3]
 #' tries <- replicate(5, save_history(f, guided_tour(holes())), simplify = FALSE)
 guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
-                        max.i = Inf, search_f = search_geodesic, ...) {
+                        max.i = Inf, search_f = search_geodesic, n_sample = 5, ...) {
   generator <- function(current, data, ...) {
     index <<- function(proj) {
 
@@ -57,7 +58,8 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
       cur_index <<- index(current)
       t0 <<- 0.01
       if (getOption("tourr.verbose", default = FALSE)) {
-        record <<- record %>% dplyr::add_row(basis = list(current),
+        record <<- dplyr::add_row(record,
+                                  basis = list(current),
                                   index_val = cur_index,
                                   tries = tries,
                                   info = "new_basis",
@@ -91,7 +93,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
     tries <<- tries
 
     #current, alpha = 1, index, max.tries = 5, n = 5, delta = 0.01, cur_index = NA, ..
-    basis <- search_f(current, alpha, index, max.tries, cur_index=cur_index,frozen = frozen, ...)
+    basis <- search_f(current, alpha, index, max.tries, cur_index=cur_index,frozen = frozen, n_sample = n_sample, ...)
 
 
     if (method == "search_posse"){
