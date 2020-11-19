@@ -270,6 +270,4 @@ NULL
 #' @name norm
 #' @docType data
 #' @format A vector of length 1000
-set.seed(123)
-norm <- rnorm(1000)
-save(norm, file = here::here("data", "random_num.rda"))
+NULL
