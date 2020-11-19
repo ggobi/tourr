@@ -46,6 +46,9 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
                        edges = NULL, edges.col = "black", ...) {
 
   labels <- NULL
+
+  if(!areColors(col)) col = mapColors(col)
+
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)
     labels <<- abbreviate(colnames(data), 3)

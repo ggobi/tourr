@@ -48,6 +48,8 @@ display_density2d <- function(center = TRUE, axes = "center", half_range = NULL,
                        col = "black", pch  = 20, cex = 1,
                        contour_quartile = c(.25, .5, .75), edges = NULL, ...) {
 
+  if(!areColors(col)) col = mapColors(col)
+
   labels <- NULL
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)

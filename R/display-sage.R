@@ -32,6 +32,8 @@ display_sage <- function(axes = "center", half_range = NULL,
   labels <- NULL
   peff <- NULL
 
+  if(!areColors(col)) col = mapColors(col)
+
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, TRUE)
     R <<- compute_half_range(R, data, TRUE)
