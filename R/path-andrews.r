@@ -22,10 +22,13 @@
 #' # generate your own.  Here are few examples of alternative displays:
 #'
 #' df <- path_curves(path2d)
-#' qplot(step, value, data = df, group = obs:var, geom = "line", colour=var) + facet_wrap( ~ obs)
+#' ggplot(data = df, aes(x=step, y=value, group = obs:var, colour=var)) +
+#'  geom_line() + facet_wrap( ~ obs)
 #'
-#' library(reshape2)
-#' qplot(`1`, `2`, data = dcast(df, ... ~ var)) +
+#' library(tidyr)
+#' ggplot(data = pivot_wider(df, id_cols=c(obs,step), names_from = var, values_from = value),
+#'   aes(x=`1`, y=`2`)) +
+#'   geom_point() +
 #'   facet_wrap( ~ step) +
 #'   coord_equal()
 #' }
@@ -62,7 +65,8 @@ path_curves <- function(history, data = attr(history, "data")) {
 plot.path_curve <- function(x, ...) {
   step <- NULL # quiet R CMD check warning
 
-  ggplot2::qplot(step, value, data = x, group = obs, geom = "line") +
+  ggplot2::ggplot(data = x, aes(x=step, y=value, group = obs)) +
+    ggplot2::geom_line() +
     ggplot2::facet_grid(var ~ .)
 }
 globalVariables(c("value", "obs"))
