@@ -84,6 +84,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
             # used when the index_f is not smooth
             if (target$index_val > interp$index_val) {
               proj[[length(proj) +1]] <<- geodesic$interpolate(1.) #make sure next starting plane is previous target
+
               target <- dplyr::mutate(target, info = "interpolation", loop = step)
               record <<- dplyr::add_row(record, target)
               current <<- tail(record$basis, 1)[[1]]
@@ -138,7 +139,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
 
     if (getOption("tourr.verbose", default = FALSE) & exists("index")) {
-      record <<- add_row(record,
+      record <<- dplyr::add_row(record,
                          basis = list(proj[[step +2]]),
                          index_val = index(proj[[step + 2]]),
                          info = "interpolation",
