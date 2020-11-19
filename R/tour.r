@@ -145,8 +145,9 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
                          info = "interpolation",
                          tries = tries,
                          method = dplyr::last(record$method),
-                         loop = step + 1,
-                         id = nrow(record) + 1)
+                         loop = step + 1)
+      record <<- dplyr::mutate(record, id = dplyr::row_number())
+
     }
 
 

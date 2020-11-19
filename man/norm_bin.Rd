@@ -7,7 +7,7 @@
 \usage{
 norm_bin()
 
-norm_kol()
+norm_kol(nrow)
 }
 \description{
 Compares the similarity between the projected distribution and a normal distribution.
@@ -15,5 +15,16 @@ Compares the similarity between the projected distribution and a normal distribu
 \item{norm_bin }{compares the count in 100 histogram bins}
 \item{norm_kol }{compares the cdf based on the Kolmogorov–Smirnov test (KS test)}
 }
+}
+\examples{
+# manually compute the norm_kol index
+# create the index function
+index <- norm_kol(nrow(flea[,1:3]))
+# create the projection
+proj <- matrix(c(1, 0, 0), nrow = 3)
+# pre-process the example data
+flea_s <- sphere_data(flea[,1:3])
+# produce the index value
+index(flea_s \%*\% proj)
 }
 \keyword{hplot}
