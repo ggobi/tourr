@@ -1,4 +1,4 @@
-Version 0.5.7
+Version 0.6.0
 ------------------------------------------------------------------------------
 
 Little tour now cycles twice through variable list, in a randomised order.
@@ -9,7 +9,7 @@ A slice tour is now available using the function animate_slice(). A new index fo
 
 A principal component analysis tour display is now available, that renders the axes of the original variables. This requires appropriate scaling of data ahead of time. See the example code.
 
-A new record option is available to print out diagnostic information for every step. Use verbose = TRUE when starting a tour.
+A new record option is available to print out diagnostic information for every step. Use options(tourr.verbose = TRUE) before beginning to tour. The ferrn package at https://github.com/huizezhang-sherry/ferrn can be used to diagnose the optimisation techniques.
 
 Improvements to the optimisation functions have been  made: search_better has an interrupt if a higher index is achieved mid-path; search_polish takes a best basis from another routine, and makes small steps to get a very best projection close by.
 

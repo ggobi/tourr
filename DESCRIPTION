@@ -1,6 +1,6 @@
 Package: tourr
 Title: Tour Methods for Multivariate Data Visualisation
-Version: 0.5.9
+Version: 0.6.0
 Author: Hadley Wickham [aut, ctb], 
     Di Cook  [aut, cre], 
     Nick Spyrison [ctb],
