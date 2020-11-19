@@ -15,15 +15,15 @@
 #' @param alpha the initial size of the search window, in radians
 #' @param cooling the amount the size of the search window should be adjusted
 #'   by after each step
-#' @param search_f the search strategy to use
+#' @param search_f the search strategy to use. Default is \code{\link{search_geodesic}}.
 #' @param max.tries the maximum number of unsuccessful attempts to find
 #'   a better projection before giving up
 #' @param max.i the maximum index value, stop search if a larger value is found
-#' @param n_sample number of samples to generate for \code{\link{search_polish}}
+#' @param n_sample number of samples to generate if \code{search_f} is \code{\link{search_polish}}
 #' @param ... arguments sent to the search_f
 #' @seealso \code{\link{cmass}}, \code{\link{holes}} and \code{\link{lda_pp}}
 #'   for examples of index functions.  The function should take a numeric
-#'   matrix and return a single number, preferrably between 0 and 1.
+#'   matrix and return a single number, preferably between 0 and 1.
 #' \code{\link{search_geodesic}}, \code{\link{search_better}},
 #'   \code{\link{search_better_random}} for different search strategies
 #' @export
