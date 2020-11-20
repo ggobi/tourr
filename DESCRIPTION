@@ -25,7 +25,8 @@ Imports:
     tibble,
     dplyr,
     stats,
-    utils
+    utils,
+    grDevices
 Suggests:
     TeachingDemos,
     ash,

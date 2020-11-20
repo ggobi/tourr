@@ -49,6 +49,7 @@ splines2d <- function(){
 #' @param nr The number of rows in the target matrix
 #'
 #' @keywords hplot
+#' @importFrom stats rnorm
 #' @export
 norm_bin <- function(nr) {
 
