@@ -12,7 +12,7 @@ Authors@R: c(
     person("Di", "Cook", email = "dicook@monash.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-3813-7155")),
     person("Nick", "Spyrison", email = "nicholas.spyrison@monash.edu", role = "ctb"),
     person("Ursula", "Laa", email = "ursula.laa@monash.edu", role = "ctb"), 
-    person("Huize","Zhang", email = "huizezhangsh@gmail.com", role = "ctb"),
+    person("H. Sherry","Zhang", email = "huizezhangsh@gmail.com", role = "ctb"),
     person("Stuart", "Lee", email = "stuart.lee1@monash.edu", role = "ctb"))
 Maintainer: Di Cook <dicook@monash.edu>
 Description: Implements geodesic interpolation and basis
