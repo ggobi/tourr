@@ -3,7 +3,7 @@ title: "Introduction to tourr"
 author: "Ursula Laa"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{tourr}
+  %\VignetteIndexEntry{Introduction to tourr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -11,12 +11,13 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  error = TRUE,
   comment = "#>"
 )
 ```
 
-A tour animates a display of interpolated low-dimensional projections from high-dimensional data, to explore the shape of the distribution. This vignette shows how to use the `tourr` package to generate animations using different tour and display types.
+A tour animates a display of interpolated low-dimensional projections from high-dimensional data, to explore the shape of the multivariate distribution. The shape might be elliptical if the distribution is roughly normal, or there may be clusters corresponding to grouping the data according to known or unknown variables. There might be outliers, the can be identified because they are separated from the other observations, or move on different paths that other points. It may be that there are curvilinear patterns indicating nonlinear association between some variables.
+
+This vignette shows how to use the `tourr` package to generate animations using different tour and display types.
 
 ```{r setup}
 library(tourr)
@@ -65,6 +66,14 @@ animate(f,
 
 
 When running the full guided tour for this example, the final view shows three clusters that correspond to the three species in the dataset. By mapping the species to color we can see how the groups get teased apart in the guided tour.
+
+```{r}
+animate(f,
+        tour_path = guided_tour(holes()),
+        display = display_xy(col = flea$species))
+```
+
+Alternatively, a colour vector can be created manually and passed into the guided tour.
 
 ```{r}
 # defining the color palette

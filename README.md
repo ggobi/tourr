@@ -1,7 +1,8 @@
 tourr: tour methods for multivariate data visualisation
 ================
-Hadley Wickham, Di Cook
-March 06, 2019
+Hadley Wickham, Di Cook, Nick Spyrison, Ursula Laa, H. Sherry Zhang,
+Stuart Lee
+November 20, 2020
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -20,7 +21,7 @@ You can install the released version of tourr from
 install.packages("tourr")
 ```
 
-You can install the development version of tourr from github with:
+You can install the development version of nullabor from github with:
 
 ``` r
 # install.packages("devtools")
@@ -29,13 +30,10 @@ devtools::install_github("ggobi/tourr")
 
 ## Example
 
-To display the tour, when using the RStudio IDE, you may need to use a
-different graphics device. On a Mac, I run `quartz()` before starting a
-tour. On Windows, `X11()` may be the best.
+To run a tour in R, use one of the animate functions. This code will
+show a 2D tour displayed as a scatterplot on a 6D data set with three
+labelled classes.
 
 ``` r
-if(Sys.getenv("RSTUDIO") == "1" & # check if running in RStudio
-       .Platform$OS.type == "unix") quartz() else X11()
-library(tourr)
-animate_xy(flea[, 1:6])
+animate_xy(flea[,-7], col=flea$species)
 ```

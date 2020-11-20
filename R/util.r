@@ -108,7 +108,7 @@ to_stop <- function() {
 areColors <- function(x) {
   all(
     sapply(x, function(X) {
-      tryCatch(is.matrix(col2rgb(X)),
+      tryCatch(is.matrix(grDevices::col2rgb(X)),
                error = function(e) FALSE)
       })
   )
@@ -120,7 +120,7 @@ areColors <- function(x) {
 #' @export
 mapColors <- function(x) {
   n <- length(unique(x))
-  pal <- grDevices::rainbow(n, 1)
+  pal <- grDevices::hcl.colors(n)
   pal[as.numeric(as.factor(x))]
 }
 
