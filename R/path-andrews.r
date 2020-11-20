@@ -67,7 +67,7 @@ path_curves <- function(history, data = attr(history, "data")) {
 plot.path_curve <- function(x, ...) {
   step <- NULL # quiet R CMD check warning
 
-  ggplot2::ggplot(data = x, aes(x=step, y=value, group = obs)) +
+  ggplot2::ggplot(data = x, ggplot2::aes(x=step, y=value, group = obs)) +
     ggplot2::geom_line() +
     ggplot2::facet_grid(var ~ .)
 }

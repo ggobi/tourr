@@ -3,7 +3,7 @@ title: "Introduction to tourr"
 author: "Ursula Laa"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{tourr}
+  %\VignetteIndexEntry{Introduction to tourr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -11,7 +11,6 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  error = TRUE,
   comment = "#>"
 )
 ```

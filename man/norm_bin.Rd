@@ -5,9 +5,12 @@
 \alias{norm_kol}
 \title{Normality index.}
 \usage{
-norm_bin()
+norm_bin(nr)
 
-norm_kol(nrow)
+norm_kol(nr)
+}
+\arguments{
+\item{nr}{The number of rows in the target matrix}
 }
 \description{
 Compares the similarity between the projected distribution and a normal distribution.
@@ -19,6 +22,7 @@ Compares the similarity between the projected distribution and a normal distribu
 \examples{
 # manually compute the norm_kol index
 # create the index function
+set.seed(123)
 index <- norm_kol(nrow(flea[,1:3]))
 # create the projection
 proj <- matrix(c(1, 0, 0), nrow = 3)
