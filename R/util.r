@@ -120,7 +120,7 @@ areColors <- function(x) {
 #' @export
 mapColors <- function(x) {
   n <- length(unique(x))
-  pal <- grDevices::rainbow(n, 1)
+  pal <- grDevices::hcl.colors(n)
   pal[as.numeric(as.factor(x))]
 }
 
