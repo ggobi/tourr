@@ -15,21 +15,29 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,12 +45,11 @@
 
 
 
+
 <meta property="og:title" content="Compute index values for a tour history. — path_index" />
-
 <meta property="og:description" content="Compute index values for a tour history." />
-
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -56,9 +63,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -80,22 +88,36 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
+  <a href="../articles/tourr.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/edges.html">Edges in scatterplot displays</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/ggobi/tourr">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/ggobi/tourr/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -106,6 +128,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -117,13 +140,11 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Compute index values for a tour history.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>path_index</span>(<span class='no'>history</span>, <span class='no'>index_f</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/attr'>attr</a></span>(<span class='no'>history</span>, <span class='st'>"data"</span>))</pre>
-    
+    <pre class="usage"><span class='fu'>path_index</span><span class='op'>(</span><span class='va'>history</span>, <span class='va'>index_f</span>, data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>history</span>, <span class='st'>"data"</span><span class='op'>)</span><span class='op'>)</span></pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -141,93 +162,118 @@
       <td><p>dataset to be projected on to bases</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='save_history.html'>save_history</a></code> for options to save history</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>fl_holes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='save_history.html'>save_history</a></span>(<span class='no'>flea</span>[, <span class='fl'>1</span>:<span class='fl'>6</span>], <span class='fu'><a href='guided_tour.html'>guided_tour</a></span>(<span class='fu'><a href='holes.html'>holes</a></span>()), <span class='kw'>sphere</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Value 0.900 1.5% better (0.281 away) - NEW BASIS
-#&gt; Value 0.907 2.3% better (0.400 away) - NEW BASIS
-#&gt; Value 0.917 1.1% better (0.311 away) - NEW BASIS
-#&gt; Value 0.928 1.2% better (0.234 away) - NEW BASIS
-#&gt; Value 0.930 0.2% better (0.096 away) - NEW BASIS
-#&gt; Value 0.931 0.1% better (0.062 away)
-#&gt; Value 0.932 0.2% better (0.113 away) - NEW BASIS
-#&gt; Value 0.932 0.1% better (0.048 away)
-#&gt; Value 0.933 0.1% better (0.058 away)
-#&gt; Value 0.933 0.1% better (0.069 away)
-#&gt; Value 0.933 0.1% better (0.058 away)
-#&gt; Value 0.932 0.1% better (0.067 away)
-#&gt; Value 0.932 0.1% better (0.046 away)
-#&gt; Value 0.932 0.0% better (0.035 away)
-#&gt; Value 0.932 0.0% better (0.030 away)
-#&gt; Value 0.933 0.1% better (0.063 away)
-#&gt; Value 0.932 0.0% better (0.046 away)
-#&gt; Value 0.933 0.1% better (0.101 away) - NEW BASIS
-#&gt; Value 0.934 0.1% better (0.081 away) - NEW BASIS
-#&gt; Value 0.934 0.0% better (0.028 away)
-#&gt; Value 0.935 0.0% better (0.043 away)
-#&gt; Value 0.934 0.0% better (0.033 away)
-#&gt; Value 0.934 0.0% better (0.026 away)
-#&gt; Value 0.935 0.0% better (0.038 away)
-#&gt; Value 0.935 0.0% better (0.042 away)
-#&gt; Value 0.935 0.1% better (0.050 away)
-#&gt; Value 0.934 0.0% better (0.033 away)
-#&gt; Value 0.935 0.0% better (0.047 away)
-#&gt; Value 0.934 0.0% better (0.029 away)
-#&gt; Value 0.935 0.0% better (0.035 away)
-#&gt; Value 0.935 0.1% better (0.052 away)
-#&gt; Value 0.935 0.1% better (0.057 away)
-#&gt; Value 0.935 0.0% better (0.036 away)
-#&gt; Value 0.934 0.0% better (0.024 away)
-#&gt; Value 0.935 0.1% better (0.067 away)
-#&gt; Value 0.935 0.0% better (0.047 away)
-#&gt; Value 0.935 0.0% better (0.037 away)
-#&gt; Value 0.935 0.1% better (0.080 away)
-#&gt; Value 0.934 0.0% better (0.028 away)
-#&gt; Value 0.935 0.0% better (0.049 away)
-#&gt; Value 0.934 0.0% better (0.029 away)
-#&gt; Value 0.934 0.0% better (0.027 away)
-#&gt; Value 0.934 0.0% better (0.018 away)
+    <pre class="examples"><div class='input'><span class='va'>fl_holes</span> <span class='op'>&lt;-</span> <span class='fu'><a href='save_history.html'>save_history</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='guided_tour.html'>guided_tour</a></span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>, sphere <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.863   9.8 % better  - NEW BASIS
+#&gt; Value  0.862   -0.2 % better 
+#&gt; Value  0.839   -2.8 % better 
+#&gt; Value  0.839   -2.8 % better 
+#&gt; Value  0.830   -3.9 % better 
+#&gt; Value  0.844   -2.1 % better 
+#&gt; Value  0.866   0.4 % better  - NEW BASIS
+#&gt; Value  0.884   2.0 % better  - NEW BASIS
+#&gt; Value  0.890   0.7 % better  - NEW BASIS
+#&gt; Value  0.898   0.9 % better  - NEW BASIS
+#&gt; Value  0.906   0.9 % better  - NEW BASIS
+#&gt; Value  0.907   0.1 % better  - NEW BASIS
+#&gt; Value  0.912   0.5 % better  - NEW BASIS
+#&gt; Value  0.913   0.0 % better 
+#&gt; Value  0.913   0.1 % better 
+#&gt; Value  0.913   0.1 % better  - NEW BASIS
+#&gt; Value  0.914   0.1 % better 
+#&gt; Value  0.914   0.1 % better 
+#&gt; Value  0.914   0.1 % better 
+#&gt; Value  0.915   0.2 % better  - NEW BASIS
+#&gt; Value  0.916   0.1 % better 
+#&gt; Value  0.915   0.0 % better 
+#&gt; Value  0.915   0.0 % better 
+#&gt; Value  0.916   0.1 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.915   0.0 % better 
+#&gt; Value  0.915   0.0 % better 
+#&gt; Value  0.916   0.1 % better 
+#&gt; Value  0.915   0.0 % better 
+#&gt; Value  0.915   0.0 % better 
+#&gt; Value  0.916   0.1 % better 
+#&gt; Value  0.915   0.0 % better 
+#&gt; Value  0.915   0.0 % better 
+#&gt; Value  0.915   0.0 % better 
+#&gt; Value  0.915   0.0 % better 
+#&gt; Value  0.916   0.1 % better 
+#&gt; Value  0.915   0.0 % better 
+#&gt; Value  0.916   0.1 % better  - NEW BASIS
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
+#&gt; Value  0.916   0.0 % better 
 #&gt; No better bases found after 25 tries.  Giving up.
 #&gt; Final projection: 
-#&gt; 0.947  -0.113  
-#&gt; 0.016  0.860  
-#&gt; 0.230  0.397  
-#&gt; -0.131  -0.234  
-#&gt; -0.033  -0.076  
-#&gt; 0.178  -0.173  </div><div class='input'><span class='fu'>path_index</span>(<span class='no'>fl_holes</span>, <span class='fu'><a href='holes.html'>holes</a></span>())</div><div class='output co'>#&gt; [1] 0.9073309 0.9173536 0.9281355 0.9301127 0.9317970 0.9330178 0.9342341
-#&gt; [8] 0.9342341
+#&gt; 0.008  0.409  
+#&gt; -0.202  -0.815  
+#&gt; -0.739  -0.032  
+#&gt; -0.117  0.028  
+#&gt; -0.631  0.317  
+#&gt; 0.047  0.256  </div><div class='input'><span class='fu'>path_index</span><span class='op'>(</span><span class='va'>fl_holes</span>, <span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] 0.8663602 0.8840074 0.8901410 0.8978718 0.9062930 0.9073941 0.9123811
+#&gt;  [8] 0.9134535 0.9151578 0.9160786 0.9160786
 #&gt; attr(,"class")
-#&gt; [1] "path_index"</div><div class='input'><span class='fu'>path_index</span>(<span class='no'>fl_holes</span>, <span class='fu'><a href='cmass.html'>cmass</a></span>())</div><div class='output co'>#&gt; [1] 0.09266913 0.08264643 0.07186452 0.06988731 0.06820298 0.06698223 0.06576588
-#&gt; [8] 0.06576588
+#&gt; [1] "path_index"</div><div class='input'><span class='fu'>path_index</span><span class='op'>(</span><span class='va'>fl_holes</span>, <span class='fu'><a href='cmass.html'>cmass</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] 0.13363981 0.11599263 0.10985902 0.10212819 0.09370705 0.09260587
+#&gt;  [7] 0.08761885 0.08654651 0.08484220 0.08392137 0.08392137
 #&gt; attr(,"class")
 #&gt; [1] "path_index"</div><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='fu'>path_index</span>(<span class='no'>fl_holes</span>, <span class='fu'><a href='holes.html'>holes</a></span>()), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>)</div><div class='img'><img src='path_index-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='fu'>path_index</span>(<span class='no'>fl_holes</span>, <span class='fu'><a href='cmass.html'>cmass</a></span>()), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>)</div><div class='img'><img src='path_index-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'>path_index</span><span class='op'>(</span><span class='va'>fl_holes</span>, <span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>, type <span class='op'>=</span> <span class='st'>"l"</span><span class='op'>)</span>
+</div><div class='img'><img src='path_index-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'>path_index</span><span class='op'>(</span><span class='va'>fl_holes</span>, <span class='fu'><a href='cmass.html'>cmass</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>, type <span class='op'>=</span> <span class='st'>"l"</span><span class='op'>)</span>
+</div><div class='img'><img src='path_index-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Use interpolate to show all intermediate bases as well</span>
-<span class='no'>hi</span> <span class='kw'>&lt;-</span> <span class='fu'>path_index</span>(<span class='fu'><a href='interpolate.html'>interpolate</a></span>(<span class='no'>fl_holes</span>), <span class='fu'><a href='holes.html'>holes</a></span>())
-<span class='no'>hi</span></div><div class='output co'>#&gt;  [1] 0.9073309 0.9092152 0.9109687 0.9125691 0.9139902 0.9152025 0.9161746
-#&gt;  [8] 0.9168746 0.9172715 0.9173536 0.9202756 0.9227737 0.9248209 0.9263939
-#&gt; [15] 0.9274733 0.9280432 0.9281355 0.9293199 0.9299743 0.9301127 0.9310016
-#&gt; [22] 0.9315607 0.9317904 0.9317970 0.9324953 0.9329033 0.9330178 0.9338500
-#&gt; [29] 0.9342152 0.9342341
+<span class='va'>hi</span> <span class='op'>&lt;-</span> <span class='fu'>path_index</span><span class='op'>(</span><span class='fu'><a href='interpolate.html'>interpolate</a></span><span class='op'>(</span><span class='va'>fl_holes</span><span class='op'>)</span>, <span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>hi</span>
+</div><div class='output co'>#&gt;  [1] 0.8663602 0.8686664 0.8708989 0.8730278 0.8750257 0.8768674 0.8785308
+#&gt;  [8] 0.8799969 0.8812498 0.8822774 0.8830705 0.8836235 0.8839338 0.8840074
+#&gt; [15] 0.8855883 0.8869630 0.8881099 0.8890119 0.8896559 0.8900334 0.8901410
+#&gt; [22] 0.8919520 0.8935849 0.8950040 0.8961739 0.8970610 0.8976344 0.8978677
+#&gt; [29] 0.8978718 0.9000333 0.9018815 0.9034104 0.9046163 0.9054974 0.9060534
+#&gt; [36] 0.9062853 0.9062930 0.9070614 0.9073832 0.9073941 0.9089559 0.9102473
+#&gt; [43] 0.9112499 0.9119459 0.9123188 0.9123811 0.9131632 0.9134514 0.9134535
+#&gt; [50] 0.9142272 0.9147690 0.9150782 0.9151578 0.9157645 0.9160517 0.9160786
 #&gt; attr(,"class")
-#&gt; [1] "path_index"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>hi</span>)</div><div class='img'><img src='path_index-3.png' alt='' width='700' height='433' /></div></pre>
+#&gt; [1] "path_index"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>hi</span><span class='op'>)</span>
+</div><div class='img'><img src='path_index-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -235,13 +281,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

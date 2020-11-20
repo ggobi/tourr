@@ -15,21 +15,29 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,12 +45,11 @@
 
 
 
+
 <meta property="og:title" content="Compute distance matrix from bases. — path_dist" />
-
 <meta property="og:description" content="Compute distance matrix from bases." />
-
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -56,9 +63,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -80,22 +88,36 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
+  <a href="../articles/tourr.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/edges.html">Edges in scatterplot displays</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/ggobi/tourr">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/ggobi/tourr/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -106,6 +128,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -117,13 +140,11 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Compute distance matrix from bases.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>path_dist</span>(<span class='no'>history</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>path_dist</span><span class='op'>(</span><span class='va'>history</span><span class='op'>)</span></pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -132,153 +153,255 @@
       <td><p>history of the plots</p></td>
     </tr>
     </table>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
- <span class='no'>grand</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='interpolate.html'>interpolate</a></span>(<span class='fu'><a href='save_history.html'>save_history</a></span>(<span class='no'>flea</span>[, <span class='fl'>1</span>:<span class='fl'>6</span>], <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>50</span>), <span class='fl'>0.2</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+ <span class='va'>grand</span> <span class='op'>&lt;-</span> <span class='fu'><a href='interpolate.html'>interpolate</a></span><span class='op'>(</span><span class='fu'><a href='save_history.html'>save_history</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, max <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>, <span class='fl'>0.2</span><span class='op'>)</span>
  <span class='co'># The grand tour  -----------------------------</span>
  <span class='co'># Look at the tour path in a tour, how well does it cover a sphere</span>
  <span class='co'># Using MDS</span>
- <span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'>path_dist</span>(<span class='no'>grand</span>)
- <span class='no'>ord</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='kw pkg'>MASS</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/MASS/topics/isoMDS'>isoMDS</a></span>(<span class='no'>d</span>)$<span class='no'>points</span>)
- <span class='fu'>qplot</span>(<span class='no'>V1</span>, <span class='no'>V2</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>ord</span>, <span class='kw'>geom</span><span class='kw'>=</span><span class='st'>"path"</span>) +
- <span class='fu'>coord_equal</span>() + <span class='fu'>labs</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
-<span class='co'># }</span><div class='input'>
+ <span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'>path_dist</span><span class='op'>(</span><span class='va'>grand</span><span class='op'>)</span>
+ <span class='va'>ord</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='fu'>MASS</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/MASS/man/isoMDS.html'>isoMDS</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span><span class='op'>$</span><span class='va'>points</span><span class='op'>)</span>
+ <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/qplot.html'>qplot</a></span><span class='op'>(</span><span class='va'>V1</span>, <span class='va'>V2</span>, data <span class='op'>=</span> <span class='va'>ord</span>, geom<span class='op'>=</span><span class='st'>"path"</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_fixed.html'>coord_equal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='cn'>NULL</span>, y <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+<span class='op'>}</span>
+
 <span class='co'># 5 guided tours  -----------------------------</span>
-<span class='no'>holes1d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='guided_tour.html'>guided_tour</a></span>(<span class='fu'><a href='holes.html'>holes</a></span>(), <span class='fl'>1</span>)
-<span class='no'>tries</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>replicate</a></span>(<span class='fl'>5</span>, <span class='fu'><a href='save_history.html'>save_history</a></span>(<span class='no'>flea</span>[, <span class='fl'>1</span>:<span class='fl'>6</span>], <span class='no'>holes1d</span>, <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>10</span>),
-  <span class='kw'>simplify</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; Value 0.732 136.5% better (0.781 away) - NEW BASIS
-#&gt; Value 0.911 194.1% better (0.781 away) - NEW BASIS
-#&gt; Value 1.175 29.0% better (0.577 away) - NEW BASIS
-#&gt; Value 1.324 12.6% better (0.418 away) - NEW BASIS
-#&gt; Value 1.361 2.8% better (0.208 away) - NEW BASIS
-#&gt; Value 1.365 0.3% better (0.072 away) - NEW BASIS
-#&gt; Value 1.367 0.2% better (0.052 away) - NEW BASIS
-#&gt; Value 1.369 0.1% better (0.046 away) - NEW BASIS
-#&gt; Value 1.369 0.0% better (0.016 away)
-#&gt; Value 1.369 0.0% better (0.014 away)
-#&gt; Value 1.369 0.0% better (0.015 away)
-#&gt; Value 1.369 0.0% better (0.009 away)
-#&gt; Value 1.369 0.0% better (0.009 away)
-#&gt; Value 1.369 0.0% better (0.023 away)
-#&gt; Value 1.369 0.0% better (0.022 away)
-#&gt; Value 1.369 0.0% better (0.021 away)
-#&gt; Value 1.369 0.0% better (0.009 away)
-#&gt; Value 1.369 0.0% better (0.022 away)
-#&gt; Value 1.369 0.0% better (0.022 away)
-#&gt; Value 1.369 0.0% better (0.017 away)
-#&gt; Value 1.369 0.0% better (0.015 away)
-#&gt; Value 1.369 0.0% better (0.014 away)
-#&gt; Value 1.369 0.0% better (0.015 away)
-#&gt; Value 1.369 0.0% better (0.022 away)
-#&gt; Value 1.369 0.0% better (0.011 away)
-#&gt; Value 1.369 0.0% better (0.010 away)
-#&gt; Value 1.369 0.0% better (0.020 away)
-#&gt; Value 1.369 0.0% better (0.019 away)
-#&gt; Value 1.369 0.0% better (0.011 away)
-#&gt; Value 1.369 0.0% better (0.010 away)
-#&gt; Value 1.369 0.0% better (0.021 away)
-#&gt; Value 1.369 0.0% better (0.018 away)
+<span class='va'>holes1d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='guided_tour.html'>guided_tour</a></span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>tries</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fu'><a href='save_history.html'>save_history</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='va'>holes1d</span>, max <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>,
+  simplify <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.661   1067.1 % better  - NEW BASIS
+#&gt; Value  0.270   -59.1 % better 
+#&gt; Value  0.301   -54.4 % better 
+#&gt; Value  0.318   -51.9 % better 
+#&gt; Value  0.607   -8.2 % better 
+#&gt; Value  0.638   -3.5 % better 
+#&gt; Value  0.593   -10.3 % better 
+#&gt; Value  0.728   10.2 % better  - NEW BASIS
+#&gt; Value  0.936   28.5 % better  - NEW BASIS
+#&gt; Value  1.223   30.6 % better  - NEW BASIS
+#&gt; Value  1.266   3.5 % better  - NEW BASIS
+#&gt; Value  1.287   1.6 % better  - NEW BASIS
+#&gt; Value  1.342   4.3 % better  - NEW BASIS
+#&gt; Value  1.353   0.8 % better  - NEW BASIS
+#&gt; Value  1.364   0.8 % better  - NEW BASIS
+#&gt; Value  1.367   0.2 % better  - NEW BASIS
+#&gt; Value  1.368   0.1 % better  - NEW BASIS</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  1.168   297.3 % better  - NEW BASIS
+#&gt; Value  0.993   -14.9 % better 
+#&gt; Value  0.893   -23.6 % better 
+#&gt; Value  0.814   -30.3 % better 
+#&gt; Value  0.734   -37.1 % better 
+#&gt; Value  0.886   -24.1 % better 
+#&gt; Value  1.137   -2.6 % better 
+#&gt; Value  0.534   -54.3 % better 
+#&gt; Value  0.864   -26.0 % better 
+#&gt; Value  0.584   -50.0 % better 
+#&gt; Value  1.030   -11.8 % better 
+#&gt; Value  1.096   -6.1 % better 
+#&gt; Value  1.005   -13.9 % better 
+#&gt; Value  0.679   -41.9 % better 
+#&gt; Value  1.057   -9.5 % better 
+#&gt; Value  0.701   -40.0 % better 
+#&gt; Value  0.738   -36.8 % better 
+#&gt; Value  0.768   -34.3 % better 
+#&gt; Value  0.894   -23.5 % better 
+#&gt; Value  0.892   -23.6 % better 
+#&gt; Value  0.963   -17.6 % better 
+#&gt; Value  1.182   1.2 % better  - NEW BASIS
+#&gt; Value  1.200   1.4 % better  - NEW BASIS
+#&gt; Value  1.230   2.5 % better  - NEW BASIS
+#&gt; Value  1.244   1.2 % better  - NEW BASIS
+#&gt; Value  1.343   7.9 % better  - NEW BASIS
+#&gt; Value  1.354   0.8 % better  - NEW BASIS
+#&gt; Value  1.363   0.7 % better  - NEW BASIS
+#&gt; Value  1.364   0.1 % better 
+#&gt; Value  1.366   0.3 % better  - NEW BASIS
+#&gt; Value  1.367   0.1 % better 
+#&gt; Value  1.367   0.1 % better 
+#&gt; Value  1.368   0.1 % better  - NEW BASIS
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better  - NEW BASIS</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  1.108   202.4 % better  - NEW BASIS
+#&gt; Value  0.759   -31.4 % better 
+#&gt; Value  0.672   -39.4 % better 
+#&gt; Value  0.754   -31.9 % better 
+#&gt; Value  0.600   -45.8 % better 
+#&gt; Value  0.866   -21.8 % better 
+#&gt; Value  0.987   -10.9 % better 
+#&gt; Value  0.989   -10.7 % better 
+#&gt; Value  0.740   -33.2 % better 
+#&gt; Value  0.749   -32.4 % better 
+#&gt; Value  1.139   2.9 % better  - NEW BASIS
+#&gt; Value  1.251   9.8 % better  - NEW BASIS
+#&gt; Value  1.302   4.1 % better  - NEW BASIS
+#&gt; Value  1.330   2.1 % better  - NEW BASIS
+#&gt; Value  1.350   1.5 % better  - NEW BASIS
+#&gt; Value  1.362   0.9 % better  - NEW BASIS
+#&gt; Value  1.366   0.3 % better  - NEW BASIS
+#&gt; Value  1.367   0.1 % better 
+#&gt; Value  1.368   0.2 % better  - NEW BASIS
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
 #&gt; No better bases found after 25 tries.  Giving up.
 #&gt; Final projection: 
-#&gt; 0.355  0.336  0.407  0.348  0.494  0.479  
-#&gt; Value 0.899 190.4% better (0.781 away) - NEW BASIS
-#&gt; Value 0.781 152.2% better (0.781 away) - NEW BASIS
-#&gt; Value 0.920 17.8% better (0.466 away) - NEW BASIS
-#&gt; Value 1.197 30.1% better (0.601 away) - NEW BASIS
-#&gt; Value 1.255 4.9% better (0.266 away) - NEW BASIS
-#&gt; Value 1.282 2.2% better (0.180 away) - NEW BASIS
-#&gt; Value 1.303 1.6% better (0.157 away) - NEW BASIS
-#&gt; Value 1.313 0.8% better (0.110 away) - NEW BASIS
-#&gt; Value 1.340 2.0% better (0.177 away) - NEW BASIS
-#&gt; Value 1.354 1.0% better (0.128 away) - NEW BASIS
-#&gt; Value 1.363 0.7% better (0.105 away) - NEW BASIS
-#&gt; Value 0.995 221.3% better (0.781 away) - NEW BASIS
-#&gt; Value 0.632 104.2% better (0.781 away) - NEW BASIS
-#&gt; Value 0.678 7.1% better (0.292 away) - NEW BASIS
-#&gt; Value 1.091 61.0% better (0.748 away) - NEW BASIS
-#&gt; Value 1.142 4.7% better (0.255 away) - NEW BASIS
-#&gt; Value 1.317 15.3% better (0.456 away) - NEW BASIS
-#&gt; Value 1.332 1.1% better (0.133 away) - NEW BASIS
-#&gt; Value 1.351 1.4% better (0.151 away) - NEW BASIS
-#&gt; Value 1.361 0.8% better (0.112 away) - NEW BASIS
-#&gt; Value 1.366 0.3% better (0.074 away) - NEW BASIS
-#&gt; Value 1.367 0.1% better (0.032 away)
-#&gt; Value 1.369 0.2% better (0.060 away) - NEW BASIS
-#&gt; Value 0.632 104.2% better (0.781 away) - NEW BASIS
-#&gt; Value 0.584 88.5% better (0.781 away) - NEW BASIS
-#&gt; Value 1.034 77.1% better (0.781 away) - NEW BASIS
-#&gt; Value 1.278 23.6% better (0.549 away) - NEW BASIS
-#&gt; Value 1.332 4.2% better (0.254 away) - NEW BASIS
-#&gt; Value 1.349 1.3% better (0.141 away) - NEW BASIS
-#&gt; Value 1.356 0.5% better (0.093 away) - NEW BASIS
-#&gt; Value 1.362 0.5% better (0.087 away) - NEW BASIS
-#&gt; Value 1.365 0.2% better (0.050 away) - NEW BASIS
-#&gt; Value 1.366 0.1% better (0.043 away) - NEW BASIS
-#&gt; Value 1.368 0.1% better (0.046 away) - NEW BASIS
-#&gt; Value 0.406 31.1% better (0.563 away) - NEW BASIS
-#&gt; Value 0.994 221.1% better (0.781 away) - NEW BASIS
-#&gt; Value 1.283 29.0% better (0.582 away) - NEW BASIS
-#&gt; Value 1.327 3.4% better (0.229 away) - NEW BASIS
-#&gt; Value 1.338 0.9% better (0.118 away) - NEW BASIS
-#&gt; Value 1.361 1.7% better (0.166 away) - NEW BASIS
-#&gt; Value 1.363 0.1% better (0.048 away) - NEW BASIS
-#&gt; Value 1.366 0.2% better (0.053 away) - NEW BASIS
-#&gt; Value 1.368 0.2% better (0.054 away) - NEW BASIS
-#&gt; Value 1.369 0.1% better (0.034 away)
-#&gt; Value 1.369 0.1% better (0.035 away)
-#&gt; Value 1.368 0.0% better (0.013 away)
-#&gt; Value 1.368 0.0% better (0.019 away)
-#&gt; Value 1.369 0.1% better (0.034 away)
-#&gt; Value 1.369 0.0% better (0.022 away)
-#&gt; Value 1.369 0.1% better (0.029 away)
-#&gt; Value 1.369 0.0% better (0.022 away)
-#&gt; Value 1.369 0.0% better (0.024 away)
-#&gt; Value 1.369 0.1% better (0.036 away)
-#&gt; Value 1.368 0.0% better (0.009 away)
-#&gt; Value 1.369 0.1% better (0.035 away)
-#&gt; Value 1.368 0.0% better (0.013 away)
-#&gt; Value 1.369 0.1% better (0.033 away)
-#&gt; Value 1.368 0.0% better (0.017 away)
-#&gt; Value 1.369 0.0% better (0.023 away)
-#&gt; Value 1.369 0.1% better (0.030 away)
-#&gt; Value 1.368 0.0% better (0.016 away)
-#&gt; Value 1.369 0.1% better (0.035 away)
-#&gt; Value 1.368 0.0% better (0.020 away)
-#&gt; Value 1.369 0.1% better (0.038 away)
-#&gt; Value 1.369 0.0% better (0.021 away)
-#&gt; Value 1.368 0.0% better (0.015 away)
-#&gt; Value 1.369 0.1% better (0.030 away)
+#&gt; -0.359  -0.323  -0.378  -0.390  -0.503  -0.468  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.884   378.5 % better  - NEW BASIS
+#&gt; Value  0.579   -34.5 % better 
+#&gt; Value  0.531   -39.9 % better 
+#&gt; Value  0.629   -28.8 % better 
+#&gt; Value  0.669   -24.4 % better 
+#&gt; Value  0.661   -25.3 % better 
+#&gt; Value  0.730   -17.4 % better 
+#&gt; Value  0.895   1.1 % better  - NEW BASIS
+#&gt; Value  1.187   32.7 % better  - NEW BASIS
+#&gt; Value  1.296   9.1 % better  - NEW BASIS
+#&gt; Value  1.365   5.3 % better  - NEW BASIS
+#&gt; Value  1.368   0.2 % better  - NEW BASIS
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.368   0.1 % better 
+#&gt; Value  1.368   0.1 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.368   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better  - NEW BASIS
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
 #&gt; No better bases found after 25 tries.  Giving up.
 #&gt; Final projection: 
-#&gt; 0.336  0.347  0.411  0.363  0.489  0.476  </div><div class='input'><span class='no'>tries2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='no'>tries</span>, <span class='no'>interpolate</span>, <span class='fl'>0.2</span>)
+#&gt; -0.355  -0.350  -0.392  -0.351  -0.505  -0.468  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.836   198.0 % better  - NEW BASIS
+#&gt; Value  0.978   16.9 % better  - NEW BASIS
+#&gt; Value  1.243   27.1 % better  - NEW BASIS
+#&gt; Value  1.318   6.1 % better  - NEW BASIS
+#&gt; Value  1.321   0.2 % better  - NEW BASIS
+#&gt; Value  1.328   0.5 % better  - NEW BASIS
+#&gt; Value  1.356   2.1 % better  - NEW BASIS
+#&gt; Value  1.362   0.4 % better  - NEW BASIS
+#&gt; Value  1.365   0.2 % better  - NEW BASIS
+#&gt; Value  1.366   0.1 % better 
+#&gt; Value  1.366   0.1 % better 
+#&gt; Value  1.368   0.3 % better  - NEW BASIS
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; No better bases found after 25 tries.  Giving up.
+#&gt; Final projection: 
+#&gt; -0.366  -0.323  -0.398  -0.339  -0.527  -0.459  </div><div class='input'><span class='va'>tries2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>tries</span>, <span class='va'>interpolate</span>, <span class='fl'>0.2</span><span class='op'>)</span>
 
-<span class='no'>bases</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unlist'>unlist</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='no'>tries2</span>, <span class='no'>as.list</span>), <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>bases</span>) <span class='kw'>&lt;-</span> <span class='st'>"history_list"</span>
-<span class='no'>index_values</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='paths_index.html'>paths_index</a></span>(<span class='no'>tries2</span>, <span class='fu'><a href='holes.html'>holes</a></span>())
-<span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'>path_dist</span>(<span class='no'>bases</span>)
-<span class='no'>ord</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/as.data.frame'>as.data.frame</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/cmdscale'>cmdscale</a></span>(<span class='no'>d</span>, <span class='fl'>2</span>))
+<span class='va'>bases</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>tries2</span>, <span class='va'>as.list</span><span class='op'>)</span>, recursive <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>bases</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"history_list"</span>
+<span class='va'>index_values</span> <span class='op'>&lt;-</span> <span class='fu'><a href='paths_index.html'>paths_index</a></span><span class='op'>(</span><span class='va'>tries2</span>, <span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'>path_dist</span><span class='op'>(</span><span class='va'>bases</span><span class='op'>)</span>
+<span class='va'>ord</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/cmdscale.html'>cmdscale</a></span><span class='op'>(</span><span class='va'>d</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='no'>info</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cbind'>cbind</a></span>(<span class='no'>ord</span>, <span class='no'>index_values</span>)
-<span class='kw'>if</span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>require</a></span>(<span class='st'>"ggplot2"</span>)) {
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/qplot.html'>qplot</a></span>(<span class='no'>step</span>, <span class='no'>value</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>info</span>, <span class='kw'>geom</span><span class='kw'>=</span><span class='st'>"line"</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>try</span>)
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/qplot.html'>qplot</a></span>(<span class='no'>V1</span>, <span class='no'>V2</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>info</span>, <span class='kw'>geom</span><span class='kw'>=</span><span class='st'>"path"</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>try</span>) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='no'>value</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_fixed.html'>coord_equal</a></span>()
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/last_plot.html'>last_plot</a></span>() + <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span>(~ <span class='no'>try</span>)
-}</div><div class='img'><img src='path_dist-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='va'>info</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>ord</span>, <span class='va'>index_values</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='http://ggplot2.tidyverse.org'>"ggplot2"</a></span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/qplot.html'>qplot</a></span><span class='op'>(</span><span class='va'>step</span>, <span class='va'>value</span>, data <span class='op'>=</span> <span class='va'>info</span>, geom<span class='op'>=</span><span class='st'>"line"</span>, group <span class='op'>=</span> <span class='va'>try</span><span class='op'>)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/qplot.html'>qplot</a></span><span class='op'>(</span><span class='va'>V1</span>, <span class='va'>V2</span>, data <span class='op'>=</span> <span class='va'>info</span>, geom<span class='op'>=</span><span class='st'>"path"</span>, group <span class='op'>=</span> <span class='va'>try</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='va'>value</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_fixed.html'>coord_equal</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/last_plot.html'>last_plot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>try</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='img'><img src='path_dist-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -286,13 +409,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

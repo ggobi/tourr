@@ -1,14 +1,10 @@
-## Maintainer change
+## Additional authors
 
-Di Cook has taken over from Hadley Wickham as the maintainer of this package.
-
-## Test environments
-* local OS X install, R 3.5.2
-* win-builder (devel)
+Several additional contributors have provided new methods.
 
 ## R CMD check results
-There were no ERRORs, WARNINGs or NOTEs.
+There were no ERRORs, or WARNINGs. There are several NOTEs relating to global variables. We hope that these are acceptable.
 
 ## Downstream dependencies
 
-I checked all three downstream dependencies: geozoo, REPPlab, tourGui. There are no problems with geozoo. REPPlab only suggests tourr, so we have notified the authors of changes in the tourr and how to make minor updates their code. The touGui package depends on RGtk2 which is only available on linux and Mac, and a new version of this package is also being submitted to CRAN.
+All downstream dependencies have been checked.
