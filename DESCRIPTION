@@ -19,7 +19,7 @@ Description: Implements geodesic interpolation and basis
     generation functions that allow you to create new tour
     methods from R.
 Depends:
-    R (>= 3.5)
+    R (>= 3.6)
 Imports:
     MASS,
     tibble,
