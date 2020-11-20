@@ -34,11 +34,11 @@ Suggests:
     colorspace,
     ggplot2,
     mgcv,
-    reshape2,
     gifski,
     geozoo,
     knitr,
     rmarkdown,
+    tidyr,
     covr
 License: MIT + file LICENSE
 LazyData: true
