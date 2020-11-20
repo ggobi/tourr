@@ -46,14 +46,17 @@ splines2d <- function(){
 #' \item{norm_bin }{compares the count in 100 histogram bins}
 #' \item{norm_kol }{compares the cdf based on the Kolmogorov–Smirnov test (KS test)}
 #'}
+#' @param nr The number of rows in the target matrix
 #'
 #' @keywords hplot
 #' @export
-norm_bin <- function() {
+norm_bin <- function(nr) {
 
+  norm <- rnorm(nr)
 
   function(mat){
-    norm <- scale(norm[1:nrow(mat)])
+    stopifnot(length(norm) == nrow(mat))
+    norm <- scale(norm)
     mat_s <- scale(mat)
     norm_bin_count <- ash::bin1(norm, c(min(mat), max(mat)), 100)$nc
     mat_bin_count <- ash::bin1(mat_s, c(min(mat), max(mat)), 100)$nc
@@ -69,6 +72,7 @@ norm_bin <- function() {
 #' @examples
 #' # manually compute the norm_kol index
 #' # create the index function
+#' set.seed(123)
 #' index <- norm_kol(nrow(flea[,1:3]))
 #' # create the projection
 #' proj <- matrix(c(1, 0, 0), nrow = 3)
@@ -76,13 +80,12 @@ norm_bin <- function() {
 #' flea_s <- sphere_data(flea[,1:3])
 #' # produce the index value
 #' index(flea_s %*% proj)
-norm_kol <- function(nrow) {
+norm_kol <- function(nr) {
 
-  set.seed(123)
-  norm <- rnorm(nrow)
+  norm <- rnorm(nr)
 
   function(mat){
-    norm <- norm[1:nrow(mat)]
+    stopifnot(length(norm) == nrow(mat))
     as.numeric(stats::ks.test(mat, norm)$statistic)
   }
 }
