@@ -18,8 +18,6 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(tourr)
-library(tidyverse)
-library(tsibble)
 ```
 
 Showing connections between points can be useful in different applications, including geometric shapes, indicating patterns in sequential series or showing connections suggested by a model (for example in clustering). These edges can be added in the 2D scatterplot display (`display_xy`) through the `edges` argument, and should be specified as a two column integer matrix of the indices of ends of lines.
@@ -43,24 +41,13 @@ cube5 <- geozoo::cube.iterate(5)
 animate_xy(cube5$points, edges = cube5$edges, axes = "off")
 ```
 
-Using the edges we can connect sequential points, for example in multivariate time series data. As an example here we pick one month of data from the Melbourne pedestrian data available in the `tsibble` package. Since the data points are ordered, we simply generate an edges matrix that connects each row to the following one. The tour showing all edges is quite messy, but clearely shows how outlying points are sequential in time.
+It can often be useful to connect points with edges, for example sequential points in a time series, or points that are connected by a model. As a simple example we can connect centroids found when clustering the flea dataset:
 
 ```{r}
-pedestrian_wide <- pedestrian %>%
-  mutate(yearmonth = yearmonth(pedestrian$Date_Time)) %>%
-  dplyr::filter(yearmonth == yearmonth("2016 Feb")) %>%
-  select(Sensor, Date_Time, Count) %>%
-  pivot_wider(id_cols = Date_Time, names_from = Sensor,
-              values_from = Count, values_fill = 0) %>%
-  as_tibble() %>%
-  select(- Date_Time)
-
-pedestrian_edges <- matrix(c(1:(nrow(pedestrian_wide)-1),
-                             2:nrow(pedestrian_wide)),
-                           ncol = 2)
-
-animate_xy(pedestrian_wide, edges = pedestrian_edges, axes = "off")
-
-
+# get centroids of 3 clusters of the flea data
+n <- nrow(flea)
+flea_centroids <- stats::kmeans((flea[,-7]), 3)$centers
+flea_aug <- rbind(flea[,-7], flea_centroids)
+flea_edges <- matrix(c(n+1, n+2, n+1, n+3, n+2, n+3), ncol=2, byrow = TRUE)
+animate_xy(flea_aug, edges = flea_edges)
 ```
-
