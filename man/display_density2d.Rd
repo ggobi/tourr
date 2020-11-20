@@ -67,9 +67,7 @@ animate_density2d(flea[, 1:6], axes = "off")
 animate_density2d(flea[, 1:6], dependence_tour(c(1, 2, 1, 2, 1, 2)),
   axes = "bottomleft")
 
-pal <- c("#1B9E77","#D95F02","#7570B3")
-col <- pal[as.numeric(flea$species)]
-animate_density2d(flea[,-7], col=col)
+animate_density2d(flea[,-7], col=flea$species)
 
 # You can also draw lines
 edges <- matrix(c(1:5, 2:6), ncol = 2)

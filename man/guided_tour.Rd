@@ -53,9 +53,7 @@ a method that works with tour paths like \code{\link{animate}},
 animate_xy(flea[, 1:3], guided_tour(holes()), sphere = TRUE)
 animate_xy(flea[, 1:6], guided_tour(holes()), sphere = TRUE)
 animate_dist(flea[, 1:6], guided_tour(holes(), 1), sphere = TRUE)
-clrs <- c("#486030", "#c03018", "#f0a800")
-col <- clrs[as.numeric(flea$species)]
-animate_xy(flea[, 1:6], guided_tour(lda_pp(flea[,7])), sphere = TRUE, col=col)
+animate_xy(flea[, 1:6], guided_tour(lda_pp(flea[,7])), sphere = TRUE, col=flea$species)
 
 # save_history is particularly useful in conjunction with the
 # guided tour as it allows us to look at the tour path in many different
