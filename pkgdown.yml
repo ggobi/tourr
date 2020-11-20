@@ -1,0 +1,8 @@
+pandoc: 2.7.3
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  edges: edges.html
+  tourr: tourr.html
+last_built: 2020-11-20T05:33Z
+
