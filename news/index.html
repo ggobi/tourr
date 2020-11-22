@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tropical Atmosphere Ocean data — Tropical Atmosphere Ocean • tourr</title>
+<title>Changelog • tourr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,15 +46,7 @@
 
 
 
-<meta property="og:title" content="Tropical Atmosphere Ocean data — Tropical Atmosphere Ocean" />
-<meta property="og:description" content="This is a subset of data taken from the NOAA web site
-http://www.pmel.noaa.gov/tao/. The data is generated from recording
-instruments on a grid of buoys laid out over the Pacific Ocean.  The grid
-was setup to monitor El Nino and La Nina events. This subset contains
-measurements from 5 locations (0deg/110W, 2S/110W, 0deg/95W,2S/95W,5S/95W)
-and two time points Nov-Jan 1993 (normal), 1997 (El Nino). There are missing
-values in this data set, which need to be removed, or imputed before running
-a tour." />
+<meta property="og:title" content="Changelog" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -74,7 +66,7 @@ a tour." />
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -141,37 +133,43 @@ a tour." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Tropical Atmosphere Ocean data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ggobi/tourr/blob/master/R/data.r'><code>R/data.r</code></a></small>
-    <div class="hidden name"><code>Tropical-Atmosphere-Ocean.Rd</code></div>
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/ggobi/tourr/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="ref-description">
-    <p>This is a subset of data taken from the NOAA web site
-http://www.pmel.noaa.gov/tao/. The data is generated from recording
-instruments on a grid of buoys laid out over the Pacific Ocean.  The grid
-was setup to monitor El Nino and La Nina events. This subset contains
-measurements from 5 locations (0deg/110W, 2S/110W, 0deg/95W,2S/95W,5S/95W)
-and two time points Nov-Jan 1993 (normal), 1997 (El Nino). There are missing
-values in this data set, which need to be removed, or imputed before running
-a tour.</p>
-    </div>
-
-
-
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A 736 x 8 numeric array</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>http://www.pmel.noaa.gov/tao/</p>
-
+    <div id="tourr-060" class="section level1">
+<h1 class="page-header" data-toc-text="0.6.0">
+<a href="#tourr-060" class="anchor"></a>tourr 0.6.0<small> Unreleased </small>
+</h1>
+<ul>
+<li><p>Two vignettes have been added to help users get started.</p></li>
+<li><p>Little tour now cycles twice through variable list, in a randomised order.</p></li>
+<li><p>Two new projection pursuit indexes have ben added, based on function from the archived package mbgraphic.</p></li>
+<li><p>A slice tour is now available using the function animate_slice(). A new index for searching for interesting slices is available.</p></li>
+<li><p>A principal component analysis tour display is now available, that renders the axes of the original variables. This requires appropriate scaling of data ahead of time. See the example code.</p></li>
+<li><p>A new record option is available to print out diagnostic information for every step. Use options(tourr.verbose = TRUE) before beginning to tour. The ferrn package at <a href="https://github.com/huizezhang-sherry/ferrn" class="uri">https://github.com/huizezhang-sherry/ferrn</a> can be used to diagnose the optimisation techniques.</p></li>
+<li><p>Improvements to the optimisation functions have been made: search_better has an interrupt if a higher index is achieved mid-path; search_polish takes a best basis from another routine, and makes small steps to get a very best projection close by.</p></li>
+<li><p>Set the default fps to 10, to compatibly draw with RStudio window.</p></li>
+</ul>
+</div>
+    <div id="tourr-056" class="section level1">
+<h1 class="page-header" data-toc-text="0.5.6">
+<a href="#tourr-056" class="anchor"></a>tourr 0.5.6<small> 2019-02-11 </small>
+</h1>
+<ul>
+<li><p>Added a <code>NEWS.md</code> file to track changes to the package.</p></li>
+<li><p>Indexes holes and cmass functions now follow the same style as lda_pp and pda_pp, which means that you need to use them with holes(), and cmass()</p></li>
+<li><p>A new display type, groupxy has been added, which will run the same tour on subsets of the data in a split plot window</p></li>
+</ul>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
 
 
