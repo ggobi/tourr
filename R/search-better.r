@@ -83,7 +83,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   NULL
 }
 
-#' Search for a better projection based on simulataed annealing
+#' Search for a better projection using simulated annealing
 #'
 #' Given an initial \eqn{t0}, the cooling scheme updates temperature at \deqn{T = t0 /\log(i + 1)}
 #' The candidate basis is sampled via \deqn{B_j = (1 - \alpha) * B_i + \alpha * B} where alpha defines the neighbourhood, \eqn{B_i} is the current basis, B is a randomly generated basis
@@ -98,14 +98,13 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
 #' @param index index function
 #' @param max.tries maximum number of iteration before giving up
 #' @param method whether the nearby bases are found by a linear/ geodesic formulation
-#' @param eps ???
 #' @param cur_index the index value of the current basis
 #' @param ... other arguments being passed into the \code{search_better_random()}
 #'
 #' @keywords optimize
 #' @export
 search_better_random <- function(current, alpha = 0.5, index,
-  max.tries = Inf, method = "linear", eps = 0.001, cur_index = NA,
+  max.tries = Inf, method = "linear", cur_index = NA,
   ...
 ) {
 

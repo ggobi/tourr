@@ -2,7 +2,7 @@
 % Please edit documentation in R/search-better.r
 \name{search_better_random}
 \alias{search_better_random}
-\title{Search for a better projection based on simulataed annealing}
+\title{Search for a better projection using simulated annealing}
 \usage{
 search_better_random(
   current,
@@ -10,7 +10,6 @@ search_better_random(
   index,
   max.tries = Inf,
   method = "linear",
-  eps = 0.001,
   cur_index = NA,
   ...
 )
@@ -25,8 +24,6 @@ search_better_random(
 \item{max.tries}{maximum number of iteration before giving up}
 
 \item{method}{whether the nearby bases are found by a linear/ geodesic formulation}
-
-\item{eps}{???}
 
 \item{cur_index}{the index value of the current basis}
 

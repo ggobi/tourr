@@ -32,7 +32,7 @@ Other contributors:
 \itemize{
   \item Nick Spyrison \email{nicholas.spyrison@monash.edu} [contributor]
   \item Ursula Laa \email{ursula.laa@monash.edu} [contributor]
-  \item Huize Zhang \email{huizezhangsh@gmail.com} [contributor]
+  \item H. Sherry Zhang \email{huizezhangsh@gmail.com} [contributor]
   \item Stuart Lee \email{stuart.lee1@monash.edu} [contributor]
 }
 
