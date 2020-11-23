@@ -1,4 +1,4 @@
-#' Search for most interesting projection along frozen geodesics.
+#' A pseudo-derivative, line search algorithm along frozen geodesics.
 #'
 #' These three functions perform a corresponding role to
 #' \code{\link{search_geodesic}}, \code{\link{find_best_dir}} and

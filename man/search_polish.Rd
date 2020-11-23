@@ -2,7 +2,7 @@
 % Please edit documentation in R/search_polish.r
 \name{search_polish}
 \alias{search_polish}
-\title{Search for most interesting projection along random geodesics.}
+\title{Search very locally to find slightly better projections to polish a broader search.}
 \usage{
 search_polish(
   current,
@@ -16,7 +16,7 @@ search_polish(
 )
 }
 \arguments{
-\item{current}{the current projeciton basis}
+\item{current}{the current projection basis}
 
 \item{alpha}{the angle used to search the target basis from the current basis}
 
@@ -28,11 +28,11 @@ search_polish(
 
 \item{n_sample}{number of samples to generate}
 
-\item{polish_cooling}{percentage of reductio in polish_alpha when no better basis is found}
+\item{polish_cooling}{percentage of reduction in polish_alpha when no better basis is found}
 
 \item{...}{other arguments being passed into the \code{search_polish()}}
 }
 \description{
-Search for most interesting projection along random geodesics.
+Search very locally to find slightly better projections to polish a broader search.
 }
 \keyword{optimize}

@@ -1,12 +1,12 @@
-#' Search for most interesting projection along random geodesics.
+#' Search very locally to find slightly better projections to polish a broader search.
 
-#' @param current the current projeciton basis
+#' @param current the current projection basis
 #' @param alpha the angle used to search the target basis from the current basis
 #' @param index index function
 #' @param polish_max_tries maximum number of iteration before giving up
 #' @param cur_index the index value of the current basis
 #' @param n_sample number of samples to generate
-#' @param polish_cooling percentage of reductio in polish_alpha when no better basis is found
+#' @param polish_cooling percentage of reduction in polish_alpha when no better basis is found
 #' @param ... other arguments being passed into the \code{search_polish()}
 #' @keywords optimize
 #' @export

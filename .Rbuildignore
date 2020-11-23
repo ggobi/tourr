@@ -11,7 +11,7 @@
 ^\.git$
 ^..Rcheck$
 ^README\.md$
-^docs$
+^pkgdown$
 ^_config.yml$
 ^codecov\.yml$
 ^\.github$

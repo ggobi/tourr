@@ -2,7 +2,7 @@
 % Please edit documentation in R/search-geodesic.r
 \name{search_geodesic}
 \alias{search_geodesic}
-\title{Search for most interesting projection along random geodesics.}
+\title{A pseudo-derivative, line search algorithm.}
 \usage{
 search_geodesic(
   current,
@@ -37,8 +37,8 @@ be calculated}
 This is a novel method for finding more interesting projections for the
 guided tour.  It works by first taking a small step in \code{n} random
 directions, and then picking the direction that looks most promising
-(based on the height of the index function).  Once the best direction is
-found, it performs a linear search along the geodesic in that direction,
+(based on the height of the index function), which is effectively a gradient search.
+Then it performs a linear search along the geodesic in that direction,
 traveling up to half way around the sphere.
 }
 \details{

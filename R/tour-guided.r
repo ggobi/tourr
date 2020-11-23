@@ -15,7 +15,8 @@
 #' @param alpha the initial size of the search window, in radians
 #' @param cooling the amount the size of the search window should be adjusted
 #'   by after each step
-#' @param search_f the search strategy to use. Default is \code{\link{search_geodesic}}.
+#' @param search_f the search strategy to use: \code{\link{search_geodesic}}, \code{\link{search_random}},
+#'   \code{\link{search_better_random}}, \code{\link{search_polish}}. Default is \code{\link{search_geodesic}}.
 #' @param max.tries the maximum number of unsuccessful attempts to find
 #'   a better projection before giving up
 #' @param max.i the maximum index value, stop search if a larger value is found
@@ -30,6 +31,7 @@
 #' @examples
 #' animate_xy(flea[, 1:3], guided_tour(holes()), sphere = TRUE)
 #' animate_xy(flea[, 1:6], guided_tour(holes()), sphere = TRUE)
+#' animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better_random), sphere = TRUE)
 #' animate_dist(flea[, 1:6], guided_tour(holes(), 1), sphere = TRUE)
 #' animate_xy(flea[, 1:6], guided_tour(lda_pp(flea[,7])), sphere = TRUE, col=flea$species)
 #'

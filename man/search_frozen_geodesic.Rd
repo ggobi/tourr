@@ -2,7 +2,7 @@
 % Please edit documentation in R/search-frozen-geodesic.r
 \name{search_frozen_geodesic}
 \alias{search_frozen_geodesic}
-\title{Search for most interesting projection along frozen geodesics.}
+\title{A pseudo-derivative, line search algorithm along frozen geodesics.}
 \usage{
 search_frozen_geodesic(
   current,
