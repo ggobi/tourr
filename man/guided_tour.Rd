@@ -51,7 +51,6 @@ a method that works with tour paths like \code{\link{animate}},
 \code{\link{save_history}} or \code{\link{render}}.
 }
 \examples{
-animate_xy(flea[, 1:3], guided_tour(holes()), sphere = TRUE)
 animate_xy(flea[, 1:6], guided_tour(holes()), sphere = TRUE)
 animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better_random), sphere = TRUE)
 animate_dist(flea[, 1:6], guided_tour(holes(), 1), sphere = TRUE)

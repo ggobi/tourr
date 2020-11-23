@@ -126,7 +126,8 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
         cur_dist <<- target_dist
         if (exists("index")){
           current <<- target
-          cur_index <<- index(target)
+          if (attr(tour_path, "name") == "guided")
+            cur_index <<- index(target)
         }
 
       }

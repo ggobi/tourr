@@ -5,7 +5,7 @@ Author: Hadley Wickham [aut, ctb],
     Di Cook  [aut, cre], 
     Nick Spyrison [ctb],
     Ursula Laa [ctb],
-    Huize Zhang [ctb],
+    H. Sherry Zhang [ctb],
     Stuart Lee [ctb]
 Authors@R: c(
     person("Hadley", "Wickham", email = "h.wickham@gmail.com", role = c("aut", "ctb"), comment = c(ORCID = "0000-0003-4757-117X")),
