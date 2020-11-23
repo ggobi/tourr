@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Search for most interesting projection along random geodesics. — search_geodesic • tourr</title>
+<title>A pseudo-derivative, line search algorithm. — search_geodesic • tourr</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,12 +46,12 @@
 
 
 
-<meta property="og:title" content="Search for most interesting projection along random geodesics. — search_geodesic" />
+<meta property="og:title" content="A pseudo-derivative, line search algorithm. — search_geodesic" />
 <meta property="og:description" content="This is a novel method for finding more interesting projections for the
 guided tour.  It works by first taking a small step in n random
 directions, and then picking the direction that looks most promising
-(based on the height of the index function).  Once the best direction is
-found, it performs a linear search along the geodesic in that direction,
+(based on the height of the index function), which is effectively a gradient search.
+Then it performs a linear search along the geodesic in that direction,
 traveling up to half way around the sphere." />
 <meta property="og:image" content="/logo.png" />
 
@@ -139,7 +139,7 @@ traveling up to half way around the sphere." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Search for most interesting projection along random geodesics.</h1>
+    <h1>A pseudo-derivative, line search algorithm.</h1>
     <small class="dont-index">Source: <a href='https://github.com/ggobi/tourr/blob/master/R/search-geodesic.r'><code>R/search-geodesic.r</code></a></small>
     <div class="hidden name"><code>search_geodesic.Rd</code></div>
     </div>
@@ -148,8 +148,8 @@ traveling up to half way around the sphere." />
     <p>This is a novel method for finding more interesting projections for the
 guided tour.  It works by first taking a small step in <code>n</code> random
 directions, and then picking the direction that looks most promising
-(based on the height of the index function).  Once the best direction is
-found, it performs a linear search along the geodesic in that direction,
+(based on the height of the index function), which is effectively a gradient search.
+Then it performs a linear search along the geodesic in that direction,
 traveling up to half way around the sphere.</p>
     </div>
 
