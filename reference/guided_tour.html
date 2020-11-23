@@ -218,55 +218,30 @@ a method that works with tour paths like <code><a href='animate.html'>animate</a
   <code><a href='search_better_random.html'>search_better_random</a></code> for different search strategies</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>, <span class='fu'>guided_tour</span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>, sphere <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; Value  0.859   0.0 % better 
-#&gt; No better bases found after 25 tries.  Giving up.
-#&gt; Final projection: 
-#&gt; 0.192  -0.461  
-#&gt; 0.031  0.885  
-#&gt; 0.981  0.063  </div><div class='output co'>#&gt; <span class='message'>Using half_range 3.2</span></div><div class='img'><img src='guided_tour-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'>guided_tour</span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>, sphere <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.855   3.3 % better  - NEW BASIS</div><div class='output co'>#&gt; <span class='message'>Using half_range 3.8</span></div><div class='img'><img src='guided_tour-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'>guided_tour</span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span>, search_f <span class='op'>=</span> <span class='va'>search_better_random</span><span class='op'>)</span>, sphere <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Old 0.7896207 
-#&gt; New 0.7942044 try 1 
-#&gt; Accept </div><div class='output co'>#&gt; <span class='message'>Using half_range 3.8</span></div><div class='img'><img src='guided_tour-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='display_dist.html'>animate_dist</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'>guided_tour</span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>1</span><span class='op'>)</span>, sphere <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.773   4.0 % better  - NEW BASIS</div><div class='output co'>#&gt; <span class='message'>Using half_range 3.8</span></div><div class='img'><img src='guided_tour-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'>guided_tour</span><span class='op'>(</span><span class='fu'><a href='lda_pp.html'>lda_pp</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>,<span class='fl'>7</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>, sphere <span class='op'>=</span> <span class='cn'>TRUE</span>, col<span class='op'>=</span><span class='va'>flea</span><span class='op'>$</span><span class='va'>species</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.722   129.9 % better  - NEW BASIS</div><div class='output co'>#&gt; <span class='message'>Using half_range 3.8</span></div><div class='img'><img src='guided_tour-5.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'>guided_tour</span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>, sphere <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.856   4.6 % better  - NEW BASIS</div><div class='output co'>#&gt; <span class='message'>Using half_range 3.8</span></div><div class='img'><img src='guided_tour-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'>guided_tour</span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span>, search_f <span class='op'>=</span> <span class='va'>search_better_random</span><span class='op'>)</span>, sphere <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Old 0.7931013 
+#&gt; New 0.8096182 try 1 
+#&gt; Accept </div><div class='output co'>#&gt; <span class='message'>Using half_range 3.8</span></div><div class='img'><img src='guided_tour-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='display_dist.html'>animate_dist</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'>guided_tour</span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>1</span><span class='op'>)</span>, sphere <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.819   1.2 % better  - NEW BASIS</div><div class='output co'>#&gt; <span class='message'>Using half_range 3.8</span></div><div class='img'><img src='guided_tour-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'>guided_tour</span><span class='op'>(</span><span class='fu'><a href='lda_pp.html'>lda_pp</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>,<span class='fl'>7</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>, sphere <span class='op'>=</span> <span class='cn'>TRUE</span>, col<span class='op'>=</span><span class='va'>flea</span><span class='op'>$</span><span class='va'>species</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.859   6.2 % better  - NEW BASIS</div><div class='output co'>#&gt; <span class='message'>Using half_range 3.8</span></div><div class='img'><img src='guided_tour-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># save_history is particularly useful in conjunction with the</span>
 <span class='co'># guided tour as it allows us to look at the tour path in many different</span>
 <span class='co'># ways</span>
 <span class='va'>f</span> <span class='op'>&lt;-</span> <span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>
 <span class='va'>tries</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fu'><a href='save_history.html'>save_history</a></span><span class='op'>(</span><span class='va'>f</span>, <span class='fu'>guided_tour</span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, simplify <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.456   18.3 % better  - NEW BASIS
-#&gt; Value  0.469   2.8 % better  - NEW BASIS
-#&gt; Value  0.471   0.5 % better  - NEW BASIS
-#&gt; Value  0.474   0.6 % better  - NEW BASIS
-#&gt; Value  0.475   0.3 % better  - NEW BASIS
-#&gt; Value  0.476   0.3 % better  - NEW BASIS
-#&gt; Value  0.477   0.2 % better  - NEW BASIS
-#&gt; Value  0.482   0.9 % better  - NEW BASIS
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.462   3.1 % better  - NEW BASIS
+#&gt; Value  0.461   -0.1 % better 
+#&gt; Value  0.463   0.3 % better  - NEW BASIS
+#&gt; Value  0.466   0.6 % better  - NEW BASIS
+#&gt; Value  0.469   0.5 % better  - NEW BASIS
+#&gt; Value  0.474   1.1 % better  - NEW BASIS
+#&gt; Value  0.478   0.9 % better  - NEW BASIS
+#&gt; Value  0.479   0.3 % better  - NEW BASIS
+#&gt; Value  0.480   0.1 % better  - NEW BASIS
+#&gt; Value  0.480   0.0 % better 
+#&gt; Value  0.480   0.0 % better 
+#&gt; Value  0.482   0.4 % better  - NEW BASIS
 #&gt; Value  0.482   0.0 % better 
 #&gt; Value  0.482   0.0 % better 
 #&gt; Value  0.482   0.0 % better 
@@ -293,50 +268,84 @@ a method that works with tour paths like <code><a href='animate.html'>animate</a
 #&gt; Value  0.482   0.0 % better 
 #&gt; No better bases found after 25 tries.  Giving up.
 #&gt; Final projection: 
-#&gt; -0.214  0.976  
-#&gt; -0.660  -0.165  
-#&gt; -0.720  -0.139  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.426   219.6 % better  - NEW BASIS
-#&gt; Value  0.427   0.0 % better 
-#&gt; Value  0.425   -0.4 % better 
-#&gt; Value  0.424   -0.5 % better 
-#&gt; Value  0.430   0.9 % better  - NEW BASIS
-#&gt; Value  0.480   11.6 % better  - NEW BASIS
+#&gt; -1.000  0.019  
+#&gt; 0.026  0.685  
+#&gt; 0.002  0.728  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.465   6.9 % better  - NEW BASIS
+#&gt; Value  0.468   0.7 % better  - NEW BASIS
+#&gt; Value  0.469   0.2 % better  - NEW BASIS
+#&gt; Value  0.473   0.9 % better  - NEW BASIS
+#&gt; Value  0.476   0.6 % better  - NEW BASIS
+#&gt; Value  0.479   0.6 % better  - NEW BASIS
+#&gt; Value  0.481   0.3 % better  - NEW BASIS
+#&gt; Value  0.481   0.1 % better  - NEW BASIS
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.481   0.0 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.481   0.0 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.481   0.0 % better 
+#&gt; Value  0.481   0.0 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.481   0.0 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
 #&gt; Value  0.481   0.1 % better 
-#&gt; Value  0.481   0.2 % better  - NEW BASIS
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.1 % better 
 #&gt; Value  0.482   0.1 % better 
 #&gt; No better bases found after 25 tries.  Giving up.
 #&gt; Final projection: 
-#&gt; 0.558  0.828  
-#&gt; 0.572  -0.331  
-#&gt; 0.601  -0.453  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.396   210.8 % better  - NEW BASIS
-#&gt; Value  0.417   5.2 % better  - NEW BASIS
-#&gt; Value  0.481   15.4 % better  - NEW BASIS
-#&gt; Value  0.481   0.0 % better 
-#&gt; Value  0.481   0.1 % better 
-#&gt; Value  0.481   0.0 % better 
+#&gt; 0.461  0.882  
+#&gt; 0.626  -0.402  
+#&gt; 0.630  -0.246  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.349   314.6 % better  - NEW BASIS
+#&gt; Value  0.356   1.9 % better  - NEW BASIS
+#&gt; Value  0.467   31.1 % better  - NEW BASIS
+#&gt; Value  0.480   2.8 % better  - NEW BASIS
+#&gt; Value  0.482   0.4 % better  - NEW BASIS
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; No better bases found after 25 tries.  Giving up.
+#&gt; Final projection: 
+#&gt; -0.418  -0.908  
+#&gt; 0.587  -0.293  
+#&gt; 0.693  -0.299  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.455   54.4 % better  - NEW BASIS
+#&gt; Value  0.455   0.0 % better 
+#&gt; Value  0.456   0.3 % better  - NEW BASIS
+#&gt; Value  0.462   1.3 % better  - NEW BASIS
+#&gt; Value  0.476   3.0 % better  - NEW BASIS
+#&gt; Value  0.478   0.5 % better  - NEW BASIS
+#&gt; Value  0.481   0.7 % better  - NEW BASIS
 #&gt; Value  0.482   0.1 % better  - NEW BASIS
 #&gt; Value  0.482   0.0 % better 
 #&gt; Value  0.482   0.0 % better 
@@ -364,14 +373,24 @@ a method that works with tour paths like <code><a href='animate.html'>animate</a
 #&gt; Value  0.482   0.0 % better 
 #&gt; No better bases found after 25 tries.  Giving up.
 #&gt; Final projection: 
-#&gt; -0.948  0.317  
-#&gt; -0.193  -0.646  
-#&gt; -0.253  -0.694  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.465   54.1 % better  - NEW BASIS
-#&gt; Value  0.463   -0.3 % better 
-#&gt; Value  0.471   1.4 % better  - NEW BASIS
+#&gt; 0.982  -0.187  
+#&gt; 0.118  0.666  
+#&gt; 0.145  0.722  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.457   40.6 % better  - NEW BASIS
+#&gt; Value  0.462   1.2 % better  - NEW BASIS
+#&gt; Value  0.463   0.2 % better  - NEW BASIS
+#&gt; Value  0.466   0.6 % better  - NEW BASIS
+#&gt; Value  0.469   0.6 % better  - NEW BASIS
+#&gt; Value  0.469   0.1 % better  - NEW BASIS
+#&gt; Value  0.470   0.3 % better  - NEW BASIS
 #&gt; Value  0.475   0.9 % better  - NEW BASIS
-#&gt; Value  0.478   0.6 % better  - NEW BASIS
-#&gt; Value  0.482   0.8 % better  - NEW BASIS
+#&gt; Value  0.477   0.4 % better  - NEW BASIS
+#&gt; Value  0.477   0.1 % better  - NEW BASIS
+#&gt; Value  0.480   0.6 % better  - NEW BASIS
+#&gt; Value  0.481   0.2 % better  - NEW BASIS
+#&gt; Value  0.481   0.0 % better 
+#&gt; Value  0.481   0.1 % better 
+#&gt; Value  0.481   0.0 % better 
+#&gt; Value  0.482   0.2 % better  - NEW BASIS
 #&gt; Value  0.482   0.0 % better 
 #&gt; Value  0.482   0.0 % better 
 #&gt; Value  0.482   0.0 % better 
@@ -398,39 +417,9 @@ a method that works with tour paths like <code><a href='animate.html'>animate</a
 #&gt; Value  0.482   0.0 % better 
 #&gt; No better bases found after 25 tries.  Giving up.
 #&gt; Final projection: 
-#&gt; -0.986  -0.164  
-#&gt; -0.097  0.687  
-#&gt; -0.134  0.708  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.480   18.5 % better  - NEW BASIS
-#&gt; Value  0.481   0.4 % better  - NEW BASIS
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.481   0.0 % better 
-#&gt; Value  0.481   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; Value  0.482   0.1 % better 
-#&gt; No better bases found after 25 tries.  Giving up.
-#&gt; Final projection: 
-#&gt; 0.987  0.118  
-#&gt; -0.162  0.711  
-#&gt; -0.001  0.694  </div></pre>
+#&gt; 0.939  -0.343  
+#&gt; 0.215  0.639  
+#&gt; 0.269  0.688  </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

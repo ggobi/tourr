@@ -171,135 +171,98 @@
 <span class='va'>holes1d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='guided_tour.html'>guided_tour</a></span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>1</span><span class='op'>)</span>
 <span class='va'>tries</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fu'><a href='save_history.html'>save_history</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='va'>holes1d</span>, max <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>,
   simplify <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.661   1067.1 % better  - NEW BASIS
-#&gt; Value  0.270   -59.1 % better 
-#&gt; Value  0.301   -54.4 % better 
-#&gt; Value  0.318   -51.9 % better 
-#&gt; Value  0.607   -8.2 % better 
-#&gt; Value  0.638   -3.5 % better 
-#&gt; Value  0.593   -10.3 % better 
-#&gt; Value  0.728   10.2 % better  - NEW BASIS
-#&gt; Value  0.936   28.5 % better  - NEW BASIS
-#&gt; Value  1.223   30.6 % better  - NEW BASIS
-#&gt; Value  1.266   3.5 % better  - NEW BASIS
-#&gt; Value  1.287   1.6 % better  - NEW BASIS
-#&gt; Value  1.342   4.3 % better  - NEW BASIS
-#&gt; Value  1.353   0.8 % better  - NEW BASIS
-#&gt; Value  1.364   0.8 % better  - NEW BASIS
-#&gt; Value  1.367   0.2 % better  - NEW BASIS
-#&gt; Value  1.368   0.1 % better  - NEW BASIS</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  1.168   297.3 % better  - NEW BASIS
-#&gt; Value  0.993   -14.9 % better 
-#&gt; Value  0.893   -23.6 % better 
-#&gt; Value  0.814   -30.3 % better 
-#&gt; Value  0.734   -37.1 % better 
-#&gt; Value  0.886   -24.1 % better 
-#&gt; Value  1.137   -2.6 % better 
-#&gt; Value  0.534   -54.3 % better 
-#&gt; Value  0.864   -26.0 % better 
-#&gt; Value  0.584   -50.0 % better 
-#&gt; Value  1.030   -11.8 % better 
-#&gt; Value  1.096   -6.1 % better 
-#&gt; Value  1.005   -13.9 % better 
-#&gt; Value  0.679   -41.9 % better 
-#&gt; Value  1.057   -9.5 % better 
-#&gt; Value  0.701   -40.0 % better 
-#&gt; Value  0.738   -36.8 % better 
-#&gt; Value  0.768   -34.3 % better 
-#&gt; Value  0.894   -23.5 % better 
-#&gt; Value  0.892   -23.6 % better 
-#&gt; Value  0.963   -17.6 % better 
-#&gt; Value  1.182   1.2 % better  - NEW BASIS
-#&gt; Value  1.200   1.4 % better  - NEW BASIS
-#&gt; Value  1.230   2.5 % better  - NEW BASIS
-#&gt; Value  1.244   1.2 % better  - NEW BASIS
-#&gt; Value  1.343   7.9 % better  - NEW BASIS
-#&gt; Value  1.354   0.8 % better  - NEW BASIS
-#&gt; Value  1.363   0.7 % better  - NEW BASIS
-#&gt; Value  1.364   0.1 % better 
-#&gt; Value  1.366   0.3 % better  - NEW BASIS
-#&gt; Value  1.367   0.1 % better 
-#&gt; Value  1.367   0.1 % better 
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.490   946.2 % better  - NEW BASIS
+#&gt; Value  0.204   -58.4 % better 
+#&gt; Value  0.755   54.0 % better  - NEW BASIS
+#&gt; Value  1.070   41.7 % better  - NEW BASIS
+#&gt; Value  1.307   22.2 % better  - NEW BASIS
+#&gt; Value  1.347   3.1 % better  - NEW BASIS
+#&gt; Value  1.358   0.8 % better  - NEW BASIS
+#&gt; Value  1.367   0.6 % better  - NEW BASIS
+#&gt; Value  1.368   0.1 % better 
 #&gt; Value  1.368   0.1 % better  - NEW BASIS
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.368   0.0 % better 
-#&gt; Value  1.368   0.0 % better 
-#&gt; Value  1.368   0.0 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.368   0.0 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.368   0.0 % better 
-#&gt; Value  1.368   0.0 % better 
-#&gt; Value  1.368   0.0 % better 
-#&gt; Value  1.368   0.0 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.368   0.0 % better 
-#&gt; Value  1.368   0.0 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.369   0.1 % better  - NEW BASIS</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  1.108   202.4 % better  - NEW BASIS
-#&gt; Value  0.759   -31.4 % better 
-#&gt; Value  0.672   -39.4 % better 
-#&gt; Value  0.754   -31.9 % better 
-#&gt; Value  0.600   -45.8 % better 
-#&gt; Value  0.866   -21.8 % better 
-#&gt; Value  0.987   -10.9 % better 
-#&gt; Value  0.989   -10.7 % better 
-#&gt; Value  0.740   -33.2 % better 
-#&gt; Value  0.749   -32.4 % better 
-#&gt; Value  1.139   2.9 % better  - NEW BASIS
-#&gt; Value  1.251   9.8 % better  - NEW BASIS
-#&gt; Value  1.302   4.1 % better  - NEW BASIS
-#&gt; Value  1.330   2.1 % better  - NEW BASIS
-#&gt; Value  1.350   1.5 % better  - NEW BASIS
-#&gt; Value  1.362   0.9 % better  - NEW BASIS
-#&gt; Value  1.366   0.3 % better  - NEW BASIS
-#&gt; Value  1.367   0.1 % better 
-#&gt; Value  1.368   0.2 % better  - NEW BASIS
 #&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
 #&gt; Value  1.368   0.0 % better 
 #&gt; Value  1.369   0.1 % better 
 #&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.1 % better 
 #&gt; Value  1.369   0.1 % better 
 #&gt; Value  1.369   0.1 % better 
 #&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.1 % better 
 #&gt; Value  1.369   0.0 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.368   0.0 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.1 % better 
 #&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.369   0.0 % better 
-#&gt; Value  1.369   0.0 % better 
-#&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.1 % better 
 #&gt; No better bases found after 25 tries.  Giving up.
 #&gt; Final projection: 
-#&gt; -0.359  -0.323  -0.378  -0.390  -0.503  -0.468  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.884   378.5 % better  - NEW BASIS
-#&gt; Value  0.579   -34.5 % better 
-#&gt; Value  0.531   -39.9 % better 
-#&gt; Value  0.629   -28.8 % better 
-#&gt; Value  0.669   -24.4 % better 
-#&gt; Value  0.661   -25.3 % better 
-#&gt; Value  0.730   -17.4 % better 
-#&gt; Value  0.895   1.1 % better  - NEW BASIS
-#&gt; Value  1.187   32.7 % better  - NEW BASIS
-#&gt; Value  1.296   9.1 % better  - NEW BASIS
-#&gt; Value  1.365   5.3 % better  - NEW BASIS
-#&gt; Value  1.368   0.2 % better  - NEW BASIS
+#&gt; 0.357  0.332  0.363  0.351  0.520  0.487  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.864   296.3 % better  - NEW BASIS
+#&gt; Value  0.770   -10.9 % better 
+#&gt; Value  0.427   -50.6 % better 
+#&gt; Value  0.984   14.0 % better  - NEW BASIS
+#&gt; Value  1.179   19.8 % better  - NEW BASIS
+#&gt; Value  1.191   1.0 % better  - NEW BASIS
+#&gt; Value  1.282   7.6 % better  - NEW BASIS
+#&gt; Value  1.343   4.8 % better  - NEW BASIS
+#&gt; Value  1.350   0.5 % better  - NEW BASIS
+#&gt; Value  1.358   0.6 % better  - NEW BASIS
+#&gt; Value  1.369   0.8 % better  - NEW BASIS
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; No better bases found after 25 tries.  Giving up.
+#&gt; Final projection: 
+#&gt; -0.375  -0.333  -0.399  -0.356  -0.478  -0.483  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.985   228.1 % better  - NEW BASIS
+#&gt; Value  1.071   8.7 % better  - NEW BASIS
+#&gt; Value  1.203   12.3 % better  - NEW BASIS
+#&gt; Value  1.334   10.9 % better  - NEW BASIS
+#&gt; Value  1.343   0.7 % better  - NEW BASIS
+#&gt; Value  1.354   0.8 % better  - NEW BASIS
+#&gt; Value  1.368   1.0 % better  - NEW BASIS
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
 #&gt; Value  1.368   0.0 % better 
 #&gt; Value  1.369   0.1 % better 
 #&gt; Value  1.368   0.0 % better 
@@ -307,11 +270,19 @@
 #&gt; Value  1.369   0.1 % better 
 #&gt; Value  1.368   0.0 % better 
 #&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.368   0.1 % better 
-#&gt; Value  1.368   0.1 % better 
-#&gt; Value  1.368   0.0 % better 
-#&gt; Value  1.368   0.1 % better 
 #&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.368   0.0 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.1 % better 
+#&gt; No better bases found after 25 tries.  Giving up.
+#&gt; Final projection: 
+#&gt; 0.364  0.310  0.373  0.380  0.515  0.472  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.472   504.7 % better  - NEW BASIS
+#&gt; Value  0.866   83.5 % better  - NEW BASIS
+#&gt; Value  1.263   45.7 % better  - NEW BASIS
+#&gt; Value  1.298   2.8 % better  - NEW BASIS
+#&gt; Value  1.348   3.9 % better  - NEW BASIS
+#&gt; Value  1.367   1.4 % better  - NEW BASIS
 #&gt; Value  1.369   0.1 % better  - NEW BASIS
 #&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.0 % better 
@@ -339,45 +310,40 @@
 #&gt; Value  1.369   0.0 % better 
 #&gt; No better bases found after 25 tries.  Giving up.
 #&gt; Final projection: 
-#&gt; -0.355  -0.350  -0.392  -0.351  -0.505  -0.468  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.836   198.0 % better  - NEW BASIS
-#&gt; Value  0.978   16.9 % better  - NEW BASIS
-#&gt; Value  1.243   27.1 % better  - NEW BASIS
-#&gt; Value  1.318   6.1 % better  - NEW BASIS
-#&gt; Value  1.321   0.2 % better  - NEW BASIS
-#&gt; Value  1.328   0.5 % better  - NEW BASIS
-#&gt; Value  1.356   2.1 % better  - NEW BASIS
-#&gt; Value  1.362   0.4 % better  - NEW BASIS
-#&gt; Value  1.365   0.2 % better  - NEW BASIS
-#&gt; Value  1.366   0.1 % better 
-#&gt; Value  1.366   0.1 % better 
-#&gt; Value  1.368   0.3 % better  - NEW BASIS
-#&gt; Value  1.368   0.0 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.369   0.0 % better 
-#&gt; Value  1.368   0.0 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.369   0.1 % better 
-#&gt; Value  1.368   0.0 % better 
+#&gt; 0.355  0.353  0.403  0.362  0.494  0.460  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.160   435.2 % better  - NEW BASIS
+#&gt; Value  0.361   125.8 % better  - NEW BASIS
+#&gt; Value  1.133   214.4 % better  - NEW BASIS
+#&gt; Value  1.276   12.5 % better  - NEW BASIS
+#&gt; Value  1.335   4.7 % better  - NEW BASIS
+#&gt; Value  1.351   1.2 % better  - NEW BASIS
+#&gt; Value  1.368   1.3 % better  - NEW BASIS
 #&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.0 % better 
-#&gt; Value  1.369   0.0 % better 
-#&gt; Value  1.369   0.0 % better 
-#&gt; Value  1.369   0.1 % better 
 #&gt; Value  1.369   0.1 % better 
 #&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.1 % better 
 #&gt; Value  1.369   0.0 % better 
-#&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.1 % better 
 #&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
+#&gt; Value  1.369   0.0 % better 
 #&gt; Value  1.369   0.1 % better 
+#&gt; Value  1.369   0.0 % better 
 #&gt; No better bases found after 25 tries.  Giving up.
 #&gt; Final projection: 
-#&gt; -0.366  -0.323  -0.398  -0.339  -0.527  -0.459  </div><div class='input'><span class='va'>tries2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>tries</span>, <span class='va'>interpolate</span>, <span class='fl'>0.2</span><span class='op'>)</span>
+#&gt; -0.372  -0.341  -0.388  -0.325  -0.497  -0.492  </div><div class='input'><span class='va'>tries2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>tries</span>, <span class='va'>interpolate</span>, <span class='fl'>0.2</span><span class='op'>)</span>
 
 <span class='va'>bases</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>tries2</span>, <span class='va'>as.list</span><span class='op'>)</span>, recursive <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>bases</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"history_list"</span>
