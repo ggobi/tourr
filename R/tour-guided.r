@@ -15,7 +15,7 @@
 #' @param alpha the initial size of the search window, in radians
 #' @param cooling the amount the size of the search window should be adjusted
 #'   by after each step
-#' @param search_f the search strategy to use: \code{\link{search_geodesic}}, \code{\link{search_random}},
+#' @param search_f the search strategy to use: \code{\link{search_geodesic}}, \code{\link{search_better}},
 #'   \code{\link{search_better_random}}, \code{\link{search_polish}}. Default is \code{\link{search_geodesic}}.
 #' @param max.tries the maximum number of unsuccessful attempts to find
 #'   a better projection before giving up

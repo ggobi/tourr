@@ -31,7 +31,7 @@ a better projection before giving up}
 
 \item{max.i}{the maximum index value, stop search if a larger value is found}
 
-\item{search_f}{the search strategy to use: \code{\link{search_geodesic}}, \code{\link{search_random}},
+\item{search_f}{the search strategy to use: \code{\link{search_geodesic}}, \code{\link{search_better}},
 \code{\link{search_better_random}}, \code{\link{search_polish}}. Default is \code{\link{search_geodesic}}.}
 
 \item{n_sample}{number of samples to generate if \code{search_f} is \code{\link{search_polish}}}

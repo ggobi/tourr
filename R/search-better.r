@@ -12,6 +12,7 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 
 
 #' Search for a better projection near the current projection.
+#'
 #' @param current starting projection
 #' @param alpha the angle used to search the target basis from the current basis
 #' @param index index function
