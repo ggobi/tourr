@@ -147,7 +147,7 @@
         tour_path <span class="op">=</span> <span class="fu"><a href="../reference/guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="../reference/holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,
         display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Converting input data to the required matrix format.</span>
-<span class="co">#&gt; Value  0.708   52.6 % better  - NEW BASIS</span>
+<span class="co">#&gt; Value  0.730   49.7 % better  - NEW BASIS</span>
 <span class="co">#&gt; Using half_range 0.98</span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p>When running the full guided tour for this example, the final view shows three clusters that correspond to the three species in the dataset. By mapping the species to color we can see how the groups get teased apart in the guided tour.</p>
@@ -156,7 +156,7 @@
         tour_path <span class="op">=</span> <span class="fu"><a href="../reference/guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="../reference/holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,
         display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Converting input data to the required matrix format.</span>
-<span class="co">#&gt; Value  0.482   159.7 % better  - NEW BASIS</span>
+<span class="co">#&gt; Value  0.620   66.1 % better  - NEW BASIS</span>
 <span class="co">#&gt; Using half_range 0.98</span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>Alternatively, a colour vector can be created manually and passed into the guided tour.</p>
@@ -171,7 +171,7 @@
         tour_path <span class="op">=</span> <span class="fu"><a href="../reference/guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="../reference/holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,
         display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">flea_col</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Converting input data to the required matrix format.</span>
-<span class="co">#&gt; Value  0.566   28.4 % better  - NEW BASIS</span>
+<span class="co">#&gt; Value  0.506   196.8 % better  - NEW BASIS</span>
 <span class="co">#&gt; Using half_range 0.98</span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 </div>
@@ -179,7 +179,7 @@
 <h2 class="hasAnchor">
 <a href="#display-types" class="anchor"></a>Display types</h2>
 <p>The default display is showing a scatterplot of the data projected to 2D. Depending on the number of dimensions we project onto (this is called d), we can choose different display types. For example, we could look at 1D projections in a density display, a 3D projection using depth cues, or higher dimensional projections in a parallel coordinate or scatterplot matrix display.</p>
-<p>When changing the display type via the <code>display</code> argument, we need to make sure that the basis generation is matching the corresponding number of dimensions d. We can pass in this infromation when generating the tour path. To work with 1D projections and a density display, we can launch the animation as</p>
+<p>When changing the display type via the <code>display</code> argument, we need to make sure that the basis generation is matching the corresponding number of dimensions d. We can pass in this information when generating the tour path. To work with 1D projections and a density display, we can launch the animation as</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">f</span>,
         tour_path <span class="op">=</span> <span class="fu"><a href="../reference/grand_tour.html">grand_tour</a></span><span class="op">(</span>d <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,

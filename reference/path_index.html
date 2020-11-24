@@ -228,18 +228,10 @@
 </div><div class='img'><img src='path_index-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'>path_index</span><span class='op'>(</span><span class='va'>fl_holes</span>, <span class='fu'><a href='cmass.html'>cmass</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>, type <span class='op'>=</span> <span class='st'>"l"</span><span class='op'>)</span>
 </div><div class='img'><img src='path_index-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Use interpolate to show all intermediate bases as well</span>
-<span class='va'>hi</span> <span class='op'>&lt;-</span> <span class='fu'>path_index</span><span class='op'>(</span><span class='fu'><a href='interpolate.html'>interpolate</a></span><span class='op'>(</span><span class='va'>fl_holes</span><span class='op'>)</span>, <span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='va'>hi</span> <span class='op'>&lt;-</span> <span class='fu'>path_index</span><span class='op'>(</span><span class='fu'><a href='interpolate.html'>interpolate</a></span><span class='op'>(</span><span class='va'>fl_holes</span><span class='op'>)</span>, <span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>hi</span>
-</div><div class='output co'>#&gt;  [1] 0.8882373 0.8905854 0.8927154 0.8946227 0.8963045 0.8977588 0.8989843
-#&gt;  [8] 0.8999803 0.9007464 0.9012820 0.9015862 0.9016625 0.9045517 0.9072004
-#&gt; [15] 0.9095891 0.9116994 0.9135146 0.9150198 0.9162020 0.9170504 0.9175566
-#&gt; [22] 0.9177154 0.9194039 0.9205581 0.9211674 0.9212685 0.9228336 0.9239985
-#&gt; [29] 0.9247505 0.9250808 0.9250968 0.9259752 0.9264738 0.9265795 0.9278829
-#&gt; [36] 0.9288799 0.9295649 0.9299324 0.9299987 0.9311851 0.9318082 0.9319060
-#&gt; [43] 0.9328528 0.9332925 0.9333254 0.9340782 0.9343352
-#&gt; attr(,"class")
-#&gt; [1] "path_index"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>hi</span><span class='op'>)</span>
-</div><div class='img'><img src='path_index-3.png' alt='' width='700' height='433' /></div></pre>
+</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'hi' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>hi</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in plot(hi): object 'hi' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
