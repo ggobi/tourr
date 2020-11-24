@@ -33,11 +33,9 @@ search_frozen_geodesic <- function(current, index, max.tries = 5, n = 5, frozen,
       cat("New index: ", dig3(new_index), " (", dig3(peak$alpha$maximum), " away)\n", sep="")
       current <<- new_basis
       cur_index <<- new_index
-      if (getOption("tourr.verbose", default = FALSE)){
-        return(list(record = record, target = new_basis[[1]]))
-      } else{
-        return(list(target = new_basis[[1]]))
-      }
+
+      return(list(target = new_basis[[1]]))
+
     }
     cat("Best was:  ", dig3(new_index), " (", dig3(peak$alpha$maximum), " away).  Trying again...\n", sep="")
 

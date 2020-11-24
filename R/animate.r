@@ -39,13 +39,15 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
                     start = NULL, aps = 1, fps = 10, max_frames = Inf,
                     rescale = TRUE, sphere = FALSE, ...) {
 
-  record <<- dplyr::tibble(basis = list(),
+  if (getOption("tourr.verbose", default = FALSE)) {
+    record <<- dplyr::tibble(basis = list(),
                             index_val = numeric(),
                             tries = numeric(),
                             info = character(),
                             loop = numeric(),
                             method = character(),
                             alpha = numeric())
+  }
 
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
@@ -117,11 +119,13 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
     invisible(bases[, , seq_len(b)])
   }
 
-  record <- dplyr::mutate(record, id = dplyr::row_number())
-  suppressWarnings(rm(tries, cur_index, current, t0, record, envir = globalenv()))
-  if (getOption("tourr.verbose", default = FALSE)) return(record)
+  #suppressWarnings(rm(tries, cur_index, current, t0, record, envir = globalenv()))
+  if (getOption("tourr.verbose", default = FALSE)) {
+    record <<- dplyr::mutate(record, id = dplyr::row_number())
+    #return(record)
+  }
 }
 
 rstudio_gd <- function() identical(names(dev.cur()), "RStudioGD")
 
-globalVariables("record")
+#globalVariables("record")

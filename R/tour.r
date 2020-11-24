@@ -61,7 +61,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     if (step_size > 0 & is.finite(step_size) & cur_dist >= target_dist) {
 
       ## interrupt
-      if (getOption("tourr.verbose", default = FALSE)){
+      if (getOption("tourr.verbose", default = FALSE)) {
         if ("new_basis" %in% record$info & record$method[2] != "search_geodesic"){
 
           last_two <- tail(dplyr::filter(record, info == "new_basis"), 2)
@@ -70,7 +70,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
             # search_better_random may give probabilistic acceptance
             current <<- last_two$basis[[2]]
             cur_index <<- last_two$index_val[[2]]
-          }else{
+          } else {
             interp <- dplyr::filter(record,
                                     tries == max(tries),
                                     info == "interpolation",
@@ -100,7 +100,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
             }
           }
         }
-      } else{
+      } else {
         if(exists("index")){
           index_val <- vapply(proj, index, numeric(1))
           current <<- proj[[which.max(index_val)]]
@@ -155,7 +155,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     list(proj = proj[[length(proj)]], target = target, step = step)
   }
 }
-globalVariables(c("basis", "id", "index", "index_val"))
+# globalVariables(c("basis", "id", "index", "index_val"))
 
 #' @importFrom grDevices dev.cur dev.flush dev.hold dev.off hcl rgb
 #' @importFrom graphics abline axis box hist image lines pairs par plot points

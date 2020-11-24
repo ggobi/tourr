@@ -36,11 +36,10 @@ search_posse <- function(current, alpha = 0.5, index, max.tries = 300, cur_index
         nr <- nrow(record)
         record[nr, "info"] <<- "new_basis"
 
-        return(list(record = record, target = new_basis, h = h))
-      }else{
-
-        return(list(target = new_basis, h = h))
       }
+
+      return(list(target = new_basis, h = h))
+
 
     } else {
       h <- h + 1

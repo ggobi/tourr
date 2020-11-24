@@ -55,12 +55,10 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
         # new basis?
         nr <- nrow(record)
         record[nr, "info"] <<- "new_basis"
-
-
-        return(list(record = record, target = new_basis, alpha = alpha))
-      }else{
-        return(list(target = new_basis, alpha = alpha))
       }
+
+      return(list(target = new_basis, alpha = alpha))
+
     }
     try <- try + 1
   }
@@ -141,10 +139,10 @@ search_better_random <- function(current, alpha = 0.5, index,
         nr <- nrow(record)
         record[nr, "info"] <<- "new_basis"
 
-        return(list(record = record, target = new_basis, alpha = alpha))
-      }else{
-        return(list(target = new_basis, alpha = alpha))
       }
+
+      return(list(target = new_basis, alpha = alpha))
+
     }
     else{
       prob <- min(exp(-abs(cur_index - new_index) / temperature), 1)
@@ -159,10 +157,10 @@ search_better_random <- function(current, alpha = 0.5, index,
           nr <- nrow(record)
           record[nr, "info"] <<- "new_basis"
 
-          return(list(record = record, target = new_basis, alpha = alpha))
-        }else{
-          return(list(target = new_basis, alpha = alpha))
         }
+
+        return(list(target = new_basis, alpha = alpha))
+
       }
     }
     try <- try + 1

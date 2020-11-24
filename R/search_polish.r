@@ -42,37 +42,22 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
 
       if (polish_dist <  1e-3) {
         cat("The new basis is too close to the current one! \n")
-        if (getOption("tourr.verbose", default = FALSE)){
-          cat("current basis: ", current, "cur_index: ", cur_index, "\n")
-          cur_index <<- cur_index
-          current <<- current
-
-          return(list(record = record, target = current, alpha = alpha))
-        } else {
-          cat("current basis: ", current, "cur_index: ", cur_index, "\n")
-          cur_index <<- cur_index
-          current <<- current
-          return(list(target = current, alpha = alpha))
-        }
-
+        cat("current basis: ", current, "cur_index: ", cur_index, "\n")
+        cur_index <<- cur_index
+        current <<- current
+        return(list(target = current, alpha = alpha))
       }
 
       #check condition 2: there needs to be certain improvement
 
       if (polish_pdiff < 1e-5){
         cat("The improvement is too small! \n")
-        if (getOption("tourr.verbose", default = FALSE)){
-          cat("current basis: ", current, "cur_index: ", cur_index, "\n")
-          cur_index <<- cur_index
-          current <<- current
 
-          return(list(record = record, target = current, alpha = alpha))
-        } else {
-          cat("current basis: ", current, "cur_index: ", cur_index, "\n")
-          cur_index <<- cur_index
-          current <<- current
-          return(list(target = current, alpha = alpha))
-        }
+        cat("current basis: ", current, "cur_index: ", cur_index, "\n")
+        cur_index <<- cur_index
+        current <<- current
+        return(list(target = current, alpha = alpha))
+
       }
 
       cat("better basis found, index_val = ", best_row$index_val, "\n")
@@ -96,18 +81,12 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
 
       if (alpha < 0.01){
         cat("alpha is", alpha, "and it is too small! \n")
-        if (getOption("tourr.verbose", default = FALSE)){
-          cat("current basis: ", current, "cur_index: ", cur_index, "\n")
-          cur_index <<- cur_index
-          current <<- current
 
-          return(list(record = record, target = current, alpha = alpha))
-        } else {
-          cat("current basis: ", current, "cur_index: ", cur_index, "\n")
-          cur_index <<- cur_index
-          current <<- current
-          return(list(target = current, alpha = alpha))
-        }
+        cat("current basis: ", current, "cur_index: ", cur_index, "\n")
+        cur_index <<- cur_index
+        current <<- current
+        return(list(target = current, alpha = alpha))
+
       }
     }
 
@@ -131,16 +110,10 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
     }
   }
 
-  if (getOption("tourr.verbose", default = FALSE)){
-    cur_index <<- cur_index
-    current <<- current
-    return(list(record = record, target = current, alpha = alpha))
-  } else {
-    cat("current basis: ", current, "cur_index: ", cur_index, "\n")
-    cur_index <<- cur_index
-    current <<- current
-    return(list(target = current, alpha = alpha))
-  }
+  cat("current basis: ", current, "cur_index: ", cur_index, "\n")
+  cur_index <<- cur_index
+  current <<- current
+  return(list(target = current, alpha = alpha))
 
 }
 globalVariables("index_val")
