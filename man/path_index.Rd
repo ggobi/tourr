@@ -26,9 +26,9 @@ plot(path_index(fl_holes, holes()), type = "l")
 plot(path_index(fl_holes, cmass()), type = "l")
 
 # Use interpolate to show all intermediate bases as well
-hi <- path_index(interpolate(fl_holes), holes())
+\dontrun{hi <- path_index(interpolate(fl_holes), holes())
 hi
-plot(hi)
+plot(hi)}
 }
 \seealso{
 \code{\link{save_history}} for options to save history

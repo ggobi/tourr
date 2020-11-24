@@ -116,4 +116,4 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
   return(list(target = current, alpha = alpha))
 
 }
-globalVariables("index_val")
+#globalVariables("index_val")

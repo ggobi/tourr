@@ -119,11 +119,11 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
     invisible(bases[, , seq_len(b)])
   }
 
-  #suppressWarnings(rm(tries, cur_index, current, t0, record, envir = globalenv()))
   if (getOption("tourr.verbose", default = FALSE)) {
     record <<- dplyr::mutate(record, id = dplyr::row_number())
-    #return(record)
   }
+  # Need a better way to clean up global variables than this
+  #suppressWarnings(rm(tries, cur_index, current, t0, record, envir = globalenv()))
 }
 
 rstudio_gd <- function() identical(names(dev.cur()), "RStudioGD")

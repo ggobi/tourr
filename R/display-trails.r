@@ -52,7 +52,7 @@ display_trails <- function(center = TRUE, axes = "center", half_range = NULL, co
   xy
 }
 
-globalVariables("past_x")
+# globalVariables("past_x")
 
 #' @rdname display_trails
 #' @inheritParams animate

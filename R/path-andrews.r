@@ -71,4 +71,4 @@ plot.path_curve <- function(x, ...) {
     ggplot2::geom_line() +
     ggplot2::facet_grid(var ~ .)
 }
-globalVariables(c("value", "obs"))
+# globalVariables(c("value", "obs"))

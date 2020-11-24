@@ -36,6 +36,8 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
     # Travel halfway round (pi / 4 radians) the sphere in that direction
     # looking for the best projection
     peak <- dplyr::mutate(find_path_peak(current, best_dir, index),  tries = tries, loop = try)
+    # think this should be counter, not tries
+    # peak <- dplyr::mutate(find_path_peak(current, best_dir, index),  tries = counter, loop = try)
     new_index <- tail(peak$index_val, 1)
     new_basis <- tail(peak$basis, 1)
 
@@ -87,7 +89,7 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
 
 #' Find the most promising direction to travel in.
 #'
-#' Starting from the current projection, pick \code{tries} random location
+#' Starting from the current projection, pick \code{counter} random location
 #' and take a small step towards and away from each location.  The most
 #' promising direction has the highest value of the \code{index} function.
 #'
@@ -95,7 +97,7 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
 #' @param old current projection
 #' @param index interestingness index function
 #' @param dist step size in radians, should be small
-#' @param number of random steps to take
+#' @param counter of random steps to take
 find_best_dir <- function(old, index, dist = 0.01, counter = 5, ...) {
 
   # change the original parameter tries to counter since it conflicts with the tries in geodesic-path.r
@@ -114,7 +116,7 @@ find_best_dir <- function(old, index, dist = 0.01, counter = 5, ...) {
     dplyr::tibble(basis = c(list(forward), list(backward)),
                    index_val = c(index(forward), index(backward)),
                    info = "direction_search",
-                   tries = tries,
+                   tries = tries, # should this be counter?
                    method = "search_geodesic")
 
   }
@@ -152,4 +154,4 @@ find_path_peak <- function(old, new, index, max_dist = pi / 4, ...) {
   best
 
 }
-globalVariables("tries")
+# globalVariables("tries")

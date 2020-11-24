@@ -185,4 +185,4 @@ search_better_random <- function(current, alpha = 0.5, index,
   NULL
 }
 
-globalVariables(c("t0","tries", "info", "runif"))
+# globalVariables(c("t0","tries", "info", "runif"))

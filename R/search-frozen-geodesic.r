@@ -9,7 +9,7 @@
 #' @section To do: eliminate these functions
 #' @keywords internal
 search_frozen_geodesic <- function(current, index, max.tries = 5, n = 5, frozen, cur_index = NA, ...) {
-  #browser()
+
   cur_index <- index(thaw(current, frozen))
 
   try <- 1
@@ -22,11 +22,12 @@ search_frozen_geodesic <- function(current, index, max.tries = 5, n = 5, frozen,
     # Travel halfway round (pi / 4 radians) the sphere in that direction
     # looking for the best projection
     peak <- find_frozen_path_peak(current, best_dir, frozen, index)
-    line_search <- dplyr::mutate(peak$best, tries = tries, loop = try)
+    line_search <- dplyr::mutate(peak$best, tries = max.tries, loop = try)
     new_index <- tail(line_search$index_val, 1)
     new_basis <- tail(line_search$basis , 1)
 
-    if (getOption("tourr.verbose", default = FALSE)) record <<- dplyr::bind_rows(record, direction_search, line_search)
+    if (getOption("tourr.verbose", default = FALSE))
+      record <<- dplyr::bind_rows(record, direction_search, line_search)
     dig3 <- function(x) sprintf("%.3f", x)
     pdiff <- (new_index - cur_index) / cur_index
     if (pdiff > 0.001) {
@@ -47,9 +48,9 @@ search_frozen_geodesic <- function(current, index, max.tries = 5, n = 5, frozen,
 
 #' Find most promising direction in frozen space.
 #' @keywords internal
-find_best_frozen_dir <- function(old, frozen, index, dist = 0.01, tries = 5) {
+find_best_frozen_dir <- function(old, frozen, index, dist = 0.01, counter = 5) {
   new_basis <- function() freeze(basis_random(nrow(old), ncol(old)), frozen)
-  bases <- replicate(tries, new_basis(), simplify = FALSE)
+  bases <- replicate(counter, new_basis(), simplify = FALSE)
   old <- freeze(old, frozen)
 
   score <- function(new) {
@@ -62,7 +63,7 @@ find_best_frozen_dir <- function(old, frozen, index, dist = 0.01, tries = 5) {
     dplyr::tibble(basis = c(list(forward), list(backward)),
                   index_val = c(index(forward), index(backward)),
                   info = "direction_search",
-                  tries = tries,
+                  tries = counter,
                   method = "search_frozen_geodesic")
   }
 

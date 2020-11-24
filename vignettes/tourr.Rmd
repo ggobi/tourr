@@ -11,7 +11,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  cache = FALSE
 )
 ```
 
@@ -92,7 +93,7 @@ animate(f,
 
 The default display is showing a scatterplot of the data projected to 2D. Depending on the number of dimensions we project onto (this is called d), we can choose different display types. For example, we could look at 1D projections in a density display, a 3D projection using depth cues, or higher dimensional projections in a parallel coordinate or scatterplot matrix display.
 
-When changing the display type via the `display` argument, we need to make sure that the basis generation is matching the corresponding number of dimensions d. We can pass in this infromation when generating the tour path. To work with 1D projections and a density display, we can launch the animation as
+When changing the display type via the `display` argument, we need to make sure that the basis generation is matching the corresponding number of dimensions d. We can pass in this information when generating the tour path. To work with 1D projections and a density display, we can launch the animation as
 
 ```{r}
 animate(f,

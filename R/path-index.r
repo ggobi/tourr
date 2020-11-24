@@ -16,9 +16,9 @@
 #' plot(path_index(fl_holes, cmass()), type = "l")
 #'
 #' # Use interpolate to show all intermediate bases as well
-#' hi <- path_index(interpolate(fl_holes), holes())
+#' \dontrun{hi <- path_index(interpolate(fl_holes), holes())
 #' hi
-#' plot(hi)
+#' plot(hi)}
 path_index <- function(history, index_f, data = attr(history, "data")) {
   index <- function(proj) {
     index_f(as.matrix(data) %*% proj)

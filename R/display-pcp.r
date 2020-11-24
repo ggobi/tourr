@@ -62,9 +62,7 @@ display_pcp <- function(...)
   )
 
 }
-
-globalVariables("y")
-
+# globalVariables("y")
 
 #' @rdname display_pcp
 #' @inheritParams animate

@@ -26,20 +26,22 @@ Compute distance matrix from bases.
 
 # 5 guided tours  -----------------------------
 holes1d <- guided_tour(holes(), 1)
-tries <- replicate(5, save_history(flea[, 1:6], holes1d, max = 10),
+tour_reps <- replicate(5, save_history(flea[, 1:6], holes1d, max = 10),
   simplify = FALSE)
-tries2 <- lapply(tries, interpolate, 0.2)
+tour_reps2 <- lapply(tour_reps, interpolate, 0.2)
 
-bases <- unlist(lapply(tries2, as.list), recursive = FALSE)
+bases <- unlist(lapply(tour_reps2, as.list), recursive = FALSE)
 class(bases) <- "history_list"
-index_values <- paths_index(tries2, holes())
+index_values <- paths_index(tour_reps2, holes())
 d <- path_dist(bases)
 ord <- as.data.frame(cmdscale(d, 2))
 
 info <- cbind(ord, index_values)
 if (require("ggplot2")) {
-qplot(step, value, data = info, geom="line", group = try)
-qplot(V1, V2, data = info, geom="path", group = try) +
+ggplot(data = info, aes(x=step, y=value, group = try)) +
+  geom_line()
+ggplot(data = info, aes(x=V1, y=V2, group = try)) +
+  geom_path() +
   geom_point(aes(size = value)) +
   coord_equal()
 last_plot() + facet_wrap(~ try)
