@@ -1,0 +1,77 @@
+template:
+  params:
+    bootswatch: cosmo
+
+reference:
+- title: In-built data
+  contents:
+  - matches("measurements")
+  - Places Ratings
+  - Rat CNS
+  - Tropical Atmosphere Ocean
+- title: Pre-processing
+  desc: >
+    Functions for data pre-processing
+  contents:
+  - center
+  - rescale
+
+- title: Tour path construction
+  desc: >
+    Functions for constructing various tour paths
+  contents:
+  - grand_tour
+  - guided_tour
+  - guided_section_tour
+  - little_tour
+  - local_tour
+  - planned_tour
+  - dependence_tour
+  - frozen_guided_tour
+  - frozen_tour
+- title: Tour display
+  desc: >
+    Functions for various tour display
+  contents:
+  - animate
+  - starts_with("display")
+  - starts_With("animate")
+- title: Indices
+  desc: >
+    Index functions in guided tour
+  contents:
+  - cmass
+  - holes
+  - lda_pp
+  - pda_pp
+  - dcor2d
+  - splines2d
+  - slice_index
+  - norm_bin
+  - norm_kol
+- title: Search functions
+  desc: >
+    Functions for index optimisation in guided tour
+  contents:
+    - starts_with("search")
+- title: Misc calculation
+  desc: >
+    Functions for calculating various tour components
+  contents:
+  - anchored_orthogonal_distance
+  - andrews
+  - angular_breaks
+  - linear_breaks
+  - estimate_eps
+  - interpolate
+  - path_dist
+  - path_index
+  - proj_dist
+- title: Utility
+  contents:
+  - path_curves
+  - render
+  - render_gif
+  - save_history
+  - areColors
+  - mapColors
