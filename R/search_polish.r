@@ -28,11 +28,12 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
     # could use which.max
     best_row <- dplyr::filter(polish, index_val == max(index_val))
 
-    if (getOption("tourr.verbose", default = FALSE))
-      best_row <- dplyr::mutate(best_row,
+    best_row <- dplyr::mutate(best_row,
                                 info = "loop_best",
                                 method = "search_polish")
-      record <<- dplyr::bind_rows(polish, record, best_row)
+    if (getOption("tourr.verbose", default = FALSE))
+        record <<- dplyr::bind_rows(polish, record, best_row)
+
     if (best_row$index_val > cur_index) {
 
       polish_dist <- proj_dist(current, best_row$basis[[1]])
@@ -64,11 +65,12 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
 
       cur_index <- best_row$index_val
       current <- best_row$basis[[1]]
-      if (getOption("tourr.verbose", default = FALSE))
-        best_row <- dplyr::mutate(best_row,
+      best_row <- dplyr::mutate(best_row,
                                   info = "loop_best",
                                   method = "search_polish")
-        record <<- dplyr::bind_rows(record, best_row)
+
+      if (getOption("tourr.verbose", default = FALSE))
+          record <<- dplyr::bind_rows(record, best_row)
 
 
     } else {
