@@ -32,4 +32,7 @@ search_better(
 \description{
 Search for a better projection near the current projection.
 }
+\examples{
+  animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better))
+}
 \keyword{optimize}

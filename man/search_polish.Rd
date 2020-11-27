@@ -35,4 +35,11 @@ search_polish(
 \description{
 Search very locally to find slightly better projections to polish a broader search.
 }
+\examples{
+  t1 <- save_history(flea[,1:6], guided_tour(holes()), max = 100)
+  best_proj <- t1[,,dim(t1)[3]]
+  animate_xy(flea[, 1:6],
+    guided_tour(holes(), search_f = search_polish,
+    start = best_proj, cur_index = 0))
+}
 \keyword{optimize}

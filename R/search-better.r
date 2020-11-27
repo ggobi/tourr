@@ -23,6 +23,8 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 #' @keywords optimize
 #' @importFrom utils tail globalVariables
 #' @export
+#' @examples
+#'   animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better))
 search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
   method = "linear", cur_index = NA, ...) {
 
@@ -102,6 +104,8 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
 #'
 #' @keywords optimize
 #' @export
+#' @examples
+#'   animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better_random))
 search_better_random <- function(current, alpha = 0.5, index,
   max.tries = Inf, method = "linear", cur_index = NA,
   ...

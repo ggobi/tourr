@@ -45,4 +45,7 @@ traveling up to half way around the sphere.
 You should not to have call this function directly, but should supply it
 to the \code{\link{guided_tour}} as a search strategy.
 }
+\examples{
+  animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_geodesic))
+}
 \keyword{optimize}

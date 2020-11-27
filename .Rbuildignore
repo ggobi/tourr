@@ -11,10 +11,11 @@
 ^\.git$
 ^..Rcheck$
 ^README\.md$
-^pkgdown$
 ^_config.yml$
 ^codecov\.yml$
 ^\.github$
 ^data-raw$
 ^doc$
 ^Meta$
+^_pkgdown.yml$
+^docs$

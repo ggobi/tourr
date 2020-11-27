@@ -5,4 +5,5 @@ utils::globalVariables(
     "value", "obs"))
 
 # Initialise global variables
-record <- NULL
+if (getOption("tourr.verbose", default = FALSE))
+  record <- NULL

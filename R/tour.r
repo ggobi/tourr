@@ -28,8 +28,9 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   }
 
   if (attr(tour_path, "name") == "guided"){
-    if (getOption("tourr.verbose", default = FALSE) & is.null(record))
-      record <<- dplyr::tibble(basis = list(start),
+    if (getOption("tourr.verbose", default = FALSE))
+      if (!exists(record))
+        record <<- dplyr::tibble(basis = list(start),
                        index_val = index(start),
                        tries = 1,
                        info = "new_basis",

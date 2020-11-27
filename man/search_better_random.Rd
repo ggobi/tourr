@@ -38,4 +38,7 @@ For more information, see
 and
 \url{https://projecteuclid.org/download/pdf_1/euclid.ss/1177011077}
 }
+\examples{
+  animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better_random))
+}
 \keyword{optimize}

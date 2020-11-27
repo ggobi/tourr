@@ -21,6 +21,8 @@
 #'@param ... other arguments being passed into the \code{search_geodesic()}
 #' @keywords optimize
 #' @export
+#' @examples
+#'   animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_geodesic))
 search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
                             delta = 0.01, cur_index = NA, ...) {
   if (is.na(cur_index)) cur_index <- index(current)
