@@ -27,15 +27,6 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     start <- tour_path(NULL, data, ...)
   }
 
-  if (attr(tour_path, "name") == "guided"){
-    if (getOption("tourr.verbose", default = FALSE))
-      if (!exists(record))
-        record <<- dplyr::tibble(basis = list(start),
-                       index_val = index(start),
-                       tries = 1,
-                       info = "new_basis",
-                       loop = NA)
-  }
 
   proj <- list()
   proj[[1]] <- start
@@ -47,6 +38,16 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   cur_dist <- 0
   target_dist <- 0
   geodesic <- NULL
+
+  if (getOption("tourr.verbose", default = FALSE))
+    record <- dplyr::tibble(basis = list(start),
+                                index_val = index(start),
+                                tries = 1,
+                                info = "new_basis",
+                                loop = NA)
+  tries <- 0
+  cur_index <- 0
+  t0 <- 0
 
   function(step_size, ...) {
 

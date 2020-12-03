@@ -4,6 +4,3 @@ utils::globalVariables(
     "frozen", "id", "y", "past_x", "index_val", "info",
     "value", "obs"))
 
-# Initialise global variables
-if (getOption("tourr.verbose", default = FALSE))
-  record <- NULL

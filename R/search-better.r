@@ -119,13 +119,13 @@ search_better_random <- function(current, alpha = 0.5, index,
 
   cat("Old", cur_index, "\n")
   try <- 1
-  while(try < max.tries) {
+  while (try < max.tries) {
     new_basis <- basis_nearby(current, alpha, method)
     new_index <- index(new_basis)
     temperature <- t0 / log(try + 1)
 
     if (getOption("tourr.verbose", default = FALSE))
-      record <<- dplyr::add_row(record, basis = list(new_basis),
+      record <- dplyr::add_row(record, basis = list(new_basis),
                                         index_val = new_index,
                                         info = "random_search",
                                         tries = tries,
