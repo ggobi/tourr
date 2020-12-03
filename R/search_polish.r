@@ -50,8 +50,6 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
       if (polish_dist <  1e-3) {
         cat("The new basis is too close to the current one! \n")
         cat("current basis: ", current, "cur_index: ", cur_index, "\n")
-        cur_index <<- cur_index
-        current <<- current
         return(list(target = current, alpha = alpha))
       }
 
@@ -61,8 +59,6 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
         cat("The improvement is too small! \n")
 
         cat("current basis: ", current, "cur_index: ", cur_index, "\n")
-        cur_index <<- cur_index
-        current <<- current
         return(list(target = current, alpha = alpha))
 
       }
@@ -91,8 +87,6 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
         cat("alpha is", alpha, "and it is too small! \n")
 
         cat("current basis: ", current, "cur_index: ", cur_index, "\n")
-        cur_index <<- cur_index
-        current <<- current
         return(list(target = current, alpha = alpha))
 
       }
@@ -119,8 +113,6 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
   }
 
   cat("current basis: ", current, "cur_index: ", cur_index, "\n")
-  cur_index <<- cur_index
-  current <<- current
   return(list(target = current, alpha = alpha))
 
 }

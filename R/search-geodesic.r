@@ -37,9 +37,7 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
 
     # Travel halfway round (pi / 4 radians) the sphere in that direction
     # looking for the best projection
-    peak <- dplyr::mutate(find_path_peak(current, best_dir, index),  tries = tries, loop = try)
-    # think this should be counter, not tries
-    # peak <- dplyr::mutate(find_path_peak(current, best_dir, index),  tries = counter, loop = try)
+    peak <- dplyr::mutate(find_path_peak(current, best_dir, index),  tries = n, loop = try)
     new_index <- tail(peak$index_val, 1)
     new_basis <- tail(peak$basis, 1)
 
@@ -57,8 +55,8 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
       if (pdiff > 0.001 & proj_dist(current, new_basis[[1]]) > 1e-2) { #FIXME: pdiff should pbly be a changeable parameter
         cat(" - NEW BASIS\n")
 
-        current <<- new_basis
-        cur_index <<- new_index
+        current <- new_basis
+        cur_index <- new_index
 
         return(list(target = new_basis[[1]]))
 
@@ -118,7 +116,7 @@ find_best_dir <- function(old, index, dist = 0.01, counter = 5, ...) {
     dplyr::tibble(basis = c(list(forward), list(backward)),
                    index_val = c(index(forward), index(backward)),
                    info = "direction_search",
-                   tries = tries, # should this be counter?
+                   tries = counter,
                    method = "search_geodesic")
 
   }
