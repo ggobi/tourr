@@ -28,7 +28,7 @@ search_polish <- function(current, alpha = 0.5, index, polish_max_tries = 30,
                                                                               alpha = alpha)))})
     polish <-  dplyr::mutate(dplyr::bind_rows(basis),
                              index_val = vapply(basis, function(x) index(x), double(1)),
-                             alpha = round(alpha, 4), tries = tries, info = "polish",
+                             alpha = round(alpha, 4), tries = try, info = "polish",
                              loop = try, method = "search_polish")
 
     # could use which.max
