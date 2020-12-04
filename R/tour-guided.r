@@ -43,7 +43,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
                         max.i = Inf, search_f = search_geodesic, n_sample = 5, ...) {
 
   generator <- function(current, data, ...) {
-    index <<- function(proj) {
+    index <- function(proj) {
 
       index_f(as.matrix(data) %*% proj)
     }
