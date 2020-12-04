@@ -162,6 +162,7 @@ and
   max.tries <span class='op'>=</span> <span class='cn'>Inf</span>,
   method <span class='op'>=</span> <span class='st'>"linear"</span>,
   cur_index <span class='op'>=</span> <span class='cn'>NA</span>,
+  t0 <span class='op'>=</span> <span class='fl'>0.01</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -193,6 +194,10 @@ and
       <td><p>the index value of the current basis</p></td>
     </tr>
     <tr>
+      <th>t0</th>
+      <td><p>initial decrease in temperature</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>other arguments being passed into the <code>search_better_random()</code></p></td>
     </tr>
@@ -201,8 +206,8 @@ and
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>  <span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='guided_tour.html'>guided_tour</a></span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span>, search_f <span class='op'>=</span> <span class='va'>search_better_random</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Old 0.5620332 
-#&gt; New 0.6919774 try 4 
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Old 0.5595389 
+#&gt; New 0.7898816 try 1 
 #&gt; Accept </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='search_better_random-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

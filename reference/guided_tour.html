@@ -231,17 +231,17 @@ a method that works with tour paths like <code><a href='animate.html'>animate</a
 <span class='va'>f</span> <span class='op'>&lt;-</span> <span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>
 <span class='va'>tries</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fu'><a href='save_history.html'>save_history</a></span><span class='op'>(</span><span class='va'>f</span>, <span class='fu'>guided_tour</span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>, simplify <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.462   3.1 % better  - NEW BASIS
-#&gt; Value  0.461   -0.1 % better 
-#&gt; Value  0.463   0.3 % better  - NEW BASIS
-#&gt; Value  0.466   0.6 % better  - NEW BASIS
-#&gt; Value  0.469   0.5 % better  - NEW BASIS
-#&gt; Value  0.474   1.1 % better  - NEW BASIS
-#&gt; Value  0.478   0.9 % better  - NEW BASIS
-#&gt; Value  0.479   0.3 % better  - NEW BASIS
-#&gt; Value  0.480   0.1 % better  - NEW BASIS
-#&gt; Value  0.480   0.0 % better 
-#&gt; Value  0.480   0.0 % better 
-#&gt; Value  0.482   0.4 % better  - NEW BASIS
+#&gt; Value  0.461   3.0 % better  - NEW BASIS
+#&gt; Value  0.465   0.7 % better  - NEW BASIS
+#&gt; Value  0.469   0.8 % better  - NEW BASIS
+#&gt; Value  0.477   1.8 % better  - NEW BASIS
+#&gt; Value  0.481   0.9 % better  - NEW BASIS
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.481   0.0 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.481   0.0 % better 
+#&gt; Value  0.481   0.0 % better 
+#&gt; Value  0.482   0.1 % better  - NEW BASIS
 #&gt; Value  0.482   0.0 % better 
 #&gt; Value  0.482   0.0 % better 
 #&gt; Value  0.482   0.0 % better 
@@ -268,10 +268,10 @@ a method that works with tour paths like <code><a href='animate.html'>animate</a
 #&gt; Value  0.482   0.0 % better 
 #&gt; No better bases found after 25 tries.  Giving up.
 #&gt; Final projection: 
-#&gt; -1.000  0.019  
-#&gt; 0.026  0.685  
-#&gt; 0.002  0.728  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.465   6.9 % better  - NEW BASIS
-#&gt; Value  0.468   0.7 % better  - NEW BASIS
+#&gt; -0.997  0.067  
+#&gt; 0.065  0.676  
+#&gt; 0.031  0.734  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.465   6.9 % better  - NEW BASIS
+#&gt; Value  0.468   7.6 % better  - NEW BASIS
 #&gt; Value  0.469   0.2 % better  - NEW BASIS
 #&gt; Value  0.473   0.9 % better  - NEW BASIS
 #&gt; Value  0.476   0.6 % better  - NEW BASIS
@@ -307,7 +307,7 @@ a method that works with tour paths like <code><a href='animate.html'>animate</a
 #&gt; 0.461  0.882  
 #&gt; 0.626  -0.402  
 #&gt; 0.630  -0.246  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.349   314.6 % better  - NEW BASIS
-#&gt; Value  0.356   1.9 % better  - NEW BASIS
+#&gt; Value  0.356   322.5 % better  - NEW BASIS
 #&gt; Value  0.467   31.1 % better  - NEW BASIS
 #&gt; Value  0.480   2.8 % better  - NEW BASIS
 #&gt; Value  0.482   0.4 % better  - NEW BASIS
@@ -340,12 +340,45 @@ a method that works with tour paths like <code><a href='animate.html'>animate</a
 #&gt; -0.418  -0.908  
 #&gt; 0.587  -0.293  
 #&gt; 0.693  -0.299  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.455   54.4 % better  - NEW BASIS
+#&gt; Value  0.455   54.4 % better  - NEW BASIS
 #&gt; Value  0.455   0.0 % better 
-#&gt; Value  0.456   0.3 % better  - NEW BASIS
-#&gt; Value  0.462   1.3 % better  - NEW BASIS
-#&gt; Value  0.476   3.0 % better  - NEW BASIS
-#&gt; Value  0.478   0.5 % better  - NEW BASIS
-#&gt; Value  0.481   0.7 % better  - NEW BASIS
+#&gt; Value  0.455   0.2 % better  - NEW BASIS
+#&gt; Value  0.461   1.3 % better  - NEW BASIS
+#&gt; Value  0.463   0.3 % better  - NEW BASIS
+#&gt; Value  0.475   2.7 % better  - NEW BASIS
+#&gt; Value  0.480   0.9 % better  - NEW BASIS
+#&gt; Value  0.481   0.3 % better  - NEW BASIS
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.0 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; Value  0.482   0.1 % better 
+#&gt; No better bases found after 25 tries.  Giving up.
+#&gt; Final projection: 
+#&gt; 0.986  -0.148  
+#&gt; 0.048  0.681  
+#&gt; 0.158  0.717  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.472   8.0 % better  - NEW BASIS
+#&gt; Value  0.469   7.2 % better  - NEW BASIS
+#&gt; Value  0.481   2.6 % better  - NEW BASIS
 #&gt; Value  0.482   0.1 % better  - NEW BASIS
 #&gt; Value  0.482   0.0 % better 
 #&gt; Value  0.482   0.0 % better 
@@ -373,53 +406,9 @@ a method that works with tour paths like <code><a href='animate.html'>animate</a
 #&gt; Value  0.482   0.0 % better 
 #&gt; No better bases found after 25 tries.  Giving up.
 #&gt; Final projection: 
-#&gt; 0.982  -0.187  
-#&gt; 0.118  0.666  
-#&gt; 0.145  0.722  </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.457   40.6 % better  - NEW BASIS
-#&gt; Value  0.462   1.2 % better  - NEW BASIS
-#&gt; Value  0.463   0.2 % better  - NEW BASIS
-#&gt; Value  0.466   0.6 % better  - NEW BASIS
-#&gt; Value  0.469   0.6 % better  - NEW BASIS
-#&gt; Value  0.469   0.1 % better  - NEW BASIS
-#&gt; Value  0.470   0.3 % better  - NEW BASIS
-#&gt; Value  0.475   0.9 % better  - NEW BASIS
-#&gt; Value  0.477   0.4 % better  - NEW BASIS
-#&gt; Value  0.477   0.1 % better  - NEW BASIS
-#&gt; Value  0.480   0.6 % better  - NEW BASIS
-#&gt; Value  0.481   0.2 % better  - NEW BASIS
-#&gt; Value  0.481   0.0 % better 
-#&gt; Value  0.481   0.1 % better 
-#&gt; Value  0.481   0.0 % better 
-#&gt; Value  0.482   0.2 % better  - NEW BASIS
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; Value  0.482   0.0 % better 
-#&gt; No better bases found after 25 tries.  Giving up.
-#&gt; Final projection: 
-#&gt; 0.939  -0.343  
-#&gt; 0.215  0.639  
-#&gt; 0.269  0.688  </div></pre>
+#&gt; 0.797  -0.601  
+#&gt; 0.387  0.584  
+#&gt; 0.464  0.545  </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
