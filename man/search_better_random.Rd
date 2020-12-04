@@ -11,6 +11,7 @@ search_better_random(
   max.tries = Inf,
   method = "linear",
   cur_index = NA,
+  t0 = 0.01,
   ...
 )
 }
@@ -26,6 +27,8 @@ search_better_random(
 \item{method}{whether the nearby bases are found by a linear/ geodesic formulation}
 
 \item{cur_index}{the index value of the current basis}
+
+\item{t0}{initial decrease in temperature}
 
 \item{...}{other arguments being passed into the \code{search_better_random()}}
 }
