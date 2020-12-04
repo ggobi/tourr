@@ -41,8 +41,9 @@
 #' tries <- replicate(5, save_history(f, guided_tour(holes())), simplify = FALSE)
 guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
                         max.i = Inf, search_f = search_geodesic, n_sample = 5, ...) {
+
   generator <- function(current, data, ...) {
-    index <<- function(proj) {
+    index <- function(proj) {
 
       index_f(as.matrix(data) %*% proj)
     }
@@ -54,8 +55,8 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
     if (is.null(current)){
       current <- basis_random(ncol(data), d)
 
-      cur_index <<- index(current)
-      t0 <<- 0.01
+      cur_index <- index(current)
+
       if (getOption("tourr.verbose", default = FALSE)) {
         record <<- dplyr::add_row(record,
                                   basis = list(current),
@@ -69,6 +70,8 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
 
       return(current)
     }
+
+    cur_index <- index(current)
 
     if (cur_index > max.i){
       cat("Found index ", cur_index, ", larger than selected maximum ", max.i, ". Stopping search.\n",
@@ -89,7 +92,6 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
       return(NULL)
     }
 
-    tries <<- tries
 
     #current, alpha = 1, index, max.tries = 5, n = 5, delta = 0.01, cur_index = NA, ..
     basis <- search_f(current, alpha, index, max.tries, cur_index=cur_index,frozen = frozen, n_sample = n_sample, ...)

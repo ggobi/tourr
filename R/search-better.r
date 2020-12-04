@@ -100,6 +100,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
 #' @param max.tries maximum number of iteration before giving up
 #' @param method whether the nearby bases are found by a linear/ geodesic formulation
 #' @param cur_index the index value of the current basis
+#' @param t0 initial decrease in temperature
 #' @param ... other arguments being passed into the \code{search_better_random()}
 #'
 #' @keywords optimize
@@ -107,7 +108,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
 #' @examples
 #'   animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better_random))
 search_better_random <- function(current, alpha = 0.5, index,
-  max.tries = Inf, method = "linear", cur_index = NA,
+  max.tries = Inf, method = "linear", cur_index = NA, t0 = 0.01,
   ...
 ) {
 

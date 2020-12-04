@@ -45,9 +45,6 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
                                 tries = 1,
                                 info = "new_basis",
                                 loop = NA)
-  tries <- 0
-  cur_index <- 0
-  t0 <- 0
 
   function(step_size, ...) {
 
@@ -105,8 +102,8 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
       } else {
         if(exists("index")){
           index_val <- vapply(proj, index, numeric(1))
-          current <<- proj[[which.max(index_val)]]
-          cur_index <<- max(index_val)
+          current <- proj[[which.max(index_val)]]
+          cur_index <- max(index_val)
           if (which.max(index_val) == length(proj)) proj[[length(proj) + 1]] <<- geodesic$interpolate(1.)
         }
         proj[[length(proj) + 1]] <<- geodesic$interpolate(1.)
