@@ -87,7 +87,7 @@ frozen_guided_tour <- function(frozen, index_f, d = 2, max.tries = 25) {
     }
 
     basis <- search_frozen_geodesic(current, index, tries, max.tries, frozen = frozen)
-    list(target = basis$target,index = index)
+    list(target = basis$target, index = index)
   }
 
   check_freezer_safe(frozen)

@@ -63,7 +63,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
       rcd_env[["record"]] <- dplyr::add_row(
         rcd_env[["record"]],
         basis = list(current),
-        index_val =cur_index,
+        index_val = cur_index,
         info = "new_basis",
         method = method,
         alpha = formals(guided_tour)$alpha,
@@ -107,10 +107,8 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
           alpha <<- alpha * cooling
         }
       }
-    } else if (method == "search_polish") {
-      alpha <<- alpha * cooling
     } else {
-      alpha <<- basis$alpha
+      alpha <<- alpha * cooling
     }
 
     list(target = basis$target, index = index)

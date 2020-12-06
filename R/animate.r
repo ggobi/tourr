@@ -42,7 +42,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
   record <-
     dplyr::tibble(
       basis = list(),
-      index_val =numeric(),
+      index_val = numeric(),
       info = character(),
       method = character(),
       alpha = numeric(),

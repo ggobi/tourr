@@ -24,7 +24,7 @@ interpolate <- function(basis_set, angle = 0.05, cycle = FALSE) {
   record <-
     dplyr::tibble(
       basis = list(),
-      index_val =numeric(),
+      index_val = numeric(),
       info = character(),
       method = character(),
       alpha = numeric(),

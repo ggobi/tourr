@@ -20,8 +20,9 @@
 #'   flea[, 1:6],
 #'   guided_tour(holes(),
 #'     search_f = search_polish,
-#'      cur_index = 0
-#'   ), start = best_proj
+#'     cur_index = 0
+#'   ),
+#'   start = best_proj
 #' )
 search_polish <- function(current, alpha = 0.5, index, tries, polish_max_tries = 30,
                           cur_index = NA, n_sample = 5, polish_cooling = 1, ...) {

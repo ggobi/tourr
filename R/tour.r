@@ -38,7 +38,6 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   geodesic <- NULL
 
   function(step_size, ...) {
-
     cat("target_dist - cur_dist:", target_dist - cur_dist, "\n")
 
     step <<- step + 1
@@ -56,44 +55,31 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
         last_two <- tail(dplyr::filter(rcd_env[["record"]], info == "new_basis"), 2)
 
         if (last_two$index_val[1] > last_two$index_val[2]) {
-          # search_better_random may give probabilistic acceptance
-          current <- last_two$basis[[2]]
-          cur_index <- last_two$index_val[[2]]
+          # search_better_random may give probabilistic acceptance, leave it as it is
         } else {
-          interp <- dplyr::filter(
-            rcd_env[["record"]],
-            tries == max(tries),
-            info == "interpolation"
-          )
-          interp <- dplyr::filter(
-            interp,
-            index_val == max(index_val)
-          )
+          interp <- dplyr::filter(rcd_env[["record"]], tries == max(tries), info == "interpolation")
+          interp <- dplyr::filter(interp, index_val == max(index_val))
 
-          target <- dplyr::filter(
-            rcd_env[["record"]],
-            tries == max(tries),
-            info == "new_basis"
-          )
+          target <- dplyr::filter(rcd_env[["record"]], tries == max(tries), info == "new_basis")
 
           # deem the target basis as the new current basis if the interpolation doesn't reach the target basis
           # used when the index_f is not smooth
           if (target$index_val > interp$index_val) {
             proj[[length(proj) + 1]] <<- geodesic$ingred$interpolate(1.) # make sure next starting plane is previous target
-
-            target <- dplyr::mutate(target, info = "interpolation", loop = step)
+            target <- dplyr::mutate(target, info = "interpolation", loop = step + 1)
             rcd_env[["record"]] <- dplyr::add_row(rcd_env[["record"]], target)
-            current <- tail(rcd_env[["record"]]$basis, 1)[[1]]
-            cur_index <- tail(rcd_env[["record"]]$index_val, 1)
           } else if (target$index_val < interp$index_val & nrow(interp) != 0) {
             # the interrupt
             proj[[length(proj) + 1]] <<- interp$basis[[1]]
 
-            rcd_env[["record"]] <- dplyr::filter(rcd_env[["record"]], id <= which(rcd_env[["record"]]$index_val == interp$index_val))
-            current <- tail(rcd_env[["record"]]$basis, 1)[[1]]
-            cur_index <- tail(rcd_env[["record"]]$index_val, 1)
+            rcd_env[["record"]] <- dplyr::filter(
+              rcd_env[["record"]],
+              id <= which(rcd_env[["record"]]$index_val == interp$index_val)
+            )
           }
         }
+      } else {
+        proj[[length(proj) + 1]] <<- geodesic$ingred$interpolate(1.)
       }
     }
 
@@ -110,12 +96,6 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
       # to the target straight away
       if (!is.finite(step_size)) {
         cur_dist <<- target_dist
-        if (exists("index")) {
-          current <<- target
-          if (attr(tour_path, "name") == "guided") {
-            cur_index <- index(target)
-          }
-        }
       }
 
       step <<- 0
@@ -127,7 +107,6 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
 
     if (attr(tour_path, "name") == "guided") {
-
       rcd_env <- parent.frame()
       rcd_env[["record"]] <- dplyr::add_row(
         rcd_env[["record"]],
@@ -140,7 +119,8 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
       )
       rcd_env[["record"]] <- dplyr::mutate(
         rcd_env[["record"]],
-        id = dplyr::row_number())
+        id = dplyr::row_number()
+      )
     }
 
 

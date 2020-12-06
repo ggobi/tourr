@@ -55,7 +55,7 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
   record <-
     dplyr::tibble(
       basis = list(),
-      index_val =numeric(),
+      index_val = numeric(),
       info = character(),
       method = character(),
       alpha = numeric(),

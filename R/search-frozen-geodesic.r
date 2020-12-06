@@ -37,7 +37,8 @@ search_frozen_geodesic <- function(current, index, tries, max.tries = 5, n = 5, 
     rcd_env[["record"]] <- dplyr::bind_rows(
       rcd_env[["record"]],
       direction_search,
-      line_search)
+      line_search
+    )
 
     dig3 <- function(x) sprintf("%.3f", x)
     pdiff <- (new_index - cur_index) / cur_index

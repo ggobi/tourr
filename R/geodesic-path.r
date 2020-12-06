@@ -31,7 +31,7 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
     # current frame
     dist <- 0
     while (dist < 1e-3) {
-      if (name %in% c("guided", "frozen-guided")) tries <- tries + 1
+      if (name %in% c("guided", "frozen-guided")) tries <<- tries + 1
 
       gen <- generator(current, data, tries, ...)
       target <- gen$target

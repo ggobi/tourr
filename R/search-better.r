@@ -26,7 +26,7 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 #' @export
 #' @examples
 #' animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better))
-search_better <- function(current, alpha = 0.5, index,tries,  max.tries = Inf,
+search_better <- function(current, alpha = 0.5, index, tries, max.tries = Inf,
                           method = "linear", cur_index = NA, ...) {
   if (is.na(cur_index)) cur_index <- index(current)
 
@@ -158,6 +158,11 @@ search_better_random <- function(current, alpha = 0.5, index, tries,
 
         nr <- nrow(rcd_env[["record"]])
         rcd_env[["record"]][nr, "info"] <- "new_basis"
+
+        rcd_env[["record"]] <- dplyr::mutate(
+          rcd_env[["record"]],
+          id = dplyr::row_number()
+        )
 
         return(list(target = new_basis, alpha = alpha))
       }
