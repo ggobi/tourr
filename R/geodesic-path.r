@@ -23,16 +23,9 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
   tries <- 1
 
   tour_path <- function(current, data, ...) {
-    browser()
     if (is.null(current)) {
       return(generator(NULL, data, tries, ...))
     }
-
-    # initalise cur_index and tries for polish
-    # if (name %in% c("guided") & !exists("tries")){
-    #   cur_index <<- index(current)
-    #   tries <<- 1
-    # }
 
     # Keep trying until we get a frame that's not too close to the
     # current frame

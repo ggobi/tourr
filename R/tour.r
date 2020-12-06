@@ -26,7 +26,6 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     start <- tour_path(NULL, data, ...)
   }
 
-
   proj <- list()
   proj[[1]] <- start
 
@@ -37,16 +36,6 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   cur_dist <- 0
   target_dist <- 0
   geodesic <- NULL
-
-  # if (getOption("tourr.verbose", default = FALSE)) {
-  #   record <<- dplyr::tibble(
-  #     basis = list(start),
-  #     index_val = index(start),
-  #     tries = 1,
-  #     info = "new_basis",
-  #     loop = NA
-  #   )
-  # }
 
   function(step_size, ...) {
     if (getOption("tourr.verbose", default = FALSE)) cat("target_dist - cur_dist:", target_dist - cur_dist, "\n")
@@ -73,7 +62,10 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
             interp <- dplyr::filter(
               record,
               tries == max(tries),
-              info == "interpolation",
+              info == "interpolation"
+            )
+            interp <- dplyr::filter(
+              interp,
               index_val == max(index_val)
             )
 

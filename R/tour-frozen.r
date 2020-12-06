@@ -77,7 +77,7 @@ frozen_tour <- function(d = 2, frozen) {
 #' frozen[3, ] <- .5
 #' animate_xy(flea[, 1:4], frozen_guided_tour(frozen, holes()))
 frozen_guided_tour <- function(frozen, index_f, d = 2, max.tries = 25) {
-  generator <- function(current, data) {
+  generator <- function(current, data, tries, ...) {
     if (is.null(current)) {
       return(basis_init(ncol(data), d))
     }
@@ -86,7 +86,8 @@ frozen_guided_tour <- function(frozen, index_f, d = 2, max.tries = 25) {
       index_f(as.matrix(data) %*% proj)
     }
 
-    search_frozen_geodesic(current, index, max.tries, frozen = frozen)
+    basis <- search_frozen_geodesic(current, index, tries, max.tries, frozen = frozen)
+    list(target = basis$target,index = index)
   }
 
   check_freezer_safe(frozen)

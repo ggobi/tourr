@@ -7,8 +7,7 @@
 #' @param ... other arguments being passed into the \code{search_better()}
 #' @keywords optimize
 #' @export
-search_posse <- function(current, alpha = 0.5, index, max.tries = 300, cur_index = NA, ...) {
-  # browser()
+search_posse <- function(current, alpha = 0.5, index, tries, max.tries = 300, cur_index = NA, ...) {
 
   if (is.na(cur_index)) cur_index <- index(current)
 

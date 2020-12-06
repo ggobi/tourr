@@ -25,7 +25,7 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 #' @export
 #' @examples
 #' animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better))
-search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
+search_better <- function(current, alpha = 0.5, index,tries,  max.tries = Inf,
                           method = "linear", cur_index = NA, ...) {
   if (is.na(cur_index)) cur_index <- index(current)
 
@@ -111,7 +111,7 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
 #' @export
 #' @examples
 #' animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better_random))
-search_better_random <- function(current, alpha = 0.5, index,
+search_better_random <- function(current, alpha = 0.5, index, tries,
                                  max.tries = Inf, method = "linear", cur_index = NA, t0 = 0.01,
                                  ...) {
   if (is.na(cur_index)) cur_index <- index(current)
@@ -128,7 +128,7 @@ search_better_random <- function(current, alpha = 0.5, index,
     temperature <- t0 / log(try + 1)
 
     if (getOption("tourr.verbose", default = FALSE)) {
-      record <- dplyr::add_row(record,
+      record <<- dplyr::add_row(record,
         basis = list(new_basis),
         index_val = new_index,
         info = "random_search",
