@@ -19,25 +19,23 @@ search_posse <- function(current, alpha = 0.5, index, tries, max.tries = 300, cu
     new_basis <- orthonormalise(current + alpha * basis_random(nrow(current), ncol(current)))
     new_index <- index(new_basis)
 
-    if (getOption("tourr.verbose", default = FALSE)) {
-      record <<- dplyr::add_row(record,
-        basis = list(new_basis),
-        index_val = new_index,
-        info = "random_search",
-        tries = tries,
-        loop = try,
-        method = "search_posse",
-        alpha = round(alpha, 4)
-      )
-    }
+    rcd_env <- parent.frame(n = 4)
+    rcd_env[["record"]] <- dplyr::add_row(
+      rcd_env[["record"]],
+      basis = list(new_basis),
+      index_val = new_index,
+      info = "random_search",
+      tries = tries,
+      loop = try,
+      method = "search_posse",
+      alpha = round(alpha, 4)
+    )
+
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
 
-      if (getOption("tourr.verbose", default = FALSE)) {
-        # new basis?
-        nr <- nrow(record)
-        record[nr, "info"] <<- "new_basis"
-      }
+      nr <- nrow(rcd_env[["record"]])
+      rcd_env[["record"]][nr, "info"] <- "new_basis"
 
       return(list(target = new_basis, h = h))
     } else {

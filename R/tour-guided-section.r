@@ -49,7 +49,7 @@ guided_section_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
                                 search_f = search_geodesic, ...) {
   h <- NULL
 
-  generator <- function(current, data) {
+  generator <- function(current, data, tries, ...) {
     if (is.null(current)) {
       return(basis_init(ncol(data), d))
     }
@@ -89,10 +89,10 @@ guided_section_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
       return(NULL)
     }
 
-    basis <- search_f(current, alpha, index, max.tries, cur_index = cur_index, ...)
+    basis <- search_f(current, alpha, index, tries, max.tries, cur_index = cur_index, ...)
     alpha <<- alpha * cooling
 
-    basis
+    list(target = basis$target, index = index)
   }
 
   new_geodesic_path("guided", generator)

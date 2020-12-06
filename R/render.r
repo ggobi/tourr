@@ -40,6 +40,17 @@ render <- function(data, tour_path, display, dev, ..., apf = 1 / 10, frames = 50
   dev(...)
   on.exit(dev.off())
 
+  record <-
+    dplyr::tibble(
+      basis = list(),
+      index_val =numeric(),
+      info = character(),
+      method = character(),
+      alpha = numeric(),
+      tries = numeric(),
+      loop = numeric()
+    )
+
   tour <- new_tour(data, tour_path, start, ...)
   step <- tour(0, ...)
 

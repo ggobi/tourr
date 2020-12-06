@@ -20,11 +20,9 @@
 #' @export
 #' @keywords internal
 new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
-  browser()
   tries <- 1
 
   tour_path <- function(current, data, ...) {
-    browser()
     if (is.null(current)) {
       return(generator(NULL, data, tries, ...))
     }
@@ -38,25 +36,17 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
       gen <- generator(current, data, tries, ...)
       target <- gen$target
 
-      if ("polish_alpha" %in% gen$arg) {
-        return(NULL)
-      }
-
       # generator has run out, so give up
       if (is.null(target)) {
         return(NULL)
       }
-
-      # give up, generator produced 10 equivalent frames in a row
-
-      # if (name == "guided") if (tries > 20) return(NULL)
 
       dist <- proj_dist(current, target)
       if (dist < 1e-2) {
         return(NULL)
       }
 
-      if (getOption("tourr.verbose", default = FALSE)) cat("generation:  dist =  ", dist, "\n")
+      cat("generation:  dist =  ", dist, "\n")
     }
     list(ingred = geodesic_path(current, target, frozen, ...), index = gen$index, tries = tries)
   }

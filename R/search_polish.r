@@ -12,6 +12,7 @@
 #' @keywords optimize
 #' @export
 #' @examples
+#' set.seed(2020)
 #' t1 <- save_history(flea[, 1:6], guided_tour(holes()), max = 100)
 #' attr(t1, "class") <- NULL
 #' best_proj <- t1[, , dim(t1)[3]]
@@ -42,14 +43,10 @@ search_polish <- function(current, alpha = 0.5, index, tries, polish_max_tries =
 
     # could use which.max
     best_row <- dplyr::filter(polish, index_val == max(index_val))
+    best_row <- dplyr::mutate(best_row, info = "loop_best", method = "search_polish")
 
-    best_row <- dplyr::mutate(best_row,
-      info = "loop_best",
-      method = "search_polish"
-    )
-    if (getOption("tourr.verbose", default = FALSE)) {
-      record <<- dplyr::bind_rows(polish, record, best_row)
-    }
+    rcd_env <- parent.frame(n = 4)
+    rcd_env[["record"]] <- dplyr::bind_rows(rcd_env[["record"]], polish, best_row)
 
     if (best_row$index_val > cur_index) {
       polish_dist <- proj_dist(current, best_row$basis[[1]])
@@ -67,13 +64,11 @@ search_polish <- function(current, alpha = 0.5, index, tries, polish_max_tries =
 
       if (polish_pdiff < 1e-5) {
         cat("The improvement is too small! \n")
-
         cat("current basis: ", current, "cur_index: ", cur_index, "\n")
         return(list(target = current, alpha = alpha))
       }
 
       cat("better basis found, index_val = ", best_row$index_val, "\n")
-
       cur_index <- best_row$index_val
       current <- best_row$basis[[1]]
       best_row <- dplyr::mutate(best_row,
@@ -81,9 +76,7 @@ search_polish <- function(current, alpha = 0.5, index, tries, polish_max_tries =
         method = "search_polish"
       )
 
-      if (getOption("tourr.verbose", default = FALSE)) {
-        record <<- dplyr::bind_rows(record, best_row)
-      }
+      rcd_env[["record"]] <- dplyr::bind_rows(rcd_env[["record"]], best_row)
     } else {
       polish_cooling <- polish_cooling * 0.95
       alpha <- alpha * polish_cooling
@@ -93,7 +86,6 @@ search_polish <- function(current, alpha = 0.5, index, tries, polish_max_tries =
 
       if (alpha < 0.01) {
         cat("alpha is", alpha, "and it is too small! \n")
-
         cat("current basis: ", current, "cur_index: ", cur_index, "\n")
         return(list(target = current, alpha = alpha))
       }

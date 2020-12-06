@@ -39,20 +39,16 @@
 animate <- function(data, tour_path = grand_tour(), display = display_xy(),
                     start = NULL, aps = 1, fps = 10, max_frames = Inf,
                     rescale = TRUE, sphere = FALSE, ...) {
-  # browser()
-  #
-  # rcd_env$record <-
-  #   dplyr::tibble(
-  #     basis = list(),
-  #     index_val = numeric(),
-  #     tries = numeric(),
-  #     info = character(),
-  #     loop = numeric(),
-  #     method = character(),
-  #     alpha = numeric()
-  #   )
-
-
+  record <-
+    dplyr::tibble(
+      basis = list(),
+      index_val =numeric(),
+      info = character(),
+      method = character(),
+      alpha = numeric(),
+      tries = numeric(),
+      loop = numeric()
+    )
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
     data <- as.matrix(data)
@@ -126,9 +122,8 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
     invisible(bases[, , seq_len(b)])
   }
 
-  if (getOption("tourr.verbose", default = FALSE)) {
-    record <<- dplyr::mutate(record, id = dplyr::row_number())
-  }
+  invisible(record)
+
   # Need a better way to clean up global variables than this
   # suppressWarnings(rm(tries, cur_index, current, t0, record, envir = globalenv()))
 }

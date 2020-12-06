@@ -39,6 +39,7 @@ search_polish(
 Search very locally to find slightly better projections to polish a broader search.
 }
 \examples{
+set.seed(2020)
 t1 <- save_history(flea[, 1:6], guided_tour(holes()), max = 100)
 attr(t1, "class") <- NULL
 best_proj <- t1[, , dim(t1)[3]]

@@ -21,7 +21,16 @@ interpolate <- function(basis_set, angle = 0.05, cycle = FALSE) {
     return(basis_set)
   }
 
-
+  record <-
+    dplyr::tibble(
+      basis = list(),
+      index_val =numeric(),
+      info = character(),
+      method = character(),
+      alpha = numeric(),
+      tries = numeric(),
+      loop = numeric()
+    )
   # Estimate number of bases in output
   dists <- sapply(2:n, function(i) {
     proj_dist(basis_set[[i - 1]], basis_set[[i]])

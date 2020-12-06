@@ -33,9 +33,12 @@ search_frozen_geodesic <- function(current, index, tries, max.tries = 5, n = 5, 
     new_index <- tail(line_search$index_val, 1)
     new_basis <- tail(line_search$basis, 1)
 
-    if (getOption("tourr.verbose", default = FALSE)) {
-      record <<- dplyr::bind_rows(record, direction_search, line_search)
-    }
+    rcd_env <- parent.frame(n = 4)
+    rcd_env[["record"]] <- dplyr::bind_rows(
+      rcd_env[["record"]],
+      direction_search,
+      line_search)
+
     dig3 <- function(x) sprintf("%.3f", x)
     pdiff <- (new_index - cur_index) / cur_index
     if (pdiff > 0.001) {
@@ -101,7 +104,6 @@ find_frozen_path_peak <- function(old, new, frozen, index, max_dist = pi / 4) {
   # xgrid <- seq(-max_dist, max_dist, length = 100)
   # index <- sapply(xgrid, index_pos)
   # plot(xgrid, index, type = "l")
-  # browser()
 
   list(best = best, alpha = alpha)
 }

@@ -25,7 +25,7 @@
 #' @examples
 #' animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_geodesic))
 search_geodesic <- function(current, alpha = 1, index, tries, max.tries = 5, n = 5,
-                            delta = 0.01, cur_index = NA, ...) {
+                            delta = 0.01, cur_index = NA, ...){
   if (is.na(cur_index)) cur_index <- index(current)
 
   try <- 1
@@ -42,7 +42,11 @@ search_geodesic <- function(current, alpha = 1, index, tries, max.tries = 5, n =
     new_index <- tail(peak$index_val, 1)
     new_basis <- tail(peak$basis, 1)
 
-    if (getOption("tourr.verbose", default = FALSE)) record <<- dplyr::bind_rows(record, direction_search, peak)
+    rcd_env <- parent.frame(n = 4)
+    rcd_env[["record"]] <- dplyr::bind_rows(
+      rcd_env[["record"]],
+      direction_search,
+      peak)
 
     if (cur_index == 0 | new_index == 0) {
       warning("either the cur_index or the new_index is zero!")

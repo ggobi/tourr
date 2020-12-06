@@ -42,7 +42,6 @@
 guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
                         max.i = Inf, search_f = search_geodesic, n_sample = 5, ...) {
   generator <- function(current, data, tries, ...) {
-    browser()
     index <- function(proj) {
       index_f(as.matrix(data) %*% proj)
     }
@@ -60,21 +59,17 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
 
       cur_index <- index(current)
 
-      # old <- rcd_env$record
-      # rcd_env$record <- dplyr::add_row(record,
-      #                                  basis = list(current),
-      #                                  index_val = cur_index,
-      #                                  tries = tries,
-      #                                  info = "new_basis",
-      #                                  loop = 1,
-      #                                  method = method,
-      #                                  alpha = formals(guided_tour)$alpha
-      # )
-      # invisible(old)
-
-      # if (getOption("tourr.verbose", default = FALSE)) {
-      #   record <<-
-      # }
+      rcd_env <- parent.frame(n = 3)
+      rcd_env[["record"]] <- dplyr::add_row(
+        rcd_env[["record"]],
+        basis = list(current),
+        index_val =cur_index,
+        info = "new_basis",
+        method = method,
+        alpha = formals(guided_tour)$alpha,
+        tries = 1,
+        loop = 1
+      )
 
       return(current)
     }
@@ -103,10 +98,8 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
       return(NULL)
     }
 
-
     # current, alpha = 1, index, max.tries = 5, n = 5, delta = 0.01, cur_index = NA, ..
     basis <- search_f(current, alpha, index, tries, max.tries, cur_index = cur_index, frozen = frozen, n_sample = n_sample, ...)
-
 
     if (method == "search_posse") {
       if (!is.null(basis$h)) {
@@ -120,7 +113,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
       alpha <<- basis$alpha
     }
 
-    list(target = basis$target, arg = names(formals(search_f)), index = index)
+    list(target = basis$target, index = index)
   }
 
   new_geodesic_path("guided", generator)

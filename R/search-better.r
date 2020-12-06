@@ -41,26 +41,24 @@ search_better <- function(current, alpha = 0.5, index,tries,  max.tries = Inf,
     new_basis <- basis_nearby(current, alpha, method)
     new_index <- index(new_basis)
 
-    if (getOption("tourr.verbose", default = FALSE)) {
-      record <<- dplyr::add_row(record,
-        basis = list(new_basis),
-        index_val = new_index,
-        info = "random_search",
-        tries = tries,
-        loop = try,
-        method = "search_better",
-        alpha = round(alpha, 4)
-      )
-    }
+    rcd_env <- parent.frame(n = 4)
+    rcd_env[["record"]] <- dplyr::add_row(
+      rcd_env[["record"]],
+      basis = list(new_basis),
+      index_val = new_index,
+      info = "random_search",
+      tries = tries,
+      loop = try,
+      method = "search_better",
+      alpha = round(alpha, 4)
+    )
+
 
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
 
-      if (getOption("tourr.verbose", default = FALSE)) {
-        # new basis?
-        nr <- nrow(record)
-        record[nr, "info"] <<- "new_basis"
-      }
+      nr <- nrow(rcd_env[["record"]])
+      rcd_env[["record"]][nr, "info"] <- "new_basis"
 
       return(list(target = new_basis, alpha = alpha))
     }
@@ -129,28 +127,24 @@ search_better_random <- function(current, alpha = 0.5, index, tries,
     new_index <- index(new_basis)
     temperature <- t0 / log(try + 1)
 
-    if (getOption("tourr.verbose", default = FALSE)) {
-      record <<- dplyr::add_row(record,
-        basis = list(new_basis),
-        index_val = new_index,
-        info = "random_search",
-        tries = tries,
-        loop = try,
-        method = "search_better_random",
-        alpha = round(alpha, 4)
-      )
-    }
+    rcd_env <- parent.frame(n = 4)
+    rcd_env[["record"]] <- dplyr::add_row(
+      rcd_env[["record"]],
+      basis = list(new_basis),
+      index_val = new_index,
+      info = "random_search",
+      tries = tries,
+      loop = try,
+      method = "search_better_random",
+      alpha = round(alpha, 4)
+    )
 
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
       cat("Accept \n")
 
-      if (getOption("tourr.verbose", default = FALSE)) {
-
-        # new basis?
-        nr <- nrow(record)
-        record[nr, "info"] <<- "new_basis"
-      }
+      nr <- nrow(rcd_env[["record"]])
+      rcd_env[["record"]][nr, "info"] <- "new_basis"
 
       return(list(target = new_basis, alpha = alpha))
     }
@@ -162,11 +156,8 @@ search_better_random <- function(current, alpha = 0.5, index, tries,
         cat("New", new_index, "try", try, "\n")
         cat("Accept with probability, prob =", prob, "\n")
 
-        if (getOption("tourr.verbose", default = FALSE)) {
-          # new basis?
-          nr <- nrow(record)
-          record[nr, "info"] <<- "new_basis"
-        }
+        nr <- nrow(rcd_env[["record"]])
+        rcd_env[["record"]][nr, "info"] <- "new_basis"
 
         return(list(target = new_basis, alpha = alpha))
       }
