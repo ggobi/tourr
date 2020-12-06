@@ -23,7 +23,7 @@
 #' @export
 #' @examples
 #' animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_geodesic))
-search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
+search_geodesic <- function(current, alpha = 1, index, tries, max.tries = 5, n = 5,
                             delta = 0.01, cur_index = NA, ...) {
   if (is.na(cur_index)) cur_index <- index(current)
 
@@ -33,11 +33,11 @@ search_geodesic <- function(current, alpha = 1, index, max.tries = 5, n = 5,
     # index after a small step in either direction
     direction <- find_best_dir(current, index, counter = n, dist = delta)
     best_dir <- direction$basis[[which.max(direction$index_val)]]
-    direction_search <- dplyr::mutate(direction, loop = try)
+    direction_search <- dplyr::mutate(direction, tries = tries, loop = try)
 
     # Travel halfway round (pi / 4 radians) the sphere in that direction
     # looking for the best projection
-    peak <- dplyr::mutate(find_path_peak(current, best_dir, index), tries = n, loop = try)
+    peak <- dplyr::mutate(find_path_peak(current, best_dir, index), tries = tries, loop = try)
     new_index <- tail(peak$index_val, 1)
     new_basis <- tail(peak$basis, 1)
 
@@ -119,7 +119,6 @@ find_best_dir <- function(old, index, dist = 0.01, counter = 5, ...) {
       basis = c(list(forward), list(backward)),
       index_val = c(index(forward), index(backward)),
       info = "direction_search",
-      tries = counter,
       method = "search_geodesic"
     )
   }

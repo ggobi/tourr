@@ -38,15 +38,15 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   target_dist <- 0
   geodesic <- NULL
 
-  if (getOption("tourr.verbose", default = FALSE)) {
-    record <- dplyr::tibble(
-      basis = list(start),
-      index_val = index(start),
-      tries = 1,
-      info = "new_basis",
-      loop = NA
-    )
-  }
+  # if (getOption("tourr.verbose", default = FALSE)) {
+  #   record <<- dplyr::tibble(
+  #     basis = list(start),
+  #     index_val = index(start),
+  #     tries = 1,
+  #     info = "new_basis",
+  #     loop = NA
+  #   )
+  # }
 
   function(step_size, ...) {
     if (getOption("tourr.verbose", default = FALSE)) cat("target_dist - cur_dist:", target_dist - cur_dist, "\n")
@@ -86,7 +86,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
             # deem the target basis as the new current basis if the interpolation doesn't reach the target basis
             # used when the index_f is not smooth
             if (target$index_val > interp$index_val) {
-              proj[[length(proj) + 1]] <<- geodesic$interpolate(1.) # make sure next starting plane is previous target
+              proj[[length(proj) + 1]] <<- geodesic$ingred$interpolate(1.) # make sure next starting plane is previous target
 
               target <- dplyr::mutate(target, info = "interpolation", loop = step)
               record <<- dplyr::add_row(record, target)
@@ -107,20 +107,20 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
           index_val <- vapply(proj, index, numeric(1))
           current <- proj[[which.max(index_val)]]
           cur_index <- max(index_val)
-          if (which.max(index_val) == length(proj)) proj[[length(proj) + 1]] <<- geodesic$interpolate(1.)
+          if (which.max(index_val) == length(proj)) proj[[length(proj) + 1]] <<- geodesic$ingred$interpolate(1.)
         }
-        proj[[length(proj) + 1]] <<- geodesic$interpolate(1.)
+        proj[[length(proj) + 1]] <<- geodesic$ingred$interpolate(1.)
       }
     }
 
     if (cur_dist >= target_dist) {
       geodesic <<- tour_path(proj[[length(proj)]], data, ...)
-      if (is.null(geodesic)) {
+      if (is.null(geodesic$ingred)) {
         return(list(proj = proj[[length(proj)]], target = target, step = -1)) # use negative step size to signal that we have reached the final target
       }
 
-      target_dist <<- geodesic$dist
-      target <<- geodesic$Fz
+      target_dist <<- geodesic$ingred$dist
+      target <<- geodesic$ingred$Fz
       cur_dist <<- 0
       # Only exception is if the step_size is infinite - we want to jump
       # to the target straight away
@@ -139,19 +139,21 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
       proj[[1]] <<- start
     }
 
-    proj[[step + 2]] <<- geodesic$interpolate(cur_dist / target_dist)
+    proj[[step + 2]] <<- geodesic$ingred$interpolate(cur_dist / target_dist)
 
 
-    if (getOption("tourr.verbose", default = FALSE) & exists("index")) {
+    if (getOption("tourr.verbose", default = FALSE)) {
+      if (attr(tour_path, "name") == "guided") {
       record <<- dplyr::add_row(record,
         basis = list(proj[[step + 2]]),
-        index_val = index(proj[[step + 2]]),
+        index_val = geodesic$index(proj[[step + 2]]),
         info = "interpolation",
-        tries = tries,
+        tries = geodesic$tries,
         method = dplyr::last(record$method),
         loop = step + 1
       )
       record <<- dplyr::mutate(record, id = dplyr::row_number())
+      }
     }
 
 

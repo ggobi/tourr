@@ -40,7 +40,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
                     start = NULL, aps = 1, fps = 10, max_frames = Inf,
                     rescale = TRUE, sphere = FALSE, ...) {
   if (getOption("tourr.verbose", default = FALSE)) {
-    record <- dplyr::tibble(
+    record <<- dplyr::tibble(
       basis = list(),
       index_val = numeric(),
       tries = numeric(),

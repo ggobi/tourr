@@ -23,9 +23,9 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
   tries <- 1
 
   tour_path <- function(current, data, ...) {
+    browser()
     if (is.null(current)) {
-      # if (name %in% c("guided", "frozen-guided")) tries <<- 1
-      return(generator(NULL, data, ...))
+      return(generator(NULL, data, tries, ...))
     }
 
     # initalise cur_index and tries for polish
@@ -38,9 +38,9 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
     # current frame
     dist <- 0
     while (dist < 1e-3) {
-      if (name %in% c("guided", "frozen-guided")) tries <<- tries + 1
+      if (name %in% c("guided", "frozen-guided")) tries <- tries + 1
 
-      gen <- generator(current, data, ...)
+      gen <- generator(current, data, tries, ...)
       target <- gen$target
 
       if ("polish_alpha" %in% gen$arg) {
@@ -63,7 +63,7 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
 
       if (getOption("tourr.verbose", default = FALSE)) cat("generation:  dist =  ", dist, "\n")
     }
-    geodesic_path(current, target, frozen, ...)
+    list(ingred = geodesic_path(current, target, frozen, ...), index = gen$index, tries = tries)
   }
 
   structure(
