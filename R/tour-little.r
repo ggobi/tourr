@@ -45,6 +45,6 @@ bases_little <- function(p, d = 2) {
   vars <- utils::combn(p, d)
   # Let's make the list twice as long, so it visits pairs multiple
   # times, and in different order
-  vars <- cbind(vars[,sample(1:ncol(vars))], vars[,sample(1:ncol(vars))])
-  lapply(seq_len(ncol(vars)), function(i) b[, vars[, i]] )
+  vars <- cbind(vars[, sample(1:ncol(vars))], vars[, sample(1:ncol(vars))])
+  lapply(seq_len(ncol(vars)), function(i) b[, vars[, i]])
 }

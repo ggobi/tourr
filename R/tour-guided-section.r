@@ -38,24 +38,26 @@
 #' # Index setup
 #' r_breaks <- linear_breaks(5, 0, 1)
 #' a_breaks <- angular_breaks(10)
-#' eps <- estimate_eps(nrow(sphere3), ncol(sphere3), 0.1/1, 5*10, 10, r_breaks)
-#' idx <- slice_index(r_breaks, a_breaks, eps, bintype="polar", power=1, reweight=TRUE, p=3)
+#' eps <- estimate_eps(nrow(sphere3), ncol(sphere3), 0.1 / 1, 5 * 10, 10, r_breaks)
+#' idx <- slice_index(r_breaks, a_breaks, eps, bintype = "polar", power = 1, reweight = TRUE, p = 3)
 #' # Running the guided section tour select sections showing a big hole in the center
-#' animate_slice(sphere3, guided_section_tour(idx, v_rel=0.1, anchor = anchor3, max.tries=5),
-#'               v_rel=0.1, anchor = anchor3)
+#' animate_slice(sphere3, guided_section_tour(idx, v_rel = 0.1, anchor = anchor3, max.tries = 5),
+#'   v_rel = 0.1, anchor = anchor3
+#' )
 guided_section_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
-                                max.tries = 25, max.i = Inf, v_rel = NULL, anchor=NULL,
-                                search_f = search_geodesic,  ...) {
-
+                                max.tries = 25, max.i = Inf, v_rel = NULL, anchor = NULL,
+                                search_f = search_geodesic, ...) {
   h <- NULL
 
   generator <- function(current, data) {
-    if (is.null(current)) return(basis_init(ncol(data), d))
+    if (is.null(current)) {
+      return(basis_init(ncol(data), d))
+    }
 
     if (is.null(h)) {
       half_range <- compute_half_range(NULL, data, FALSE)
       v_rel <- compute_v_rel(v_rel, half_range, ncol(data))
-      h <<- v_rel^(1/(ncol(data)-2))
+      h <<- v_rel^(1 / (ncol(data) - 2))
     }
 
     index <- function(proj) {
@@ -65,26 +67,29 @@ guided_section_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
 
     cur_index <- index(current)
 
-    if (cur_index > max.i){
+    if (cur_index > max.i) {
       cat("Found index ", cur_index, ", larger than selected maximum ", max.i, ". Stopping search.\n",
-          sep="")
+        sep = ""
+      )
       cat("Final projection: \n")
-      if (ncol(current)==1) {
-        for (i in 1:length(current))
-          cat(sprintf("%.3f",current[i])," ")
+      if (ncol(current) == 1) {
+        for (i in 1:length(current)) {
+          cat(sprintf("%.3f", current[i]), " ")
+        }
         cat("\n")
       }
       else {
         for (i in 1:nrow(current)) {
-          for (j in 1:ncol(current))
-            cat(sprintf("%.3f",current[i,j])," ")
+          for (j in 1:ncol(current)) {
+            cat(sprintf("%.3f", current[i, j]), " ")
+          }
           cat("\n")
         }
       }
       return(NULL)
     }
 
-    basis <- search_f(current, alpha, index, max.tries, cur_index=cur_index, ...)
+    basis <- search_f(current, alpha, index, max.tries, cur_index = cur_index, ...)
     alpha <<- alpha * cooling
 
     basis
@@ -92,5 +97,3 @@ guided_section_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
 
   new_geodesic_path("guided", generator)
 }
-
-

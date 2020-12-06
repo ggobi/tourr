@@ -16,12 +16,14 @@
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
 #' @export
-display_trails <- function(center = TRUE, axes = "center", half_range = NULL, col = "black", pch  = 20, cex = 1, past = 3, ...) {
+display_trails <- function(center = TRUE, axes = "center", half_range = NULL, col = "black", pch = 20, cex = 1, past = 3, ...) {
 
   # Inherit most behaviour from display_xy.  This is a little hacky, but
   # the only way until tourr switch to a proper object system.
-  xy <- display_xy(center = center, axes = axes, half_range = half_range,
-    col = col, pch = pch, ...)
+  xy <- display_xy(
+    center = center, axes = axes, half_range = half_range,
+    col = col, pch = pch, ...
+  )
   xy_env <- environment(xy$init)
 
   xy_env$past <- past

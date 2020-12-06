@@ -23,9 +23,8 @@
 #' @examples
 #'
 #' head(flea)
-#' animate_xy(flea[,-7])
-#' animate_xy(flea[,-7],col=flea[,7])
-#'
+#' animate_xy(flea[, -7])
+#' animate_xy(flea[, -7], col = flea[, 7])
 NULL
 
 #' Turnable laser measurements from Bellcore
@@ -58,8 +57,7 @@ NULL
 #' @examples
 #'
 #' head(laser)
-#' animate_xy(laser[,-4])
-#'
+#' animate_xy(laser[, -4])
 NULL
 
 #' Olive oil samples from Italy
@@ -86,9 +84,8 @@ NULL
 #' @examples
 #'
 #' head(olive)
-#' animate_xy(olive[,c(7,9,10)])
-#' animate_xy(olive[,c(7,9,10)],col=olive[,1])
-#'
+#' animate_xy(olive[, c(7, 9, 10)])
+#' animate_xy(olive[, c(7, 9, 10)], col = olive[, 1])
 NULL
 
 #' Monthly ozone measurements over Central America
@@ -111,7 +108,6 @@ NULL
 #' @examples
 #'
 #' example(display_image)
-#'
 NULL
 
 #' Ratings of different locations across North America
@@ -184,8 +180,7 @@ NULL
 #' @examples
 #'
 #' head(places)
-#' animate_xy(places[,1:9])
-#'
+#' animate_xy(places[, 1:9])
 NULL
 
 #' Rat CNS Gene Expression
@@ -237,8 +232,7 @@ NULL
 #' @examples
 #'
 #' head(ratcns)
-#' animate_xy(ratcns[,1:8],col=ratcns[,10])
-#'
+#' animate_xy(ratcns[, 1:8], col = ratcns[, 10])
 NULL
 
 #' Tropical Atmosphere Ocean data
@@ -261,4 +255,3 @@ NULL
 #' @references http://www.pmel.noaa.gov/tao/
 #' @keywords datasets
 NULL
-

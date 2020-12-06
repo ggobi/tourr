@@ -38,26 +38,30 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
     # current frame
     dist <- 0
     while (dist < 1e-3) {
-
       if (name %in% c("guided", "frozen-guided")) tries <<- tries + 1
 
       gen <- generator(current, data, ...)
       target <- gen$target
 
-      if ("polish_alpha" %in% gen$arg) return(NULL)
+      if ("polish_alpha" %in% gen$arg) {
+        return(NULL)
+      }
 
       # generator has run out, so give up
-      if (is.null(target)) return(NULL)
+      if (is.null(target)) {
+        return(NULL)
+      }
 
       # give up, generator produced 10 equivalent frames in a row
 
-      #if (name == "guided") if (tries > 20) return(NULL)
+      # if (name == "guided") if (tries > 20) return(NULL)
 
       dist <- proj_dist(current, target)
-      if (dist < 1e-2) return(NULL)
+      if (dist < 1e-2) {
+        return(NULL)
+      }
 
       if (getOption("tourr.verbose", default = FALSE)) cat("generation:  dist =  ", dist, "\n")
-
     }
     geodesic_path(current, target, frozen, ...)
   }

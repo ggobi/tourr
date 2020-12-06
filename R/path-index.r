@@ -16,9 +16,11 @@
 #' plot(path_index(fl_holes, cmass()), type = "l")
 #'
 #' # Use interpolate to show all intermediate bases as well
-#' \dontrun{hi <- path_index(interpolate(fl_holes), holes())
+#' \dontrun{
+#' hi <- path_index(interpolate(fl_holes), holes())
 #' hi
-#' plot(hi)}
+#' plot(hi)
+#' }
 path_index <- function(history, index_f, data = attr(history, "data")) {
   index <- function(proj) {
     index_f(as.matrix(data) %*% proj)
@@ -59,8 +61,8 @@ plot.path_index <- function(x, ...) {
 #' head(paths)
 #'
 #' if (require(ggplot2)) {
-#' qplot(step, value, data=paths, group=try, geom="line")
-#' qplot(step, improvement, data=paths, group=try, geom="line")
+#'   qplot(step, value, data = paths, group = try, geom = "line")
+#'   qplot(step, improvement, data = paths, group = try, geom = "line")
 #' }
 paths_index <- function(bases_list, index_f) {
   indices <- lapply(bases_list, path_index, index_f)
@@ -71,4 +73,3 @@ paths_index <- function(bases_list, index_f) {
     improvement = unlist(lapply(indices, function(x) c(0, diff(x))))
   )
 }
-

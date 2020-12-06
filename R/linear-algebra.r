@@ -7,10 +7,10 @@
 #' @export
 normalise <- function(x) {
   if (is.matrix(x)) {
-    lengths <- sqrt(colSums(x ^ 2, na.rm = TRUE))
+    lengths <- sqrt(colSums(x^2, na.rm = TRUE))
     sweep(x, 2, lengths, "/")
   } else {
-    x / sqrt(sum(x ^ 2))
+    x / sqrt(sum(x^2))
   }
 }
 
@@ -40,21 +40,23 @@ orthonormalise <- function(x) {
 #' @param x numeric matrix
 #' @param tol tolerance used to test floating point differences
 #' @export
-is_orthonormal <- function (x, tol = 0.001) {
+is_orthonormal <- function(x, tol = 0.001) {
   stopifnot(is.matrix(x))
   nc <- ncol(x)
   iter <- seq_len(nc)
   for (j in iter) {
-    if (sqrt(sum(x[, j]^2)) < 1 - tol)
+    if (sqrt(sum(x[, j]^2)) < 1 - tol) {
       return(FALSE)
+    }
   }
   if (nc > 1) {
     # dot product between columns is close to zero
     for (j in iter[2:nc]) {
       rem <- setdiff(iter, j)
       for (i in rem) {
-        if (abs(sum(x[, j] * x[, i])) > tol)
+        if (abs(sum(x[, j] * x[, i])) > tol) {
           return(FALSE)
+        }
       }
     }
   }
@@ -93,4 +95,4 @@ orthonormalise_by <- function(x, by) {
 #' @param y projection matrix b
 #' @keywords algebra
 #' @export
-proj_dist <- function(x, y) sqrt(sum((x %*% t(x) - y %*% t(y)) ^ 2))
+proj_dist <- function(x, y) sqrt(sum((x %*% t(x) - y %*% t(y))^2))

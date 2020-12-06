@@ -9,36 +9,35 @@
 #' @section To do: eliminate these functions
 #' @keywords internal
 search_frozen_geodesic <- function(current, index, max.tries = 5, n = 5, frozen, cur_index = NA, ...) {
-
   cur_index <- index(thaw(current, frozen))
 
   try <- 1
-  while(try < max.tries) {
+  while (try < max.tries) {
     # Try 5 random directions and pick the one that has the highest
     # index after a small step in either direction
     direction <- find_best_frozen_dir(current, frozen, index, n)
     best_dir <- direction$basis[[which.max(direction$index_val)]]
-    direction_search <-  dplyr::mutate(direction, loop = try)
+    direction_search <- dplyr::mutate(direction, loop = try)
     # Travel halfway round (pi / 4 radians) the sphere in that direction
     # looking for the best projection
     peak <- find_frozen_path_peak(current, best_dir, frozen, index)
     line_search <- dplyr::mutate(peak$best, tries = max.tries, loop = try)
     new_index <- tail(line_search$index_val, 1)
-    new_basis <- tail(line_search$basis , 1)
+    new_basis <- tail(line_search$basis, 1)
 
-    if (getOption("tourr.verbose", default = FALSE))
+    if (getOption("tourr.verbose", default = FALSE)) {
       record <<- dplyr::bind_rows(record, direction_search, line_search)
+    }
     dig3 <- function(x) sprintf("%.3f", x)
     pdiff <- (new_index - cur_index) / cur_index
     if (pdiff > 0.001) {
-      cat("New index: ", dig3(new_index), " (", dig3(peak$alpha$maximum), " away)\n", sep="")
+      cat("New index: ", dig3(new_index), " (", dig3(peak$alpha$maximum), " away)\n", sep = "")
       current <<- new_basis
       cur_index <<- new_index
 
       return(list(target = new_basis[[1]]))
-
     }
-    cat("Best was:  ", dig3(new_index), " (", dig3(peak$alpha$maximum), " away).  Trying again...\n", sep="")
+    cat("Best was:  ", dig3(new_index), " (", dig3(peak$alpha$maximum), " away).  Trying again...\n", sep = "")
 
     try <- try + 1
   }
@@ -60,17 +59,18 @@ find_best_frozen_dir <- function(old, frozen, index, dist = 0.01, counter = 5) {
 
     larger <- max(index(forward), index(backward))
 
-    dplyr::tibble(basis = c(list(forward), list(backward)),
-                  index_val = c(index(forward), index(backward)),
-                  info = "direction_search",
-                  tries = counter,
-                  method = "search_frozen_geodesic")
+    dplyr::tibble(
+      basis = c(list(forward), list(backward)),
+      index_val = c(index(forward), index(backward)),
+      info = "direction_search",
+      tries = counter,
+      method = "search_frozen_geodesic"
+    )
   }
 
   ans <- dplyr::bind_rows(lapply(bases, score))
-  ans[which.max(ans$index_val), "info"] <-  "best_direction_search"
+  ans[which.max(ans$index_val), "info"] <- "best_direction_search"
   ans
-
 }
 
 #' Find most highest peak along frozen geodesic.
@@ -84,10 +84,12 @@ find_frozen_path_peak <- function(old, new, frozen, index, max_dist = pi / 4) {
 
   alpha <- stats::optimize(index_pos, c(-max_dist, max_dist), maximum = TRUE, tol = 0.01)
 
-  best <- dplyr::tibble(basis = list(thaw(step_angle(interpolator, alpha$maximum), frozen)),
-                        index_val = alpha$objective,
-                        info = "best_line_search",
-                        method = "search_frozen_geodesic")
+  best <- dplyr::tibble(
+    basis = list(thaw(step_angle(interpolator, alpha$maximum), frozen)),
+    index_val = alpha$objective,
+    info = "best_line_search",
+    method = "search_frozen_geodesic"
+  )
 
   # xgrid <- seq(-max_dist, max_dist, length = 100)
   # index <- sapply(xgrid, index_pos)

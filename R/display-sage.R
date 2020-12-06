@@ -19,20 +19,17 @@
 #' # Generate uniform samples in a 10d sphere using the geozoo package
 #' sphere10 <- geozoo::sphere.solid.random(10)$points
 #' # Columns need to be named before launching the tour
-#' colnames(sphere10) <- paste0("x",1:10)
+#' colnames(sphere10) <- paste0("x", 1:10)
 #' # Standard grand tour display, points cluster near center
 #' animate_xy(sphere10)
 #' # Sage display, points are uniformly distributed across the disk
 #' animate_sage(sphere10)
-
-
 display_sage <- function(axes = "center", half_range = NULL,
-                              col = "black", pch  = 20, gam = 1, R = NULL, ...) {
-
+                         col = "black", pch = 20, gam = 1, R = NULL, ...) {
   labels <- NULL
   peff <- NULL
 
-  if(!areColors(col)) col = mapColors(col)
+  if (!areColors(col)) col <- mapColors(col)
 
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, TRUE)
@@ -47,7 +44,7 @@ display_sage <- function(axes = "center", half_range = NULL,
     blank_plot(xlim = c(-1, 1), ylim = c(-1, 1))
   }
   render_transition <- function() {
-    rect(-1, -1, 1, 1, col="#FFFFFFE6", border=NA)
+    rect(-1, -1, 1, 1, col = "#FFFFFFE6", border = NA)
   }
 
   render_data <- function(data, proj, geodesic) {
@@ -57,21 +54,20 @@ display_sage <- function(axes = "center", half_range = NULL,
     x <- data %*% proj
     x <- center(x)
     # Calculate polar coordinates
-    rad <- sqrt(x[,1]^2+x[,2]^2)
-    ang <- atan2(x[,2], x[,1])
+    rad <- sqrt(x[, 1]^2 + x[, 2]^2)
+    ang <- atan2(x[, 2], x[, 1])
     rad <- pmin(rad, R)
     # transform with cumulative to get uniform distribution in radius
     rad <- cumulative_radial(rad, R, peff)
     # square-root is the inverse of the cumulative of a uniform disk (rescaling to maximum radius = 1)
     rad <- sqrt(rad)
     # transform back to x, y coordinates
-    x[,1] <- rad * cos(ang)
-    x[,2] <- rad * sin(ang)
+    x[, 1] <- rad * cos(ang)
+    x[, 2] <- rad * sin(ang)
     # scale down maximum radius from 1 to fit drawing range
     # also allow to change drawing range with half_range
     x <- 0.9 * (half_range / R) * x
     points(x, col = col, pch = pch)
-
   }
 
 
@@ -95,8 +91,8 @@ display_sage <- function(axes = "center", half_range = NULL,
 #' @param p input dimension
 #' @return fraction of volume
 #' @export
-cumulative_radial <- function(r, R, p){
-  1 - (1 - (r/R)^2)^(p/2)
+cumulative_radial <- function(r, R, p) {
+  1 - (1 - (r / R)^2)^(p / 2)
 }
 
 #' @rdname display_sage

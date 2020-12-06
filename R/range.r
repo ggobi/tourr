@@ -2,11 +2,13 @@
 #
 # @keywords internal
 max_dist <- function(data, center = FALSE) {
-  max(sqrt(rowSums(data ^ 2)))
+  max(sqrt(rowSums(data^2)))
 }
 
 compute_half_range <- function(half_range, data, center) {
-  if (!is.null(half_range)) return(half_range)
+  if (!is.null(half_range)) {
+    return(half_range)
+  }
 
   if (center) {
     data <- center(data)

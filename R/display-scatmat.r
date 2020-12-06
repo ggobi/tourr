@@ -13,7 +13,6 @@
 #' animate_scatmat(flea[, 1:6], grand_tour(2))
 #' animate_scatmat(flea[, 1:6], grand_tour(6))
 display_scatmat <- function(...) {
-
   render_data <- function(data, proj, geodesic) {
     pairs(data %*% proj, pch = 20, ...)
   }
@@ -25,8 +24,6 @@ display_scatmat <- function(...) {
     render_data = render_data,
     render_target = nul
   )
-
-
 }
 
 
@@ -34,6 +31,8 @@ display_scatmat <- function(...) {
 #' @inheritParams animate
 #' @export
 animate_scatmat <- function(data, tour_path = grand_tour(3), ...) {
-  animate(data = data, tour_path = tour_path,
-    display = display_scatmat(...), ...)
+  animate(
+    data = data, tour_path = tour_path,
+    display = display_scatmat(...), ...
+  )
 }

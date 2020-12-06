@@ -5,7 +5,7 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
   new <- basis_random(nrow(current), ncol(current))
 
   switch(method,
-    linear =   orthonormalise((1 - alpha) * current + alpha * new),
+    linear = orthonormalise((1 - alpha) * current + alpha * new),
     geodesic = step_fraction(geodesic_info(current, new), alpha)
   )
 }
@@ -24,31 +24,33 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 #' @importFrom utils tail globalVariables
 #' @export
 #' @examples
-#'   animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better))
+#' animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better))
 search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
-  method = "linear", cur_index = NA, ...) {
-
+                          method = "linear", cur_index = NA, ...) {
   if (is.na(cur_index)) cur_index <- index(current)
 
-  if(cur_index == 0){
+  if (cur_index == 0) {
     warning("cur_index is zero!")
   }
 
   cat("Old", cur_index, "\n")
   try <- 1
 
-  while(try < max.tries) {
+  while (try < max.tries) {
     new_basis <- basis_nearby(current, alpha, method)
     new_index <- index(new_basis)
 
-    if (getOption("tourr.verbose", default = FALSE))
-      record <<- dplyr::add_row(record,  basis = list(new_basis),
-                                          index_val = new_index,
-                                          info = "random_search",
-                                          tries = tries,
-                                          loop = try,
-                                          method = "search_better",
-                                          alpha = round(alpha,4))
+    if (getOption("tourr.verbose", default = FALSE)) {
+      record <<- dplyr::add_row(record,
+        basis = list(new_basis),
+        index_val = new_index,
+        info = "random_search",
+        tries = tries,
+        loop = try,
+        method = "search_better",
+        alpha = round(alpha, 4)
+      )
+    }
 
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
@@ -60,23 +62,25 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
       }
 
       return(list(target = new_basis, alpha = alpha))
-
     }
     try <- try + 1
   }
 
   cat("No better bases found after ", max.tries, " tries.  Giving up.\n",
-      sep="")
+    sep = ""
+  )
   cat("Final projection: \n")
-  if (ncol(current)==1) {
-    for (i in 1:length(current))
-      cat(sprintf("%.3f",current[i])," ")
+  if (ncol(current) == 1) {
+    for (i in 1:length(current)) {
+      cat(sprintf("%.3f", current[i]), " ")
+    }
     cat("\n")
   }
   else {
     for (i in 1:nrow(current)) {
-      for (j in 1:ncol(current))
-        cat(sprintf("%.3f",current[i,j])," ")
+      for (j in 1:ncol(current)) {
+        cat(sprintf("%.3f", current[i, j]), " ")
+      }
       cat("\n")
     }
   }
@@ -106,15 +110,13 @@ search_better <- function(current, alpha = 0.5, index, max.tries = Inf,
 #' @keywords optimize
 #' @export
 #' @examples
-#'   animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better_random))
+#' animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better_random))
 search_better_random <- function(current, alpha = 0.5, index,
-  max.tries = Inf, method = "linear", cur_index = NA, t0 = 0.01,
-  ...
-) {
-
+                                 max.tries = Inf, method = "linear", cur_index = NA, t0 = 0.01,
+                                 ...) {
   if (is.na(cur_index)) cur_index <- index(current)
 
-  if(cur_index == 0){
+  if (cur_index == 0) {
     warning("cur_index is zero!")
   }
 
@@ -125,14 +127,17 @@ search_better_random <- function(current, alpha = 0.5, index,
     new_index <- index(new_basis)
     temperature <- t0 / log(try + 1)
 
-    if (getOption("tourr.verbose", default = FALSE))
-      record <- dplyr::add_row(record, basis = list(new_basis),
-                                        index_val = new_index,
-                                        info = "random_search",
-                                        tries = tries,
-                                        loop = try,
-                                        method = "search_better_random",
-                                        alpha = round(alpha,4))
+    if (getOption("tourr.verbose", default = FALSE)) {
+      record <- dplyr::add_row(record,
+        basis = list(new_basis),
+        index_val = new_index,
+        info = "random_search",
+        tries = tries,
+        loop = try,
+        method = "search_better_random",
+        alpha = round(alpha, 4)
+      )
+    }
 
     if (new_index > cur_index) {
       cat("New", new_index, "try", try, "\n")
@@ -143,46 +148,45 @@ search_better_random <- function(current, alpha = 0.5, index,
         # new basis?
         nr <- nrow(record)
         record[nr, "info"] <<- "new_basis"
-
       }
 
       return(list(target = new_basis, alpha = alpha))
-
     }
-    else{
+    else {
       prob <- min(exp(-abs(cur_index - new_index) / temperature), 1)
       rand <- stats::runif(1)
 
-      if (prob > rand){
+      if (prob > rand) {
         cat("New", new_index, "try", try, "\n")
-        cat("Accept with probability, prob =", prob,"\n")
+        cat("Accept with probability, prob =", prob, "\n")
 
         if (getOption("tourr.verbose", default = FALSE)) {
           # new basis?
           nr <- nrow(record)
           record[nr, "info"] <<- "new_basis"
-
         }
 
         return(list(target = new_basis, alpha = alpha))
-
       }
     }
     try <- try + 1
   }
 
   cat("No better bases found after ", max.tries, " tries.  Giving up.\n",
-      sep="")
+    sep = ""
+  )
   cat("Final projection: \n")
-  if (ncol(current)==1) {
-    for (i in 1:length(current))
-      cat(sprintf("%.3f",current[i])," ")
+  if (ncol(current) == 1) {
+    for (i in 1:length(current)) {
+      cat(sprintf("%.3f", current[i]), " ")
+    }
     cat("\n")
   }
   else {
     for (i in 1:nrow(current)) {
-      for (j in 1:ncol(current))
-        cat(sprintf("%.3f",current[i,j])," ")
+      for (j in 1:ncol(current)) {
+        cat(sprintf("%.3f", current[i, j]), " ")
+      }
       cat("\n")
     }
   }
