@@ -1,5 +1,13 @@
 #' A pseudo-derivative, line search algorithm along frozen geodesics.
 #'
+#' @param current starting projection
+#' @param index index function
+#' @param tries the counter of the outer loop of the opotimiser
+#' @param max.tries maximum number of iteration before giving up
+#' @param n number of random steps to take to find best direction
+#' @param frozen a matrix of frozen variables
+#' @param cur_index the index value of the current basis
+#' @param ... other arguments being passed into the \code{search_frozen_geodesic()}
 #' These three functions perform a corresponding role to
 #' \code{\link{search_geodesic}}, \code{\link{find_best_dir}} and
 #' \code{\link{find_path_peak}} but for the frozen tour.  They work by

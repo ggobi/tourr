@@ -8,6 +8,7 @@ search_better(
   current,
   alpha = 0.5,
   index,
+  tries,
   max.tries = Inf,
   method = "linear",
   cur_index = NA,
@@ -21,6 +22,8 @@ search_better(
 
 \item{index}{index function}
 
+\item{tries}{the counter of the outer loop of the opotimiser}
+
 \item{max.tries}{maximum number of iteration before giving up}
 
 \item{method}{whether the nearby bases are found by a linear/ geodesic formulation}
@@ -33,6 +36,6 @@ search_better(
 Search for a better projection near the current projection.
 }
 \examples{
-  animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better))
+animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better))
 }
 \keyword{optimize}

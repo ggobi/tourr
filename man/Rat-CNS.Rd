@@ -49,8 +49,7 @@ January 1998
 \examples{
 
 head(ratcns)
-animate_xy(ratcns[,1:8],col=ratcns[,10])
-
+animate_xy(ratcns[, 1:8], col = ratcns[, 10])
 }
 \references{
 http://www.pnas.org

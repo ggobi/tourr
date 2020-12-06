@@ -20,6 +20,7 @@
 #'  of steps taken towards the target.
 #' @export
 new_tour <- function(data, tour_path, start = NULL, ...) {
+  browser()
   stopifnot(inherits(tour_path, "tour_path"))
 
   if (is.null(start)) {
@@ -38,6 +39,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   geodesic <- NULL
 
   function(step_size, ...) {
+    browser()
     if (getOption("tourr.verbose", default = FALSE)) cat("target_dist - cur_dist:", target_dist - cur_dist, "\n")
 
     step <<- step + 1

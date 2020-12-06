@@ -60,8 +60,9 @@ animate(f, grand_tour(), display_xy())
 # or in short
 animate(f)
 animate(f, max_frames = 30)
-
-\dontrun{animate(f, max_frames = 10, fps = 1, aps = 0.1)}
+\dontrun{
+animate(f, max_frames = 10, fps = 1, aps = 0.1)
+}
 }
 \references{
 Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja

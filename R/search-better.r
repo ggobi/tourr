@@ -16,6 +16,7 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 #' @param current starting projection
 #' @param alpha the angle used to search the target basis from the current basis
 #' @param index index function
+#' @param tries the counter of the outer loop of the opotimiser
 #' @param max.tries maximum number of iteration before giving up
 #' @param method whether the nearby bases are found by a linear/ geodesic formulation
 #' @param cur_index the index value of the current basis
@@ -101,6 +102,7 @@ search_better <- function(current, alpha = 0.5, index,tries,  max.tries = Inf,
 #' @param current starting projection
 #' @param alpha the angle used to search the target basis from the current basis
 #' @param index index function
+#' @param tries the counter of the outer loop of the opotimiser
 #' @param max.tries maximum number of iteration before giving up
 #' @param method whether the nearby bases are found by a linear/ geodesic formulation
 #' @param cur_index the index value of the current basis

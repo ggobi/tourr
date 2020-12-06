@@ -71,7 +71,6 @@ income growth, job growth.
 \examples{
 
 head(places)
-animate_xy(places[,1:9])
-
+animate_xy(places[, 1:9])
 }
 \keyword{datasets}

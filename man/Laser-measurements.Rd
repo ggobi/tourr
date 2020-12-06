@@ -31,7 +31,6 @@ describe the laser.
 \examples{
 
 head(laser)
-animate_xy(laser[,-4])
-
+animate_xy(laser[, -4])
 }
 \keyword{datasets}

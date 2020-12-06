@@ -2,6 +2,7 @@
 #' @param current starting projection
 #' @param alpha the angle used to search the target basis from the current basis
 #' @param index index function
+#' @param tries the counter of the outer loop of the opotimiser
 #' @param max.tries maximum number of iteration before giving up
 #' @param cur_index the index value of the current basis
 #' @param ... other arguments being passed into the \code{search_better()}

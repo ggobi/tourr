@@ -42,6 +42,7 @@
 guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
                         max.i = Inf, search_f = search_geodesic, n_sample = 5, ...) {
   generator <- function(current, data, tries, ...) {
+    browser()
     index <- function(proj) {
       index_f(as.matrix(data) %*% proj)
     }
@@ -59,17 +60,21 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
 
       cur_index <- index(current)
 
-      if (getOption("tourr.verbose", default = FALSE)) {
-        record <<- dplyr::add_row(record,
-          basis = list(current),
-          index_val = cur_index,
-          tries = tries,
-          info = "new_basis",
-          loop = 1,
-          method = method,
-          alpha = formals(guided_tour)$alpha
-        )
-      }
+      # old <- rcd_env$record
+      # rcd_env$record <- dplyr::add_row(record,
+      #                                  basis = list(current),
+      #                                  index_val = cur_index,
+      #                                  tries = tries,
+      #                                  info = "new_basis",
+      #                                  loop = 1,
+      #                                  method = method,
+      #                                  alpha = formals(guided_tour)$alpha
+      # )
+      # invisible(old)
+
+      # if (getOption("tourr.verbose", default = FALSE)) {
+      #   record <<-
+      # }
 
       return(current)
     }

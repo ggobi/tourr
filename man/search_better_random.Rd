@@ -8,6 +8,7 @@ search_better_random(
   current,
   alpha = 0.5,
   index,
+  tries,
   max.tries = Inf,
   method = "linear",
   cur_index = NA,
@@ -21,6 +22,8 @@ search_better_random(
 \item{alpha}{the angle used to search the target basis from the current basis}
 
 \item{index}{index function}
+
+\item{tries}{the counter of the outer loop of the opotimiser}
 
 \item{max.tries}{maximum number of iteration before giving up}
 
@@ -42,6 +45,6 @@ and
 \url{https://projecteuclid.org/download/pdf_1/euclid.ss/1177011077}
 }
 \examples{
-  animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better_random))
+animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better_random))
 }
 \keyword{optimize}

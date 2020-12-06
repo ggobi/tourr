@@ -20,9 +20,11 @@
 #' @export
 #' @keywords internal
 new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
+  browser()
   tries <- 1
 
   tour_path <- function(current, data, ...) {
+    browser()
     if (is.null(current)) {
       return(generator(NULL, data, tries, ...))
     }

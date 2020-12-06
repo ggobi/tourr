@@ -45,9 +45,9 @@ Render frames of animation to a gif file
 \examples{
 # gifski needs to be installed to render a gif
 if (requireNamespace("gifski", quietly = TRUE)) {
- gif_file <- file.path(tempdir(), "test.gif")
- render_gif(flea[, 1:4], grand_tour(), display_xy(), gif_file )
- utils::browseURL(gif_file)
- unlink(gif_file)
+  gif_file <- file.path(tempdir(), "test.gif")
+  render_gif(flea[, 1:4], grand_tour(), display_xy(), gif_file)
+  utils::browseURL(gif_file)
+  unlink(gif_file)
 }
 }

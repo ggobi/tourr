@@ -101,6 +101,22 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
 #' @inheritParams animate
 #' @export
 animate_xy <- function(data, tour_path = grand_tour(), ...) {
+  # browser()
+  #
+  # rcd_env <- new.env()
+  # rcd_env$record <-
+  #   dplyr::tibble(
+  #     basis = list(),
+  #     index_val = numeric(),
+  #     tries = numeric(),
+  #     info = character(),
+  #     loop = numeric(),
+  #     method = character(),
+  #     alpha = numeric()
+  #   )
+  #
+  # eval_in_env(, rcd_env)
+
   animate(data, tour_path, display_xy(...), ...)
 }
 

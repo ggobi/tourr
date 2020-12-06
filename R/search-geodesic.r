@@ -13,6 +13,7 @@
 #' @param current starting projection
 #' @param alpha maximum distance to travel (currently ignored)
 #' @param index interestingness index function
+#' @param tries the counter of the outer loop of the opotimiser
 #' @param max.tries maximum number of failed attempts before giving up
 #' @param n number of random steps to take to find best direction
 #' @param delta step size for evaluation of best direction

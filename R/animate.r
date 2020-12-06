@@ -39,17 +39,19 @@
 animate <- function(data, tour_path = grand_tour(), display = display_xy(),
                     start = NULL, aps = 1, fps = 10, max_frames = Inf,
                     rescale = TRUE, sphere = FALSE, ...) {
-  if (getOption("tourr.verbose", default = FALSE)) {
-    record <<- dplyr::tibble(
-      basis = list(),
-      index_val = numeric(),
-      tries = numeric(),
-      info = character(),
-      loop = numeric(),
-      method = character(),
-      alpha = numeric()
-    )
-  }
+  # browser()
+  #
+  # rcd_env$record <-
+  #   dplyr::tibble(
+  #     basis = list(),
+  #     index_val = numeric(),
+  #     tries = numeric(),
+  #     info = character(),
+  #     loop = numeric(),
+  #     method = character(),
+  #     alpha = numeric()
+  #   )
+
 
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")

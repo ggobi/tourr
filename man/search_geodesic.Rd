@@ -8,6 +8,7 @@ search_geodesic(
   current,
   alpha = 1,
   index,
+  tries,
   max.tries = 5,
   n = 5,
   delta = 0.01,
@@ -21,6 +22,8 @@ search_geodesic(
 \item{alpha}{maximum distance to travel (currently ignored)}
 
 \item{index}{interestingness index function}
+
+\item{tries}{the counter of the outer loop of the opotimiser}
 
 \item{max.tries}{maximum number of failed attempts before giving up}
 
@@ -46,6 +49,6 @@ You should not to have call this function directly, but should supply it
 to the \code{\link{guided_tour}} as a search strategy.
 }
 \examples{
-  animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_geodesic))
+animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_geodesic))
 }
 \keyword{optimize}

@@ -3,6 +3,7 @@
 #' @param current the current projection basis
 #' @param alpha the angle used to search the target basis from the current basis
 #' @param index index function
+#' @param tries the counter of the outer loop of the opotimiser
 #' @param polish_max_tries maximum number of iteration before giving up
 #' @param cur_index the index value of the current basis
 #' @param n_sample number of samples to generate
