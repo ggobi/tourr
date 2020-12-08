@@ -66,7 +66,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
           # used when the index_f is not smooth
           if (target$index_val > interp$index_val) {
             proj[[length(proj) + 1]] <<- geodesic$ingred$interpolate(1.) # make sure next starting plane is previous target
-            target <- dplyr::mutate(target, info = "interpolation", loop = step + 1)
+            target <- dplyr::mutate(target, info = "interpolation", loop = step + 1, alpha = NA)
             rcd_env[["record"]] <- dplyr::add_row(rcd_env[["record"]], target)
           } else if (target$index_val < interp$index_val & nrow(interp) != 0) {
             # the interrupt

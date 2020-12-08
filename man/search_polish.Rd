@@ -47,8 +47,9 @@ animate_xy(
   flea[, 1:6],
   guided_tour(holes(),
     search_f = search_polish,
-     cur_index = 0
-  ), start = best_proj
+    cur_index = 0
+  ),
+  start = best_proj
 )
 }
 \keyword{optimize}

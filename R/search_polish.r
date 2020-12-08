@@ -48,6 +48,10 @@ search_polish <- function(current, alpha = 0.5, index, tries, polish_max_tries =
 
     rcd_env <- parent.frame(n = 4)
     rcd_env[["record"]] <- dplyr::bind_rows(rcd_env[["record"]], polish, best_row)
+    rcd_env[["record"]] <- dplyr::mutate(
+      rcd_env[["record"]],
+      id = dplyr::row_number()
+    )
 
     if (best_row$index_val > cur_index) {
       polish_dist <- proj_dist(current, best_row$basis[[1]])
@@ -78,6 +82,7 @@ search_polish <- function(current, alpha = 0.5, index, tries, polish_max_tries =
       )
 
       rcd_env[["record"]] <- dplyr::bind_rows(rcd_env[["record"]], best_row)
+
     } else {
       polish_cooling <- polish_cooling * 0.95
       alpha <- alpha * polish_cooling

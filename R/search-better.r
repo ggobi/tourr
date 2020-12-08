@@ -84,6 +84,10 @@ search_better <- function(current, alpha = 0.5, index, tries, max.tries = Inf,
     }
   }
 
+  rcd_env[["record"]] <- dplyr::mutate(
+    rcd_env[["record"]],
+    id = dplyr::row_number()
+  )
   NULL
 }
 
@@ -189,6 +193,10 @@ search_better_random <- function(current, alpha = 0.5, index, tries,
     }
   }
 
+  rcd_env[["record"]] <- dplyr::mutate(
+    rcd_env[["record"]],
+    id = dplyr::row_number()
+  )
   NULL
 }
 
