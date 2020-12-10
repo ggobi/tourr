@@ -61,8 +61,8 @@ plot.path_index <- function(x, ...) {
 #' head(paths)
 #'
 #' if (require(ggplot2)) {
-#'   qplot(step, value, data = paths, group = try, geom = "line")
-#'   qplot(step, improvement, data = paths, group = try, geom = "line")
+#'   ggplot(data = paths, aes(x=step, y=value, group = try)) + geom_line()
+#'   ggplot(data = paths, aes(x=step, y=improvement, group = try)) + geom_line()
 #' }
 paths_index <- function(bases_list, index_f) {
   indices <- lapply(bases_list, path_index, index_f)

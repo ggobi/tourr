@@ -46,11 +46,11 @@ Render frames of animation to disk
 \examples{
 tmp_path <- tempdir()
 render(flea[, 1:4], grand_tour(), display_xy(), "pdf",
-  frames = 10,
+  frames = 3,
   file.path(tmp_path, "test.pdf")
 )
 render(flea[, 1:4], grand_tour(), display_xy(), "png",
-  frames = 10,
+  frames = 3,
   file.path(tmp_path, "test-\%03d.png")
 )
 }

@@ -10,8 +10,10 @@
 #' # Using MDS
 #' d <- path_dist(grand)
 #' ord <- as.data.frame(MASS::isoMDS(d)$points)
-#' qplot(V1, V2, data = ord, geom = "path") +
-#'   coord_equal() + labs(x = NULL, y = NULL)
+#' ggplot(data = ord, aes(x=V1, y=V2)) +
+#'   geom_path() +
+#'   coord_equal() +
+#'   labs(x = NULL, y = NULL)
 #' }
 #'
 #' # 5 guided tours  -----------------------------

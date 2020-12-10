@@ -26,8 +26,8 @@ paths <- paths_index(itries, holes())
 head(paths)
 
 if (require(ggplot2)) {
-  qplot(step, value, data = paths, group = try, geom = "line")
-  qplot(step, improvement, data = paths, group = try, geom = "line")
+  ggplot(data = paths, aes(x=step, y=value, group = try)) + geom_line()
+  ggplot(data = paths, aes(x=step, y=improvement, group = try)) + geom_line()
 }
 }
 \keyword{internal}
