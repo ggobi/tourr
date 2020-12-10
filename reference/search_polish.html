@@ -147,6 +147,7 @@
   <span class='va'>current</span>,
   alpha <span class='op'>=</span> <span class='fl'>0.5</span>,
   <span class='va'>index</span>,
+  <span class='va'>tries</span>,
   polish_max_tries <span class='op'>=</span> <span class='fl'>30</span>,
   cur_index <span class='op'>=</span> <span class='cn'>NA</span>,
   n_sample <span class='op'>=</span> <span class='fl'>5</span>,
@@ -168,6 +169,10 @@
     <tr>
       <th>index</th>
       <td><p>index function</p></td>
+    </tr>
+    <tr>
+      <th>tries</th>
+      <td><p>the counter of the outer loop of the opotimiser</p></td>
     </tr>
     <tr>
       <th>polish_max_tries</th>
@@ -193,125 +198,176 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>  <span class='va'>t1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='save_history.html'>save_history</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='guided_tour.html'>guided_tour</a></span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>, max <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; Value  0.563   39.8 % better  - NEW BASIS
-#&gt; Value  0.707   75.3 % better  - NEW BASIS
-#&gt; Value  0.811   14.8 % better  - NEW BASIS
-#&gt; Value  0.819   0.9 % better  - NEW BASIS
-#&gt; Value  0.837   2.3 % better  - NEW BASIS
-#&gt; Value  0.841   0.5 % better  - NEW BASIS
-#&gt; Value  0.846   0.6 % better  - NEW BASIS
-#&gt; Value  0.850   0.5 % better  - NEW BASIS
-#&gt; Value  0.853   0.3 % better  - NEW BASIS
-#&gt; Value  0.858   0.6 % better  - NEW BASIS
-#&gt; Value  0.859   0.1 % better 
-#&gt; Value  0.860   0.2 % better  - NEW BASIS
-#&gt; Value  0.861   0.1 % better  - NEW BASIS
-#&gt; Value  0.863   0.3 % better  - NEW BASIS
-#&gt; Value  0.866   0.3 % better  - NEW BASIS
-#&gt; Value  0.867   0.1 % better  - NEW BASIS
-#&gt; Value  0.868   0.2 % better  - NEW BASIS
-#&gt; Value  0.876   0.9 % better  - NEW BASIS
-#&gt; Value  0.878   0.2 % better  - NEW BASIS
-#&gt; Value  0.882   0.4 % better  - NEW BASIS
-#&gt; Value  0.884   0.2 % better  - NEW BASIS
-#&gt; Value  0.885   0.2 % better  - NEW BASIS
-#&gt; Value  0.886   0.1 % better 
-#&gt; Value  0.887   0.2 % better  - NEW BASIS
-#&gt; Value  0.888   0.1 % better 
-#&gt; Value  0.888   0.0 % better 
-#&gt; Value  0.893   0.6 % better  - NEW BASIS
-#&gt; Value  0.895   0.2 % better  - NEW BASIS
-#&gt; Value  0.895   0.0 % better 
-#&gt; Value  0.899   0.5 % better  - NEW BASIS
-#&gt; Value  0.900   0.1 % better 
-#&gt; Value  0.901   0.2 % better  - NEW BASIS
-#&gt; Value  0.902   0.1 % better 
-#&gt; Value  0.901   0.0 % better 
-#&gt; Value  0.902   0.2 % better  - NEW BASIS
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>2020</span><span class='op'>)</span>
+<span class='va'>t1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='save_history.html'>save_history</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='guided_tour.html'>guided_tour</a></span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>, max <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.740   35.5 % better  - NEW BASIS
+#&gt; generation:  dist =   1.046394 
+#&gt; target_dist - cur_dist: 1.046394 
+#&gt; Value  0.832   52.3 % better  - NEW BASIS
+#&gt; generation:  dist =   1.031822 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.854   2.7 % better  - NEW BASIS
+#&gt; generation:  dist =   0.37669 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.884   3.5 % better  - NEW BASIS
+#&gt; generation:  dist =   0.3687586 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.891   0.9 % better  - NEW BASIS
+#&gt; generation:  dist =   0.1983359 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.897   0.6 % better  - NEW BASIS
+#&gt; generation:  dist =   0.170217 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.899   0.2 % better  - NEW BASIS
+#&gt; generation:  dist =   0.09265279 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.900   0.1 % better  - NEW BASIS
+#&gt; generation:  dist =   0.1258624 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.901   0.1 % better  - NEW BASIS
+#&gt; generation:  dist =   0.08332108 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.903   0.1 % better  - NEW BASIS
+#&gt; generation:  dist =   0.08689163 
+#&gt; target_dist - cur_dist: 0 
 #&gt; Value  0.903   0.1 % better 
-#&gt; Value  0.904   0.2 % better  - NEW BASIS
-#&gt; Value  0.905   0.1 % better 
-#&gt; Value  0.905   0.1 % better 
+#&gt; Value  0.904   0.1 % better  - NEW BASIS
+#&gt; generation:  dist =   0.1031907 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.904   0.1 % better 
+#&gt; Value  0.904   0.1 % better 
+#&gt; Value  0.904   0.1 % better 
+#&gt; Value  0.904   0.0 % better 
+#&gt; Value  0.904   0.1 % better 
 #&gt; Value  0.905   0.1 % better  - NEW BASIS
-#&gt; Value  0.907   0.2 % better  - NEW BASIS
-#&gt; Value  0.908   0.1 % better  - NEW BASIS
-#&gt; Value  0.908   0.0 % better 
-#&gt; Value  0.909   0.1 % better 
-#&gt; Value  0.909   0.1 % better 
-#&gt; Value  0.909   0.1 % better 
-#&gt; Value  0.909   0.2 % better  - NEW BASIS
-#&gt; Value  0.912   0.3 % better  - NEW BASIS
+#&gt; generation:  dist =   0.09192008 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.905   0.0 % better 
+#&gt; Value  0.905   0.0 % better 
+#&gt; Value  0.906   0.2 % better  - NEW BASIS
+#&gt; generation:  dist =   0.1374444 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.908   0.2 % better  - NEW BASIS
+#&gt; generation:  dist =   0.1529196 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.909   0.1 % better  - NEW BASIS
+#&gt; generation:  dist =   0.0950746 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.909   0.0 % better 
+#&gt; Value  0.910   0.1 % better 
+#&gt; Value  0.910   0.1 % better  - NEW BASIS
+#&gt; generation:  dist =   0.07885354 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.911   0.1 % better 
+#&gt; Value  0.910   0.0 % better 
+#&gt; Value  0.910   0.0 % better 
+#&gt; Value  0.911   0.0 % better 
+#&gt; Value  0.911   0.1 % better 
+#&gt; Value  0.911   0.1 % better 
+#&gt; Value  0.911   0.1 % better 
+#&gt; Value  0.911   0.1 % better 
+#&gt; Value  0.911   0.1 % better 
+#&gt; Value  0.911   0.1 % better 
+#&gt; Value  0.910   0.0 % better 
+#&gt; Value  0.911   0.0 % better 
+#&gt; Value  0.911   0.1 % better 
+#&gt; Value  0.911   0.1 % better 
+#&gt; Value  0.910   0.0 % better 
+#&gt; Value  0.910   0.0 % better 
+#&gt; Value  0.910   0.0 % better 
+#&gt; Value  0.911   0.1 % better 
+#&gt; Value  0.911   0.1 % better  - NEW BASIS
+#&gt; generation:  dist =   0.10729 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.912   0.1 % better 
+#&gt; Value  0.912   0.1 % better  - NEW BASIS
+#&gt; generation:  dist =   0.08462851 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.913   0.1 % better 
+#&gt; Value  0.913   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
 #&gt; Value  0.913   0.1 % better  - NEW BASIS
-#&gt; Value  0.913   0.0 % better 
-#&gt; Value  0.913   0.0 % better 
-#&gt; Value  0.913   0.0 % better 
-#&gt; Value  0.913   0.0 % better 
+#&gt; generation:  dist =   0.1384238 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.914   0.0 % better 
+#&gt; Value  0.914   0.0 % better 
 #&gt; Value  0.913   0.0 % better 
 #&gt; Value  0.913   0.0 % better 
 #&gt; Value  0.913   0.0 % better 
 #&gt; Value  0.914   0.0 % better 
 #&gt; Value  0.913   0.0 % better 
+#&gt; Value  0.914   0.0 % better 
+#&gt; Value  0.914   0.0 % better 
+#&gt; Value  0.914   0.0 % better 
+#&gt; Value  0.914   0.0 % better 
 #&gt; Value  0.913   0.0 % better 
-#&gt; Value  0.913   0.0 % better 
-#&gt; Value  0.913   0.0 % better 
+#&gt; Value  0.914   0.0 % better 
+#&gt; Value  0.914   0.0 % better 
 #&gt; Value  0.913   0.0 % better 
 #&gt; Value  0.913   0.0 % better 
 #&gt; Value  0.914   0.1 % better 
-#&gt; Value  0.913   0.0 % better 
-#&gt; Value  0.913   0.0 % better 
-#&gt; Value  0.914   0.1 % better 
-#&gt; Value  0.914   0.1 % better 
-#&gt; Value  0.914   0.1 % better 
+#&gt; Value  0.914   0.0 % better 
 #&gt; Value  0.913   0.0 % better 
 #&gt; Value  0.914   0.1 % better 
+#&gt; Value  0.914   0.1 % better 
+#&gt; Value  0.914   0.0 % better 
 #&gt; Value  0.913   0.0 % better 
-#&gt; Value  0.913   0.0 % better 
+#&gt; Value  0.914   0.0 % better 
 #&gt; No better bases found after 25 tries.  Giving up.
 #&gt; Final projection: 
-#&gt; 0.680  0.139  
-#&gt; 0.213  -0.284  
-#&gt; 0.150  -0.403  
-#&gt; -0.086  -0.553  
-#&gt; 0.680  -0.032  
-#&gt; -0.001  -0.656  </div><div class='input'>  <span class='va'>best_proj</span> <span class='op'>&lt;-</span> <span class='va'>t1</span><span class='op'>[</span>,,<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>]</span>
-  <span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>,
-    <span class='fu'><a href='guided_tour.html'>guided_tour</a></span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span>, search_f <span class='op'>=</span> <span class='va'>search_polish</span>,
-    start <span class='op'>=</span> <span class='va'>best_proj</span>, cur_index <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; better basis found, index_val =  0.5827397 
-#&gt; better basis found, index_val =  0.8016053 
+#&gt; -0.527  0.039  
+#&gt; -0.040  0.391  
+#&gt; -0.037  0.456  
+#&gt; 0.059  0.524  
+#&gt; -0.846  -0.007  
+#&gt; 0.027  0.602  </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>t1</span>, <span class='st'>"class"</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
+<span class='va'>best_proj</span> <span class='op'>&lt;-</span> <span class='va'>t1</span><span class='op'>[</span>, , <span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>]</span>
+<span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span>
+  <span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>,
+  <span class='fu'><a href='guided_tour.html'>guided_tour</a></span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span>,
+    search_f <span class='op'>=</span> <span class='va'>search_polish</span>,
+    cur_index <span class='op'>=</span> <span class='fl'>0</span>
+  <span class='op'>)</span>,
+  start <span class='op'>=</span> <span class='va'>best_proj</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
 #&gt; alpha gets updated to 0.475 
-#&gt; better basis found, index_val =  0.8337473 
 #&gt; alpha gets updated to 0.4286875 
 #&gt; alpha gets updated to 0.3675459 
-#&gt; better basis found, index_val =  0.8451706 
 #&gt; alpha gets updated to 0.2993685 
 #&gt; alpha gets updated to 0.2316456 
 #&gt; alpha gets updated to 0.1702808 
 #&gt; alpha gets updated to 0.1189134 
-#&gt; better basis found, index_val =  0.8552288 
-#&gt; better basis found, index_val =  0.8574452 
-#&gt; better basis found, index_val =  0.8587535 
 #&gt; alpha gets updated to 0.07888961 
 #&gt; alpha gets updated to 0.04972013 
-#&gt; better basis found, index_val =  0.8602054 
-#&gt; better basis found, index_val =  0.8605096 
-#&gt; better basis found, index_val =  0.8613281 
-#&gt; better basis found, index_val =  0.8627074 
+#&gt; better basis found, index_val =  0.9136784 
 #&gt; alpha gets updated to 0.02976928 
-#&gt; better basis found, index_val =  0.8638527 
-#&gt; better basis found, index_val =  0.8644106 
-#&gt; better basis found, index_val =  0.8648385 
-#&gt; better basis found, index_val =  0.8652456 
-#&gt; No better bases found after 25 tries.  Giving up.
-#&gt; Final projection: 
-#&gt; -0.757  -0.096  
-#&gt; 0.542  -0.616  
-#&gt; -0.163  -0.326  
-#&gt; -0.144  -0.335  
-#&gt; -0.107  -0.485  
-#&gt; -0.271  -0.397  
-#&gt; current basis:  -0.757235 0.5424451 -0.1629123 -0.1437062 -0.1073893 -0.2713377 -0.09635515 -0.6158689 -0.326189 -0.3353277 -0.4847072 -0.3970342 cur_index:  0.8652456 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='search_polish-1.png' alt='' width='700' height='433' /></div></pre>
+#&gt; alpha gets updated to 0.01693277 
+#&gt; better basis found, index_val =  0.9138163 
+#&gt; alpha gets updated to 0.009149792 
+#&gt; alpha is 0.009149792 and it is too small! 
+#&gt; current basis:  -0.5379812 -0.02139158 -0.05877003 0.08691257 -0.8359455 0.01749389 0.04142586 0.4132825 0.4435935 0.5035819 -0.003214036 0.6140857 cur_index:  0.9138163 
+#&gt; generation:  dist =   0.07831513 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='search_polish-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 0.07831513 
+#&gt; alpha gets updated to 0.47025 
+#&gt; alpha gets updated to 0.4244006 
+#&gt; alpha gets updated to 0.3638705 
+#&gt; alpha gets updated to 0.2963748 
+#&gt; alpha gets updated to 0.2293292 
+#&gt; alpha gets updated to 0.168578 
+#&gt; alpha gets updated to 0.1177243 
+#&gt; alpha gets updated to 0.07810071 
+#&gt; alpha gets updated to 0.04922293 
+#&gt; alpha gets updated to 0.02947158 
+#&gt; better basis found, index_val =  0.9141324 
+#&gt; better basis found, index_val =  0.9142806 
+#&gt; alpha gets updated to 0.01676344 
+#&gt; alpha gets updated to 0.009058294 
+#&gt; alpha is 0.009058294 and it is too small! 
+#&gt; current basis:  -0.5664966 -0.04371021 -0.04754435 0.09409642 -0.815479 0.03241125 0.04630569 0.3982706 0.4275785 0.5271998 0.006838187 0.6151639 cur_index:  0.9142806 
+#&gt; generation:  dist =   0.07977676 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -176,17 +176,38 @@ a method that works with tour paths like <code><a href='animate.html'>animate</a
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>twod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='save_history.html'>save_history</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>, max <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>twod</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.360004 
+#&gt; target_dist - cur_dist: 1.360004 
+#&gt; generation:  dist =   1.367897 
+#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   0.9542325 
+#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.203791 
+#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.290141 
+#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.199841 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>twod</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;  num [1:3, 1:2, 1:5] -0.065 0.959 0.276 -0.245 -0.284 ...
 #&gt;  - attr(*, "data")= num [1:74, 1:3] 0.575 0.525 0.65 0.425 0.408 ...
 #&gt;   ..- attr(*, "dimnames")=List of 2
 #&gt;   .. ..$ : chr [1:74] "1" "2" "3" "4" ...
 #&gt;   .. ..$ : chr [1:3] "tars1" "tars2" "head"</div><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>, <span class='fu'>planned_tour</span><span class='op'>(</span><span class='va'>twod</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; <span class='message'>Using half_range 0.69</span></div><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>, <span class='fu'>planned_tour</span><span class='op'>(</span><span class='va'>twod</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; <span class='message'>Using half_range 0.69</span></div><div class='img'><img src='planned_tour-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   0.9542325 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.69</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0.9542325 </div><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>, <span class='fu'>planned_tour</span><span class='op'>(</span><span class='va'>twod</span>, <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   0.9542325 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.69</span></div><div class='img'><img src='planned_tour-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 0.9542325 </div><div class='input'>
 <span class='va'>oned</span> <span class='op'>&lt;-</span> <span class='fu'><a href='save_history.html'>save_history</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='grand_tour.html'>grand_tour</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>, max <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='input'><span class='fu'><a href='display_dist.html'>animate_dist</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'>planned_tour</span><span class='op'>(</span><span class='va'>oned</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='planned_tour-2.png' alt='' width='700' height='433' /></div></pre>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.384401 
+#&gt; target_dist - cur_dist: 1.384401 
+#&gt; generation:  dist =   1.382789 
+#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.299094 
+#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.24122 </div><div class='input'><span class='fu'><a href='display_dist.html'>animate_dist</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'>planned_tour</span><span class='op'>(</span><span class='va'>oned</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.299094 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='planned_tour-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 1.299094 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

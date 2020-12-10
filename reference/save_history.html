@@ -204,25 +204,58 @@ forces new basis generation at each step.</p></td>
     <pre class="examples"><div class='input'><span class='co'># You can use a saved history to replay tours with different visualisations</span>
 
 <span class='va'>t1</span> <span class='op'>&lt;-</span> <span class='fu'>save_history</span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, max <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='save_history-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>##andrews_history(t1)</span>
-<span class='co'>##andrews_history(interpolate(t1))</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.785448 
+#&gt; target_dist - cur_dist: 1.785448 
+#&gt; generation:  dist =   1.385622 
+#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.863939 
+#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.636411 </div><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.863939 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='save_history-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 1.863939 </div><div class='input'><span class='co'>## andrews_history(t1)</span>
+<span class='co'>## andrews_history(interpolate(t1))</span>
 
 <span class='va'>t1</span> <span class='op'>&lt;-</span> <span class='fu'>save_history</span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='grand_tour.html'>grand_tour</a></span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span>, max <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='input'><span class='fu'><a href='display_pcp.html'>animate_pcp</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='img'><img src='save_history-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='display_scatmat.html'>animate_scatmat</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='img'><img src='save_history-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='save_history-4.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.444086 
+#&gt; target_dist - cur_dist: 1.444086 
+#&gt; generation:  dist =   1.745077 
+#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.792154 
+#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.735593 </div><div class='input'><span class='fu'><a href='display_pcp.html'>animate_pcp</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.785244 </div><div class='img'><img src='save_history-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 1.785244 </div><div class='input'><span class='fu'><a href='display_scatmat.html'>animate_scatmat</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.785244 </div><div class='img'><img src='save_history-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 1.785244 </div><div class='img'><img src='save_history-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='va'>t1</span> <span class='op'>&lt;-</span> <span class='fu'>save_history</span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='grand_tour.html'>grand_tour</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>, max <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='input'><span class='fu'><a href='display_dist.html'>animate_dist</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='save_history-5.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='va'>testdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>*</span><span class='fl'>3</span><span class='op'>)</span>, ncol<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.14823 
+#&gt; target_dist - cur_dist: 1.14823 
+#&gt; generation:  dist =   1.412107 
+#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.249363 
+#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.112959 </div><div class='input'><span class='fu'><a href='display_dist.html'>animate_dist</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.249363 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='save_history-5.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 1.249363 </div><div class='input'>
+<span class='va'>testdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span> <span class='op'>*</span> <span class='fl'>3</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
 <span class='va'>testdata</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>50</span>, <span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>testdata</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>50</span>, <span class='fl'>1</span><span class='op'>]</span> <span class='op'>+</span> <span class='fl'>10</span>
 <span class='va'>testdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sphere_data.html'>sphere_data</a></span><span class='op'>(</span><span class='va'>testdata</span><span class='op'>)</span>
 <span class='va'>t2</span> <span class='op'>&lt;-</span> <span class='fu'>save_history</span><span class='op'>(</span><span class='va'>testdata</span>, <span class='fu'><a href='guided_tour.html'>guided_tour</a></span><span class='op'>(</span><span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span>, max.tries <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>,
-  max <span class='op'>=</span> <span class='fl'>5</span>, rescale<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Value  0.922   14.7 % better  - NEW BASIS
+  max <span class='op'>=</span> <span class='fl'>5</span>, rescale <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
+</div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.922   14.7 % better  - NEW BASIS
+#&gt; generation:  dist =   0.9954297 
+#&gt; target_dist - cur_dist: 0.9954297 
 #&gt; Value  0.918   14.3 % better  - NEW BASIS
+#&gt; generation:  dist =   0.9884409 
+#&gt; target_dist - cur_dist: 0 
 #&gt; Value  0.922   0.4 % better  - NEW BASIS
+#&gt; generation:  dist =   0.2375505 
+#&gt; target_dist - cur_dist: 0 
 #&gt; Value  0.922   0.0 % better 
 #&gt; Value  0.922   0.0 % better 
 #&gt; Value  0.922   0.0 % better 
@@ -327,11 +360,24 @@ forces new basis generation at each step.</p></td>
 #&gt; 0.166  -0.984  
 #&gt; 0.886  0.179  
 #&gt; 0.432  0.011  </div><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>testdata</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t2</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Using half_range 0.72</span></div><div class='img'><img src='save_history-6.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   0.2375505 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.72</span></div><div class='img'><img src='save_history-6.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 0.2375505 </div><div class='input'>
 <span class='co'># Or you can use saved histories to visualise the path that the tour took.</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='path_index.html'>path_index</a></span><span class='op'>(</span><span class='fu'><a href='interpolate.html'>interpolate</a></span><span class='op'>(</span><span class='va'>t2</span><span class='op'>)</span>, <span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='save_history-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='path_curves.html'>path_curves</a></span><span class='op'>(</span><span class='fu'><a href='interpolate.html'>interpolate</a></span><span class='op'>(</span><span class='va'>t2</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='save_history-8.png' alt='' width='700' height='433' /></div></pre>
+</div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   0.2375505 
+#&gt; target_dist - cur_dist: 0.2375505 
+#&gt; target_dist - cur_dist: 0.1875505 
+#&gt; target_dist - cur_dist: 0.1375505 
+#&gt; target_dist - cur_dist: 0.08755052 
+#&gt; target_dist - cur_dist: 0.03755052 </div><div class='img'><img src='save_history-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='path_curves.html'>path_curves</a></span><span class='op'>(</span><span class='fu'><a href='interpolate.html'>interpolate</a></span><span class='op'>(</span><span class='va'>t2</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   0.2375505 
+#&gt; target_dist - cur_dist: 0.2375505 
+#&gt; target_dist - cur_dist: 0.1875505 
+#&gt; target_dist - cur_dist: 0.1375505 
+#&gt; target_dist - cur_dist: 0.08755052 
+#&gt; target_dist - cur_dist: 0.03755052 </div><div class='img'><img src='save_history-8.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

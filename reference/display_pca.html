@@ -224,12 +224,13 @@ principal components. This is required.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>flea_std</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/scale.html'>scale</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span><span class='op'>)</span>
-<span class='va'>flea_pca</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/prcomp.html'>prcomp</a></span><span class='op'>(</span><span class='va'>flea_std</span>, center<span class='op'>=</span><span class='cn'>FALSE</span>, <span class='op'>)</span>
-<span class='va'>flea_coefs</span> <span class='op'>&lt;-</span> <span class='va'>flea_pca</span><span class='op'>$</span><span class='va'>rotation</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>
-<span class='va'>flea_scores</span> <span class='op'>&lt;-</span> <span class='va'>flea_pca</span><span class='op'>$</span><span class='va'>x</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>
+    <pre class="examples"><div class='input'><span class='va'>flea_std</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/scale.html'>scale</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>flea_pca</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/prcomp.html'>prcomp</a></span><span class='op'>(</span><span class='va'>flea_std</span>, center <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='op'>)</span>
+<span class='va'>flea_coefs</span> <span class='op'>&lt;-</span> <span class='va'>flea_pca</span><span class='op'>$</span><span class='va'>rotation</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>
+<span class='va'>flea_scores</span> <span class='op'>&lt;-</span> <span class='va'>flea_pca</span><span class='op'>$</span><span class='va'>x</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>
 <span class='fu'>animate_pca</span><span class='op'>(</span><span class='va'>flea_scores</span>, pc_coefs <span class='op'>=</span> <span class='va'>flea_coefs</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Using half_range 0.75</span></div><div class='img'><img src='display_pca-1.png' alt='' width='700' height='433' /></div></pre>
+</div><div class='output co'>#&gt; target_dist - cur_dist: 0 
+#&gt; generation:  dist =   1.410857 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.75</span></div><div class='img'><img src='display_pca-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 1.410857 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
