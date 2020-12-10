@@ -23,10 +23,12 @@ dependence_tour <- function(pos) {
 
   d <- max(pos)
   generator <- function(current, data, ...) {
-    if (is.null(current)) return(basis_init(ncol(data), d))
+    if (is.null(current)) {
+      return(basis_init(ncol(data), d))
+    }
 
     mat <- matrix(0, ncol = d, nrow = length(pos))
-    for(i in seq_len(d)) {
+    for (i in seq_len(d)) {
       mat[pos == i, i] <- basis_random(sum(pos == i), 1)
     }
 

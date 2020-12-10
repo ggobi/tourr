@@ -8,6 +8,7 @@ search_polish(
   current,
   alpha = 0.5,
   index,
+  tries,
   polish_max_tries = 30,
   cur_index = NA,
   n_sample = 5,
@@ -21,6 +22,8 @@ search_polish(
 \item{alpha}{the angle used to search the target basis from the current basis}
 
 \item{index}{index function}
+
+\item{tries}{the counter of the outer loop of the opotimiser}
 
 \item{polish_max_tries}{maximum number of iteration before giving up}
 
@@ -36,10 +39,17 @@ search_polish(
 Search very locally to find slightly better projections to polish a broader search.
 }
 \examples{
-  t1 <- save_history(flea[,1:6], guided_tour(holes()), max = 100)
-  best_proj <- t1[,,dim(t1)[3]]
-  animate_xy(flea[, 1:6],
-    guided_tour(holes(), search_f = search_polish,
-    start = best_proj, cur_index = 0))
+set.seed(2020)
+t1 <- save_history(flea[, 1:6], guided_tour(holes()), max = 100)
+attr(t1, "class") <- NULL
+best_proj <- t1[, , dim(t1)[3]]
+animate_xy(
+  flea[, 1:6],
+  guided_tour(holes(),
+    search_f = search_polish,
+    cur_index = 0
+  ),
+  start = best_proj
+)
 }
 \keyword{optimize}

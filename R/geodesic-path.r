@@ -24,42 +24,31 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
 
   tour_path <- function(current, data, ...) {
     if (is.null(current)) {
-      # if (name %in% c("guided", "frozen-guided")) tries <<- 1
-      return(generator(NULL, data, ...))
+      return(generator(NULL, data, tries, ...))
     }
-
-    # initalise cur_index and tries for polish
-    # if (name %in% c("guided") & !exists("tries")){
-    #   cur_index <<- index(current)
-    #   tries <<- 1
-    # }
 
     # Keep trying until we get a frame that's not too close to the
     # current frame
     dist <- 0
     while (dist < 1e-3) {
-
       if (name %in% c("guided", "frozen-guided")) tries <<- tries + 1
 
-      gen <- generator(current, data, ...)
+      gen <- generator(current, data, tries, ...)
       target <- gen$target
 
-      if ("polish_alpha" %in% gen$arg) return(NULL)
-
       # generator has run out, so give up
-      if (is.null(target)) return(NULL)
-
-      # give up, generator produced 10 equivalent frames in a row
-
-      #if (name == "guided") if (tries > 20) return(NULL)
+      if (is.null(target)) {
+        return(NULL)
+      }
 
       dist <- proj_dist(current, target)
-      if (dist < 1e-2) return(NULL)
+      if (dist < 1e-2) {
+        return(NULL)
+      }
 
-      if (getOption("tourr.verbose", default = FALSE)) cat("generation:  dist =  ", dist, "\n")
-
+      cat("generation:  dist =  ", dist, "\n")
     }
-    geodesic_path(current, target, frozen, ...)
+    list(ingred = geodesic_path(current, target, frozen, ...), index = gen$index, tries = tries)
   }
 
   structure(

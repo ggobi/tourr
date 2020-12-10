@@ -20,21 +20,36 @@
 #'   \url{http://www.jstatsoft.org/v40/i02/}.
 #' @examples
 #' tmp_path <- tempdir()
-#' render(flea[, 1:4], grand_tour(), display_xy(), "pdf", frames = 10,
-#'   file.path(tmp_path, "test.pdf"))
-#' render(flea[, 1:4], grand_tour(), display_xy(), "png", frames = 10,
-#'   file.path(tmp_path, "test-%03d.png"))
-render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
+#' render(flea[, 1:4], grand_tour(), display_xy(), "pdf",
+#'   frames = 10,
+#'   file.path(tmp_path, "test.pdf")
+#' )
+#' render(flea[, 1:4], grand_tour(), display_xy(), "png",
+#'   frames = 10,
+#'   file.path(tmp_path, "test-%03d.png")
+#' )
+render <- function(data, tour_path, display, dev, ..., apf = 1 / 10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
     data <- as.matrix(data)
   }
   if (rescale) data <- rescale(data)
-  if (sphere) data  <- sphere_data(data)
+  if (sphere) data <- sphere_data(data)
 
   dev <- match.fun(dev)
   dev(...)
   on.exit(dev.off())
+
+  record <-
+    dplyr::tibble(
+      basis = list(),
+      index_val = numeric(),
+      info = character(),
+      method = character(),
+      alpha = numeric(),
+      tries = numeric(),
+      loop = numeric()
+    )
 
   tour <- new_tour(data, tour_path, start, ...)
   step <- tour(0, ...)
@@ -43,11 +58,13 @@ render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, 
 
   i <- 0
   stop_next <- FALSE
-  while(i < frames) {
+  while (i < frames) {
     display$render_frame()
     display$render_data(data, step$proj, step$target)
 
-    if (stop_next) return(invisible())
+    if (stop_next) {
+      return(invisible())
+    }
     i <- i + 1
     step <- tour(apf)
     if (step$step < 0) stop_next <- TRUE
@@ -73,34 +90,35 @@ render <- function(data, tour_path, display, dev, ..., apf = 1/10, frames = 50, 
 #' @examples
 #' # gifski needs to be installed to render a gif
 #' if (requireNamespace("gifski", quietly = TRUE)) {
-#'  gif_file <- file.path(tempdir(), "test.gif")
-#'  render_gif(flea[, 1:4], grand_tour(), display_xy(), gif_file )
-#'  utils::browseURL(gif_file)
-#'  unlink(gif_file)
+#'   gif_file <- file.path(tempdir(), "test.gif")
+#'   render_gif(flea[, 1:4], grand_tour(), display_xy(), gif_file)
+#'   utils::browseURL(gif_file)
+#'   unlink(gif_file)
 #' }
 #' @export
-render_gif <- function(data, tour_path, display, gif_file = "animation.gif", ..., apf = 1/10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
-
+render_gif <- function(data, tour_path, display, gif_file = "animation.gif", ..., apf = 1 / 10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
   if (!requireNamespace("gifski", quietly = TRUE)) {
     stop("To use this function please install the 'gifski' package",
-         call. = FALSE)
+      call. = FALSE
+    )
   }
 
   # temp png files
   dir <- tempdir()
   png_path <- file.path(dir, "frame%03d.png")
 
-  render(data= data,
-         tour_path = tour_path,
-         display = display,
-         dev = "png",
-         png_path,
-         ...,
-         apf = apf,
-         frames = frames,
-         rescale = rescale,
-         sphere = sphere,
-         start = start
+  render(
+    data = data,
+    tour_path = tour_path,
+    display = display,
+    dev = "png",
+    png_path,
+    ...,
+    apf = apf,
+    frames = frames,
+    rescale = rescale,
+    sphere = sphere,
+    start = start
   )
 
   png_files <- sprintf(png_path, 1:frames)

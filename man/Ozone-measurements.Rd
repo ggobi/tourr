@@ -19,7 +19,6 @@ time.
 \examples{
 
 example(display_image)
-
 }
 \references{
 \url{http://stat-computing.org/dataexpo/2006/}

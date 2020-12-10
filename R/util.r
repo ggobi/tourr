@@ -75,7 +75,7 @@ find_platform <- function() {
     type <- "rstudio"
   } else if (osType %in% c("lin", "mac") && gui != "X11") {
     type <- "gui"
-  } else if (osType == "win" && gui == "Rgui"){
+  } else if (osType == "win" && gui == "Rgui") {
     type <- "gui"
   } else {
     type <- "cli"
@@ -91,7 +91,7 @@ find_platform <- function() {
 #' @keywords internal
 to_stop <- function() {
   plat <- find_platform()
-  if(plat$os == "win" || plat$iface == "rstudio") {
+  if (plat$os == "win" || plat$iface == "rstudio") {
     key <- "Esc"
   } else if (plat$os == "mac" && plat$iface == "gui") {
     key <- "Esc"
@@ -109,8 +109,9 @@ areColors <- function(x) {
   all(
     sapply(x, function(X) {
       tryCatch(is.matrix(grDevices::col2rgb(X)),
-               error = function(e) FALSE)
-      })
+        error = function(e) FALSE
+      )
+    })
   )
 }
 
@@ -123,4 +124,3 @@ mapColors <- function(x) {
   pal <- grDevices::hcl.colors(n)
   pal[as.numeric(as.factor(x))]
 }
-

@@ -22,7 +22,7 @@
 #'
 #' # Alternatively, you can display the distribution with a histogram
 #' animate_dist(flea[, 1:6], method = "hist")
-display_dist <- function(method="density", center = TRUE, half_range = NULL, rug = FALSE, ...) {
+display_dist <- function(method = "density", center = TRUE, half_range = NULL, rug = FALSE, ...) {
   if (!requireNamespace("ash", quietly = TRUE)) {
     stop("Please install the ash package", call. = FALSE)
   }
@@ -35,7 +35,7 @@ display_dist <- function(method="density", center = TRUE, half_range = NULL, rug
   }
 
   render_frame <- function() {
-    par(pty="m",mar=c(4,4,1,1))
+    par(pty = "m", mar = c(4, 4, 1, 1))
     plot(
       x = NA, y = NA, xlim = c(-1, 1.2), ylim = c(-1.1, 3),
       xaxs = "i", yaxs = "i",
@@ -44,13 +44,13 @@ display_dist <- function(method="density", center = TRUE, half_range = NULL, rug
     axis(2, seq(0, 4, by = 1))
   }
   render_transition <- function() {
-    rect(-1, -1.1, 1.2, 4, col="#FFFFFFE6", border=NA)
+    rect(-1, -1.1, 1.2, 4, col = "#FFFFFFE6", border = NA)
   }
   render_data <- function(data, proj, geodesic) {
-    abline(h = seq(0.5, 3.5, by=0.5), col="grey80")
-    lines(c(0,0), c(-1,0), col="grey80")
-    lines(c(-1,-1), c(-1.1,0), col="grey80")
-    lines(c(1,1), c(-1.1,0), col="grey80")
+    abline(h = seq(0.5, 3.5, by = 0.5), col = "grey80")
+    lines(c(0, 0), c(-1, 0), col = "grey80")
+    lines(c(-1, -1), c(-1.1, 0), col = "grey80")
+    lines(c(1, 1), c(-1.1, 0), col = "grey80")
 
     x <- data %*% proj
     if (center) x <- center(x)
@@ -60,15 +60,16 @@ display_dist <- function(method="density", center = TRUE, half_range = NULL, rug
     if (method == "histogram") {
       bins <- hist(x, breaks = seq(-1, 1, 0.2), plot = FALSE)
       with(bins, rect(mids - 0.1, 0, mids + 0.1, density,
-          col="black", border="white"))
+        col = "black", border = "white"
+      ))
     } else if (method == "density") {
-      polygon(stats::density(x), lwd = 2, col="black")
+      polygon(stats::density(x), lwd = 2, col = "black")
     } else if (method == "ash") {
       utils::capture.output(ash <- ash::ash1(ash::bin1(x, c(-half_range, half_range))))
       lines(ash)
     }
     abline(h = 0)
-    box(col="grey70")
+    box(col = "grey70")
 
     if (rug) {
       segments(x, 0, x, 0.1, ...)
@@ -76,7 +77,7 @@ display_dist <- function(method="density", center = TRUE, half_range = NULL, rug
 
     # Render tour axes
     ax <- seq_along(proj) / length(proj)
-    segments(0, -ax, proj, -ax, col="black", lwd=3)
+    segments(0, -ax, proj, -ax, col = "black", lwd = 3)
     text(1.0, -ax, labels, pos = 4)
   }
 
@@ -96,7 +97,6 @@ display_dist <- function(method="density", center = TRUE, half_range = NULL, rug
 animate_dist <- function(data, tour_path = grand_tour(1), ...) {
   animate(
     data = data, tour_path = tour_path,
-    display = display_dist(...),...)
+    display = display_dist(...), ...
+  )
 }
-
-

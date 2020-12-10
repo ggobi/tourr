@@ -44,24 +44,21 @@
 #' animate_slice(sphere3, anchor = anchor3)
 #' # Animate with thicker slice to capture more points in each view
 #' animate_slice(sphere5, anchor = anchor5, v_rel = 0.02)
-
-
 display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
-                          col = "black", pch_slice  = 20, pch_other = 46,
+                          col = "black", pch_slice = 20, pch_other = 46,
                           cex_slice = 2, cex_other = 1, v_rel = NULL,
                           anchor = NULL, edges = NULL, edges.col = "black", ...) {
-
   labels <- NULL
   h <- NULL
 
-  if(!areColors(col)) col = mapColors(col)
+  if (!areColors(col)) col <- mapColors(col)
 
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)
     labels <<- abbreviate(colnames(data), 3)
     v_rel <<- compute_v_rel(v_rel, half_range, ncol(data))
     # Translate volume v_rel to cutoff h
-    h <<- v_rel^(1/(ncol(data)-2))
+    h <<- v_rel^(1 / (ncol(data) - 2))
     message("Using v_rel=", format(v_rel, digits = 2), ", corresponding to a cutoff h=", format(h, digits = 2))
   }
 
@@ -76,7 +73,7 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
     blank_plot(xlim = c(-1, 1), ylim = c(-1, 1))
   }
   render_transition <- function() {
-    rect(-1, -1, 1, 1, col="#FFFFFFE6", border=NA)
+    rect(-1, -1, 1, 1, col = "#FFFFFFE6", border = NA)
   }
 
   render_data <- function(data, proj, geodesic) {
@@ -95,9 +92,9 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
     points(x, col = col, pch = pch, cex = cex)
 
     if (!is.null(edges)) {
-      segments(x[edges[,1], 1], x[edges[,1], 2],
-               x[edges[,2], 1], x[edges[,2], 2],
-               col = edges.col
+      segments(x[edges[, 1], 1], x[edges[, 1], 2],
+        x[edges[, 2], 1], x[edges[, 2], 2],
+        col = edges.col
       )
     }
   }

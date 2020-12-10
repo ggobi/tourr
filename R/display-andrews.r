@@ -21,9 +21,9 @@ andrews <- function(x) {
   y <- rep(x[1] / sqrt(2), length(t))
 
   function(t) {
-    for(i in seq(2, n, by = 1)) {
+    for (i in seq(2, n, by = 1)) {
       val <- i %/% 2 * t
-      y <- y + x[i] * (if(i %% 2 == 0) sin(val) else cos(val))
+      y <- y + x[i] * (if (i %% 2 == 0) sin(val) else cos(val))
     }
     y / n
   }
@@ -47,13 +47,13 @@ andrews <- function(x) {
 #'
 #' # It's easy to experiment with different tour paths:
 #' animate_andrews(flea[, 1:6], guided_tour(cmass()))
-display_andrews <- function(col="black", ...) {
+display_andrews <- function(col = "black", ...) {
   grid <- NULL
   init <- function(data) {
     grid <<- seq(-pi, pi, length = 50)
   }
 
-  if(!areColors(col)) col = mapColors(col)
+  if (!areColors(col)) col <- mapColors(col)
 
   render_frame <- function() {
     blank_plot(xlim = c(-pi, pi), ylim = c(-1, 1))
@@ -74,14 +74,15 @@ display_andrews <- function(col="black", ...) {
 
     render_frame()
     segments(-pi, 0, pi, 0)
-    if (length(col) == 1)
+    if (length(col) == 1) {
       col <- rep(col, nrow(data))
+    }
     clrs <- rep(col, rep(52, nrow(data)))
     nclrs <- unique(clrs)
     ldat <- do.call("rbind", values)
     if (length(nclrs) > 1) {
       for (i in 1:length(nclrs)) {
-        lines(ldat[clrs==nclrs[i],], col = nclrs[i])
+        lines(ldat[clrs == nclrs[i], ], col = nclrs[i])
       }
     }
     else {
@@ -104,9 +105,8 @@ display_andrews <- function(col="black", ...) {
 #' @export
 animate_andrews <- function(data, tour_path = grand_tour(3),
                             col = "black", ...) {
-
   animate(
     data = data, tour_path = tour_path,
-    display = display_andrews(col, ...),...
+    display = display_andrews(col, ...), ...
   )
 }

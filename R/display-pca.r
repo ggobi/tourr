@@ -21,19 +21,18 @@
 #'   \code{\link{display_slice}}
 #' @export
 #' @examples
-#' flea_std <- scale(flea[,1:6])
-#' flea_pca <- prcomp(flea_std, center=FALSE, )
-#' flea_coefs <- flea_pca$rotation[,1:3]
-#' flea_scores <- flea_pca$x[,1:3]
+#' flea_std <- scale(flea[, 1:6])
+#' flea_pca <- prcomp(flea_std, center = FALSE, )
+#' flea_coefs <- flea_pca$rotation[, 1:3]
+#' flea_scores <- flea_pca$x[, 1:3]
 #' animate_pca(flea_scores, pc_coefs = flea_coefs)
 display_pca <- function(center = TRUE, axes = "center", half_range = NULL,
                         col = "black", pch = 20, cex = 1,
                         pc_coefs = NULL,
                         edges = NULL, edges.col = "black", ...) {
-
   labels <- NULL
 
-  if(!areColors(col)) col = mapColors(col)
+  if (!areColors(col)) col <- mapColors(col)
 
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)
@@ -52,7 +51,7 @@ display_pca <- function(center = TRUE, axes = "center", half_range = NULL,
     blank_plot(xlim = c(-1, 1), ylim = c(-1, 1))
   }
   render_transition <- function() {
-    rect(-1, -1, 1, 1, col="#FFFFFFE6", border=NA)
+    rect(-1, -1, 1, 1, col = "#FFFFFFE6", border = NA)
   }
 
   render_data <- function(data, proj, geodesic) {
@@ -67,9 +66,9 @@ display_pca <- function(center = TRUE, axes = "center", half_range = NULL,
     points(x, col = col, pch = pch, cex = cex)
 
     if (!is.null(edges)) {
-      segments(x[edges[,1], 1], x[edges[,1], 2],
-               x[edges[,2], 1], x[edges[,2], 2],
-               col = edges.col
+      segments(x[edges[, 1], 1], x[edges[, 1], 2],
+        x[edges[, 2], 1], x[edges[, 2], 2],
+        col = edges.col
       )
     }
   }
@@ -90,4 +89,3 @@ display_pca <- function(center = TRUE, axes = "center", half_range = NULL,
 animate_pca <- function(data, tour_path = grand_tour(), rescale = TRUE, ...) {
   animate(data, tour_path, display_pca(...), rescale = rescale)
 }
-

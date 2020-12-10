@@ -25,12 +25,12 @@ display_depth <- function(center = TRUE, half_range = NULL, ...) {
   }
 
   render_frame <- function() {
-    par(pty = "s", mar = rep(1,4))
+    par(pty = "s", mar = rep(1, 4))
     blank_plot(xlim = c(-1, 1), ylim = c(-1, 1))
     render_transition()
   }
   render_transition <- function() {
-    rect(-1, -1, 1, 1, col="grey80", border=NA)
+    rect(-1, -1, 1, 1, col = "grey80", border = NA)
   }
   render_data <- function(data, proj, geodesic) {
     x <- data %*% proj
@@ -45,7 +45,7 @@ display_depth <- function(center = TRUE, half_range = NULL, ...) {
     shade <- shades[round(depth_std * 100)]
 
     ord <- order(depth_std)
-    points(x[ord, 1:2], pch = 20, cex = size[ord] , col = shade[ord], ...)
+    points(x[ord, 1:2], pch = 20, cex = size[ord], col = shade[ord], ...)
   }
 
   list(
@@ -62,11 +62,9 @@ display_depth <- function(center = TRUE, half_range = NULL, ...) {
 #' @inheritParams animate
 #' @export
 animate_depth <- function(data, tour_path = grand_tour(3), ...) {
-
   animate(
     data = data, tour_path = tour_path,
     display = display_depth(...),
     ...
   )
 }
-

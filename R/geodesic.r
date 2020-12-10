@@ -42,8 +42,8 @@ geodesic_path <- function(current, target, frozen = NULL, ...) {
     }
   } else {
     # Frozen geodesic
-    current_froz  <- freeze(current, frozen)
-    target_froz   <- freeze(target,  frozen)
+    current_froz <- freeze(current, frozen)
+    target_froz <- freeze(target, frozen)
 
     geodesic <- geodesic_info(current_froz, target_froz)
 
@@ -87,7 +87,6 @@ geodesic_path <- function(current, target, frozen = NULL, ...) {
 #' @param epsilon epsilon used to determine if an angle is effectively equal
 #'   to 0
 geodesic_info <- function(Fa, Fz, epsilon = 1e-6) {
-
   if (!is_orthonormal(Fa)) {
     # message("Orthonormalising Fa")
     Fa <- orthonormalise(Fa)
@@ -137,7 +136,7 @@ step_fraction <- function(interp, fraction) {
   #  - must multiply column wise (hence all the transposes)
   G <- t(
     t(interp$Ga) * cos(fraction * interp$tau) +
-    t(interp$Gz) * sin(fraction * interp$tau)
+      t(interp$Gz) * sin(fraction * interp$tau)
   )
 
   # rotate plane to match frame Fa

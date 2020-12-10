@@ -4,7 +4,15 @@
 \alias{search_posse}
 \title{Search for a better projection based on Poss, 1995}
 \usage{
-search_posse(current, alpha = 0.5, index, max.tries = 300, cur_index = NA, ...)
+search_posse(
+  current,
+  alpha = 0.5,
+  index,
+  tries,
+  max.tries = 300,
+  cur_index = NA,
+  ...
+)
 }
 \arguments{
 \item{current}{starting projection}
@@ -12,6 +20,8 @@ search_posse(current, alpha = 0.5, index, max.tries = 300, cur_index = NA, ...)
 \item{alpha}{the angle used to search the target basis from the current basis}
 
 \item{index}{index function}
+
+\item{tries}{the counter of the outer loop of the opotimiser}
 
 \item{max.tries}{maximum number of iteration before giving up}
 

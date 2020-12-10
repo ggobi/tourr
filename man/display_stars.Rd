@@ -28,7 +28,8 @@ animate_stars(flea[1:10, 1:6])
 animate_stars(flea[1:10, 1:6], grand_tour(5))
 animate_stars(flea[, 1:6], grand_tour(5))
 animate_stars(flea[1:10, 1:6], grand_tour(5),
- col.stars = rep("grey50", 10), radius = FALSE)
+  col.stars = rep("grey50", 10), radius = FALSE
+)
 }
 \seealso{
 \code{\link{animate}} for options that apply to all animations

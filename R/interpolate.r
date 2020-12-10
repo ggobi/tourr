@@ -17,9 +17,20 @@
 interpolate <- function(basis_set, angle = 0.05, cycle = FALSE) {
   basis_set <- as.array(basis_set)
   n <- dim(basis_set)[3]
-  if (n < 2) return(basis_set)
+  if (n < 2) {
+    return(basis_set)
+  }
 
-
+  record <-
+    dplyr::tibble(
+      basis = list(),
+      index_val = numeric(),
+      info = character(),
+      method = character(),
+      alpha = numeric(),
+      tries = numeric(),
+      loop = numeric()
+    )
   # Estimate number of bases in output
   dists <- sapply(2:n, function(i) {
     proj_dist(basis_set[[i - 1]], basis_set[[i]])
@@ -35,9 +46,9 @@ interpolate <- function(basis_set, angle = 0.05, cycle = FALSE) {
   i <- 1
   tour <- new_tour(basis_set[, , 1], planned_tour(basis_set, cycle))
   step <- tour(0)
-  stop_next <- FALSE #use bool to stop after adding final projection
+  stop_next <- FALSE # use bool to stop after adding final projection
 
-  while (TRUE) { #need to add final projection after generator runs out, so using break instead of while condition
+  while (TRUE) { # need to add final projection after generator runs out, so using break instead of while condition
     new_basis[i] <- step$step <= 0
     projs[, , i] <- step$proj
 

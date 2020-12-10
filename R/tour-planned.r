@@ -31,7 +31,7 @@ planned_tour <- function(basis_set, cycle = FALSE) {
   n <- length(basis_set)
   if (cycle) {
     generator <- function(current, data, ...) {
-      if (is.null(current)){
+      if (is.null(current)) {
         return(basis_set[[1]])
       }
 
@@ -41,12 +41,13 @@ planned_tour <- function(basis_set, cycle = FALSE) {
     }
   } else {
     generator <- function(current, data, ...) {
-
-      if (is.null(current)){
+      if (is.null(current)) {
         return(basis_set[[1]])
       }
       index <<- index + 1
-      if (index > n) return(NULL)
+      if (index > n) {
+        return(NULL)
+      }
       target <- basis_set[[index]]
       list(target = target)
     }

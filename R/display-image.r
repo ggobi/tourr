@@ -15,7 +15,6 @@
 #' str(ozone)
 #' animate_image(ozone)
 display_image <- function(xs, ys, ...) {
-
   render_frame <- function() {
     blank_plot(xlim = c(1, xs), ylim = c(1, xs))
   }
@@ -37,7 +36,6 @@ display_image <- function(xs, ys, ...) {
     render_data = render_data,
     render_target = nul
   )
-
 }
 
 

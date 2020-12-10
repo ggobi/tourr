@@ -33,29 +33,29 @@
 #' # or in short
 #' animate(f)
 #' animate(f, max_frames = 30)
-#'
-#' \dontrun{animate(f, max_frames = 10, fps = 1, aps = 0.1)}
+#' \dontrun{
+#' animate(f, max_frames = 10, fps = 1, aps = 0.1)
+#' }
 animate <- function(data, tour_path = grand_tour(), display = display_xy(),
                     start = NULL, aps = 1, fps = 10, max_frames = Inf,
                     rescale = TRUE, sphere = FALSE, ...) {
-
-  if (getOption("tourr.verbose", default = FALSE)) {
-    record <- dplyr::tibble(basis = list(),
-                            index_val = numeric(),
-                            tries = numeric(),
-                            info = character(),
-                            loop = numeric(),
-                            method = character(),
-                            alpha = numeric())
-  }
-
+  record <-
+    dplyr::tibble(
+      basis = list(),
+      index_val = numeric(),
+      info = character(),
+      method = character(),
+      alpha = numeric(),
+      tries = numeric(),
+      loop = numeric()
+    )
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
     data <- as.matrix(data)
   }
 
   if (rescale) data <- rescale(data)
-  if (sphere) data  <- sphere_data(data)
+  if (sphere) data <- sphere_data(data)
 
   # By default, only take single step if not interactive
   # This is useful for the automated tests run by R CMD check
@@ -84,48 +84,50 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
   b <- 0
   i <- 0
 
-  tryCatch({
-    while(i < max_frames) {
-      i <- i + 1
-      step <- tour(aps / fps, ...)
-      if (step$step == 1) {
-        b <- b + 1
-        if (b > bs) {
-          bases <- c(bases, rep(NA, bs * dim(bases)[1] * dim(bases)[2]))
-          dim(bases) <- c(ncol(data), ncol(start$target), 2 * bs)
-          bs <- 2 * bs
+  tryCatch(
+    {
+      while (i < max_frames) {
+        i <- i + 1
+        step <- tour(aps / fps, ...)
+        if (step$step == 1) {
+          b <- b + 1
+          if (b > bs) {
+            bases <- c(bases, rep(NA, bs * dim(bases)[1] * dim(bases)[2]))
+            dim(bases) <- c(ncol(data), ncol(start$target), 2 * bs)
+            bs <- 2 * bs
+          }
+          bases[, , b] <- step$target
         }
-        bases[, , b] <- step$target
-      }
 
-      dev.hold()
-      on.exit(dev.flush())
-      if (plat$os == "win" || plat$iface == "rstudio") {
-        display$render_frame()
-      } else {
-        display$render_transition()
+        dev.hold()
+        on.exit(dev.flush())
+        if (plat$os == "win" || plat$iface == "rstudio") {
+          display$render_frame()
+        } else {
+          display$render_transition()
+        }
+        display$render_data(data, step$proj, step$target)
+        dev.flush()
+        if (step$step < 0) break # break after rendering final projection
+        Sys.sleep(1 / fps)
       }
-      display$render_data(data, step$proj, step$target)
+    },
+    interrupt = function(cond) {
       dev.flush()
-      if (step$step < 0) break #break after rendering final projection
-      Sys.sleep(1 / fps)
+      return()
     }
-  }, interrupt = function(cond) {
-    dev.flush()
-    return()
-  })
+  )
 
-  if (b != 0){
+  if (b != 0) {
     invisible(bases[, , seq_len(b)])
   }
 
-  if (getOption("tourr.verbose", default = FALSE)) {
-    record <<- dplyr::mutate(record, id = dplyr::row_number())
-  }
+  invisible(record)
+
   # Need a better way to clean up global variables than this
-  #suppressWarnings(rm(tries, cur_index, current, t0, record, envir = globalenv()))
+  # suppressWarnings(rm(tries, cur_index, current, t0, record, envir = globalenv()))
 }
 
 rstudio_gd <- function() identical(names(dev.cur()), "RStudioGD")
 
-#globalVariables("record")
+# globalVariables("record")

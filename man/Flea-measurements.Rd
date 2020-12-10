@@ -28,8 +28,7 @@ Functions in Taxonomy", Biometrics, Dec 1962, pp.455-477.
 \examples{
 
 head(flea)
-animate_xy(flea[,-7])
-animate_xy(flea[,-7],col=flea[,7])
-
+animate_xy(flea[, -7])
+animate_xy(flea[, -7], col = flea[, 7])
 }
 \keyword{datasets}

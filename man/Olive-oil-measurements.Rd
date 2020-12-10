@@ -27,8 +27,7 @@ Forina, University of Genova, Italy for making this dataset available.
 \examples{
 
 head(olive)
-animate_xy(olive[,c(7,9,10)])
-animate_xy(olive[,c(7,9,10)],col=olive[,1])
-
+animate_xy(olive[, c(7, 9, 10)])
+animate_xy(olive[, c(7, 9, 10)], col = olive[, 1])
 }
 \keyword{datasets}

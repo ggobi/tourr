@@ -32,7 +32,7 @@
 #' animate_xy(flea[, 1:6], guided_tour(holes()), sphere = TRUE)
 #' animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better_random), sphere = TRUE)
 #' animate_dist(flea[, 1:6], guided_tour(holes(), 1), sphere = TRUE)
-#' animate_xy(flea[, 1:6], guided_tour(lda_pp(flea[,7])), sphere = TRUE, col=flea$species)
+#' animate_xy(flea[, 1:6], guided_tour(lda_pp(flea[, 7])), sphere = TRUE, col = flea$species)
 #'
 #' # save_history is particularly useful in conjunction with the
 #' # guided tour as it allows us to look at the tour path in many different
@@ -41,77 +41,79 @@
 #' tries <- replicate(5, save_history(f, guided_tour(holes())), simplify = FALSE)
 guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
                         max.i = Inf, search_f = search_geodesic, n_sample = 5, ...) {
-
-  generator <- function(current, data, ...) {
+  generator <- function(current, data, tries, ...) {
     index <- function(proj) {
-
       index_f(as.matrix(data) %*% proj)
     }
 
-    valid_fun <- c("search_geodesic", "search_better", "search_better_random",
-                   "search_polish", "search_posse")
-    method <- valid_fun[vapply(valid_fun, function(x) { identical(get(x), search_f)}, logical(1))]
+    valid_fun <- c(
+      "search_geodesic", "search_better", "search_better_random",
+      "search_polish", "search_posse"
+    )
+    method <- valid_fun[vapply(valid_fun, function(x) {
+      identical(get(x), search_f)
+    }, logical(1))]
 
-    if (is.null(current)){
+    if (is.null(current)) {
       current <- basis_random(ncol(data), d)
 
       cur_index <- index(current)
 
-      if (getOption("tourr.verbose", default = FALSE)) {
-        record <<- dplyr::add_row(record,
-                                  basis = list(current),
-                                  index_val = cur_index,
-                                  tries = tries,
-                                  info = "new_basis",
-                                  loop = 1,
-                                  method = method,
-                                  alpha = formals(guided_tour)$alpha)
-      }
+      rcd_env <- parent.frame(n = 3)
+      rcd_env[["record"]] <- dplyr::add_row(
+        rcd_env[["record"]],
+        basis = list(current),
+        index_val = cur_index,
+        info = "new_basis",
+        method = method,
+        alpha = formals(guided_tour)$alpha,
+        tries = 1,
+        loop = 1
+      )
 
       return(current)
     }
 
     cur_index <- index(current)
 
-    if (cur_index > max.i){
+    if (cur_index > max.i) {
       cat("Found index ", cur_index, ", larger than selected maximum ", max.i, ". Stopping search.\n",
-          sep="")
+        sep = ""
+      )
       cat("Final projection: \n")
-      if (ncol(current)==1) {
-        for (i in 1:length(current))
-          cat(sprintf("%.3f",current[i])," ")
+      if (ncol(current) == 1) {
+        for (i in 1:length(current)) {
+          cat(sprintf("%.3f", current[i]), " ")
+        }
         cat("\n")
       }
       else {
         for (i in 1:nrow(current)) {
-          for (j in 1:ncol(current))
-            cat(sprintf("%.3f",current[i,j])," ")
+          for (j in 1:ncol(current)) {
+            cat(sprintf("%.3f", current[i, j]), " ")
+          }
           cat("\n")
         }
       }
       return(NULL)
     }
 
+    # current, alpha = 1, index, max.tries = 5, n = 5, delta = 0.01, cur_index = NA, ..
+    basis <- search_f(current, alpha, index, tries, max.tries, cur_index = cur_index, frozen = frozen, n_sample = n_sample, ...)
 
-    #current, alpha = 1, index, max.tries = 5, n = 5, delta = 0.01, cur_index = NA, ..
-    basis <- search_f(current, alpha, index, max.tries, cur_index=cur_index,frozen = frozen, n_sample = n_sample, ...)
-
-
-    if (method == "search_posse"){
-      if(!is.null(basis$h)){
-        if(basis$h > 30){
+    if (method == "search_posse") {
+      if (!is.null(basis$h)) {
+        if (basis$h > 30) {
           alpha <<- alpha * cooling
         }
       }
-    }else if(method == "search_polish"){
+    } else {
       alpha <<- alpha * cooling
-    }else{
-      alpha <<- basis$alpha
     }
 
-    list(target = basis$target, arg = names(formals(search_f)))
+    list(target = basis$target, index = index)
   }
 
   new_geodesic_path("guided", generator)
 }
-#globalVariables(c("cur_index", "index"))
+# globalVariables(c("cur_index", "index"))

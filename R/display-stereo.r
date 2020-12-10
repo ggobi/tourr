@@ -9,7 +9,7 @@ anaglyph <- function(d3, blue, red, cex = 1) {
   d2 <- project3d(d3)
 
   with(d2, points(right, y, col = blue, pch = 20, cex = cex))
-  with(d2, points(left , y, col = red , pch = 20, cex = cex))
+  with(d2, points(left, y, col = red, pch = 20, cex = cex))
 }
 
 #' Stereographic projection
@@ -31,7 +31,7 @@ project3d <- function(d3, length = par("din")[1] * 25.4, z0 = 300, d = 30) {
   d2 <- data.frame(
     left =  (z0 * x - z * d) / (z0 - z),
     right = (z0 * x + z * d) / (z0 - z),
-    y =     (z0 * y)         / (z0 - z)
+    y =     (z0 * y) / (z0 - z)
   ) / length * 0.5
 }
 
@@ -49,11 +49,9 @@ project3d <- function(d3, length = par("din")[1] * 25.4, z0 = 300, d = 30) {
 #' @export
 #' @examples
 #' animate_stereo(flea[, 1:6])
-display_stereo <- function(blue, red, cex = 1, ...)
-{
-
+display_stereo <- function(blue, red, cex = 1, ...) {
   labels <- NULL
-  init <- function(data,...) {
+  init <- function(data, ...) {
     labels <<- abbreviate(colnames(data), 2)
   }
   render_frame <- function() {
@@ -69,10 +67,10 @@ display_stereo <- function(blue, red, cex = 1, ...)
 
     axes <- project3d(proj)
     with(axes, {
-      segments(0, 0, right, y, col=blue)
-      segments(0, 0, left, y, col=red)
-      text(right, y, col=blue, label = labels)
-      text(left, y, col=red, label = labels)
+      segments(0, 0, right, y, col = blue)
+      segments(0, 0, left, y, col = red)
+      text(right, y, col = blue, label = labels)
+      text(left, y, col = red, label = labels)
     })
   }
 
@@ -92,11 +90,9 @@ display_stereo <- function(blue, red, cex = 1, ...)
 #' @inheritParams animate
 #' @export
 animate_stereo <- function(data, tour_path = grand_tour(3), blue = rgb(0, 0.91, 0.89), red = rgb(0.98, 0.052, 0), ...) {
-
   animate(
     data = data, tour_path = tour_path,
     display = display_stereo(blue, red, ...),
     ...
   )
 }
-
