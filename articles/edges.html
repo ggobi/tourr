@@ -139,19 +139,19 @@
 <span class="co"># call grand tour with the scatterplot (xy) display, turning off axes</span>
 <span class="fu"><a href="../reference/display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">cube</span><span class="op">$</span><span class="va">points</span>, edges <span class="op">=</span> <span class="va">cube</span><span class="op">$</span><span class="va">edges</span>, axes <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span>
 <span class="co">#&gt; target_dist - cur_dist: 0 </span>
-<span class="co">#&gt; generation:  dist =   0.9351231</span>
+<span class="co">#&gt; generation:  dist =   0.8574543</span>
 <span class="co">#&gt; Using half_range 0.87</span></code></pre></div>
 <p><img src="edges_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
-<pre><code>#&gt; target_dist - cur_dist: 0.9351231</code></pre>
+<pre><code>#&gt; target_dist - cur_dist: 0.8574543</code></pre>
 <p>We can use the same functions for higher dimensional cubes as well (but would not print the data).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cube5</span> <span class="op">&lt;-</span> <span class="fu">geozoo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geozoo/man/cube.iterate.html">cube.iterate</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>
 <span class="fu"><a href="../reference/display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">cube5</span><span class="op">$</span><span class="va">points</span>, edges <span class="op">=</span> <span class="va">cube5</span><span class="op">$</span><span class="va">edges</span>, axes <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span>
 <span class="co">#&gt; target_dist - cur_dist: 0 </span>
-<span class="co">#&gt; generation:  dist =   1.581634</span>
+<span class="co">#&gt; generation:  dist =   1.428199</span>
 <span class="co">#&gt; Using half_range 1.1</span></code></pre></div>
 <p><img src="edges_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
-<pre><code>#&gt; target_dist - cur_dist: 1.581634</code></pre>
+<pre><code>#&gt; target_dist - cur_dist: 1.428199</code></pre>
 <p>It can often be useful to connect points with edges, for example sequential points in a time series, or points that are connected by a model. As a simple example we can connect centroids found when clustering the flea dataset:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># get centroids of 3 clusters of the flea data</span>
@@ -162,10 +162,10 @@
 <span class="fu"><a href="../reference/display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea_aug</span>, edges <span class="op">=</span> <span class="va">flea_edges</span><span class="op">)</span>
 <span class="co">#&gt; Converting input data to the required matrix format.</span>
 <span class="co">#&gt; target_dist - cur_dist: 0 </span>
-<span class="co">#&gt; generation:  dist =   1.934984</span>
+<span class="co">#&gt; generation:  dist =   1.647648</span>
 <span class="co">#&gt; Using half_range 0.98</span></code></pre></div>
 <p><img src="edges_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
-<pre><code>#&gt; target_dist - cur_dist: 1.934984</code></pre>
+<pre><code>#&gt; target_dist - cur_dist: 1.647648</code></pre>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

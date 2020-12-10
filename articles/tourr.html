@@ -117,10 +117,10 @@
 <span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span>
 <span class="co">#&gt; Converting input data to the required matrix format.</span>
 <span class="co">#&gt; target_dist - cur_dist: 0 </span>
-<span class="co">#&gt; generation:  dist =   1.442852</span>
+<span class="co">#&gt; generation:  dist =   1.430731</span>
 <span class="co">#&gt; Using half_range 0.98</span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
-<pre><code>#&gt; target_dist - cur_dist: 1.442852</code></pre>
+<pre><code>#&gt; target_dist - cur_dist: 1.430731</code></pre>
 <p>Here we only see the first frame that is generated on the tour path, but if you call <code>animate</code> in your console you will launch a tour animation that you can view in your graphics window.</p>
 <p>We could have also launched the same tour by specifying the default selection explicitly</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -130,10 +130,10 @@
         <span class="op">)</span>
 <span class="co">#&gt; Converting input data to the required matrix format.</span>
 <span class="co">#&gt; target_dist - cur_dist: 0 </span>
-<span class="co">#&gt; generation:  dist =   1.758623</span>
+<span class="co">#&gt; generation:  dist =   1.622966</span>
 <span class="co">#&gt; Using half_range 0.98</span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
-<pre><code>#&gt; target_dist - cur_dist: 1.758623</code></pre>
+<pre><code>#&gt; target_dist - cur_dist: 1.622966</code></pre>
 <p>The most common application is to use a grand tour, which means that the projections (or bases) are randomly selected and give a global overview of the distribution. The default display is a two-dimensional scatterplot display.</p>
 </div>
 <div id="tour-types" class="section level2">
@@ -154,11 +154,11 @@
         display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Converting input data to the required matrix format.</span>
 <span class="co">#&gt; target_dist - cur_dist: 0 </span>
-<span class="co">#&gt; Value  0.518   579.9 % better  - NEW BASIS</span>
-<span class="co">#&gt; generation:  dist =   1.038949</span>
+<span class="co">#&gt; Value  0.533   133.3 % better  - NEW BASIS</span>
+<span class="co">#&gt; generation:  dist =   1.045073</span>
 <span class="co">#&gt; Using half_range 0.98</span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
-<pre><code>#&gt; target_dist - cur_dist: 1.038949</code></pre>
+<pre><code>#&gt; target_dist - cur_dist: 1.045073</code></pre>
 <p>When running the full guided tour for this example, the final view shows three clusters that correspond to the three species in the dataset. By mapping the species to color we can see how the groups get teased apart in the guided tour.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">f</span>,
@@ -166,11 +166,11 @@
         display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Converting input data to the required matrix format.</span>
 <span class="co">#&gt; target_dist - cur_dist: 0 </span>
-<span class="co">#&gt; Value  0.820   21.0 % better  - NEW BASIS</span>
-<span class="co">#&gt; generation:  dist =   0.81861</span>
+<span class="co">#&gt; Value  0.717   44.7 % better  - NEW BASIS</span>
+<span class="co">#&gt; generation:  dist =   1.032344</span>
 <span class="co">#&gt; Using half_range 0.98</span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
-<pre><code>#&gt; target_dist - cur_dist: 0.81861</code></pre>
+<pre><code>#&gt; target_dist - cur_dist: 1.032344</code></pre>
 <p>Alternatively, a colour vector can be created manually and passed into the guided tour.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># defining the color palette</span>
@@ -184,11 +184,11 @@
         display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">flea_col</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Converting input data to the required matrix format.</span>
 <span class="co">#&gt; target_dist - cur_dist: 0 </span>
-<span class="co">#&gt; Value  0.656   84.9 % better  - NEW BASIS</span>
-<span class="co">#&gt; generation:  dist =   1.044657</span>
+<span class="co">#&gt; Value  0.747   54.2 % better  - NEW BASIS</span>
+<span class="co">#&gt; generation:  dist =   1.00915</span>
 <span class="co">#&gt; Using half_range 0.98</span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
-<pre><code>#&gt; target_dist - cur_dist: 1.044657</code></pre>
+<pre><code>#&gt; target_dist - cur_dist: 1.00915</code></pre>
 </div>
 <div id="display-types" class="section level2">
 <h2 class="hasAnchor">
@@ -202,19 +202,19 @@
         <span class="op">)</span>
 <span class="co">#&gt; Converting input data to the required matrix format.</span>
 <span class="co">#&gt; target_dist - cur_dist: 0 </span>
-<span class="co">#&gt; generation:  dist =   1.395394</span>
+<span class="co">#&gt; generation:  dist =   1.400245</span>
 <span class="co">#&gt; Using half_range 0.98</span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
-<pre><code>#&gt; target_dist - cur_dist: 1.395394</code></pre>
+<pre><code>#&gt; target_dist - cur_dist: 1.400245</code></pre>
 <p>but there is also a shortcut available</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/display_dist.html">animate_dist</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span>
 <span class="co">#&gt; Converting input data to the required matrix format.</span>
 <span class="co">#&gt; target_dist - cur_dist: 0 </span>
-<span class="co">#&gt; generation:  dist =   0.8781414</span>
+<span class="co">#&gt; generation:  dist =   1.108349</span>
 <span class="co">#&gt; Using half_range 0.98</span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
-<pre><code>#&gt; target_dist - cur_dist: 0.8781414</code></pre>
+<pre><code>#&gt; target_dist - cur_dist: 1.108349</code></pre>
 </div>
 <div id="saving-a-tour" class="section level2">
 <h2 class="hasAnchor">
@@ -226,20 +226,20 @@
 <code class="sourceCode R"><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/save_history.html">save_history</a></span><span class="op">(</span><span class="va">f</span>, max <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
 <span class="co">#&gt; Converting input data to the required matrix format.</span>
 <span class="co">#&gt; target_dist - cur_dist: 0 </span>
-<span class="co">#&gt; generation:  dist =   1.541374 </span>
-<span class="co">#&gt; target_dist - cur_dist: 1.541374 </span>
-<span class="co">#&gt; generation:  dist =   1.461634 </span>
+<span class="co">#&gt; generation:  dist =   1.614572 </span>
+<span class="co">#&gt; target_dist - cur_dist: 1.614572 </span>
+<span class="co">#&gt; generation:  dist =   1.557311 </span>
 <span class="co">#&gt; target_dist - cur_dist: 0 </span>
-<span class="co">#&gt; generation:  dist =   1.658629 </span>
+<span class="co">#&gt; generation:  dist =   1.792101 </span>
 <span class="co">#&gt; target_dist - cur_dist: 0 </span>
-<span class="co">#&gt; generation:  dist =   1.357315</span>
+<span class="co">#&gt; generation:  dist =   1.480052</span>
 <span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">f</span>, <span class="fu"><a href="../reference/planned_tour.html">planned_tour</a></span><span class="op">(</span><span class="va">t1</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Converting input data to the required matrix format.</span>
 <span class="co">#&gt; target_dist - cur_dist: 0 </span>
-<span class="co">#&gt; generation:  dist =   1.658629</span>
+<span class="co">#&gt; generation:  dist =   1.792101</span>
 <span class="co">#&gt; Using half_range 0.98</span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
-<pre><code>#&gt; target_dist - cur_dist: 1.658629</code></pre>
+<pre><code>#&gt; target_dist - cur_dist: 1.792101</code></pre>
 </div>
   </div>
 
