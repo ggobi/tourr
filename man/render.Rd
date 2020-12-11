@@ -44,15 +44,17 @@ e.g. \code{\link{display_xy}}, \code{\link{display_pcp}}}
 Render frames of animation to disk
 }
 \examples{
+\dontrun{
 tmp_path <- tempdir()
-render(flea[, 1:4], grand_tour(), display_xy(), "pdf",
+render(flea[, 1:10], grand_tour(), display_xy(), "pdf",
   frames = 3,
   file.path(tmp_path, "test.pdf")
 )
-render(flea[, 1:4], grand_tour(), display_xy(), "png",
+render(flea[, 1:10], grand_tour(), display_xy(), "png",
   frames = 3,
   file.path(tmp_path, "test-\%03d.png")
 )
+}
 }
 \references{
 Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja

@@ -51,6 +51,7 @@ plot.path_index <- function(x, ...) {
 #' @param index_f index function to apply to each projection
 #' @export
 #' @examples
+#' \dontrun{
 #' holes1d <- guided_tour(holes(), 1)
 #' # Perform guided tour 5 times, saving results
 #' tries <- replicate(5, save_history(flea[, 1:6], holes1d), simplify = FALSE)
@@ -63,6 +64,7 @@ plot.path_index <- function(x, ...) {
 #' if (require(ggplot2)) {
 #'   ggplot(data = paths, aes(x=step, y=value, group = try)) + geom_line()
 #'   ggplot(data = paths, aes(x=step, y=improvement, group = try)) + geom_line()
+#' }
 #' }
 paths_index <- function(bases_list, index_f) {
   indices <- lapply(bases_list, path_index, index_f)

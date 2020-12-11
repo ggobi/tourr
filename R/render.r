@@ -19,15 +19,17 @@
 #'   Projections. Journal of Statistical Software, 40(2), 1-18.
 #'   \url{http://www.jstatsoft.org/v40/i02/}.
 #' @examples
+#' \dontrun{
 #' tmp_path <- tempdir()
-#' render(flea[, 1:4], grand_tour(), display_xy(), "pdf",
+#' render(flea[, 1:10], grand_tour(), display_xy(), "pdf",
 #'   frames = 3,
 #'   file.path(tmp_path, "test.pdf")
 #' )
-#' render(flea[, 1:4], grand_tour(), display_xy(), "png",
+#' render(flea[, 1:10], grand_tour(), display_xy(), "png",
 #'   frames = 3,
 #'   file.path(tmp_path, "test-%03d.png")
 #' )
+#' }
 render <- function(data, tour_path, display, dev, ..., apf = 1 / 10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
@@ -88,12 +90,14 @@ render <- function(data, tour_path, display, dev, ..., apf = 1 / 10, frames = 50
 #' @param start starting projection.  If \code{NULL}, uses path default.
 #'
 #' @examples
+#' \dontrun{
 #' # gifski needs to be installed to render a gif
 #' if (requireNamespace("gifski", quietly = TRUE)) {
 #'   gif_file <- file.path(tempdir(), "test.gif")
-#'   render_gif(flea[, 1:4], grand_tour(), display_xy(), gif_file)
+#'   render_gif(flea[, 1:10], grand_tour(), display_xy(), gif_file)
 #'   utils::browseURL(gif_file)
 #'   unlink(gif_file)
+#' }
 #' }
 #' @export
 render_gif <- function(data, tour_path, display, gif_file = "animation.gif", ..., apf = 1 / 10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {

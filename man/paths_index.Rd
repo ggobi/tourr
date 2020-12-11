@@ -16,6 +16,7 @@ This is a convenience method that returns a data frame summarising the
 index values for multiple tour paths.
 }
 \examples{
+\dontrun{
 holes1d <- guided_tour(holes(), 1)
 # Perform guided tour 5 times, saving results
 tries <- replicate(5, save_history(flea[, 1:6], holes1d), simplify = FALSE)
@@ -28,6 +29,7 @@ head(paths)
 if (require(ggplot2)) {
   ggplot(data = paths, aes(x=step, y=value, group = try)) + geom_line()
   ggplot(data = paths, aes(x=step, y=improvement, group = try)) + geom_line()
+}
 }
 }
 \keyword{internal}

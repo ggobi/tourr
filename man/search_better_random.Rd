@@ -40,8 +40,6 @@ Given an initial \eqn{t0}, the cooling scheme updates temperature at \deqn{T = t
 The candidate basis is sampled via \deqn{B_j = (1 - \alpha) * B_i + \alpha * B} where alpha defines the neighbourhood, \eqn{B_i} is the current basis, B is a randomly generated basis
 The acceptance probability is calculated as \deqn{prob = \exp{-abs(I(B_i) - I(B_j))/ T}}
 For more information, see
-\url{https://sci2s.ugr.es/sites/default/files/files/Teaching/GraduatesCourses/Metaheuristicas/Bibliography/1983-Science-Kirkpatrick-sim_anneal.pdf}
-and
 \url{https://projecteuclid.org/download/pdf_1/euclid.ss/1177011077}
 }
 \examples{
