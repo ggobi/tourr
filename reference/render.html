@@ -211,18 +211,18 @@ e.g. <code><a href='display_xy.html'>display_xy</a></code>, <code><a href='displ
   <a href='http://www.jstatsoft.org/v40/i02/'>http://www.jstatsoft.org/v40/i02/</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>tmp_path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='fu'>render</span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>, <span class='fu'><a href='grand_tour.html'>grand_tour</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'><a href='display_xy.html'>display_xy</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"pdf"</span>,
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>tmp_path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'>render</span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>, <span class='fu'><a href='grand_tour.html'>grand_tour</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'><a href='display_xy.html'>display_xy</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"pdf"</span>,
   frames <span class='op'>=</span> <span class='fl'>3</span>,
   <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>tmp_path</span>, <span class='st'>"test.pdf"</span><span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.431906 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.79</span></div><div class='output co'>#&gt; target_dist - cur_dist: 1.431906 </div><div class='output co'>#&gt; target_dist - cur_dist: 1.331906 </div><div class='output co'>#&gt; target_dist - cur_dist: 1.231906 </div><div class='input'><span class='fu'>render</span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>, <span class='fu'><a href='grand_tour.html'>grand_tour</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'><a href='display_xy.html'>display_xy</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"png"</span>,
+<span class='fu'>render</span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>, <span class='fu'><a href='grand_tour.html'>grand_tour</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'><a href='display_xy.html'>display_xy</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"png"</span>,
   frames <span class='op'>=</span> <span class='fl'>3</span>,
   <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>tmp_path</span>, <span class='st'>"test-%03d.png"</span><span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.319233 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.79</span></div><div class='output co'>#&gt; target_dist - cur_dist: 1.319233 </div><div class='output co'>#&gt; target_dist - cur_dist: 1.219233 </div><div class='output co'>#&gt; target_dist - cur_dist: 1.119233 </div></pre>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

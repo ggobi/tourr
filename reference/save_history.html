@@ -205,41 +205,41 @@ forces new basis generation at each step.</p></td>
 
 <span class='va'>t1</span> <span class='op'>&lt;-</span> <span class='fu'>save_history</span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, max <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.785448 
-#&gt; target_dist - cur_dist: 1.785448 
-#&gt; generation:  dist =   1.385622 
+#&gt; generation:  dist =   1.306751 
+#&gt; target_dist - cur_dist: 1.306751 
+#&gt; generation:  dist =   1.53569 
 #&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.863939 
+#&gt; generation:  dist =   1.913327 
 #&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.636411 </div><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
+#&gt; generation:  dist =   1.350861 </div><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.863939 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='save_history-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 1.863939 </div><div class='input'><span class='co'>## andrews_history(t1)</span>
+#&gt; generation:  dist =   1.913327 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='save_history-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 1.913327 </div><div class='input'><span class='co'>## andrews_history(t1)</span>
 <span class='co'>## andrews_history(interpolate(t1))</span>
 
 <span class='va'>t1</span> <span class='op'>&lt;-</span> <span class='fu'>save_history</span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='grand_tour.html'>grand_tour</a></span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span>, max <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.444086 
-#&gt; target_dist - cur_dist: 1.444086 
-#&gt; generation:  dist =   1.745077 
+#&gt; generation:  dist =   1.506518 
+#&gt; target_dist - cur_dist: 1.506518 
+#&gt; generation:  dist =   2.229876 
 #&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.792154 
+#&gt; generation:  dist =   1.571824 
 #&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.735593 </div><div class='input'><span class='fu'><a href='display_pcp.html'>animate_pcp</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
+#&gt; generation:  dist =   1.600482 </div><div class='input'><span class='fu'><a href='display_pcp.html'>animate_pcp</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.785244 </div><div class='img'><img src='save_history-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 1.785244 </div><div class='input'><span class='fu'><a href='display_scatmat.html'>animate_scatmat</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
+#&gt; generation:  dist =   2.259255 </div><div class='img'><img src='save_history-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 2.259255 </div><div class='input'><span class='fu'><a href='display_scatmat.html'>animate_scatmat</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.785244 </div><div class='img'><img src='save_history-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 1.785244 </div><div class='img'><img src='save_history-4.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; generation:  dist =   2.259255 </div><div class='img'><img src='save_history-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 2.259255 </div><div class='img'><img src='save_history-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='va'>t1</span> <span class='op'>&lt;-</span> <span class='fu'>save_history</span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='grand_tour.html'>grand_tour</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>, max <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.14823 
-#&gt; target_dist - cur_dist: 1.14823 
-#&gt; generation:  dist =   1.412107 
+#&gt; generation:  dist =   1.398101 
+#&gt; target_dist - cur_dist: 1.398101 
+#&gt; generation:  dist =   1.394964 
 #&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.249363 
+#&gt; generation:  dist =   1.124408 
 #&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.112959 </div><div class='input'><span class='fu'><a href='display_dist.html'>animate_dist</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
+#&gt; generation:  dist =   1.304568 </div><div class='input'><span class='fu'><a href='display_dist.html'>animate_dist</a></span><span class='op'>(</span><span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t1</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.249363 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='save_history-5.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 1.249363 </div><div class='input'>
+#&gt; generation:  dist =   1.124408 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='save_history-5.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 1.124408 </div><div class='input'>
 <span class='va'>testdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span> <span class='op'>*</span> <span class='fl'>3</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
 <span class='va'>testdata</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>50</span>, <span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>testdata</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>50</span>, <span class='fl'>1</span><span class='op'>]</span> <span class='op'>+</span> <span class='fl'>10</span>
 <span class='va'>testdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sphere_data.html'>sphere_data</a></span><span class='op'>(</span><span class='va'>testdata</span><span class='op'>)</span>
@@ -247,137 +247,190 @@ forces new basis generation at each step.</p></td>
   max <span class='op'>=</span> <span class='fl'>5</span>, rescale <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span>
 </div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; Value  0.922   14.7 % better  - NEW BASIS
+#&gt; Value  0.812   8.2 % better  - NEW BASIS
 #&gt; generation:  dist =   0.9954297 
 #&gt; target_dist - cur_dist: 0.9954297 
-#&gt; Value  0.918   14.3 % better  - NEW BASIS
-#&gt; generation:  dist =   0.9884409 
+#&gt; Value  0.817   8.8 % better  - NEW BASIS
+#&gt; generation:  dist =   0.9954297 
 #&gt; target_dist - cur_dist: 0 
-#&gt; Value  0.922   0.4 % better  - NEW BASIS
-#&gt; generation:  dist =   0.2375505 
+#&gt; Value  0.894   9.4 % better  - NEW BASIS
+#&gt; generation:  dist =   0.9954297 
 #&gt; target_dist - cur_dist: 0 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
-#&gt; Value  0.922   0.0 % better 
+#&gt; Value  0.912   2.1 % better  - NEW BASIS
+#&gt; generation:  dist =   0.4316077 
+#&gt; target_dist - cur_dist: 0 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
+#&gt; Value  0.912   0.0 % better 
 #&gt; No better bases found after 100 tries.  Giving up.
 #&gt; Final projection: 
-#&gt; 0.166  -0.984  
-#&gt; 0.886  0.179  
-#&gt; 0.432  0.011  </div><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>testdata</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t2</span><span class='op'>)</span><span class='op'>)</span>
+#&gt; -0.586  -0.804  
+#&gt; 0.406  -0.398  
+#&gt; 0.701  -0.442  </div><div class='input'><span class='fu'><a href='display_xy.html'>animate_xy</a></span><span class='op'>(</span><span class='va'>testdata</span>, <span class='fu'><a href='planned_tour.html'>planned_tour</a></span><span class='op'>(</span><span class='va'>t2</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   0.2375505 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.72</span></div><div class='img'><img src='save_history-6.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 0.2375505 </div><div class='input'>
+#&gt; generation:  dist =   0.9954297 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.8</span></div><div class='img'><img src='save_history-6.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 0.9954297 </div><div class='input'>
 <span class='co'># Or you can use saved histories to visualise the path that the tour took.</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='path_index.html'>path_index</a></span><span class='op'>(</span><span class='fu'><a href='interpolate.html'>interpolate</a></span><span class='op'>(</span><span class='va'>t2</span><span class='op'>)</span>, <span class='fu'><a href='holes.html'>holes</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   0.2375505 
-#&gt; target_dist - cur_dist: 0.2375505 
-#&gt; target_dist - cur_dist: 0.1875505 
-#&gt; target_dist - cur_dist: 0.1375505 
-#&gt; target_dist - cur_dist: 0.08755052 
-#&gt; target_dist - cur_dist: 0.03755052 </div><div class='img'><img src='save_history-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='path_curves.html'>path_curves</a></span><span class='op'>(</span><span class='fu'><a href='interpolate.html'>interpolate</a></span><span class='op'>(</span><span class='va'>t2</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+#&gt; generation:  dist =   0.9954297 
+#&gt; target_dist - cur_dist: 0.9954297 
+#&gt; target_dist - cur_dist: 0.9454297 
+#&gt; target_dist - cur_dist: 0.8954297 
+#&gt; target_dist - cur_dist: 0.8454297 
+#&gt; target_dist - cur_dist: 0.7954297 
+#&gt; target_dist - cur_dist: 0.7454297 
+#&gt; target_dist - cur_dist: 0.6954297 
+#&gt; target_dist - cur_dist: 0.6454297 
+#&gt; target_dist - cur_dist: 0.5954297 
+#&gt; target_dist - cur_dist: 0.5454297 
+#&gt; target_dist - cur_dist: 0.4954297 
+#&gt; target_dist - cur_dist: 0.4454297 
+#&gt; target_dist - cur_dist: 0.3954297 
+#&gt; target_dist - cur_dist: 0.3454297 
+#&gt; target_dist - cur_dist: 0.2954297 
+#&gt; target_dist - cur_dist: 0.2454297 
+#&gt; target_dist - cur_dist: 0.1954297 
+#&gt; target_dist - cur_dist: 0.1454297 
+#&gt; target_dist - cur_dist: 0.09542971 
+#&gt; target_dist - cur_dist: 0.04542971 
+#&gt; generation:  dist =   0.4316077 
+#&gt; target_dist - cur_dist: 0.4316077 
+#&gt; target_dist - cur_dist: 0.3816077 
+#&gt; target_dist - cur_dist: 0.3316077 
+#&gt; target_dist - cur_dist: 0.2816077 
+#&gt; target_dist - cur_dist: 0.2316077 
+#&gt; target_dist - cur_dist: 0.1816077 
+#&gt; target_dist - cur_dist: 0.1316077 
+#&gt; target_dist - cur_dist: 0.0816077 
+#&gt; target_dist - cur_dist: 0.0316077 </div><div class='img'><img src='save_history-7.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='path_curves.html'>path_curves</a></span><span class='op'>(</span><span class='fu'><a href='interpolate.html'>interpolate</a></span><span class='op'>(</span><span class='va'>t2</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   0.2375505 
-#&gt; target_dist - cur_dist: 0.2375505 
-#&gt; target_dist - cur_dist: 0.1875505 
-#&gt; target_dist - cur_dist: 0.1375505 
-#&gt; target_dist - cur_dist: 0.08755052 
-#&gt; target_dist - cur_dist: 0.03755052 </div><div class='img'><img src='save_history-8.png' alt='' width='700' height='433' /></div></pre>
+#&gt; generation:  dist =   0.9954297 
+#&gt; target_dist - cur_dist: 0.9954297 
+#&gt; target_dist - cur_dist: 0.9454297 
+#&gt; target_dist - cur_dist: 0.8954297 
+#&gt; target_dist - cur_dist: 0.8454297 
+#&gt; target_dist - cur_dist: 0.7954297 
+#&gt; target_dist - cur_dist: 0.7454297 
+#&gt; target_dist - cur_dist: 0.6954297 
+#&gt; target_dist - cur_dist: 0.6454297 
+#&gt; target_dist - cur_dist: 0.5954297 
+#&gt; target_dist - cur_dist: 0.5454297 
+#&gt; target_dist - cur_dist: 0.4954297 
+#&gt; target_dist - cur_dist: 0.4454297 
+#&gt; target_dist - cur_dist: 0.3954297 
+#&gt; target_dist - cur_dist: 0.3454297 
+#&gt; target_dist - cur_dist: 0.2954297 
+#&gt; target_dist - cur_dist: 0.2454297 
+#&gt; target_dist - cur_dist: 0.1954297 
+#&gt; target_dist - cur_dist: 0.1454297 
+#&gt; target_dist - cur_dist: 0.09542971 
+#&gt; target_dist - cur_dist: 0.04542971 
+#&gt; generation:  dist =   0.4316077 
+#&gt; target_dist - cur_dist: 0.4316077 
+#&gt; target_dist - cur_dist: 0.3816077 
+#&gt; target_dist - cur_dist: 0.3316077 
+#&gt; target_dist - cur_dist: 0.2816077 
+#&gt; target_dist - cur_dist: 0.2316077 
+#&gt; target_dist - cur_dist: 0.1816077 
+#&gt; target_dist - cur_dist: 0.1316077 
+#&gt; target_dist - cur_dist: 0.0816077 
+#&gt; target_dist - cur_dist: 0.0316077 </div><div class='img'><img src='save_history-8.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
