@@ -52,6 +52,6 @@ head(ratcns)
 animate_xy(ratcns[, 1:8], col = ratcns[, 10])
 }
 \references{
-http://www.pnas.org
+https://www.pnas.org
 }
 \keyword{datasets}

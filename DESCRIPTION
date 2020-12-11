@@ -1,12 +1,6 @@
 Package: tourr
 Title: Tour Methods for Multivariate Data Visualisation
 Version: 0.6.0
-Author: Hadley Wickham [aut, ctb], 
-    Di Cook  [aut, cre], 
-    Nick Spyrison [ctb],
-    Ursula Laa [ctb],
-    H. Sherry Zhang [ctb],
-    Stuart Lee [ctb]
 Authors@R: c(
     person("Hadley", "Wickham", email = "h.wickham@gmail.com", role = c("aut", "ctb"), comment = c(ORCID = "0000-0003-4757-117X")),
     person("Di", "Cook", email = "dicook@monash.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-3813-7155")),
@@ -14,7 +8,6 @@ Authors@R: c(
     person("Ursula", "Laa", email = "ursula.laa@boku.ac.at", role = "ctb", comment = c(ORCID = "0000-0002-0249-6439")), 
     person("H. Sherry","Zhang", email = "huizezhangsh@gmail.com", role = "ctb"),
     person("Stuart", "Lee", email = "stuart.lee1@monash.edu", role = "ctb", comment = c(ORCID = "0000-0003-1179-8436")))
-Maintainer: Di Cook <dicook@monash.edu>
 Description: Implements geodesic interpolation and basis
     generation functions that allow you to create new tour
     methods from R.
