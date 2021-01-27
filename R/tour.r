@@ -80,6 +80,20 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
         }
       } else {
         proj[[length(proj) + 1]] <<- geodesic$ingred$interpolate(1.)
+        rcd_env[["record"]] <- dplyr::add_row(
+          rcd_env[["record"]],
+          basis = list(proj[[length(proj)]]),
+          index_val = geodesic$index(proj[[length(proj)]]),
+          info = "interpolation",
+          tries = geodesic$tries,
+          method = dplyr::last(rcd_env[["record"]]$method),
+          loop = step + 1
+        )
+
+        rcd_env[["record"]] <- dplyr::mutate(
+          rcd_env[["record"]],
+          id = dplyr::row_number()
+        )
       }
     }
 
