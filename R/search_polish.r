@@ -25,7 +25,7 @@
 #'   start = best_proj
 #' )
 search_polish <- function(current, alpha = 0.5, index, tries, polish_max_tries = 30,
-                          cur_index = NA, n_sample = 5, polish_cooling = 1, ...) {
+                          cur_index = NA, n_sample = 100, polish_cooling = 1, ...) {
   if (is.na(cur_index)) cur_index <- index(current)
   try <- 1
 

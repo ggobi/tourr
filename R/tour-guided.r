@@ -42,7 +42,7 @@
 #' tries <- replicate(5, save_history(f, guided_tour(holes())), simplify = FALSE)
 #' }
 guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
-                        max.i = Inf, search_f = search_geodesic, n_sample = 5, ...) {
+                        max.i = Inf, search_f = search_geodesic, n_sample = 100, ...) {
   generator <- function(current, data, tries, ...) {
     index <- function(proj) {
       index_f(as.matrix(data) %*% proj)
