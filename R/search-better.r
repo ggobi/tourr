@@ -10,6 +10,12 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
   )
 }
 
+#' check if the current and target bases are of the same orientation
+#' @keywords internal
+opposite_orientation <- function(current, target){
+  if (det(t(current) %*% target) < 0) TRUE  else FALSE
+}
+
 
 #' Search for a better projection near the current projection.
 #'
@@ -59,6 +65,12 @@ search_better <- function(current, alpha = 0.5, index, tries, max.tries = Inf,
 
       nr <- nrow(rcd_env[["record"]])
       rcd_env[["record"]][nr, "info"] <- "new_basis"
+
+      if (opposite_orientation(current, new_basis)) {
+        cat("flip the sign of the target basis due to different orientation \n")
+        new_basis <- -new_basis
+        rcd_env[["record"]][[nr, "basis"]] <- list(new_basis)
+      }
 
       return(list(target = new_basis, alpha = alpha))
     }
@@ -147,6 +159,12 @@ search_better_random <- function(current, alpha = 0.5, index, tries,
 
       nr <- nrow(rcd_env[["record"]])
       rcd_env[["record"]][nr, "info"] <- "new_basis"
+
+      if (opposite_orientation(current, new_basis)) {
+        cat("flip the sign of the target basis due to different orientation \n")
+        new_basis <- -new_basis
+        rcd_env[["record"]][[nr, "basis"]] <- list(new_basis)
+      }
 
       return(list(target = new_basis, alpha = alpha))
     }
