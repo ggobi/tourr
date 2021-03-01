@@ -51,7 +51,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
       ## interrupt
       rcd_env <- parent.frame()
-      if ("new_basis" %in% rcd_env[["record"]]$info & rcd_env[["record"]]$method[2] != "search_geodesic") {
+      if ("new_basis" %in% rcd_env[["record"]]$info & !rcd_env[["record"]]$method[2] %in% c("search_geodesic", "search_polish")) {
         last_two <- tail(dplyr::filter(rcd_env[["record"]], info == "new_basis"), 2)
 
         if (last_two$index_val[1] > last_two$index_val[2]) {
