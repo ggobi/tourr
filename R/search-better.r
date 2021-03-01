@@ -39,8 +39,9 @@ correct_orientation <- function(current, target){
 #' @export
 #' @examples
 #' animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better))
-search_better <- function(current, alpha = 0.5, index, tries, max.tries = Inf,
-                          method = "linear", cur_index = NA, ...) {
+search_better <- function(current, alpha = 0.5, index, tries, max.tries = Inf,...,
+                          method = "linear", cur_index = NA) {
+
   if (is.na(cur_index)) cur_index <- index(current)
 
   if (cur_index == 0) {
