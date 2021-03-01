@@ -8,6 +8,8 @@ grand_tour(d = 2, ...)
 }
 \arguments{
 \item{d}{target dimensionality}
+
+\item{...}{arguments sent to the generator}
 }
 \description{
 This method generates target bases by randomly sampling on

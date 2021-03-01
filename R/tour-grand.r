@@ -8,6 +8,7 @@
 #' \code{\link{save_history}} or \code{\link{render}}.
 #'
 #' @param d target dimensionality
+#' @param ... arguments sent to the generator
 #' @export
 #' @examples
 #' # All animation methods use the grand tour path by default
