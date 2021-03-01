@@ -4,7 +4,7 @@
 \alias{grand_tour}
 \title{A grand tour path.}
 \usage{
-grand_tour(d = 2)
+grand_tour(d = 2, ...)
 }
 \arguments{
 \item{d}{target dimensionality}

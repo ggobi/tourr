@@ -31,9 +31,9 @@ correct_orientation <- function(current, target){
 #' @param index index function
 #' @param tries the counter of the outer loop of the opotimiser
 #' @param max.tries maximum number of iteration before giving up
+#' @param ... other arguments being passed into the \code{search_better()}
 #' @param method whether the nearby bases are found by a linear/ geodesic formulation
 #' @param cur_index the index value of the current basis
-#' @param ... other arguments being passed into the \code{search_better()}
 #' @keywords optimize
 #' @importFrom utils tail globalVariables
 #' @export
