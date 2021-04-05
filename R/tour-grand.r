@@ -8,6 +8,7 @@
 #' \code{\link{save_history}} or \code{\link{render}}.
 #'
 #' @param d target dimensionality
+#' @param ... arguments sent to the generator
 #' @export
 #' @examples
 #' # All animation methods use the grand tour path by default
@@ -28,7 +29,7 @@
 #' # the data argument is just used to determine the correct dimensionality
 #' # of the output matrix
 #' tour2d(NULL, mtcars[, 1:2])
-grand_tour <- function(d = 2) {
+grand_tour <- function(d = 2, ...) {
   generator <- function(current, data, ...) {
     if (is.null(current)) {
       return(basis_init(ncol(data), d))

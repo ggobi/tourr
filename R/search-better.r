@@ -10,6 +10,19 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
   )
 }
 
+#' check if the current and target bases are of the same orientation
+#' @keywords internal
+correct_orientation <- function(current, target){
+
+  for (i in ncol(current)){
+    if (det(t(current[,i]) %*% target[,i]) < 0){
+      target[,i] <- -target[,i]
+    }
+  }
+
+  return(target)
+}
+
 
 #' Search for a better projection near the current projection.
 #'
@@ -18,16 +31,17 @@ basis_nearby <- function(current, alpha = 0.5, method = "linear") {
 #' @param index index function
 #' @param tries the counter of the outer loop of the opotimiser
 #' @param max.tries maximum number of iteration before giving up
+#' @param ... other arguments being passed into the \code{search_better()}
 #' @param method whether the nearby bases are found by a linear/ geodesic formulation
 #' @param cur_index the index value of the current basis
-#' @param ... other arguments being passed into the \code{search_better()}
 #' @keywords optimize
 #' @importFrom utils tail globalVariables
 #' @export
 #' @examples
 #' animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better))
-search_better <- function(current, alpha = 0.5, index, tries, max.tries = Inf,
-                          method = "linear", cur_index = NA, ...) {
+search_better <- function(current, alpha = 0.5, index, tries, max.tries = Inf,...,
+                          method = "linear", cur_index = NA) {
+
   if (is.na(cur_index)) cur_index <- index(current)
 
   if (cur_index == 0) {
@@ -59,6 +73,9 @@ search_better <- function(current, alpha = 0.5, index, tries, max.tries = Inf,
 
       nr <- nrow(rcd_env[["record"]])
       rcd_env[["record"]][nr, "info"] <- "new_basis"
+
+      new_basis <- correct_orientation(current, new_basis)
+      rcd_env[["record"]][[nr, "basis"]] <- list(new_basis)
 
       return(list(target = new_basis, alpha = alpha))
     }
@@ -147,6 +164,9 @@ search_better_random <- function(current, alpha = 0.5, index, tries,
 
       nr <- nrow(rcd_env[["record"]])
       rcd_env[["record"]][nr, "info"] <- "new_basis"
+
+      new_basis <- correct_orientation(current, new_basis)
+      rcd_env[["record"]][[nr, "basis"]] <- list(new_basis)
 
       return(list(target = new_basis, alpha = alpha))
     }

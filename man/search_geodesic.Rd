@@ -10,10 +10,10 @@ search_geodesic(
   index,
   tries,
   max.tries = 5,
+  ...,
   n = 5,
   delta = 0.01,
-  cur_index = NA,
-  ...
+  cur_index = NA
 )
 }
 \arguments{
@@ -27,14 +27,14 @@ search_geodesic(
 
 \item{max.tries}{maximum number of failed attempts before giving up}
 
+\item{...}{other arguments being passed into the \code{search_geodesic()}}
+
 \item{n}{number of random steps to take to find best direction}
 
 \item{delta}{step size for evaluation of best direction}
 
 \item{cur_index}{index value for starting projection, set NA if it needs to
 be calculated}
-
-\item{...}{other arguments being passed into the \code{search_geodesic()}}
 }
 \description{
 This is a novel method for finding more interesting projections for the

@@ -12,7 +12,7 @@ guided_tour(
   max.tries = 25,
   max.i = Inf,
   search_f = search_geodesic,
-  n_sample = 5,
+  n_sample = 100,
   ...
 )
 }

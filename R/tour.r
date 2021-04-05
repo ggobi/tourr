@@ -51,7 +51,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 
       ## interrupt
       rcd_env <- parent.frame()
-      if ("new_basis" %in% rcd_env[["record"]]$info & rcd_env[["record"]]$method[2] != "search_geodesic") {
+      if ("new_basis" %in% rcd_env[["record"]]$info & !rcd_env[["record"]]$method[2] %in% c("search_geodesic", "search_polish")) {
         last_two <- tail(dplyr::filter(rcd_env[["record"]], info == "new_basis"), 2)
 
         if (last_two$index_val[1] > last_two$index_val[2]) {
@@ -80,6 +80,22 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
         }
       } else {
         proj[[length(proj) + 1]] <<- geodesic$ingred$interpolate(1.)
+        if (nrow(rcd_env[["record"]]) != 0){
+          rcd_env[["record"]] <- dplyr::add_row(
+            rcd_env[["record"]],
+            basis = list(proj[[length(proj)]]),
+            index_val = geodesic$index(proj[[length(proj)]]),
+            info = "interpolation",
+            tries = geodesic$tries,
+            method = dplyr::last(rcd_env[["record"]]$method),
+            loop = step + 1
+          )
+
+          rcd_env[["record"]] <- dplyr::mutate(
+            rcd_env[["record"]],
+            id = dplyr::row_number()
+          )
+        }
       }
     }
 

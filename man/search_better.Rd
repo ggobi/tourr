@@ -10,9 +10,9 @@ search_better(
   index,
   tries,
   max.tries = Inf,
+  ...,
   method = "linear",
-  cur_index = NA,
-  ...
+  cur_index = NA
 )
 }
 \arguments{
@@ -26,11 +26,11 @@ search_better(
 
 \item{max.tries}{maximum number of iteration before giving up}
 
+\item{...}{other arguments being passed into the \code{search_better()}}
+
 \item{method}{whether the nearby bases are found by a linear/ geodesic formulation}
 
 \item{cur_index}{the index value of the current basis}
-
-\item{...}{other arguments being passed into the \code{search_better()}}
 }
 \description{
 Search for a better projection near the current projection.
