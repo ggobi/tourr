@@ -227,43 +227,10 @@ non-interactive use.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>f</span> <span class='op'>&lt;-</span> <span class='va'>flea</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span><span class='op'>]</span>
 <span class='fu'>animate</span><span class='op'>(</span><span class='va'>f</span>, <span class='fu'><a href='grand_tour.html'>grand_tour</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fu'><a href='display_xy.html'>display_xy</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.615717 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='animate-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 1.615717 </div><div class='input'><span class='co'># or in short</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='animate-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># or in short</span>
 <span class='fu'>animate</span><span class='op'>(</span><span class='va'>f</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.321158 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='animate-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 1.321158 </div><div class='input'><span class='fu'>animate</span><span class='op'>(</span><span class='va'>f</span>, max_frames <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; target_dist - cur_dist: 0 
-#&gt; generation:  dist =   1.840003 </div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='animate-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; target_dist - cur_dist: 1.840003 
-#&gt; target_dist - cur_dist: 1.740003 
-#&gt; target_dist - cur_dist: 1.640003 
-#&gt; target_dist - cur_dist: 1.540003 
-#&gt; target_dist - cur_dist: 1.440003 
-#&gt; target_dist - cur_dist: 1.340003 
-#&gt; target_dist - cur_dist: 1.240003 
-#&gt; target_dist - cur_dist: 1.140003 
-#&gt; target_dist - cur_dist: 1.040003 
-#&gt; target_dist - cur_dist: 0.9400028 
-#&gt; target_dist - cur_dist: 0.8400028 
-#&gt; target_dist - cur_dist: 0.7400028 
-#&gt; target_dist - cur_dist: 0.6400028 
-#&gt; target_dist - cur_dist: 0.5400028 
-#&gt; target_dist - cur_dist: 0.4400028 
-#&gt; target_dist - cur_dist: 0.3400028 
-#&gt; target_dist - cur_dist: 0.2400028 
-#&gt; target_dist - cur_dist: 0.1400028 
-#&gt; target_dist - cur_dist: 0.04000279 
-#&gt; generation:  dist =   1.654816 
-#&gt; target_dist - cur_dist: 1.654816 
-#&gt; target_dist - cur_dist: 1.554816 
-#&gt; target_dist - cur_dist: 1.454816 
-#&gt; target_dist - cur_dist: 1.354816 
-#&gt; target_dist - cur_dist: 1.254816 
-#&gt; target_dist - cur_dist: 1.154816 
-#&gt; target_dist - cur_dist: 1.054816 
-#&gt; target_dist - cur_dist: 0.9548159 
-#&gt; target_dist - cur_dist: 0.8548159 
-#&gt; target_dist - cur_dist: 0.7548159 
-#&gt; target_dist - cur_dist: 0.6548159 </div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='animate-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>animate</span><span class='op'>(</span><span class='va'>f</span>, max_frames <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Converting input data to the required matrix format.</span></div><div class='output co'>#&gt; <span class='message'>Using half_range 0.98</span></div><div class='img'><img src='animate-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='fu'>animate</span><span class='op'>(</span><span class='va'>f</span>, max_frames <span class='op'>=</span> <span class='fl'>10</span>, fps <span class='op'>=</span> <span class='fl'>1</span>, aps <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
