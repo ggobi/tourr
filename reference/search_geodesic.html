@@ -159,10 +159,10 @@ traveling up to half way around the sphere.</p>
   <span class='va'>index</span>,
   <span class='va'>tries</span>,
   max.tries <span class='op'>=</span> <span class='fl'>5</span>,
+  <span class='va'>...</span>,
   n <span class='op'>=</span> <span class='fl'>5</span>,
   delta <span class='op'>=</span> <span class='fl'>0.01</span>,
-  cur_index <span class='op'>=</span> <span class='cn'>NA</span>,
-  <span class='va'>...</span>
+  cur_index <span class='op'>=</span> <span class='cn'>NA</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -189,6 +189,10 @@ traveling up to half way around the sphere.</p>
       <td><p>maximum number of failed attempts before giving up</p></td>
     </tr>
     <tr>
+      <th>...</th>
+      <td><p>other arguments being passed into the <code>search_geodesic()</code></p></td>
+    </tr>
+    <tr>
       <th>n</th>
       <td><p>number of random steps to take to find best direction</p></td>
     </tr>
@@ -200,10 +204,6 @@ traveling up to half way around the sphere.</p>
       <th>cur_index</th>
       <td><p>index value for starting projection, set NA if it needs to
 be calculated</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>other arguments being passed into the <code>search_geodesic()</code></p></td>
     </tr>
     </table>
 
