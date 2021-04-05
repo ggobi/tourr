@@ -46,7 +46,7 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
         return(NULL)
       }
 
-      cat("generation:  dist =  ", dist, "\n")
+      #cat("generation:  dist =  ", dist, "\n")
     }
     list(ingred = geodesic_path(current, target, frozen, ...), index = gen$index, tries = tries)
   }
