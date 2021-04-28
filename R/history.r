@@ -64,12 +64,13 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
     )
 
   tour <- new_tour(data, tour_path, start, ...)
-  start <- tour(0)$proj
+  start <- tour(0, ...)$proj
 
   projs <- array(NA, c(ncol(data), ncol(start), max_bases + 1))
+  projs[,,1] <- start
   princ_dirs <- projs
 
-  i <- 0
+  i <- 1
   while (i < max_bases) {
     i <- i + 1
     # An infinite step size forces the tour path to generate a new basis
