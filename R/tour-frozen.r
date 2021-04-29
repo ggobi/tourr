@@ -17,31 +17,28 @@
 #' frozen <- matrix(NA, nrow = 4, ncol = 2)
 #' frozen[3, ] <- .5
 #' animate_xy(flea[, 1:4], frozen_tour(2, frozen))
-#' \dontrun{
-#' # Doesn't work - a bug?
+#'
 #' frozen <- matrix(NA, nrow = 4, ncol = 2)
 #' frozen[1, 1] <- 0.5
 #' animate_xy(flea[, 1:4], frozen_tour(2, frozen))
 #'
 #' # Doesn't work - a bug?
 #' frozen <- matrix(NA, nrow = 4, ncol = 2)
-#' frozen[, 1] <- 1 / 2
+#' frozen[1:2, 1] <- 1 / 4
 #' animate_xy(flea[, 1:4], frozen_tour(2, frozen))
 #'
-#' # Doesn't work - a bug?
+#' \dontrun{
+#' # This freezes one entire direction which causes a problem,
+#' # and is caught by error handling.
+#' # If you want to do this it would be best with a dependence
+#' # tour, with one variable set one axis, eg 3rd variable to
+#' # x axis would be indicated from the code below
+#' frozen <- matrix(NA, nrow = 4, ncol = 2)
 #' frozen[3, ] <- c(0, 1)
 #' animate_xy(flea[, 1:4], frozen_tour(2, frozen))
-#'
-#' # Doesn't move, which is correct - no free variables
-#' frozen[4, ] <- .2
-#' animate_xy(flea[, 1:4], frozen_tour(2, frozen))
-#'
-#' # Doesn't work - a bug?
-#' frozen <- matrix(NA, nrow = 4, ncol = 2)
-#' frozen[, 1] <- 1 / 2
-#' animate_xy(flea[, 1:4], frozen_tour(2, frozen))
 #' }
-#' # Two frozen variables in five 5.
+#'
+#' # Two frozen variables in five.
 #' frozen <- matrix(NA, nrow = 5, ncol = 2)
 #' frozen[3, ] <- .5
 #' frozen[4, ] <- c(-.2, .2)
@@ -49,8 +46,21 @@
 frozen_tour <- function(d = 2, frozen) {
   generator <- function(current, data, ...) {
     if (is.null(current)) {
-      return(basis_init(ncol(data), d))
+      # Here is a problem if the frozen part is in the
+      # initialised basis, because it gets zero'd out by freeze.
+      notfrozen <- rep(TRUE, ncol(data))
+      for (i in 1:ncol(data))
+        if (sum(frozen[i,]^2, na.rm=TRUE)>0)
+          notfrozen[i] <- FALSE
+      current <- matrix(0, nrow = ncol(data), ncol = d)
+      for (i in 1:d) {
+        current[c(1:ncol(data))[notfrozen][i],i] <- 1
+      }
+      # This will still throw an error if number of frozen is bigger than d
+
+      return(current)
     }
+
 
     target <- basis_random(ncol(data), d)
     list(target = target)
