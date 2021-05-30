@@ -175,6 +175,13 @@ from generator</p></td>
     <p>a function with single argument, step_size.  This function returns
  a list containing the new projection, the current target and the number
  of steps taken towards the target.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>If you need to define your own <code>new_tour()</code> inside a function, please add the following in the function:</p>
+<p><code>record &lt;- dplyr::tibble(basis = list(),index_val = numeric(), info = character(), method = character(), alpha = numeric(), tries = numeric(), loop = numeric()</code></p>
+<p>The line on itself doesn't do anything other than initialising an empty <code>record</code> object, as what is done in <code><a href='animate.html'>animate()</a></code>,
+but would ensure the <code>record</code> object can always be found in the optimisation recording.</p>
+<p>If you are intended to call <code>new_tour()</code> from the global environment, try <code><a href='save_history.html'>save_history()</a></code> and then animate with a <code><a href='planned_tour.html'>planned_tour()</a></code>. See <code><a href='save_history.html'>save_history</a></code> for examples on this.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='save_history.html'>save_history</a></code>, <code><a href='render.html'>render</a></code> and
