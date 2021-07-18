@@ -43,6 +43,7 @@ search_geodesic <- function(current, alpha = 1, index, tries, max.tries = 5, ...
     new_basis <- tail(peak$basis, 1)
 
     rcd_env <- parent.frame(n = 4)
+    if (is.null(rcd_env[["record"]])) rcd_env <- parent.frame(n = 1)
     rcd_env[["record"]] <- dplyr::bind_rows(
       rcd_env[["record"]],
       direction_search,
