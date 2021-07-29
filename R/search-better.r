@@ -56,6 +56,7 @@ search_better <- function(current, alpha = 0.5, index, tries, max.tries = Inf,..
     new_index <- index(new_basis)
 
     rcd_env <- parent.frame(n = 4)
+    if (is.null(rcd_env[["record"]])) rcd_env <- parent.frame(n = 1)
     rcd_env[["record"]] <- dplyr::add_row(
       rcd_env[["record"]],
       basis = list(new_basis),

@@ -61,16 +61,38 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
 
       cur_index <- index(current)
 
-      rcd_env <- parent.frame(n = 3)
-      rcd_env[["record"]] <- dplyr::add_row(
-        rcd_env[["record"]],
-        basis = list(current),
-        index_val = cur_index,
-        info = "new_basis",
-        method = method,
-        alpha = formals(guided_tour)$alpha,
-        tries = 1,
-        loop = 1
+      tryCatch({
+        rcd_env <- parent.frame(n = 3)
+        rcd_env[["record"]] <- dplyr::add_row(
+          rcd_env[["record"]],
+          basis = list(current),
+          index_val = cur_index,
+          info = "new_basis",
+          method = method,
+          alpha = formals(guided_tour)$alpha,
+          tries = 1,
+          loop = 1
+        )
+      },
+      error = function(e){
+        assign("record",
+               dplyr::tibble(basis = list(),
+                             index_val = numeric(),
+                             info = character(),
+                             method = character(),
+                             alpha = numeric(),
+                             tries = numeric(),
+                             loop = numeric()),
+               envir = parent.frame())
+        rcd_env[["record"]] <- dplyr::tibble(
+          basis = list(current),
+          index_val = cur_index,
+          info = "new_basis",
+          method = method,
+          alpha = formals(guided_tour)$alpha,
+          tries = 1,
+          loop = 1)
+      }
       )
 
       return(current)

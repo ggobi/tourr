@@ -47,6 +47,7 @@ search_polish <- function(current, alpha = 0.5, index, tries, polish_max_tries =
     best_row <- dplyr::mutate(best_row, info = "loop_best", method = "search_polish")
 
     rcd_env <- parent.frame(n = 4)
+    if (is.null(rcd_env[["record"]])) rcd_env <- parent.frame(n = 1)
     rcd_env[["record"]] <- dplyr::bind_rows(rcd_env[["record"]], polish, best_row)
     rcd_env[["record"]] <- dplyr::mutate(
       rcd_env[["record"]],

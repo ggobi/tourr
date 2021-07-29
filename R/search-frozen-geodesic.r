@@ -34,6 +34,7 @@ search_frozen_geodesic <- function(current, index, tries, max.tries = 5, n = 5, 
     new_basis <- tail(line_search$basis, 1)
 
     rcd_env <- parent.frame(n = 4)
+    if (is.null(rcd_env[["record"]])) rcd_env <- parent.frame(n = 1)
     rcd_env[["record"]] <- dplyr::bind_rows(
       rcd_env[["record"]],
       direction_search,
