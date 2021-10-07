@@ -28,13 +28,6 @@ interpolating from basis to basis, and generating new bases when necessary.
 You should not have to call this function.
 }
 \details{
-If you need to define your own \code{new_tour()} inside a function, please add the following in the function:
-
-\code{record <- dplyr::tibble(basis = list(),index_val = numeric(), info = character(), method = character(), alpha = numeric(), tries = numeric(), loop = numeric()}
-
-The line on itself doesn't do anything other than initialising an empty \code{record} object, as what is done in \code{animate()},
-but would ensure the \code{record} object can always be found in the optimisation recording.
-
 If you are intended to call \code{new_tour()} from the global environment, try \code{save_history()} and then animate with a \code{planned_tour()}. See \code{\link[tourr]{save_history}} for examples on this.
 }
 \seealso{

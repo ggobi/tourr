@@ -11,7 +11,7 @@ citEntry(entry = "Article",
   volume       = "40",
   number       = "2",
   pages        = "1--18",
-  url          = "https://www.jstatsoft.org/v40/i02/",
+  url          = "https://doi.org/10.18637/jss.v040.i02",
 
   textVersion  =
   paste("Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja (2011).",

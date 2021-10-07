@@ -14,10 +14,6 @@
 #' @param start starting projection.  If \code{NULL}, uses path default.
 #' @keywords hplot
 #' @export
-#' @references Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja
-#'   (2011). tourr: An R Package for Exploring Multivariate Data with
-#'   Projections. Journal of Statistical Software, 40(2), 1-18.
-#'   \url{https://www.jstatsoft.org/v40/i02/}.
 #' @examples
 #' \dontrun{
 #' tmp_path <- tempdir()
