@@ -13,7 +13,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   cache = FALSE,
-  eval = TRUE
+  eval = TRUE,
+  rmarkdown.html_vignette.check_title = FALSE
 )
 ```
 

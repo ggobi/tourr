@@ -35,7 +35,7 @@ reference:
   contents:
   - animate
   - starts_with("display")
-  - starts_With("animate")
+  - starts_with("animate")
 - title: Indices
   desc: >
     Index functions in guided tour
@@ -75,3 +75,4 @@ reference:
   - save_history
   - areColors
   - mapColors
+  - sphere_data

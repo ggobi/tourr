@@ -3,7 +3,7 @@ title: "Edges in scatterplot displays"
 author: "Ursula Laa"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{edges}
+  %\VignetteIndexEntry{Edges in scatterplot displays}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,7 +12,8 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   eval = TRUE,
-  comment = "#>"
+  comment = "#>",
+  rmarkdown.html_vignette.check_title = FALSE
 )
 ```
 
