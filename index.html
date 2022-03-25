@@ -28,6 +28,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -40,18 +42,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="articles/tourr.html">Get started</a>
 </li>
@@ -59,7 +55,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -76,7 +72,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ggobi/tourr/">
+  <a href="https://github.com/ggobi/tourr/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -94,31 +90,30 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="tourr-tour-methods-for-multivariate-data-visualisation" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#tourr-tour-methods-for-multivariate-data-visualisation" class="anchor"></a>tourr: tour methods for multivariate data visualisation</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="tourr-tour-methods-for-multivariate-data-visualisation">tourr: tour methods for multivariate data visualisation<a class="anchor" aria-label="anchor" href="#tourr-tour-methods-for-multivariate-data-visualisation"></a>
+</h1></div>
 <p>Hadley Wickham, Di Cook, Nick Spyrison, Ursula Laa, H. Sherry Zhang, Stuart Lee November 20, 2020</p>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 </div>
-<div id="tourr-" class="section level1">
-<h1 class="hasAnchor">
-<a href="#tourr-" class="anchor"></a>tourr <img src="reference/figures/logo.png" align="right" width="150">
+<div class="section level1">
+<h1 id="tourr-">tourr <img src="reference/figures/logo.png" align="right" width="150"><a class="anchor" aria-label="anchor" href="#tourr-"></a>
 </h1>
 <p>The goal of tourr is to explore shapes of high-dimensional data. This code also allows new tour methods to be created that utilise geodesic interpolation and basis generation functions.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of tourr from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the released version of tourr from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tourr"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tourr"</span><span class="op">)</span></code></pre></div>
 <p>You can install the development version of nullabor from github with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ggobi/tourr"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
 <p>To run a tour in R, use one of the animate functions. This code will show a 2D tour displayed as a scatterplot on a 6D data set with three labelled classes.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>,<span class="op">-</span><span class="fl">7</span><span class="op">]</span>, col<span class="op">=</span><span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span></code></pre></div>
@@ -129,50 +124,54 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=tourr">https://​cloud.r-project.org/​package=tourr</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/ggobi/tourr/">https://​github.com/​ggobi/​tourr/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/ggobi/tourr/issues">https://​github.com/​ggobi/​tourr/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=tourr" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/ggobi/tourr/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/ggobi/tourr/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
 </li>
 </ul>
 </div>
+
+
 <div class="citation">
-<h2>Citation</h2>
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing tourr</a></li>
+<li><a href="authors.html#citation">Citing tourr</a></li>
 </ul>
 </div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>
-<a href="http://hadley.nz">Hadley Wickham</a> <br><small class="roles"> Author, contributor </small> <a href="https://orcid.org/0000-0003-4757-117X" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Di Cook <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-3813-7155" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">All authors...</a></li>
+<li>Hadley Wickham <br><small class="roles"> Author, contributor </small> <a href="https://orcid.org/0000-0003-4757-117X" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Di Cook <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-3813-7155" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
+
+
 
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="http://hadley.nz">Hadley Wickham</a>, Di Cook.</p>
+  <p></p>
+<p>Developed by Hadley Wickham, Di Cook.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -180,6 +179,8 @@
 
   
 
+
+  
 
   </body>
 </html>
