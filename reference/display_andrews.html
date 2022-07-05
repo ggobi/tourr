@@ -68,21 +68,28 @@ Andrew's curves, see <code><a href="andrews.html">andrews</a></code></p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">display_andrews</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"black"</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">animate_andrews</span><span class="op">(</span><span class="va">data</span>, tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"black"</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">display_andrews</span><span class="op">(</span>col <span class="op">=</span> <span class="st">"black"</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">animate_andrews</span><span class="op">(</span><span class="va">data</span>, tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"black"</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>col</dt>
 <dd><p>color to be plotted.  Defaults to "black"</p></dd>
+
+
 <dt>...</dt>
 <dd><p>other arguments passed on to <code><a href="animate.html">animate</a></code></p></dd>
+
+
 <dt>data</dt>
 <dd><p>matrix, or data frame containing numeric columns</p></dd>
+
+
 <dt>tour_path</dt>
 <dd><p>tour path generator, defaults to 2d grand tour</p></dd>
+
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
@@ -91,26 +98,26 @@ Andrew's curves, see <code><a href="andrews.html">andrews</a></code></p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">animate_andrews</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">animate_andrews</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-plt img"><img src="display_andrews-1.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="display_andrews-2.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="display_andrews-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu">animate_andrews</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span>d <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">animate_andrews</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span>d <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-plt img"><img src="display_andrews-4.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="display_andrews-5.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="display_andrews-6.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu">animate_andrews</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span>d <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">animate_andrews</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span>d <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-plt img"><img src="display_andrews-7.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="display_andrews-8.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="display_andrews-9.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># It's easy to experiment with different tour paths:</span></span>
-<span class="r-in"><span class="fu">animate_andrews</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="cmass.html">cmass</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># It's easy to experiment with different tour paths:</span></span></span>
+<span class="r-in"><span><span class="fu">animate_andrews</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="cmass.html">cmass</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.769   53.7 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.861   37.3 % better  - NEW BASIS</span>
 <span class="r-plt img"><img src="display_andrews-10.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="display_andrews-11.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="display_andrews-12.png" alt="" width="700" height="433"></span>
@@ -128,7 +135,7 @@ Andrew's curves, see <code><a href="andrews.html">andrews</a></code></p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

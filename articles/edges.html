@@ -100,57 +100,57 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ggobi/tourr" class="external-link">tourr</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ggobi/tourr" class="external-link">tourr</a></span><span class="op">)</span></span></code></pre></div>
 <p>Showing connections between points can be useful in different applications, including geometric shapes, indicating patterns in sequential series or showing connections suggested by a model (for example in clustering). These edges can be added in the 2D scatterplot display (<code>display_xy</code>) through the <code>edges</code> argument, and should be specified as a two column integer matrix of the indices of ends of lines.</p>
 <p>For example, we can generate cube vertices and edges using the <code>geozoo</code> package. The information stored as <code>points</code> constitutes the input data, and <code>edges</code> can directly be passed into the display.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># generate 3D cube vertices</span>
-<span class="va">cube</span> <span class="op">&lt;-</span> <span class="fu">geozoo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geozoo/man/cube.iterate.html" class="external-link">cube.iterate</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
-<span class="co"># data is stored points, edges contains the needed two column matrix for connecting points</span>
-<span class="va">cube</span><span class="op">$</span><span class="va">points</span>
-<span class="co">#&gt;      Var1 Var2 Var3</span>
-<span class="co">#&gt; [1,]    0    0    0</span>
-<span class="co">#&gt; [2,]    1    0    0</span>
-<span class="co">#&gt; [3,]    0    1    0</span>
-<span class="co">#&gt; [4,]    1    1    0</span>
-<span class="co">#&gt; [5,]    0    0    1</span>
-<span class="co">#&gt; [6,]    1    0    1</span>
-<span class="co">#&gt; [7,]    0    1    1</span>
-<span class="co">#&gt; [8,]    1    1    1</span>
-<span class="va">cube</span><span class="op">$</span><span class="va">edges</span>
-<span class="co">#&gt;    from to</span>
-<span class="co">#&gt; 1     1  2</span>
-<span class="co">#&gt; 2     1  3</span>
-<span class="co">#&gt; 3     1  5</span>
-<span class="co">#&gt; 4     2  4</span>
-<span class="co">#&gt; 5     2  6</span>
-<span class="co">#&gt; 6     3  4</span>
-<span class="co">#&gt; 7     3  7</span>
-<span class="co">#&gt; 8     4  8</span>
-<span class="co">#&gt; 9     5  6</span>
-<span class="co">#&gt; 10    5  7</span>
-<span class="co">#&gt; 11    6  8</span>
-<span class="co">#&gt; 12    7  8</span>
-<span class="co"># call grand tour with the scatterplot (xy) display, turning off axes</span>
-<span class="fu"><a href="../reference/display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">cube</span><span class="op">$</span><span class="va">points</span>, edges <span class="op">=</span> <span class="va">cube</span><span class="op">$</span><span class="va">edges</span>, axes <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span>
-<span class="co">#&gt; Using half_range 0.87</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># generate 3D cube vertices</span></span>
+<span><span class="va">cube</span> <span class="op">&lt;-</span> <span class="fu">geozoo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geozoo/man/cube.iterate.html" class="external-link">cube.iterate</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co"># data is stored points, edges contains the needed two column matrix for connecting points</span></span>
+<span><span class="va">cube</span><span class="op">$</span><span class="va">points</span></span>
+<span><span class="co">#&gt;      Var1 Var2 Var3</span></span>
+<span><span class="co">#&gt; [1,]    0    0    0</span></span>
+<span><span class="co">#&gt; [2,]    1    0    0</span></span>
+<span><span class="co">#&gt; [3,]    0    1    0</span></span>
+<span><span class="co">#&gt; [4,]    1    1    0</span></span>
+<span><span class="co">#&gt; [5,]    0    0    1</span></span>
+<span><span class="co">#&gt; [6,]    1    0    1</span></span>
+<span><span class="co">#&gt; [7,]    0    1    1</span></span>
+<span><span class="co">#&gt; [8,]    1    1    1</span></span>
+<span><span class="va">cube</span><span class="op">$</span><span class="va">edges</span></span>
+<span><span class="co">#&gt;    from to</span></span>
+<span><span class="co">#&gt; 1     1  2</span></span>
+<span><span class="co">#&gt; 2     1  3</span></span>
+<span><span class="co">#&gt; 3     1  5</span></span>
+<span><span class="co">#&gt; 4     2  4</span></span>
+<span><span class="co">#&gt; 5     2  6</span></span>
+<span><span class="co">#&gt; 6     3  4</span></span>
+<span><span class="co">#&gt; 7     3  7</span></span>
+<span><span class="co">#&gt; 8     4  8</span></span>
+<span><span class="co">#&gt; 9     5  6</span></span>
+<span><span class="co">#&gt; 10    5  7</span></span>
+<span><span class="co">#&gt; 11    6  8</span></span>
+<span><span class="co">#&gt; 12    7  8</span></span>
+<span><span class="co"># call grand tour with the scatterplot (xy) display, turning off axes</span></span>
+<span><span class="fu"><a href="../reference/display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">cube</span><span class="op">$</span><span class="va">points</span>, edges <span class="op">=</span> <span class="va">cube</span><span class="op">$</span><span class="va">edges</span>, axes <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Using half_range 0.87</span></span></code></pre></div>
 <p><img src="edges_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <p>We can use the same functions for higher dimensional cubes as well (but would not print the data).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cube5</span> <span class="op">&lt;-</span> <span class="fu">geozoo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geozoo/man/cube.iterate.html" class="external-link">cube.iterate</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>
-<span class="fu"><a href="../reference/display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">cube5</span><span class="op">$</span><span class="va">points</span>, edges <span class="op">=</span> <span class="va">cube5</span><span class="op">$</span><span class="va">edges</span>, axes <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span>
-<span class="co">#&gt; Using half_range 1.1</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">cube5</span> <span class="op">&lt;-</span> <span class="fu">geozoo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geozoo/man/cube.iterate.html" class="external-link">cube.iterate</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">cube5</span><span class="op">$</span><span class="va">points</span>, edges <span class="op">=</span> <span class="va">cube5</span><span class="op">$</span><span class="va">edges</span>, axes <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Using half_range 1.1</span></span></code></pre></div>
 <p><img src="edges_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <p>It can often be useful to connect points with edges, for example sequential points in a time series, or points that are connected by a model. As a simple example we can connect centroids found when clustering the flea dataset:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># get centroids of 3 clusters of the flea data</span>
-<span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">flea</span><span class="op">)</span>
-<span class="va">flea_centroids</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html" class="external-link">kmeans</a></span><span class="op">(</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>,<span class="op">-</span><span class="fl">7</span><span class="op">]</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span><span class="op">$</span><span class="va">centers</span>
-<span class="va">flea_aug</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>,<span class="op">-</span><span class="fl">7</span><span class="op">]</span>, <span class="va">flea_centroids</span><span class="op">)</span>
-<span class="va">flea_edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">n</span><span class="op">+</span><span class="fl">1</span>, <span class="va">n</span><span class="op">+</span><span class="fl">2</span>, <span class="va">n</span><span class="op">+</span><span class="fl">1</span>, <span class="va">n</span><span class="op">+</span><span class="fl">3</span>, <span class="va">n</span><span class="op">+</span><span class="fl">2</span>, <span class="va">n</span><span class="op">+</span><span class="fl">3</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="../reference/display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea_aug</span>, edges <span class="op">=</span> <span class="va">flea_edges</span><span class="op">)</span>
-<span class="co">#&gt; Converting input data to the required matrix format.</span>
-<span class="co">#&gt; Using half_range 0.98</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># get centroids of 3 clusters of the flea data</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">flea</span><span class="op">)</span></span>
+<span><span class="va">flea_centroids</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html" class="external-link">kmeans</a></span><span class="op">(</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>,<span class="op">-</span><span class="fl">7</span><span class="op">]</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span><span class="op">$</span><span class="va">centers</span></span>
+<span><span class="va">flea_aug</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>,<span class="op">-</span><span class="fl">7</span><span class="op">]</span>, <span class="va">flea_centroids</span><span class="op">)</span></span>
+<span><span class="va">flea_edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">n</span><span class="op">+</span><span class="fl">1</span>, <span class="va">n</span><span class="op">+</span><span class="fl">2</span>, <span class="va">n</span><span class="op">+</span><span class="fl">1</span>, <span class="va">n</span><span class="op">+</span><span class="fl">3</span>, <span class="va">n</span><span class="op">+</span><span class="fl">2</span>, <span class="va">n</span><span class="op">+</span><span class="fl">3</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea_aug</span>, edges <span class="op">=</span> <span class="va">flea_edges</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
+<span><span class="co">#&gt; Using half_range 0.98</span></span></code></pre></div>
 <p><img src="edges_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
   </div>
 
@@ -169,7 +169,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>

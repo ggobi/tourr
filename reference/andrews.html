@@ -70,28 +70,31 @@ its path from -pi to pi.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">andrews</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">andrews</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>input a new parameter</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a function with single argument, theta</p>
+    
+
+<p>a function with single argument, theta</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">andrews</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">a</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu">andrews</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">a</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3535534</span>
-<span class="r-in"><span class="fu">a</span><span class="op">(</span><span class="op">-</span><span class="va">pi</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">a</span><span class="op">(</span><span class="op">-</span><span class="va">pi</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3535534</span>
-<span class="r-in"><span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="va">pi</span>, <span class="va">pi</span>, length <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">a</span><span class="op">(</span><span class="va">grid</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="va">pi</span>, <span class="va">pi</span>, length <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">a</span><span class="op">(</span><span class="va">grid</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  0.35355339  0.22567623  0.09989881 -0.02171361 -0.13716416 -0.24455714</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -0.34212916 -0.42827809 -0.50158937 -0.56085923 -0.60511446 -0.63362839</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] -0.64593283 -0.64182572 -0.62137452 -0.58491503 -0.53304592 -0.46661886</span>
@@ -101,10 +104,10 @@ its path from -pi to pi.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [37]  1.34893250  1.35303961  1.34073517  1.31222124  1.26796601  1.20869615</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [43]  1.13538487  1.04923594  0.95166392  0.84427094  0.72882040  0.60720797</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [49]  0.48143055  0.35355339</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">grid</span>, <span class="fu">andrews</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">(</span><span class="va">grid</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">grid</span>, <span class="fu">andrews</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">(</span><span class="va">grid</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="andrews-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">grid</span>, <span class="fu">andrews</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="va">grid</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">grid</span>, <span class="fu">andrews</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="va">grid</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="andrews-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -120,7 +123,7 @@ its path from -pi to pi.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

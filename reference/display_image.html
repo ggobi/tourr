@@ -72,23 +72,32 @@ mixed with the tour.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">display_image</span><span class="op">(</span><span class="va">xs</span>, <span class="va">ys</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">animate_image</span><span class="op">(</span><span class="va">data</span>, tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">display_image</span><span class="op">(</span><span class="va">xs</span>, <span class="va">ys</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">animate_image</span><span class="op">(</span><span class="va">data</span>, tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>xs</dt>
 <dd><p>x limit that is used in making the size of the plot</p></dd>
+
+
 <dt>ys</dt>
 <dd><p>y limit that is used in making the size of the plot</p></dd>
+
+
 <dt>...</dt>
 <dd><p>other arguments passed on to <code><a href="animate.html">animate</a></code></p></dd>
+
+
 <dt>data</dt>
 <dd><p>matrix, or data frame containing numeric columns</p></dd>
+
+
 <dt>tour_path</dt>
 <dd><p>tour path generator, defaults to 2d grand tour</p></dd>
+
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
@@ -97,7 +106,7 @@ mixed with the tour.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">ozone</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">ozone</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  num [1:24, 1:24, 1:72] 260 258 258 254 252 252 250 248 248 248 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "dimnames")=List of 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lat : Named chr [1:24] "-21.2" "-18.7" "-16.2" "-13.7" ...</span>
@@ -106,7 +115,7 @@ mixed with the tour.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:24] "1" "73" "145" "217" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ time: Named chr [1:72] "1" "2" "3" "4" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:72] "1" "2" "3" "4" ...</span>
-<span class="r-in"><span class="fu">animate_image</span><span class="op">(</span><span class="va">ozone</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">animate_image</span><span class="op">(</span><span class="va">ozone</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="display_image-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -122,7 +131,7 @@ mixed with the tour.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

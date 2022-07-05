@@ -66,19 +66,24 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">display_stars</span><span class="op">(</span><span class="va">...</span><span class="op">)</span>
-
-<span class="fu">animate_stars</span><span class="op">(</span><span class="va">data</span>, tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">display_stars</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">animate_stars</span><span class="op">(</span><span class="va">data</span>, tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>...</dt>
 <dd><p>other arguments passed on to <code><a href="https://rdrr.io/r/graphics/stars.html" class="external-link">stars</a></code></p></dd>
+
+
 <dt>data</dt>
 <dd><p>matrix, or data frame containing numeric columns</p></dd>
+
+
 <dt>tour_path</dt>
 <dd><p>tour path generator, defaults to 2d grand tour</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -92,21 +97,21 @@ centres move around as well as outside points.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">animate_stars</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">animate_stars</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-plt img"><img src="display_stars-1.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="display_stars-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu">animate_stars</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">animate_stars</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-plt img"><img src="display_stars-3.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="display_stars-4.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu">animate_stars</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">animate_stars</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-plt img"><img src="display_stars-5.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="display_stars-6.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu">animate_stars</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>,</span>
-<span class="r-in">  col.stars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"grey50"</span>, <span class="fl">10</span><span class="op">)</span>, radius <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">animate_stars</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  col.stars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"grey50"</span>, <span class="fl">10</span><span class="op">)</span>, radius <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-plt img"><img src="display_stars-7.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="display_stars-8.png" alt="" width="700" height="433"></span>
@@ -124,7 +129,7 @@ centres move around as well as outside points.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

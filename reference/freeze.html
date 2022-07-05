@@ -70,9 +70,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">freeze</span><span class="op">(</span><span class="va">input</span>, <span class="va">frozen</span><span class="op">)</span>
-
-<span class="fu">thaw</span><span class="op">(</span><span class="va">input</span>, <span class="va">frozen</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">freeze</span><span class="op">(</span><span class="va">input</span>, <span class="va">frozen</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">thaw</span><span class="op">(</span><span class="va">input</span>, <span class="va">frozen</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="details">
@@ -84,28 +84,28 @@ be set to their fixed values.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">frozen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="cn">NA</span>, nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">frozen</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">.5</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">input</span> <span class="op">&lt;-</span> <span class="fu"><a href="basis_random.html">basis_random</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">freeze</span><span class="op">(</span><span class="va">input</span>, <span class="va">frozen</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]       [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.39216307  0.6579195</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.09181179 -0.3465485</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  0.00000000  0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] -0.20150037  0.6604310</span>
-<span class="r-in"><span class="fu">thaw</span><span class="op">(</span><span class="va">input</span>, <span class="va">frozen</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]       [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.33962318  0.5697750</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.07951134 -0.3001198</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  0.50000000  0.5000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] -0.17450444  0.5719500</span>
-<span class="r-in"><span class="fu">freeze</span><span class="op">(</span><span class="fu"><a href="basis_random.html">basis_random</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span><span class="op">)</span>, <span class="va">frozen</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">frozen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="cn">NA</span>, nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">frozen</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">.5</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">input</span> <span class="op">&lt;-</span> <span class="fu"><a href="basis_random.html">basis_random</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">freeze</span><span class="op">(</span><span class="va">input</span>, <span class="va">frozen</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.4415754 -0.2012767</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.4613396  0.4039788</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.6401526 -0.1824664</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.7071795 -0.3266637</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  0.0000000  0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  0.4774391 -0.6141449</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] -0.1901874  0.8953631</span>
+<span class="r-in"><span><span class="fu">thaw</span><span class="op">(</span><span class="va">input</span>, <span class="va">frozen</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.5543884 -0.1580205</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.6124354 -0.2828991</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  0.5000000  0.5000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] -0.1647072  0.7754071</span>
+<span class="r-in"><span><span class="fu">freeze</span><span class="op">(</span><span class="fu"><a href="basis_random.html">basis_random</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">2</span><span class="op">)</span>, <span class="va">frozen</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]       [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.78590401  0.5117320</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.01366654 -0.1294676</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  0.00000000  0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  0.59759935  0.7705445</span>
 </code></pre></div>
     </div>
   </div>
@@ -120,7 +120,7 @@ be set to their fixed values.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

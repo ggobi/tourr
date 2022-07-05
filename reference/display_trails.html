@@ -66,18 +66,18 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">display_trails</span><span class="op">(</span>
-  center <span class="op">=</span> <span class="cn">TRUE</span>,
-  axes <span class="op">=</span> <span class="st">"center"</span>,
-  half_range <span class="op">=</span> <span class="cn">NULL</span>,
-  col <span class="op">=</span> <span class="st">"black"</span>,
-  pch <span class="op">=</span> <span class="fl">20</span>,
-  cex <span class="op">=</span> <span class="fl">1</span>,
-  past <span class="op">=</span> <span class="fl">3</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">animate_trails</span><span class="op">(</span><span class="va">data</span>, tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">display_trails</span><span class="op">(</span></span>
+<span>  center <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  axes <span class="op">=</span> <span class="st">"center"</span>,</span>
+<span>  half_range <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  pch <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  cex <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  past <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">animate_trails</span><span class="op">(</span><span class="va">data</span>, tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -86,27 +86,46 @@
 <dd><p>if TRUE, centers projected data to (0,0).  This pins the
 center of data cloud and make it easier to focus on the changing shape
 rather than position.</p></dd>
+
+
 <dt>axes</dt>
 <dd><p>position of the axes: center, bottomleft or off</p></dd>
+
+
 <dt>half_range</dt>
 <dd><p>half range to use when calculating limits of projected.
 If not set, defaults to maximum distance from origin to each row of data.</p></dd>
+
+
 <dt>col</dt>
 <dd><p>color to be plotted.  Defaults to "black"</p></dd>
+
+
 <dt>pch</dt>
 <dd><p>shape of the point to be plotted.  Defaults to 20.</p></dd>
+
+
 <dt>cex</dt>
 <dd><p>magnification of plotting text relative to default. Defaults to 1.</p></dd>
+
+
 <dt>past</dt>
 <dd><p>draw line between current projection and projection <code>past</code>
 steps ago</p></dd>
+
+
 <dt>...</dt>
 <dd><p>other arguments passed on to <code><a href="animate.html">animate</a></code> and
 <code><a href="display_xy.html">display_xy</a></code></p></dd>
+
+
 <dt>data</dt>
 <dd><p>matrix, or data frame containing numeric columns</p></dd>
+
+
 <dt>tour_path</dt>
 <dd><p>tour path generator, defaults to 2d grand tour</p></dd>
+
 </dl></div>
 
   </div>
@@ -121,7 +140,7 @@ steps ago</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>
