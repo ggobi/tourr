@@ -17,11 +17,11 @@
 #' @examples
 #' \dontrun{
 #' tmp_path <- tempdir()
-#' render(flea[, 1:10], grand_tour(), display_xy(), "pdf",
+#' render(flea[, 1:6], grand_tour(), display_xy(), "pdf",
 #'   frames = 3,
 #'   file.path(tmp_path, "test.pdf")
 #' )
-#' render(flea[, 1:10], grand_tour(), display_xy(), "png",
+#' render(flea[, 1:6], grand_tour(), display_xy(), "png",
 #'   frames = 3,
 #'   file.path(tmp_path, "test-%03d.png")
 #' )
@@ -90,7 +90,7 @@ render <- function(data, tour_path, display, dev, ..., apf = 1 / 10, frames = 50
 #' # gifski needs to be installed to render a gif
 #' if (requireNamespace("gifski", quietly = TRUE)) {
 #'   gif_file <- file.path(tempdir(), "test.gif")
-#'   render_gif(flea[, 1:10], grand_tour(), display_xy(), gif_file)
+#'   render_gif(flea[, 1:6], grand_tour(), display_xy(), gif_file)
 #'   utils::browseURL(gif_file)
 #'   unlink(gif_file)
 #' }
