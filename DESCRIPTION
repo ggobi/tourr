@@ -38,6 +38,6 @@ License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/ggobi/tourr
 BugReports: https://github.com/ggobi/tourr/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Encoding: UTF-8
 VignetteBuilder: knitr

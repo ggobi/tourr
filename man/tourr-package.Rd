@@ -8,9 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Implements geodesic interpolation and basis
-    generation functions that allow you to create new tour
-    methods from R.
+Implements geodesic interpolation and basis generation functions that allow you to create new tour methods from R.
 }
 \seealso{
 Useful links:
