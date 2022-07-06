@@ -25,6 +25,7 @@ reference:
   - guided_section_tour
   - little_tour
   - local_tour
+  - radial_tour
   - planned_tour
   - dependence_tour
   - frozen_guided_tour
