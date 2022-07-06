@@ -6,7 +6,7 @@
 \alias{tourr-package}
 \title{tourr: Tour Methods for Multivariate Data Visualisation}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
 Implements geodesic interpolation and basis generation functions that allow you to create new tour methods from R.
 }

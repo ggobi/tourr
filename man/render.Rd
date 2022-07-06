@@ -46,11 +46,11 @@ Render frames of animation to disk
 \examples{
 \dontrun{
 tmp_path <- tempdir()
-render(flea[, 1:10], grand_tour(), display_xy(), "pdf",
+render(flea[, 1:6], grand_tour(), display_xy(), "pdf",
   frames = 3,
   file.path(tmp_path, "test.pdf")
 )
-render(flea[, 1:10], grand_tour(), display_xy(), "png",
+render(flea[, 1:6], grand_tour(), display_xy(), "png",
   frames = 3,
   file.path(tmp_path, "test-\%03d.png")
 )
