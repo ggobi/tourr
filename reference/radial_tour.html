@@ -68,7 +68,7 @@ projection.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">radial_tour</span><span class="op">(</span><span class="va">start</span>, var <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">radial_tour</span><span class="op">(</span><span class="va">start</span>, mvar <span class="op">=</span> <span class="fl">1</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -77,8 +77,12 @@ projection.</p>
 <dd><p>initial projection matrix</p></dd>
 
 
-<dt>var</dt>
+<dt>mvar</dt>
 <dd><p>variable chosen to rotate out</p></dd>
+
+
+<dt>...</dt>
+<dd><p>additional arguments for drawing</p></dd>
 
 </dl></div>
     <div id="details">
@@ -90,15 +94,15 @@ a method that works with tour paths like <code><a href="animate.html">animate</a
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu">radial_tour</span><span class="op">(</span><span class="fu"><a href="basis_random.html">basis_random</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">2</span><span class="op">)</span>, var <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu">radial_tour</span><span class="op">(</span><span class="fu"><a href="basis_random.html">basis_random</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">2</span><span class="op">)</span>, mvar <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
 <span class="r-plt img"><img src="radial_tour-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="fu"><a href="display_dist.html">animate_dist</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu">radial_tour</span><span class="op">(</span><span class="fu"><a href="basis_random.html">basis_random</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span>, var <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="display_dist.html">animate_dist</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu">radial_tour</span><span class="op">(</span><span class="fu"><a href="basis_random.html">basis_random</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span>, mvar <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
 <span class="r-plt img"><img src="radial_tour-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span><span class="fu"><a href="display_scatmat.html">animate_scatmat</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu">radial_tour</span><span class="op">(</span><span class="fu"><a href="basis_random.html">basis_random</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">3</span><span class="op">)</span>, var <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="display_scatmat.html">animate_scatmat</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu">radial_tour</span><span class="op">(</span><span class="fu"><a href="basis_random.html">basis_random</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">3</span><span class="op">)</span>, mvar <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-plt img"><img src="radial_tour-3.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="radial_tour-4.png" alt="" width="700" height="433"></span>
@@ -116,7 +120,7 @@ a method that works with tour paths like <code><a href="animate.html">animate</a
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
