@@ -20,7 +20,7 @@
 #' @export
 #' @keywords internal
 new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
-  tries <- 1
+  tries <- 1 # Needed for guided
 
   tour_path <- function(current, data, ...) {
     if (is.null(current)) {

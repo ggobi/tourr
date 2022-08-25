@@ -39,7 +39,7 @@ render <- function(data, tour_path, display, dev, ..., apf = 1 / 10, frames = 50
   on.exit(dev.off())
 
   record <-
-    dplyr::tibble(
+    tibble::tibble(
       basis = list(),
       index_val = numeric(),
       info = character(),

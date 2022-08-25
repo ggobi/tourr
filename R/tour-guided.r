@@ -76,7 +76,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
       },
       error = function(e){
         assign("record",
-               dplyr::tibble(basis = list(),
+               tibble::tibble(basis = list(),
                              index_val = numeric(),
                              info = character(),
                              method = character(),
@@ -84,7 +84,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
                              tries = numeric(),
                              loop = numeric()),
                envir = parent.frame())
-        rcd_env[["record"]] <- dplyr::tibble(
+        rcd_env[["record"]] <- tibble::tibble(
           basis = list(current),
           index_val = cur_index,
           info = "new_basis",

@@ -8,17 +8,18 @@
 #' \code{\link{save_history}} or \code{\link{render}}.
 #'
 #' @param start initial projection matrix
-#' @param var variable chosen to rotate out
+#' @param mvar variable chosen to rotate out
+#' @param ... additional arguments for drawing
 #' @export
 #' @examples
-#' animate_xy(flea[, 1:6], radial_tour(basis_random(6, 2), var = 4))
-#' animate_dist(flea[, 1:6], radial_tour(basis_random(6, 1), var = 4))
-#' animate_scatmat(flea[, 1:6], radial_tour(basis_random(6, 3), var = 4))
-radial_tour <- function(start, var = 1) {
+#' animate_xy(flea[, 1:6], radial_tour(basis_random(6, 2), mvar = 4))
+#' animate_dist(flea[, 1:6], radial_tour(basis_random(6, 1), mvar = 4))
+#' animate_scatmat(flea[, 1:6], radial_tour(basis_random(6, 3), mvar = 4))
+radial_tour <- function(start, mvar = 1, ...) {
   first <- TRUE
   out <- TRUE
 
-  generator <- function(current, data, ...) {
+  generator <- function(current, data, mvar, ...) {
     if (first) {
       new_basis <- start
       first <<- FALSE
@@ -26,7 +27,7 @@ radial_tour <- function(start, var = 1) {
     }
     if (out) {
       new <- start
-      new[var,] <- rep(0, ncol(start))
+      new[mvar,] <- rep(0, ncol(start))
       new <- orthonormalise(new)
       new_basis <- new
       out <<- !out

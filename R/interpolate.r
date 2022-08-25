@@ -22,7 +22,7 @@ interpolate <- function(basis_set, angle = 0.05, cycle = FALSE) {
   }
 
   record <-
-    dplyr::tibble(
+    tibble::tibble(
       basis = list(),
       index_val = numeric(),
       info = character(),

@@ -1,6 +1,6 @@
-## Additional authors
+## Fixes as requested by CRAN
 
-Several additional contributors have provided new methods.
+This removes the reported html errors.
 
 ## R CMD check results
 There were no ERRORs, NOTESs or WARNINGs. 

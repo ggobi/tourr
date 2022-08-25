@@ -32,7 +32,7 @@ search_polish <- function(current, alpha = 0.5, index, tries, polish_max_tries =
   while (try <= polish_max_tries) {
     # could use replicate here
     basis <- lapply(1:n_sample, function(x) {
-      dplyr::tibble(basis = list(basis_nearby(current,
+      tibble::tibble(basis = list(basis_nearby(current,
         alpha = alpha
       )))
     })

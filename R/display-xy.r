@@ -72,7 +72,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
     rect(-1, -1, 1, 1, col = "#FFFFFFE6", border = NA)
   }
   render_data <- function(data, proj, geodesic) {
-    draw_tour_axes(proj, labels, limits = 1, axes)
+    draw_tour_axes(proj, labels, limits = 1, axes, ...)
 
     # Render projected points
     x <- data %*% proj
@@ -106,7 +106,7 @@ animate_xy <- function(data, tour_path = grand_tour(), ...) {
 
 #' Draw tour axes with base graphics
 #' @keywords internal
-draw_tour_axes <- function(proj, labels, limits, position) {
+draw_tour_axes <- function(proj, labels, limits, position, ...) {
   position <- match.arg(position, c("center", "bottomleft", "off"))
   if (position == "off") {
     return()
@@ -123,6 +123,11 @@ draw_tour_axes <- function(proj, labels, limits, position) {
   adj <- function(x) axis_pos + x * axis_scale
 
   segments(adj(0), adj(0), adj(proj[, 1]), adj(proj[, 2]), col = "grey50")
+#  if (!is.null(mvar)) { # colour manip var
+#    if ((mvar < (nrow(proj)+1)) & (mvar > 0)) {
+#      segments(adj(0), adj(0), adj(proj[, 1]), adj(proj[, 2]), col = "orange")
+#    }
+#  }
   theta <- seq(0, 2 * pi, length = 50)
   lines(adj(cos(theta)), adj(sin(theta)), col = "grey50")
   text(adj(proj[, 1]), adj(proj[, 2]), label = labels, col = "grey50")

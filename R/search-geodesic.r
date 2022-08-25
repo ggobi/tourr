@@ -126,7 +126,7 @@ find_best_dir <- function(old, index, dist = 0.01, counter = 5, ...) {
 
     larger <- max(index(forward), index(backward))
 
-    dplyr::tibble(
+    tibble::tibble(
       basis = c(list(forward), list(backward)),
       index_val = c(index(forward), index(backward)),
       info = "direction_search",
@@ -158,7 +158,7 @@ find_path_peak <- function(old, new, index, max_dist = pi / 4, ...) {
 
   alpha <- stats::optimize(index_pos, c(-max_dist, max_dist), maximum = TRUE, tol = 0.01)
 
-  best <- dplyr::tibble(
+  best <- tibble::tibble(
     basis = list(step_angle(interpolator, alpha$maximum)),
     index_val = alpha$objective,
     info = "best_line_search",

@@ -91,20 +91,17 @@ NULL
 #' Monthly ozone measurements over Central America
 #'
 #'
-#' This data set is a subset of the data from the 2006 ASA Data expo challenge,
-#' \url{https://community.amstat.org/jointscsg-section/dataexpo/new-item5}.
-#' The data are monthly ozone
-#' averages on a very coarse 24 by 24 grid covering Central America, from Jan
-#' 1995 to Dec 2000. The data is stored in a 3d area with the first two
-#' dimensions representing latitude and longitude, and the third representing
+#' This data set is a subset of the data from the 2006 ASA Data expo challenge.
+#' The data are monthly ozone averages on a very coarse 24 by 24 grid covering
+#' Central America, from Jan 1995 to Dec 2000. The data is stored in a 3d area
+#' with the first two dimensions representing latitude and longitude, and the
+#' third representing
 #' time.
-#'
 #'
 #' @name Ozone measurements
 #' @aliases ozone
 #' @docType data
 #' @format A 24 x 24 x 72 numeric array
-#' @references \url{https://community.amstat.org/jointscsg-section/dataexpo/new-item5}
 #' @keywords datasets
 #' @examples
 #'

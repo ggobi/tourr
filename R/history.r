@@ -49,7 +49,7 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
   if (sphere) data <- sphere_data(data)
 
   record <-
-    dplyr::tibble(
+    tibble::tibble(
       basis = list(),
       index_val = numeric(),
       info = character(),

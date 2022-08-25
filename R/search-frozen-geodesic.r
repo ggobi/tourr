@@ -72,7 +72,7 @@ find_best_frozen_dir <- function(old, frozen, index, dist = 0.01, counter = 5) {
 
     larger <- max(index(forward), index(backward))
 
-    dplyr::tibble(
+    tibble::tibble(
       basis = c(list(forward), list(backward)),
       index_val = c(index(forward), index(backward)),
       info = "direction_search",
