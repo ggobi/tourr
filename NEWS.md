@@ -1,3 +1,7 @@
+# tourr 0.6.1.9000
+
+* Error fixed in is_orthonormalise(), which is to check whether a vector is normalised 
+
 # tourr 0.6.1
 
 * A radial tour is added that will allow a variable to be zero'd from a projection.

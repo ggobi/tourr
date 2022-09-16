@@ -21,3 +21,4 @@
 ^docs$
 ^pkgdown$
 ^test$
+^CRAN-SUBMISSION$

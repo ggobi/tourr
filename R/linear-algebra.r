@@ -45,7 +45,7 @@ is_orthonormal <- function(x, tol = 0.001) {
   nc <- ncol(x)
   iter <- seq_len(nc)
   for (j in iter) {
-    if (sqrt(sum(x[, j]^2)) < 1 - tol) {
+    if (abs(1-sqrt(sum(x[, j]^2))) > tol) {
       return(FALSE)
     }
   }
