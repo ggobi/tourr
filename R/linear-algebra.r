@@ -71,18 +71,31 @@ is_orthonormal <- function(x, tol = 0.001) {
 #' @keywords internal algebra
 #' @param x numeric matrix
 #' @param by numeric matrix, same size as x
+#' @returns orthonormal numeric matrix
 #' @export
 orthonormalise_by <- function(x, by) {
   stopifnot(ncol(x) == ncol(by))
   stopifnot(nrow(x) == nrow(by))
 
   x <- normalise(x)
+  by <- normalise(by)
 
   for (j in seq_len(ncol(x))) {
-    x[, j] <- x[, j] - as.vector(crossprod(x[, j], by[, j])) * by[, j]
+    for (k in seq_len(ncol(by))) {
+      x[, j] <- x[, j] - as.vector(crossprod(x[, j], by[, k])) * by[, k]
+      x[, j] <- normalise(x[, j])
+    }
   }
 
-  normalise(x)
+  # Last step, columns new matrix to orthonormal
+  if (ncol(x) > 1) {
+    for (j in 2:ncol(x)) {
+      x[, j] <- x[, j] - as.vector(crossprod(x[, j], x[, j-1])) * x[, j-1]
+      normalise(x[, j])
+    }
+  }
+
+  return(x)
 }
 
 #' Calculate the distance between two bases.

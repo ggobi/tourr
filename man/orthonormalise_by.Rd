@@ -11,6 +11,9 @@ orthonormalise_by(x, by)
 
 \item{by}{numeric matrix, same size as x}
 }
+\value{
+orthonormal numeric matrix
+}
 \description{
 This ensures that each column in x is orthogonal to the corresponding
 column in by.

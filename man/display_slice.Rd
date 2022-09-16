@@ -46,7 +46,7 @@ Defaults to 46.}
 \item{cex_other}{size if the points outside the slice. Defaults to 1.}
 
 \item{v_rel}{relative volume of the slice. If not set, suggested value
-is caluclated and printed to the screen.}
+is calculated and printed to the screen.}
 
 \item{anchor}{A vector specifying the reference point to anchor the slice.
 If NULL (default) the slice will be anchored at the data center.}

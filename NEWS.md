@@ -1,6 +1,7 @@
 # tourr 0.6.1.9000
 
 * Error fixed in is_orthonormalise(), which is to check whether a vector is normalised 
+* Error fixed in orthonormalise_by(), which needed to run over columns of new matrix, too
 
 # tourr 0.6.1
 
