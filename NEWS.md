@@ -1,3 +1,7 @@
+# tourr 0.6.1.9001
+
+* Adding manual slicing
+
 # tourr 0.6.1.9000
 
 * Error fixed in is_orthonormalise(), which is to check whether a vector is normalised 
