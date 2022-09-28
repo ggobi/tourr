@@ -30,6 +30,7 @@ reference:
   - dependence_tour
   - frozen_guided_tour
   - frozen_tour
+  - manual_slice
 - title: Tour display
   desc: >
     Functions for various tour display

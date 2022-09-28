@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1.9002</span>
       </span>
     </div>
 
@@ -66,45 +66,62 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">search_polish</span><span class="op">(</span>
-  <span class="va">current</span>,
-  alpha <span class="op">=</span> <span class="fl">0.5</span>,
-  <span class="va">index</span>,
-  <span class="va">tries</span>,
-  polish_max_tries <span class="op">=</span> <span class="fl">30</span>,
-  cur_index <span class="op">=</span> <span class="cn">NA</span>,
-  n_sample <span class="op">=</span> <span class="fl">100</span>,
-  polish_cooling <span class="op">=</span> <span class="fl">1</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">search_polish</span><span class="op">(</span></span>
+<span>  <span class="va">current</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  <span class="va">index</span>,</span>
+<span>  <span class="va">tries</span>,</span>
+<span>  polish_max_tries <span class="op">=</span> <span class="fl">30</span>,</span>
+<span>  cur_index <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  n_sample <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>  polish_cooling <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>current</dt>
 <dd><p>the current projection basis</p></dd>
+
+
 <dt>alpha</dt>
 <dd><p>the angle used to search the target basis from the current basis</p></dd>
+
+
 <dt>index</dt>
 <dd><p>index function</p></dd>
+
+
 <dt>tries</dt>
 <dd><p>the counter of the outer loop of the opotimiser</p></dd>
+
+
 <dt>polish_max_tries</dt>
 <dd><p>maximum number of iteration before giving up</p></dd>
+
+
 <dt>cur_index</dt>
 <dd><p>the index value of the current basis</p></dd>
+
+
 <dt>n_sample</dt>
 <dd><p>number of samples to generate</p></dd>
+
+
 <dt>polish_cooling</dt>
 <dd><p>percentage of reduction in polish_alpha when no better basis is found</p></dd>
+
+
 <dt>...</dt>
 <dd><p>other arguments being passed into the <code>search_polish()</code></p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">2020</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu"><a href="save_history.html">save_history</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, max <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">2020</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu"><a href="save_history.html">save_history</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, max <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.740   35.5 % better  - NEW BASIS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.832   52.3 % better  - NEW BASIS</span>
@@ -191,16 +208,16 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.059  0.524  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -0.846  -0.007  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.027  0.602  </span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">t1</span>, <span class="st">"class"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
-<span class="r-in"><span class="va">best_proj</span> <span class="op">&lt;-</span> <span class="va">t1</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">t1</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span></span>
-<span class="r-in"><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>,</span>
-<span class="r-in">  <span class="fu"><a href="guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">    search_f <span class="op">=</span> <span class="va">search_polish</span>,</span>
-<span class="r-in">    cur_index <span class="op">=</span> <span class="fl">0</span></span>
-<span class="r-in">  <span class="op">)</span>,</span>
-<span class="r-in">  start <span class="op">=</span> <span class="va">best_proj</span></span>
-<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">t1</span>, <span class="st">"class"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span></span>
+<span class="r-in"><span><span class="va">best_proj</span> <span class="op">&lt;-</span> <span class="va">t1</span><span class="op">[</span>, , <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">t1</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    search_f <span class="op">=</span> <span class="va">search_polish</span>,</span></span>
+<span class="r-in"><span>    cur_index <span class="op">=</span> <span class="fl">0</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>,</span></span>
+<span class="r-in"><span>  start <span class="op">=</span> <span class="va">best_proj</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alpha gets updated to 0.475 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alpha gets updated to 0.4286875 </span>
@@ -238,7 +255,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

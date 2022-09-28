@@ -18,7 +18,7 @@ using a section pursuit index for the selection of target planes."><meta propert
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1.9002</span>
       </span>
     </div>
 
@@ -68,18 +68,18 @@ using a section pursuit index for the selection of target planes.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">guided_section_tour</span><span class="op">(</span>
-  <span class="va">index_f</span>,
-  d <span class="op">=</span> <span class="fl">2</span>,
-  alpha <span class="op">=</span> <span class="fl">0.5</span>,
-  cooling <span class="op">=</span> <span class="fl">0.99</span>,
-  max.tries <span class="op">=</span> <span class="fl">25</span>,
-  max.i <span class="op">=</span> <span class="cn">Inf</span>,
-  v_rel <span class="op">=</span> <span class="cn">NULL</span>,
-  anchor <span class="op">=</span> <span class="cn">NULL</span>,
-  search_f <span class="op">=</span> <span class="va">search_geodesic</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">guided_section_tour</span><span class="op">(</span></span>
+<span>  <span class="va">index_f</span>,</span>
+<span>  d <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  cooling <span class="op">=</span> <span class="fl">0.99</span>,</span>
+<span>  max.tries <span class="op">=</span> <span class="fl">25</span>,</span>
+<span>  max.i <span class="op">=</span> <span class="cn">Inf</span>,</span>
+<span>  v_rel <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  anchor <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  search_f <span class="op">=</span> <span class="va">search_geodesic</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -88,28 +88,47 @@ using a section pursuit index for the selection of target planes.</p>
 <dd><p>the section purusit index function to optimise. The function
 needs to take three arguments, the projected data, the vector of distances
 from the current projection plane, and the slice thickness h.</p></dd>
+
+
 <dt>d</dt>
 <dd><p>target dimensionality</p></dd>
+
+
 <dt>alpha</dt>
 <dd><p>the initial size of the search window, in radians</p></dd>
+
+
 <dt>cooling</dt>
 <dd><p>the amount the size of the search window should be adjusted
 by after each step</p></dd>
+
+
 <dt>max.tries</dt>
 <dd><p>the maximum number of unsuccessful attempts to find
 a better projection before giving up</p></dd>
+
+
 <dt>max.i</dt>
 <dd><p>the maximum index value, stop search if a larger value is found</p></dd>
+
+
 <dt>v_rel</dt>
 <dd><p>relative volume of the slice. If not set, suggested value
 is caluclated and printed to the screen.</p></dd>
+
+
 <dt>anchor</dt>
 <dd><p>A vector specifying the reference point to anchor the slice.
 If NULL (default) the slice will be anchored at the data center.</p></dd>
+
+
 <dt>search_f</dt>
 <dd><p>the search strategy to use</p></dd>
+
+
 <dt>...</dt>
 <dd><p>arguments sent to the search_f</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -126,27 +145,28 @@ a method that works with tour paths like <code><a href="display_slice.html">anim
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Generate samples on a 3d hollow sphere using the geozoo package</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">sphere3</span> <span class="op">&lt;-</span> <span class="fu">geozoo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geozoo/man/sphere.hollow.html" class="external-link">sphere.hollow</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">$</span><span class="va">points</span></span>
-<span class="r-in"><span class="co"># Columns need to be named before launching the tour</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">sphere3</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="st">"x3"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Off-center anchoring</span></span>
-<span class="r-in"><span class="va">anchor3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.75</span>, <span class="fl">3</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Index setup</span></span>
-<span class="r-in"><span class="va">r_breaks</span> <span class="op">&lt;-</span> <span class="fu"><a href="linear_breaks.html">linear_breaks</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">a_breaks</span> <span class="op">&lt;-</span> <span class="fu"><a href="angular_breaks.html">angular_breaks</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">eps</span> <span class="op">&lt;-</span> <span class="fu"><a href="estimate_eps.html">estimate_eps</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">sphere3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">sphere3</span><span class="op">)</span>, <span class="fl">0.1</span> <span class="op">/</span> <span class="fl">1</span>, <span class="fl">5</span> <span class="op">*</span> <span class="fl">10</span>, <span class="fl">10</span>, <span class="va">r_breaks</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">idx</span> <span class="op">&lt;-</span> <span class="fu"><a href="slice_index.html">slice_index</a></span><span class="op">(</span><span class="va">r_breaks</span>, <span class="va">a_breaks</span>, <span class="va">eps</span>, bintype <span class="op">=</span> <span class="st">"polar"</span>, power <span class="op">=</span> <span class="fl">1</span>, reweight <span class="op">=</span> <span class="cn">TRUE</span>, p <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Generate samples on a 3d hollow sphere using the geozoo package</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sphere3</span> <span class="op">&lt;-</span> <span class="fu">geozoo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geozoo/man/sphere.hollow.html" class="external-link">sphere.hollow</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">$</span><span class="va">points</span></span></span>
+<span class="r-in"><span><span class="co"># Columns need to be named before launching the tour</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">sphere3</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="st">"x3"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Off-center anchoring</span></span></span>
+<span class="r-in"><span><span class="va">anchor3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.75</span>, <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Index setup</span></span></span>
+<span class="r-in"><span><span class="va">r_breaks</span> <span class="op">&lt;-</span> <span class="fu"><a href="linear_breaks.html">linear_breaks</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">a_breaks</span> <span class="op">&lt;-</span> <span class="fu"><a href="angular_breaks.html">angular_breaks</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">eps</span> <span class="op">&lt;-</span> <span class="fu"><a href="estimate_eps.html">estimate_eps</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">sphere3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">sphere3</span><span class="op">)</span>, <span class="fl">0.1</span> <span class="op">/</span> <span class="fl">1</span>, <span class="fl">5</span> <span class="op">*</span> <span class="fl">10</span>, <span class="fl">10</span>, <span class="va">r_breaks</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">idx</span> <span class="op">&lt;-</span> <span class="fu"><a href="slice_index.html">slice_index</a></span><span class="op">(</span><span class="va">r_breaks</span>, <span class="va">a_breaks</span>, <span class="va">eps</span>, bintype <span class="op">=</span> <span class="st">"polar"</span>, power <span class="op">=</span> <span class="fl">1</span>, reweight <span class="op">=</span> <span class="cn">TRUE</span>, p <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reweighting assuming p=3Rescaling raw index by a factor 1.11111111111111</span>
-<span class="r-in"><span class="co"># Running the guided section tour select sections showing a big hole in the center</span></span>
-<span class="r-in"><span class="fu"><a href="display_slice.html">animate_slice</a></span><span class="op">(</span><span class="va">sphere3</span>, <span class="fu">guided_section_tour</span><span class="op">(</span><span class="va">idx</span>, v_rel <span class="op">=</span> <span class="fl">0.1</span>, anchor <span class="op">=</span> <span class="va">anchor3</span>, max.tries <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,</span>
-<span class="r-in">  v_rel <span class="op">=</span> <span class="fl">0.1</span>, anchor <span class="op">=</span> <span class="va">anchor3</span></span>
-<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># Running the guided section tour select sections showing a big hole in the center</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="display_slice.html">animate_slice</a></span><span class="op">(</span><span class="va">sphere3</span>, <span class="fu">guided_section_tour</span><span class="op">(</span><span class="va">idx</span>, v_rel <span class="op">=</span> <span class="fl">0.1</span>, anchor <span class="op">=</span> <span class="va">anchor3</span>, max.tries <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  v_rel <span class="op">=</span> <span class="fl">0.1</span>, anchor <span class="op">=</span> <span class="va">anchor3</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 1.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.899   113.9 % better  - NEW BASIS</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.51</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using v_rel=0.1, corresponding to a cutoff h=0.1</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in `colnames&lt;-`(`*tmp*`, value = colnames(data)):</span> attempt to set 'colnames' on an object with less than two dimensions</span>
 <span class="r-plt img"><img src="guided_section_tour-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -162,7 +182,7 @@ a method that works with tour paths like <code><a href="display_slice.html">anim
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

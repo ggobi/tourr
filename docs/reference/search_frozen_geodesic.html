@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1.9002</span>
       </span>
     </div>
 
@@ -66,34 +66,48 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">search_frozen_geodesic</span><span class="op">(</span>
-  <span class="va">current</span>,
-  <span class="va">index</span>,
-  <span class="va">tries</span>,
-  max.tries <span class="op">=</span> <span class="fl">5</span>,
-  n <span class="op">=</span> <span class="fl">5</span>,
-  <span class="va">frozen</span>,
-  cur_index <span class="op">=</span> <span class="cn">NA</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">search_frozen_geodesic</span><span class="op">(</span></span>
+<span>  <span class="va">current</span>,</span>
+<span>  <span class="va">index</span>,</span>
+<span>  <span class="va">tries</span>,</span>
+<span>  max.tries <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  n <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  <span class="va">frozen</span>,</span>
+<span>  cur_index <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>current</dt>
 <dd><p>starting projection</p></dd>
+
+
 <dt>index</dt>
 <dd><p>index function</p></dd>
+
+
 <dt>tries</dt>
 <dd><p>the counter of the outer loop of the opotimiser</p></dd>
+
+
 <dt>max.tries</dt>
 <dd><p>maximum number of iteration before giving up</p></dd>
+
+
 <dt>n</dt>
 <dd><p>number of random steps to take to find best direction</p></dd>
+
+
 <dt>frozen</dt>
 <dd><p>a matrix of frozen variables</p></dd>
+
+
 <dt>cur_index</dt>
 <dd><p>the index value of the current basis</p></dd>
+
+
 <dt>...</dt>
 <dd><p>other arguments being passed into the <code>search_frozen_geodesic()</code>
 These three functions perform a corresponding role to
@@ -101,6 +115,7 @@ These three functions perform a corresponding role to
 <code><a href="find_path_peak.html">find_path_peak</a></code> but for the frozen tour.  They work by
 zero'ing out the frozen variables and travelling in that restricted
 subspace.</p></dd>
+
 </dl></div>
     <div id="to-do">
     <h2>To do</h2>
@@ -119,7 +134,7 @@ subspace.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

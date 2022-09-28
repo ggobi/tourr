@@ -76,13 +76,15 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
     rect(-1, -1, 1, 1, col = "#FFFFFFE6", border = NA)
   }
 
-  render_data <- function(data, proj, geodesic) {
+  render_data <- function(data, proj, geodesic, with_anchor = anchor) {
     draw_tour_axes(proj, labels, limits = 1, axes)
-
+    rng <- apply(data, 2, range)
+    colnames(with_anchor) <- colnames(data)
+    draw_slice_center(with_anchor, rng)
 
     # Render projected points
     x <- data %*% proj
-    d <- anchored_orthogonal_distance(proj, data, anchor)
+    d <- anchored_orthogonal_distance(proj, data, with_anchor)
     pch <- rep(pch_other, nrow(x))
     pch[d < h] <- pch_slice
     cex <- rep(cex_other, nrow(x))
@@ -93,8 +95,8 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
 
     if (!is.null(edges)) {
       segments(x[edges[, 1], 1], x[edges[, 1], 2],
-        x[edges[, 2], 1], x[edges[, 2], 2],
-        col = edges.col
+               x[edges[, 2], 1], x[edges[, 2], 2],
+               col = edges.col
       )
     }
   }
@@ -114,4 +116,46 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
 #' @export
 animate_slice <- function(data, tour_path = grand_tour(), rescale = TRUE, ...) {
   animate(data, tour_path, display_slice(...), rescale = rescale)
+}
+
+#' Draw slice center guide with base graphics
+#' @keywords internal
+draw_slice_center <- function(anchor, rng) {
+  n <- ncol(anchor)
+  theta <- seq(90, 450, length = n + 1) * pi/180
+  theta <- theta[1:n]
+
+  xx <- cos(theta)
+  yy <- sin(theta)
+  cgap <- 1 # shift of min out from middle
+  seg <- 4
+  cglty <- 3
+  cglwd <- 1
+  cglcol <- "black"
+  for (i in 0:seg) {
+    polygon(xx * (i + cgap)/(seg + cgap), yy * (i + cgap)/(seg +
+      cgap), lty = cglty, lwd = cglwd, border = cglcol)
+    arrows(xx/(seg + cgap), yy/(seg + cgap), xx * 1, yy *
+             1, lwd = cglwd, lty = cglty, length = 0, col = cglcol)
+  }
+  VLABELS <- colnames(anchor)
+  text(xx * 1.2, yy * 1.2, VLABELS)
+  xxs <- xx
+  yys <- yy
+  scale <- cgap/(seg + cgap) +
+    (anchor[1, ] - rng[1, ])/(rng[2,] - rng[1, ]) * seg/(seg + cgap)
+  for (j in 1:n) {
+    xxs[j] <- xx[j] * cgap/(seg + cgap) + xx[j] *
+      (anchor[1, j] - rng[1, j])/(rng[2, j] - rng[1, j]) *
+      seg/(seg + cgap)
+    yys[j] <- yy[j] * cgap/(seg + cgap) + yy[j] *
+      (anchor[1, j] - rng[1, j])/(rng[2, j] - rng[1, j]) *
+      seg/(seg + cgap)
+  }
+  polygon(xxs, yys, lty = 1, lwd = 2,
+          border = "black",
+          col = NULL)
+  points(xx * scale, yy * scale, pch = 16,
+         col = "black")
+
 }

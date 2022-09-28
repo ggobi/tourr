@@ -20,7 +20,7 @@ implemented in the package."><meta property="og:image" content="/logo.png"><!-- 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1.9002</span>
       </span>
     </div>
 
@@ -72,50 +72,71 @@ implemented in the package.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">animate</span><span class="op">(</span>
-  <span class="va">data</span>,
-  tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>,
-  display <span class="op">=</span> <span class="fu"><a href="display_xy.html">display_xy</a></span><span class="op">(</span><span class="op">)</span>,
-  start <span class="op">=</span> <span class="cn">NULL</span>,
-  aps <span class="op">=</span> <span class="fl">1</span>,
-  fps <span class="op">=</span> <span class="fl">10</span>,
-  max_frames <span class="op">=</span> <span class="cn">Inf</span>,
-  rescale <span class="op">=</span> <span class="cn">TRUE</span>,
-  sphere <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">animate</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  display <span class="op">=</span> <span class="fu"><a href="display_xy.html">display_xy</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  start <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  aps <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  fps <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  max_frames <span class="op">=</span> <span class="cn">Inf</span>,</span>
+<span>  rescale <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  sphere <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>matrix, or data frame containing numeric columns</p></dd>
+
+
 <dt>tour_path</dt>
 <dd><p>tour path generator, defaults to 2d grand tour</p></dd>
+
+
 <dt>display</dt>
 <dd><p>takes the display that is suppose to be used, defaults to
 the xy display</p></dd>
+
+
 <dt>start</dt>
 <dd><p>projection to start at, if not specified, uses default
 associated with tour path</p></dd>
+
+
 <dt>aps</dt>
 <dd><p>target angular velocity (in radians per second)</p></dd>
+
+
 <dt>fps</dt>
 <dd><p>target frames per second (defaults to 15, to accommodate RStudio graphics device)</p></dd>
+
+
 <dt>max_frames</dt>
 <dd><p>the maximum number of bases to generate.  Defaults to
 Inf for interactive use (must use Ctrl + C to terminate), and 1 for
 non-interactive use.</p></dd>
+
+
 <dt>rescale</dt>
 <dd><p>if true, rescale all variables to range [0,1]?</p></dd>
+
+
 <dt>sphere</dt>
 <dd><p>if true, sphere all variables</p></dd>
+
+
 <dt>...</dt>
 <dd><p>ignored</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>an (invisible) list of bases visited during this tour</p>
+    
+
+<p>an (invisible) list of bases visited during this tour</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -124,23 +145,23 @@ non-interactive use.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">f</span> <span class="op">&lt;-</span> <span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span>
-<span class="r-in"><span class="fu">animate</span><span class="op">(</span><span class="va">f</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="display_xy.html">display_xy</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="fu">animate</span><span class="op">(</span><span class="va">f</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="display_xy.html">display_xy</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
 <span class="r-plt img"><img src="animate-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co"># or in short</span></span>
-<span class="r-in"><span class="fu">animate</span><span class="op">(</span><span class="va">f</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># or in short</span></span></span>
+<span class="r-in"><span><span class="fu">animate</span><span class="op">(</span><span class="va">f</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
 <span class="r-plt img"><img src="animate-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu">animate</span><span class="op">(</span><span class="va">f</span>, max_frames <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">animate</span><span class="op">(</span><span class="va">f</span>, max_frames <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
 <span class="r-plt img"><img src="animate-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu">animate</span><span class="op">(</span><span class="va">f</span>, max_frames <span class="op">=</span> <span class="fl">10</span>, fps <span class="op">=</span> <span class="fl">1</span>, aps <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu">animate</span><span class="op">(</span><span class="va">f</span>, max_frames <span class="op">=</span> <span class="fl">10</span>, fps <span class="op">=</span> <span class="fl">1</span>, aps <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -155,7 +176,7 @@ non-interactive use.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

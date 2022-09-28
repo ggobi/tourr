@@ -19,7 +19,7 @@ You should not have to call this function."><meta property="og:image" content="/
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1.9002</span>
       </span>
     </div>
 
@@ -70,25 +70,32 @@ You should not have to call this function.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">new_tour</span><span class="op">(</span><span class="va">data</span>, <span class="va">tour_path</span>, start <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">new_tour</span><span class="op">(</span><span class="va">data</span>, <span class="va">tour_path</span>, start <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>the data matrix to be projected</p></dd>
+
+
 <dt>tour_path</dt>
 <dd><p>basis generator, a function that generates a new basis,
 called with the previous projection and the data set.  For more
 complicated tour paths, this will need to be a closure with local
 variables.  Should return NULL if the tour should terminate</p></dd>
+
+
 <dt>start</dt>
 <dd><p>starting projection, if omitted will use default projection
 from generator</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a function with single argument, step_size.  This function returns
+    
+
+<p>a function with single argument, step_size.  This function returns
  a list containing the new projection, the current target and the number
  of steps taken towards the target.</p>
     </div>
@@ -115,7 +122,7 @@ from generator</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

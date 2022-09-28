@@ -20,7 +20,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1.9002</span>
       </span>
     </div>
 
@@ -72,20 +72,20 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">display_groupxy</span><span class="op">(</span>
-  centr <span class="op">=</span> <span class="cn">TRUE</span>,
-  axes <span class="op">=</span> <span class="st">"center"</span>,
-  half_range <span class="op">=</span> <span class="cn">NULL</span>,
-  col <span class="op">=</span> <span class="st">"black"</span>,
-  pch <span class="op">=</span> <span class="fl">20</span>,
-  cex <span class="op">=</span> <span class="fl">1</span>,
-  edges <span class="op">=</span> <span class="cn">NULL</span>,
-  group_by <span class="op">=</span> <span class="cn">NULL</span>,
-  plot_xgp <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">animate_groupxy</span><span class="op">(</span><span class="va">data</span>, tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">display_groupxy</span><span class="op">(</span></span>
+<span>  centr <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  axes <span class="op">=</span> <span class="st">"center"</span>,</span>
+<span>  half_range <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  pch <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  cex <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  edges <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  group_by <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  plot_xgp <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">animate_groupxy</span><span class="op">(</span><span class="va">data</span>, tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -94,44 +94,67 @@
 <dd><p>if TRUE, centers projected data to (0,0).  This pins the
 center of data cloud and make it easier to focus on the changing shape
 rather than position.</p></dd>
+
+
 <dt>axes</dt>
 <dd><p>position of the axes: center, bottomleft or off</p></dd>
+
+
 <dt>half_range</dt>
 <dd><p>half range to use when calculating limits of projected.
 If not set, defaults to maximum distance from origin to each row of data.</p></dd>
+
+
 <dt>col</dt>
 <dd><p>color to be plotted.  Defaults to "black"</p></dd>
+
+
 <dt>pch</dt>
 <dd><p>shape of the point to be plotted.  Defaults to 20.</p></dd>
+
+
 <dt>cex</dt>
 <dd><p>size of the point to be plotted.  Defaults to 1.</p></dd>
+
+
 <dt>edges</dt>
 <dd><p>A two column integer matrix giving indices of ends of lines.</p></dd>
+
+
 <dt>group_by</dt>
 <dd><p>variable to group by. Must have less than 25 unique values.</p></dd>
+
+
 <dt>plot_xgp</dt>
 <dd><p>if TRUE, plots points from other groups in light grey</p></dd>
+
+
 <dt>...</dt>
 <dd><p>other arguments passed on to <code><a href="animate.html">animate</a></code> and
 <code>display_groupxy</code></p></dd>
+
+
 <dt>data</dt>
 <dd><p>matrix, or data frame containing numeric columns</p></dd>
+
+
 <dt>tour_path</dt>
 <dd><p>tour path generator, defaults to 2d grand tour</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">f</span> <span class="op">&lt;-</span> <span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">rainbow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">pch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span> <span class="op">+</span> <span class="fl">14</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">animate_groupxy</span><span class="op">(</span><span class="va">f</span>, col <span class="op">=</span> <span class="va">col</span>, pch <span class="op">=</span> <span class="va">pch</span>, group_by <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">rainbow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">pch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span> <span class="op">+</span> <span class="fl">14</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">animate_groupxy</span><span class="op">(</span><span class="va">f</span>, col <span class="op">=</span> <span class="va">col</span>, pch <span class="op">=</span> <span class="va">pch</span>, group_by <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
 <span class="r-plt img"><img src="display_groupxy-1.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="display_groupxy-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu">animate_groupxy</span><span class="op">(</span><span class="va">f</span>, col <span class="op">=</span> <span class="va">col</span>, pch <span class="op">=</span> <span class="va">pch</span>, group_by <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span>, plot_xgp <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">animate_groupxy</span><span class="op">(</span><span class="va">f</span>, col <span class="op">=</span> <span class="va">col</span>, pch <span class="op">=</span> <span class="va">pch</span>, group_by <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span>, plot_xgp <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
 <span class="r-plt img"><img src="display_groupxy-3.png" alt="" width="700" height="433"></span>
@@ -150,7 +173,7 @@ If not set, defaults to maximum distance from origin to each row of data.</p></d
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -1,3 +1,7 @@
+# tourr 0.6.1.9002
+
+* Added slice center guide
+
 # tourr 0.6.1.9001
 
 * Adding manual slicing

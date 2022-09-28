@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1.9002</span>
       </span>
     </div>
 
@@ -66,7 +66,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">frozen_guided_tour</span><span class="op">(</span><span class="va">frozen</span>, <span class="va">index_f</span>, d <span class="op">=</span> <span class="fl">2</span>, max.tries <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">frozen_guided_tour</span><span class="op">(</span><span class="va">frozen</span>, <span class="va">index_f</span>, d <span class="op">=</span> <span class="fl">2</span>, max.tries <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -74,13 +74,20 @@
     <dl><dt>frozen</dt>
 <dd><p>matrix of frozen variables, as described in
 <code><a href="freeze.html">freeze</a></code></p></dd>
+
+
 <dt>index_f</dt>
 <dd><p>the index function to optimise.</p></dd>
+
+
 <dt>d</dt>
 <dd><p>target dimensionality</p></dd>
+
+
 <dt>max.tries</dt>
 <dd><p>the maximum number of unsuccessful attempts to find
 a better projection before giving up</p></dd>
+
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
@@ -91,11 +98,11 @@ a better projection before giving up</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">frozen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="cn">NA</span>, nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">frozen</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">.5</span></span>
-<span class="r-in"><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, <span class="fu">frozen_guided_tour</span><span class="op">(</span><span class="va">frozen</span>, <span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">frozen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="cn">NA</span>, nrow <span class="op">=</span> <span class="fl">4</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">frozen</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">.5</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>, <span class="fu">frozen_guided_tour</span><span class="op">(</span><span class="va">frozen</span>, <span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New index: 0.667 (0.781 away)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> New index: 0.636 (0.781 away)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.79</span>
 <span class="r-plt img"><img src="frozen_guided_tour-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
@@ -112,7 +119,7 @@ a better projection before giving up</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

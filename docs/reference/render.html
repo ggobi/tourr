@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1.9002</span>
       </span>
     </div>
 
@@ -66,59 +66,78 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">render</span><span class="op">(</span>
-  <span class="va">data</span>,
-  <span class="va">tour_path</span>,
-  <span class="va">display</span>,
-  <span class="va">dev</span>,
-  <span class="va">...</span>,
-  apf <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">10</span>,
-  frames <span class="op">=</span> <span class="fl">50</span>,
-  rescale <span class="op">=</span> <span class="cn">TRUE</span>,
-  sphere <span class="op">=</span> <span class="cn">FALSE</span>,
-  start <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">render</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  <span class="va">tour_path</span>,</span>
+<span>  <span class="va">display</span>,</span>
+<span>  <span class="va">dev</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  apf <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">10</span>,</span>
+<span>  frames <span class="op">=</span> <span class="fl">50</span>,</span>
+<span>  rescale <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  sphere <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  start <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>matrix, or data frame containing numeric columns</p></dd>
+
+
 <dt>tour_path</dt>
 <dd><p>tour path generator</p></dd>
+
+
 <dt>display</dt>
 <dd><p>the method used to render the projected data,
 e.g. <code><a href="display_xy.html">display_xy</a></code>, <code><a href="display_pcp.html">display_pcp</a></code></p></dd>
+
+
 <dt>dev</dt>
 <dd><p>name of output device to use (e.g. <code><a href="https://rdrr.io/r/grDevices/png.html" class="external-link">png</a></code>,
 <code><a href="https://rdrr.io/r/grDevices/pdf.html" class="external-link">pdf</a></code>)</p></dd>
+
+
 <dt>...</dt>
 <dd><p>other options passed to output device</p></dd>
+
+
 <dt>apf</dt>
 <dd><p>angle (in radians) per frame</p></dd>
+
+
 <dt>frames</dt>
 <dd><p>number of frames in output</p></dd>
+
+
 <dt>rescale</dt>
 <dd><p>if true, rescale all variables to range [0,1]</p></dd>
+
+
 <dt>sphere</dt>
 <dd><p>if true, sphere all variables</p></dd>
+
+
 <dt>start</dt>
 <dd><p>starting projection.  If <code>NULL</code>, uses path default.</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">tmp_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">render</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="display_xy.html">display_xy</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"pdf"</span>,</span>
-<span class="r-in">  frames <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">tmp_path</span>, <span class="st">"test.pdf"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"><span class="fu">render</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="display_xy.html">display_xy</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"png"</span>,</span>
-<span class="r-in">  frames <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">tmp_path</span>, <span class="st">"test-%03d.png"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">tmp_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">render</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="display_xy.html">display_xy</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"pdf"</span>,</span></span>
+<span class="r-in"><span>  frames <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">tmp_path</span>, <span class="st">"test.pdf"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">render</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="display_xy.html">display_xy</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"png"</span>,</span></span>
+<span class="r-in"><span>  frames <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">tmp_path</span>, <span class="st">"test-%03d.png"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -133,7 +152,7 @@ e.g. <code><a href="display_xy.html">display_xy</a></code>, <code><a href="displ
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

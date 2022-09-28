@@ -18,7 +18,7 @@ inside and outside a slice."><meta property="og:image" content="/logo.png"><!-- 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1.9002</span>
       </span>
     </div>
 
@@ -68,41 +68,56 @@ inside and outside a slice.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">slice_index</span><span class="op">(</span>
-  <span class="va">breaks_x</span>,
-  <span class="va">breaks_y</span>,
-  <span class="va">eps</span>,
-  bintype <span class="op">=</span> <span class="st">"polar"</span>,
-  power <span class="op">=</span> <span class="fl">1</span>,
-  flip <span class="op">=</span> <span class="fl">1</span>,
-  reweight <span class="op">=</span> <span class="cn">FALSE</span>,
-  p <span class="op">=</span> <span class="fl">4</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">slice_index</span><span class="op">(</span></span>
+<span>  <span class="va">breaks_x</span>,</span>
+<span>  <span class="va">breaks_y</span>,</span>
+<span>  <span class="va">eps</span>,</span>
+<span>  bintype <span class="op">=</span> <span class="st">"polar"</span>,</span>
+<span>  power <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  flip <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  reweight <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  p <span class="op">=</span> <span class="fl">4</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>breaks_x</dt>
 <dd><p>binning on the first variable (x or radius).</p></dd>
+
+
 <dt>breaks_y</dt>
 <dd><p>binning on the second variable (y or angle).</p></dd>
+
+
 <dt>eps</dt>
 <dd><p>cutoff values to suppress summing up small differences.
 Vector with one entry for each bin, can be estimated
 using <code><a href="estimate_eps.html">estimate_eps</a></code>.</p></dd>
+
+
 <dt>bintype</dt>
 <dd><p>select polar (default) or square binning.</p></dd>
+
+
 <dt>power</dt>
 <dd><p>exponent q used in the index compuatation.</p></dd>
+
+
 <dt>flip</dt>
 <dd><p>sign of the index computation, select +1 when searching
 for low densities and -1 when searching for high densities.</p></dd>
+
+
 <dt>reweight</dt>
 <dd><p>if TRUE will reweight according to the expected distribution
 in a uniform hypersphere (default is FALSE).</p></dd>
+
+
 <dt>p</dt>
 <dd><p>number of variables in the data (needed for accurate reweighting,
 default is 4).</p></dd>
+
 </dl></div>
 
   </div>
@@ -117,7 +132,7 @@ default is 4).</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1.9002</span>
       </span>
     </div>
 
@@ -66,23 +66,23 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">display_slice</span><span class="op">(</span>
-  center <span class="op">=</span> <span class="cn">TRUE</span>,
-  axes <span class="op">=</span> <span class="st">"center"</span>,
-  half_range <span class="op">=</span> <span class="cn">NULL</span>,
-  col <span class="op">=</span> <span class="st">"black"</span>,
-  pch_slice <span class="op">=</span> <span class="fl">20</span>,
-  pch_other <span class="op">=</span> <span class="fl">46</span>,
-  cex_slice <span class="op">=</span> <span class="fl">2</span>,
-  cex_other <span class="op">=</span> <span class="fl">1</span>,
-  v_rel <span class="op">=</span> <span class="cn">NULL</span>,
-  anchor <span class="op">=</span> <span class="cn">NULL</span>,
-  edges <span class="op">=</span> <span class="cn">NULL</span>,
-  edges.col <span class="op">=</span> <span class="st">"black"</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">animate_slice</span><span class="op">(</span><span class="va">data</span>, tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>, rescale <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">display_slice</span><span class="op">(</span></span>
+<span>  center <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  axes <span class="op">=</span> <span class="st">"center"</span>,</span>
+<span>  half_range <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  pch_slice <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  pch_other <span class="op">=</span> <span class="fl">46</span>,</span>
+<span>  cex_slice <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  cex_other <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  v_rel <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  anchor <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  edges <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  edges.col <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">animate_slice</span><span class="op">(</span><span class="va">data</span>, tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>, rescale <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -91,75 +91,110 @@
 <dd><p>if TRUE, centers projected data to (0,0).  This pins the
 center of data cloud and make it easier to focus on the changing shape
 rather than position.</p></dd>
+
+
 <dt>axes</dt>
 <dd><p>position of the axes: center, bottomleft or off</p></dd>
+
+
 <dt>half_range</dt>
 <dd><p>half range to use when calculating limits of projected.
 If not set, defaults to maximum distance from origin to each row of data.</p></dd>
+
+
 <dt>col</dt>
 <dd><p>color to be plotted.  Defaults to "black"</p></dd>
+
+
 <dt>pch_slice</dt>
 <dd><p>marker for plotting points inside the slice.
 Defaults to 20.</p></dd>
+
+
 <dt>pch_other</dt>
 <dd><p>marker for plotting points outside the slice.
 Defaults to 46.</p></dd>
+
+
 <dt>cex_slice</dt>
 <dd><p>size of the points inside the slice. Defaults to 2.</p></dd>
+
+
 <dt>cex_other</dt>
 <dd><p>size if the points outside the slice. Defaults to 1.</p></dd>
+
+
 <dt>v_rel</dt>
 <dd><p>relative volume of the slice. If not set, suggested value
-is caluclated and printed to the screen.</p></dd>
+is calculated and printed to the screen.</p></dd>
+
+
 <dt>anchor</dt>
 <dd><p>A vector specifying the reference point to anchor the slice.
 If NULL (default) the slice will be anchored at the data center.</p></dd>
+
+
 <dt>edges</dt>
 <dd><p>A two column integer matrix giving indices of ends of lines.</p></dd>
+
+
 <dt>edges.col</dt>
 <dd><p>colour of edges to be plotted, Defaults to "black.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>other arguments passed on to <code><a href="animate.html">animate</a></code> and
 <code>display_slice</code></p></dd>
+
+
 <dt>data</dt>
 <dd><p>matrix, or data frame containing numeric columns</p></dd>
+
+
 <dt>tour_path</dt>
 <dd><p>tour path generator, defaults to 2d grand tour</p></dd>
+
+
 <dt>rescale</dt>
 <dd><p>if true, rescale all variables to range [0,1].</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Generate samples on a 3d and 5d hollow sphere using the geozoo package</span></span>
-<span class="r-in"><span class="va">sphere3</span> <span class="op">&lt;-</span> <span class="fu">geozoo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geozoo/man/sphere.hollow.html" class="external-link">sphere.hollow</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">$</span><span class="va">points</span></span>
-<span class="r-in"><span class="va">sphere5</span> <span class="op">&lt;-</span> <span class="fu">geozoo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geozoo/man/sphere.hollow.html" class="external-link">sphere.hollow</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">$</span><span class="va">points</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Columns need to be named before launching the tour</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">sphere3</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="st">"x3"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">sphere5</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="st">"x3"</span>, <span class="st">"x4"</span>, <span class="st">"x5"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Animate with the slice display using the default parameters</span></span>
-<span class="r-in"><span class="fu">animate_slice</span><span class="op">(</span><span class="va">sphere3</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Generate samples on a 3d and 5d hollow sphere using the geozoo package</span></span></span>
+<span class="r-in"><span><span class="va">sphere3</span> <span class="op">&lt;-</span> <span class="fu">geozoo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geozoo/man/sphere.hollow.html" class="external-link">sphere.hollow</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">$</span><span class="va">points</span></span></span>
+<span class="r-in"><span><span class="va">sphere5</span> <span class="op">&lt;-</span> <span class="fu">geozoo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geozoo/man/sphere.hollow.html" class="external-link">sphere.hollow</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">$</span><span class="va">points</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Columns need to be named before launching the tour</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">sphere3</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="st">"x3"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">sphere5</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="st">"x3"</span>, <span class="st">"x4"</span>, <span class="st">"x5"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Animate with the slice display using the default parameters</span></span></span>
+<span class="r-in"><span><span class="fu">animate_slice</span><span class="op">(</span><span class="va">sphere3</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.51</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using v_rel=0.051, corresponding to a cutoff h=0.051</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in `colnames&lt;-`(`*tmp*`, value = colnames(data)):</span> attempt to set 'colnames' on an object with less than two dimensions</span>
 <span class="r-plt img"><img src="display_slice-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu">animate_slice</span><span class="op">(</span><span class="va">sphere5</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">animate_slice</span><span class="op">(</span><span class="va">sphere5</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.53</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using v_rel=0.015, corresponding to a cutoff h=0.25</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using v_rel=0.014, corresponding to a cutoff h=0.24</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in `colnames&lt;-`(`*tmp*`, value = colnames(data)):</span> attempt to set 'colnames' on an object with less than two dimensions</span>
 <span class="r-plt img"><img src="display_slice-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Animate with off-center anchoring</span></span>
-<span class="r-in"><span class="va">anchor3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">3</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">anchor5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">5</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">animate_slice</span><span class="op">(</span><span class="va">sphere3</span>, anchor <span class="op">=</span> <span class="va">anchor3</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Animate with off-center anchoring</span></span></span>
+<span class="r-in"><span><span class="va">anchor3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">anchor5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">animate_slice</span><span class="op">(</span><span class="va">sphere3</span>, anchor <span class="op">=</span> <span class="va">anchor3</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.51</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using v_rel=0.051, corresponding to a cutoff h=0.051</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in `colnames&lt;-`(`*tmp*`, value = colnames(data)):</span> attempt to set 'colnames' on an object with less than two dimensions</span>
 <span class="r-plt img"><img src="display_slice-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co"># Animate with thicker slice to capture more points in each view</span></span>
-<span class="r-in"><span class="fu">animate_slice</span><span class="op">(</span><span class="va">sphere5</span>, anchor <span class="op">=</span> <span class="va">anchor5</span>, v_rel <span class="op">=</span> <span class="fl">0.02</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># Animate with thicker slice to capture more points in each view</span></span></span>
+<span class="r-in"><span><span class="fu">animate_slice</span><span class="op">(</span><span class="va">sphere5</span>, anchor <span class="op">=</span> <span class="va">anchor5</span>, v_rel <span class="op">=</span> <span class="fl">0.02</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.53</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using v_rel=0.02, corresponding to a cutoff h=0.27</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in `colnames&lt;-`(`*tmp*`, value = colnames(data)):</span> attempt to set 'colnames' on an object with less than two dimensions</span>
 <span class="r-plt img"><img src="display_slice-4.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -175,7 +210,7 @@ If NULL (default) the slice will be anchored at the data center.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -21,7 +21,7 @@ https://projecteuclid.org/download/pdf_1/euclid.ss/1177011077"><meta property="o
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1.9002</span>
       </span>
     </div>
 
@@ -74,47 +74,64 @@ For more information, see
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">search_better_random</span><span class="op">(</span>
-  <span class="va">current</span>,
-  alpha <span class="op">=</span> <span class="fl">0.5</span>,
-  <span class="va">index</span>,
-  <span class="va">tries</span>,
-  max.tries <span class="op">=</span> <span class="cn">Inf</span>,
-  method <span class="op">=</span> <span class="st">"linear"</span>,
-  cur_index <span class="op">=</span> <span class="cn">NA</span>,
-  t0 <span class="op">=</span> <span class="fl">0.01</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">search_better_random</span><span class="op">(</span></span>
+<span>  <span class="va">current</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  <span class="va">index</span>,</span>
+<span>  <span class="va">tries</span>,</span>
+<span>  max.tries <span class="op">=</span> <span class="cn">Inf</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">"linear"</span>,</span>
+<span>  cur_index <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  t0 <span class="op">=</span> <span class="fl">0.01</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>current</dt>
 <dd><p>starting projection</p></dd>
+
+
 <dt>alpha</dt>
 <dd><p>the angle used to search the target basis from the current basis</p></dd>
+
+
 <dt>index</dt>
 <dd><p>index function</p></dd>
+
+
 <dt>tries</dt>
 <dd><p>the counter of the outer loop of the opotimiser</p></dd>
+
+
 <dt>max.tries</dt>
 <dd><p>maximum number of iteration before giving up</p></dd>
+
+
 <dt>method</dt>
 <dd><p>whether the nearby bases are found by a linear/ geodesic formulation</p></dd>
+
+
 <dt>cur_index</dt>
 <dd><p>the index value of the current basis</p></dd>
+
+
 <dt>t0</dt>
 <dd><p>initial decrease in temperature</p></dd>
+
+
 <dt>...</dt>
 <dd><p>other arguments being passed into the <code>search_better_random()</code></p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span>, search_f <span class="op">=</span> <span class="va">search_better_random</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span>, search_f <span class="op">=</span> <span class="va">search_better_random</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Old 0.4528872 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New 0.4558945 try 2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Old 0.3309004 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> New 0.6262588 try 1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Accept </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
 <span class="r-plt img"><img src="search_better_random-1.png" alt="" width="700" height="433"></span>
@@ -132,7 +149,7 @@ For more information, see
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

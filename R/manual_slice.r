@@ -13,10 +13,10 @@
 #' @param ... other options passed to output device
 #' @export
 #' @examples
-#' data(flea)
-#' proj <- matrix(c(1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0), ncol=2, byrow=TRUE)
-#' manual_slice(flea[,1:6], proj, var=3, rescale=TRUE)
-manual_slice <- function(data, proj, var=1, nsteps=20, rescale = FALSE, sphere = FALSE, col = "black", ...) {
+#' sphere5 <- data.frame(geozoo::sphere.hollow(5)$points)
+#' proj <- matrix(c(1, 0, 0, 1, 0, 0, 0, 0, 0, 0), ncol=2, byrow=TRUE)
+#' manual_slice(sphere5, proj, var=3, rescale=TRUE)
+manual_slice <- function(data, proj, var=1, nsteps=20, v_rel = 0.01, rescale = FALSE, sphere = FALSE, col = "black", ...) {
   # Standard checks, and scaling
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
@@ -28,27 +28,38 @@ manual_slice <- function(data, proj, var=1, nsteps=20, rescale = FALSE, sphere =
 
   # Going to use nsteps twice, to go out to edge, come back to 0
   # go out to negative edge and back in to stop at 0
-  rng <- range(data[,var])
+  rng_var <- range(data[,var])
   anchor <- matrix(colMeans(data), ncol = length(proj[, 1]))
-  anchor_steps <- c(anchor[,var] + 0.8*(rng[2]-anchor[,var])*((0:nsteps)/nsteps),
-                    anchor[,var] + 0.8*(rng[2]-anchor[,var])*((nsteps:0)/nsteps),
-                    anchor[,var] - 0.8*(anchor[,var]-rng[1])*((0:nsteps)/nsteps),
-                    anchor[,var] - 0.8*(anchor[,var]-rng[1])*((nsteps:0)/nsteps))
+  anchor_steps <- c(anchor[,var] + 0.8*(rng_var[2]-anchor[,var])*((0:nsteps)/nsteps),
+                    anchor[,var] + 0.8*(rng_var[2]-anchor[,var])*((nsteps:0)/nsteps),
+                    anchor[,var] - 0.8*(anchor[,var]-rng_var[1])*((0:nsteps)/nsteps),
+                    anchor[,var] - 0.8*(anchor[,var]-rng_var[1])*((nsteps:0)/nsteps))
 
   # Initialise tour
   tour <- new_tour(data, grand_tour(), proj, ...)
 
   # Always doing slices
-  display <- display_slice(axes="bottomleft")
+  display <- display_slice(axes="bottomleft", v_rel = v_rel)
 
   # Initialise display
   display$init(data)
   display$render_frame()
-  display$render_data(data, proj)
+  display$render_data(data, proj, proj, with_anchor=anchor)
+
+  plat <- find_platform()
 
   for (j in anchor_steps) {
     anchor[,var] <- j
-    display$render_data(data, proj)
+    dev.hold()
+    on.exit(dev.flush())
+    if (plat$os == "win" || plat$iface == "rstudio") {
+      display$render_frame()
+    } else {
+      display$render_transition()
+    }
+    display$render_data(data, proj, proj, with_anchor = anchor)
+    dev.flush()
+    Sys.sleep(1 / 25)
   }
   invisible()
 }

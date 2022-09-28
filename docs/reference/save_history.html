@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1.9002</span>
       </span>
     </div>
 
@@ -66,192 +66,209 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">save_history</span><span class="op">(</span>
-  <span class="va">data</span>,
-  tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>,
-  max_bases <span class="op">=</span> <span class="fl">100</span>,
-  start <span class="op">=</span> <span class="cn">NULL</span>,
-  rescale <span class="op">=</span> <span class="cn">TRUE</span>,
-  sphere <span class="op">=</span> <span class="cn">FALSE</span>,
-  step_size <span class="op">=</span> <span class="cn">Inf</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">save_history</span><span class="op">(</span></span>
+<span>  <span class="va">data</span>,</span>
+<span>  tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  max_bases <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>  start <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  rescale <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  sphere <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  step_size <span class="op">=</span> <span class="cn">Inf</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>data</dt>
 <dd><p>matrix, or data frame containing numeric columns</p></dd>
+
+
 <dt>tour_path</dt>
 <dd><p>tour path generator</p></dd>
+
+
 <dt>max_bases</dt>
 <dd><p>maximum number of new bases to generate.  Some tour paths
 (like the guided tour) may generate less than the maximum.</p></dd>
+
+
 <dt>start</dt>
 <dd><p>starting projection, if you want to specify one</p></dd>
+
+
 <dt>rescale</dt>
 <dd><p>if true, rescale all variables to range [0,1]?</p></dd>
+
+
 <dt>sphere</dt>
 <dd><p>if true, sphere all variables</p></dd>
+
+
 <dt>step_size</dt>
 <dd><p>distance between each step - defaults to <code>Inf</code> which
 forces new basis generation at each step.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>additional arguments passed to tour path</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># You can use a saved history to replay tours with different visualisations</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu">save_history</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, max <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># You can use a saved history to replay tours with different visualisations</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu">save_history</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, max <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-in"><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="planned_tour.html">planned_tour</a></span><span class="op">(</span><span class="va">t1</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="planned_tour.html">planned_tour</a></span><span class="op">(</span><span class="va">t1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
 <span class="r-plt img"><img src="save_history-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co">## andrews_history(t1)</span></span>
-<span class="r-in"><span class="co">## andrews_history(interpolate(t1))</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu">save_history</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>, max <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">## andrews_history(t1)</span></span></span>
+<span class="r-in"><span><span class="co">## andrews_history(interpolate(t1))</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu">save_history</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>, max <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-in"><span class="fu"><a href="display_pcp.html">animate_pcp</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="planned_tour.html">planned_tour</a></span><span class="op">(</span><span class="va">t1</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="display_pcp.html">animate_pcp</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="planned_tour.html">planned_tour</a></span><span class="op">(</span><span class="va">t1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-plt img"><img src="save_history-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu"><a href="display_scatmat.html">animate_scatmat</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="planned_tour.html">planned_tour</a></span><span class="op">(</span><span class="va">t1</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="display_scatmat.html">animate_scatmat</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="planned_tour.html">planned_tour</a></span><span class="op">(</span><span class="va">t1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-plt img"><img src="save_history-3.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="save_history-4.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu">save_history</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, max <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu">save_history</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>, max <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-in"><span class="fu"><a href="display_dist.html">animate_dist</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="planned_tour.html">planned_tour</a></span><span class="op">(</span><span class="va">t1</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="display_dist.html">animate_dist</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="planned_tour.html">planned_tour</a></span><span class="op">(</span><span class="va">t1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
 <span class="r-plt img"><img src="save_history-5.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">testdata</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">testdata</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="fl">10</span></span>
-<span class="r-in"><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="sphere_data.html">sphere_data</a></span><span class="op">(</span><span class="va">testdata</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">t2</span> <span class="op">&lt;-</span> <span class="fu">save_history</span><span class="op">(</span><span class="va">testdata</span>, <span class="fu"><a href="guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span>, max.tries <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>,</span>
-<span class="r-in">  max <span class="op">=</span> <span class="fl">5</span>, rescale <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.827   8.2 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.829   8.5 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   8.6 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.911   1.2 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.911   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.911   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.912   0.1 % better </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">testdata</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">testdata</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="fl">10</span></span></span>
+<span class="r-in"><span><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="sphere_data.html">sphere_data</a></span><span class="op">(</span><span class="va">testdata</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">t2</span> <span class="op">&lt;-</span> <span class="fu">save_history</span><span class="op">(</span><span class="va">testdata</span>, <span class="fu"><a href="guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span>, max.tries <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  max <span class="op">=</span> <span class="fl">5</span>, rescale <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.899   1.8 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.899   1.8 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.899   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.899   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.1 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.1 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.900   0.0 % better </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No better bases found after 100 tries.  Giving up.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Final projection: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.962  0.274  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.129  0.469  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.241  0.840  </span>
-<span class="r-in"><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">testdata</span>, <span class="fu"><a href="planned_tour.html">planned_tour</a></span><span class="op">(</span><span class="va">t2</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.643  0.762  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -0.649  0.594  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -0.407  0.257  </span>
+<span class="r-in"><span><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">testdata</span>, <span class="fu"><a href="planned_tour.html">planned_tour</a></span><span class="op">(</span><span class="va">t2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.75</span>
 <span class="r-plt img"><img src="save_history-6.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Or you can use saved histories to visualise the path that the tour took.</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="path_index.html">path_index</a></span><span class="op">(</span><span class="fu"><a href="interpolate.html">interpolate</a></span><span class="op">(</span><span class="va">t2</span><span class="op">)</span>, <span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Or you can use saved histories to visualise the path that the tour took.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="path_index.html">path_index</a></span><span class="op">(</span><span class="fu"><a href="interpolate.html">interpolate</a></span><span class="op">(</span><span class="va">t2</span><span class="op">)</span>, <span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="save_history-7.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="path_curves.html">path_curves</a></span><span class="op">(</span><span class="fu"><a href="interpolate.html">interpolate</a></span><span class="op">(</span><span class="va">t2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="path_curves.html">path_curves</a></span><span class="op">(</span><span class="fu"><a href="interpolate.html">interpolate</a></span><span class="op">(</span><span class="va">t2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="save_history-8.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -267,7 +284,7 @@ forces new basis generation at each step.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
