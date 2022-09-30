@@ -78,9 +78,11 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
 
   render_data <- function(data, proj, geodesic, with_anchor = anchor) {
     draw_tour_axes(proj, labels, limits = 1, axes)
-    rng <- apply(data, 2, range)
-    colnames(with_anchor) <- colnames(data)
-    draw_slice_center(with_anchor, rng)
+    if (!is.null(with_anchor)) {
+      rng <- apply(data, 2, range)
+      colnames(with_anchor) <- colnames(data)
+      draw_slice_center(with_anchor, rng)
+    }
 
     # Render projected points
     x <- data %*% proj
