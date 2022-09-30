@@ -21,6 +21,7 @@
 #'   is calculated and printed to the screen.
 #' @param anchor A vector specifying the reference point to anchor the slice.
 #'   If NULL (default) the slice will be anchored at the data center.
+#' @param anchor_nav position of the anchor: center, topright or off
 #' @param rescale if true, rescale all variables to range [0,1].
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_slice}}
@@ -47,7 +48,8 @@
 display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
                           col = "black", pch_slice = 20, pch_other = 46,
                           cex_slice = 2, cex_other = 1, v_rel = NULL,
-                          anchor = NULL, edges = NULL, edges.col = "black", ...) {
+                          anchor = NULL, anchor_nav = "off",
+                          edges = NULL, edges.col = "black", ...) {
   labels <- NULL
   h <- NULL
 
@@ -81,7 +83,7 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
     if (!is.null(with_anchor)) {
       rng <- apply(data, 2, range)
       colnames(with_anchor) <- colnames(data)
-      draw_slice_center(with_anchor, rng)
+      draw_slice_center(with_anchor, rng, limits = 1, anchor_nav = anchor_nav)
     }
 
     # Render projected points
@@ -122,7 +124,22 @@ animate_slice <- function(data, tour_path = grand_tour(), rescale = TRUE, ...) {
 
 #' Draw slice center guide with base graphics
 #' @keywords internal
-draw_slice_center <- function(anchor, rng) {
+draw_slice_center <- function(anchor, rng, limits, anchor_nav, ...) {
+  anchor_nav <- match.arg(anchor_nav, c("center", "topright", "off"))
+  if (anchor_nav == "off") {
+    return()
+  }
+
+  if (anchor_nav == "center") {
+    axis_scale <- 2 * limits / 3
+    axis_pos <- 0
+  } else if (anchor_nav == "topright") {
+    axis_scale <- limits / 6
+    axis_pos <- 2 / 3 * limits
+  }
+
+  adj <- function(x) axis_pos + x * axis_scale
+
   n <- ncol(anchor)
   theta <- seq(90, 450, length = n + 1) * pi/180
   theta <- theta[1:n]
@@ -135,29 +152,35 @@ draw_slice_center <- function(anchor, rng) {
   cglwd <- 1
   cglcol <- "black"
   for (i in 0:seg) {
-    polygon(xx * (i + cgap)/(seg + cgap), yy * (i + cgap)/(seg +
-      cgap), lty = cglty, lwd = cglwd, border = cglcol)
-    arrows(xx/(seg + cgap), yy/(seg + cgap), xx * 1, yy *
-             1, lwd = cglwd, lty = cglty, length = 0, col = cglcol)
+    polygon(adj(xx * (i + cgap)/(seg + cgap)),
+            adj(yy * (i + cgap)/(seg + cgap)),
+            lty = cglty, lwd = cglwd, border = cglcol)
+    arrows(adj(xx/(seg + cgap)),
+           adj(yy/(seg + cgap)),
+           adj(xx * 1),
+           adj(yy * 1),
+           lwd = cglwd, lty = cglty,
+           length = 0, col = cglcol)
   }
   VLABELS <- colnames(anchor)
-  text(xx * 1.2, yy * 1.2, VLABELS)
+  text(adj(xx * 1.2), adj(yy * 1.2), VLABELS, cex=0.8)
   xxs <- xx
   yys <- yy
   scale <- cgap/(seg + cgap) +
-    (anchor[1, ] - rng[1, ])/(rng[2,] - rng[1, ]) * seg/(seg + cgap)
+    (anchor[1, ] - rng[1, ])/
+    (rng[2,] - rng[1, ]) * seg/(seg + cgap)
   for (j in 1:n) {
-    xxs[j] <- xx[j] * cgap/(seg + cgap) + xx[j] *
+    xxs[j] <- adj(xx[j] * cgap/(seg + cgap) + xx[j] *
       (anchor[1, j] - rng[1, j])/(rng[2, j] - rng[1, j]) *
-      seg/(seg + cgap)
-    yys[j] <- yy[j] * cgap/(seg + cgap) + yy[j] *
+      seg/(seg + cgap))
+    yys[j] <- adj(yy[j] * cgap/(seg + cgap) + yy[j] *
       (anchor[1, j] - rng[1, j])/(rng[2, j] - rng[1, j]) *
-      seg/(seg + cgap)
+      seg/(seg + cgap))
   }
   polygon(xxs, yys, lty = 1, lwd = 2,
           border = "black",
           col = NULL)
-  points(xx * scale, yy * scale, pch = 16,
+  points(adj(xx * scale), adj(yy * scale), pch = 16,
          col = "black")
 
 }

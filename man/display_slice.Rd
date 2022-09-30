@@ -16,6 +16,7 @@ display_slice(
   cex_other = 1,
   v_rel = NULL,
   anchor = NULL,
+  anchor_nav = "off",
   edges = NULL,
   edges.col = "black",
   ...
@@ -50,6 +51,8 @@ is calculated and printed to the screen.}
 
 \item{anchor}{A vector specifying the reference point to anchor the slice.
 If NULL (default) the slice will be anchored at the data center.}
+
+\item{anchor_nav}{position of the anchor: center, topright or off}
 
 \item{edges}{A two column integer matrix giving indices of ends of lines.}
 

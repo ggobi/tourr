@@ -10,13 +10,20 @@
 #' @param rescale if true, rescale all variables to range [0,1]?
 #' @param col color to be plotted.  Defaults to "black"
 #' @param sphere if true, sphere all variables
+#' @param half_range half range to use when calculating limits of projected.
+#'   If not set, defaults to maximum distance from origin to each row of data.
+#' @param anchor_nav position of the anchor: center, topright or off
 #' @param ... other options passed to output device
 #' @export
 #' @examples
 #' sphere5 <- data.frame(geozoo::sphere.hollow(5)$points)
-#' proj <- matrix(c(1, 0, 0, 1, 0, 0, 0, 0, 0, 0), ncol=2, byrow=TRUE)
-#' manual_slice(sphere5, proj, var=3, rescale=TRUE)
-manual_slice <- function(data, proj, var=1, nsteps=20, v_rel = 0.01, rescale = FALSE, sphere = FALSE, col = "black", ...) {
+#' proj <- basis_random(5, 2)
+#' manual_slice(sphere5, proj, var=3, rescale=TRUE, half_range=1.5)
+manual_slice <- function(data, proj, var=1, nsteps=20,
+                         v_rel = 0.01, rescale = FALSE,
+                         sphere = FALSE, col = "black",
+                         half_range = NULL,
+                         anchor_nav = "topright", ...) {
   # Standard checks, and scaling
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
@@ -39,7 +46,9 @@ manual_slice <- function(data, proj, var=1, nsteps=20, v_rel = 0.01, rescale = F
   tour <- new_tour(data, grand_tour(), proj, ...)
 
   # Always doing slices
-  display <- display_slice(axes="bottomleft", v_rel = v_rel)
+  display <- display_slice(axes="bottomleft", v_rel = v_rel,
+                           half_range = half_range,
+                           anchor_nav = anchor_nav)
 
   # Initialise display
   display$init(data)

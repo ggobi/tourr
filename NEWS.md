@@ -1,3 +1,7 @@
+# tourr 0.6.1.9004
+
+* slice center navigation now has positions
+
 # tourr 0.6.1.9003
 
 * Fixed bug in slice tour when anchor was not provided
