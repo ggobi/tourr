@@ -123,6 +123,11 @@ render_gif <- function(data, tour_path, display, gif_file = "animation.gif", ...
 
   png_files <- sprintf(png_path, 1:frames)
   on.exit(unlink(png_files))
-
+  png_exist <- sapply(png_files, file.exists)
+  if (!all(png_exist)){
+    n_png <- sum(png_exist)
+    warning(paste0("Note: only ", n_png, " frames generated, argument frames = ", frames, " is ignored."))
+  }
+  png_files <- png_files[png_exist]
   gifski::gifski(png_files, gif_file, delay = apf, progress = TRUE)
 }
