@@ -1,6 +1,6 @@
 #' Generate geodesic path.
 #'
-#' Wrap basis generation method with a function that keeps computes the
+#' Wrap basis generation method with a function that computes the
 #' geodesic interpolation from the previous frame to the next frame, and
 #' provides convenient access to all the information about the path.
 #'
@@ -108,7 +108,7 @@ geodesic_info <- function(Fa, Fz, epsilon = 1e-6) {
   Va <- sv$u[, nc:1]
   Vz <- sv$v[, nc:1]
 
-  # Compute frames of principle directions (planes) ------------------------
+  # Compute frames of principal directions (planes) ------------------------
   Ga <- Fa %*% Va
   Gz <- Fz %*% Vz
 

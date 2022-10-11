@@ -26,13 +26,13 @@ dcor2d <- function() {
 #' @export
 splines2d <- function() {
   function(mat) {
-    x <- mat[, 1]
-    y <- mat[, 2]
-    kx <- ifelse(length(unique(x[!is.na(x)])) < 20, 3, 10)
-    ky <- ifelse(length(unique(y[!is.na(y)])) < 20, 3, 10)
-    mgam1 <- mgcv::gam(y ~ s(x, bs = "cr", k = kx))
-    mgam2 <- mgcv::gam(x ~ s(y, bs = "cr", k = ky))
-    measure <- max(1 - var(residuals(mgam1), na.rm = T) / var(y, na.rm = T), 1 - var(residuals(mgam2), na.rm = T) / var(x, na.rm = T))
+    colnames(mat) <- c("x", "y")
+    kx <- ifelse(length(unique(mat$x[!is.na(mat$x)])) < 20, 3, 10)
+    ky <- ifelse(length(unique(mat$y[!is.na(mat$y)])) < 20, 3, 10)
+    mgam1 <- mgcv::gam(y ~ s(x, bs = "cr", k = kx), data=mat)
+    mgam2 <- mgcv::gam(x ~ s(y, bs = "cr", k = ky), data=mat)
+    measure <- max(1 - var(residuals(mgam1), na.rm = T) / var(mat$y, na.rm = T),
+                   1 - var(residuals(mgam2), na.rm = T) / var(mat$x, na.rm = T))
     return(measure)
   }
 }
