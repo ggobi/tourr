@@ -1,3 +1,7 @@
+# tourr 0.6.1.9006
+
+* splines2d force data to be data frame for model
+
 # tourr 0.6.1.9005
 
 * splines2d function fixed to pass in the data as required by mgcv::gam

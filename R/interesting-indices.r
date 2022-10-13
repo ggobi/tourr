@@ -26,6 +26,7 @@ dcor2d <- function() {
 #' @export
 splines2d <- function() {
   function(mat) {
+    mat <- as.data.frame(mat)
     colnames(mat) <- c("x", "y")
     kx <- ifelse(length(unique(mat$x[!is.na(mat$x)])) < 20, 3, 10)
     ky <- ifelse(length(unique(mat$y[!is.na(mat$y)])) < 20, 3, 10)
