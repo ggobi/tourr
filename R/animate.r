@@ -29,7 +29,7 @@
 #' # or in short
 #' animate(f)
 #' animate(f, max_frames = 30)
-#' \dontrun{
+#' \donttest{
 #' animate(f, max_frames = 10, fps = 1, aps = 0.1)
 #' }
 animate <- function(data, tour_path = grand_tour(), display = display_xy(),

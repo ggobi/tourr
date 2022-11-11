@@ -40,8 +40,8 @@
 #' animate_slice(sphere5)
 #'
 #' # Animate with off-center anchoring
-#' anchor3 <- rep(0.7, 3)
-#' anchor5 <- rep(0.3, 5)
+#' anchor3 <- matrix(rep(0.7, 3), ncol=3)
+#' anchor5 <- matrix(rep(0.3, 5), ncol=5)
 #' animate_slice(sphere3, anchor = anchor3)
 #' # Animate with thicker slice to capture more points in each view
 #' animate_slice(sphere5, anchor = anchor5, v_rel = 0.02)

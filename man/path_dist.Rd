@@ -13,13 +13,14 @@ path_dist(history)
 Compute distance matrix from bases.
 }
 \examples{
-\dontrun{
+\donttest{
 grand <- interpolate(save_history(flea[, 1:6], max = 50), 0.2)
 # The grand tour  -----------------------------
 # Look at the tour path in a tour, how well does it cover a sphere
 # Using MDS
 d <- path_dist(grand)
 ord <- as.data.frame(MASS::isoMDS(d)$points)
+require(ggplot2)
 ggplot(data = ord, aes(x=V1, y=V2)) +
   geom_path() +
   coord_equal() +

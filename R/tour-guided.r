@@ -29,8 +29,8 @@
 #'   \code{\link{search_better_random}} for different search strategies
 #' @export
 #' @examples
-#' \dontrun{
 #' animate_xy(flea[, 1:6], guided_tour(holes()), sphere = TRUE)
+#' \donttest{
 #' animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_better_random), sphere = TRUE)
 #' animate_dist(flea[, 1:6], guided_tour(holes(), 1), sphere = TRUE)
 #' animate_xy(flea[, 1:6], guided_tour(lda_pp(flea$species)), sphere = TRUE, col = flea$species)

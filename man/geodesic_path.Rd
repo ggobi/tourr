@@ -24,7 +24,7 @@ frame as argument}
  \item{Gz}{The target plane.}
 }
 \description{
-Wrap basis generation method with a function that keeps computes the
+Wrap basis generation method with a function that computes the
 geodesic interpolation from the previous frame to the next frame, and
 provides convenient access to all the information about the path.
 }

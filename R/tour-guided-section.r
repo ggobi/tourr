@@ -34,7 +34,7 @@
 #' # Columns need to be named before launching the tour
 #' colnames(sphere3) <- c("x1", "x2", "x3")
 #' # Off-center anchoring
-#' anchor3 <- rep(0.75, 3)
+#' anchor3 <- matrix(rep(0.75, 3), ncol=3)
 #' # Index setup
 #' r_breaks <- linear_breaks(5, 0, 1)
 #' a_breaks <- angular_breaks(10)

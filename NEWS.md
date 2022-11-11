@@ -1,3 +1,8 @@
+# tourr 0.6.1.9007
+
+* changed most dontrun to donttest
+* fix examples based on CRAN checks
+
 # tourr 0.6.1.9006
 
 * splines2d force data to be data frame for model

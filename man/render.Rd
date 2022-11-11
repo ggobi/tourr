@@ -44,7 +44,7 @@ e.g. \code{\link{display_xy}}, \code{\link{display_pcp}}}
 Render frames of animation to disk
 }
 \examples{
-\dontrun{
+\donttest{
 tmp_path <- tempdir()
 render(flea[, 1:6], grand_tour(), display_xy(), "pdf",
   frames = 3,

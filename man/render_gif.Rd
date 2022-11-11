@@ -43,7 +43,7 @@ e.g. \code{\link{display_xy}}, \code{\link{display_pcp}}}
 Render frames of animation to a gif file
 }
 \examples{
-\dontrun{
+\donttest{
 # gifski needs to be installed to render a gif
 if (requireNamespace("gifski", quietly = TRUE)) {
   gif_file <- file.path(tempdir(), "test.gif")

@@ -7,6 +7,8 @@
 #' @param proj projection from which slices are constructed
 #' @param var variable axis to run the center along: 1, ..., p
 #' @param nsteps number of changes in center to make
+#' @param v_rel relative volume of the slice. If not set, suggested value
+#'   is calculated and printed to the screen.
 #' @param rescale if true, rescale all variables to range [0,1]?
 #' @param col color to be plotted.  Defaults to "black"
 #' @param sphere if true, sphere all variables
@@ -16,9 +18,11 @@
 #' @param ... other options passed to output device
 #' @export
 #' @examples
+#' # Note that you might need to use the quartz()
+#' # on OSX to see the animation
 #' sphere5 <- data.frame(geozoo::sphere.hollow(5)$points)
 #' proj <- basis_random(5, 2)
-#' manual_slice(sphere5, proj, var=3, rescale=TRUE, half_range=1.5)
+#' manual_slice(sphere5, proj, var=3, nsteps=10, rescale=TRUE, half_range=1.5)
 manual_slice <- function(data, proj, var=1, nsteps=20,
                          v_rel = 0.01, rescale = FALSE,
                          sphere = FALSE, col = "black",

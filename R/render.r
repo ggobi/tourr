@@ -15,7 +15,7 @@
 #' @keywords hplot
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' tmp_path <- tempdir()
 #' render(flea[, 1:6], grand_tour(), display_xy(), "pdf",
 #'   frames = 3,
@@ -86,7 +86,7 @@ render <- function(data, tour_path, display, dev, ..., apf = 1 / 10, frames = 50
 #' @param start starting projection.  If \code{NULL}, uses path default.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # gifski needs to be installed to render a gif
 #' if (requireNamespace("gifski", quietly = TRUE)) {
 #'   gif_file <- file.path(tempdir(), "test.gif")

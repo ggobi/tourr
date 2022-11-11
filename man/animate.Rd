@@ -60,7 +60,7 @@ animate(f, grand_tour(), display_xy())
 # or in short
 animate(f)
 animate(f, max_frames = 30)
-\dontrun{
+\donttest{
 animate(f, max_frames = 10, fps = 1, aps = 0.1)
 }
 }
