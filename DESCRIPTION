@@ -3,7 +3,7 @@ Title: Tour Methods for Multivariate Data Visualisation
 Version: 0.6.1.9006
 Authors@R: c(
     person("Hadley", "Wickham", email = "h.wickham@gmail.com", role = c("aut", "ctb"), comment = c(ORCID = "0000-0003-4757-117X")),
-    person("Di", "Cook", email = "dicook@monash.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-3813-7155")),
+    person("Dianne", "Cook", email = "dicook@monash.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-3813-7155")),
     person("Nick", "Spyrison", email = "nicholas.spyrison@monash.edu", role = "ctb"),
     person("Ursula", "Laa", email = "ursula.laa@boku.ac.at", role = "ctb", comment = c(ORCID = "0000-0002-0249-6439")), 
     person("H. Sherry","Zhang", email = "huizezhangsh@gmail.com", role = "ctb"),
