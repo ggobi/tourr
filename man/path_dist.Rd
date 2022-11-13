@@ -13,13 +13,12 @@ path_dist(history)
 Compute distance matrix from bases.
 }
 \examples{
-\dontrun{
-# This code is to be used as an example but takes too long
-# for CRAN testing.
-grand <- interpolate(save_history(flea[, 1:6], max = 50), 0.2)
+# This code is to be used as an example but you should increase
+# the max from 2 to 50, say, to check tour coverage.
+grand <- interpolate(save_history(flea[, 1:6], max = 2), 0.2)
 # The grand tour  -----------------------------
 # Look at the tour path in a tour, how well does it cover a sphere
-# Using MDS
+# Using MDS to summarise the high-d space of projections
 d <- path_dist(grand)
 ord <- as.data.frame(MASS::isoMDS(d)$points)
 require(ggplot2)
@@ -27,11 +26,10 @@ ggplot(data = ord, aes(x=V1, y=V2)) +
   geom_path() +
   coord_equal() +
   labs(x = NULL, y = NULL)
-}
 
-# 5 guided tours  -----------------------------
+# Compare five guided tours  -----------------------------
 holes1d <- guided_tour(holes(), 1)
-tour_reps <- replicate(5, save_history(flea[, 1:6], holes1d, max = 5),
+tour_reps <- replicate(5, save_history(flea[, 1:6], holes1d, max = 2),
   simplify = FALSE
 )
 tour_reps2 <- lapply(tour_reps, interpolate, 0.2)
