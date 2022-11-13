@@ -17,8 +17,8 @@ This computes the projected values of each observation at each step, and
 allows you to recreate static views of the animated plots.
 }
 \examples{
-path1d <- save_history(flea[, 1:6], grand_tour(1), 10)
-path2d <- save_history(flea[, 1:6], grand_tour(2), 10)
+path1d <- save_history(flea[, 1:6], grand_tour(1), 3)
+path2d <- save_history(flea[, 1:6], grand_tour(2), 3)
 
 if (require("ggplot2")) {
   plot(path_curves(path1d))

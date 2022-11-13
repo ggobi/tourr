@@ -3,7 +3,9 @@
 #' @param history history of the plots
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
+#' # This code is to be used as an example but takes too long
+#' # for CRAN testing.
 #' grand <- interpolate(save_history(flea[, 1:6], max = 50), 0.2)
 #' # The grand tour  -----------------------------
 #' # Look at the tour path in a tour, how well does it cover a sphere
@@ -19,7 +21,7 @@
 #'
 #' # 5 guided tours  -----------------------------
 #' holes1d <- guided_tour(holes(), 1)
-#' tour_reps <- replicate(5, save_history(flea[, 1:6], holes1d, max = 10),
+#' tour_reps <- replicate(5, save_history(flea[, 1:6], holes1d, max = 5),
 #'   simplify = FALSE
 #' )
 #' tour_reps2 <- lapply(tour_reps, interpolate, 0.2)
@@ -34,11 +36,11 @@
 #' if (require("ggplot2")) {
 #'   ggplot(data = info, aes(x = step, y = value, group = try)) +
 #'     geom_line()
-#'   ggplot(data = info, aes(x = V1, y = V2, group = try)) +
-#'     geom_path() +
-#'     geom_point(aes(size = value)) +
-#'     coord_equal()
-#'   last_plot() + facet_wrap(~try)
+#'   ##ggplot(data = info, aes(x = V1, y = V2, group = try)) +
+#'   ##  geom_path() +
+#'   ##  geom_point(aes(size = value)) +
+#'   ##  coord_equal()
+#'   ##last_plot() + facet_wrap(~try)
 #' }
 path_dist <- function(history) {
   history <- as.array(history)

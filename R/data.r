@@ -253,3 +253,19 @@ NULL
 #' @references https://www.pmel.noaa.gov/tao/
 #' @keywords datasets
 NULL
+
+#' Saved history of guided tour with holes
+#'
+#' This data was generated from the following code:
+#' set.seed(2020)
+#' t1 <- save_history(flea[, 1:6], guided_tour(holes()), max = 100)
+#' attr(t1, "class") <- NULL
+#' And used as an example for search_polish() to start
+#' optimising from the best projection from search_geodesic.
+#' t1 is a 3D array or 2D projections.
+#'
+#' @name t1
+#' @aliases t1
+#' @docType data
+#' @keywords datasets
+NULL

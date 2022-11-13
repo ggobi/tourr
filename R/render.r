@@ -86,7 +86,7 @@ render <- function(data, tour_path, display, dev, ..., apf = 1 / 10, frames = 50
 #' @param start starting projection.  If \code{NULL}, uses path default.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # gifski needs to be installed to render a gif
 #' if (requireNamespace("gifski", quietly = TRUE)) {
 #'   gif_file <- file.path(tempdir(), "test.gif")

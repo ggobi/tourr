@@ -1,3 +1,7 @@
+# tourr 0.6.1.9008, 0.6.1.9009
+
+* Shorten run time of several examples
+
 # tourr 0.6.1.9007
 
 * changed most dontrun to donttest

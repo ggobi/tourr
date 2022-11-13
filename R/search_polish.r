@@ -12,16 +12,15 @@
 #' @keywords optimize
 #' @export
 #' @examples
-#' set.seed(2020)
-#' t1 <- save_history(flea[, 1:6], guided_tour(holes()), max = 100)
-#' attr(t1, "class") <- NULL
+#' data(t1)
 #' best_proj <- t1[, , dim(t1)[3]]
+#' attr(best_proj, "data") <- NULL
+#' best_proj <- unclass(drop(best_proj))
 #' animate_xy(
 #'   flea[, 1:6],
-#'   guided_tour(holes(),
-#'     search_f = search_polish,
-#'     cur_index = 0
-#'   ),
+#'   guided_tour(holes()),
+#'     search_f = search_polish(
+#'          polish_max_tries = 5),
 #'   start = best_proj
 #' )
 search_polish <- function(current, alpha = 0.5, index, tries, polish_max_tries = 30,
