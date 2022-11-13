@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.2</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
 
       
 
-      </header><script src="tourr_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to tourr</h1>
@@ -99,22 +99,37 @@
 
     
     
-<p>A tour animates a display of interpolated low-dimensional projections from high-dimensional data, to explore the shape of the multivariate distribution. The shape might be elliptical if the distribution is roughly normal, or there may be clusters corresponding to grouping the data according to known or unknown variables. There might be outliers, the can be identified because they are separated from the other observations, or move on different paths that other points. It may be that there are curvilinear patterns indicating nonlinear association between some variables.</p>
-<p>This vignette shows how to use the <code>tourr</code> package to generate animations using different tour and display types.</p>
+<p>A tour animates a display of interpolated low-dimensional projections
+from high-dimensional data, to explore the shape of the multivariate
+distribution. The shape might be elliptical if the distribution is
+roughly normal, or there may be clusters corresponding to grouping the
+data according to known or unknown variables. There might be outliers,
+the can be identified because they are separated from the other
+observations, or move on different paths that other points. It may be
+that there are curvilinear patterns indicating nonlinear association
+between some variables.</p>
+<p>This vignette shows how to use the <code>tourr</code> package to
+generate animations using different tour and display types.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ggobi/tourr" class="external-link">tourr</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
-<p>To get started we can simply generate a tour animation for any numeric data matrix with default settings. Here we look at the flea data available in the package, drop the last column (the grouping variable), and call</p>
+<p>To get started we can simply generate a tour animation for any
+numeric data matrix with default settings. Here we look at the flea data
+available in the package, drop the last column (the grouping variable),
+and call</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span>
 <span><span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
 <span><span class="co">#&gt; Using half_range 0.98</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
-<p>Here we only see the first frame that is generated on the tour path, but if you call <code>animate</code> in your console you will launch a tour animation that you can view in your graphics window.</p>
-<p>We could have also launched the same tour by specifying the default selection explicitly</p>
+<p>Here we only see the first frame that is generated on the tour path,
+but if you call <code>animate</code> in your console you will launch a
+tour animation that you can view in your graphics window.</p>
+<p>We could have also launched the same tour by specifying the default
+selection explicitly</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">f</span>,</span>
 <span>        tour_path <span class="op">=</span> <span class="fu"><a href="../reference/grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -123,38 +138,57 @@
 <span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
 <span><span class="co">#&gt; Using half_range 0.98</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
-<p>The most common application is to use a grand tour, which means that the projections (or bases) are randomly selected and give a global overview of the distribution. The default display is a two-dimensional scatterplot display.</p>
+<p>The most common application is to use a grand tour, which means that
+the projections (or bases) are randomly selected and give a global
+overview of the distribution. The default display is a two-dimensional
+scatterplot display.</p>
 </div>
 <div class="section level2">
 <h2 id="tour-types">Tour types<a class="anchor" aria-label="anchor" href="#tour-types"></a>
 </h2>
-<p>As we have seen, the default tour type is a grand tour. By selecting the second argument, <code>tour_path</code>, in the animate function we can change this, choosing from the tour types that have been implemented in the package. The most relevant options are:</p>
+<p>As we have seen, the default tour type is a grand tour. By selecting
+the second argument, <code>tour_path</code>, in the animate function we
+can change this, choosing from the tour types that have been implemented
+in the package. The most relevant options are:</p>
 <ul>
 <li>grand tour: randomly selected bases</li>
 <li>guided tour: basis selection is optimising an index function</li>
 <li>planned tour: interpolates between a set of input bases</li>
-<li>little tour: a planned tour between all axis parallel projections</li>
-<li>local tour: alternating between the starting projection and randomly selected nearby projections</li>
+<li>little tour: a planned tour between all axis parallel
+projections</li>
+<li>local tour: alternating between the starting projection and randomly
+selected nearby projections</li>
 </ul>
-<p>For example, the guided tour can be used to move towards more interesting views of the distribution as the animation progresses. To measure the interestingness of each projection we need to define an index function which will get maximised along the tour path. You can define your own index function, or use one of those available in the <code>tourr</code> package. For our example flea data we can use the holes index which is looking for projections with low densities near the center, and can often find views that reveal clustering.</p>
+<p>For example, the guided tour can be used to move towards more
+interesting views of the distribution as the animation progresses. To
+measure the interestingness of each projection we need to define an
+index function which will get maximised along the tour path. You can
+define your own index function, or use one of those available in the
+<code>tourr</code> package. For our example flea data we can use the
+holes index which is looking for projections with low densities near the
+center, and can often find views that reveal clustering.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">f</span>,</span>
 <span>        tour_path <span class="op">=</span> <span class="fu"><a href="../reference/guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="../reference/holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>        display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
-<span><span class="co">#&gt; Value  0.654   16.5 % better  - NEW BASIS</span></span>
+<span><span class="co">#&gt; Value  0.768   130.4 % better  - NEW BASIS</span></span>
 <span><span class="co">#&gt; Using half_range 0.98</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
-<p>When running the full guided tour for this example, the final view shows three clusters that correspond to the three species in the dataset. By mapping the species to color we can see how the groups get teased apart in the guided tour.</p>
+<p>When running the full guided tour for this example, the final view
+shows three clusters that correspond to the three species in the
+dataset. By mapping the species to color we can see how the groups get
+teased apart in the guided tour.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">f</span>,</span>
 <span>        tour_path <span class="op">=</span> <span class="fu"><a href="../reference/guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="../reference/holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>        display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
-<span><span class="co">#&gt; Value  0.794   14.0 % better  - NEW BASIS</span></span>
+<span><span class="co">#&gt; Value  0.405   168.9 % better  - NEW BASIS</span></span>
 <span><span class="co">#&gt; Using half_range 0.98</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
-<p>Alternatively, a colour vector can be created manually and passed into the guided tour.</p>
+<p>Alternatively, a colour vector can be created manually and passed
+into the guided tour.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># defining the color palette</span></span>
 <span><span class="va">clrs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#486030"</span>, <span class="st">"#c03018"</span>, <span class="st">"#f0a800"</span><span class="op">)</span></span>
@@ -166,15 +200,24 @@
 <span>        tour_path <span class="op">=</span> <span class="fu"><a href="../reference/guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="../reference/holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>        display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">flea_col</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
-<span><span class="co">#&gt; Value  0.711   29.6 % better  - NEW BASIS</span></span>
+<span><span class="co">#&gt; Value  0.619   112.1 % better  - NEW BASIS</span></span>
 <span><span class="co">#&gt; Using half_range 0.98</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="display-types">Display types<a class="anchor" aria-label="anchor" href="#display-types"></a>
 </h2>
-<p>The default display is showing a scatterplot of the data projected to 2D. Depending on the number of dimensions we project onto (this is called d), we can choose different display types. For example, we could look at 1D projections in a density display, a 3D projection using depth cues, or higher dimensional projections in a parallel coordinate or scatterplot matrix display.</p>
-<p>When changing the display type via the <code>display</code> argument, we need to make sure that the basis generation is matching the corresponding number of dimensions d. We can pass in this information when generating the tour path. To work with 1D projections and a density display, we can launch the animation as</p>
+<p>The default display is showing a scatterplot of the data projected to
+2D. Depending on the number of dimensions we project onto (this is
+called d), we can choose different display types. For example, we could
+look at 1D projections in a density display, a 3D projection using depth
+cues, or higher dimensional projections in a parallel coordinate or
+scatterplot matrix display.</p>
+<p>When changing the display type via the <code>display</code> argument,
+we need to make sure that the basis generation is matching the
+corresponding number of dimensions d. We can pass in this information
+when generating the tour path. To work with 1D projections and a density
+display, we can launch the animation as</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">f</span>,</span>
 <span>        tour_path <span class="op">=</span> <span class="fu"><a href="../reference/grand_tour.html">grand_tour</a></span><span class="op">(</span>d <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
@@ -193,9 +236,18 @@
 <div class="section level2">
 <h2 id="saving-a-tour">Saving a tour<a class="anchor" aria-label="anchor" href="#saving-a-tour"></a>
 </h2>
-<p>After exploring the different options, we may have identified a particularly interesting tour that we may want to save or share.</p>
-<p>The first option is to save the animation (or its individual frames). This is possible through the <code>render</code> functions, that save the frame views to png or pdf format. Another option, perhaps more convenient, is to directly save the full animation to a gif file. To use the function, you will need to install the <code>gifski</code> package.</p>
-<p>An advanced alternative is to save the tour path, which can later be replayed as a planned tour, and allows us to look at the same tour in different displays. For example we can save a default grand tour path for the flea data and then replay it in a scatterplot display</p>
+<p>After exploring the different options, we may have identified a
+particularly interesting tour that we may want to save or share.</p>
+<p>The first option is to save the animation (or its individual frames).
+This is possible through the <code>render</code> functions, that save
+the frame views to png or pdf format. Another option, perhaps more
+convenient, is to directly save the full animation to a gif file. To use
+the function, you will need to install the <code>gifski</code>
+package.</p>
+<p>An advanced alternative is to save the tour path, which can later be
+replayed as a planned tour, and allows us to look at the same tour in
+different displays. For example we can save a default grand tour path
+for the flea data and then replay it in a scatterplot display</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/save_history.html">save_history</a></span><span class="op">(</span><span class="va">f</span>, max <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
@@ -218,7 +270,7 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Hadley Wickham, Di Cook.</p>
+<p>Developed by Hadley Wickham, Dianne Cook.</p>
 </div>
 
 <div class="pkgdown">

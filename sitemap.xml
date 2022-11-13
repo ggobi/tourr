@@ -151,6 +151,9 @@
     <loc>/reference/display_xy.html</loc>
   </url>
   <url>
+    <loc>/reference/draw_slice_center.html</loc>
+  </url>
+  <url>
     <loc>/reference/draw_tour_axes.html</loc>
   </url>
   <url>
@@ -221,6 +224,9 @@
   </url>
   <url>
     <loc>/reference/local_tour.html</loc>
+  </url>
+  <url>
+    <loc>/reference/manual_slice.html</loc>
   </url>
   <url>
     <loc>/reference/mapColors.html</loc>
@@ -326,6 +332,9 @@
   </url>
   <url>
     <loc>/reference/step_fraction.html</loc>
+  </url>
+  <url>
+    <loc>/reference/t1.html</loc>
   </url>
   <url>
     <loc>/reference/to_stop.html</loc>
