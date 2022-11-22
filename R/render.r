@@ -84,6 +84,7 @@ render <- function(data, tour_path, display, dev, ..., apf = 1 / 10, frames = 50
 #' @param rescale if true, rescale all variables to range [0,1]
 #' @param sphere if true, sphere all variables
 #' @param start starting projection.  If \code{NULL}, uses path default.
+#' @param loop Logical for gifski to loop or not, default=TRUE
 #'
 #' @examples
 #' \dontrun{
@@ -96,7 +97,7 @@ render <- function(data, tour_path, display, dev, ..., apf = 1 / 10, frames = 50
 #' }
 #' }
 #' @export
-render_gif <- function(data, tour_path, display, gif_file = "animation.gif", ..., apf = 1 / 10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
+render_gif <- function(data, tour_path, display, gif_file = "animation.gif", ..., apf = 1 / 10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL, loop = TRUE) {
   if (!requireNamespace("gifski", quietly = TRUE)) {
     stop("To use this function please install the 'gifski' package",
       call. = FALSE
@@ -123,11 +124,15 @@ render_gif <- function(data, tour_path, display, gif_file = "animation.gif", ...
 
   png_files <- sprintf(png_path, 1:frames)
   on.exit(unlink(png_files))
+
+  # Handle smaller number of frames than requested
+  # as happens with the guided tour
   png_exist <- sapply(png_files, file.exists)
   if (!all(png_exist)){
     n_png <- sum(png_exist)
     warning(paste0("Note: only ", n_png, " frames generated, argument frames = ", frames, " is ignored."))
   }
   png_files <- png_files[png_exist]
-  gifski::gifski(png_files, gif_file, delay = apf, progress = TRUE)
+
+  gifski::gifski(png_files, gif_file, delay = apf, progress = TRUE, loop = loop, ...)
 }

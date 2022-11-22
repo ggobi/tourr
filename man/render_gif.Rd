@@ -14,7 +14,8 @@ render_gif(
   frames = 50,
   rescale = TRUE,
   sphere = FALSE,
-  start = NULL
+  start = NULL,
+  loop = TRUE
 )
 }
 \arguments{
@@ -38,6 +39,8 @@ e.g. \code{\link{display_xy}}, \code{\link{display_pcp}}}
 \item{sphere}{if true, sphere all variables}
 
 \item{start}{starting projection.  If \code{NULL}, uses path default.}
+
+\item{loop}{Logical for gifski to loop or not, default=TRUE}
 }
 \description{
 Render frames of animation to a gif file

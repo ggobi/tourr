@@ -1,12 +1,16 @@
+# tourr 0.6.3
+
+* Added argument to render tours as gifs without looping
+
 # tourr 0.6.2
 
 * Shorten run time of several examples
-* changed most dontrun to donttest
-* fix examples based on CRAN checks
+* Changed most dontrun to donttest
+* Fix examples based on CRAN checks
 * splines2d force data to be data frame for model
 * splines2d function fixed to pass in the data as required by mgcv::gam
 * Handle problem of mismatching number of frames in render_gif
-* slice center navigation now has positions
+* Slice center navigation now has positions
 * Fixed bug in slice tour when anchor was not provided
 * Added slice center guide
 * Adding manual slicing
