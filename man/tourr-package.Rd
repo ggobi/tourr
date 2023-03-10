@@ -28,9 +28,9 @@ Authors:
 
 Other contributors:
 \itemize{
-  \item Nick Spyrison \email{nicholas.spyrison@monash.edu} [contributor]
+  \item Nick Spyrison \email{nicholas.spyrison@monash.edu} (\href{https://orcid.org/0000-0002-8417-0212}{ORCID}) [contributor]
   \item Ursula Laa \email{ursula.laa@boku.ac.at} (\href{https://orcid.org/0000-0002-0249-6439}{ORCID}) [contributor]
-  \item H. Sherry Zhang \email{huizezhangsh@gmail.com} [contributor]
+  \item H. Sherry Zhang \email{huizezhangsh@gmail.com} (\href{https://orcid.org/0000-0002-7122-1463}{ORCID}) [contributor]
   \item Stuart Lee \email{stuart.lee1@monash.edu} (\href{https://orcid.org/0000-0003-1179-8436}{ORCID}) [contributor]
 }
 

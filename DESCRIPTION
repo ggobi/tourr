@@ -4,9 +4,9 @@ Version: 0.6.4
 Authors@R: c(
     person("Hadley", "Wickham", email = "h.wickham@gmail.com", role = c("aut", "ctb"), comment = c(ORCID = "0000-0003-4757-117X")),
     person("Dianne", "Cook", email = "dicook@monash.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-3813-7155")),
-    person("Nick", "Spyrison", email = "nicholas.spyrison@monash.edu", role = "ctb"),
+    person("Nick", "Spyrison", email = "nicholas.spyrison@monash.edu", role = "ctb", comment = c(ORCID = "0000-0002-8417-0212")),
     person("Ursula", "Laa", email = "ursula.laa@boku.ac.at", role = "ctb", comment = c(ORCID = "0000-0002-0249-6439")), 
-    person("H. Sherry","Zhang", email = "huizezhangsh@gmail.com", role = "ctb"),
+    person("H. Sherry","Zhang", email = "huizezhangsh@gmail.com", role = "ctb", comment = c(ORCID = "0000-0002-7122-1463")),
     person("Stuart", "Lee", email = "stuart.lee1@monash.edu", role = "ctb", comment = c(ORCID = "0000-0003-1179-8436")))
 Description: Implements geodesic interpolation and basis
     generation functions that allow you to create new tour

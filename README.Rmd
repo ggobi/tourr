@@ -44,3 +44,6 @@ To run a tour in R, use one of the animate functions. This code will show a 2D t
 animate_xy(flea[,-7], col=flea$species)
 ```
 
+## Resources
+
+The best place to get started is the [Journal of Statistical Software paper](https://www.jstatsoft.org/article/view/v040i02).
