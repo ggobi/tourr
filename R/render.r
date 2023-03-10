@@ -136,3 +136,75 @@ render_gif <- function(data, tour_path, display, gif_file = "animation.gif", ...
 
   gifski::gifski(png_files, gif_file, delay = apf, progress = TRUE, loop = loop, ...)
 }
+
+#' Render a frame
+#'
+#' This function takes a projection matrix as produced by
+#' save_history(), and draws it on the projected data
+#' like a biplot. This will product the data objects needed
+#' in order for the user to plot with base or ggplot2.
+#'
+#' @param data matrix, or data frame containing numeric columns,
+#'   should be standardised to have mean 0, sd 1
+#' @param prj projection matrix
+#' @param location of the axes display on the plot: center (default), bottomleft, off.
+#'
+#' @return list containing projected data, circle and segments for axes
+#' @export
+#' @examples
+#' data(flea)
+#' flea_std <- apply(flea[,1:6], 2, function(x) (x-mean(x))/sd(x))
+#' prj <- basis_random(ncol(flea[,1:6]), 2)
+#' p <- render_proj(flea_std, prj)
+#' if (require("ggplot2")) {
+#' ggplot() +
+#'   geom_path(data=p$circle, aes(x=c1, y=c2)) +
+#'   geom_segment(data=p$axes, aes(x=x1, y=y1, xend=x2, yend=y2)) +
+#'   geom_text(data=p$axes, aes(x=x2, y=y2, label=rownames(p$axes))) +
+#'   geom_point(data=p$data_prj, aes(x=P1, y=P2)) +
+#'   xlim(c(-1, 1)) + ylim(c(-1,1)) +
+#'   theme_bw() +
+#'   theme(axis.text=element_blank(),
+#'         axis.title=element_blank(),
+#'         axis.ticks=element_blank(),
+#'         panel.grid=element_blank())
+#' }
+render_proj <- function(data, prj, labels=NULL, limits=1, position="center"){
+  # Check dimensions ok
+  try(if (ncol(data) != nrow(prj))
+           stop("Number of columns of data don't match number of rows of prj"))
+  try(if(ncol(prj) != 2)
+           stop("Number of columns of prj needs to be 2"))
+
+  # Project data and scale into unit box
+  data_prj <- as.matrix(data) %*% as.matrix(prj)
+  rng <- range(data_prj)
+  data_prj <- data_prj/max(abs(rng))
+  colnames(data_prj) <- c("P1", "P2")
+  data_prj <- data.frame(data_prj)
+
+  # Make labels if missing
+  if (is.null(labels))
+    labels <- colnames(data)
+
+  # Axis scale
+  if (position == "center") {
+    axis_scale <- 2 * limits / 3
+    axis_pos <- 0
+  } else if (position == "bottomleft") {
+    axis_scale <- limits / 6
+    axis_pos <- -2 / 3 * limits
+  }
+  adj <- function(x) axis_pos + x * axis_scale
+
+  # Compute segments
+  axes <- data.frame(x1=adj(0), y1=adj(0),
+                     x2=adj(prj[, 1]), y2=adj(prj[, 2]))
+  rownames(axes) <- colnames(data)
+
+  # Compute circle
+  theta <- seq(0, 2 * pi, length = 50)
+  circle <- data.frame(c1 = adj(cos(theta)), c2=adj(sin(theta)))
+
+  return(list(data_prj=data_prj, axes=axes, circle=circle))
+}

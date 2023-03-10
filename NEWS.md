@@ -1,3 +1,7 @@
+# tourr 0.6.4
+
+* Added routine to draw projected data and axes
+
 # tourr 0.6.3
 
 * Added argument to render tours as gifs without looping

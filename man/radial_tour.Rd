@@ -9,7 +9,7 @@ radial_tour(start, mvar = 1, ...)
 \arguments{
 \item{start}{initial projection matrix}
 
-\item{mvar}{variable chosen to rotate out}
+\item{mvar}{variable(s) chosen to rotate out}
 
 \item{...}{additional arguments for drawing}
 }
@@ -24,6 +24,7 @@ a method that works with tour paths like \code{\link{animate}},
 }
 \examples{
 animate_xy(flea[, 1:6], radial_tour(basis_random(6, 2), mvar = 4))
+animate_xy(flea[, 1:6], radial_tour(basis_random(6, 2), mvar = c(3,4)))
 animate_dist(flea[, 1:6], radial_tour(basis_random(6, 1), mvar = 4))
 animate_scatmat(flea[, 1:6], radial_tour(basis_random(6, 3), mvar = 4))
 }

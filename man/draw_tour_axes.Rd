@@ -2,11 +2,40 @@
 % Please edit documentation in R/display-xy.r
 \name{draw_tour_axes}
 \alias{draw_tour_axes}
-\title{Draw tour axes with base graphics}
+\title{Draw tour axes on the projected data with base graphics}
 \usage{
-draw_tour_axes(proj, labels, limits, position, ...)
+draw_tour_axes(proj, labels, limits = 1, position = "center", ...)
+}
+\arguments{
+\item{proj}{matrix of projection coefficients}
+
+\item{labels}{variable names for the axes, of length the same
+as the number of rows of proj}
+
+\item{limits}{value setting the lower and upper limits of
+projected data, default 1}
+
+\item{position}{position of the axes: center (default),
+bottomleft or off}
+
+\item{...}{other arguments passed}
 }
 \description{
-Draw tour axes with base graphics
+Draw tour axes on the projected data with base graphics
 }
-\keyword{internal}
+\examples{
+data(flea)
+flea_std <- apply(flea[,1:6], 2, function(x) (x-mean(x))/sd(x))
+prj <- basis_random(ncol(flea[,1:6]), 2)
+flea_prj <- as.data.frame(as.matrix(flea_std) \%*\% prj)
+par(pty = "s", mar = rep(0.1, 4))
+plot(flea_prj$V1, flea_prj$V2,
+     xlim = c(-3, 3), ylim = c(-3, 3),
+     xlab="P1", ylab="P2")
+draw_tour_axes(prj, colnames(flea)[1:6], limits=3)
+
+plot(flea_prj$V1, flea_prj$V2,
+     xlim = c(-3, 3), ylim = c(-3, 3),
+     xlab="P1", ylab="P2")
+draw_tour_axes(prj, colnames(flea)[1:6], limits=3, position="bottomleft")
+}
