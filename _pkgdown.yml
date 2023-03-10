@@ -75,6 +75,8 @@ reference:
   - path_curves
   - render
   - render_gif
+  - render_proj
+  - draw_tour_axes
   - save_history
   - areColors
   - mapColors

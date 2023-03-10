@@ -18,7 +18,7 @@ using a section pursuit index for the selection of target planes."><meta propert
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.4</span>
       </span>
     </div>
 
@@ -151,7 +151,7 @@ a method that works with tour paths like <code><a href="display_slice.html">anim
 <span class="r-in"><span><span class="co"># Columns need to be named before launching the tour</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">sphere3</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x1"</span>, <span class="st">"x2"</span>, <span class="st">"x3"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Off-center anchoring</span></span></span>
-<span class="r-in"><span><span class="va">anchor3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.75</span>, <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">anchor3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.75</span>, <span class="fl">3</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Index setup</span></span></span>
 <span class="r-in"><span><span class="va">r_breaks</span> <span class="op">&lt;-</span> <span class="fu"><a href="linear_breaks.html">linear_breaks</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">a_breaks</span> <span class="op">&lt;-</span> <span class="fu"><a href="angular_breaks.html">angular_breaks</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></span>
@@ -166,7 +166,6 @@ a method that works with tour paths like <code><a href="display_slice.html">anim
 <span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.899   113.9 % better  - NEW BASIS</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.51</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using v_rel=0.1, corresponding to a cutoff h=0.1</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in `colnames&lt;-`(`*tmp*`, value = colnames(data)):</span> attempt to set 'colnames' on an object with less than two dimensions</span>
 <span class="r-plt img"><img src="guided_section_tour-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -178,7 +177,7 @@ a method that works with tour paths like <code><a href="display_slice.html">anim
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Hadley Wickham, Di Cook.</p>
+  <p></p><p>Developed by Hadley Wickham, Dianne Cook.</p>
 </div>
 
 <div class="pkgdown">
