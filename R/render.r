@@ -148,6 +148,10 @@ render_gif <- function(data, tour_path, display, gif_file = "animation.gif", ...
 #'   should be standardised to have mean 0, sd 1
 #' @param prj projection matrix
 #' @param location of the axes display on the plot: center (default), bottomleft, off.
+#' @param limits value setting the lower and upper limits of
+#'   projected data, default 1
+#' @param position position of the axes: center (default),
+#'   bottomleft or off
 #'
 #' @return list containing projected data, circle and segments for axes
 #' @export
