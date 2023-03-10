@@ -2,7 +2,7 @@ tourr: tour methods for multivariate data visualisation
 ================
 Hadley Wickham, Di Cook, Nick Spyrison, Ursula Laa, H. Sherry Zhang,
 Stuart Lee
-November 20, 2020
+March 10, 2023
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -21,7 +21,7 @@ You can install the released version of tourr from
 install.packages("tourr")
 ```
 
-You can install the development version of nullabor from github with:
+You can install the development version of tourr from github with:
 
 ``` r
 # install.packages("devtools")
@@ -37,3 +37,8 @@ labelled classes.
 ``` r
 animate_xy(flea[,-7], col=flea$species)
 ```
+
+## Resources
+
+The best place to get started is the [Journal of Statistical Software
+paper](https://www.jstatsoft.org/article/view/v040i02).
