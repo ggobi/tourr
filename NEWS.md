@@ -1,6 +1,7 @@
 # tourr 0.6.5
 
-* Fixed a bug in save_history so that if start is provided it doesn't get duplicated 
+* Fixed a bug in save_history so that if start is provided it doesn't get duplicated
+* Fix to is_orthonormal so it doesn't just stop if not a matrix
 
 # tourr 0.6.4
 

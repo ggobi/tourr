@@ -41,7 +41,9 @@ orthonormalise <- function(x) {
 #' @param tol tolerance used to test floating point differences
 #' @export
 is_orthonormal <- function(x, tol = 0.001) {
-  stopifnot(is.matrix(x))
+  if(is.numeric(x) == FALSE) stop("'x', expected to be numeric and coercable to matrix.")
+  if (!is.matrix(x)) x <- as.matrix(x)
+  #stopifnot(is.matrix(x))
   nc <- ncol(x)
   iter <- seq_len(nc)
   for (j in iter) {
