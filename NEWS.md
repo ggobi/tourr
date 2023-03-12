@@ -1,3 +1,7 @@
+# tourr 0.6.5
+
+* Fixed a bug in save_history so that if start is provided it doesn't get duplicated 
+
 # tourr 0.6.4
 
 * Added routine to draw projected data and axes
