@@ -1,3 +1,7 @@
+# tourr 0.6.6
+
+* Added a render_anim to create a plotly animation
+
 # tourr 0.6.5
 
 * Fixed a bug in save_history so that if start is provided it doesn't get duplicated

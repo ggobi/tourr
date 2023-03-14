@@ -137,17 +137,19 @@ render_gif <- function(data, tour_path, display, gif_file = "animation.gif", ...
   gifski::gifski(png_files, gif_file, delay = apf, progress = TRUE, loop = loop, ...)
 }
 
-#' Render a frame
+#' Render plotly animation frame
 #'
 #' This function takes a projection matrix as produced by
 #' save_history(), and draws it on the projected data
 #' like a biplot. This will product the data objects needed
 #' in order for the user to plot with base or ggplot2.
+#' Note that for now this only works for 2D projections.
 #'
 #' @param data matrix, or data frame containing numeric columns,
 #'   should be standardised to have mean 0, sd 1
 #' @param prj projection matrix
-#' @param labels of the axes to be displayed
+#' @param axis_labels of the axes to be displayed
+#' @param obs_labels labels of the observations to be available for interactive mouseover
 #' @param limits value setting the lower and upper limits of
 #'   projected data, default 1
 #' @param position position of the axes: center (default),
@@ -161,19 +163,20 @@ render_gif <- function(data, tour_path, display, gif_file = "animation.gif", ...
 #' prj <- basis_random(ncol(flea[,1:6]), 2)
 #' p <- render_proj(flea_std, prj)
 #' if (require("ggplot2")) {
-#' ggplot() +
-#'   geom_path(data=p$circle, aes(x=c1, y=c2)) +
-#'   geom_segment(data=p$axes, aes(x=x1, y=y1, xend=x2, yend=y2)) +
-#'   geom_text(data=p$axes, aes(x=x2, y=y2, label=rownames(p$axes))) +
-#'   geom_point(data=p$data_prj, aes(x=P1, y=P2)) +
-#'   xlim(c(-1, 1)) + ylim(c(-1,1)) +
-#'   theme_bw() +
-#'   theme(axis.text=element_blank(),
-#'         axis.title=element_blank(),
-#'         axis.ticks=element_blank(),
-#'         panel.grid=element_blank())
+#'   ggplot() +
+#'     geom_path(data=p$circle, aes(x=c1, y=c2)) +
+#'     geom_segment(data=p$axes, aes(x=x1, y=y1, xend=x2, yend=y2)) +
+#'     geom_text(data=p$axes, aes(x=x2, y=y2, label=rownames(p$axes))) +
+#'     geom_point(data=p$data_prj, aes(x=P1, y=P2)) +
+#'     xlim(-1,1) + ylim(-1, 1) +
+#'     theme_bw() +
+#'     theme(aspect.ratio=1,
+#'        axis.text=element_blank(),
+#'        axis.title=element_blank(),
+#'        axis.ticks=element_blank(),
+#'        panel.grid=element_blank())
 #' }
-render_proj <- function(data, prj, labels=NULL, limits=1, position="center"){
+render_proj <- function(data, prj, axis_labels=NULL, obs_labels=NULL, limits=1, position="center"){
   # Check dimensions ok
   try(if (ncol(data) != nrow(prj))
            stop("Number of columns of data don't match number of rows of prj"))
@@ -187,9 +190,10 @@ render_proj <- function(data, prj, labels=NULL, limits=1, position="center"){
   colnames(data_prj) <- c("P1", "P2")
   data_prj <- data.frame(data_prj)
 
-  # Make labels if missing
-  if (is.null(labels))
-    labels <- colnames(data)
+  # Add observation labels
+  if (is.null(obs_labels))
+    obs_labels <- as.character(1:nrow(data))
+  data_prj$obs_labels <- obs_labels
 
   # Axis scale
   if (position == "center") {
@@ -204,11 +208,127 @@ render_proj <- function(data, prj, labels=NULL, limits=1, position="center"){
   # Compute segments
   axes <- data.frame(x1=adj(0), y1=adj(0),
                      x2=adj(prj[, 1]), y2=adj(prj[, 2]))
-  rownames(axes) <- colnames(data)
+  # Make labels if missing
+  if (is.null(axis_labels))
+    axis_labels <- colnames(data)
+  rownames(axes) <- axis_labels
 
   # Compute circle
   theta <- seq(0, 2 * pi, length = 50)
   circle <- data.frame(c1 = adj(cos(theta)), c2=adj(sin(theta)))
 
   return(list(data_prj=data_prj, axes=axes, circle=circle))
+}
+
+#' Render a set of animation frames
+#'
+#' This function takes a set of frames as produced by
+#' save_history(), and creates the projected data and axes
+#' in for format needed to create the animation using plotly.
+#' It will be useful for showing a tour where mouseover can
+#' be used to identify points.
+#' Note that for now this only works for 2D projections.
+#'
+#' @param data matrix, or data frame containing numeric columns,
+#'   should be standardised to have mean 0, sd 1
+#' @param frames array of projection matrices, should be interpolated already
+#' @param axis_labels labels of the axes to be displayed
+#' @param obs_labels labels of the observations to be available for interactive mouseover
+#' @param limits value setting the lower and upper limits of
+#'   projected data, default 1
+#' @param position position of the axes: center (default),
+#'   left of data or off
+#'
+#' @return list containing indexed projected data, circle and segments for axes
+#' @export
+#' @examples
+#' data(flea)
+#' flea_std <- apply(flea[,1:6], 2, function(x) (x-mean(x))/sd(x))
+#' t1 <- save_history(flea_std, max=2)
+#' t1i <- tourr::interpolate(t1, 0.1)
+#' p <- render_anim(data=flea_std, frames=t1i)
+#' if (require(ggplot2)) {
+#'   pg <- ggplot() +
+#'     geom_path(data=p$circle, aes(x=c1, y=c2, frame=frame)) +
+#'     geom_segment(data=p$axes, aes(x=x1, y=y1, xend=x2, yend=y2, frame=frame)) +
+#'     geom_text(data=p$axes, aes(x=x2, y=y2, frame=frame, label=axis_labels)) +
+#'     geom_point(data=p$frames, aes(x=P1, y=P2, frame=frame, label=obs_labels)) +
+#'     coord_equal() +
+#'     theme_bw() +
+#'     theme(axis.text=element_blank(),
+#'         axis.title=element_blank(),
+#'         axis.ticks=element_blank(),
+#'         panel.grid=element_blank())
+#'   if (interactive) {
+#'     require(plotly)
+#'     ggplotly(pg, width=500, height=500) %>%
+#'       animation_button(label="Go") %>%
+#'       animation_slider(len=0.8, x=0.5, xanchor="center")
+#'   }
+#'}
+render_anim <- function(data, frames, axis_labels=NULL, obs_labels=NULL, limits=1, position="center") {
+  # Check dimensions ok
+  try(if (length(dim(frames)) != 3)
+    stop("The frames object needs to be an array with three dimensions"))
+  try(if (ncol(data) != nrow(frames[,,1]))
+    stop("Number of columns of data don't match number of rows of prj"))
+  try(if(ncol(frames[,,1]) != 2)
+    stop("Number of columns of a frame needs to be 2"))
+
+  # Axis scale
+  if (position == "center") {
+    axis_scale <- 2 * limits / 3
+    axis_pos <- 0
+  } else if (position == "bottomleft") {
+    axis_scale <- limits / 6
+    axis_pos <- -2 / 3 * limits
+  }
+  adj <- function(x) axis_pos + x * axis_scale
+
+  # Project data into all frames
+  # Loop is better than purrr because only working with a small
+  # number because object will get too large.
+  nf <- dim(frames)[3]
+  frames_m <- NULL
+  axes_m <- NULL
+  for (i in 1:nf) {
+    # Data projection
+    ftmp <- as.matrix(data) %*% matrix(frames[,,i], ncol=2)
+    ftmp <- cbind(ftmp, rep(i, nrow(data)))
+    frames_m <- rbind(frames_m, ftmp)
+    # Axis display
+    axes <- data.frame(x1=adj(0), y1=adj(0),
+                       x2=adj(matrix(frames[,,i][,1])),
+                       y2=adj(matrix(frames[,,i][,2])),
+                       frame=i)
+    rownames(axes) <- colnames(data)
+    axes_m <- rbind(axes_m, axes)
+  }
+
+  # Scale into unit box
+  rng <- range(frames_m[,1:2])
+  frames_m[,1:2] <- frames_m[,1:2]/max(abs(rng))
+  colnames(frames_m) <- c("P1", "P2", "frame")
+  frames_m <- data.frame(frames_m)
+
+  # Add observation labels
+  if (is.null(obs_labels))
+    obs_labels <- as.character(1:nrow(data))
+  frames_m$obs_labels <- rep(obs_labels, nf)
+
+  # Make labels if missing and add to axes object
+  if (is.null(axis_labels))
+    axis_labels <- colnames(data)
+  axes_m$axis_labels <- rep(axis_labels, nf)
+
+  # Compute circle
+  theta <- seq(0, 2 * pi, length = 50)
+  circle <- data.frame(c1 = adj(cos(theta)),
+                       c2 = adj(sin(theta)))
+  circle_m <- matrix(rep(t(as.matrix(circle)), nf), ncol=2, byrow=TRUE)
+  circle_m <- data.frame(c1 = circle_m[,1],
+                         c2 = circle_m[,2],
+                         frame=rep(1:nf, rep(length(theta), nf)))
+
+  return(list(frames=frames_m, axes=axes_m, circle=circle_m))
 }
