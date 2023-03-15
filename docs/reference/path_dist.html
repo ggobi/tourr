@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.6</span>
       </span>
     </div>
 
@@ -87,8 +87,8 @@
 <span class="r-in"><span><span class="co"># Using MDS to summarise the high-d space of projections</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">path_dist</span><span class="op">(</span><span class="va">grand</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ord</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/isoMDS.html" class="external-link">isoMDS</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span><span class="op">$</span><span class="va">points</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> initial  value 0.050537 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> final  value 0.007321 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> initial  value 0.041081 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> final  value 0.008444 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> converged</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ord</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">V1</span>, y<span class="op">=</span><span class="va">V2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
@@ -103,20 +103,15 @@
 <span class="r-in"><span>  simplify <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.367   72.3 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.499   134.4 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.693   769.4 % better  - NEW BASIS</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.527   1227.2 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.834   2000.5 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.379   92.0 % better  - NEW BASIS</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.156   171.1 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.974   128.4 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.384   108.4 % better  - NEW BASIS</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.578   193.6 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.883   348.7 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.664   386.8 % better  - NEW BASIS</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.874   46.7 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.928   55.7 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.566   1141.6 % better  - NEW BASIS</span>
 <span class="r-in"><span><span class="va">tour_reps2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">tour_reps</span>, <span class="va">interpolate</span>, <span class="fl">0.2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">bases</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">tour_reps2</span>, <span class="va">as.list</span><span class="op">)</span>, recursive <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>

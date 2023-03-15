@@ -76,6 +76,7 @@ reference:
   - render
   - render_gif
   - render_proj
+  - render_anim
   - draw_tour_axes
   - save_history
   - areColors
