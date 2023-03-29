@@ -288,6 +288,7 @@ render_anim <- function(data, vars=NULL, frames, edges=NULL, axis_labels=NULL, o
   # Get numeric columns
   if (is.null(vars)) {
     num_vars <- 1:ncol(data)
+    extra_vars <- NULL
   } else {
     num_vars <- c(1:ncol(data))[vars]
     extra_vars <- c(1:ncol(data))[-vars]
@@ -311,14 +312,14 @@ render_anim <- function(data, vars=NULL, frames, edges=NULL, axis_labels=NULL, o
                        x2=adj(matrix(frames[,,i][,1])),
                        y2=adj(matrix(frames[,,i][,2])),
                        frame=i)
-    rownames(axes) <- colnames(data)
+    rownames(axes) <- colnames(data[,num_vars])
     axes_m <- rbind(axes_m, axes)
   }
 
   # Scale into unit box
   rng <- range(frames_m[,1:2])
   frames_m[,1:2] <- frames_m[,1:2]/max(abs(rng))
-  colnames(frames_m) <- c("P1", "P2", colnames(data)[,extra_vars], "frame")
+  colnames(frames_m) <- c("P1", "P2", colnames(data[,extra_vars]), "frame")
   frames_m <- data.frame(frames_m)
 
   # Add observation labels
@@ -342,7 +343,7 @@ render_anim <- function(data, vars=NULL, frames, edges=NULL, axis_labels=NULL, o
 
   # Make labels if missing and add to axes object
   if (is.null(axis_labels))
-    axis_labels <- colnames(data)
+    axis_labels <- colnames(data[,num_vars])
   axes_m$axis_labels <- rep(axis_labels, nf)
 
   # Compute circle
