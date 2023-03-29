@@ -239,7 +239,7 @@ render_proj <- function(data, prj, axis_labels=NULL, obs_labels=NULL, limits=1, 
 #' @param position position of the axes: center (default),
 #'   left of data or off
 #'
-#' @return list containing indexed projected data, circle and segments for axes
+#' @return list containing indexed projected data, edges, circle and segments for axes
 #' @export
 #' @examples
 #' data(flea)
@@ -266,7 +266,7 @@ render_proj <- function(data, prj, axis_labels=NULL, obs_labels=NULL, limits=1, 
 #'       animation_slider(len=0.8, x=0.5, xanchor="center")
 #'   }
 #'}
-render_anim <- function(data, frames, axis_labels=NULL, obs_labels=NULL, limits=1, position="center") {
+render_anim <- function(data, frames, edges=NULL, axis_labels=NULL, obs_labels=NULL, limits=1, position="center") {
   # Check dimensions ok
   try(if (length(dim(frames)) != 3)
     stop("The frames object needs to be an array with three dimensions"))
@@ -316,6 +316,16 @@ render_anim <- function(data, frames, axis_labels=NULL, obs_labels=NULL, limits=
     obs_labels <- as.character(1:nrow(data))
   frames_m$obs_labels <- rep(obs_labels, nf)
 
+  # Add edge set
+  edges_m <- NULL
+  if (!is.null(edges)) {
+    for (i in 1:nf) {
+      e <- edges
+      e$frame <- i
+      edges_m <- rbind(edges_m, e)
+    }
+  }
+
   # Make labels if missing and add to axes object
   if (is.null(axis_labels))
     axis_labels <- colnames(data)
@@ -330,5 +340,5 @@ render_anim <- function(data, frames, axis_labels=NULL, obs_labels=NULL, limits=
                          c2 = circle_m[,2],
                          frame=rep(1:nf, rep(length(theta), nf)))
 
-  return(list(frames=frames_m, axes=axes_m, circle=circle_m))
+  return(list(frames=frames_m, edges=edges_m, axes=axes_m, circle=circle_m))
 }
