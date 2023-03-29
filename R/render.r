@@ -231,7 +231,9 @@ render_proj <- function(data, prj, axis_labels=NULL, obs_labels=NULL, limits=1, 
 #'
 #' @param data matrix, or data frame containing numeric columns,
 #'   should be standardised to have mean 0, sd 1
+#' @param vars numeric columns of data to be projected, as a vector, eg 1:4
 #' @param frames array of projection matrices, should be interpolated already
+#' @param edges to and from of row id's to connect with an line
 #' @param axis_labels labels of the axes to be displayed
 #' @param obs_labels labels of the observations to be available for interactive mouseover
 #' @param limits value setting the lower and upper limits of
@@ -266,12 +268,10 @@ render_proj <- function(data, prj, axis_labels=NULL, obs_labels=NULL, limits=1, 
 #'       animation_slider(len=0.8, x=0.5, xanchor="center")
 #'   }
 #'}
-render_anim <- function(data, frames, edges=NULL, axis_labels=NULL, obs_labels=NULL, limits=1, position="center") {
+render_anim <- function(data, vars=NULL, frames, edges=NULL, axis_labels=NULL, obs_labels=NULL, limits=1, position="center") {
   # Check dimensions ok
   try(if (length(dim(frames)) != 3)
     stop("The frames object needs to be an array with three dimensions"))
-  try(if (ncol(data) != nrow(frames[,,1]))
-    stop("Number of columns of data don't match number of rows of prj"))
   try(if(ncol(frames[,,1]) != 2)
     stop("Number of columns of a frame needs to be 2"))
 
@@ -285,6 +285,16 @@ render_anim <- function(data, frames, edges=NULL, axis_labels=NULL, obs_labels=N
   }
   adj <- function(x) axis_pos + x * axis_scale
 
+  # Get numeric columns
+  if (is.null(vars)) {
+    num_vars <- 1:ncol(data)
+  } else {
+    num_vars <- c(1:ncol(data))[vars]
+    extra_vars <- c(1:ncol(data))[-vars]
+  }
+  try(if (length(num_vars) != nrow(frames[,,1]))
+    stop("Number of columns of data don't match number of rows of prj"))
+
   # Project data into all frames
   # Loop is better than purrr because only working with a small
   # number because object will get too large.
@@ -293,8 +303,8 @@ render_anim <- function(data, frames, edges=NULL, axis_labels=NULL, obs_labels=N
   axes_m <- NULL
   for (i in 1:nf) {
     # Data projection
-    ftmp <- as.matrix(data) %*% matrix(frames[,,i], ncol=2)
-    ftmp <- cbind(ftmp, rep(i, nrow(data)))
+    ftmp <- as.matrix(data[,num_vars]) %*% matrix(frames[,,i], ncol=2)
+    ftmp <- cbind(ftmp, data[,extra_vars], rep(i, nrow(data)))
     frames_m <- rbind(frames_m, ftmp)
     # Axis display
     axes <- data.frame(x1=adj(0), y1=adj(0),
@@ -308,7 +318,7 @@ render_anim <- function(data, frames, edges=NULL, axis_labels=NULL, obs_labels=N
   # Scale into unit box
   rng <- range(frames_m[,1:2])
   frames_m[,1:2] <- frames_m[,1:2]/max(abs(rng))
-  colnames(frames_m) <- c("P1", "P2", "frame")
+  colnames(frames_m) <- c("P1", "P2", colnames(data)[,extra_vars], "frame")
   frames_m <- data.frame(frames_m)
 
   # Add observation labels
@@ -320,8 +330,12 @@ render_anim <- function(data, frames, edges=NULL, axis_labels=NULL, obs_labels=N
   edges_m <- NULL
   if (!is.null(edges)) {
     for (i in 1:nf) {
-      e <- edges
-      e$frame <- i
+      x <- frames_m[frames_m$frame == i,]
+      e <- data.frame(x=x[edges[,1],1],
+                      xend=x[edges[,2],1],
+                      y=x[edges[,1],2],
+                      yend=x[edges[,2],2],
+                      frame=i)
       edges_m <- rbind(edges_m, e)
     }
   }
