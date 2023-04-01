@@ -265,7 +265,8 @@ render_proj <- function(data, prj, axis_labels=NULL, obs_labels=NULL, limits=1, 
 #'     require(plotly)
 #'     ggplotly(pg, width=500, height=500) %>%
 #'       animation_button(label="Go") %>%
-#'       animation_slider(len=0.8, x=0.5, xanchor="center")
+#'       animation_slider(len=0.8, x=0.5, xanchor="center") %>%
+#'.      animation_opts(easing="linear", transition = 0)
 #'   }
 #'}
 render_anim <- function(data, vars=NULL, frames, edges=NULL, axis_labels=NULL, obs_labels=NULL, limits=1, position="center") {

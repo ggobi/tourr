@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.8</span>
       </span>
     </div>
 
@@ -75,6 +75,7 @@
 <span>  cex <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  edges <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  edges.col <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  obs_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -99,11 +100,11 @@ If not set, defaults to maximum distance from origin to each row of data.</p></d
 
 
 <dt>col</dt>
-<dd><p>color to be plotted.  Defaults to "black"</p></dd>
+<dd><p>color to use for points, can be a vector or hexcolors or a factor.  Defaults to "black".</p></dd>
 
 
 <dt>pch</dt>
-<dd><p>shape of the point to be plotted.  Defaults to 20.</p></dd>
+<dd><p>shape of the point to be plotted, can be a factor or integer.  Defaults to 20.</p></dd>
 
 
 <dt>cex</dt>
@@ -116,6 +117,10 @@ If not set, defaults to maximum distance from origin to each row of data.</p></d
 
 <dt>edges.col</dt>
 <dd><p>colour of edges to be plotted, Defaults to "black"</p></dd>
+
+
+<dt>obs_labels</dt>
+<dd><p>vector of text labels to display</p></dd>
 
 
 <dt>...</dt>
@@ -161,7 +166,7 @@ If not set, defaults to maximum distance from origin to each row of data.</p></d
 <span class="r-plt img"><img src="display_xy-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">animate_xy</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, tour_path <span class="op">=</span> <span class="fu"><a href="guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, sphere <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.854   1.0 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.834   2.7 % better  - NEW BASIS</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 3.2</span>
 <span class="r-plt img"><img src="display_xy-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">animate_xy</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, center <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
@@ -189,6 +194,17 @@ If not set, defaults to maximum distance from origin to each row of data.</p></d
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
 <span class="r-plt img"><img src="display_xy-11.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu">animate_xy</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="op">-</span><span class="fl">7</span><span class="op">]</span>, col <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span>,</span></span>
+<span class="r-in"><span>             pch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
+<span class="r-plt img"><img src="display_xy-12.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">animate_xy</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="op">-</span><span class="fl">7</span><span class="op">]</span>, col <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span>,</span></span>
+<span class="r-in"><span>  obs_labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">flea</span><span class="op">)</span><span class="op">)</span>, axes<span class="op">=</span><span class="st">"off"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
+<span class="r-plt img"><img src="display_xy-13.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># You can also draw lines</span></span></span>
 <span class="r-in"><span><span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
@@ -198,7 +214,7 @@ If not set, defaults to maximum distance from origin to each row of data.</p></d
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
-<span class="r-plt img"><img src="display_xy-12.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="display_xy-14.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </div>
@@ -213,7 +229,7 @@ If not set, defaults to maximum distance from origin to each row of data.</p></d
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

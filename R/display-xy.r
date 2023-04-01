@@ -9,10 +9,11 @@
 #' @param half_range half range to use when calculating limits of projected.
 #'   If not set, defaults to maximum distance from origin to each row of data.
 #' @param edges A two column integer matrix giving indices of ends of lines.
-#' @param col color to be plotted.  Defaults to "black"
-#' @param pch shape of the point to be plotted.  Defaults to 20.
+#' @param col color to use for points, can be a vector or hexcolors or a factor.  Defaults to "black".
+#' @param pch shape of the point to be plotted, can be a factor or integer.  Defaults to 20.
 #' @param cex size of the point to be plotted.  Defaults to 1.
 #' @param edges.col colour of edges to be plotted, Defaults to "black"
+#' @param obs_labels vector of text labels to display
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
 #' @export
@@ -39,6 +40,11 @@
 #' )
 #'
 #' animate_xy(flea[, -7], col = flea$species)
+#' animate_xy(flea[, -7], col = flea$species,
+#'              pch = as.numeric(flea$species))
+#'
+#' animate_xy(flea[, -7], col = flea$species,
+#'   obs_labels=as.character(1:nrow(flea)), axes="off")
 #'
 #' # You can also draw lines
 #' edges <- matrix(c(1:5, 2:6), ncol = 2)
@@ -48,10 +54,24 @@
 #' )
 display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
                        col = "black", pch = 20, cex = 1,
-                       edges = NULL, edges.col = "black", ...) {
+                       edges = NULL, edges.col = "black",
+                       obs_labels = NULL, ...) {
+  # Needed for CRAN checks
   labels <- NULL
+  gps <- NULL
+  shapes <- NULL
 
-  if (!areColors(col)) col <- mapColors(col)
+  # If colors are a variable, convert to colors
+  if (is.factor(col) | !areColors(col)) {
+    gps <- col
+    col <- mapColors(col)
+  }
+  # If shapes are a variable, convert shapes
+  if (is.factor(pch)) {
+    shapes <- mapShapes(pch)
+  } else {
+    shapes <- pch
+  }
 
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)
@@ -78,14 +98,40 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
     x <- data %*% proj
     if (center) x <- center(x)
     x <- x / half_range
-    points(x, col = col, pch = pch, cex = cex)
+    points(x, col = col, pch = shapes, cex = cex)
 
+    # Render labels for obs, if provided
+    if (!is.null(obs_labels)) {
+      text(x, labels=obs_labels, col=col, pos=4, offset=0.1)
+    }
+    # Draw segments between points, if provided
     if (!is.null(edges)) {
       segments(x[edges[, 1], 1], x[edges[, 1], 2],
         x[edges[, 2], 1], x[edges[, 2], 2],
         col = edges.col
       )
     }
+
+    # add a legend, only if a variable was used
+    if (is.factor(gps)) {
+      numcol <- unique(col)
+      if (length(numcol) > 1) {
+        legend("topright", legend=unique(gps),
+             col=numcol, pch=15)
+      }
+    }
+    if (is.factor(pch)) {
+      numpch <- unique(shapes)
+      if (length(numpch) > 1) {
+        legend("bottomright", legend=unique(pch),
+             col="black", pch=unique(shapes))
+      }
+    }
+
+    # Add index value if using guided tour
+    #if (!is.na(cur_index))
+    #  text(0, 0, labels=round(cur_index, 2))
+
   }
 
   list(

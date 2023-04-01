@@ -81,4 +81,5 @@ reference:
   - save_history
   - areColors
   - mapColors
+  - mapShapes
   - sphere_data

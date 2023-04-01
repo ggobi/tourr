@@ -124,3 +124,13 @@ mapColors <- function(x) {
   pal <- grDevices::hcl.colors(n)
   pal[as.numeric(as.factor(x))]
 }
+
+#' Map vector of factors to pch
+#'
+#' @param x vector
+#' @export
+mapShapes <- function(x) {
+  n <- length(unique(x))
+  shapes <- c(15:17, 23:25)
+  shapes[as.numeric(x)]
+}

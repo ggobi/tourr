@@ -1,3 +1,11 @@
+# tourr 0.6.8
+
+* Support for displaying point labels
+
+# tourr 0.6.7
+
+* Color and shape legend added for animate_xy
+
 # tourr 0.6.6
 
 * Added a render_anim to create a plotly animation
