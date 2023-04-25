@@ -54,51 +54,53 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     if (step_size > 0 & is.finite(step_size) & cur_dist >= target_dist) {
 
       ## interrupt
-      rcd_env <- parent.frame()
-      if ("new_basis" %in% rcd_env[["record"]]$info & !rcd_env[["record"]]$method[2] %in% c("search_geodesic", "search_polish")) {
-        last_two <- tail(dplyr::filter(rcd_env[["record"]], info == "new_basis"), 2)
+      if (attr(tour_path, "name") == "guided") {
+        rcd_env <- parent.frame()
+        if ("new_basis" %in% rcd_env[["record"]]$info & !rcd_env[["record"]]$method[2] %in% c("search_geodesic", "search_polish")) {
+          last_two <- tail(dplyr::filter(rcd_env[["record"]], info == "new_basis"), 2)
 
-        if (last_two$index_val[1] > last_two$index_val[2]) {
+          if (last_two$index_val[1] > last_two$index_val[2]) {
           # search_better_random may give probabilistic acceptance, leave it as it is
-        } else {
-          interp <- dplyr::filter(rcd_env[["record"]], tries == max(tries), info == "interpolation")
-          interp <- dplyr::filter(interp, index_val == max(index_val))
+          } else {
+            interp <- dplyr::filter(rcd_env[["record"]], tries == max(tries), info == "interpolation")
+            interp <- dplyr::filter(interp, index_val == max(index_val))
 
-          target <- dplyr::filter(rcd_env[["record"]], tries == max(tries), info == "new_basis")
+            target <- dplyr::filter(rcd_env[["record"]], tries == max(tries), info == "new_basis")
 
           # deem the target basis as the new current basis if the interpolation doesn't reach the target basis
           # used when the index_f is not smooth
-          if (target$index_val > interp$index_val) {
-            proj[[length(proj) + 1]] <<- geodesic$ingred$interpolate(1.) # make sure next starting plane is previous target
-            target <- dplyr::mutate(target, info = "interpolation", loop = step + 1, alpha = NA)
-            rcd_env[["record"]] <- dplyr::add_row(rcd_env[["record"]], target)
-          } else if (target$index_val < interp$index_val & nrow(interp) != 0) {
+            if (target$index_val > interp$index_val) {
+              proj[[length(proj) + 1]] <<- geodesic$ingred$interpolate(1.) # make sure next starting plane is previous target
+              target <- dplyr::mutate(target, info = "interpolation", loop = step + 1, alpha = NA)
+              rcd_env[["record"]] <- dplyr::add_row(rcd_env[["record"]], target)
+            } else if (target$index_val < interp$index_val & nrow(interp) != 0) {
             # the interrupt
-            proj[[length(proj) + 1]] <<- interp$basis[[1]]
+              proj[[length(proj) + 1]] <<- interp$basis[[1]]
 
-            rcd_env[["record"]] <- dplyr::filter(
+              rcd_env[["record"]] <- dplyr::filter(
+                rcd_env[["record"]],
+                id <= which(rcd_env[["record"]]$index_val == interp$index_val)
+              )
+            }
+          }
+        } else {
+          proj[[length(proj) + 1]] <<- geodesic$ingred$interpolate(1.)
+          if (nrow(rcd_env[["record"]]) != 0){
+            rcd_env[["record"]] <- dplyr::add_row(
               rcd_env[["record"]],
-              id <= which(rcd_env[["record"]]$index_val == interp$index_val)
+              basis = list(proj[[length(proj)]]),
+              index_val = geodesic$index(proj[[length(proj)]]),
+              info = "interpolation",
+              tries = geodesic$tries,
+              method = dplyr::last(rcd_env[["record"]]$method),
+             loop = step + 1
+            )
+
+            rcd_env[["record"]] <- dplyr::mutate(
+              rcd_env[["record"]],
+              id = dplyr::row_number()
             )
           }
-        }
-      } else {
-        proj[[length(proj) + 1]] <<- geodesic$ingred$interpolate(1.)
-        if (nrow(rcd_env[["record"]]) != 0){
-          rcd_env[["record"]] <- dplyr::add_row(
-            rcd_env[["record"]],
-            basis = list(proj[[length(proj)]]),
-            index_val = geodesic$index(proj[[length(proj)]]),
-            info = "interpolation",
-            tries = geodesic$tries,
-            method = dplyr::last(rcd_env[["record"]]$method),
-            loop = step + 1
-          )
-
-          rcd_env[["record"]] <- dplyr::mutate(
-            rcd_env[["record"]],
-            id = dplyr::row_number()
-          )
         }
       }
     }
