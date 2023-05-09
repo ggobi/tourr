@@ -16,6 +16,7 @@
 #' @param obs_labels vector of text labels to display
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
+#' @importFrom graphics legend
 #' @export
 #' @examples
 #' animate_xy(flea[, 1:6])

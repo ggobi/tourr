@@ -9,7 +9,8 @@
 #' # The grand tour  -----------------------------
 #' # Look at the tour path in a tour, how well does it cover a sphere
 #' # Using MDS to summarise the high-d space of projections
-#' d <- path_dist(grand)
+#' # Last basis is a duplicate, needs removing
+#' d <- path_dist(grand[,,-dim(grand)[[3]]])
 #' ord <- as.data.frame(MASS::isoMDS(d)$points)
 #' require(ggplot2)
 #' ggplot(data = ord, aes(x=V1, y=V2)) +
@@ -27,6 +28,7 @@
 #' bases <- unlist(lapply(tour_reps2, as.list), recursive = FALSE)
 #' class(bases) <- "history_list"
 #' index_values <- paths_index(tour_reps2, holes())
+#' index_values$step <- index_values$step.1
 #' d <- path_dist(bases)
 #' ord <- as.data.frame(cmdscale(d, 2))
 #'

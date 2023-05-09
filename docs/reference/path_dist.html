@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.9</span>
       </span>
     </div>
 
@@ -85,10 +85,11 @@
 <span class="r-in"><span><span class="co"># The grand tour  -----------------------------</span></span></span>
 <span class="r-in"><span><span class="co"># Look at the tour path in a tour, how well does it cover a sphere</span></span></span>
 <span class="r-in"><span><span class="co"># Using MDS to summarise the high-d space of projections</span></span></span>
-<span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">path_dist</span><span class="op">(</span><span class="va">grand</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Last basis is a duplicate, needs removing</span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">path_dist</span><span class="op">(</span><span class="va">grand</span><span class="op">[</span>,,<span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">grand</span><span class="op">)</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ord</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/isoMDS.html" class="external-link">isoMDS</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span><span class="op">$</span><span class="va">points</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> initial  value 0.039962 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> final  value 0.005694 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> initial  value 0.032035 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> final  value 0.006293 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> converged</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ord</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">V1</span>, y<span class="op">=</span><span class="va">V2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
@@ -117,6 +118,7 @@
 <span class="r-in"><span><span class="va">bases</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">tour_reps2</span>, <span class="va">as.list</span><span class="op">)</span>, recursive <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">bases</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"history_list"</span></span></span>
 <span class="r-in"><span><span class="va">index_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="paths_index.html">paths_index</a></span><span class="op">(</span><span class="va">tour_reps2</span>, <span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">index_values</span><span class="op">$</span><span class="va">step</span> <span class="op">&lt;-</span> <span class="va">index_values</span><span class="op">$</span><span class="va">step.1</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu">path_dist</span><span class="op">(</span><span class="va">bases</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ord</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cmdscale.html" class="external-link">cmdscale</a></span><span class="op">(</span><span class="va">d</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -130,15 +132,7 @@
 <span class="r-in"><span>  <span class="co">##  coord_equal()</span></span></span>
 <span class="r-in"><span>  <span class="co">##last_plot() + facet_wrap(~try)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Don't know how to automatically pick scale for object of type <span style="color: #0000BB;">&lt;function&gt;</span>.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Defaulting to continuous.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in geom_line():</span> Problem while computing aesthetics.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Error occurred in the 1st layer.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `compute_aesthetics()`:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Aesthetics are not valid data columns.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> The following aesthetics are invalid:</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> `x = step`</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you mistype the name of a data column or forget to add `after_stat()`?</span>
+<span class="r-plt img"><img src="path_dist-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </div>

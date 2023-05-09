@@ -261,12 +261,12 @@ render_proj <- function(data, prj, axis_labels=NULL, obs_labels=NULL, limits=1, 
 #'         axis.title=element_blank(),
 #'         axis.ticks=element_blank(),
 #'         panel.grid=element_blank())
-#'   if (interactive) {
+#'   if (interactive()) {
 #'     require(plotly)
-#'     ggplotly(pg, width=500, height=500) %>%
-#'       animation_button(label="Go") %>%
-#'       animation_slider(len=0.8, x=0.5, xanchor="center") %>%
-#'.      animation_opts(easing="linear", transition = 0)
+#'     ggplotly(pg, width=500, height=500) |>
+#'       animation_button(label="Go") |>
+#'       animation_slider(len=0.8, x=0.5, xanchor="center") |>
+#'       animation_opts(easing="linear", transition=0, redraw=FALSE)
 #'   }
 #'}
 render_anim <- function(data, vars=NULL, frames, edges=NULL, axis_labels=NULL, obs_labels=NULL, limits=1, position="center") {
@@ -306,13 +306,13 @@ render_anim <- function(data, vars=NULL, frames, edges=NULL, axis_labels=NULL, o
   for (i in 1:nf) {
     # Data projection
     ftmp <- as.matrix(data[,num_vars]) %*% matrix(frames[,,i], ncol=2)
-    ftmp <- cbind(ftmp, data[,extra_vars], rep(i, nrow(data)))
+    ftmp <- cbind(ftmp, data[,extra_vars], rep(i+100, nrow(data)))
     frames_m <- rbind(frames_m, ftmp)
     # Axis display
     axes <- data.frame(x1=adj(0), y1=adj(0),
                        x2=adj(matrix(frames[,,i][,1])),
                        y2=adj(matrix(frames[,,i][,2])),
-                       frame=i)
+                       frame=i+100)
     rownames(axes) <- colnames(data[,num_vars])
     axes_m <- rbind(axes_m, axes)
   }
@@ -337,7 +337,7 @@ render_anim <- function(data, vars=NULL, frames, edges=NULL, axis_labels=NULL, o
                       xend=x[edges[,2],1],
                       y=x[edges[,1],2],
                       yend=x[edges[,2],2],
-                      frame=i)
+                      frame=i+100)
       edges_m <- rbind(edges_m, e)
     }
   }
@@ -354,7 +354,7 @@ render_anim <- function(data, vars=NULL, frames, edges=NULL, axis_labels=NULL, o
   circle_m <- matrix(rep(t(as.matrix(circle)), nf), ncol=2, byrow=TRUE)
   circle_m <- data.frame(c1 = circle_m[,1],
                          c2 = circle_m[,2],
-                         frame=rep(1:nf, rep(length(theta), nf)))
+                         frame=rep(1:nf+100, rep(length(theta), nf)))
 
   return(list(frames=frames_m, edges=edges_m, axes=axes_m, circle=circle_m))
 }

@@ -1,3 +1,7 @@
+# tourr 0.6.9
+
+* Bug fixes
+
 # tourr 0.6.8
 
 * Support for displaying point labels

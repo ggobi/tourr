@@ -64,12 +64,12 @@ if (require(ggplot2)) {
         axis.title=element_blank(),
         axis.ticks=element_blank(),
         panel.grid=element_blank())
-  if (interactive) {
+  if (interactive()) {
     require(plotly)
-    ggplotly(pg, width=500, height=500) \%>\%
-      animation_button(label="Go") \%>\%
-      animation_slider(len=0.8, x=0.5, xanchor="center") \%>\%
-.      animation_opts(easing="linear", transition = 0)
+    ggplotly(pg, width=500, height=500) |>
+      animation_button(label="Go") |>
+      animation_slider(len=0.8, x=0.5, xanchor="center") |>
+      animation_opts(easing="linear", transition=0, redraw=FALSE)
   }
 }
 }
