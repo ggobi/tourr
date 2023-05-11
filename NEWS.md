@@ -1,3 +1,7 @@
+# tourr 0.6.10
+
+* Changed default colour scale
+
 # tourr 0.6.9
 
 * Bug fixes

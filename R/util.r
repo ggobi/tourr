@@ -121,7 +121,7 @@ areColors <- function(x) {
 #' @export
 mapColors <- function(x) {
   n <- length(unique(x))
-  pal <- grDevices::hcl.colors(n)
+  pal <- grDevices::hcl.colors(n, palette="Zissou 1")
   pal[as.numeric(as.factor(x))]
 }
 
