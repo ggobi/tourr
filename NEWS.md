@@ -1,3 +1,7 @@
+# tourr 0.6.11
+
+* Added line with for edges to display_xy()
+
 # tourr 0.6.10
 
 * Changed default colour scale

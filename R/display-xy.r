@@ -14,6 +14,7 @@
 #' @param cex size of the point to be plotted.  Defaults to 1.
 #' @param edges.col colour of edges to be plotted, Defaults to "black"
 #' @param obs_labels vector of text labels to display
+#' @param edges.width line width for edges, default 1
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
 #' @importFrom graphics legend
@@ -55,7 +56,7 @@
 #' )
 display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
                        col = "black", pch = 20, cex = 1,
-                       edges = NULL, edges.col = "black",
+                       edges = NULL, edges.col = "black", edges.width=1,
                        obs_labels = NULL, ...) {
   # Needed for CRAN checks
   labels <- NULL
@@ -109,7 +110,8 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
     if (!is.null(edges)) {
       segments(x[edges[, 1], 1], x[edges[, 1], 2],
         x[edges[, 2], 1], x[edges[, 2], 2],
-        col = edges.col
+        col = edges.col,
+        lwd = edges.width
       )
     }
 

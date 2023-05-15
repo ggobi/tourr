@@ -14,6 +14,7 @@ display_xy(
   cex = 1,
   edges = NULL,
   edges.col = "black",
+  edges.width = 1,
   obs_labels = NULL,
   ...
 )
@@ -39,6 +40,8 @@ If not set, defaults to maximum distance from origin to each row of data.}
 \item{edges}{A two column integer matrix giving indices of ends of lines.}
 
 \item{edges.col}{colour of edges to be plotted, Defaults to "black"}
+
+\item{edges.width}{line width for edges, default 1}
 
 \item{obs_labels}{vector of text labels to display}
 
