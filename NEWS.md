@@ -1,3 +1,7 @@
+# tourr 0.6.12
+
+* Fixed a bug in display_slice(), display_density2d(), display_groupxy(), display_pca(), display_sage(), manual_slice(), caused by changes in handling colour vector in display_xy()
+
 # tourr 0.6.11
 
 * Added line with for edges to display_xy()

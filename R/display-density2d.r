@@ -9,7 +9,7 @@
 #' @param half_range half range to use when calculating limits of projected.
 #'   If not set, defaults to maximum distance from origin to each row of data.
 #' @param edges A two column integer matrix giving indices of ends of lines.
-#' @param col color to be plotted.  Defaults to "black"
+#' @param col color to use for points, can be a vector or hexcolors or a factor.  Defaults to "black".
 #' @param pch shape of the point to be plotted.  Defaults to 20.
 #' @param cex size of the point to be plotted.  Defaults to 1.
 #' @param contour_quartile Vector of quartiles to plot the contours at. Defaults to 5.
@@ -52,7 +52,11 @@
 display_density2d <- function(center = TRUE, axes = "center", half_range = NULL,
                               col = "black", pch = 20, cex = 1,
                               contour_quartile = c(.25, .5, .75), edges = NULL, ...) {
-  if (!areColors(col)) col <- mapColors(col)
+  # If colors are a variable, convert to colors
+  if (is.factor(col) | !areColors(col)) {
+    gps <- col
+    col <- mapColors(col)
+  }
 
   labels <- NULL
   init <- function(data) {

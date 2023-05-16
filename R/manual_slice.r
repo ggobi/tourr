@@ -10,7 +10,7 @@
 #' @param v_rel relative volume of the slice. If not set, suggested value
 #'   is calculated and printed to the screen.
 #' @param rescale if true, rescale all variables to range [0,1]?
-#' @param col color to be plotted.  Defaults to "black"
+#' @param col color to use for points, can be a vector or hexcolors or a factor.  Defaults to "black".
 #' @param sphere if true, sphere all variables
 #' @param half_range half range to use when calculating limits of projected.
 #'   If not set, defaults to maximum distance from origin to each row of data.
@@ -35,7 +35,12 @@ manual_slice <- function(data, proj, var=1, nsteps=20,
   }
   if (rescale) data <- rescale(data)
   if (sphere) data <- sphere_data(data)
-  if (!areColors(col)) col <- mapColors(col)
+
+  # If colors are a variable, convert to colors
+  if (is.factor(col) | !areColors(col)) {
+    gps <- col
+    col <- mapColors(col)
+  }
 
   # Going to use nsteps twice, to go out to edge, come back to 0
   # go out to negative edge and back in to stop at 0

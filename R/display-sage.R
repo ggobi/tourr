@@ -7,7 +7,7 @@
 #' @param axes position of the axes: center, bottomleft or off
 #' @param half_range half range to use when calculating limits of projected.
 #'   If not set, defaults to maximum distance from origin to each row of data.
-#' @param col color to be plotted.  Defaults to "black"
+#' @param col color to use for points, can be a vector or hexcolors or a factor.  Defaults to "black".
 #' @param pch marker for points. Defaults to 20.
 #' @param gam scaling of the effective dimensionality for rescaling. Defaults to 1.
 #' @param R scale for the radial transformation.
@@ -29,7 +29,11 @@ display_sage <- function(axes = "center", half_range = NULL,
   labels <- NULL
   peff <- NULL
 
-  if (!areColors(col)) col <- mapColors(col)
+  # If colors are a variable, convert to colors
+  if (is.factor(col) | !areColors(col)) {
+    gps <- col
+    col <- mapColors(col)
+  }
 
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, TRUE)

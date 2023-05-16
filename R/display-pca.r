@@ -9,7 +9,7 @@
 #'  rather than position.
 #' @param half_range half range to use when calculating limits of projected.
 #'   If not set, defaults to maximum distance from origin to each row of data.
-#' @param col color to be plotted.  Defaults to "black".
+#' @param col color to use for points, can be a vector or hexcolors or a factor.  Defaults to "black".
 #' @param pch shape of the point to be plotted.  Defaults to 20.
 #' @param cex size of the point to be plotted.  Defaults to 1.
 #' @param pc_coefs coefficients relating the original variables to
@@ -32,7 +32,11 @@ display_pca <- function(center = TRUE, axes = "center", half_range = NULL,
                         edges = NULL, edges.col = "black", ...) {
   labels <- NULL
 
-  if (!areColors(col)) col <- mapColors(col)
+  # If colors are a variable, convert to colors
+  if (is.factor(col) | !areColors(col)) {
+    gps <- col
+    col <- mapColors(col)
+  }
 
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)

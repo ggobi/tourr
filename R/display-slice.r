@@ -10,7 +10,7 @@
 #'   If not set, defaults to maximum distance from origin to each row of data.
 #' @param edges A two column integer matrix giving indices of ends of lines.
 #' @param edges.col colour of edges to be plotted, Defaults to "black.
-#' @param col color to be plotted.  Defaults to "black"
+#' @param col color to use for points, can be a vector or hexcolors or a factor.  Defaults to "black".
 #' @param pch_slice marker for plotting points inside the slice.
 #'   Defaults to 20.
 #' @param pch_other marker for plotting points outside the slice.
@@ -53,7 +53,11 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
   labels <- NULL
   h <- NULL
 
-  if (!areColors(col)) col <- mapColors(col)
+  # If colors are a variable, convert to colors
+  if (is.factor(col) | !areColors(col)) {
+    gps <- col
+    col <- mapColors(col)
+  }
 
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)

@@ -34,7 +34,7 @@ is calculated and printed to the screen.}
 
 \item{sphere}{if true, sphere all variables}
 
-\item{col}{color to be plotted.  Defaults to "black"}
+\item{col}{color to use for points, can be a vector or hexcolors or a factor.  Defaults to "black".}
 
 \item{half_range}{half range to use when calculating limits of projected.
 If not set, defaults to maximum distance from origin to each row of data.}
