@@ -15,6 +15,7 @@
 #' @param edges.col colour of edges to be plotted, Defaults to "black"
 #' @param obs_labels vector of text labels to display
 #' @param edges.width line width for edges, default 1
+#' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
 #' @importFrom graphics legend
@@ -57,7 +58,7 @@
 display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
                        col = "black", pch = 20, cex = 1,
                        edges = NULL, edges.col = "black", edges.width=1,
-                       obs_labels = NULL, ...) {
+                       obs_labels = NULL, palette="Zissou 1", ...) {
   # Needed for CRAN checks
   labels <- NULL
   gps <- NULL
@@ -66,7 +67,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
   # If colors are a variable, convert to colors
   if (is.factor(col) | !areColors(col)) {
     gps <- col
-    col <- mapColors(col)
+    col <- mapColors(col, palette)
   }
   # If shapes are a variable, convert shapes
   if (is.factor(pch)) {

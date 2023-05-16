@@ -13,6 +13,7 @@
 #' @param pch shape of the point to be plotted.  Defaults to 20.
 #' @param cex size of the point to be plotted.  Defaults to 1.
 #' @param contour_quartile Vector of quartiles to plot the contours at. Defaults to 5.
+#' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_density2d}}
 #' @importFrom graphics contour
@@ -51,11 +52,12 @@
 #' )
 display_density2d <- function(center = TRUE, axes = "center", half_range = NULL,
                               col = "black", pch = 20, cex = 1,
-                              contour_quartile = c(.25, .5, .75), edges = NULL, ...) {
+                              contour_quartile = c(.25, .5, .75), edges = NULL,
+                              palette = "Zissou 1", ...) {
   # If colors are a variable, convert to colors
   if (is.factor(col) | !areColors(col)) {
     gps <- col
-    col <- mapColors(col)
+    col <- mapColors(col, palette)
   }
 
   labels <- NULL

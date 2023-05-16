@@ -23,6 +23,7 @@
 #'   If NULL (default) the slice will be anchored at the data center.
 #' @param anchor_nav position of the anchor: center, topright or off
 #' @param rescale if true, rescale all variables to range [0,1].
+#' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_slice}}
 #' @export
@@ -49,14 +50,15 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
                           col = "black", pch_slice = 20, pch_other = 46,
                           cex_slice = 2, cex_other = 1, v_rel = NULL,
                           anchor = NULL, anchor_nav = "off",
-                          edges = NULL, edges.col = "black", ...) {
+                          edges = NULL, edges.col = "black",
+                          palette = "Zissou 1", ...) {
   labels <- NULL
   h <- NULL
 
   # If colors are a variable, convert to colors
   if (is.factor(col) | !areColors(col)) {
     gps <- col
-    col <- mapColors(col)
+    col <- mapColors(col, palette)
   }
 
   init <- function(data) {

@@ -15,6 +15,7 @@
 #' @param half_range half range to use when calculating limits of projected.
 #'   If not set, defaults to maximum distance from origin to each row of data.
 #' @param anchor_nav position of the anchor: center, topright or off
+#' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
 #' @param ... other options passed to output device
 #' @export
 #' @examples
@@ -27,7 +28,8 @@ manual_slice <- function(data, proj, var=1, nsteps=20,
                          v_rel = 0.01, rescale = FALSE,
                          sphere = FALSE, col = "black",
                          half_range = NULL,
-                         anchor_nav = "topright", ...) {
+                         anchor_nav = "topright",
+                         palette = "Zissou 1", ...) {
   # Standard checks, and scaling
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
@@ -39,7 +41,7 @@ manual_slice <- function(data, proj, var=1, nsteps=20,
   # If colors are a variable, convert to colors
   if (is.factor(col) | !areColors(col)) {
     gps <- col
-    col <- mapColors(col)
+    col <- mapColors(col, palette)
   }
 
   # Going to use nsteps twice, to go out to edge, come back to 0

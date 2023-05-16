@@ -17,6 +17,7 @@
 #' @param cex size of the point to be plotted.  Defaults to 1.
 #' @param group_by variable to group by. Must have less than 25 unique values.
 #' @param plot_xgp if TRUE, plots points from other groups in light grey
+#' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_groupxy}}
 #' @export
@@ -29,13 +30,14 @@
 #' animate_groupxy(f, col = col, pch = pch, group_by = flea$species, plot_xgp = FALSE)
 display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
                             col = "black", pch = 20, cex = 1, edges = NULL,
-                            group_by = NULL, plot_xgp = TRUE, ...) {
+                            group_by = NULL, plot_xgp = TRUE,
+                            palette = "Zissou 1", ...) {
   labels <- NULL
 
   # If colors are a variable, convert to colors
   if (is.factor(col) | !areColors(col)) {
     gps <- col
-    col <- mapColors(col)
+    col <- mapColors(col, palette)
   }
 
   init <- function(data) {

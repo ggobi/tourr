@@ -17,6 +17,7 @@
 #' @param edges A two column integer matrix giving indices of ends of lines.
 #' @param edges.col colour of edges to be plotted, Defaults to "black.
 #' @param rescale if true, rescale all variables to range [0,1].
+#' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_slice}}
 #' @export
@@ -29,13 +30,14 @@
 display_pca <- function(center = TRUE, axes = "center", half_range = NULL,
                         col = "black", pch = 20, cex = 1,
                         pc_coefs = NULL,
-                        edges = NULL, edges.col = "black", ...) {
+                        edges = NULL, edges.col = "black",
+                        palette = "Zissou 1", ...) {
   labels <- NULL
 
   # If colors are a variable, convert to colors
   if (is.factor(col) | !areColors(col)) {
     gps <- col
-    col <- mapColors(col)
+    col <- mapColors(col, palette)
   }
 
   init <- function(data) {

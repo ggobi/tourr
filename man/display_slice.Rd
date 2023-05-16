@@ -19,6 +19,7 @@ display_slice(
   anchor_nav = "off",
   edges = NULL,
   edges.col = "black",
+  palette = "Zissou 1",
   ...
 )
 
@@ -57,6 +58,8 @@ If NULL (default) the slice will be anchored at the data center.}
 \item{edges}{A two column integer matrix giving indices of ends of lines.}
 
 \item{edges.col}{colour of edges to be plotted, Defaults to "black.}
+
+\item{palette}{name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"}
 
 \item{...}{other arguments passed on to \code{\link{animate}} and
 \code{\link{display_slice}}}

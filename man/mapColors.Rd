@@ -4,10 +4,12 @@
 \alias{mapColors}
 \title{Map vector of factors to color}
 \usage{
-mapColors(x)
+mapColors(x, palette)
 }
 \arguments{
 \item{x}{vector}
+
+\item{palette}{name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"}
 }
 \description{
 Map vector of factors to color

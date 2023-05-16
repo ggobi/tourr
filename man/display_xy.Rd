@@ -16,6 +16,7 @@ display_xy(
   edges.col = "black",
   edges.width = 1,
   obs_labels = NULL,
+  palette = "Zissou 1",
   ...
 )
 
@@ -44,6 +45,8 @@ If not set, defaults to maximum distance from origin to each row of data.}
 \item{edges.width}{line width for edges, default 1}
 
 \item{obs_labels}{vector of text labels to display}
+
+\item{palette}{name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"}
 
 \item{...}{other arguments passed on to \code{\link{animate}} and
 \code{\link{display_xy}}}

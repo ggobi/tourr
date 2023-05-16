@@ -20,7 +20,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.13</span>
       </span>
     </div>
 
@@ -82,6 +82,7 @@
 <span>  edges <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  group_by <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  plot_xgp <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  palette <span class="op">=</span> <span class="st">"Zissou 1"</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -106,7 +107,7 @@ If not set, defaults to maximum distance from origin to each row of data.</p></d
 
 
 <dt>col</dt>
-<dd><p>color to be plotted.  Defaults to "black"</p></dd>
+<dd><p>color to use for points, can be a vector or hexcolors or a factor.  Defaults to "black".</p></dd>
 
 
 <dt>pch</dt>
@@ -127,6 +128,10 @@ If not set, defaults to maximum distance from origin to each row of data.</p></d
 
 <dt>plot_xgp</dt>
 <dd><p>if TRUE, plots points from other groups in light grey</p></dd>
+
+
+<dt>palette</dt>
+<dd><p>name of color palette for point colour, used by <code><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">grDevices::hcl.colors</a></code>, default "Zissou 1"</p></dd>
 
 
 <dt>...</dt>

@@ -12,6 +12,7 @@ display_sage(
   pch = 20,
   gam = 1,
   R = NULL,
+  palette = "Zissou 1",
   ...
 )
 
@@ -31,6 +32,8 @@ If not set, defaults to maximum distance from origin to each row of data.}
 
 \item{R}{scale for the radial transformation.
 If not set, defaults to maximum distance from origin to each row of data.}
+
+\item{palette}{name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"}
 
 \item{...}{other arguments passed on to \code{\link{animate}} and
 \code{\link{display_sage}}}

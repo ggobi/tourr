@@ -15,6 +15,7 @@ manual_slice(
   col = "black",
   half_range = NULL,
   anchor_nav = "topright",
+  palette = "Zissou 1",
   ...
 )
 }
@@ -40,6 +41,8 @@ is calculated and printed to the screen.}
 If not set, defaults to maximum distance from origin to each row of data.}
 
 \item{anchor_nav}{position of the anchor: center, topright or off}
+
+\item{palette}{name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"}
 
 \item{...}{other options passed to output device}
 }

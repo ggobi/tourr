@@ -15,6 +15,7 @@ display_groupxy(
   edges = NULL,
   group_by = NULL,
   plot_xgp = TRUE,
+  palette = "Zissou 1",
   ...
 )
 
@@ -41,6 +42,8 @@ If not set, defaults to maximum distance from origin to each row of data.}
 \item{group_by}{variable to group by. Must have less than 25 unique values.}
 
 \item{plot_xgp}{if TRUE, plots points from other groups in light grey}
+
+\item{palette}{name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"}
 
 \item{...}{other arguments passed on to \code{\link{animate}} and
 \code{\link{display_groupxy}}}

@@ -118,10 +118,11 @@ areColors <- function(x) {
 #' Map vector of factors to color
 #'
 #' @param x vector
+#' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
 #' @export
-mapColors <- function(x) {
+mapColors <- function(x, palette) {
   n <- length(unique(x))
-  pal <- grDevices::hcl.colors(n, palette="Zissou 1")
+  pal <- grDevices::hcl.colors(n, palette=palette)
   pal[as.numeric(as.factor(x))]
 }
 

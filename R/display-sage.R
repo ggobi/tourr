@@ -12,6 +12,7 @@
 #' @param gam scaling of the effective dimensionality for rescaling. Defaults to 1.
 #' @param R scale for the radial transformation.
 #'   If not set, defaults to maximum distance from origin to each row of data.
+#' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_sage}}
 #' @export
@@ -25,14 +26,15 @@
 #' # Sage display, points are uniformly distributed across the disk
 #' animate_sage(sphere10)
 display_sage <- function(axes = "center", half_range = NULL,
-                         col = "black", pch = 20, gam = 1, R = NULL, ...) {
+                         col = "black", pch = 20, gam = 1, R = NULL,
+                         palette = "Zissou 1", ...) {
   labels <- NULL
   peff <- NULL
 
   # If colors are a variable, convert to colors
   if (is.factor(col) | !areColors(col)) {
     gps <- col
-    col <- mapColors(col)
+    col <- mapColors(col, palette)
   }
 
   init <- function(data) {
