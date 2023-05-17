@@ -9,7 +9,10 @@ display_dist(
   method = "density",
   center = TRUE,
   half_range = NULL,
+  col = "black",
   rug = FALSE,
+  palette = "Zissou 1",
+  density_max = 3,
   ...
 )
 
@@ -25,7 +28,13 @@ easier to focus on the shape of the distribution.}
 \item{half_range}{half range to use when calculating limits of projected.
 If not set, defaults to maximum distance from origin to each row of data.}
 
+\item{col}{color to use for points, can be a vector or hexcolors or a factor.  Defaults to "black".}
+
 \item{rug}{draw rug plot showing position of actual data points?}
+
+\item{palette}{name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"}
+
+\item{density_max}{allow control of the y range for density plot}
 
 \item{...}{other arguments passed on to \code{\link{animate}}}
 
@@ -38,6 +47,8 @@ Animate a 1d tour path with a density plot or histogram.
 }
 \examples{
 animate_dist(flea[, 1:6])
+
+animate_dist(flea[, 1:6], col=flea$species, density_max=5)
 
 # When the distribution is not centred, it tends to wander around in a
 # distracting manner

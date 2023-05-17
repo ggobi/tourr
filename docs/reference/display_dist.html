@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.14</span>
       </span>
     </div>
 
@@ -70,7 +70,10 @@
 <span>  method <span class="op">=</span> <span class="st">"density"</span>,</span>
 <span>  center <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  half_range <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col <span class="op">=</span> <span class="st">"black"</span>,</span>
 <span>  rug <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  palette <span class="op">=</span> <span class="st">"Zissou 1"</span>,</span>
+<span>  density_max <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -94,8 +97,20 @@ easier to focus on the shape of the distribution.</p></dd>
 If not set, defaults to maximum distance from origin to each row of data.</p></dd>
 
 
+<dt>col</dt>
+<dd><p>color to use for points, can be a vector or hexcolors or a factor.  Defaults to "black".</p></dd>
+
+
 <dt>rug</dt>
 <dd><p>draw rug plot showing position of actual data points?</p></dd>
+
+
+<dt>palette</dt>
+<dd><p>name of color palette for point colour, used by <code><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">grDevices::hcl.colors</a></code>, default "Zissou 1"</p></dd>
+
+
+<dt>density_max</dt>
+<dd><p>allow control of the y range for density plot</p></dd>
 
 
 <dt>...</dt>
@@ -121,19 +136,28 @@ If not set, defaults to maximum distance from origin to each row of data.</p></d
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
 <span class="r-plt img"><img src="display_dist-1.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="display_dist-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">animate_dist</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, col<span class="op">=</span><span class="va">flea</span><span class="op">$</span><span class="va">species</span>, density_max<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
+<span class="r-plt img"><img src="display_dist-3.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="display_dist-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># When the distribution is not centred, it tends to wander around in a</span></span></span>
 <span class="r-in"><span><span class="co"># distracting manner</span></span></span>
 <span class="r-in"><span><span class="fu">animate_dist</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, center <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 1.9</span>
-<span class="r-plt img"><img src="display_dist-2.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="display_dist-5.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="display_dist-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Alternatively, you can display the distribution with a histogram</span></span></span>
 <span class="r-in"><span><span class="fu">animate_dist</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"hist"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
-<span class="r-plt img"><img src="display_dist-3.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="display_dist-7.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="display_dist-8.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </div>

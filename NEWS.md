@@ -1,3 +1,7 @@
+# tourr 0.6.14
+
+* Finally modified density plot to include colours
+
 # tourr 0.6.13
 
 * Added palette option display functions
