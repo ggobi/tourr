@@ -13,6 +13,8 @@ display_dist(
   rug = FALSE,
   palette = "Zissou 1",
   density_max = 3,
+  bw = 0.2,
+  scale_density = FALSE,
   ...
 )
 
@@ -36,6 +38,10 @@ If not set, defaults to maximum distance from origin to each row of data.}
 
 \item{density_max}{allow control of the y range for density plot}
 
+\item{bw}{binwidth for histogram and density, between 0-1, default 0.2}
+
+\item{scale_density}{Height of density is scaled at each projection, default FALSE}
+
 \item{...}{other arguments passed on to \code{\link{animate}}}
 
 \item{data}{matrix, or data frame containing numeric columns}
@@ -48,7 +54,11 @@ Animate a 1d tour path with a density plot or histogram.
 \examples{
 animate_dist(flea[, 1:6])
 
+# Change inputs, to color by group, fix y axis, change bin width
+# and scale bar height or density at each projection
 animate_dist(flea[, 1:6], col=flea$species, density_max=5)
+animate_dist(flea[, 1:6], col=flea$species, density_max=5, bw=0.1)
+animate_dist(flea[, 1:6], col=flea$species, scale_density=TRUE)
 
 # When the distribution is not centred, it tends to wander around in a
 # distracting manner

@@ -12,6 +12,8 @@
 #' @param rug draw rug plot showing position of actual data points?
 #' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
 #' @param density_max allow control of the y range for density plot
+#' @param bw binwidth for histogram and density, between 0-1, default 0.2
+#' @param scale_density Height of density is scaled at each projection, default FALSE
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
@@ -19,7 +21,11 @@
 #' @examples
 #' animate_dist(flea[, 1:6])
 #'
+#' # Change inputs, to color by group, fix y axis, change bin width
+#' # and scale bar height or density at each projection
 #' animate_dist(flea[, 1:6], col=flea$species, density_max=5)
+#' animate_dist(flea[, 1:6], col=flea$species, density_max=5, bw=0.1)
+#' animate_dist(flea[, 1:6], col=flea$species, scale_density=TRUE)
 #'
 #' # When the distribution is not centred, it tends to wander around in a
 #' # distracting manner
@@ -30,7 +36,9 @@
 display_dist <- function(method = "density", center = TRUE, half_range = NULL,
                          col = "black", rug = FALSE,
                          palette = "Zissou 1",
-                         density_max = 3, ...) {
+                         density_max = 3,
+                         bw = 0.2,
+                         scale_density = FALSE, ...) {
   if (!requireNamespace("ash", quietly = TRUE)) {
     stop("Please install the ash package", call. = FALSE)
   }
@@ -45,6 +53,7 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
   # If colors are a variable, convert to colors
   if (is.factor(col) | !areColors(col)) {
     gps <- col
+    lgps <- levels(gps)
     col <- mapColors(col, palette)
   }
   colrs <- unique(col)
@@ -86,8 +95,10 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
         axis(2, seq(0, density_max, by = 1))
         abline(h = seq(0.5, density_max, by = 0.5), col = "grey80")
 
-        bins <- hist(x, breaks = seq(-1, 1, 0.2), plot = FALSE)
-        with(bins, rect(mids - 0.1, 0, mids + 0.1, density,
+        bins <- hist(x, breaks = seq(-1, 1, bw), plot = FALSE)
+        if (scale_density)
+          bins$density <- bins$density/max(bins$density) * density_max * 0.8
+        with(bins, rect(mids - bw/2, 0, mids + bw/2, density,
           col = "black", border = "white"
         ))
         if (rug) {
@@ -108,10 +119,13 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
           abline(h = seq(0.5, density_max, by = 0.5), col = "grey80")
 
           x.sub <- x[col == colrs[i], ]
-          bins <- hist(x.sub, breaks = seq(-1, 1, 0.2), plot = FALSE)
-          with(bins, rect(mids - 0.1, 0, mids + 0.1, density,
+          bins <- hist(x.sub, breaks = seq(-1, 1, bw), plot = FALSE)
+          if (scale_density)
+            bins$density <- bins$density/max(bins$density) * density_max * 0.8
+          with(bins, rect(mids - bw/2, 0, mids + bw/2, density,
                           col = colrs[i], border = "white"
           ))
+          text(x=1.0, y=density_max*0.9, labels=lgps[i])
           if (rug) {
             segments(x, 0, x, 0.1, ...)
           }
@@ -129,7 +143,13 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
         axis(2, seq(0, density_max, by = 1))
         abline(h = seq(0.5, density_max, by = 0.5), col = "grey80")
 
-        polygon(stats::density(x), lwd = 2, col = "black")
+        if (scale_density) {
+          dn <- stats::density(x, bw=bw/2)
+          dn$y <- dn$y/max(dn$y) * density_max * 0.8
+          polygon(dn, col = "black")
+        }
+        else
+          polygon(stats::density(x, bw=bw/2), col = "black")
         if (rug) {
           segments(x, 0, x, 0.1, ...)
         }
@@ -146,7 +166,14 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
           abline(h = seq(0.5, density_max, by = 0.5), col = "grey80")
 
           x.sub <- x[col == colrs[i], ]
-          polygon(stats::density(x.sub), lwd = 2, col = colrs[i])
+          if (scale_density) {
+            dn <- stats::density(x.sub, bw=bw/2)
+            dn$y <- dn$y/max(dn$y) * density_max * 0.8
+            polygon(dn, col = colrs[i])
+          }
+          else
+            polygon(stats::density(x.sub, bw=bw/2), col = colrs[i])
+          text(x=1.0, y=density_max*0.9, labels=lgps[i])
           if (rug) {
             segments(x, 0, x, 0.1, col = colrs[i], ...)
           }
@@ -163,8 +190,14 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
         axis(2, seq(0, density_max, by = 1))
         abline(h = seq(0.5, density_max, by = 0.5), col = "grey80")
 
-        utils::capture.output(ash <- ash::ash1(ash::bin1(x, c(-half_range, half_range))))
-        lines(ash)
+        if (scale_density) {
+          utils::capture.output(ash <- ash::ash1(ash::bin1(x, c(-half_range, half_range))))
+          ash$y <- ash$y/max(ash$y) * density_max * 0.8
+        }
+        else
+          utils::capture.output(ash <- ash::ash1(ash::bin1(x, c(-half_range, half_range))))
+        #lines(ash, col="black")
+        polygon(ash, col="black")
         if (rug) {
           segments(x, 0, x, 0.1, ...)
         }
@@ -180,9 +213,17 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
           )
           axis(2, seq(0, 4, by = 1))
           abline(h = seq(0.5, density_max, by = 0.5), col = "grey80")
+          x.sub <- x[col == colrs[i], ]
 
-          utils::capture.output(ash <- ash::ash1(ash::bin1(x, c(-half_range, half_range))))
-          lines(ash)
+          if (scale_density) {
+            utils::capture.output(ash <- ash::ash1(ash::bin1(x.sub, c(-half_range, half_range))))
+            ash$y <- ash$y/max(ash$y) * density_max * 0.8
+          }
+          else
+            utils::capture.output(ash <- ash::ash1(ash::bin1(x.sub, c(-half_range, half_range))))
+          # lines(ash, col = colrs[i])
+          polygon(ash, col = colrs[i])
+          text(x=1.0, y=density_max*0.9, labels=lgps[i])
           if (rug) {
             segments(x, 0, x, 0.1, col = colrs[i], ...)
           }
