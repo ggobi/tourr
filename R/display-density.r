@@ -197,6 +197,8 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
         else
           utils::capture.output(ash <- ash::ash1(ash::bin1(x, c(-half_range, half_range))))
         #lines(ash, col="black")
+        ash$x <- c(min(ash$x), ash$x, max(ash$x))
+        ash$y <- c(0, ash$y, 0)
         polygon(ash, col="black")
         if (rug) {
           segments(x, 0, x, 0.1, ...)
@@ -222,6 +224,8 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
           else
             utils::capture.output(ash <- ash::ash1(ash::bin1(x.sub, c(-half_range, half_range))))
           # lines(ash, col = colrs[i])
+          ash$x <- c(min(ash$x), ash$x, max(ash$x))
+          ash$y <- c(0, ash$y, 0)
           polygon(ash, col = colrs[i])
           text(x=1.0, y=density_max*0.9, labels=lgps[i])
           if (rug) {

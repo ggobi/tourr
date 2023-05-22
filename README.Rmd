@@ -32,8 +32,8 @@ install.packages("tourr")
 You can install the development version of tourr from github with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("ggobi/tourr")
+# install.packages("remotes")
+remotes::install_github("ggobi/tourr")
 ```
 
 ## Example
