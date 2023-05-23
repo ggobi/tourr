@@ -93,13 +93,13 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
           xaxt = "n", yaxt = "n"
         )
         axis(2, seq(0, density_max, by = 1))
-        abline(h = seq(0.5, density_max, by = 0.5), col = "grey80")
+        abline(h = seq(0, density_max, by = 0.5), col = "grey80")
 
         bins <- hist(x, breaks = seq(-1, 1, bw), plot = FALSE)
         if (scale_density)
           bins$density <- bins$density/max(bins$density) * density_max * 0.8
         with(bins, rect(mids - bw/2, 0, mids + bw/2, density,
-          col = col, border = "white"
+          col = col
         ))
         if (rug) {
           segments(x, 0, x, 0.1, ...)
@@ -116,14 +116,14 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
             xaxt = "n", yaxt = "n"
           )
           axis(2, seq(0, density_max, by = 1))
-          abline(h = seq(0.5, density_max, by = 0.5), col = "grey80")
+          abline(h = seq(0, density_max, by = 0.5), col = "grey80")
 
           x.sub <- x[col == colrs[i], ]
           bins <- hist(x.sub, breaks = seq(-1, 1, bw), plot = FALSE)
           if (scale_density)
             bins$density <- bins$density/max(bins$density) * density_max * 0.8
           with(bins, rect(mids - bw/2, 0, mids + bw/2, density,
-                          col = colrs[i], border = "white"
+                          col = colrs[i]
           ))
           text(x=1.0, y=density_max*0.9, labels=lgps[i])
           if (rug) {
@@ -141,7 +141,7 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
           xaxt = "n", yaxt = "n"
         )
         axis(2, seq(0, density_max, by = 1))
-        abline(h = seq(0.5, density_max, by = 0.5), col = "grey80")
+        abline(h = seq(0, density_max, by = 0.5), col = "grey80")
 
         if (scale_density) {
           dn <- stats::density(x, bw=bw/2)
@@ -163,7 +163,7 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
             xaxt = "n", yaxt = "n"
           )
           axis(2, seq(0, density_max, by = 1))
-          abline(h = seq(0.5, density_max, by = 0.5), col = "grey80")
+          abline(h = seq(0, density_max, by = 0.5), col = "grey80")
 
           x.sub <- x[col == colrs[i], ]
           if (scale_density) {
@@ -188,7 +188,7 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
           xaxt = "n", yaxt = "n"
         )
         axis(2, seq(0, density_max, by = 1))
-        abline(h = seq(0.5, density_max, by = 0.5), col = "grey80")
+        abline(h = seq(0, density_max, by = 0.5), col = "grey80")
 
         if (scale_density) {
           utils::capture.output(ash <- ash::ash1(ash::bin1(x, c(-half_range, half_range))))
@@ -214,7 +214,7 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
             xaxt = "n", yaxt = "n"
           )
           axis(2, seq(0, 4, by = 1))
-          abline(h = seq(0.5, density_max, by = 0.5), col = "grey80")
+          abline(h = seq(0, density_max, by = 0.5), col = "grey80")
           x.sub <- x[col == colrs[i], ]
 
           if (scale_density) {
@@ -239,7 +239,7 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
     plot(
       x = NA, y = NA, xlim = c(-1, 1.2), ylim = c(-1.1, 0),
       xaxs = "i", yaxs = "i",
-      xlab = "Data Projection", ylab = "",
+      xlab = "", ylab = "",
       yaxt = "n"
     )
     lines(c(0, 0), c(-1, 0), col = "grey80")
