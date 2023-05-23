@@ -239,7 +239,7 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
     plot(
       x = NA, y = NA, xlim = c(-1, 1.2), ylim = c(-1.1, 0),
       xaxs = "i", yaxs = "i",
-      xlab = "", ylab = "",
+      xlab = "", ylab = "Projection",
       yaxt = "n"
     )
     lines(c(0, 0), c(-1, 0), col = "grey80")
