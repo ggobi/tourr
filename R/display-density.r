@@ -99,7 +99,7 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
         if (scale_density)
           bins$density <- bins$density/max(bins$density) * density_max * 0.8
         with(bins, rect(mids - bw/2, 0, mids + bw/2, density,
-          col = "black", border = "white"
+          col = col, border = "white"
         ))
         if (rug) {
           segments(x, 0, x, 0.1, ...)
@@ -146,10 +146,10 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
         if (scale_density) {
           dn <- stats::density(x, bw=bw/2)
           dn$y <- dn$y/max(dn$y) * density_max * 0.8
-          polygon(dn, col = "black")
+          polygon(dn, col = col)
         }
         else
-          polygon(stats::density(x, bw=bw/2), col = "black")
+          polygon(stats::density(x, bw=bw/2), col = col)
         if (rug) {
           segments(x, 0, x, 0.1, ...)
         }
@@ -199,7 +199,7 @@ display_dist <- function(method = "density", center = TRUE, half_range = NULL,
         #lines(ash, col="black")
         ash$x <- c(min(ash$x), ash$x, max(ash$x))
         ash$y <- c(0, ash$y, 0)
-        polygon(ash, col="black")
+        polygon(ash, col=col)
         if (rug) {
           segments(x, 0, x, 0.1, ...)
         }
