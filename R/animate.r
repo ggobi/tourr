@@ -18,7 +18,7 @@
 #' @param max_frames the maximum number of bases to generate.  Defaults to
 #'   Inf for interactive use (must use Ctrl + C to terminate), and 1 for
 #'   non-interactive use.
-#' @param rescale if true, rescale all variables to range [0,1]?
+#' @param rescale Default FALSE. If TRUE, rescale all variables to range [0,1]?
 #' @param sphere if true, sphere all variables
 #' @param ... ignored
 #' @return an (invisible) list of bases visited during this tour
@@ -34,7 +34,7 @@
 #' }
 animate <- function(data, tour_path = grand_tour(), display = display_xy(),
                     start = NULL, aps = 1, fps = 10, max_frames = Inf,
-                    rescale = TRUE, sphere = FALSE, ...) {
+                    rescale = FALSE, sphere = FALSE, ...) {
   record <-
     tibble::tibble(
       basis = list(),

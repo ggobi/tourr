@@ -19,7 +19,7 @@ display_pca(
   ...
 )
 
-animate_pca(data, tour_path = grand_tour(), rescale = TRUE, ...)
+animate_pca(data, tour_path = grand_tour(), rescale = FALSE, ...)
 }
 \arguments{
 \item{center}{if TRUE, centers projected data to (0,0).  This pins the
@@ -53,7 +53,7 @@ principal components. This is required.}
 
 \item{tour_path}{tour path generator, defaults to 2d grand tour}
 
-\item{rescale}{if true, rescale all variables to range [0,1].}
+\item{rescale}{Default FALSE. If TRUE, rescale all variables to range [0,1].}
 }
 \description{
 Animate a 2D tour path on data that has been transformed into

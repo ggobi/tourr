@@ -16,7 +16,7 @@
 #'   principal components. This is required.
 #' @param edges A two column integer matrix giving indices of ends of lines.
 #' @param edges.col colour of edges to be plotted, Defaults to "black.
-#' @param rescale if true, rescale all variables to range [0,1].
+#' @param rescale Default FALSE. If TRUE, rescale all variables to range [0,1].
 #' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_slice}}
@@ -92,6 +92,6 @@ display_pca <- function(center = TRUE, axes = "center", half_range = NULL,
 #' @rdname display_pca
 #' @inheritParams animate
 #' @export
-animate_pca <- function(data, tour_path = grand_tour(), rescale = TRUE, ...) {
+animate_pca <- function(data, tour_path = grand_tour(), rescale = FALSE, ...) {
   animate(data, tour_path, display_pca(...), rescale = rescale)
 }

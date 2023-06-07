@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.16</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">animate_slice</span><span class="op">(</span><span class="va">data</span>, tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>, rescale <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">animate_slice</span><span class="op">(</span><span class="va">data</span>, tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>, rescale <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -166,7 +166,7 @@ If NULL (default) the slice will be anchored at the data center.</p></dd>
 
 
 <dt>rescale</dt>
-<dd><p>if true, rescale all variables to range [0,1].</p></dd>
+<dd><p>Default FALSE. If TRUE, rescale all variables to range [0,1].</p></dd>
 
 </dl></div>
 
@@ -182,24 +182,24 @@ If NULL (default) the slice will be anchored at the data center.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Animate with the slice display using the default parameters</span></span></span>
 <span class="r-in"><span><span class="fu">animate_slice</span><span class="op">(</span><span class="va">sphere3</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.51</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using v_rel=0.051, corresponding to a cutoff h=0.051</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using v_rel=0.1, corresponding to a cutoff h=0.1</span>
 <span class="r-plt img"><img src="display_slice-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu">animate_slice</span><span class="op">(</span><span class="va">sphere5</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.53</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using v_rel=0.015, corresponding to a cutoff h=0.25</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using v_rel=0.11, corresponding to a cutoff h=0.47</span>
 <span class="r-plt img"><img src="display_slice-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Animate with off-center anchoring</span></span></span>
 <span class="r-in"><span><span class="va">anchor3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.7</span>, <span class="fl">3</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">anchor5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">5</span><span class="op">)</span>, ncol<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">animate_slice</span><span class="op">(</span><span class="va">sphere3</span>, anchor <span class="op">=</span> <span class="va">anchor3</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.51</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using v_rel=0.051, corresponding to a cutoff h=0.051</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 1</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using v_rel=0.1, corresponding to a cutoff h=0.1</span>
 <span class="r-plt img"><img src="display_slice-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># Animate with thicker slice to capture more points in each view</span></span></span>
 <span class="r-in"><span><span class="fu">animate_slice</span><span class="op">(</span><span class="va">sphere5</span>, anchor <span class="op">=</span> <span class="va">anchor5</span>, v_rel <span class="op">=</span> <span class="fl">0.02</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.53</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 1</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using v_rel=0.02, corresponding to a cutoff h=0.27</span>
 <span class="r-plt img"><img src="display_slice-4.png" alt="" width="700" height="433"></span>
 </code></pre></div>

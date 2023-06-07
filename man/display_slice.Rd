@@ -23,7 +23,7 @@ display_slice(
   ...
 )
 
-animate_slice(data, tour_path = grand_tour(), rescale = TRUE, ...)
+animate_slice(data, tour_path = grand_tour(), rescale = FALSE, ...)
 }
 \arguments{
 \item{center}{if TRUE, centers projected data to (0,0).  This pins the
@@ -68,7 +68,7 @@ If NULL (default) the slice will be anchored at the data center.}
 
 \item{tour_path}{tour path generator, defaults to 2d grand tour}
 
-\item{rescale}{if true, rescale all variables to range [0,1].}
+\item{rescale}{Default FALSE. If TRUE, rescale all variables to range [0,1].}
 }
 \description{
 Animate a 2D tour path with a sliced scatterplot.

@@ -1,3 +1,7 @@
+# tourr 0.6.16
+
+* Set rescale default to be FALSE
+
 # tourr 0.6.15
 
 * display_dist() has controls to change binwidth, and to scale the height of the bars or density in each projection.

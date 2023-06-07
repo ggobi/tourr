@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.16</span>
       </span>
     </div>
 
@@ -71,7 +71,7 @@
 <span>  tour_path <span class="op">=</span> <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  max_bases <span class="op">=</span> <span class="fl">100</span>,</span>
 <span>  start <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  rescale <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  rescale <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  sphere <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  step_size <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -98,7 +98,7 @@
 
 
 <dt>rescale</dt>
-<dd><p>if true, rescale all variables to range [0,1]?</p></dd>
+<dd><p>Default FALSE. If TRUE, rescale all variables to range [0,1]?</p></dd>
 
 
 <dt>sphere</dt>
@@ -123,7 +123,7 @@ forces new basis generation at each step.</p></dd>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
 <span class="r-in"><span><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="planned_tour.html">planned_tour</a></span><span class="op">(</span><span class="va">t1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 66</span>
 <span class="r-plt img"><img src="save_history-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co">## andrews_history(t1)</span></span></span>
 <span class="r-in"><span><span class="co">## andrews_history(interpolate(t1))</span></span></span>
@@ -139,16 +139,14 @@ forces new basis generation at each step.</p></dd>
 <span class="r-in"><span><span class="va">testdata</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">testdata</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="fl">10</span></span></span>
 <span class="r-in"><span><span class="va">testdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="sphere_data.html">sphere_data</a></span><span class="op">(</span><span class="va">testdata</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">t2</span> <span class="op">&lt;-</span> <span class="fu">save_history</span><span class="op">(</span><span class="va">testdata</span>, <span class="fu"><a href="guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span>, max.tries <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  max <span class="op">=</span> <span class="fl">5</span>, rescale <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span>  max <span class="op">=</span> <span class="fl">5</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.883   8.8 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.883   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.883   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.899   1.8 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.901   0.2 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.904   0.4 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.881   9.0 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.882   0.2 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.896   1.6 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.897   0.1 % better  - NEW BASIS</span>
 <span class="r-in"><span><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">testdata</span>, <span class="fu"><a href="planned_tour.html">planned_tour</a></span><span class="op">(</span><span class="va">t2</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.73</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 3</span>
 <span class="r-plt img"><img src="save_history-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Or you can use saved histories to visualise the path that the tour took.</span></span></span>

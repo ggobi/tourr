@@ -7,7 +7,7 @@
 #' @param max_bases maximum number of new bases to generate.  Some tour paths
 #'  (like the guided tour) may generate less than the maximum.
 #' @param start starting projection, if you want to specify one
-#' @param rescale if true, rescale all variables to range [0,1]?
+#' @param rescale Default FALSE. If TRUE, rescale all variables to range [0,1]?
 #' @param sphere if true, sphere all variables
 #' @param step_size distance between each step - defaults to \code{Inf} which
 #'   forces new basis generation at each step.
@@ -32,14 +32,14 @@
 #' testdata[1:50, 1] <- testdata[1:50, 1] + 10
 #' testdata <- sphere_data(testdata)
 #' t2 <- save_history(testdata, guided_tour(holes(), max.tries = 10),
-#'   max = 5, rescale = FALSE
+#'   max = 5
 #' )
 #' animate_xy(testdata, planned_tour(t2))
 #'
 #' # Or you can use saved histories to visualise the path that the tour took.
 #' plot(path_index(interpolate(t2), holes()))
 save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start = NULL,
-                         rescale = TRUE, sphere = FALSE, step_size = Inf, ...) {
+                         rescale = FALSE, sphere = FALSE, step_size = Inf, ...) {
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
     data <- as.matrix(data)

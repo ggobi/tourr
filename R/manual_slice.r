@@ -9,7 +9,7 @@
 #' @param nsteps number of changes in center to make
 #' @param v_rel relative volume of the slice. If not set, suggested value
 #'   is calculated and printed to the screen.
-#' @param rescale if true, rescale all variables to range [0,1]?
+#' @param rescale Default FALSE. If TRUE, rescale all variables to range [0,1]?
 #' @param col color to use for points, can be a vector or hexcolors or a factor.  Defaults to "black".
 #' @param sphere if true, sphere all variables
 #' @param half_range half range to use when calculating limits of projected.

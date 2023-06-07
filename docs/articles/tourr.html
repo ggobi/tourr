@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.16</span>
       </span>
     </div>
 
@@ -123,7 +123,7 @@ and call</p>
 <code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span>
 <span><span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
-<span><span class="co">#&gt; Using half_range 0.98</span></span></code></pre></div>
+<span><span class="co">#&gt; Using half_range 66</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <p>Here we only see the first frame that is generated on the tour path,
 but if you call <code>animate</code> in your console you will launch a
@@ -136,7 +136,7 @@ selection explicitly</p>
 <span>        display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>        <span class="op">)</span></span>
 <span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
-<span><span class="co">#&gt; Using half_range 0.98</span></span></code></pre></div>
+<span><span class="co">#&gt; Using half_range 66</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <p>The most common application is to use a grand tour, which means that
 the projections (or bases) are randomly selected and give a global
@@ -172,8 +172,39 @@ center, and can often find views that reveal clustering.</p>
 <span>        tour_path <span class="op">=</span> <span class="fu"><a href="../reference/guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="../reference/holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>        display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
-<span><span class="co">#&gt; Value  0.289   8.3 % better  - NEW BASIS</span></span>
-<span><span class="co">#&gt; Using half_range 0.98</span></span></code></pre></div>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; No better bases found after 25 tries.  Giving up.</span></span>
+<span><span class="co">#&gt; Final projection: </span></span>
+<span><span class="co">#&gt; 0.405  0.056  </span></span>
+<span><span class="co">#&gt; 0.423  -0.140  </span></span>
+<span><span class="co">#&gt; 0.666  0.289  </span></span>
+<span><span class="co">#&gt; 0.091  0.510  </span></span>
+<span><span class="co">#&gt; 0.315  -0.784  </span></span>
+<span><span class="co">#&gt; 0.326  0.138</span></span>
+<span><span class="co">#&gt; Using half_range 66</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p>When running the full guided tour for this example, the final view
 shows three clusters that correspond to the three species in the
@@ -184,8 +215,39 @@ teased apart in the guided tour.</p>
 <span>        tour_path <span class="op">=</span> <span class="fu"><a href="../reference/guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="../reference/holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>        display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
-<span><span class="co">#&gt; Value  0.658   43.7 % better  - NEW BASIS</span></span>
-<span><span class="co">#&gt; Using half_range 0.98</span></span></code></pre></div>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; No better bases found after 25 tries.  Giving up.</span></span>
+<span><span class="co">#&gt; Final projection: </span></span>
+<span><span class="co">#&gt; -0.269  -0.680  </span></span>
+<span><span class="co">#&gt; -0.062  -0.180  </span></span>
+<span><span class="co">#&gt; 0.592  -0.107  </span></span>
+<span><span class="co">#&gt; -0.614  0.461  </span></span>
+<span><span class="co">#&gt; 0.209  0.519  </span></span>
+<span><span class="co">#&gt; 0.390  0.112</span></span>
+<span><span class="co">#&gt; Using half_range 66</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>Alternatively, a colour vector can be created manually and passed
 into the guided tour.</p>
@@ -200,8 +262,39 @@ into the guided tour.</p>
 <span>        tour_path <span class="op">=</span> <span class="fu"><a href="../reference/guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="../reference/holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>        display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">flea_col</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
-<span><span class="co">#&gt; Value  0.827   11.5 % better  - NEW BASIS</span></span>
-<span><span class="co">#&gt; Using half_range 0.98</span></span></code></pre></div>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; Value  1.582   0.0 % better </span></span>
+<span><span class="co">#&gt; No better bases found after 25 tries.  Giving up.</span></span>
+<span><span class="co">#&gt; Final projection: </span></span>
+<span><span class="co">#&gt; -0.139  0.281  </span></span>
+<span><span class="co">#&gt; -0.781  -0.092  </span></span>
+<span><span class="co">#&gt; 0.267  -0.318  </span></span>
+<span><span class="co">#&gt; -0.098  -0.473  </span></span>
+<span><span class="co">#&gt; -0.016  0.766  </span></span>
+<span><span class="co">#&gt; 0.538  0.033</span></span>
+<span><span class="co">#&gt; Using half_range 66</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 </div>
 <div class="section level2">
@@ -224,13 +317,13 @@ display, we can launch the animation as</p>
 <span>        display <span class="op">=</span> <span class="fu"><a href="../reference/display_dist.html">display_dist</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>        <span class="op">)</span></span>
 <span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
-<span><span class="co">#&gt; Using half_range 0.98</span></span></code></pre></div>
+<span><span class="co">#&gt; Using half_range 66</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-7-1.png" width="700"><img src="tourr_files/figure-html/unnamed-chunk-7-2.png" width="700"></p>
 <p>but there is also a shortcut available</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/display_dist.html">animate_dist</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
-<span><span class="co">#&gt; Using half_range 0.98</span></span></code></pre></div>
+<span><span class="co">#&gt; Using half_range 66</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-8-1.png" width="700"><img src="tourr_files/figure-html/unnamed-chunk-8-2.png" width="700"></p>
 </div>
 <div class="section level2">
@@ -253,7 +346,7 @@ for the flea data and then replay it in a scatterplot display</p>
 <span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
 <span><span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">f</span>, <span class="fu"><a href="../reference/planned_tour.html">planned_tour</a></span><span class="op">(</span><span class="va">t1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Converting input data to the required matrix format.</span></span>
-<span><span class="co">#&gt; Using half_range 0.98</span></span></code></pre></div>
+<span><span class="co">#&gt; Using half_range 66</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 </div>
   </div>

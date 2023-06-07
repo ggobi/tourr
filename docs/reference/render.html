@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.16</span>
       </span>
     </div>
 
@@ -74,7 +74,7 @@
 <span>  <span class="va">...</span>,</span>
 <span>  apf <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">10</span>,</span>
 <span>  frames <span class="op">=</span> <span class="fl">50</span>,</span>
-<span>  rescale <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  rescale <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  sphere <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  start <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -113,7 +113,7 @@ e.g. <code><a href="display_xy.html">display_xy</a></code>, <code><a href="displ
 
 
 <dt>rescale</dt>
-<dd><p>if true, rescale all variables to range [0,1]</p></dd>
+<dd><p>default FALSE. If TRUE, rescale all variables to range [0,1]</p></dd>
 
 
 <dt>sphere</dt>
@@ -134,13 +134,13 @@ e.g. <code><a href="display_xy.html">display_xy</a></code>, <code><a href="displ
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">tmp_path</span>, <span class="st">"test.pdf"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 66</span>
 <span class="r-in"><span><span class="fu">render</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu"><a href="grand_tour.html">grand_tour</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="display_xy.html">display_xy</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"png"</span>,</span></span>
 <span class="r-in"><span>  frames <span class="op">=</span> <span class="fl">3</span>,</span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">tmp_path</span>, <span class="st">"test-%03d.png"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 0.98</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 66</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

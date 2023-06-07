@@ -12,7 +12,7 @@ render(
   ...,
   apf = 1/10,
   frames = 50,
-  rescale = TRUE,
+  rescale = FALSE,
   sphere = FALSE,
   start = NULL
 )
@@ -34,7 +34,7 @@ e.g. \code{\link{display_xy}}, \code{\link{display_pcp}}}
 
 \item{frames}{number of frames in output}
 
-\item{rescale}{if true, rescale all variables to range [0,1]}
+\item{rescale}{default FALSE. If TRUE, rescale all variables to range [0,1]}
 
 \item{sphere}{if true, sphere all variables}
 

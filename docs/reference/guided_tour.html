@@ -19,7 +19,7 @@ than the current projection."><meta property="og:image" content="/logo.png"><!--
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.15</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.16</span>
       </span>
     </div>
 
@@ -144,26 +144,26 @@ a method that works with tour paths like <code><a href="animate.html">animate</a
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu">guided_tour</span><span class="op">(</span><span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, sphere <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.856   4.6 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.811   2.7 % better  - NEW BASIS</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 3.8</span>
 <span class="r-plt img"><img src="guided_tour-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu">guided_tour</span><span class="op">(</span><span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span>, search_f <span class="op">=</span> <span class="va">search_better_random</span><span class="op">)</span>, sphere <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Old 0.7931013 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> New 0.8096182 try 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Accept </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Old 0.8061676 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> New 0.8021759 try 1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Accept with probability, prob = 0.7582966 </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 3.8</span>
 <span class="r-plt img"><img src="guided_tour-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="display_dist.html">animate_dist</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu">guided_tour</span><span class="op">(</span><span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>, sphere <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.819   1.2 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.752   9.7 % better  - NEW BASIS</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 3.8</span>
 <span class="r-plt img"><img src="guided_tour-3.png" alt="" width="700" height="433"></span>
 <span class="r-plt img"><img src="guided_tour-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="display_xy.html">animate_xy</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fu">guided_tour</span><span class="op">(</span><span class="fu"><a href="lda_pp.html">lda_pp</a></span><span class="op">(</span><span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span><span class="op">)</span>, sphere <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.859   6.2 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.889   11.9 % better  - NEW BASIS</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 3.8</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># save_history is particularly useful in conjunction with the</span></span></span>
@@ -172,183 +172,155 @@ a method that works with tour paths like <code><a href="animate.html">animate</a
 <span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="va">tries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fu"><a href="save_history.html">save_history</a></span><span class="op">(</span><span class="va">f</span>, <span class="fu">guided_tour</span><span class="op">(</span><span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, simplify <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.462   3.1 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.465   0.6 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.468   0.8 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.471   0.7 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.473   0.4 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.476   0.5 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.478   0.5 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.480   0.3 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.480   0.1 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.480   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.480   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.3 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No better bases found after 25 tries.  Giving up.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Final projection: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -1.000  0.023  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.029  0.685  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.004  0.728  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -0.834  0.161  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.512  0.580  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.204  -0.799  </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.465   6.9 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.477   2.6 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.9 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No better bases found after 25 tries.  Giving up.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Final projection: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.503  0.858  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.584  -0.428  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.637  -0.285  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -0.724  -0.026  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -0.676  0.221  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.134  0.975  </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   22.3 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No better bases found after 25 tries.  Giving up.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Final projection: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.788  -0.612  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.463  -0.526  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.405  -0.591  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.171  -0.959  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.738  -0.026  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.653  0.281  </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.396   210.8 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.463   16.8 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.479   3.6 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.480   0.3 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.3 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No better bases found after 25 tries.  Giving up.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Final projection: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.986  -0.162  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.129  -0.667  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.101  -0.728  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -0.284  -0.932  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -0.811  0.108  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.512  -0.346  </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.459   31.4 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.475   3.6 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.479   0.8 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.481   0.3 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.481   0.1 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.1 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.1 % better  - NEW BASIS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.482   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.582   0.0 % better </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No better bases found after 25 tries.  Giving up.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Final projection: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.753  -0.657  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.461  -0.501  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.469  -0.564  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.308  -0.032  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -0.539  0.818  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.784  0.574  </span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-plt img"><img src="guided_tour-5.png" alt="" width="700" height="433"></span>
 </code></pre></div>

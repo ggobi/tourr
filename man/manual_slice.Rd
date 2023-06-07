@@ -31,7 +31,7 @@ manual_slice(
 \item{v_rel}{relative volume of the slice. If not set, suggested value
 is calculated and printed to the screen.}
 
-\item{rescale}{if true, rescale all variables to range [0,1]?}
+\item{rescale}{Default FALSE. If TRUE, rescale all variables to range [0,1]?}
 
 \item{sphere}{if true, sphere all variables}
 

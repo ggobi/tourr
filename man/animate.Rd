@@ -12,7 +12,7 @@ animate(
   aps = 1,
   fps = 10,
   max_frames = Inf,
-  rescale = TRUE,
+  rescale = FALSE,
   sphere = FALSE,
   ...
 )
@@ -36,7 +36,7 @@ associated with tour path}
 Inf for interactive use (must use Ctrl + C to terminate), and 1 for
 non-interactive use.}
 
-\item{rescale}{if true, rescale all variables to range [0,1]?}
+\item{rescale}{Default FALSE. If TRUE, rescale all variables to range [0,1]?}
 
 \item{sphere}{if true, sphere all variables}
 

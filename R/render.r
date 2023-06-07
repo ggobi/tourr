@@ -9,7 +9,7 @@
 #' @param ... other options passed to output device
 #' @param apf angle (in radians) per frame
 #' @param frames number of frames in output
-#' @param rescale if true, rescale all variables to range [0,1]
+#' @param rescale default FALSE. If TRUE, rescale all variables to range [0,1]
 #' @param sphere if true, sphere all variables
 #' @param start starting projection.  If \code{NULL}, uses path default.
 #' @keywords hplot
@@ -26,7 +26,7 @@
 #'   file.path(tmp_path, "test-%03d.png")
 #' )
 #' }
-render <- function(data, tour_path, display, dev, ..., apf = 1 / 10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL) {
+render <- function(data, tour_path, display, dev, ..., apf = 1 / 10, frames = 50, rescale = FALSE, sphere = FALSE, start = NULL) {
   if (!is.matrix(data)) {
     message("Converting input data to the required matrix format.")
     data <- as.matrix(data)
@@ -81,7 +81,7 @@ render <- function(data, tour_path, display, dev, ..., apf = 1 / 10, frames = 50
 #' @param ... other options passed to \code{\link{png}}
 #' @param apf angle (in radians) per frame
 #' @param frames number of frames in output
-#' @param rescale if true, rescale all variables to range [0,1]
+#' @param rescale default FALSE. If TRUE, rescale all variables to range [0,1]
 #' @param sphere if true, sphere all variables
 #' @param start starting projection.  If \code{NULL}, uses path default.
 #' @param loop Logical for gifski to loop or not, default=TRUE
@@ -97,7 +97,7 @@ render <- function(data, tour_path, display, dev, ..., apf = 1 / 10, frames = 50
 #' }
 #' }
 #' @export
-render_gif <- function(data, tour_path, display, gif_file = "animation.gif", ..., apf = 1 / 10, frames = 50, rescale = TRUE, sphere = FALSE, start = NULL, loop = TRUE) {
+render_gif <- function(data, tour_path, display, gif_file = "animation.gif", ..., apf = 1 / 10, frames = 50, rescale = FALSE, sphere = FALSE, start = NULL, loop = TRUE) {
   if (!requireNamespace("gifski", quietly = TRUE)) {
     stop("To use this function please install the 'gifski' package",
       call. = FALSE

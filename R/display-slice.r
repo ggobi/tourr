@@ -22,7 +22,7 @@
 #' @param anchor A vector specifying the reference point to anchor the slice.
 #'   If NULL (default) the slice will be anchored at the data center.
 #' @param anchor_nav position of the anchor: center, topright or off
-#' @param rescale if true, rescale all variables to range [0,1].
+#' @param rescale Default FALSE. If TRUE, rescale all variables to range [0,1].
 #' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_slice}}
@@ -124,7 +124,7 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
 #' @rdname display_slice
 #' @inheritParams animate
 #' @export
-animate_slice <- function(data, tour_path = grand_tour(), rescale = TRUE, ...) {
+animate_slice <- function(data, tour_path = grand_tour(), rescale = FALSE, ...) {
   animate(data, tour_path, display_slice(...), rescale = rescale)
 }
 
