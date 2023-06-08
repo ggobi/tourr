@@ -10,6 +10,7 @@
 #'   If not set, defaults to maximum distance from origin to each row of data.
 #' @param col color to be plotted.  Defaults to "black"
 #' @param pch shape of the point to be plotted.  Defaults to 20.
+#' @param cex size of the point to be plotted.  Defaults to 1.
 #' @param past draw line between current projection and projection \code{past}
 #'   steps ago
 #' @param cex magnification of plotting text relative to default. Defaults to 1.
@@ -22,7 +23,7 @@ display_trails <- function(center = TRUE, axes = "center", half_range = NULL, co
   # the only way until tourr switch to a proper object system.
   xy <- display_xy(
     center = center, axes = axes, half_range = half_range,
-    col = col, pch = pch, ...
+    col = col, pch = pch, cex = cex, ...
   )
   xy_env <- environment(xy$init)
 
@@ -40,9 +41,9 @@ display_trails <- function(center = TRUE, axes = "center", half_range = NULL, co
     # Render projected points
     last_x <- past_x[[1]]
     if (!is.null(last_x)) {
-      segments(last_x[, 1], last_x[, 2], x[, 1], x[, 2], col = col, pch = pch)
+      segments(last_x[, 1], last_x[, 2], x[, 1], x[, 2], col = col, lwd = cex*2)
     }
-    points(x, col = col, pch = pch, cex = 0.5)
+    points(x, col = col, pch = pch, cex = cex)
 
     past_x <<- c(past_x[2:past], list(x))
   }

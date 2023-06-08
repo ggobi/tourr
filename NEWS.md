@@ -1,3 +1,7 @@
+# tourr 0.6.17
+
+* Fixed sizing issue in display_trails
+
 # tourr 0.6.16
 
 * Set rescale default to be FALSE
