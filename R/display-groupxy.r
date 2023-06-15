@@ -39,6 +39,10 @@ display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
     gps <- col
     col <- mapColors(col, palette)
   }
+  if (is.factor(edges.col) | !areColors(edges.col)) {
+    edges.gps <- edges.col
+    edges.col <- mapColors(edges.col, palette)
+  }
 
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, centr)

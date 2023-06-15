@@ -53,7 +53,11 @@ display_andrews <- function(col = "black", ...) {
     grid <<- seq(-pi, pi, length = 50)
   }
 
-  if (!areColors(col)) col <- mapColors(col)
+  # If colors are a variable, convert to colors
+  if (is.factor(col) | !areColors(col)) {
+    gps <- col
+    col <- mapColors(col, palette)
+  }
 
   render_frame <- function() {
     blank_plot(xlim = c(-pi, pi), ylim = c(-1, 1))

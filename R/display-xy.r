@@ -69,6 +69,10 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
     gps <- col
     col <- mapColors(col, palette)
   }
+  if (is.factor(edges.col) | !areColors(edges.col)) {
+    edges.gps <- edges.col
+    edges.col <- mapColors(edges.col, palette)
+  }
   # If shapes are a variable, convert shapes
   if (is.factor(pch)) {
     shapes <- mapShapes(pch)

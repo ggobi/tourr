@@ -1,3 +1,7 @@
+# tourr 0.6.18
+
+* Changed line colours to take a factor, and be handled the same as points.
+
 # tourr 0.6.17
 
 * Fixed sizing issue in display_trails
