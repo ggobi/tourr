@@ -17,6 +17,9 @@
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
 #' @export
+#' @examples
+#' animate_trails(flea[,1:6], col=flea$species)
+#'
 display_trails <- function(center = TRUE, axes = "center", half_range = NULL, col = "black", pch = 20, cex = 1, past = 3, ...) {
 
   # Inherit most behaviour from display_xy.  This is a little hacky, but

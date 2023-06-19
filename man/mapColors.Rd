@@ -9,7 +9,7 @@ mapColors(x, palette)
 \arguments{
 \item{x}{vector}
 
-\item{palette}{name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"}
+\item{palette}{name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"}
 }
 \description{
 Map vector of factors to color

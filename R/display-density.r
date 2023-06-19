@@ -10,7 +10,7 @@
 #'   If not set, defaults to maximum distance from origin to each row of data.
 #' @param col color to use for points, can be a vector or hexcolors or a factor.  Defaults to "black".
 #' @param rug draw rug plot showing position of actual data points?
-#' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
+#' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
 #' @param density_max allow control of the y range for density plot
 #' @param bw binwidth for histogram and density, between 0-1, default 0.2
 #' @param scale_density Height of density is scaled at each projection, default FALSE

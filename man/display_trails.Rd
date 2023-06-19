@@ -47,3 +47,7 @@ steps ago}
 \description{
 Animate a 2D tour path with a point trails
 }
+\examples{
+animate_trails(flea[,1:6], col=flea$species)
+
+}

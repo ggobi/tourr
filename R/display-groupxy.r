@@ -17,19 +17,21 @@
 #' @param cex size of the point to be plotted.  Defaults to 1.
 #' @param group_by variable to group by. Must have less than 25 unique values.
 #' @param plot_xgp if TRUE, plots points from other groups in light grey
-#' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
+#' @param edges.col colour of edges to be plotted, Defaults to "black"
+#' @param edges.width line width for edges, default 1
+#' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_groupxy}}
 #' @export
 #' @examples
-#' f <- flea[, 1:6]
-#' col <- rainbow(length(unique(flea$species)))[as.numeric(as.factor(flea$species))]
-#' pch <- as.numeric(flea$species) + 14
-#'
-#' animate_groupxy(f, col = col, pch = pch, group_by = flea$species)
-#' animate_groupxy(f, col = col, pch = pch, group_by = flea$species, plot_xgp = FALSE)
+#' animate_groupxy(flea[, 1:6], col = flea$species,
+#'   pch = flea$species, group_by = flea$species)
+#' animate_groupxy(flea[, 1:6], col = flea$species,
+#'   pch = flea$species, group_by = flea$species,
+#'   plot_xgp = FALSE)
 display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
-                            col = "black", pch = 20, cex = 1, edges = NULL,
+                            col = "black", pch = 20, cex = 1,
+                            edges = NULL, edges.col = "black", edges.width=1,
                             group_by = NULL, plot_xgp = TRUE,
                             palette = "Zissou 1", ...) {
   labels <- NULL
@@ -42,6 +44,12 @@ display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
   if (is.factor(edges.col) | !areColors(edges.col)) {
     edges.gps <- edges.col
     edges.col <- mapColors(edges.col, palette)
+  }
+  # If shapes are a variable, convert shapes
+  if (is.factor(pch)) {
+    shapes <- mapShapes(pch)
+  } else {
+    shapes <- pch
   }
 
   init <- function(data) {
@@ -77,13 +85,30 @@ display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
 
     blank_plot(xlim = c(-1, 1), ylim = c(-1, 1))
     draw_tour_axes(proj, labels, limits = 1, axes)
+    # add a legend, only if a variable was used
+    if (is.factor(gps)) {
+      numcol <- unique(col)
+      if (length(numcol) > 1) {
+        legend("topright", legend=unique(gps),
+               col=numcol, pch=15)
+      }
+    }
+    if (is.factor(pch)) {
+      numpch <- unique(shapes)
+      if (length(numpch) > 1) {
+        legend("bottomright", legend=unique(pch),
+               col="black", pch=unique(shapes))
+      }
+    }
 
     if (ngps < 2) {
-      points(x, col = col, pch = pch, cex = cex, new = FALSE)
+      points(x, col = col, pch = shapes, cex = cex, new = FALSE)
       if (!is.null(edges)) {
         segments(
           x[edges[, 1], 1], x[edges[, 1], 2],
-          x[edges[, 2], 1], x[edges[, 2], 2]
+          x[edges[, 2], 1], x[edges[, 2], 2],
+          col = edges.col,
+          lwd = edges.width
         )
       }
     }
@@ -91,14 +116,14 @@ display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
       for (i in 1:ngps) {
         x.sub <- x[group_by == gps[i], ]
         col.sub <- if (length(col) == nrow(x)) col[group_by == gps[i]] else col
-        pch.sub <- if (length(pch) == nrow(x)) pch[group_by == gps[i]] else pch
+        pch.sub <- if (length(shapes) == nrow(x)) shapes[group_by == gps[i]] else shapes
         cex.sub <- if (length(cex) == nrow(x)) cex[group_by == gps[i]] else cex
 
         blank_plot(xlim = c(-1, 1), ylim = c(-1, 1))
         if (plot_xgp) {
           points(x[group_by != gps[i], ],
             col = "#DEDEDEDE", new = FALSE,
-            pch = if (length(pch) > 1) pch[group_by != gps[i]] else pch,
+            shapes = if (length(shapes) > 1) shapes[group_by != gps[i]] else shapes,
             cex = if (length(cex) > 1) cex[group_by != gps[i]] else cex
           )
         }
@@ -107,7 +132,9 @@ display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
         if (!is.null(edges)) {
           segments(
             x[edges[group_by == gps[i], 1], 1], x[edges[group_by == gps[i], 1], 2],
-            x[edges[group_by == gps[i], 2], 1], x[edges[group_by == gps[i], 2], 2]
+            x[edges[group_by == gps[i], 2], 1], x[edges[group_by == gps[i], 2], 2],
+            col = edges.col[group_by == gps[i]],
+            lwd = edges.width
           )
         }
       }

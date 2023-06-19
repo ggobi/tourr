@@ -5,7 +5,8 @@
 #' @examples
 #' # This code is to be used as an example but you should increase
 #' # the max from 2 to 50, say, to check tour coverage.
-#' grand <- interpolate(save_history(flea[, 1:6], max = 2), 0.2)
+#' flea_std <- apply(flea[,1:6], 2, function(x) (x-mean(x))/sd(x))
+#' grand <- interpolate(save_history(flea_std, max = 2), 0.2)
 #' # The grand tour  -----------------------------
 #' # Look at the tour path in a tour, how well does it cover a sphere
 #' # Using MDS to summarise the high-d space of projections
@@ -20,7 +21,7 @@
 #'
 #' # Compare five guided tours  -----------------------------
 #' holes1d <- guided_tour(holes(), 1)
-#' tour_reps <- replicate(5, save_history(flea[, 1:6], holes1d, max = 2),
+#' tour_reps <- replicate(5, save_history(flea_std, holes1d, max = 2),
 #'   simplify = FALSE
 #' )
 #' tour_reps2 <- lapply(tour_reps, interpolate, 0.2)
@@ -33,15 +34,13 @@
 #' ord <- as.data.frame(cmdscale(d, 2))
 #'
 #' info <- cbind(ord, index_values)
-#' if (require("ggplot2")) {
-#'   ggplot(data = info, aes(x = step, y = value, group = try)) +
-#'     geom_line()
-#'   ##ggplot(data = info, aes(x = V1, y = V2, group = try)) +
-#'   ##  geom_path() +
-#'   ##  geom_point(aes(size = value)) +
-#'   ##  coord_equal()
-#'   ##last_plot() + facet_wrap(~try)
-#' }
+#' ggplot(data = info, aes(x = step, y = value, group = try)) +
+#'   geom_line()
+#' ##ggplot(data = info, aes(x = V1, y = V2, group = try)) +
+#' ##  geom_path() +
+#' ##  geom_point(aes(size = value)) +
+#' ##  coord_equal()
+#' ##last_plot() + facet_wrap(~try)
 path_dist <- function(history) {
   history <- as.array(history)
   n <- dim(history)[3]

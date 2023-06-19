@@ -1,17 +1,14 @@
 citHeader("To cite tourr in publications use:")
 
-citEntry(entry = "Article",
-  title        = "{tourr}: An {R} Package for Exploring Multivariate Data with Projections",
-  author       = personList(as.person("Hadley Wickham"),
-                   as.person("Dianne Cook"),
-                   as.person("Heike Hofmann"),
-                   as.person("Andreas Buja")),
-  journal      = "Journal of Statistical Software",
-  year         = "2011",
-  volume       = "40",
-  number       = "2",
-  pages        = "1--18",
-  url          = "https://doi.org/10.18637/jss.v040.i02",
+bibentry("Article",
+  title = "{tourr}: An {R} Package for Exploring Multivariate Data with Projections",
+  author = "Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja",
+  journal = "Journal of Statistical Software",
+  year = "2011",
+  volume = "40",
+  number = "2",
+  pages = "1--18",
+  url = "https://doi.org/10.18637/jss.v040.i02",
 
   textVersion  =
   paste("Hadley Wickham, Dianne Cook, Heike Hofmann, Andreas Buja (2011).",
@@ -20,17 +17,15 @@ citEntry(entry = "Article",
         "URL http://www.jstatsoft.org/v40/i02/.")
 )
 
-citEntry(entry = "Article",
-  title        = "A slice tour for finding hollowness in high-dimensional data",
-  author       = personList(as.person("Ursula Laa"),
-                   as.person("Dianne Cook"),
-                   as.person("German Valencia")),
-  journal      = "Journal of Computational and Graphical Statistics",
-  year         = "2020",
-  volume       = "29",
-  number       = "3",
-  pages        = "681--687",
-  url          = "https://doi.org/10.1080/10618600.2020.1777140",
+bibentry("Article",
+  title = "A slice tour for finding hollowness in high-dimensional data",
+  author = "Ursula Laa, Dianne Cook, German Valencia",
+  journal = "Journal of Computational and Graphical Statistics",
+  year = "2020",
+  volume = "29",
+  number = "3",
+  pages = "681--687",
+  url = "https://doi.org/10.1080/10618600.2020.1777140",
 
   textVersion  =
   paste("Ursula Laa, Dianne Cook, German Valencia (2020).",

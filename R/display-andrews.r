@@ -36,6 +36,7 @@ andrews <- function(x) {
 #' Andrew's curves, see \code{\link{andrews}}
 #'
 #' @param col color to be plotted.  Defaults to "black"
+#' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
 #' @keywords hplot
@@ -47,7 +48,7 @@ andrews <- function(x) {
 #'
 #' # It's easy to experiment with different tour paths:
 #' animate_andrews(flea[, 1:6], guided_tour(cmass()))
-display_andrews <- function(col = "black", ...) {
+display_andrews <- function(col = "black", palette = "Zissou 1", ...) {
   grid <- NULL
   init <- function(data) {
     grid <<- seq(-pi, pi, length = 50)

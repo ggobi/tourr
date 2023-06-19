@@ -20,7 +20,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.18</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -80,6 +80,8 @@
 <span>  pch <span class="op">=</span> <span class="fl">20</span>,</span>
 <span>  cex <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  edges <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  edges.col <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  edges.width <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  group_by <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  plot_xgp <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  palette <span class="op">=</span> <span class="st">"Zissou 1"</span>,</span>
@@ -122,6 +124,14 @@ If not set, defaults to maximum distance from origin to each row of data.</p></d
 <dd><p>A two column integer matrix giving indices of ends of lines.</p></dd>
 
 
+<dt>edges.col</dt>
+<dd><p>colour of edges to be plotted, Defaults to "black"</p></dd>
+
+
+<dt>edges.width</dt>
+<dd><p>line width for edges, default 1</p></dd>
+
+
 <dt>group_by</dt>
 <dd><p>variable to group by. Must have less than 25 unique values.</p></dd>
 
@@ -131,7 +141,7 @@ If not set, defaults to maximum distance from origin to each row of data.</p></d
 
 
 <dt>palette</dt>
-<dd><p>name of color palette for point colour, used by <code><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">grDevices::hcl.colors</a></code>, default "Zissou 1"</p></dd>
+<dd><p>name of color palette for point colour, used by <code><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">hcl.colors</a></code>, default "Zissou 1"</p></dd>
 
 
 <dt>...</dt>
@@ -150,16 +160,25 @@ If not set, defaults to maximum distance from origin to each row of data.</p></d
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span></span>
-<span class="r-in"><span><span class="va">col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">rainbow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span></span>
-<span class="r-in"><span><span class="va">pch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span> <span class="op">+</span> <span class="fl">14</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">animate_groupxy</span><span class="op">(</span><span class="va">f</span>, col <span class="op">=</span> <span class="va">col</span>, pch <span class="op">=</span> <span class="va">pch</span>, group_by <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">animate_groupxy</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, col <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span>,</span></span>
+<span class="r-in"><span>  pch <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span>, group_by <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in is.factor(edges.col):</span> object 'edges.col' not found</span>
-<span class="r-in"><span><span class="fu">animate_groupxy</span><span class="op">(</span><span class="va">f</span>, col <span class="op">=</span> <span class="va">col</span>, pch <span class="op">=</span> <span class="va">pch</span>, group_by <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span>, plot_xgp <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 66</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"shapes" is not a graphical parameter</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"shapes" is not a graphical parameter</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"shapes" is not a graphical parameter</span>
+<span class="r-plt img"><img src="display_groupxy-1.png" alt="" width="700" height="433"></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"shapes" is not a graphical parameter</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"shapes" is not a graphical parameter</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>"shapes" is not a graphical parameter</span>
+<span class="r-plt img"><img src="display_groupxy-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="fu">animate_groupxy</span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, col <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span>,</span></span>
+<span class="r-in"><span>  pch <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span>, group_by <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span>,</span></span>
+<span class="r-in"><span>  plot_xgp <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in is.factor(edges.col):</span> object 'edges.col' not found</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using half_range 66</span>
+<span class="r-plt img"><img src="display_groupxy-3.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="display_groupxy-4.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </div>

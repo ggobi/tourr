@@ -32,7 +32,7 @@ library(tourr)
 To get started we can simply generate a tour animation for any numeric data matrix with default settings. Here we look at the flea data available in the package, drop the last column (the grouping variable), and call
 
 ```{r}
-f <- flea[, 1:6]
+f <- apply(flea[,1:6], 2, function(x) (x-mean(x))/sd(x))
 animate(f)
 ```
 

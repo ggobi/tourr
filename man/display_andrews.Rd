@@ -5,12 +5,14 @@
 \alias{animate_andrews}
 \title{Andrews' curves tour path animation.}
 \usage{
-display_andrews(col = "black", ...)
+display_andrews(col = "black", palette = "Zissou 1", ...)
 
 animate_andrews(data, tour_path = grand_tour(3), col = "black", ...)
 }
 \arguments{
 \item{col}{color to be plotted.  Defaults to "black"}
+
+\item{palette}{name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"}
 
 \item{...}{other arguments passed on to \code{\link{animate}}}
 

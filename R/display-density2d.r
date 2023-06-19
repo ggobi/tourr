@@ -13,7 +13,7 @@
 #' @param pch shape of the point to be plotted.  Defaults to 20.
 #' @param cex size of the point to be plotted.  Defaults to 1.
 #' @param contour_quartile Vector of quartiles to plot the contours at. Defaults to 5.
-#' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
+#' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_density2d}}
 #' @importFrom graphics contour

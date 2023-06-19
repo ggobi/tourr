@@ -1,3 +1,8 @@
+# tourr 1.0.0
+
+* Small changes in prep for CRAN
+* Time for it to be a full version number
+
 # tourr 0.6.18
 
 * Changed line colours to take a factor, and be handled the same as points.

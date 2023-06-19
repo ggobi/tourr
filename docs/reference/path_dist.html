@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tourr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.18</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0.0</span>
       </span>
     </div>
 
@@ -80,8 +80,8 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># This code is to be used as an example but you should increase</span></span></span>
 <span class="r-in"><span><span class="co"># the max from 2 to 50, say, to check tour coverage.</span></span></span>
-<span class="r-in"><span><span class="va">grand</span> <span class="op">&lt;-</span> <span class="fu"><a href="interpolate.html">interpolate</a></span><span class="op">(</span><span class="fu"><a href="save_history.html">save_history</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, max <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, <span class="fl">0.2</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
+<span class="r-in"><span><span class="va">flea_std</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="fl">2</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">(</span><span class="va">x</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">grand</span> <span class="op">&lt;-</span> <span class="fu"><a href="interpolate.html">interpolate</a></span><span class="op">(</span><span class="fu"><a href="save_history.html">save_history</a></span><span class="op">(</span><span class="va">flea_std</span>, max <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, <span class="fl">0.2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># The grand tour  -----------------------------</span></span></span>
 <span class="r-in"><span><span class="co"># Look at the tour path in a tour, how well does it cover a sphere</span></span></span>
 <span class="r-in"><span><span class="co"># Using MDS to summarise the high-d space of projections</span></span></span>
@@ -100,149 +100,14 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Compare five guided tours  -----------------------------</span></span></span>
 <span class="r-in"><span><span class="va">holes1d</span> <span class="op">&lt;-</span> <span class="fu"><a href="guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="holes.html">holes</a></span><span class="op">(</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">tour_reps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fu"><a href="save_history.html">save_history</a></span><span class="op">(</span><span class="va">flea</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span>, <span class="va">holes1d</span>, max <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span><span class="va">tour_reps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">replicate</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fu"><a href="save_history.html">save_history</a></span><span class="op">(</span><span class="va">flea_std</span>, <span class="va">holes1d</span>, max <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  simplify <span class="op">=</span> <span class="cn">FALSE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No better bases found after 25 tries.  Giving up.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Final projection: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.240  -0.125  0.901  -0.318  0.115  0.038  </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No better bases found after 25 tries.  Giving up.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Final projection: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.701  -0.013  0.244  -0.042  0.441  -0.502  </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No better bases found after 25 tries.  Giving up.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Final projection: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.844  0.436  0.102  0.110  -0.023  -0.272  </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No better bases found after 25 tries.  Giving up.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Final projection: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.142  -0.126  0.021  0.281  -0.529  0.777  </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting input data to the required matrix format.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value  2.541   0.0 % better </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No better bases found after 25 tries.  Giving up.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Final projection: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -0.512  -0.683  0.019  0.203  -0.239  -0.417  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.175   161.5 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.256   124.2 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.099   161.1 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  1.191   8.7 % better  - NEW BASIS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Value  0.969   72.9 % better  - NEW BASIS</span>
 <span class="r-in"><span><span class="va">tour_reps2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">tour_reps</span>, <span class="va">interpolate</span>, <span class="fl">0.2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">bases</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">tour_reps2</span>, <span class="va">as.list</span><span class="op">)</span>, recursive <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
@@ -253,15 +118,8 @@
 <span class="r-in"><span><span class="va">ord</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cmdscale.html" class="external-link">cmdscale</a></span><span class="op">(</span><span class="va">d</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">info</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">ord</span>, <span class="va">index_values</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://ggplot2.tidyverse.org" class="external-link">"ggplot2"</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">info</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">step</span>, y <span class="op">=</span> <span class="va">value</span>, group <span class="op">=</span> <span class="va">try</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="co">##ggplot(data = info, aes(x = V1, y = V2, group = try)) +</span></span></span>
-<span class="r-in"><span>  <span class="co">##  geom_path() +</span></span></span>
-<span class="r-in"><span>  <span class="co">##  geom_point(aes(size = value)) +</span></span></span>
-<span class="r-in"><span>  <span class="co">##  coord_equal()</span></span></span>
-<span class="r-in"><span>  <span class="co">##last_plot() + facet_wrap(~try)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">info</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">step</span>, y <span class="op">=</span> <span class="va">value</span>, group <span class="op">=</span> <span class="va">try</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Don't know how to automatically pick scale for object of type <span style="color: #0000BB;">&lt;function&gt;</span>.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Defaulting to continuous.</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in geom_line():</span> Problem while computing aesthetics.</span>
@@ -271,6 +129,11 @@
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> The following aesthetics are invalid:</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> `x = step`</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Did you mistype the name of a data column or forget to add `after_stat()`?</span>
+<span class="r-in"><span><span class="co">##ggplot(data = info, aes(x = V1, y = V2, group = try)) +</span></span></span>
+<span class="r-in"><span><span class="co">##  geom_path() +</span></span></span>
+<span class="r-in"><span><span class="co">##  geom_point(aes(size = value)) +</span></span></span>
+<span class="r-in"><span><span class="co">##  coord_equal()</span></span></span>
+<span class="r-in"><span><span class="co">##last_plot() + facet_wrap(~try)</span></span></span>
 </code></pre></div>
     </div>
   </div>

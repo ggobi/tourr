@@ -12,7 +12,7 @@
 #' @param gam scaling of the effective dimensionality for rescaling. Defaults to 1.
 #' @param R scale for the radial transformation.
 #'   If not set, defaults to maximum distance from origin to each row of data.
-#' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
+#' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_sage}}
 #' @export

@@ -1,8 +1,6 @@
 ## Overview
 
-This is a small updated, with several new methods added, and multiple fixes.
-
-Although the New Maintainer is flagged, the maintainer is the same. The only change is that full name is now used, so that it matches the ORCID records. 
+This is a fairly major update, with new display options and new parameters on many display options. There are no major structural changes to the code.
 
 \dontrun is used for example code where the method would break, and thus the code should not be run. It is important for users to be able to see this example.
 
@@ -13,7 +11,8 @@ Although the New Maintainer is flagged, the maintainer is the same. The only cha
 * Fedora Linux, R-devel, clang, gfortran
 * Ubuntu Linux 20.04.1 LTS, R-release, GCC
 
-## R CMD check results
+## ── R CMD check results ──────────────────────── tourr 1.0.0 ────
+Duration: 1m 16.8s
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
@@ -21,14 +20,10 @@ Although the New Maintainer is flagged, the maintainer is the same. The only cha
 
 All downstream dependencies have been checked.
 
-> revdep_check()
-── INIT ────────────────────────────── Computing revdeps ──
-── INSTALL ────────────────────────────────── 2 versions ──
-Installing CRAN version of tourr
-Installing DEV version of tourr
-── CHECK ─────────────────────────────────── 10 packages ──
-✔ cheem 0.2.0                            ── E: 0     | W: 0     | N: 1    
-✔ composits 0.1.1                        ── E: 0     | W: 0     | N: 0    
+> revdepcheck::revdep_check()
+── CHECK ──────────────────────────────────────── 11 packages ──
+✔ cheem 0.3.0                            ── E: 0     | W: 0     | N: 0    
+✔ composits 0.1.1                        ── E: 1     | W: 0     | N: 0    
 ✔ detourr 0.1.0                          ── E: 0     | W: 0     | N: 1    
 ✔ diveR 0.1.2                            ── E: 1     | W: 0     | N: 0    
 ✔ ferrn 0.0.2                            ── E: 0     | W: 0     | N: 0    
@@ -37,5 +32,9 @@ Installing DEV version of tourr
 ✔ loon.tourr 0.1.3                       ── E: 1     | W: 0     | N: 0    
 I REPPlab 0.9.4                          ── E: 1     | W: 0     | N: 0    
 ✔ spinifex 0.3.6                         ── E: 0     | W: 0     | N: 0    
-OK: 10                                                   
+✔ woylier 0.0.5                          ── E: 0     | W: 0     | N: 0    
+OK: 11                                                        
 BROKEN: 0
+Total time: 17 min
+
+REPPlab cannot be fully checked. It doesn't Depend but only Suggests the tourr package.

@@ -46,7 +46,7 @@ If not set, defaults to maximum distance from origin to each row of data.}
 
 \item{obs_labels}{vector of text labels to display}
 
-\item{palette}{name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"}
+\item{palette}{name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"}
 
 \item{...}{other arguments passed on to \code{\link{animate}} and
 \code{\link{display_xy}}}
@@ -63,7 +63,8 @@ animate_xy(flea[, 1:6])
 animate(flea[, 1:6], tour_path = grand_tour(), display = display_xy())
 animate(flea[, 1:6],
   tour_path = grand_tour(),
-  display = display_xy(axes = "bottomleft")
+  display = display_xy(),
+  scale = TRUE
 )
 animate(flea[, 1:6],
   tour_path = grand_tour(),
@@ -82,7 +83,7 @@ animate_xy(flea[, 1:6], dependence_tour(c(1, 2, 1, 2, 1, 2)),
 
 animate_xy(flea[, -7], col = flea$species)
 animate_xy(flea[, -7], col = flea$species,
-             pch = as.numeric(flea$species))
+             pch = flea$species)
 
 animate_xy(flea[, -7], col = flea$species,
   obs_labels=as.character(1:nrow(flea)), axes="off")

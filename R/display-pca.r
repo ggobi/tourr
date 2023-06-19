@@ -17,12 +17,12 @@
 #' @param edges A two column integer matrix giving indices of ends of lines.
 #' @param edges.col colour of edges to be plotted, Defaults to "black.
 #' @param rescale Default FALSE. If TRUE, rescale all variables to range [0,1].
-#' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
+#' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_slice}}
 #' @export
 #' @examples
-#' flea_std <- scale(flea[, 1:6])
+#' flea_std <- apply(flea[,1:6], 2, function(x) (x-mean(x))/sd(x))
 #' flea_pca <- prcomp(flea_std, center = FALSE, )
 #' flea_coefs <- flea_pca$rotation[, 1:3]
 #' flea_scores <- flea_pca$x[, 1:3]

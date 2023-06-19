@@ -23,7 +23,7 @@
 #'   If NULL (default) the slice will be anchored at the data center.
 #' @param anchor_nav position of the anchor: center, topright or off
 #' @param rescale Default FALSE. If TRUE, rescale all variables to range [0,1].
-#' @param palette name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"
+#' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_slice}}
 #' @export

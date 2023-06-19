@@ -34,7 +34,7 @@ If not set, defaults to maximum distance from origin to each row of data.}
 
 \item{rug}{draw rug plot showing position of actual data points?}
 
-\item{palette}{name of color palette for point colour, used by \code{\link{grDevices::hcl.colors}}, default "Zissou 1"}
+\item{palette}{name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"}
 
 \item{density_max}{allow control of the y range for density plot}
 
