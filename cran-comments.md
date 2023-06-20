@@ -1,20 +1,36 @@
 ## Overview
 
-This is a fairly major update, with new display options and new parameters on many display options. There are no major structural changes to the code.
+This is a substantial update, with new display options and new parameters on many display options. There are no major structural changes to the code, though.
 
-\dontrun is used for example code where the method would break, and thus the code should not be run. It is important for users to be able to see this example.
+\dontrun is used for example code where the method would break, and thus the code should not be run. It is important for users to be able to see these examples.
+
+## ── R CMD check results ──────────────────────── tourr 1.0.0 ────
+Duration: 1m 17.9s
+
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 ## Test environment
 
-* local R installation: R version 4.2.1 (2022-06-23)
+* local R installation: R version 4.3.1 (2023-06-16)
 * Windows Server 2022, R-devel, 64 bit
 * Fedora Linux, R-devel, clang, gfortran
 * Ubuntu Linux 20.04.1 LTS, R-release, GCC
 
-## ── R CMD check results ──────────────────────── tourr 1.0.0 ────
-Duration: 1m 16.8s
+using `check_rhub()`, returns some notes:
 
-0 errors ✔ | 0 warnings ✔ | 0 notes ✔
+* checking HTML version of manual ... NOTE
+Skipping checking HTML validation: no command 'tidy' found
+Skipping checking math rendering: package 'V8' unavailable
+
+* checking for non-standard things in the check directory ... NOTE
+Found the following files/directories:
+  ''NULL''
+  
+* checking for detritus in the temp directory ... NOTE
+Found the following files/directories:
+  'lastMiKTeXException'
+  
+Which I understand can be ignored
 
 ## Downstream dependencies
 
@@ -37,4 +53,4 @@ OK: 11
 BROKEN: 0
 Total time: 17 min
 
-REPPlab cannot be fully checked. It doesn't Depend but only Suggests the tourr package.
+REPPlab cannot be fully checked because it uses RJava, which is difficult to install at present. REPPlab doesn't Depend, but only Suggests, the tourr package.
