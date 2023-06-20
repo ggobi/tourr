@@ -46,9 +46,14 @@ It can often be useful to connect points with edges, for example sequential poin
 
 ```{r}
 # get centroids of 3 clusters of the flea data
-n <- nrow(flea)
-flea_centroids <- stats::kmeans((flea[,-7]), 3)$centers
-flea_aug <- rbind(flea[,-7], flea_centroids)
+f <- apply(flea[,1:6], 2, function(x) (x-mean(x))/sd(x))
+n <- nrow(f)
+set.seed(1019)
+flea_centroids <- stats::kmeans((f), 3)$centers
+flea_aug <- rbind(f, flea_centroids)
+col <- c(rep("black", n), rep("orange", 3))
 flea_edges <- matrix(c(n+1, n+2, n+1, n+3, n+2, n+3), ncol=2, byrow = TRUE)
-animate_xy(flea_aug, edges = flea_edges)
+animate_xy(flea_aug, edges = flea_edges, 
+           col = col, edges.col = "orange", 
+           edges.width = 3)
 ```

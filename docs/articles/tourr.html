@@ -149,13 +149,26 @@ the second argument, <code>tour_path</code>, in the animate function we
 can change this, choosing from the tour types that have been implemented
 in the package. The most relevant options are:</p>
 <ul>
-<li>grand tour: randomly selected bases</li>
-<li>guided tour: basis selection is optimising an index function</li>
-<li>planned tour: interpolates between a set of input bases</li>
-<li>little tour: a planned tour between all axis parallel
+<li>
+<em>grand tour</em>: randomly selected bases</li>
+<li>
+<em>guided tour</em>: basis selection is optimising an index
+function</li>
+<li>
+<em>planned tour</em>: interpolates between a set of input
+bases</li>
+<li>
+<em>little tour</em>: a planned tour between all axis parallel
 projections</li>
-<li>local tour: alternating between the starting projection and randomly
-selected nearby projections</li>
+<li>
+<em>local tour</em>: alternating between the starting projection and
+randomly selected nearby projections</li>
+<li>
+<em>slice tour</em>: points outside a given orthogonal distance of
+the projection plane appear smaller.</li>
+<li>
+<em>sage tour</em>: reverse the curse of dimensionalityt piling, in
+the 2D projection</li>
 </ul>
 <p>For example, the guided tour can be used to move towards more
 interesting views of the distribution as the animation progresses. To
@@ -169,7 +182,7 @@ center, and can often find views that reveal clustering.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">f</span>,</span>
 <span>        tour_path <span class="op">=</span> <span class="fu"><a href="../reference/guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="../reference/holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>        display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Value  0.970   48.1 % better  - NEW BASIS</span></span>
+<span><span class="co">#&gt; Value  1.032   18.0 % better  - NEW BASIS</span></span>
 <span><span class="co">#&gt; Using half_range 4.4</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p>When running the full guided tour for this example, the final view
@@ -180,7 +193,7 @@ teased apart in the guided tour.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">f</span>,</span>
 <span>        tour_path <span class="op">=</span> <span class="fu"><a href="../reference/guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="../reference/holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>        display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">flea</span><span class="op">$</span><span class="va">species</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Value  1.043   9.5 % better  - NEW BASIS</span></span>
+<span><span class="co">#&gt; Value  1.048   32.0 % better  - NEW BASIS</span></span>
 <span><span class="co">#&gt; Using half_range 4.4</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>Alternatively, a colour vector can be created manually and passed
@@ -195,7 +208,7 @@ into the guided tour.</p>
 <span><span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">f</span>,</span>
 <span>        tour_path <span class="op">=</span> <span class="fu"><a href="../reference/guided_tour.html">guided_tour</a></span><span class="op">(</span><span class="fu"><a href="../reference/holes.html">holes</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>        display <span class="op">=</span> <span class="fu"><a href="../reference/display_xy.html">display_xy</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">flea_col</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Value  1.063   29.9 % better  - NEW BASIS</span></span>
+<span><span class="co">#&gt; Value  1.076   5.7 % better  - NEW BASIS</span></span>
 <span><span class="co">#&gt; Using half_range 4.4</span></span></code></pre></div>
 <p><img src="tourr_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 </div>
@@ -204,14 +217,14 @@ into the guided tour.</p>
 </h2>
 <p>The default display is showing a scatterplot of the data projected to
 2D. Depending on the number of dimensions we project onto (this is
-called d), we can choose different display types. For example, we could
-look at 1D projections in a density display, a 3D projection using depth
-cues, or higher dimensional projections in a parallel coordinate or
-scatterplot matrix display.</p>
+called <span class="math inline">\(d\)</span>), we can choose different
+display types. For example, we could look at 1D projections in a density
+display, a 3D projection using depth cues, or higher dimensional
+projections in a parallel coordinate or scatterplot matrix display.</p>
 <p>When changing the display type via the <code>display</code> argument,
 we need to make sure that the basis generation is matching the
-corresponding number of dimensions d. We can pass in this information
-when generating the tour path. To work with 1D projections and a density
+corresponding number of dimensions <span class="math inline">\(d\)</span>. We can pass in this information when
+generating the tour path. To work with 1D projections and a density
 display, we can launch the animation as</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/animate.html">animate</a></span><span class="op">(</span><span class="va">f</span>,</span>

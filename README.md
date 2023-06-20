@@ -2,7 +2,7 @@ tourr: tour methods for multivariate data visualisation
 ================
 Hadley Wickham, Di Cook, Nick Spyrison, Ursula Laa, H. Sherry Zhang,
 Stuart Lee
-March 10, 2023
+<br> June 20, 2023
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -24,8 +24,8 @@ install.packages("tourr")
 You can install the development version of tourr from github with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("ggobi/tourr")
+# install.packages("remotes")
+remotes::install_github("ggobi/tourr")
 ```
 
 ## Example

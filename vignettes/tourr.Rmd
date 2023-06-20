@@ -53,11 +53,13 @@ The most common application is to use a grand tour, which means that the project
 
 As we have seen, the default tour type is a grand tour. By selecting the second argument, `tour_path`, in the animate function we can change this, choosing from the tour types that have been implemented in the package. The most relevant options are:
 
-- grand tour: randomly selected bases
-- guided tour: basis selection is optimising an index function
-- planned tour: interpolates between a set of input bases
-- little tour: a planned tour between all axis parallel projections
-- local tour: alternating between the starting projection and randomly selected nearby projections
+- *grand tour*: randomly selected bases
+- *guided tour*: basis selection is optimising an index function
+- *planned tour*: interpolates between a set of input bases
+- *little tour*: a planned tour between all axis parallel projections
+- *local tour*: alternating between the starting projection and randomly selected nearby projections
+- *slice tour*: points outside a given orthogonal distance of the projection plane appear smaller.
+- *sage tour*: reverse the curse of dimensionalityt piling, in the 2D projection
 
 For example, the guided tour can be used to move towards more interesting views of the distribution as the animation progresses. To measure the interestingness of each projection we need to define an index function which will get maximised along the tour path. You can define your own index function, or use one of those available in the `tourr` package. For our example flea data we can use the holes index which is looking for projections with low densities near the center, and can often find views that reveal clustering.
 
@@ -93,9 +95,9 @@ animate(f,
 
 ## Display types
 
-The default display is showing a scatterplot of the data projected to 2D. Depending on the number of dimensions we project onto (this is called d), we can choose different display types. For example, we could look at 1D projections in a density display, a 3D projection using depth cues, or higher dimensional projections in a parallel coordinate or scatterplot matrix display.
+The default display is showing a scatterplot of the data projected to 2D. Depending on the number of dimensions we project onto (this is called $d$), we can choose different display types. For example, we could look at 1D projections in a density display, a 3D projection using depth cues, or higher dimensional projections in a parallel coordinate or scatterplot matrix display.
 
-When changing the display type via the `display` argument, we need to make sure that the basis generation is matching the corresponding number of dimensions d. We can pass in this information when generating the tour path. To work with 1D projections and a density display, we can launch the animation as
+When changing the display type via the `display` argument, we need to make sure that the basis generation is matching the corresponding number of dimensions $d$. We can pass in this information when generating the tour path. To work with 1D projections and a density display, we can launch the animation as
 
 ```{r}
 animate(f,
