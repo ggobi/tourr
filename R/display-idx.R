@@ -5,6 +5,7 @@
 #'   easier to focus on the shape of the distribution.
 #' @param half_range half range to use when calculating limits of projected.
 #'   If not set, defaults to maximum distance from origin to each row of data.
+#' @param abb_vars logical, whether to abbreviate the variable name, if long
 #' @param col the color used for points, can be a vector or hexcolors or a
 #'   factor, default to "red".
 #' @param cex the size used for points, default to 0.5
@@ -40,7 +41,7 @@ display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
   render_frame <- function() {
     # define the plot to have an upper & lower panel, height as 6:1
     layout_m <- matrix(c(1, 2), nrow = 2, ncol = 1)
-    layout(mat = layout_m, heights = c(6,1))
+    graphics::layout(mat = layout_m, heights = c(6,1))
     par(pty = "m", mar = c(1, 4, 1, 1))
 
   }
@@ -52,7 +53,7 @@ display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
     x <- data %*% proj
     if (center) x <- center(x)
     x <- x / half_range
-    df <- x %>% cbind(.y = 3/nrow(x) * (1:nrow(x)))
+    df <- cbind(x, .y = 3/nrow(x) * (1:nrow(x)))
     # upper panel: define the axis margin (mgp) and panel margin (mar)
     par(mgp=c(1, 0.3, 0), mar = c(0.5, 4, 0.5, 1))
     # initialise the plot box
@@ -70,7 +71,7 @@ display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
     par(mar = c(2, 4, 1, 1))
     plot(
       x = NA, y = NA, xlim = c(0, 1.2), ylim = c(-1.1, 0),
-      xlab = "", ylab = "Index \n weight", cex.lab = 0.7,
+      xlab = "", ylab = "Weights", cex.lab = 2,
       xaxt = "n", yaxt = "n"
     )
     lines(c(0, 0), c(-1.1, 0), col = "grey80")
@@ -82,8 +83,8 @@ display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
     ax <- seq_along(proj) / length(proj)
     idx_w <- proj/sum(proj)
     segments(0, -ax, idx_w, -ax, col = "black", lwd = 3)
-    text(1.0, -ax, labels, pos = 4, cex = 0.5)
-    text(idx_w + 0.01, -ax, round(idx_w,2), pos = 4, cex = 0.5)
+    text(1.0, -ax, labels, pos = 4, cex = 2)
+    text(idx_w + 0.01, -ax, round(idx_w,2), pos = 4, cex = 2)
   }
 
   list(
