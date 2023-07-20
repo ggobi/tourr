@@ -15,6 +15,7 @@
 #' @keywords hplot dynamic
 #' @seealso The \code{\link{little_tour}}, a special type of planned tour
 #'   which cycles between all axis parallel projections.
+#' @rdname planned-tour
 #' @export
 #' @examples
 #' twod <- save_history(flea[, 1:3], max = 5)
@@ -54,4 +55,23 @@ planned_tour <- function(basis_set, cycle = FALSE) {
   }
 
   new_geodesic_path("planned", generator)
+}
+
+#' @rdname planned-tour
+#' @export
+planned2_tour <- function(basis_set) {
+  index <- 1
+  generator <- function(current, data, ...) {
+    if (is.null(current)) {return(as.matrix(basis_set[,,1]))}
+
+    index <<- index + 1
+    if (index > dim(basis_set)[3]) {
+      return(NULL)
+    }
+    target <- as.matrix(basis_set[,,index])
+    list(target = target)
+
+  }
+
+  new_geodesic_path("planned2", generator)
 }

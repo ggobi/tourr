@@ -29,6 +29,8 @@ easier to focus on the shape of the distribution.}
 \item{half_range}{half range to use when calculating limits of projected.
 If not set, defaults to maximum distance from origin to each row of data.}
 
+\item{abb_vars}{logical, whether to abbreviate the variable name, if long}
+
 \item{col}{the color used for points, can be a vector or hexcolors or a
 factor, default to "red".}
 
