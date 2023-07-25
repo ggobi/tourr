@@ -29,6 +29,12 @@
 #' animate_groupxy(flea[, 1:6], col = flea$species,
 #'   pch = flea$species, group_by = flea$species,
 #'   plot_xgp = FALSE)
+#' # Edges example
+#' x <- data.frame(x1=runif(10, -1, 1), x2=runif(10, -1, 1), x3=runif(10, -1, 1))
+#' x$cl <- factor(c(rep("A", 3), rep("B", 3), rep("C", 4)))
+#' x.edges <- cbind(from=c(1,2, 4,5, 7,8,9), to=c(2,3, 5,6, 8,9,10))
+#' x.edges.col <- factor(c(rep("A", 2), rep("B", 2), rep("C", 3)))
+#' animate_groupxy(x[,1:3], col=x$cl, group_by=x$cl, edges=x.edges, edges.col=x.edges.col)
 display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
                             col = "black", pch = 20, cex = 1,
                             edges = NULL, edges.col = "black", edges.width=1,
@@ -72,6 +78,9 @@ display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
   render_data <- function(data, proj, geodesic) {
     gps <- unique(group_by)
     ngps <- length(gps)
+
+    edge.gps <- unique(edges.col)
+
     if (ngps > 24) {
       stop("Please choose a group with 24 or less levels.\n")
     }
@@ -129,11 +138,13 @@ display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
         }
         points(x.sub, col = col.sub, pch = pch.sub, cex = cex.sub, new = FALSE)
 
+        # This is potentially fragile!
+        # It assumes the edge colour groups are the same as the point colour groups
         if (!is.null(edges)) {
           segments(
-            x[edges[group_by == gps[i], 1], 1], x[edges[group_by == gps[i], 1], 2],
-            x[edges[group_by == gps[i], 2], 1], x[edges[group_by == gps[i], 2], 2],
-            col = edges.col[group_by == gps[i]],
+            x[edges[edges.gps == gps[i], 1], 1], x[edges[edges.gps == gps[i], 1], 2],
+            x[edges[edges.gps == gps[i], 2], 1], x[edges[edges.gps == gps[i], 2], 2],
+            col = edges.col[edges.gps == gps[i]],
             lwd = edges.width
           )
         }

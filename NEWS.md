@@ -1,3 +1,7 @@
+# tourr 1.0.1
+
+* Edges now working correctly in display_groupxy 
+
 # tourr 1.0.0
 
 * Small changes in prep for CRAN
