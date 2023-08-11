@@ -54,16 +54,14 @@ interpolate <- function(basis_set, angle = 0.05, cycle = FALSE) {
   while (TRUE) { # need to add final projection after generator runs out, so using break instead of while condition
     new_basis[i] <- step$step <= 0
     projs[, , i] <- step$proj
-
+    if (step$step == -1) break # this signals we have reached the last target
     i <- i + 1
-    if (stop_next) break
     step <- tour(angle)
-    if (step$step == -1) stop_next <- TRUE
   }
 
   # Trim off extra bases
-  projs <- projs[, , seq_len(i) - 1, drop = FALSE]
-  new_basis <- new_basis[seq_len(i) - 1, drop = FALSE]
+  projs <- projs[, , seq_len(i), drop = FALSE]
+  new_basis <- new_basis[seq_len(i), drop = FALSE]
 
   attr(projs, "new_basis") <- new_basis
   attr(projs, "data") <- attr(basis_set, "data")
