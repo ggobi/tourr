@@ -1,6 +1,7 @@
 # tourr 1.0.1
 
 * Edges now working correctly in display_groupxy 
+* Interpolate had an error in calculating distance between planes which is fixed
 
 # tourr 1.0.0
 
