@@ -2,9 +2,12 @@
 % Please edit documentation in R/tour-planned.r
 \name{planned_tour}
 \alias{planned_tour}
+\alias{planned2_tour}
 \title{A planned tour path.}
 \usage{
 planned_tour(basis_set, cycle = FALSE)
+
+planned2_tour(basis_set)
 }
 \arguments{
 \item{basis_set}{the set of bases as a list of projection matrices
