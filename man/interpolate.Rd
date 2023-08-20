@@ -18,10 +18,12 @@ This function takes a set of bases and produces a tour by geodesically
 interpolating between each basis
 }
 \examples{
-t1 <- save_history(flea[, 1:6], grand_tour(1), max = 10)
+t1 <- save_history(flea[, 1:6], grand_tour(1), max = 3)
 dim(t1)
 dim(interpolate(t1, 0.01))
 dim(interpolate(t1, 0.05))
 dim(interpolate(t1, 0.1))
+t2 <- save_history(flea[, 1:6], grand_tour(2), max = 2)
+dim(interpolate(t2, 0.05))
 }
 \keyword{hplot}

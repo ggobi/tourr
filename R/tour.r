@@ -103,6 +103,9 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
           }
         }
       }
+      else {
+        proj[[length(proj) + 1]] <<- geodesic$ingred$interpolate(1)
+      }
     }
 
     if (cur_dist >= target_dist) {

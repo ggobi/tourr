@@ -70,4 +70,10 @@ animate_groupxy(flea[, 1:6], col = flea$species,
 animate_groupxy(flea[, 1:6], col = flea$species,
   pch = flea$species, group_by = flea$species,
   plot_xgp = FALSE)
+# Edges example
+x <- data.frame(x1=runif(10, -1, 1), x2=runif(10, -1, 1), x3=runif(10, -1, 1))
+x$cl <- factor(c(rep("A", 3), rep("B", 3), rep("C", 4)))
+x.edges <- cbind(from=c(1,2, 4,5, 7,8,9), to=c(2,3, 5,6, 8,9,10))
+x.edges.col <- factor(c(rep("A", 2), rep("B", 2), rep("C", 3)))
+animate_groupxy(x[,1:3], col=x$cl, group_by=x$cl, edges=x.edges, edges.col=x.edges.col)
 }
