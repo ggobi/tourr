@@ -58,7 +58,7 @@ render <- function(data, tour_path, display, dev, ..., apf = 1 / 10, frames = 50
   stop_next <- FALSE
   while (i < frames) {
     display$render_frame()
-    display$render_data(data, step$proj, step$target, i = i)
+    display$render_data(data, step$proj, step$target)
 
 
     if (stop_next) {

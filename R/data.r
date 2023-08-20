@@ -111,7 +111,7 @@ NULL
 #' Ratings of different locations across North America
 #'
 #'
-#' The "places data" were distribed to interested ASA members a few years ago
+#' The "places data" were distributed to interested ASA members a few years ago
 #' so that they could apply contemporary data analytic methods to describe
 #' these data and then present results in a poster session at the ASA annual
 #' conference.  Latitude and longitude have been added by Paul Tukey.

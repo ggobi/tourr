@@ -3,18 +3,18 @@
 \name{display_idx}
 \alias{display_idx}
 \alias{animate_idx}
-\title{Display 1D linear aggregation index}
+\title{Display a 1D linear aggregation index}
 \usage{
 display_idx(
   center = FALSE,
   half_range = NULL,
   abb_vars = TRUE,
   col = "red",
-  cex = 0.5,
+  cex = 3,
   panel_height_ratio = c(6, 1),
   frame_x_pos = 0.15,
   frame_y_pos = 3,
-  frame_cex = 3,
+  frame_cex = 1,
   frame_col = "#000000",
   label_x_pos = 0.7,
   label = NULL,
@@ -24,7 +24,7 @@ display_idx(
   axis_bar_lwd = 3,
   axis_bar_label_cex = 1,
   axis_bar_label_col = "#000000",
-  axis_var_cex = 3,
+  axis_var_cex = 1,
   axis_var_col = "#000000",
   palette = "Zissou 1",
   ...
@@ -67,9 +67,18 @@ positioned at a fixed x value for each observation}
 
 \item{label_col}{the color for text labels}
 
-\item{axis_bar_col, axis_bar_lwd, axis_bar_label_cex, axes_bar_label_col, }{the color and size/width of the axis bar and its label}
+\item{axis_bar_col}{the color of the axis bar}
 
-\item{axis_var_cex, axis_var_col}{the color and size of the variable name
+\item{axis_bar_lwd}{the width of the axis bar}
+
+\item{axis_bar_label_cex}{the size of the axis label}
+
+\item{axis_bar_label_col}{the color of the axis label}
+
+\item{axis_var_cex}{the size of the variable name
+to the right of the axis panel}
+
+\item{axis_var_col}{the color of the variable name
 to the right of the axis panel}
 
 \item{palette}{name of color palette for point colour, used by
@@ -82,5 +91,14 @@ to the right of the axis panel}
 \item{tour_path}{tour path generator, defaults to 2d grand tour}
 }
 \description{
-Display 1D linear aggregation index
+Animate a 1D tour path for data where individuals are ranked
+by a multivariate index. Allows one to examine the sensitivity
+of the ranking on the linear combination. Variables should be
+scaled to be between 0-1.
+}
+\examples{
+# example code
+data(places)
+places_std <- apply(places[,1:9], 2, function(x) (x-min(x))/(max(x)-min(x)))
+animate_idx(places_std[1:10,], label=as.character(places$stnum[1:9]))
 }

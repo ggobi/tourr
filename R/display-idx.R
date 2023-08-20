@@ -1,4 +1,9 @@
-#' Display 1D linear aggregation index
+#' Display a 1D linear aggregation index
+#'
+#' Animate a 1D tour path for data where individuals are ranked
+#' by a multivariate index. Allows one to examine the sensitivity
+#' of the ranking on the linear combination. Variables should be
+#' scaled to be between 0-1.
 #'
 #' @param center should 1d projection be centered to have mean zero (default: TRUE).
 #'   This pins the centre of distribution to the same place, and makes it
@@ -20,22 +25,31 @@
 #' @param frame_y_pos the y position of the frame label
 #' @param frame_cex the size of the frame text
 #' @param frame_col the color of the frame text
-#' @param axis_bar_col,axis_bar_lwd,axis_bar_label_cex,axes_bar_label_col,
-#'   the color and size/width of the axis bar and its label
-#' @param axis_var_cex,axis_var_col the color and size of the variable name
-#' to the right of the axis panel
+#' @param axis_bar_col the color of the axis bar
+#' @param axis_bar_lwd the width of the axis bar
+#' @param axis_bar_label_cex the size of the axis label
+#' @param axis_bar_label_col the color of the axis label
+#' @param axis_var_cex the size of the variable name
+#'   to the right of the axis panel
+#' @param axis_var_col the color of the variable name
+#'   to the right of the axis panel
 #' @param palette name of color palette for point colour, used by
 #'   \code{\link{hcl.colors}}, default "Zissou 1"
 #' @export
 #' @rdname display_idx
+#' @examples
+#' # example code
+#' data(places)
+#' places_std <- apply(places[,1:9], 2, function(x) (x-min(x))/(max(x)-min(x)))
+#' animate_idx(places_std[1:10,], label=as.character(places$stnum[1:9]))
 display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
-                        col = "red", cex = 0.5, panel_height_ratio = c(6,1),
-                        frame_x_pos = 0.15, frame_y_pos = 3, frame_cex = 3,
+                        col = "red", cex = 3, panel_height_ratio = c(6,1),
+                        frame_x_pos = 0.15, frame_y_pos = 3, frame_cex = 1,
                         frame_col = "#000000", label_x_pos = 0.7, label = NULL,
                         label_cex = 1, label_col = "grey80",
                         axis_bar_col = "#000000", axis_bar_lwd = 3,
                         axis_bar_label_cex = 1, axis_bar_label_col = "#000000",
-                        axis_var_cex = 3, axis_var_col = "#000000",
+                        axis_var_cex = 1, axis_var_col = "#000000",
                         palette = "Zissou 1", ...) {
   labels <- NULL
   init <- function(data) {
@@ -63,7 +77,7 @@ display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
   render_transition <- function() {
     rect(-1, -1.1, 1.2, 3, col = "#FFFFFFE6", border = NA)
   }
-  render_data <- function(data, proj, geodesic, i) {
+  render_data <- function(data, proj, geodesic) {
 
     x <- data %*% proj
     if (center) x <- center(x)
@@ -73,14 +87,14 @@ display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
     par(mgp=c(2, 1, 0), mar = c(2, 4, 0.5, 1))
     # initialise the plot box
     plot(
-      x = NA, y = NA, xlim = c(0, 1.2), ylim = c(0, 3.05),
+      x = NA, y = NA, xlim = c(-1.2, 1.2), ylim = c(0, 3.05),
       xlab="", ylab = "", xaxs = "i", yaxs = "i", cex = 2,
       xaxt = "n", yaxt = "n"
     )
-    axis(1, seq(0, 1, 0.2), cex.axis = 2.5)
+    axis(1, seq(-1, 1, 0.2), cex.axis = 1)
     abline(h = seq(0, 3, by = 0.5), col = "grey60")
-    text(x= frame_x_pos, y= frame_y_pos, labels= paste0("Frame ", i + 1),
-         col = frame_col, cex = frame_cex)
+    #text(x=frame_x_pos, y=frame_y_pos, labels=paste0("Frame ", i + 1),
+    #     col = frame_col, cex = frame_cex)
     text(x=label_x_pos, y=df[,".y"], labels= label,
          col = label_col, cex = label_cex)
     points(df, col = col, pch = 20, cex = cex)
@@ -89,13 +103,13 @@ display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
     par(mgp=c(2, 1, 0), mar = c(2.5, 4, 1, 1))
     plot(
       x = NA, y = NA, xlim = c(0, 1.3), ylim = c(-1, 0),
-      xlab = "", ylab = "Weights", cex.lab = 2,
+      xlab = "", ylab = "Weights", cex.lab = label_cex,
       xaxt = "n", yaxt = "n"
     )
     lines(c(0, 0), c(-1.1, 0), col = "grey60")
     lines(c(1, 1), c(-1.1, 0), col = "grey60")
-    axis(1, seq(0, 1, by = 0.2), cex.axis = 2.5)
-    box(col = "grey60", cex = 2)
+    axis(1, seq(0, 1, by = 0.2), cex.axis = axis_var_cex)
+    box(col = "grey60", cex = axis_var_cex)
 
     # Render tour axes
     ax <- seq_along(proj) / length(proj) - 0.1
