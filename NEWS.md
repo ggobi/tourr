@@ -1,3 +1,8 @@
+# tourr 1.0.2
+
+* Fix to duplicating bases during interpolate
+* New display type: animate_idx
+
 # tourr 1.0.1
 
 * Edges now working correctly in display_groupxy 
