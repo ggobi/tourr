@@ -11,10 +11,21 @@ display_idx(
   abb_vars = TRUE,
   col = "red",
   cex = 0.5,
+  panel_height_ratio = c(6, 1),
+  frame_x_pos = 0.15,
+  frame_y_pos = 3,
+  frame_cex = 3,
+  frame_col = "#000000",
   label_x_pos = 0.7,
   label = NULL,
   label_cex = 1,
   label_col = "grey80",
+  axis_bar_col = "#000000",
+  axis_bar_lwd = 3,
+  axis_bar_label_cex = 1,
+  axis_bar_label_col = "#000000",
+  axis_var_cex = 3,
+  axis_var_col = "#000000",
   palette = "Zissou 1",
   ...
 )
@@ -36,6 +47,17 @@ factor, default to "red".}
 
 \item{cex}{the size used for points, default to 0.5}
 
+\item{panel_height_ratio}{input to the height argument in
+[graphics::layout()] for the height of data and axis panel.}
+
+\item{frame_x_pos}{the x position of the frame label}
+
+\item{frame_y_pos}{the y position of the frame label}
+
+\item{frame_cex}{the size of the frame text}
+
+\item{frame_col}{the color of the frame text}
+
 \item{label_x_pos}{the x position of text label, currently labels are
 positioned at a fixed x value for each observation}
 
@@ -44,6 +66,11 @@ positioned at a fixed x value for each observation}
 \item{label_cex}{the size for text labels}
 
 \item{label_col}{the color for text labels}
+
+\item{axis_bar_col, axis_bar_lwd, axis_bar_label_cex, axes_bar_label_col, }{the color and size/width of the axis bar and its label}
+
+\item{axis_var_cex, axis_var_col}{the color and size of the variable name
+to the right of the axis panel}
 
 \item{palette}{name of color palette for point colour, used by
 \code{\link{hcl.colors}}, default "Zissou 1"}
