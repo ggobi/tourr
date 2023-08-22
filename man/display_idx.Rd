@@ -11,7 +11,7 @@ display_idx(
   abb_vars = TRUE,
   col = "red",
   cex = 3,
-  panel_height_ratio = c(4, 1),
+  panel_height_ratio = c(3, 2),
   frame_x_pos = 0.15,
   frame_y_pos = 3,
   frame_cex = 1,
@@ -104,14 +104,16 @@ to the right of the axis panel}
 Animate a 1D tour path for data where individuals are ranked
 by a multivariate index. Allows one to examine the sensitivity
 of the ranking on the linear combination. Variables should be
-scaled to be between 0-1.
+scaled to be between 0-1. This is only designed to work with
+a local tour, or a radial tour.
 }
 \examples{
 data(places)
-places_std <- apply(places[1:10,1:9], 2, function(x) (x-min(x))/(max(x)-min(x)))
+places_01 <- apply(places[1:10,1:9], 2, function(x) (x-min(x))/(max(x)-min(x)))
 b <- matrix(rep(1/sqrt(9), 9), ncol=1)
-places_idx <- cbind(places_std, idx = as.vector(as.matrix(places_std) \%*\% b))
-places_sorted <- places_idx[order(places_idx[,10]), 1:9]
-animate_idx(places_sorted, tour_path = local_tour(b),
-            label=as.character(places$stnum[1:9]), panel_height_ratio = c(3,2))
+places_init <- cbind(places_01, idx = as.vector(as.matrix(places_01) \%*\% b))
+places_sorted <- places_init[order(places_init[,10]), 1:9]
+animate_idx(places_sorted, tour_path = local_tour(b, angle=pi/8),
+            label=as.character(places$stnum[1:9]),
+            label_x_pos = 0)
 }

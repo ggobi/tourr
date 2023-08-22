@@ -3,7 +3,8 @@
 #' Animate a 1D tour path for data where individuals are ranked
 #' by a multivariate index. Allows one to examine the sensitivity
 #' of the ranking on the linear combination. Variables should be
-#' scaled to be between 0-1.
+#' scaled to be between 0-1. This is only designed to work with
+#' a local tour, or a radial tour.
 #'
 #' @param center should 1d projection be centered to have mean zero (default: TRUE).
 #'   This pins the centre of distribution to the same place, and makes it
@@ -43,14 +44,15 @@
 #' @rdname display_idx
 #' @examples
 #' data(places)
-#' places_std <- apply(places[1:10,1:9], 2, function(x) (x-min(x))/(max(x)-min(x)))
+#' places_01 <- apply(places[1:10,1:9], 2, function(x) (x-min(x))/(max(x)-min(x)))
 #' b <- matrix(rep(1/sqrt(9), 9), ncol=1)
-#' places_idx <- cbind(places_std, idx = as.vector(as.matrix(places_std) %*% b))
-#' places_sorted <- places_idx[order(places_idx[,10]), 1:9]
-#' animate_idx(places_sorted, tour_path = local_tour(b),
-#'             label=as.character(places$stnum[1:9]), panel_height_ratio = c(3,2))
+#' places_init <- cbind(places_01, idx = as.vector(as.matrix(places_01) %*% b))
+#' places_sorted <- places_init[order(places_init[,10]), 1:9]
+#' animate_idx(places_sorted, tour_path = local_tour(b, angle=pi/8),
+#'             label=as.character(places$stnum[1:9]),
+#'             label_x_pos = 0)
 display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
-                        col = "red", cex = 3, panel_height_ratio = c(4,1),
+                        col = "red", cex = 3, panel_height_ratio = c(3, 2),
                         frame_x_pos = 0.15, frame_y_pos = 3, frame_cex = 1,
                         frame_col = "#000000", label_x_pos = 0.7, label = NULL,
                         label_cex = 1, label_col = "grey80", add_ref_line = TRUE,
@@ -83,7 +85,7 @@ display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
 
   }
   render_transition <- function() {
-    rect(-1, -1.1, 1.2, 3, col = "#FFFFFFE6", border = NA)
+    rect(-0.1, -1.1, 1.2, 3, col = "#FFFFFFE6", border = NA)
   }
   render_data <- function(data, proj, geodesic) {
 
@@ -95,11 +97,11 @@ display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
     par(mgp=c(2, 1, 0), mar = c(2, 4, 0.5, 1))
     # initialise the plot box
     plot(
-      x = NA, y = NA, xlim = c(-1.2, 1.2), ylim = c(0, 3.05),
+      x = NA, y = NA, xlim = c(-0.1, 1.2), ylim = c(0, 3.05),
       xlab="", ylab = "", xaxs = "i", yaxs = "i", cex = 2,
       xaxt = "n", yaxt = "n"
     )
-    axis(1, seq(-1, 1, 0.2), cex.axis = axis_label_cex_upper)
+    axis(1, seq(0, 1, 0.2), cex.axis = axis_label_cex_upper)
     if (add_ref_line) abline(h = df[,".y"], col = "grey60")
     text(x=label_x_pos, y=df[,".y"], labels= label,
          col = label_col, cex = label_cex)
