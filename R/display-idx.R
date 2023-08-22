@@ -16,6 +16,8 @@
 #' @param cex the size used for points, default to 0.5
 #' @param panel_height_ratio input to the height argument in
 #'   [graphics::layout()] for the height of data and axis panel.
+#' @param add_ref_line whether to add a horizontal reference line for each
+#' observation, logical default to TRUE
 #' @param label the text label, a vector
 #' @param label_cex the size for text labels
 #' @param label_col the color for text labels
@@ -25,6 +27,8 @@
 #' @param frame_y_pos the y position of the frame label
 #' @param frame_cex the size of the frame text
 #' @param frame_col the color of the frame text
+#' @param axis_label_cex_upper the size of the axis label in the upper panel
+#' @param axis_label_cex_lower the size of the axis label in the lower panel
 #' @param axis_bar_col the color of the axis bar
 #' @param axis_bar_lwd the width of the axis bar
 #' @param axis_bar_label_cex the size of the axis label
@@ -38,17 +42,20 @@
 #' @export
 #' @rdname display_idx
 #' @examples
-#' # example code
 #' data(places)
-#' places_std <- apply(places[,1:9], 2, function(x) (x-min(x))/(max(x)-min(x)))
-#' b <- list(matrix(rep(1/sqrt(14), 14), ncol=1))
-#' animate_idx(places_std[1:10,], tour_path=local_tour(b), label=as.character(places$stnum[1:9]))
+#' places_std <- apply(places[1:10,1:9], 2, function(x) (x-min(x))/(max(x)-min(x)))
+#' b <- matrix(rep(1/sqrt(9), 9), ncol=1)
+#' places_idx <- cbind(places_std, idx = as.vector(as.matrix(places_std) %*% b))
+#' places_sorted <- places_idx[order(places_idx[,10]), 1:9]
+#' animate_idx(places_sorted, tour_path = local_tour(b),
+#'             label=as.character(places$stnum[1:9]), panel_height_ratio = c(3,2))
 display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
                         col = "red", cex = 3, panel_height_ratio = c(4,1),
                         frame_x_pos = 0.15, frame_y_pos = 3, frame_cex = 1,
                         frame_col = "#000000", label_x_pos = 0.7, label = NULL,
-                        label_cex = 1, label_col = "grey80",
+                        label_cex = 1, label_col = "grey80", add_ref_line = TRUE,
                         axis_bar_col = "#000000", axis_bar_lwd = 3,
+                        axis_label_cex_upper = 1, axis_label_cex_lower = 1,
                         axis_bar_label_cex = 1, axis_bar_label_col = "#000000",
                         axis_var_cex = 1, axis_var_col = "#000000",
                         palette = "Zissou 1", ...) {
@@ -83,7 +90,7 @@ display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
     x <- data %*% proj
     if (center) x <- center(x)
     x <- x / half_range
-    df <- cbind(x, .y = 3/nrow(x) * (1:nrow(x)))
+    df <- cbind(x, .y = (3/nrow(x) - 0.02) * (1:nrow(x)))
     # upper panel: define the axis margin (mgp) and panel margin (mar)
     par(mgp=c(2, 1, 0), mar = c(2, 4, 0.5, 1))
     # initialise the plot box
@@ -92,10 +99,8 @@ display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
       xlab="", ylab = "", xaxs = "i", yaxs = "i", cex = 2,
       xaxt = "n", yaxt = "n"
     )
-    axis(1, seq(-1, 1, 0.2), cex.axis = 1)
-    abline(h = seq(0, 3, by = 0.5), col = "grey60")
-    #text(x=frame_x_pos, y=frame_y_pos, labels=paste0("Frame ", i + 1),
-    #     col = frame_col, cex = frame_cex)
+    axis(1, seq(-1, 1, 0.2), cex.axis = axis_label_cex_upper)
+    if (add_ref_line) abline(h = df[,".y"], col = "grey60")
     text(x=label_x_pos, y=df[,".y"], labels= label,
          col = label_col, cex = label_cex)
     points(df, col = col, pch = 20, cex = cex)
@@ -104,21 +109,20 @@ display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
     par(mgp=c(2, 1, 0), mar = c(2.5, 4, 1, 1))
     plot(
       x = NA, y = NA, xlim = c(0, 1.3), ylim = c(-1, 0),
-      xlab = "", ylab = "Weights", cex.lab = label_cex,
-      xaxt = "n", yaxt = "n"
+      xlab = "", ylab = "Weights", xaxt = "n", yaxt = "n"
     )
     lines(c(0, 0), c(-1.1, 0), col = "grey60")
     lines(c(1, 1), c(-1.1, 0), col = "grey60")
-    axis(1, seq(0, 1, by = 0.2), cex.axis = axis_var_cex)
-    box(col = "grey60", cex = axis_var_cex)
+    axis(1, seq(0, 1, by = 0.2), cex.axis = axis_label_cex_lower)
+    box(col = "grey60")
 
     # Render tour axes
-    ax <- seq_along(proj) / length(proj) - 0.1
+    ax <- (seq_along(proj) - 0.5) / length(proj)
     idx_w <- proj/sum(proj)
     segments(0, -ax, idx_w, -ax, col = axis_bar_col, lwd = axis_bar_lwd)
     text(1.0, -ax, labels, pos = 4, cex = axis_var_cex, col = axis_var_col)
-    text(idx_w + 0.01, -ax, format(round(idx_w, 2), nsmall = 2), pos = 4, cex = axis_bar_label_cex,
-         col = axis_bar_label_col)
+    text(idx_w + 0.01, -ax, format(round(idx_w, 2), nsmall = 2), pos = 4,
+         cex = axis_bar_label_cex, col = axis_bar_label_col)
   }
 
   list(

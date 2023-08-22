@@ -11,7 +11,7 @@ display_idx(
   abb_vars = TRUE,
   col = "red",
   cex = 3,
-  panel_height_ratio = c(6, 1),
+  panel_height_ratio = c(4, 1),
   frame_x_pos = 0.15,
   frame_y_pos = 3,
   frame_cex = 1,
@@ -20,8 +20,11 @@ display_idx(
   label = NULL,
   label_cex = 1,
   label_col = "grey80",
+  add_ref_line = TRUE,
   axis_bar_col = "#000000",
   axis_bar_lwd = 3,
+  axis_label_cex_upper = 1,
+  axis_label_cex_lower = 1,
   axis_bar_label_cex = 1,
   axis_bar_label_col = "#000000",
   axis_var_cex = 1,
@@ -67,9 +70,16 @@ positioned at a fixed x value for each observation}
 
 \item{label_col}{the color for text labels}
 
+\item{add_ref_line}{whether to add a horizontal reference line for each
+observation, logical default to TRUE}
+
 \item{axis_bar_col}{the color of the axis bar}
 
 \item{axis_bar_lwd}{the width of the axis bar}
+
+\item{axis_label_cex_upper}{the size of the axis label in the upper panel}
+
+\item{axis_label_cex_lower}{the size of the axis label in the lower panel}
 
 \item{axis_bar_label_cex}{the size of the axis label}
 
@@ -97,8 +107,11 @@ of the ranking on the linear combination. Variables should be
 scaled to be between 0-1.
 }
 \examples{
-# example code
 data(places)
-places_std <- apply(places[,1:9], 2, function(x) (x-min(x))/(max(x)-min(x)))
-animate_idx(places_std[1:10,], label=as.character(places$stnum[1:9]))
+places_std <- apply(places[1:10,1:9], 2, function(x) (x-min(x))/(max(x)-min(x)))
+b <- matrix(rep(1/sqrt(9), 9), ncol=1)
+places_idx <- cbind(places_std, idx = as.vector(as.matrix(places_std) \%*\% b))
+places_sorted <- places_idx[order(places_idx[,10]), 1:9]
+animate_idx(places_sorted, tour_path = local_tour(b),
+            label=as.character(places$stnum[1:9]), panel_height_ratio = c(3,2))
 }
