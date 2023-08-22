@@ -41,9 +41,10 @@
 #' # example code
 #' data(places)
 #' places_std <- apply(places[,1:9], 2, function(x) (x-min(x))/(max(x)-min(x)))
-#' animate_idx(places_std[1:10,], label=as.character(places$stnum[1:9]))
+#' b <- list(matrix(rep(1/sqrt(14), 14), ncol=1))
+#' animate_idx(places_std[1:10,], tour_path=local_tour(b), label=as.character(places$stnum[1:9]))
 display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
-                        col = "red", cex = 3, panel_height_ratio = c(6,1),
+                        col = "red", cex = 3, panel_height_ratio = c(4,1),
                         frame_x_pos = 0.15, frame_y_pos = 3, frame_cex = 1,
                         frame_col = "#000000", label_x_pos = 0.7, label = NULL,
                         label_cex = 1, label_col = "grey80",
