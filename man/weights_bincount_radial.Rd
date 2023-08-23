@@ -7,9 +7,9 @@
 weights_bincount_radial(histo, p)
 }
 \arguments{
-\item{p}{number of variables}
+\item{histo}{input histogram (for bin definitions)}
 
-\item{hsisto}{input histogram (for bin definitions)}
+\item{p}{number of variables}
 }
 \description{
 Computes weights for the rescaling of radial bin counts.

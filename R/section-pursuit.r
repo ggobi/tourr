@@ -185,7 +185,7 @@ radial_bin_weight_inv <- function(r1, r2, R, p) {
 
 #' Computes weights for the rescaling of radial bin counts.
 #'
-#' @param hsisto input histogram (for bin definitions)
+#' @param histo input histogram (for bin definitions)
 #' @param p number of variables
 #'
 #' @keywords internal

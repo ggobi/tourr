@@ -9,10 +9,10 @@ new_geodesic_path(name, generator, frozen = NULL, ...)
 \arguments{
 \item{name}{name to give tour path}
 
+\item{generator}{basis generator function}
+
 \item{frozen}{matrix giving frozen variables, as described in
 \code{\link{freeze}}}
-
-\item{generate}{basis generator function}
 }
 \description{
 A tour path is a function that when called with the current projection

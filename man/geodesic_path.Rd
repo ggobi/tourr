@@ -7,8 +7,12 @@
 geodesic_path(current, target, frozen = NULL, ...)
 }
 \arguments{
-\item{new_target_f}{function that generates new frame, with previous
-frame as argument}
+\item{current}{starting projection}
+
+\item{target}{ending projection}
+
+\item{frozen}{matrix giving frozen variables, as described in
+\code{\link{freeze}}}
 }
 \value{
 \item{interpolate}{A function with single parameter in [0, 1] that

@@ -7,9 +7,9 @@
 bases_little(p, d = 2)
 }
 \arguments{
-\item{d}{dimensionality of target projection}
+\item{p}{dimensionality of data}
 
-\item{n}{dimensionality of data}
+\item{d}{dimensionality of target projection}
 }
 \description{
 Generate bases for the little tour

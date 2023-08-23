@@ -38,7 +38,7 @@ little_tour <- function(d = 2) {
 #' Generate bases for the little tour
 #'
 #' @keywords internal
-#' @param n dimensionality of data
+#' @param p dimensionality of data
 #' @param d dimensionality of target projection
 bases_little <- function(p, d = 2) {
   b <- diag(rep(1, p))

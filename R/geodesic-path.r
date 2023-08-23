@@ -14,7 +14,7 @@
 #' indicating that the tour should stop.
 #'
 #' @param name name to give tour path
-#' @param generate basis generator function
+#' @param generator basis generator function
 #' @param frozen matrix giving frozen variables, as described in
 #'   \code{\link{freeze}}
 #' @export
