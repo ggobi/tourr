@@ -24,10 +24,6 @@
 #' @param label_col the color for text labels
 #' @param label_x_pos the x position of text label, currently labels are
 #'   positioned at a fixed x value for each observation
-#' @param frame_x_pos the x position of the frame label
-#' @param frame_y_pos the y position of the frame label
-#' @param frame_cex the size of the frame text
-#' @param frame_col the color of the frame text
 #' @param axis_label_cex_upper the size of the axis label in the upper panel
 #' @param axis_label_cex_lower the size of the axis label in the lower panel
 #' @param axis_bar_col the color of the axis bar
@@ -53,8 +49,7 @@
 #'             label_x_pos = 0)
 display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
                         col = "red", cex = 3, panel_height_ratio = c(3, 2),
-                        frame_x_pos = 0.15, frame_y_pos = 3, frame_cex = 1,
-                        frame_col = "#000000", label_x_pos = 0.7, label = NULL,
+                        label_x_pos = 0.7, label = NULL,
                         label_cex = 1, label_col = "grey80", add_ref_line = TRUE,
                         axis_bar_col = "#000000", axis_bar_lwd = 3,
                         axis_label_cex_upper = 1, axis_label_cex_lower = 1,
@@ -92,7 +87,7 @@ display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
     x <- data %*% proj
     if (center) x <- center(x)
     x <- x / half_range
-    df <- cbind(x, .y = (3/nrow(x) - 0.02) * (1:nrow(x)))
+    df <- cbind(x, .y = (3 - 0.1)/nrow(x) * (1:nrow(x)))
     # upper panel: define the axis margin (mgp) and panel margin (mar)
     par(mgp=c(2, 1, 0), mar = c(2, 4, 0.5, 1))
     # initialise the plot box
@@ -111,7 +106,7 @@ display_idx <- function(center = FALSE, half_range = NULL, abb_vars = TRUE,
     par(mgp=c(2, 1, 0), mar = c(2.5, 4, 1, 1))
     plot(
       x = NA, y = NA, xlim = c(0, 1.3), ylim = c(-1, 0),
-      xlab = "", ylab = "Weights", xaxt = "n", yaxt = "n"
+      xlab = "", ylab = "", xaxt = "n", yaxt = "n"
     )
     lines(c(0, 0), c(-1.1, 0), col = "grey60")
     lines(c(1, 1), c(-1.1, 0), col = "grey60")
