@@ -12,10 +12,6 @@ display_idx(
   col = "red",
   cex = 3,
   panel_height_ratio = c(3, 2),
-  frame_x_pos = 0.15,
-  frame_y_pos = 3,
-  frame_cex = 1,
-  frame_col = "#000000",
   label_x_pos = 0.7,
   label = NULL,
   label_cex = 1,
@@ -52,14 +48,6 @@ factor, default to "red".}
 
 \item{panel_height_ratio}{input to the height argument in
 [graphics::layout()] for the height of data and axis panel.}
-
-\item{frame_x_pos}{the x position of the frame label}
-
-\item{frame_y_pos}{the y position of the frame label}
-
-\item{frame_cex}{the size of the frame text}
-
-\item{frame_col}{the color of the frame text}
 
 \item{label_x_pos}{the x position of text label, currently labels are
 positioned at a fixed x value for each observation}

@@ -1,3 +1,7 @@
+# tourr 1.1.0
+
+* Updated version to indicate some nice new additions for the package
+
 # tourr 1.0.2
 
 * Fix to duplicating bases during interpolate

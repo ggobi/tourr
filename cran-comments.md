@@ -4,8 +4,8 @@ This is a small update, with one new displayand several bug fixes. There are no 
 
 \dontrun is used for example code where the method would break, and thus the code should not be run. It is important for users to be able to see these examples.
 
-## ── R CMD check results ──────────────────────── tourr 1.0.2 ────
-Duration: 1m 17s
+── R CMD check results ──────────────────────────── tourr 1.1.0 ────
+Duration: 1m 14.7s
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
