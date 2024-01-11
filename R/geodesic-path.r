@@ -35,6 +35,7 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
 
       gen <- generator(current, data, tries, ...)
       target <- gen$target
+      if (inherits(target, "multi-bases")) return(list(target = target))
 
       # generator has run out, so give up
       if (is.null(target)) {
