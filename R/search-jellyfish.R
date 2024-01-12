@@ -1,5 +1,16 @@
-search_jellyfish <- function(current, alpha = 0.5, index, tries,
-                             max.tries = Inf, ..., cur_index = NA) {
+#' An jellyfish optimisers for the projection pursuit guided tour
+#'
+#' @param current starting projection, a list of basis of class "multi-bases"
+#' @param index index function
+#' @param tries the counter of the outer loop of the opotimiser
+#' @param max.tries maximum number of iteration before giving up
+#' @param ... other arguments being passed into the \code{search_jellyfish()}
+#' @keywords optimize
+#' @export
+#' @examples
+#' res <- animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_jellyfish))
+#' res
+search_jellyfish <- function(current, index, tries, max.tries = Inf, ...) {
   rcd_env <- parent.frame(n = 4)
   if (is.null(rcd_env[["record"]])) rcd_env <- parent.frame(n = 1)
   best_jelly <- current[[attr(current, "best_id")]]
@@ -32,6 +43,7 @@ search_jellyfish <- function(current, alpha = 0.5, index, tries,
     target = lapply(current, function(i) {update_typeB(i, current)})
   }
 
+  target <- purrr::map2(current, target, correct_orientation)
   target_idx <- sapply(target, index)
   best_id <- which.max(target_idx)
   cat("Best Index: ", max(target_idx), "\n")
@@ -39,18 +51,18 @@ search_jellyfish <- function(current, alpha = 0.5, index, tries,
   class(target) <- c("multi-bases", class(target))
 
   rcd_env[["record"]] <- dplyr::add_row(
-    rcd_env[["record"]], basis = list(target[-best_id]),
-    index_val = target_idx[-best_id], info = "jellyfish_update",
-    tries = tries, method = "jellyfish_optimiser", alpha = NA
+    rcd_env[["record"]], basis = unclass(target),
+    index_val = target_idx, info = "jellyfish_update",
+    tries = tries, method = "search_jellyfish", alpha = NA,
+    loop = 1:length(target)
   )
-  rcd_env[["record"]] <- dplyr::add_row(
-    rcd_env[["record"]], basis = list(target[best_id]),
-    index_val = max(target_idx), info = "current_best", tries = tries,
-    method = "jellyfish_optimiser", alpha = NA
+  rcd_env[["record"]] <- dplyr::mutate(
+    rcd_env[["record"]],
+    info = ifelse(tries == max(tries) & loop == best_id, "current_best", info)
   )
 
 
-  if (diff(quantile(target_idx, c(0.05, 0.95))) < 0.05 || tries > max.tries) {
+  if (diff(quantile(target_idx, c(0.05, 0.95))) < 0.05 || tries >= max.tries) {
     print_final_proj(target[[attr(target, "best_id")]])
     rcd_env[["record"]] <- dplyr::mutate(
       rcd_env[["record"]],

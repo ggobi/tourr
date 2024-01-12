@@ -43,7 +43,8 @@
 #' tries <- replicate(5, save_history(f, guided_tour(holes())), simplify = FALSE)
 #' }
 guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
-                        max.i = Inf, search_f = search_geodesic, n_sample = 100, ...) {
+                        max.i = Inf, search_f = search_geodesic, n_jellies = 30,
+                        n_sample = 100, ...) {
   generator <- function(current, data, tries, ...) {
     index <- function(proj) {
       index_f(as.matrix(data) %*% proj)
@@ -59,7 +60,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
 
     if (is.null(current)) {
       if (method == "search_jellyfish"){
-        current <- replicate(30, basis_random(ncol(data), d), simplify = FALSE)
+        current <- replicate(n_jellies, basis_random(ncol(data), d), simplify = FALSE)
         cur_index <- sapply(current, index)
         best_id <- which.max(cur_index)
         attr(current, "best_id") <- best_id
@@ -69,12 +70,12 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
         rcd_env[["record"]] <- dplyr::add_row(
           rcd_env[["record"]], basis = current[-best_id],
           index_val = cur_index[-best_id], info = "initiation",
-          method = method, alpha = NA, tries = 1, loop = 1
+          method = method, alpha = NA, tries = 1, loop = 1:(length(current)-1)
         )
         rcd_env[["record"]] <- dplyr::add_row(
           rcd_env[["record"]], basis = current[best_id],
           index_val = cur_index[best_id], info = "initiation",
-          method = method, alpha = NA, tries = 1, loop = 1
+          method = method, alpha = NA, tries = 1, loop = length(current)
         )
 
         return(current)
@@ -123,7 +124,7 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
     }
 
     # current, alpha = 1, index, max.tries = 5, n = 5, delta = 0.01, cur_index = NA, ..
-    basis <- search_f(current, alpha, index, tries, max.tries = max.tries,
+    basis <- search_f(current, alpha, index = index, tries = tries, max.tries = max.tries,
                       cur_index = cur_index, frozen = frozen, n_sample = n_sample, ...)
 
     if (method == "search_posse") {
