@@ -48,7 +48,7 @@ search_jellyfish <- function(current, index, tries, max.tries = Inf, min.tries =
   target_idx <- sapply(target, index)
 
   best_id <- which.max(target_idx)
-  cat("Best Index: ", max(target_idx), "\n")
+  message("Target: ", sprintf("%.3f", max(target_idx)))
   attr(target, "best_id") <- best_id
   class(target) <- c("multi-bases", class(target))
 
@@ -79,19 +79,3 @@ search_jellyfish <- function(current, index, tries, max.tries = Inf, min.tries =
 }
 
 
-print_final_proj <- function(current){
-  cat("Final projection: \n")
-  if (ncol(current) == 1) {
-    for (i in 1:length(current)) {
-      cat(sprintf("%.3f", current[i]), " ")
-    }
-    cat("\n")
-  } else {
-    for (i in 1:nrow(current)) {
-      for (j in 1:ncol(current)) {
-        cat(sprintf("%.3f", current[i, j]), " ")
-      }
-      cat("\n")
-    }
-  }
-}

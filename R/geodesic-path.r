@@ -47,7 +47,6 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
         return(NULL)
       }
 
-      #cat("generation:  dist =  ", dist, "\n")
     }
     list(ingred = geodesic_path(current, target, frozen, ...), index = gen$index, tries = tries)
   }
@@ -62,7 +61,7 @@ new_geodesic_path <- function(name, generator, frozen = NULL, ...) {
 
 #' @export
 "print.tour_path" <- function(x, ...) {
-  cat("Tour path:", attr(x, "name"), "\n")
+  message("Tour path: ", attr(x, "name"))
 
   # params <- as.list(environment(get("generator", environment(g))))
   # str(params)

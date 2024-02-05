@@ -116,9 +116,8 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
     }
 
     if (cur_index > max.i) {
-      cat("Found index ", cur_index, ", larger than selected maximum ", max.i, ". Stopping search.\n",
-          sep = ""
-      )
+      message("Found index ", sprintf("%.3f", cur_index), ",
+              larger than selected maximum ", max.i, ". Stopping search.")
       print_final_proj(current)
       return(NULL)
     }
