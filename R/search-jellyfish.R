@@ -10,10 +10,11 @@
 #' @examples
 #' res <- animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_jellyfish))
 #' res
-search_jellyfish <- function(current, index, tries, max.tries = Inf, ...) {
+search_jellyfish <- function(current, index, tries, max.tries = Inf, min.tries = 1, ...) {
   rcd_env <- parent.frame(n = 4)
   if (is.null(rcd_env[["record"]])) rcd_env <- parent.frame(n = 1)
   best_jelly <- current[[attr(current, "best_id")]]
+  current_idx <- index(best_jelly)
 
   c_t = abs((1 - tries / max.tries) * (2 * runif(1) - 1))
 
@@ -45,6 +46,7 @@ search_jellyfish <- function(current, index, tries, max.tries = Inf, ...) {
 
   target <- purrr::map2(current, target, correct_orientation)
   target_idx <- sapply(target, index)
+
   best_id <- which.max(target_idx)
   cat("Best Index: ", max(target_idx), "\n")
   attr(target, "best_id") <- best_id
@@ -62,7 +64,8 @@ search_jellyfish <- function(current, index, tries, max.tries = Inf, ...) {
   )
 
 
-  if (diff(quantile(target_idx, c(0.05, 0.95))) < 0.05 || tries >= max.tries) {
+  if (abs(max(target_idx) - current_idx) < 0.05  &&
+      tries >= max.tries) {
     print_final_proj(target[[attr(target, "best_id")]])
     rcd_env[["record"]] <- dplyr::mutate(
       rcd_env[["record"]],
