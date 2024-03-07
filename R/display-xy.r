@@ -176,7 +176,6 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
         mdst <- sqrt(mahalanobis(data, center=rep(0, ncol(data)), cov=ellipse))
         #mdst <- mahal_dist(data, ellipse)
         anomalies <- which(mdst > ellsize)
-        cat(length(anomalies), "\n")
         points(x[anomalies,],
                col = "red",
                pch = 4,
