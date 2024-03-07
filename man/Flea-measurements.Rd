@@ -4,13 +4,19 @@
 \name{Flea measurements}
 \alias{Flea measurements}
 \alias{flea}
+\alias{flea,}
+\alias{flea_raw}
 \title{Flea beatle measurements}
 \format{
 A 74 x 7 numeric array
 }
+\usage{
+flea
+}
 \description{
 This data is from a paper by A. A. Lubischew, "On the Use of Discriminant
-Functions in Taxonomy", Biometrics, Dec 1962, pp.455-477.
+Functions in Taxonomy", Biometrics, Dec 1962, pp.455-477. Data is
+standardized, and original units are in flea_raw.
 }
 \details{
 \itemize{

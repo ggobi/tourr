@@ -16,6 +16,7 @@ display_xy(
   edges.col = "black",
   edges.width = 1,
   obs_labels = NULL,
+  ellipse = NULL,
   palette = "Zissou 1",
   ...
 )
@@ -45,6 +46,9 @@ If not set, defaults to maximum distance from origin to each row of data.}
 \item{edges.width}{line width for edges, default 1}
 
 \item{obs_labels}{vector of text labels to display}
+
+\item{ellipse}{pxp variance-covariance matrix defining ellipse, default NULL. Useful for
+comparing data with some null hypothesis}
 
 \item{palette}{name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"}
 
@@ -94,4 +98,6 @@ animate(
   flea[, 1:6], grand_tour(),
   display_xy(axes = "bottomleft", edges = edges)
 )
+# An ellipse can be drawn on the data using a specified var-cov
+animate_xy(flea[, 1:6], axes = "off", ellipse=cov(flea[,1:6]))
 }

@@ -13,8 +13,10 @@
 #' @param pch shape of the point to be plotted, can be a factor or integer.  Defaults to 20.
 #' @param cex size of the point to be plotted.  Defaults to 1.
 #' @param edges.col colour of edges to be plotted, Defaults to "black"
-#' @param obs_labels vector of text labels to display
 #' @param edges.width line width for edges, default 1
+#' @param obs_labels vector of text labels to display
+#' @param ellipse pxp variance-covariance matrix defining ellipse, default NULL. Useful for
+#'        comparing data with some null hypothesis
 #' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
@@ -56,10 +58,14 @@
 #'   flea[, 1:6], grand_tour(),
 #'   display_xy(axes = "bottomleft", edges = edges)
 #' )
+#' # An ellipse can be drawn on the data using a specified var-cov
+#' animate_xy(flea[, 1:6], axes = "off", ellipse=cov(flea[,1:6]))
 display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
                        col = "black", pch = 20, cex = 1,
                        edges = NULL, edges.col = "black", edges.width=1,
-                       obs_labels = NULL, palette="Zissou 1", ...) {
+                       obs_labels = NULL,
+                       ellipse = NULL,
+                       palette="Zissou 1", ...) {
   # Needed for CRAN checks
   labels <- NULL
   gps <- NULL
@@ -140,7 +146,34 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
     # Add index value if using guided tour
     #if (!is.na(cur_index))
     #  text(0, 0, labels=round(cur_index, 2))
+    # Draw a pre-determined ellipse on the data
+    if (!is.null(ellipse)) {
+      if (nrow(ellipse) == nrow(proj)) {
 
+        # Project ellipse into 2D
+        evc <- eigen(ellipse)
+        ellinv <- (evc$vectors) %*% diag(evc$values) %*% t(evc$vectors)
+        e2 <- t(proj) %*% ellinv %*% proj
+        evc2 <- eigen(e2)
+        ell2d <- (evc2$vectors) %*% diag(sqrt(evc2$values)) %*% t(evc2$vectors)
+
+        # Compute the points on an ellipse
+        sph <- geozoo::sphere.hollow(2, 200)$points
+        sph <- sph[order(sph[,2]),]
+        sph1 <- sph[sph[,2]>=0,]
+        sph2 <- sph[sph[,2]<0,]
+        sph1 <- sph1[order(sph1[,1]),]
+        sph2 <- sph2[order(sph2[,1], decreasing=T),]
+        sph <- rbind(sph1, sph2)
+        sph <- rbind(sph, sph[1,])
+        sph2d <- sph%*%ell2d/half_range
+
+        lines(sph2d)
+
+      }
+      else
+        message("Check the variance-covariance matrix generating the ellipse\n")
+    }
   }
 
   list(

@@ -12,10 +12,10 @@
 #' @param ... additional arguments for drawing
 #' @export
 #' @examples
-#' animate_xy(flea[, 1:6], radial_tour(basis_random(6, 2), mvar = 4))
-#' animate_xy(flea[, 1:6], radial_tour(basis_random(6, 2), mvar = c(3,4)))
-#' animate_dist(flea[, 1:6], radial_tour(basis_random(6, 1), mvar = 4))
-#' animate_scatmat(flea[, 1:6], radial_tour(basis_random(6, 3), mvar = 4))
+#' animate_xy(flea[, 1:6], radial_tour(basis_random(6, 2), mvar = 4), rescale=TRUE)
+#' animate_xy(flea[, 1:6], radial_tour(basis_random(6, 2), mvar = c(3,4)), rescale=TRUE)
+#' animate_dist(flea[, 1:6], radial_tour(basis_random(6, 1), mvar = 4), rescale=TRUE)
+#' animate_scatmat(flea[, 1:6], radial_tour(basis_random(6, 3), mvar = 4), rescale=TRUE)
 radial_tour <- function(start, mvar = 1, ...) {
   first <- TRUE
   out <- TRUE
