@@ -4,7 +4,16 @@
 \alias{draw_tour_axes}
 \title{Draw tour axes on the projected data with base graphics}
 \usage{
-draw_tour_axes(proj, labels, limits = 1, position = "center", ...)
+draw_tour_axes(
+  proj,
+  labels,
+  limits = 1,
+  position = "center",
+  axis.col = "grey50",
+  axis.lwd = 1,
+  axis.text.col = "grey50",
+  ...
+)
 }
 \arguments{
 \item{proj}{matrix of projection coefficients}
@@ -17,6 +26,12 @@ projected data, default 1}
 
 \item{position}{position of the axes: center (default),
 bottomleft or off}
+
+\item{axis.col}{colour of axes, default "grey50"}
+
+\item{axis.lwd}{linewidth of axes, default 1}
+
+\item{axis.text.col}{colour of axes text, default "grey50"}
 
 \item{...}{other arguments passed}
 }

@@ -219,6 +219,9 @@ animate_xy <- function(data, tour_path = grand_tour(), ...) {
 #'   projected data, default 1
 #' @param position position of the axes: center (default),
 #'   bottomleft or off
+#' @param axis.col colour of axes, default "grey50"
+#' @param axis.lwd linewidth of axes, default 1
+#' @param axis.text.col colour of axes text, default "grey50"
 #' @param ...  other arguments passed
 #' @export
 #' @examples
@@ -236,7 +239,8 @@ animate_xy <- function(data, tour_path = grand_tour(), ...) {
 #'      xlim = c(-3, 3), ylim = c(-3, 3),
 #'      xlab="P1", ylab="P2")
 #' draw_tour_axes(prj, colnames(flea)[1:6], limits=3, position="bottomleft")
-draw_tour_axes <- function(proj, labels, limits=1, position="center", ...) {
+draw_tour_axes <- function(proj, labels, limits=1, position="center",
+                           axis.col= "grey50", axis.lwd=1, axis.text.col= "grey50", ...) {
   position <- match.arg(position, c("center", "bottomleft", "off"))
   if (position == "off") {
     return()
@@ -252,13 +256,16 @@ draw_tour_axes <- function(proj, labels, limits=1, position="center", ...) {
 
   adj <- function(x) axis_pos + x * axis_scale
 
-  segments(adj(0), adj(0), adj(proj[, 1]), adj(proj[, 2]), col = "grey50")
+  segments(adj(0), adj(0), adj(proj[, 1]), adj(proj[, 2]),
+           col = axis.col, lwd = axis.lwd)
 #  if (!is.null(mvar)) { # colour manip var
 #    if ((mvar < (nrow(proj)+1)) & (mvar > 0)) {
 #      segments(adj(0), adj(0), adj(proj[, 1]), adj(proj[, 2]), col = "orange")
 #    }
 #  }
   theta <- seq(0, 2 * pi, length = 50)
-  lines(adj(cos(theta)), adj(sin(theta)), col = "grey50")
-  text(adj(proj[, 1]), adj(proj[, 2]), label = labels, col = "grey50")
+  lines(adj(cos(theta)), adj(sin(theta)),
+        col = axis.col, lwd = axis.lwd)
+  text(adj(proj[, 1]), adj(proj[, 2]), label = labels,
+       col = axis.text.col)
 }
