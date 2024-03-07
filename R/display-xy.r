@@ -17,6 +17,8 @@
 #' @param obs_labels vector of text labels to display
 #' @param ellipse pxp variance-covariance matrix defining ellipse, default NULL. Useful for
 #'        comparing data with some null hypothesis
+#' @param ellsize This can be considered the equivalent of a critical value, used to
+#'        scale the ellipse larger or smaller to capture more or fewer anomalies. Default 1.
 #' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
@@ -64,7 +66,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
                        col = "black", pch = 20, cex = 1,
                        edges = NULL, edges.col = "black", edges.width=1,
                        obs_labels = NULL,
-                       ellipse = NULL,
+                       ellipse = NULL, ellsize = 1,
                        palette="Zissou 1", ...) {
   # Needed for CRAN checks
   labels <- NULL
@@ -151,7 +153,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
       if (nrow(ellipse) == nrow(proj)) {
 
         # Project ellipse into 2D
-        evc <- eigen(ellipse)
+        evc <- eigen(ellipse*ellsize)
         ellinv <- (evc$vectors) %*% diag(evc$values) %*% t(evc$vectors)
         e2 <- t(proj) %*% ellinv %*% proj
         evc2 <- eigen(e2)
@@ -170,6 +172,14 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
 
         lines(sph2d)
 
+        # Colour points outside the pD ellipse
+        mdst <- sqrt(mahalanobis(data, center=rep(0, ncol(data)), cov=ellipse))
+        anomalies <- which(mdst > ellsize)
+        cat(length(anomalies), "\n")
+        points(x[anomalies,],
+               col = "red",
+               pch = 4,
+               cex = 2)
       }
       else
         message("Check the variance-covariance matrix generating the ellipse\n")

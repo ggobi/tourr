@@ -1,15 +1,14 @@
-#' A guided section tour path.
+#' A guided anomaly tour path.
 #'
-#' The guided section tour is a variation of the guided tour that is
-#' using a section pursuit index for the selection of target planes.
+#' The guided anomaly tour is a variation of the guided tour that is
+#' using an ellipse to determine anomalies on which to select target planes.
 #'
 #' Usually, you will not call this function directly, but will pass it to
 #' a method that works with tour paths like \code{\link{animate_slice}},
 #' \code{\link{save_history}} or \code{\link{render}}.
 #'
 #' @param index_f the section pursuit index function to optimise. The function
-#'   needs to take three arguments, the projected data, the vector of distances
-#'   from the current projection plane, and the slice thickness h.
+#'   needs to take two arguments, the projected data, indexes of anomalies.
 #' @param d target dimensionality
 #' @param alpha the initial size of the search window, in radians
 #' @param cooling the amount the size of the search window should be adjusted
@@ -18,34 +17,21 @@
 #' @param max.tries the maximum number of unsuccessful attempts to find
 #'   a better projection before giving up
 #' @param max.i the maximum index value, stop search if a larger value is found
-#' @param v_rel relative volume of the slice. If not set, suggested value
-#'   is calculated and printed to the screen.
-#' @param anchor A vector specifying the reference point to anchor the slice.
-#'   If NULL (default) the slice will be anchored at the data center.
+#' @param ellipse pxp variance-covariance matrix defining ellipse, default NULL.
+#'        Useful for comparing data with some hypothesized null.
+#' @param ellsize This can be considered the equivalent of a critical value, used to
+#'        scale the ellipse larger or smaller to capture more or fewer anomalies. Default 1.
 #' @param ... arguments sent to the search_f
 #' @seealso \code{\link{slice_index}} for an example of an index functions.
 #' \code{\link{search_geodesic}}, \code{\link{search_better}},
 #'   \code{\link{search_better_random}} for different search strategies
 #' @export
 #' @examples
-#' # Generate samples on a 3d hollow sphere using the geozoo package
-#' set.seed(12345)
-#' sphere3 <- geozoo::sphere.hollow(3)$points
-#' # Columns need to be named before launching the tour
-#' colnames(sphere3) <- c("x1", "x2", "x3")
-#' # Off-center anchoring
-#' anchor3 <- matrix(rep(0.75, 3), ncol=3)
-#' # Index setup
-#' r_breaks <- linear_breaks(5, 0, 1)
-#' a_breaks <- angular_breaks(10)
-#' eps <- estimate_eps(nrow(sphere3), ncol(sphere3), 0.1 / 1, 5 * 10, 10, r_breaks)
-#' idx <- slice_index(r_breaks, a_breaks, eps, bintype = "polar", power = 1, reweight = TRUE, p = 3)
-#' # Running the guided section tour select sections showing a big hole in the center
-#' animate_slice(sphere3, guided_section_tour(idx, v_rel = 0.1, anchor = anchor3, max.tries = 5),
-#'   v_rel = 0.1, anchor = anchor3
-#' )
-guided_section_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
-                                max.tries = 25, max.i = Inf, v_rel = NULL, anchor = NULL,
+#' animate_xy(flea[, 1:6], guided_anomaly_tour(anomaly_index(),
+#'   ellipse=cov(flea[,1:6])), ellipse=cov(flea[,1:6]), axes="off")
+guided_anomaly_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
+                                max.tries = 25, max.i = Inf,
+                                ellipse, ellsize=1,
                                 search_f = search_geodesic, ...) {
   h <- NULL
 
@@ -56,13 +42,20 @@ guided_section_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
 
     if (is.null(h)) {
       half_range <- compute_half_range(NULL, data, FALSE)
-      v_rel <- compute_v_rel(v_rel, half_range, ncol(data))
-      h <<- v_rel^(1 / (ncol(data) - 2))
     }
 
     index <- function(proj) {
-      dist_data <- anchored_orthogonal_distance(proj, data, anchor)
-      index_f(as.matrix(data) %*% proj, dist_data, h)
+      # Check which observations are outside pD ellipse
+      mdst <- sqrt(mahalanobis(data, center=rep(0, ncol(data)), cov=ellipse))
+      anomalies <- which(mdst > ellsize)
+      stopifnot(length(anomalies) > 0)
+      # Project ellipse into 2D
+      evc <- eigen(ellipse)
+      ellinv <- (evc$vectors) %*% diag(evc$values) %*% t(evc$vectors)
+      e2 <- t(proj) %*% ellinv %*% proj
+      evc2 <- eigen(e2)
+      ell2d <- (evc2$vectors) %*% diag(sqrt(evc2$values)) %*% t(evc2$vectors)
+      index_f(as.matrix(data[anomalies,]) %*% proj, ell2d)
     }
 
     cur_index <- index(current)

@@ -17,6 +17,7 @@ display_xy(
   edges.width = 1,
   obs_labels = NULL,
   ellipse = NULL,
+  ellsize = 1,
   palette = "Zissou 1",
   ...
 )
@@ -49,6 +50,9 @@ If not set, defaults to maximum distance from origin to each row of data.}
 
 \item{ellipse}{pxp variance-covariance matrix defining ellipse, default NULL. Useful for
 comparing data with some null hypothesis}
+
+\item{ellsize}{This can be considered the equivalent of a critical value, used to
+scale the ellipse larger or smaller to capture more or fewer anomalies. Default 1.}
 
 \item{palette}{name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"}
 
