@@ -4,6 +4,7 @@
 * flea is now standardised measurements, and flea_raw is the original units
 * TeachingDemos removed as a Suggests, and replaced with aplpack for drawing Chernoff faces
 * addition of a pre-specified ellipse can be added to the 2D display
+* palette can now be a vector of values
 
 # tourr 1.1.0 
 

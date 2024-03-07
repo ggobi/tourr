@@ -122,7 +122,14 @@ areColors <- function(x) {
 #' @export
 mapColors <- function(x, palette) {
   n <- length(unique(x))
-  pal <- grDevices::hcl.colors(n, palette=palette)
+  # Handle manual colour setting
+  if (length(palette) > 1) {
+    stopifnot(length(palette) == n)
+    pal <- palette
+  }
+  else {
+    pal <- grDevices::hcl.colors(n, palette=palette)
+  }
   pal[as.numeric(as.factor(x))]
 }
 
