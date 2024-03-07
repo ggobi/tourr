@@ -111,3 +111,25 @@ orthonormalise_by <- function(x, by) {
 #' @keywords algebra
 #' @export
 proj_dist <- function(x, y) sqrt(sum((x %*% t(x) - y %*% t(y))^2))
+
+#' Calculate the Mahalanobis distance between points and center.
+#'
+#' Computes the Mahalanobis distance using a provided variance-covariance
+#' matrix of observations from 0.
+#
+#' @param x matrix of data
+#' @param vc pre-determined variance-covariance matrix
+#' @keywords algebra
+#' @export
+mahal_dist <- function(x, vc) {
+  n <- dim(x)[1]
+  p <- dim(x)[2]
+  mn <- rep(0, p)
+  ev <- eigen(vc)
+  vcinv <- ev$vectors %*% diag(1/ev$values) %*% t(ev$vectors)
+  x <- x - matrix(rep(mn, n), ncol = p, byrow = T)
+  dx <- NULL
+  for (i in 1:n)
+    dx <- c(dx, x[i, ] %*% vcinv %*% as.matrix(x[i, ]))
+  return(dx)
+}

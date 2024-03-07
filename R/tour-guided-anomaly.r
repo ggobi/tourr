@@ -20,7 +20,7 @@
 #' @param ellipse pxp variance-covariance matrix defining ellipse, default NULL.
 #'        Useful for comparing data with some hypothesized null.
 #' @param ellsize This can be considered the equivalent of a critical value, used to
-#'        scale the ellipse larger or smaller to capture more or fewer anomalies. Default 1.
+#'        scale the ellipse larger or smaller to capture more or fewer anomalies. Default 3.
 #' @param ... arguments sent to the search_f
 #' @seealso \code{\link{slice_index}} for an example of an index functions.
 #' \code{\link{search_geodesic}}, \code{\link{search_better}},
@@ -31,7 +31,7 @@
 #'   ellipse=cov(flea[,1:6])), ellipse=cov(flea[,1:6]), axes="off")
 guided_anomaly_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
                                 max.tries = 25, max.i = Inf,
-                                ellipse, ellsize=1,
+                                ellipse, ellsize=3,
                                 search_f = search_geodesic, ...) {
   h <- NULL
 
@@ -47,6 +47,7 @@ guided_anomaly_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
     index <- function(proj) {
       # Check which observations are outside pD ellipse
       mdst <- sqrt(mahalanobis(data, center=rep(0, ncol(data)), cov=ellipse))
+      #mdst <- mahal_dist(data, ellipse)
       anomalies <- which(mdst > ellsize)
       stopifnot(length(anomalies) > 0)
       # Project ellipse into 2D
