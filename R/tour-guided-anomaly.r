@@ -46,7 +46,9 @@ guided_anomaly_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
 
     index <- function(proj) {
       # Check which observations are outside pD ellipse
-      mdst <- sqrt(mahalanobis(data, center=rep(0, ncol(data)), cov=ellipse))
+      mdst <- mahalanobis(data,
+                          center=rep(0, ncol(data)),
+                          cov=ellipse)
       #mdst <- mahal_dist(data, ellipse)
       anomalies <- which(mdst > ellsize)
       stopifnot(length(anomalies) > 0)
@@ -56,7 +58,9 @@ guided_anomaly_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
       e2 <- t(proj) %*% ellinv %*% proj
       evc2 <- eigen(e2)
       ell2d <- (evc2$vectors) %*% diag(sqrt(evc2$values)) %*% t(evc2$vectors)
-      index_f(as.matrix(data[anomalies,]) %*% proj, ell2d)
+      e3 <- eigen(ell2d)
+      ell2dinv <- (e3$vectors) %*% diag(e3$values) %*% t(e3$vectors)
+      index_f(as.matrix(data[anomalies,]) %*% proj, ell2dinv)
     }
 
     cur_index <- index(current)

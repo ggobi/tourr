@@ -153,11 +153,15 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
       if (nrow(ellipse) == nrow(proj)) {
 
         # Project ellipse into 2D
+        # Notation in paper: ellipse=A, ellinv=A^(-1),
+        #                    e2=P^TA^(-1)P, ell2d=B
         evc <- eigen(ellipse*ellsize)
         ellinv <- (evc$vectors) %*% diag(evc$values) %*% t(evc$vectors)
         e2 <- t(proj) %*% ellinv %*% proj
         evc2 <- eigen(e2)
-        ell2d <- (evc2$vectors) %*% diag(sqrt(evc2$values)) %*% t(evc2$vectors)
+        ell2d <- (evc2$vectors) %*% sqrt(diag(evc2$values)) %*% t(evc2$vectors)
+        e3 <- eigen(ell2d)
+        ell2dinv <- (e3$vectors) %*% diag(e3$values) %*% t(e3$vectors)
 
         # Compute the points on an ellipse
         sph <- geozoo::sphere.hollow(2, 200)$points
@@ -168,12 +172,14 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
         sph2 <- sph2[order(sph2[,1], decreasing=T),]
         sph <- rbind(sph1, sph2)
         sph <- rbind(sph, sph[1,])
-        sph2d <- sph%*%ell2d/half_range
+        sph2d <- sph%*%ell2dinv/half_range
 
         lines(sph2d)
 
         # Colour points outside the pD ellipse
-        mdst <- sqrt(mahalanobis(data, center=rep(0, ncol(data)), cov=ellipse))
+        mdst <- mahalanobis(data,
+                            center=rep(0, ncol(data)),
+                            cov=ellipse)
         #mdst <- mahal_dist(data, ellipse)
         anomalies <- which(mdst > ellsize)
         points(x[anomalies,],

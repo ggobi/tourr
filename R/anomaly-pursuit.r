@@ -9,7 +9,7 @@ anomaly_index <- function() {
   function(mat, ell2d) {
 
     mat_tab <- #mean(mahal_dist(mat, ell2d))
-      mean(sqrt(mahalanobis(mat, center=c(0,0), cov=ell2d)))
+      mean(mahalanobis(mat, center=c(0,0), cov=ell2d))
   }
 }
 

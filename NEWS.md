@@ -5,6 +5,8 @@
 * TeachingDemos removed as a Suggests, and replaced with aplpack for drawing Chernoff faces
 * addition of a pre-specified ellipse can be added to the 2D display
 * palette can now be a vector of values
+* a new projection pursuit index for finding anomalies relative to 
+a null variance-covariance matrix.
 
 # tourr 1.1.0 
 
