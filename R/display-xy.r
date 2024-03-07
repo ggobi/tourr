@@ -20,6 +20,8 @@
 #' @param ellsize This can be considered the equivalent of a critical value, used to
 #'        scale the ellipse larger or smaller to capture more or fewer anomalies. Default 3.
 #' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
+#' @param shapeset numbers corresponding to shapes in base R points, to use for mapping
+#'        categorical variable to shapes, default=c(15:17, 23:25)
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
 #' @importFrom graphics legend
@@ -67,7 +69,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
                        edges = NULL, edges.col = "black", edges.width=1,
                        obs_labels = NULL,
                        ellipse = NULL, ellsize = 3,
-                       palette="Zissou 1", ...) {
+                       palette="Zissou 1", shapeset=c(15:17, 23:25), ...) {
   # Needed for CRAN checks
   labels <- NULL
   gps <- NULL
@@ -84,7 +86,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
   }
   # If shapes are a variable, convert shapes
   if (is.factor(pch)) {
-    shapes <- mapShapes(pch)
+    shapes <- mapShapes(pch, shapeset)
   } else {
     shapes <- pch
   }

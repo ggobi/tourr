@@ -19,6 +19,7 @@ display_xy(
   ellipse = NULL,
   ellsize = 3,
   palette = "Zissou 1",
+  shapeset = c(15:17, 23:25),
   ...
 )
 
@@ -55,6 +56,9 @@ comparing data with some null hypothesis}
 scale the ellipse larger or smaller to capture more or fewer anomalies. Default 3.}
 
 \item{palette}{name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"}
+
+\item{shapeset}{numbers corresponding to shapes in base R points, to use for mapping
+categorical variable to shapes, default=c(15:17, 23:25)}
 
 \item{...}{other arguments passed on to \code{\link{animate}} and
 \code{\link{display_xy}}}

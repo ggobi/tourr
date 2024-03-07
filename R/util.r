@@ -137,8 +137,9 @@ mapColors <- function(x, palette) {
 #'
 #' @param x vector
 #' @export
-mapShapes <- function(x) {
+mapShapes <- function(x, shapeset) {
   n <- length(unique(x))
-  shapes <- c(15:17, 23:25)
+  stopifnot(length(shapeset) >= n)
+  shapes <- shapeset
   shapes[as.numeric(x)]
 }

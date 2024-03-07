@@ -7,6 +7,7 @@
 * palette can now be a vector of values
 * a new projection pursuit index for finding anomalies relative to 
 a null variance-covariance matrix.
+* point shapes can now be specified like palettes
 
 # tourr 1.1.0 
 
