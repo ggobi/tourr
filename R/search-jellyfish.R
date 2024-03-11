@@ -3,18 +3,18 @@
 #' @param current starting projection, a list of basis of class "multi-bases"
 #' @param index index function
 #' @param tries the counter of the outer loop of the opotimiser
-#' @param max.tries maximum number of iteration before giving up
+#' @param max.tries the maximum number of iteration before giving up
 #' @param ... other arguments being passed into the \code{search_jellyfish()}
 #' @keywords optimize
 #' @export
 #' @examples
 #' res <- animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_jellyfish))
 #' res
-search_jellyfish <- function(current, index, tries, max.tries = Inf, min.tries = 1, ...) {
+search_jellyfish <- function(current, index, tries, max.tries = 50, ...) {
   rcd_env <- parent.frame(n = 4)
   if (is.null(rcd_env[["record"]])) rcd_env <- parent.frame(n = 1)
   best_jelly <- current[[attr(current, "best_id")]]
-  current_idx <- index(best_jelly)
+  current_idx <- sapply(current, index)
 
   c_t = abs((1 - tries / max.tries) * (2 * runif(1) - 1))
 
@@ -26,7 +26,7 @@ search_jellyfish <- function(current, index, tries, max.tries = Inf, min.tries =
   } else if (runif(1) > (1 - c_t)) {
     # type A passive
     target = lapply(current, function(x) {
-      orthonormalise(x + 0.1 * runif(1) * 2)
+      orthonormalise(x + 0.1 * runif(1))
     }) # eq 12
   } else {
     # type B active
@@ -47,8 +47,13 @@ search_jellyfish <- function(current, index, tries, max.tries = Inf, min.tries =
   target <- purrr::map2(current, target, correct_orientation)
   target_idx <- sapply(target, index)
 
+  # if the target is worse than current, use current
+  worse_id <- current_idx > target_idx
+  target[worse_id] <- current[worse_id]
+  target_idx[worse_id] <- current_idx[worse_id]
+
   best_id <- which.max(target_idx)
-  message("Target: ", sprintf("%.3f", max(target_idx)))
+  #message("Target: ", sprintf("%.3f", max(target_idx)))
   attr(target, "best_id") <- best_id
   class(target) <- c("multi-bases", class(target))
 
@@ -63,9 +68,7 @@ search_jellyfish <- function(current, index, tries, max.tries = Inf, min.tries =
     info = ifelse(tries == max(tries) & loop == best_id, "current_best", info)
   )
 
-
-  if (abs(max(target_idx) - current_idx) < 0.05  &&
-      tries >= max.tries) {
+  if (tries >= max.tries) {
     print_final_proj(target[[attr(target, "best_id")]])
     rcd_env[["record"]] <- dplyr::mutate(
       rcd_env[["record"]],

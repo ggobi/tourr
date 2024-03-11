@@ -4,7 +4,7 @@
 \alias{search_jellyfish}
 \title{An jellyfish optimisers for the projection pursuit guided tour}
 \usage{
-search_jellyfish(current, index, tries, max.tries = Inf, ...)
+search_jellyfish(current, index, tries, max.tries = Inf, min.tries = 30, ...)
 }
 \arguments{
 \item{current}{starting projection, a list of basis of class "multi-bases"}
@@ -13,7 +13,7 @@ search_jellyfish(current, index, tries, max.tries = Inf, ...)
 
 \item{tries}{the counter of the outer loop of the opotimiser}
 
-\item{max.tries}{maximum number of iteration before giving up}
+\item{max.tries, min.tries}{the maximum/minimum number of iteration before giving up}
 
 \item{...}{other arguments being passed into the \code{search_jellyfish()}}
 }

@@ -42,9 +42,9 @@
 #' f <- flea_std[, 1:3]
 #' tries <- replicate(5, save_history(f, guided_tour(holes())), simplify = FALSE)
 #' }
-guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
-                        max.i = Inf, search_f = search_geodesic, n_jellies = 30,
-                        n_sample = 100, ...) {
+guided_tour <- function(index_f, d = 2, cooling = 0.99, max.tries = 25,
+                        max.i = Inf, search_f = search_geodesic,
+                        n_jellies = 30, n_sample = 100, alpha = 0.5,...) {
   generator <- function(current, data, tries, ...) {
     index <- function(proj) {
       index_f(as.matrix(data) %*% proj)
@@ -123,8 +123,9 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
     }
 
     # current, alpha = 1, index, max.tries = 5, n = 5, delta = 0.01, cur_index = NA, ..
-    basis <- search_f(current, alpha, index = index, tries = tries, max.tries = max.tries,
-                      cur_index = cur_index, frozen = frozen, n_sample = n_sample, ...)
+    basis <- search_f(
+      current, alpha = alpha, index = index, tries = tries, max.tries = max.tries,
+      cur_index = cur_index, frozen = frozen, n_sample = n_sample, ...)
 
     if (method == "search_posse") {
       if (!is.null(basis$h)) {
