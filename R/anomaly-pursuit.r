@@ -6,10 +6,10 @@
 #' @export
 anomaly_index <- function() {
 
-  function(mat, ell2d) {
+  function(mat, ell2d, ellmu2d) {
 
     mat_tab <- #mean(mahal_dist(mat, ell2d))
-      mean(mahalanobis(mat, center=c(0,0), cov=ell2d))
+      mean(mahalanobis(mat, center=ellmu2d, cov=ell2d))
   }
 }
 

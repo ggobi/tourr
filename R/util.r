@@ -136,6 +136,7 @@ mapColors <- function(x, palette) {
 #' Map vector of factors to pch
 #'
 #' @param x vector
+#' @param shapeset vector of integers indicating point shapes
 #' @export
 mapShapes <- function(x, shapeset) {
   n <- length(unique(x))

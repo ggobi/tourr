@@ -17,14 +17,17 @@
 #' @param obs_labels vector of text labels to display
 #' @param ellipse pxp variance-covariance matrix defining ellipse, default NULL. Useful for
 #'        comparing data with some null hypothesis
-#' @param ellsize This can be considered the equivalent of a critical value, used to
+#' @param ellc This can be considered the equivalent of a critical value, used to
 #'        scale the ellipse larger or smaller to capture more or fewer anomalies. Default 3.
+#' @param ellmu This is the centre of the ellipse corresponding to the mean of the
+#'        normal population. Default vector of 0's
 #' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
 #' @param shapeset numbers corresponding to shapes in base R points, to use for mapping
 #'        categorical variable to shapes, default=c(15:17, 23:25)
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
 #' @importFrom graphics legend
+#' @importFrom stats mahalanobis qchisq
 #' @export
 #' @examples
 #' animate_xy(flea[, 1:6])
@@ -68,7 +71,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
                        col = "black", pch = 20, cex = 1,
                        edges = NULL, edges.col = "black", edges.width=1,
                        obs_labels = NULL,
-                       ellipse = NULL, ellsize = 3,
+                       ellipse = NULL, ellc = NULL, ellmu = NULL,
                        palette="Zissou 1", shapeset=c(15:17, 23:25), ...) {
   # Needed for CRAN checks
   labels <- NULL
@@ -154,19 +157,37 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
     if (!is.null(ellipse)) {
       if (nrow(ellipse) == nrow(proj)) {
 
+        if (is.null(ellc))
+          ellc <- qchisq(0.95, nrow(proj))
+        else
+          stopifnot(ellc > 0) # Needs to be positive
+        if (is.null(ellmu))
+          ellmu <- rep(0, nrow(proj))
+        else
+          stopifnot(length(ellmu) == nrow(proj)) # Right dimension
+        message("Using ellc = ", format(ellc, digits = 2))
+
         # Project ellipse into 2D
         # Notation in paper: ellipse=A, ellinv=A^(-1),
         #                    e2=P^TA^(-1)P, ell2d=B
-        evc <- eigen(ellipse*ellsize)
+        # ellipse=var-cov of normal pop
+        # ellinv for defining pD ellipse, for dist calc
+        # e2 is projected var-cov
+        # ell2d is B, used to project ellipse points
+        evc <- eigen(ellipse) #
         ellinv <- (evc$vectors) %*% diag(evc$values) %*% t(evc$vectors)
-        e2 <- t(proj) %*% ellinv %*% proj
+        e2 <- t(proj) %*% ellipse %*% proj
         evc2 <- eigen(e2)
-        ell2d <- (evc2$vectors) %*% sqrt(diag(evc2$values)) %*% t(evc2$vectors)
-        e3 <- eigen(ell2d)
-        ell2dinv <- (e3$vectors) %*% diag(e3$values) %*% t(e3$vectors)
+        ell2d <- (evc2$vectors) %*% sqrt(diag(evc2$values*ellc)) %*% t(evc2$vectors)
+        #e3 <- eigen(ell2d)
+        #ell2dinv <- (e3$vectors) %*% diag(e3$values) %*% t(e3$vectors)
+
 
         # Compute the points on an ellipse
+        # Generate points on a circle
         sph <- geozoo::sphere.hollow(2, 200)$points
+        # Organise so lines connecting consecutive
+        # points creates the circle
         sph <- sph[order(sph[,2]),]
         sph1 <- sph[sph[,2]>=0,]
         sph2 <- sph[sph[,2]<0,]
@@ -174,16 +195,23 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
         sph2 <- sph2[order(sph2[,1], decreasing=T),]
         sph <- rbind(sph1, sph2)
         sph <- rbind(sph, sph[1,])
-        sph2d <- sph%*%ell2dinv/half_range
+
+        # Transform circle points into an ellipse
+        sph2d <- sph%*%ell2d
+        # Centre on the given mean
+        ellmu2d <- t(as.matrix(ellmu)) %*% proj
+        sph2d <- sweep(sph2d, 2, ellmu2d, `+`)
+        # Scale ellipse into plot space
+        sph2d <- sph2d/half_range
 
         lines(sph2d)
 
         # Colour points outside the pD ellipse
         mdst <- mahalanobis(data,
-                            center=rep(0, ncol(data)),
+                            center=ellmu,
                             cov=ellipse)
         #mdst <- mahal_dist(data, ellipse)
-        anomalies <- which(mdst > ellsize)
+        anomalies <- which(mdst > ellc)
         points(x[anomalies,],
                col = "red",
                pch = 4,

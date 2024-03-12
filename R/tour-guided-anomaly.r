@@ -19,19 +19,22 @@
 #' @param max.i the maximum index value, stop search if a larger value is found
 #' @param ellipse pxp variance-covariance matrix defining ellipse, default NULL.
 #'        Useful for comparing data with some hypothesized null.
-#' @param ellsize This can be considered the equivalent of a critical value, used to
+#' @param ellc This can be considered the equivalent of a critical value, used to
 #'        scale the ellipse larger or smaller to capture more or fewer anomalies. Default 3.
+#' @param ellmu This is the centre of the ellipse corresponding to the mean of the
+#'        normal population. Default vector of 0's
 #' @param ... arguments sent to the search_f
 #' @seealso \code{\link{slice_index}} for an example of an index functions.
 #' \code{\link{search_geodesic}}, \code{\link{search_better}},
 #'   \code{\link{search_better_random}} for different search strategies
+#' @importFrom stats mahalanobis qchisq
 #' @export
 #' @examples
 #' animate_xy(flea[, 1:6], guided_anomaly_tour(anomaly_index(),
 #'   ellipse=cov(flea[,1:6])), ellipse=cov(flea[,1:6]), axes="off")
 guided_anomaly_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
                                 max.tries = 25, max.i = Inf,
-                                ellipse, ellsize=3,
+                                ellipse, ellc=NULL, ellmu=NULL,
                                 search_f = search_geodesic, ...) {
   h <- NULL
 
@@ -45,22 +48,44 @@ guided_anomaly_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
     }
 
     index <- function(proj) {
-      # Check which observations are outside pD ellipse
-      mdst <- mahalanobis(data,
-                          center=rep(0, ncol(data)),
-                          cov=ellipse)
+      if (nrow(ellipse) == nrow(proj)) {
+
+        if (is.null(ellc))
+          ellc <- qchisq(0.95, nrow(proj))
+        else
+          stopifnot(ellc > 0) # Needs to be positive
+        if (is.null(ellmu))
+          ellmu <- rep(0, nrow(proj))
+        else
+          stopifnot(length(ellmu) == nrow(proj)) # Right dimension
+        message("Using ellc = ", format(ellc, digits = 2))
+
+        # Check which observations are outside pD ellipse
+        mdst <- mahalanobis(data,
+                            center=ellmu,
+                            cov=ellipse)
       #mdst <- mahal_dist(data, ellipse)
-      anomalies <- which(mdst > ellsize)
-      stopifnot(length(anomalies) > 0)
-      # Project ellipse into 2D
-      evc <- eigen(ellipse)
-      ellinv <- (evc$vectors) %*% diag(evc$values) %*% t(evc$vectors)
-      e2 <- t(proj) %*% ellinv %*% proj
-      evc2 <- eigen(e2)
-      ell2d <- (evc2$vectors) %*% diag(sqrt(evc2$values)) %*% t(evc2$vectors)
-      e3 <- eigen(ell2d)
-      ell2dinv <- (e3$vectors) %*% diag(e3$values) %*% t(e3$vectors)
-      index_f(as.matrix(data[anomalies,]) %*% proj, ell2dinv)
+        anomalies <- which(mdst > ellc)
+        stopifnot(length(anomalies) > 0)
+
+        # Project ellipse into 2D
+        evc <- eigen(ellipse) #
+        ellinv <- (evc$vectors) %*% diag(evc$values) %*% t(evc$vectors)
+        e2 <- t(proj) %*% ellipse %*% proj
+        evc2 <- eigen(e2)
+        ell2d <- (evc2$vectors) %*% sqrt(diag(evc2$values*ellc)) %*% t(evc2$vectors)
+
+        ell2dinv <- (evc2$vectors) %*% diag(evc2$values*ellc) %*% t(evc2$vectors)
+        ellmu2d <- t(as.matrix(ellmu)) %*% proj
+        #evc <- eigen(ellipse)
+        #ellinv <- (evc$vectors) %*% diag(evc$values) %*% t(evc$vectors)
+        #e2 <- t(proj) %*% ellinv %*% proj
+        #evc2 <- eigen(e2)
+        #ell2d <- (evc2$vectors) %*% diag(sqrt(evc2$values)) %*% t(evc2$vectors)
+        #e3 <- eigen(ell2d)
+        #ell2dinv <- (e3$vectors) %*% diag(e3$values) %*% t(e3$vectors)
+        index_f(as.matrix(data[anomalies,]) %*% proj, e2, ellmu2d)
+      }
     }
 
     cur_index <- index(current)
