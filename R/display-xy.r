@@ -227,10 +227,12 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
         #mdst <- mahal_dist(data, ellipse)
         anomalies <- which(mdst > ellc)
         #cat("1 ", length(anomalies), "\n")
-        points(x[anomalies,],
+        if (length(anomalies) > 0) {
+          points(x[anomalies,],
                col = "red",
                pch = 4,
                cex = 2)
+        }
       }
       else
         message("Check the variance-covariance matrix generating the ellipse\n")
