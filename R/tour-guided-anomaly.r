@@ -51,14 +51,14 @@ guided_anomaly_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
       if (nrow(ellipse) == nrow(proj)) {
 
         if (is.null(ellc))
-          ellc <- qchisq(0.95, nrow(proj))
+          ellc <<- qchisq(0.95, nrow(proj))
         else
           stopifnot(ellc > 0) # Needs to be positive
         if (is.null(ellmu))
-          ellmu <- rep(0, nrow(proj))
+          ellmu <<- rep(0, nrow(proj))
         else
           stopifnot(length(ellmu) == nrow(proj)) # Right dimension
-        message("Using ellc = ", format(ellc, digits = 2))
+        #message("Using ellc = ", format(ellc, digits = 2))
 
         # Check which observations are outside pD ellipse
         mdst <- mahalanobis(data,
@@ -67,13 +67,14 @@ guided_anomaly_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
       #mdst <- mahal_dist(data, ellipse)
         anomalies <- which(mdst > ellc)
         stopifnot(length(anomalies) > 0)
+        #cat(length(anomalies), "\n")
 
         # Project ellipse into 2D
         evc <- eigen(ellipse) #
-        ellinv <- (evc$vectors) %*% diag(evc$values) %*% t(evc$vectors)
+        ellinv <- (evc$vectors) %*% as.matrix(diag(evc$values)) %*% t(evc$vectors)
         e2 <- t(proj) %*% ellipse %*% proj
         evc2 <- eigen(e2)
-        ell2d <- (evc2$vectors) %*% sqrt(diag(evc2$values*ellc)) %*% t(evc2$vectors)
+        ell2d <- as.matrix(evc2$vectors) %*% diag(sqrt(evc2$values*ellc)) %*% t(as.matrix(evc2$vectors))
 
         ell2dinv <- (evc2$vectors) %*% diag(evc2$values*ellc) %*% t(evc2$vectors)
         ellmu2d <- t(as.matrix(ellmu)) %*% proj

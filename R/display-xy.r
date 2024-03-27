@@ -97,6 +97,21 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)
     labels <<- abbreviate(colnames(data), 3)
+
+    if (!is.null(ellipse)) {
+      if (nrow(ellipse) == ncol(data)) {
+
+        if (is.null(ellc))
+          ellc <<- qchisq(0.95, ncol(data))
+        else
+          stopifnot(ellc > 0) # Needs to be positive
+        if (is.null(ellmu))
+          ellmu <<- rep(0, ncol(data))
+        else
+          stopifnot(length(ellmu) == ncol(data)) # Right dimension
+        message("Using ellc = ", format(ellc, digits = 2))
+      }
+    }
   }
 
   if (!is.null(edges)) {
@@ -157,15 +172,15 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
     if (!is.null(ellipse)) {
       if (nrow(ellipse) == nrow(proj)) {
 
-        if (is.null(ellc))
-          ellc <- qchisq(0.95, nrow(proj))
-        else
-          stopifnot(ellc > 0) # Needs to be positive
-        if (is.null(ellmu))
-          ellmu <- rep(0, nrow(proj))
-        else
-          stopifnot(length(ellmu) == nrow(proj)) # Right dimension
-        message("Using ellc = ", format(ellc, digits = 2))
+      #  if (is.null(ellc))
+      #    ellc <- qchisq(0.95, nrow(proj))
+      #  else
+      #    stopifnot(ellc > 0) # Needs to be positive
+      #  if (is.null(ellmu))
+      #    ellmu <- rep(0, nrow(proj))
+      #  else
+      #    stopifnot(length(ellmu) == nrow(proj)) # Right dimension
+      #  message("Using ellc = ", format(ellc, digits = 2))
 
         # Project ellipse into 2D
         # Notation in paper: ellipse=A, ellinv=A^(-1),
@@ -178,10 +193,9 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
         ellinv <- (evc$vectors) %*% diag(evc$values) %*% t(evc$vectors)
         e2 <- t(proj) %*% ellipse %*% proj
         evc2 <- eigen(e2)
-        ell2d <- (evc2$vectors) %*% sqrt(diag(evc2$values*ellc)) %*% t(evc2$vectors)
+        ell2d <- as.matrix((evc2$vectors)) %*% diag(sqrt(evc2$values*ellc)) %*% t(as.matrix(evc2$vectors))
         #e3 <- eigen(ell2d)
         #ell2dinv <- (e3$vectors) %*% diag(e3$values) %*% t(e3$vectors)
-
 
         # Compute the points on an ellipse
         # Generate points on a circle
@@ -212,6 +226,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
                             cov=ellipse)
         #mdst <- mahal_dist(data, ellipse)
         anomalies <- which(mdst > ellc)
+        #cat("1 ", length(anomalies), "\n")
         points(x[anomalies,],
                col = "red",
                pch = 4,
