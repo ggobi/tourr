@@ -18,6 +18,7 @@ display_groupxy(
   group_by = NULL,
   plot_xgp = TRUE,
   palette = "Zissou 1",
+  shapeset = c(15:17, 23:25),
   ...
 )
 
@@ -50,6 +51,9 @@ If not set, defaults to maximum distance from origin to each row of data.}
 \item{plot_xgp}{if TRUE, plots points from other groups in light grey}
 
 \item{palette}{name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"}
+
+\item{shapeset}{numbers corresponding to shapes in base R points, to use for mapping
+categorical variable to shapes, default=c(15:17, 23:25)}
 
 \item{...}{other arguments passed on to \code{\link{animate}} and
 \code{\link{display_groupxy}}}

@@ -4,10 +4,12 @@
 \alias{mapShapes}
 \title{Map vector of factors to pch}
 \usage{
-mapShapes(x)
+mapShapes(x, shapeset)
 }
 \arguments{
 \item{x}{vector}
+
+\item{shapeset}{vector of integers indicating point shapes}
 }
 \description{
 Map vector of factors to pch

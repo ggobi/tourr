@@ -18,7 +18,7 @@ guided_section_tour(
 )
 }
 \arguments{
-\item{index_f}{the section purusit index function to optimise. The function
+\item{index_f}{the section pursuit index function to optimise. The function
 needs to take three arguments, the projected data, the vector of distances
 from the current projection plane, and the slice thickness h.}
 
@@ -35,7 +35,7 @@ a better projection before giving up}
 \item{max.i}{the maximum index value, stop search if a larger value is found}
 
 \item{v_rel}{relative volume of the slice. If not set, suggested value
-is caluclated and printed to the screen.}
+is calculated and printed to the screen.}
 
 \item{anchor}{A vector specifying the reference point to anchor the slice.
 If NULL (default) the slice will be anchored at the data center.}

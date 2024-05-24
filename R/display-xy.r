@@ -13,12 +13,21 @@
 #' @param pch shape of the point to be plotted, can be a factor or integer.  Defaults to 20.
 #' @param cex size of the point to be plotted.  Defaults to 1.
 #' @param edges.col colour of edges to be plotted, Defaults to "black"
-#' @param obs_labels vector of text labels to display
 #' @param edges.width line width for edges, default 1
+#' @param obs_labels vector of text labels to display
+#' @param ellipse pxp variance-covariance matrix defining ellipse, default NULL. Useful for
+#'        comparing data with some null hypothesis
+#' @param ellc This can be considered the equivalent of a critical value, used to
+#'        scale the ellipse larger or smaller to capture more or fewer anomalies. Default 3.
+#' @param ellmu This is the centre of the ellipse corresponding to the mean of the
+#'        normal population. Default vector of 0's
 #' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
+#' @param shapeset numbers corresponding to shapes in base R points, to use for mapping
+#'        categorical variable to shapes, default=c(15:17, 23:25)
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
 #' @importFrom graphics legend
+#' @importFrom stats mahalanobis qchisq
 #' @export
 #' @examples
 #' animate_xy(flea[, 1:6])
@@ -56,10 +65,14 @@
 #'   flea[, 1:6], grand_tour(),
 #'   display_xy(axes = "bottomleft", edges = edges)
 #' )
+#' # An ellipse can be drawn on the data using a specified var-cov
+#' animate_xy(flea[, 1:6], axes = "off", ellipse=cov(flea[,1:6]))
 display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
                        col = "black", pch = 20, cex = 1,
                        edges = NULL, edges.col = "black", edges.width=1,
-                       obs_labels = NULL, palette="Zissou 1", ...) {
+                       obs_labels = NULL,
+                       ellipse = NULL, ellc = NULL, ellmu = NULL,
+                       palette="Zissou 1", shapeset=c(15:17, 23:25), ...) {
   # Needed for CRAN checks
   labels <- NULL
   gps <- NULL
@@ -76,7 +89,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
   }
   # If shapes are a variable, convert shapes
   if (is.factor(pch)) {
-    shapes <- mapShapes(pch)
+    shapes <- mapShapes(pch, shapeset)
   } else {
     shapes <- pch
   }
@@ -84,6 +97,21 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
   init <- function(data) {
     half_range <<- compute_half_range(half_range, data, center)
     labels <<- abbreviate(colnames(data), 3)
+
+    if (!is.null(ellipse)) {
+      if (nrow(ellipse) == ncol(data)) {
+
+        if (is.null(ellc))
+          ellc <<- qchisq(0.95, ncol(data))
+        else
+          stopifnot(ellc > 0) # Needs to be positive
+        if (is.null(ellmu))
+          ellmu <<- rep(0, ncol(data))
+        else
+          stopifnot(length(ellmu) == ncol(data)) # Right dimension
+        message("Using ellc = ", format(ellc, digits = 2))
+      }
+    }
   }
 
   if (!is.null(edges)) {
@@ -140,7 +168,75 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
     # Add index value if using guided tour
     #if (!is.na(cur_index))
     #  text(0, 0, labels=round(cur_index, 2))
+    # Draw a pre-determined ellipse on the data
+    if (!is.null(ellipse)) {
+      if (nrow(ellipse) == nrow(proj)) {
 
+      #  if (is.null(ellc))
+      #    ellc <- qchisq(0.95, nrow(proj))
+      #  else
+      #    stopifnot(ellc > 0) # Needs to be positive
+      #  if (is.null(ellmu))
+      #    ellmu <- rep(0, nrow(proj))
+      #  else
+      #    stopifnot(length(ellmu) == nrow(proj)) # Right dimension
+      #  message("Using ellc = ", format(ellc, digits = 2))
+
+        # Project ellipse into 2D
+        # Notation in paper: ellipse=A, ellinv=A^(-1),
+        #                    e2=P^TA^(-1)P, ell2d=B
+        # ellipse=var-cov of normal pop
+        # ellinv for defining pD ellipse, for dist calc
+        # e2 is projected var-cov
+        # ell2d is B, used to project ellipse points
+        evc <- eigen(ellipse) #
+        ellinv <- (evc$vectors) %*% diag(evc$values) %*% t(evc$vectors)
+        e2 <- t(proj) %*% ellipse %*% proj
+        evc2 <- eigen(e2)
+        ell2d <- as.matrix((evc2$vectors)) %*% diag(sqrt(evc2$values*ellc)) %*% t(as.matrix(evc2$vectors))
+        #e3 <- eigen(ell2d)
+        #ell2dinv <- (e3$vectors) %*% diag(e3$values) %*% t(e3$vectors)
+
+        # Compute the points on an ellipse
+        # Generate points on a circle
+        sph <- geozoo::sphere.hollow(2, 200)$points
+        # Organise so lines connecting consecutive
+        # points creates the circle
+        sph <- sph[order(sph[,2]),]
+        sph1 <- sph[sph[,2]>=0,]
+        sph2 <- sph[sph[,2]<0,]
+        sph1 <- sph1[order(sph1[,1]),]
+        sph2 <- sph2[order(sph2[,1], decreasing=T),]
+        sph <- rbind(sph1, sph2)
+        sph <- rbind(sph, sph[1,])
+
+        # Transform circle points into an ellipse
+        sph2d <- sph%*%ell2d
+        # Centre on the given mean
+        ellmu2d <- t(as.matrix(ellmu)) %*% proj
+        sph2d <- sweep(sph2d, 2, ellmu2d, `+`)
+        # Scale ellipse into plot space
+        sph2d <- sph2d/half_range
+
+        lines(sph2d)
+
+        # Colour points outside the pD ellipse
+        mdst <- mahalanobis(data,
+                            center=ellmu,
+                            cov=ellipse)
+        #mdst <- mahal_dist(data, ellipse)
+        anomalies <- which(mdst > ellc)
+        #cat("1 ", length(anomalies), "\n")
+        if (length(anomalies) > 0) {
+          points(x[anomalies,],
+               col = "red",
+               pch = 4,
+               cex = 2)
+        }
+      }
+      else
+        message("Check the variance-covariance matrix generating the ellipse\n")
+    }
   }
 
   list(
@@ -168,6 +264,9 @@ animate_xy <- function(data, tour_path = grand_tour(), ...) {
 #'   projected data, default 1
 #' @param position position of the axes: center (default),
 #'   bottomleft or off
+#' @param axis.col colour of axes, default "grey50"
+#' @param axis.lwd linewidth of axes, default 1
+#' @param axis.text.col colour of axes text, default "grey50"
 #' @param ...  other arguments passed
 #' @export
 #' @examples
@@ -185,7 +284,8 @@ animate_xy <- function(data, tour_path = grand_tour(), ...) {
 #'      xlim = c(-3, 3), ylim = c(-3, 3),
 #'      xlab="P1", ylab="P2")
 #' draw_tour_axes(prj, colnames(flea)[1:6], limits=3, position="bottomleft")
-draw_tour_axes <- function(proj, labels, limits=1, position="center", ...) {
+draw_tour_axes <- function(proj, labels, limits=1, position="center",
+                           axis.col= "grey50", axis.lwd=1, axis.text.col= "grey50", ...) {
   position <- match.arg(position, c("center", "bottomleft", "off"))
   if (position == "off") {
     return()
@@ -201,13 +301,16 @@ draw_tour_axes <- function(proj, labels, limits=1, position="center", ...) {
 
   adj <- function(x) axis_pos + x * axis_scale
 
-  segments(adj(0), adj(0), adj(proj[, 1]), adj(proj[, 2]), col = "grey50")
+  segments(adj(0), adj(0), adj(proj[, 1]), adj(proj[, 2]),
+           col = axis.col, lwd = axis.lwd)
 #  if (!is.null(mvar)) { # colour manip var
 #    if ((mvar < (nrow(proj)+1)) & (mvar > 0)) {
 #      segments(adj(0), adj(0), adj(proj[, 1]), adj(proj[, 2]), col = "orange")
 #    }
 #  }
   theta <- seq(0, 2 * pi, length = 50)
-  lines(adj(cos(theta)), adj(sin(theta)), col = "grey50")
-  text(adj(proj[, 1]), adj(proj[, 2]), label = labels, col = "grey50")
+  lines(adj(cos(theta)), adj(sin(theta)),
+        col = axis.col, lwd = axis.lwd)
+  text(adj(proj[, 1]), adj(proj[, 2]), label = labels,
+       col = axis.text.col)
 }

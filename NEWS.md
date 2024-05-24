@@ -1,3 +1,17 @@
+# tourr 1.2.0 
+
+* major change: rescale is now FALSE by default.
+* flea is now standardised measurements, and flea_raw is the original units.
+* TeachingDemos removed as a Suggests, and replaced with aplpack for drawing Chernoff faces.
+* addition of a pre-specified ellipse can be added to the 2D display.
+* palette can now be a vector of values.
+* a new projection pursuit index for finding anomalies relative to a null variance-covariance matrix. May still need more work.
+* point shapes can now be specified like palettes
+
+# tourr 1.1.0 
+
+* Updated version to indicate some nice new additions for the package
+
 # tourr 1.0.2
 
 * Fix to duplicating bases during interpolate

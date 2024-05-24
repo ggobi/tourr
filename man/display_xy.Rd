@@ -16,7 +16,11 @@ display_xy(
   edges.col = "black",
   edges.width = 1,
   obs_labels = NULL,
+  ellipse = NULL,
+  ellc = NULL,
+  ellmu = NULL,
   palette = "Zissou 1",
+  shapeset = c(15:17, 23:25),
   ...
 )
 
@@ -46,7 +50,19 @@ If not set, defaults to maximum distance from origin to each row of data.}
 
 \item{obs_labels}{vector of text labels to display}
 
+\item{ellipse}{pxp variance-covariance matrix defining ellipse, default NULL. Useful for
+comparing data with some null hypothesis}
+
+\item{ellc}{This can be considered the equivalent of a critical value, used to
+scale the ellipse larger or smaller to capture more or fewer anomalies. Default 3.}
+
+\item{ellmu}{This is the centre of the ellipse corresponding to the mean of the
+normal population. Default vector of 0's}
+
 \item{palette}{name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"}
+
+\item{shapeset}{numbers corresponding to shapes in base R points, to use for mapping
+categorical variable to shapes, default=c(15:17, 23:25)}
 
 \item{...}{other arguments passed on to \code{\link{animate}} and
 \code{\link{display_xy}}}
@@ -94,4 +110,6 @@ animate(
   flea[, 1:6], grand_tour(),
   display_xy(axes = "bottomleft", edges = edges)
 )
+# An ellipse can be drawn on the data using a specified var-cov
+animate_xy(flea[, 1:6], axes = "off", ellipse=cov(flea[,1:6]))
 }
