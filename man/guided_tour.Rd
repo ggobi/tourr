@@ -7,13 +7,13 @@
 guided_tour(
   index_f,
   d = 2,
-  alpha = 0.5,
   cooling = 0.99,
   max.tries = 25,
   max.i = Inf,
   search_f = search_geodesic,
   n_jellies = 30,
   n_sample = 100,
+  alpha = 0.5,
   ...
 )
 }
@@ -21,8 +21,6 @@ guided_tour(
 \item{index_f}{the index function to optimise.}
 
 \item{d}{target dimensionality}
-
-\item{alpha}{the initial size of the search window, in radians}
 
 \item{cooling}{the amount the size of the search window should be adjusted
 by after each step}
@@ -36,6 +34,8 @@ a better projection before giving up}
 \code{\link{search_better_random}}, \code{\link{search_polish}}. Default is \code{\link{search_geodesic}}.}
 
 \item{n_sample}{number of samples to generate if \code{search_f} is \code{\link{search_polish}}}
+
+\item{alpha}{the initial size of the search window, in radians}
 
 \item{...}{arguments sent to the search_f}
 }
