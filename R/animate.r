@@ -73,9 +73,11 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
   bases <- array(NA, c(ncol(data), ncol(start$target), bs))
 
   # Initialise display
-  display$init(data)
-  display$render_frame()
-  display$render_data(data, start$proj)
+  if (!is.null(start$target)){
+    display$init(data)
+    display$render_frame()
+    display$render_data(data, start$proj)
+  }
 
   b <- 0
   i <- 0
@@ -93,19 +95,23 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
             bs <- 2 * bs
           }
           bases[, , b] <- step$target
+        } else if (is.null(step$proj)){
+          break
         }
 
-        dev.hold()
-        on.exit(dev.flush())
-        if (plat$os == "win" || plat$iface == "rstudio") {
-          display$render_frame()
-        } else {
-          display$render_transition()
+        if (!is.null(start$target)){
+          dev.hold()
+          on.exit(dev.flush())
+          if (plat$os == "win" || plat$iface == "rstudio") {
+            display$render_frame()
+          } else {
+            display$render_transition()
+          }
+          display$render_data(data, step$proj, step$target)
+          dev.flush()
+          if (step$step < 0) break # break after rendering final projection
+          Sys.sleep(1 / fps)
         }
-        display$render_data(data, step$proj, step$target)
-        dev.flush()
-        if (step$step < 0) break # break after rendering final projection
-        Sys.sleep(1 / fps)
       }
     },
     interrupt = function(cond) {
