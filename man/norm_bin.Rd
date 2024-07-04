@@ -14,10 +14,10 @@ norm_kol(nr)
 }
 \description{
 Compares the similarity between the projected distribution and a normal distribution.
-}
-\details{
+\itemize{
 \item norm_bin: compares the count in 100 histogram bins
 \item norm_kol: compares the cdf based on the Kolmogorov–Smirnov test (KS test)
+}
 }
 \examples{
 # manually compute the norm_kol index
