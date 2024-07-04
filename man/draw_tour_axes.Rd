@@ -4,7 +4,17 @@
 \alias{draw_tour_axes}
 \title{Draw tour axes on the projected data with base graphics}
 \usage{
-draw_tour_axes(proj, labels, limits = 1, position = "center", ...)
+draw_tour_axes(
+  proj,
+  labels,
+  limits = 1,
+  position = "center",
+  axis.col = "grey50",
+  axis.lwd = 1,
+  axis.text.col = "grey50",
+  longlabels,
+  ...
+)
 }
 \arguments{
 \item{proj}{matrix of projection coefficients}
@@ -17,6 +27,14 @@ projected data, default 1}
 
 \item{position}{position of the axes: center (default),
 bottomleft or off}
+
+\item{axis.col}{colour of axes, default "grey50"}
+
+\item{axis.lwd}{linewidth of axes, default 1}
+
+\item{axis.text.col}{colour of axes text, default "grey50"}
+
+\item{longlabels}{text labels only for the long axes in a projection, default FALSE}
 
 \item{...}{other arguments passed}
 }
@@ -38,4 +56,5 @@ plot(flea_prj$V1, flea_prj$V2,
      xlim = c(-3, 3), ylim = c(-3, 3),
      xlab="P1", ylab="P2")
 draw_tour_axes(prj, colnames(flea)[1:6], limits=3, position="bottomleft")
+draw_tour_axes(prj, colnames(flea)[1:6], axislablong=TRUE)
 }

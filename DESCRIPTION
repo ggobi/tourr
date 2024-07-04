@@ -1,6 +1,6 @@
 Package: tourr
 Title: Tour Methods for Multivariate Data Visualisation
-Version: 1.1.0
+Version: 1.2.1
 Authors@R: c(
     person("Hadley", "Wickham", email = "h.wickham@gmail.com", role = c("aut", "ctb"), comment = c(ORCID = "0000-0003-4757-117X")),
     person("Dianne", "Cook", email = "dicook@monash.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-3813-7155")),
@@ -21,7 +21,7 @@ Imports:
     utils,
     grDevices
 Suggests:
-    TeachingDemos,
+    aplpack,
     ash,
     energy,
     testthat,
@@ -39,6 +39,6 @@ License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/ggobi/tourr, https://ggobi.github.io/tourr/
 BugReports: https://github.com/ggobi/tourr/issues
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Encoding: UTF-8
 VignetteBuilder: knitr

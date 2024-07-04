@@ -14,19 +14,19 @@
 #' # The drawing code is fairly slow, so this animation works best with a
 #' # limited number of cases
 #' flea_s <- rescale(flea[,1:6])
-#' animate_faces(flea_s[1:2, 1:6])
-#' animate_faces(flea_s[1:4, 1:6])
+#' animate_faces(flea_s[19:24, 1:6])
 #'
-#' animate_faces(flea_s[1:2, 1:6], grand_tour(5))
+#' animate_faces(flea_s[19:24, 1:6], grand_tour(5))
 display_faces <- function(...) {
-  if (!requireNamespace("TeachingDemos", quietly = TRUE)) {
-    stop("Please install the TeachingDemos package", call. = FALSE)
+  if (!requireNamespace("aplpack", quietly = TRUE)) {
+    stop("Please install the aplpack package", call. = FALSE)
   }
 
   render_data <- function(data, proj, geodesic) {
     x <- data %*% proj
     x <- (x + 2) / 4
-    TeachingDemos::faces2(x, scale = "none")
+    aplpack::faces(x, scale = TRUE, face.type = 0,
+                   cex = 0.1, print.info = FALSE)
   }
 
   list(

@@ -122,16 +122,25 @@ areColors <- function(x) {
 #' @export
 mapColors <- function(x, palette) {
   n <- length(unique(x))
-  pal <- grDevices::hcl.colors(n, palette=palette)
+  # Handle manual colour setting
+  if (length(palette) > 1) {
+    stopifnot(length(palette) == n)
+    pal <- palette
+  }
+  else {
+    pal <- grDevices::hcl.colors(n, palette=palette)
+  }
   pal[as.numeric(as.factor(x))]
 }
 
 #' Map vector of factors to pch
 #'
 #' @param x vector
+#' @param shapeset vector of integers indicating point shapes
 #' @export
-mapShapes <- function(x) {
+mapShapes <- function(x, shapeset) {
   n <- length(unique(x))
-  shapes <- c(15:17, 23:25)
+  stopifnot(length(shapeset) >= n)
+  shapes <- shapeset
   shapes[as.numeric(x)]
 }

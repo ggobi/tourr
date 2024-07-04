@@ -20,6 +20,9 @@
 #' @param edges.col colour of edges to be plotted, Defaults to "black"
 #' @param edges.width line width for edges, default 1
 #' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
+#' @param shapeset numbers corresponding to shapes in base R points, to use for mapping
+#'        categorical variable to shapes, default=c(15:17, 23:25)
+#' @param axislablong text labels only for the long axes in a projection, default FALSE
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_groupxy}}
 #' @export
@@ -39,7 +42,8 @@ display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
                             col = "black", pch = 20, cex = 1,
                             edges = NULL, edges.col = "black", edges.width=1,
                             group_by = NULL, plot_xgp = TRUE,
-                            palette = "Zissou 1", ...) {
+                            palette = "Zissou 1", shapeset=c(15:17, 23:25),
+                            axislablong = FALSE, ...) {
   labels <- NULL
 
   # If colors are a variable, convert to colors
@@ -53,7 +57,7 @@ display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
   }
   # If shapes are a variable, convert shapes
   if (is.factor(pch)) {
-    shapes <- mapShapes(pch)
+    shapes <- mapShapes(pch, shapeset)
   } else {
     shapes <- pch
   }
@@ -93,7 +97,7 @@ display_groupxy <- function(centr = TRUE, axes = "center", half_range = NULL,
     x <- x / half_range
 
     blank_plot(xlim = c(-1, 1), ylim = c(-1, 1))
-    draw_tour_axes(proj, labels, limits = 1, axes)
+    draw_tour_axes(proj, labels, limits = 1, axes, longlabels=axislablong)
     # add a legend, only if a variable was used
     if (is.factor(gps)) {
       numcol <- unique(col)

@@ -18,6 +18,7 @@
 #' @param edges.col colour of edges to be plotted, Defaults to "black.
 #' @param rescale Default FALSE. If TRUE, rescale all variables to range [0,1].
 #' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
+#' @param axislablong text labels only for the long axes in a projection, default FALSE
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_slice}}
 #' @export
@@ -31,7 +32,8 @@ display_pca <- function(center = TRUE, axes = "center", half_range = NULL,
                         col = "black", pch = 20, cex = 1,
                         pc_coefs = NULL,
                         edges = NULL, edges.col = "black",
-                        palette = "Zissou 1", ...) {
+                        palette = "Zissou 1",
+                        axislablong = FALSE, ...) {
   labels <- NULL
 
   # If colors are a variable, convert to colors
@@ -63,7 +65,7 @@ display_pca <- function(center = TRUE, axes = "center", half_range = NULL,
   render_data <- function(data, proj, geodesic) {
     # Render axes
     pc_axes <- pc_coefs %*% proj
-    draw_tour_axes(pc_axes, labels, limits = 1, axes)
+    draw_tour_axes(pc_axes, labels, limits = 1, axes, longlabels=axislablong)
 
     # Render projected points
     x <- data %*% proj

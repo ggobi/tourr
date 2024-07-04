@@ -14,13 +14,14 @@
 #' @param past draw line between current projection and projection \code{past}
 #'   steps ago
 #' @param cex magnification of plotting text relative to default. Defaults to 1.
+#' @param axislablong text labels only for the long axes in a projection, default FALSE
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
 #' @export
 #' @examples
 #' animate_trails(flea[,1:6], col=flea$species)
 #'
-display_trails <- function(center = TRUE, axes = "center", half_range = NULL, col = "black", pch = 20, cex = 1, past = 3, ...) {
+display_trails <- function(center = TRUE, axes = "center", half_range = NULL, col = "black", pch = 20, cex = 1, past = 3, axislablong = FALSE, ...) {
 
   # Inherit most behaviour from display_xy.  This is a little hacky, but
   # the only way until tourr switch to a proper object system.
@@ -35,7 +36,7 @@ display_trails <- function(center = TRUE, axes = "center", half_range = NULL, co
 
   # Only difference is the display method
   render_data <- function(data, proj, geodesic) {
-    draw_tour_axes(proj, labels, 1, axes)
+    draw_tour_axes(proj, labels, 1, axes, longlabels=axislablong)
 
     x <- data %*% proj
     if (center) x <- center(x)
