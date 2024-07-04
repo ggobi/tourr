@@ -21,17 +21,17 @@ slice_index <- function(breaks_x, breaks_y, eps, bintype = "polar", power = 1, f
                         reweight = FALSE, p = 4) {
   if (reweight) {
     if (bintype != "polar") {
-      cat("Reweighting is only defined for polar binning and will be ignored.")
+      message("Reweighting is only defined for polar binning and will be ignored.")
     }
     else {
-      cat(paste0("Reweighting assuming p=", p))
+      message(paste0("Reweighting assuming p=", p))
     }
   }
 
   resc <- 1
   if (bintype == "polar") {
     resc <- 1 / (1 - (1 / 10)^(1 / power))^power
-    cat(paste0("Rescaling raw index by a factor ", resc))
+    message(paste0("Rescaling raw index by a factor ", resc))
   }
 
   function(mat, dists, h) {
@@ -133,7 +133,7 @@ slice_binning <- function(mat, dists, h, breaks_x, breaks_y, bintype = "square")
     ybin <- cut(ang, breaks_y)
   }
   else {
-    cat(bintype, " is not a recognised bin type\n")
+    message(bintype, " is not a recognised bin type")
     return(0)
   }
 

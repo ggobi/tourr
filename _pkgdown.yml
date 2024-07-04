@@ -52,6 +52,8 @@ reference:
   - slice_index
   - norm_bin
   - norm_kol
+  - stringy
+  - MIC
 - title: Search functions
   desc: >
     Functions for index optimisation in guided tour

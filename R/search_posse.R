@@ -31,7 +31,7 @@ search_posse <- function(current, alpha = 0.5, index, tries, max.tries = 300, cu
     )
 
     if (new_index > cur_index) {
-      cat("New", new_index, "try", try, "\n")
+      message("Target: ", sprintf("%.3f", new_index), ", try: ", try)
 
       nr <- nrow(rcd_env[["record"]])
       rcd_env[["record"]][nr, "info"] <- "new_basis"
@@ -44,24 +44,8 @@ search_posse <- function(current, alpha = 0.5, index, tries, max.tries = 300, cu
     try <- try + 1
   }
 
-  cat("No better bases found after ", max.tries, " tries.  Giving up.\n",
-    sep = ""
-  )
-  cat("Final projection: \n")
-  if (ncol(current) == 1) {
-    for (i in 1:length(current)) {
-      cat(sprintf("%.3f", current[i]), " ")
-    }
-    cat("\n")
-  }
-  else {
-    for (i in 1:nrow(current)) {
-      for (j in 1:ncol(current)) {
-        cat(sprintf("%.3f", current[i, j]), " ")
-      }
-      cat("\n")
-    }
-  }
+  message("No better bases found after ", max.tries, " tries.  Giving up.")
+  print_final_proj(current)
 
   NULL
 }

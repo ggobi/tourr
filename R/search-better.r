@@ -48,7 +48,6 @@ search_better <- function(current, alpha = 0.5, index, tries, max.tries = Inf,..
     warning("cur_index is zero!")
   }
 
-  cat("Old", cur_index, "\n")
   try <- 1
 
   while (try < max.tries) {
@@ -70,7 +69,7 @@ search_better <- function(current, alpha = 0.5, index, tries, max.tries = Inf,..
 
 
     if (new_index > cur_index) {
-      cat("New", new_index, "try", try, "\n")
+      message("Target: ", sprintf("%.3f", new_index), ", try: ", try)
 
       nr <- nrow(rcd_env[["record"]])
       rcd_env[["record"]][nr, "info"] <- "new_basis"
@@ -83,24 +82,8 @@ search_better <- function(current, alpha = 0.5, index, tries, max.tries = Inf,..
     try <- try + 1
   }
 
-  cat("No better bases found after ", max.tries, " tries.  Giving up.\n",
-    sep = ""
-  )
-  cat("Final projection: \n")
-  if (ncol(current) == 1) {
-    for (i in 1:length(current)) {
-      cat(sprintf("%.3f", current[i]), " ")
-    }
-    cat("\n")
-  }
-  else {
-    for (i in 1:nrow(current)) {
-      for (j in 1:ncol(current)) {
-        cat(sprintf("%.3f", current[i, j]), " ")
-      }
-      cat("\n")
-    }
-  }
+  message("No better bases found after ", max.tries, " tries.  Giving up.")
+  print_final_proj(current)
 
   rcd_env[["record"]] <- dplyr::mutate(
     rcd_env[["record"]],
@@ -139,8 +122,6 @@ search_better_random <- function(current, alpha = 0.5, index, tries,
   if (cur_index == 0) {
     warning("cur_index is zero!")
   }
-
-  cat("Old", cur_index, "\n")
   try <- 1
   while (try < max.tries) {
     new_basis <- basis_nearby(current, alpha, method)
@@ -160,8 +141,7 @@ search_better_random <- function(current, alpha = 0.5, index, tries,
     )
 
     if (new_index > cur_index) {
-      cat("New", new_index, "try", try, "\n")
-      cat("Accept \n")
+      message("Target: ", sprintf("%.3f", new_index), ", try: ", try, ", accept")
 
       nr <- nrow(rcd_env[["record"]])
       rcd_env[["record"]][nr, "info"] <- "new_basis"
@@ -176,8 +156,8 @@ search_better_random <- function(current, alpha = 0.5, index, tries,
       rand <- stats::runif(1)
 
       if (prob > rand) {
-        cat("New", new_index, "try", try, "\n")
-        cat("Accept with probability, prob =", prob, "\n")
+        message("Target: ", sprintf("%.3f", new_index), ", try: ", try,
+                ", probabilistic accept p = ", sprintf("%.3f", prob))
 
         nr <- nrow(rcd_env[["record"]])
         rcd_env[["record"]][nr, "info"] <- "new_basis"
@@ -193,24 +173,8 @@ search_better_random <- function(current, alpha = 0.5, index, tries,
     try <- try + 1
   }
 
-  cat("No better bases found after ", max.tries, " tries.  Giving up.\n",
-    sep = ""
-  )
-  cat("Final projection: \n")
-  if (ncol(current) == 1) {
-    for (i in 1:length(current)) {
-      cat(sprintf("%.3f", current[i]), " ")
-    }
-    cat("\n")
-  }
-  else {
-    for (i in 1:nrow(current)) {
-      for (j in 1:ncol(current)) {
-        cat(sprintf("%.3f", current[i, j]), " ")
-      }
-      cat("\n")
-    }
-  }
+  message("No better bases found after ", max.tries, " tries.  Giving up.")
+  print_final_proj(current)
 
   rcd_env[["record"]] <- dplyr::mutate(
     rcd_env[["record"]],
