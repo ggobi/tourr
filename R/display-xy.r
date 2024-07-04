@@ -320,7 +320,7 @@ draw_tour_axes <- function(proj, labels, limits=1, position="center",
         col = axis.col, lwd = axis.lwd)
   if (longlabels) {
     for (i in 1:length(labels)) {
-      if ((proj[i, 1]^2 + proj[i, 2]^2) < 0.3)
+      if ((proj[i, 1]^2 + proj[i, 2]^2) < 0.15)
         labels[i] <- ""
     }
   }
