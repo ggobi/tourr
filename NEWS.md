@@ -1,3 +1,8 @@
+# tourr 1.2.1
+
+* anomaly tour is initialised with a random basis
+* option to label only long axes
+
 # tourr 1.2.0 
 
 * major change: rescale is now FALSE by default.

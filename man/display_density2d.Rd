@@ -15,6 +15,7 @@ display_density2d(
   contour_quartile = c(0.25, 0.5, 0.75),
   edges = NULL,
   palette = "Zissou 1",
+  axislablong = FALSE,
   ...
 )
 
@@ -41,6 +42,8 @@ If not set, defaults to maximum distance from origin to each row of data.}
 \item{edges}{A two column integer matrix giving indices of ends of lines.}
 
 \item{palette}{name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"}
+
+\item{axislablong}{text labels only for the long axes in a projection, default FALSE}
 
 \item{...}{other arguments passed on to \code{\link{animate}} and
 \code{\link{display_density2d}}}

@@ -24,6 +24,7 @@
 #' @param anchor_nav position of the anchor: center, topright or off
 #' @param rescale Default FALSE. If TRUE, rescale all variables to range [0,1].
 #' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
+#' @param axislablong text labels only for the long axes in a projection, default FALSE
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_slice}}
 #' @export
@@ -51,7 +52,8 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
                           cex_slice = 2, cex_other = 1, v_rel = NULL,
                           anchor = NULL, anchor_nav = "off",
                           edges = NULL, edges.col = "black",
-                          palette = "Zissou 1", ...) {
+                          palette = "Zissou 1",
+                          axislablong = FALSE, ...) {
   labels <- NULL
   h <- NULL
 
@@ -89,7 +91,7 @@ display_slice <- function(center = TRUE, axes = "center", half_range = NULL,
   }
 
   render_data <- function(data, proj, geodesic, with_anchor = anchor) {
-    draw_tour_axes(proj, labels, limits = 1, axes)
+    draw_tour_axes(proj, labels, limits = 1, axes, longlabels=axislablong)
     if (!is.null(with_anchor)) {
       rng <- apply(data, 2, range)
       colnames(with_anchor) <- colnames(data)

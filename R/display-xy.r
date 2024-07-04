@@ -21,9 +21,11 @@
 #'        scale the ellipse larger or smaller to capture more or fewer anomalies. Default 3.
 #' @param ellmu This is the centre of the ellipse corresponding to the mean of the
 #'        normal population. Default vector of 0's
+#' @param ellmarks mark the extreme points with red crosses, default TRUE
 #' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
 #' @param shapeset numbers corresponding to shapes in base R points, to use for mapping
 #'        categorical variable to shapes, default=c(15:17, 23:25)
+#' @param axislablong text labels only for the long axes in a projection, default FALSE
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_xy}}
 #' @importFrom graphics legend
@@ -72,7 +74,9 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
                        edges = NULL, edges.col = "black", edges.width=1,
                        obs_labels = NULL,
                        ellipse = NULL, ellc = NULL, ellmu = NULL,
-                       palette="Zissou 1", shapeset=c(15:17, 23:25), ...) {
+                       ellmarks = TRUE,
+                       palette="Zissou 1", shapeset=c(15:17, 23:25),
+                       axislablong = FALSE, ...) {
   # Needed for CRAN checks
   labels <- NULL
   gps <- NULL
@@ -128,7 +132,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
     rect(-1, -1, 1, 1, col = "#FFFFFFE6", border = NA)
   }
   render_data <- function(data, proj, geodesic) {
-    draw_tour_axes(proj, labels, limits = 1, axes, ...)
+    draw_tour_axes(proj, labels, limits = 1, axes, longlabels=axislablong, ...)
 
     # Render projected points
     x <- data %*% proj
@@ -227,7 +231,7 @@ display_xy <- function(center = TRUE, axes = "center", half_range = NULL,
         #mdst <- mahal_dist(data, ellipse)
         anomalies <- which(mdst > ellc)
         #cat("1 ", length(anomalies), "\n")
-        if (length(anomalies) > 0) {
+        if (length(anomalies) > 0 & ellmarks) {
           points(x[anomalies,],
                col = "red",
                pch = 4,
@@ -267,6 +271,7 @@ animate_xy <- function(data, tour_path = grand_tour(), ...) {
 #' @param axis.col colour of axes, default "grey50"
 #' @param axis.lwd linewidth of axes, default 1
 #' @param axis.text.col colour of axes text, default "grey50"
+#' @param longlabels text labels only for the long axes in a projection, default FALSE
 #' @param ...  other arguments passed
 #' @export
 #' @examples
@@ -284,8 +289,10 @@ animate_xy <- function(data, tour_path = grand_tour(), ...) {
 #'      xlim = c(-3, 3), ylim = c(-3, 3),
 #'      xlab="P1", ylab="P2")
 #' draw_tour_axes(prj, colnames(flea)[1:6], limits=3, position="bottomleft")
+#' draw_tour_axes(prj, colnames(flea)[1:6], axislablong=TRUE)
 draw_tour_axes <- function(proj, labels, limits=1, position="center",
-                           axis.col= "grey50", axis.lwd=1, axis.text.col= "grey50", ...) {
+                           axis.col="grey50", axis.lwd=1, axis.text.col="grey50",
+                           longlabels, ...) {
   position <- match.arg(position, c("center", "bottomleft", "off"))
   if (position == "off") {
     return()
@@ -311,6 +318,12 @@ draw_tour_axes <- function(proj, labels, limits=1, position="center",
   theta <- seq(0, 2 * pi, length = 50)
   lines(adj(cos(theta)), adj(sin(theta)),
         col = axis.col, lwd = axis.lwd)
+  if (longlabels) {
+    for (i in 1:length(labels)) {
+      if ((proj[i, 1]^2 + proj[i, 2]^2) < 0.3)
+        labels[i] <- ""
+    }
+  }
   text(adj(proj[, 1]), adj(proj[, 2]), label = labels,
        col = axis.text.col)
 }

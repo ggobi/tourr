@@ -13,6 +13,7 @@
 #' @param R scale for the radial transformation.
 #'   If not set, defaults to maximum distance from origin to each row of data.
 #' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
+#' @param axislablong text labels only for the long axes in a projection, default FALSE
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_sage}}
 #' @export
@@ -27,7 +28,8 @@
 #' animate_sage(sphere10)
 display_sage <- function(axes = "center", half_range = NULL,
                          col = "black", pch = 20, gam = 1, R = NULL,
-                         palette = "Zissou 1", ...) {
+                         palette = "Zissou 1",
+                         axislablong = FALSE, ...) {
   labels <- NULL
   peff <- NULL
 
@@ -54,7 +56,7 @@ display_sage <- function(axes = "center", half_range = NULL,
   }
 
   render_data <- function(data, proj, geodesic) {
-    draw_tour_axes(proj, labels, 1, axes)
+    draw_tour_axes(proj, labels, 1, axes, longlabels=axislablong)
 
     # Projecte data and center
     x <- data %*% proj
