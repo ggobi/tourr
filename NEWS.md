@@ -2,6 +2,7 @@
 
 * anomaly tour is initialised with a random basis
 * option to label only long axes
+* bug fix for save_history with lda_pp
 
 # tourr 1.2.0 
 

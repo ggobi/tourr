@@ -150,7 +150,7 @@ lda_pp <- function(cl) {
 
       1 - summary(fit, test = "Wilks")$stats[[3]]
     } else {
-      summary(stats::aov(mat ~ cl))[[1]][4]
+      summary(stats::aov(mat ~ cl))[[1]][1,4]
     }
   }
 }
