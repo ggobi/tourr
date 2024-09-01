@@ -1,3 +1,7 @@
+# tourr 1.2.2
+
+* New skewness index, as defined in original Cook, Buja, Cabrera paper
+
 # tourr 1.2.1
 
 * anomaly tour is initialised with a random basis

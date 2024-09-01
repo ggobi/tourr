@@ -14,6 +14,7 @@ Implements geodesic interpolation and basis generation functions that allow you 
 Useful links:
 \itemize{
   \item \url{https://github.com/ggobi/tourr}
+  \item \url{https://ggobi.github.io/tourr/}
   \item Report bugs at \url{https://github.com/ggobi/tourr/issues}
 }
 
