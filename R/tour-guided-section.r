@@ -68,24 +68,9 @@ guided_section_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
     cur_index <- index(current)
 
     if (cur_index > max.i) {
-      cat("Found index ", cur_index, ", larger than selected maximum ", max.i, ". Stopping search.\n",
-        sep = ""
-      )
-      cat("Final projection: \n")
-      if (ncol(current) == 1) {
-        for (i in 1:length(current)) {
-          cat(sprintf("%.3f", current[i]), " ")
-        }
-        cat("\n")
-      }
-      else {
-        for (i in 1:nrow(current)) {
-          for (j in 1:ncol(current)) {
-            cat(sprintf("%.3f", current[i, j]), " ")
-          }
-          cat("\n")
-        }
-      }
+      message("Found index ", sprintf("%.3f", cur_index), ",
+              larger than selected maximum ", max.i, ". Stopping search.")
+      print_final_proj(current)
       return(NULL)
     }
 

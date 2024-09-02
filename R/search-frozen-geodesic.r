@@ -44,13 +44,13 @@ search_frozen_geodesic <- function(current, index, tries, max.tries = 5, n = 5, 
     dig3 <- function(x) sprintf("%.3f", x)
     pdiff <- (new_index - cur_index) / cur_index
     if (pdiff > 0.001) {
-      cat("New index: ", dig3(new_index), " (", dig3(peak$alpha$maximum), " away)\n", sep = "")
+      message("New index: ", dig3(new_index), " (", dig3(peak$alpha$maximum), " away)", sep = "")
       current <<- new_basis
       cur_index <<- new_index
 
       return(list(target = new_basis[[1]]))
     }
-    cat("Best was:  ", dig3(new_index), " (", dig3(peak$alpha$maximum), " away).  Trying again...\n", sep = "")
+    message("Best was:  ", dig3(new_index), " (", dig3(peak$alpha$maximum), " away).  Try again...", sep = "")
 
     try <- try + 1
   }

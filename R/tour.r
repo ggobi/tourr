@@ -42,16 +42,16 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
   geodesic <- NULL
 
   function(step_size, ...) {
-    # cat("target_dist - cur_dist:", target_dist - cur_dist, "\n")
 
     step <<- step + 1
     cur_dist <<- cur_dist + step_size
 
-    if (target_dist == 0 & step > 1) { # should only happen for guided tour when no better basis is found (relative to starting plane)
+    multi_bases_stop <- inherits(start, "multi-bases") && is.null(proj[[1]])
+    if ((target_dist == 0 && step > 1 )|| multi_bases_stop) { # should only happen for guided tour when no better basis is found (relative to starting plane)
       return(list(proj = tail(proj, 1)[[1]], target = target, step = -1)) # use negative step size to signal that we have reached the final target
     }
     # We're at (or past) the target, so generate a new one and reset counters
-    if (step_size > 0 & is.finite(step_size) & cur_dist >= target_dist) {
+    if (step_size > 0 && is.finite(step_size) && cur_dist >= target_dist && !inherits(start, "multi-bases")) {
 
       ## interrupt
       if (attr(tour_path, "name") == "guided") {
@@ -60,21 +60,21 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
           last_two <- tail(dplyr::filter(rcd_env[["record"]], info == "new_basis"), 2)
 
           if (last_two$index_val[1] > last_two$index_val[2]) {
-          # search_better_random may give probabilistic acceptance, leave it as it is
+            # search_better_random may give probabilistic acceptance, leave it as it is
           } else {
             interp <- dplyr::filter(rcd_env[["record"]], tries == max(tries), info == "interpolation")
             interp <- dplyr::filter(interp, index_val == max(index_val))
 
             target <- dplyr::filter(rcd_env[["record"]], tries == max(tries), info == "new_basis")
 
-          # deem the target basis as the new current basis if the interpolation doesn't reach the target basis
-          # used when the index_f is not smooth
+            # deem the target basis as the new current basis if the interpolation doesn't reach the target basis
+            # used when the index_f is not smooth
             if (target$index_val > interp$index_val) {
               proj[[length(proj) + 1]] <<- geodesic$ingred$interpolate(1.) # make sure next starting plane is previous target
               target <- dplyr::mutate(target, info = "interpolation", loop = step + 1, alpha = NA)
               rcd_env[["record"]] <- dplyr::add_row(rcd_env[["record"]], target)
             } else if (target$index_val < interp$index_val & nrow(interp) != 0) {
-            # the interrupt
+              # the interrupt
               proj[[length(proj) + 1]] <<- interp$basis[[1]]
 
               rcd_env[["record"]] <- dplyr::filter(
@@ -93,7 +93,7 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
               info = "interpolation",
               tries = geodesic$tries,
               method = dplyr::last(rcd_env[["record"]]$method),
-             loop = step + 1
+              loop = step + 1
             )
 
             rcd_env[["record"]] <- dplyr::mutate(
@@ -109,6 +109,14 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
     }
 
     if (cur_dist >= target_dist) {
+      if (inherits(proj[[1]], "multi-bases")){
+        geodesic <<- tour_path(proj[[1]], data, ...)
+        proj <<- list(geodesic$target)
+        target_dist <<- 10
+        cur_dist <<-10
+        return(list(proj = proj[[1]], target = NULL, step = -1)) # use negative step size to signal that we have reached the final target
+      }
+
       geodesic <<- tour_path(proj[[length(proj)]], data, ...)
       if (is.null(geodesic$ingred)) {
         return(list(proj = proj[[length(proj)]], target = target, step = -1)) # use negative step size to signal that we have reached the final target

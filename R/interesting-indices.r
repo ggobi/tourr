@@ -1,11 +1,45 @@
+#' Scagnostic indexes.
+#'
+#' Compute the scagnostic measures from the cassowaryr package
+#' @export
+stringy <- function(){
+  function(mat){
+    cassowaryr::sc_stringy(mat[,1], mat[,2])
+  }
+}
+
+
+#' Maximum and total information coefficient index.
+#'
+#' Compute the maximum and total information coefficient indexes,
+#' see \code{minerva::mine}.
+#'
+#' @rdname indexes
+#' @export
+MIC <- function(){
+  function(mat){
+    minerva::mine(mat[,1], mat[,2], alpha = 0.3,  est = "mic_e")$MIC
+  }
+}
+
+#' @rdname indexes
+#' @export
+TIC <- function(){
+  function(mat){
+    minerva::mine(mat[,1], mat[,2], est = "mic_e", alpha = 0.3)$TIC
+  }
+}
+
 #' Distance correlation index.
 #'
-#' Computes the distance correlation based index on
-#' 2D projections of the data.
+#' Computes the distance correlation based index on 2D projections of the data.
+#' \code{dcor2d_2} uses the faster implementation of the distance correlation
+#' for bivariate data, see \code{energy::dcor2d}.
 #'
 #' @keywords hplot
 #' @importFrom stats na.omit
 #' @export
+#' @rdname dcor
 dcor2d <- function() {
   function(mat) {
     xy <- na.omit(data.frame(x = mat[, 1], y = mat[, 2]))
@@ -14,15 +48,26 @@ dcor2d <- function() {
   }
 }
 
-#' Spline based index.
+#' @rdname dcor
+#' @export
+dcor2d_2 <- function() {
+  function(mat) {
+    xy <- na.omit(data.frame(x = mat[, 1], y = mat[, 2]))
+    measure <- with(xy, energy::dcor2d(x, y, type = "U"))
+    return(measure)
+  }
+}
+
+#' Spline/loess based index.
 #'
 #' Compares the variance in residuals of a fitted
-#' spline model to the overall variance to find
+#' spline/loess model to the overall variance to find
 #' functional dependence in 2D projections
 #' of the data.
 #'
 #' @keywords hplot
 #' @importFrom stats residuals var
+#' @rdname spline-loess
 #' @export
 splines2d <- function() {
   function(mat) {
@@ -38,6 +83,20 @@ splines2d <- function() {
   }
 }
 
+#' @rdname spline-loess
+#' @export
+loess2d <- function() {
+  function(mat) {
+    mat <- as.data.frame(mat)
+    colnames(mat) <- c("x", "y")
+    loess_fit <- loess(y ~ x, data = mat, span = 0.05)
+    loess_fit2 <- loess(x ~ y, data = mat, span = 0.05)
+    measure <- max(1 - var(residuals(loess_fit), na.rm = T) / var(mat$y, na.rm = T),
+                   1 - var(residuals(loess_fit2), na.rm = T) / var(mat$y, na.rm = T)
+    )
+    return(measure)
+  }
+}
 
 
 #' Normality index.

@@ -1,3 +1,21 @@
+#' Print out the final projection basis
+#' @param basis the projection basis to print, used in search_* functions
+#' @keywords internal
+print_final_proj <- function(basis){
+  message("Final projection: ")
+
+  if (ncol(basis) == 1) {
+    for (i in 1:length(basis)) {
+      message(sprintf("% .3f", basis[i]), " ")
+    }
+  } else {
+    for (i in 1:nrow(basis)) {
+      message(paste0(sprintf("% .3f", basis[i, ]), sep = "  "))
+    }
+  }
+}
+
+
 #' Rescale a matrix or data frame
 #'
 #' Standardise each column to have range [0, 1]

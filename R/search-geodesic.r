@@ -58,44 +58,21 @@ search_geodesic <- function(current, alpha = 1, index, tries, max.tries = 5, ...
       warning("either the cur_index or the new_index is zero!")
     } else {
       pdiff <- (new_index - cur_index) / cur_index
-
-      dig3 <- function(x) sprintf("%.3f", x)
-
-      cat(
-        "Value ", dig3(new_index), " ",
-        sprintf("%.1f", pdiff * 100), "% better "
-      )
       if (pdiff > 0.001 & proj_dist(current, new_basis[[1]]) > 1e-2) { # FIXME: pdiff should pbly be a changeable parameter
-        cat(" - NEW BASIS\n")
-
+        message("Target: ", sprintf("%.3f", new_index), ", ",
+                sprintf("%.1f", pdiff * 100), "% better ")
         current <- new_basis
         cur_index <- new_index
 
         return(list(target = new_basis[[1]]))
       }
-      cat("\n")
     }
 
     try <- try + 1
   }
-  cat("No better bases found after ", max.tries, " tries.  Giving up.\n",
-    sep = ""
-  )
-  cat("Final projection: \n")
-  if (ncol(current) == 1) {
-    for (i in 1:length(current)) {
-      cat(sprintf("%.3f", current[i]), " ")
-    }
-    cat("\n")
-  }
-  else {
-    for (i in 1:nrow(current)) {
-      for (j in 1:ncol(current)) {
-        cat(sprintf("%.3f", current[i, j]), " ")
-      }
-      cat("\n")
-    }
-  }
+
+  message("No better bases found after ", max.tries, " tries.  Giving up.")
+  print_final_proj(current)
 
   NULL
 }

@@ -60,20 +60,20 @@ search_polish <- function(current, alpha = 0.5, index, tries, polish_max_tries =
       # check condition 1: the two bases can't be too close
 
       if (polish_dist < 1e-3) {
-        cat("The new basis is too close to the current one! \n")
-        cat("current basis: ", current, "cur_index: ", cur_index, "\n")
+        message("The new basis is too close to the current one!")
+        message("current basis: ", current, "cur_index: ", sprintf("%.3f", cur_index))
         return(list(target = current, alpha = alpha))
       }
 
       # check condition 2: there needs to be certain improvement
 
       if (polish_pdiff < 1e-5) {
-        cat("The improvement is too small! \n")
-        cat("current basis: ", current, "cur_index: ", cur_index, "\n")
+        message("The improvement is too small!")
+        message("current basis: ", current, "cur_index: ", sprintf("%.3f", cur_index))
         return(list(target = current, alpha = alpha))
       }
 
-      cat("better basis found, index_val = ", best_row$index_val, "\n")
+      message("better basis found, index_val = ", sprintf("%.3f", best_row$index_val))
       cur_index <- best_row$index_val
       current <- best_row$basis[[1]]
       best_row <- dplyr::mutate(best_row,
@@ -86,13 +86,13 @@ search_polish <- function(current, alpha = 0.5, index, tries, polish_max_tries =
     } else {
       polish_cooling <- polish_cooling * 0.95
       alpha <- alpha * polish_cooling
-      cat("alpha gets updated to", alpha, "\n")
+      message("alpha gets updated to", alpha, "\n")
 
       # check condition 3: alpha can't be too small
 
       if (alpha < 0.01) {
-        cat("alpha is", alpha, "and it is too small! \n")
-        cat("current basis: ", current, "cur_index: ", cur_index, "\n")
+        message("alpha is", alpha, "and it is too small!")
+        message("current basis: ", current, "cur_index: ", sprintf("%.3f", cur_index))
         return(list(target = current, alpha = alpha))
       }
     }
@@ -100,26 +100,8 @@ search_polish <- function(current, alpha = 0.5, index, tries, polish_max_tries =
     try <- try + 1
   }
 
-  cat("No better bases found after ", polish_max_tries, " tries.  Giving up.\n",
-    sep = ""
-  )
-  cat("Final projection: \n")
-  if (ncol(current) == 1) {
-    for (i in 1:length(current)) {
-      cat(sprintf("%.3f", current[i]), " ")
-    }
-    cat("\n")
-  }
-  else {
-    for (i in 1:nrow(current)) {
-      for (j in 1:ncol(current)) {
-        cat(sprintf("%.3f", current[i, j]), " ")
-      }
-      cat("\n")
-    }
-  }
-
-  cat("current basis: ", current, "cur_index: ", cur_index, "\n")
+  message("No better bases found after ", polish_max_tries, " tries.  Giving up.")
+  print_final_proj(current)
   return(list(target = current, alpha = alpha))
 }
 # globalVariables("index_val")

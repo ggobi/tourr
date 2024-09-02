@@ -42,8 +42,9 @@
 #' f <- flea_std[, 1:3]
 #' tries <- replicate(5, save_history(f, guided_tour(holes())), simplify = FALSE)
 #' }
-guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries = 25,
-                        max.i = Inf, search_f = search_geodesic, n_sample = 100, ...) {
+guided_tour <- function(index_f, d = 2, cooling = 0.99, max.tries = 25,
+                        max.i = Inf, search_f = search_geodesic,
+                        n_jellies = 30, n_sample = 100, alpha = 0.5,...) {
   generator <- function(current, data, tries, ...) {
     index <- function(proj) {
       index_f(as.matrix(data) %*% proj)
@@ -51,80 +52,80 @@ guided_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99, max.tries =
 
     valid_fun <- c(
       "search_geodesic", "search_better", "search_better_random",
-      "search_polish", "search_posse"
+      "search_polish", "search_posse", "search_jellyfish"
     )
     method <- valid_fun[vapply(valid_fun, function(x) {
       identical(get(x), search_f)
     }, logical(1))]
 
     if (is.null(current)) {
-      current <- basis_random(ncol(data), d)
+      if (method == "search_jellyfish"){
+        current <- replicate(n_jellies, basis_random(ncol(data), d), simplify = FALSE)
+        cur_index <- sapply(current, index)
+        best_id <- which.max(cur_index)
+        attr(current, "best_id") <- best_id
+        class(current) <- c("multi-bases", class(current))
 
+        rcd_env <- parent.frame(n = 3)
+        rcd_env[["record"]] <- dplyr::add_row(
+          rcd_env[["record"]], basis = current[-best_id],
+          index_val = cur_index[-best_id], info = "initiation",
+          method = method, alpha = NA, tries = 1, loop = 1:(length(current)-1)
+        )
+        rcd_env[["record"]] <- dplyr::add_row(
+          rcd_env[["record"]], basis = current[best_id],
+          index_val = cur_index[best_id], info = "initiation",
+          method = method, alpha = NA, tries = 1, loop = length(current)
+        )
+
+        return(current)
+      }
+      current <- basis_random(ncol(data), d)
       cur_index <- index(current)
 
       tryCatch({
         rcd_env <- parent.frame(n = 3)
         rcd_env[["record"]] <- dplyr::add_row(
-          rcd_env[["record"]],
-          basis = list(current),
-          index_val = cur_index,
-          info = "new_basis",
-          method = method,
-          alpha = formals(guided_tour)$alpha,
-          tries = 1,
-          loop = 1
+          rcd_env[["record"]], basis = list(current),
+          index_val = cur_index, info = "new_basis", method = method,
+          alpha = formals(guided_tour)$alpha, tries = 1, loop = 1
         )
       },
       error = function(e){
         assign("record",
-               tibble::tibble(basis = list(),
-                             index_val = numeric(),
-                             info = character(),
-                             method = character(),
-                             alpha = numeric(),
-                             tries = numeric(),
-                             loop = numeric()),
+               tibble::tibble(
+                 basis = list(), index_val = numeric(), info = character(),
+                 method = character(), alpha = numeric(), tries = numeric(),
+                 loop = numeric()),
                envir = parent.frame())
         rcd_env[["record"]] <- tibble::tibble(
-          basis = list(current),
-          index_val = cur_index,
-          info = "new_basis",
-          method = method,
-          alpha = formals(guided_tour)$alpha,
-          tries = 1,
-          loop = 1)
-      }
-      )
+          basis = list(current), index_val = cur_index, info = "new_basis",
+          method = method, alpha = formals(guided_tour)$alpha, tries = 1,
+          loop = 1
+        )
+      })
 
       return(current)
     }
 
-    cur_index <- index(current)
+    if (inherits(current, "multi-bases")){
+      best_id <- attr(current, "best_id")
+      cur_index <- max(sapply(current, index))
+    } else{
+      cur_index <- index(current)
+    }
 
     if (cur_index > max.i) {
-      cat("Found index ", cur_index, ", larger than selected maximum ", max.i, ". Stopping search.\n",
-        sep = ""
-      )
-      cat("Final projection: \n")
-      if (ncol(current) == 1) {
-        for (i in 1:length(current)) {
-          cat(sprintf("%.3f", current[i]), " ")
-        }
-        cat("\n")
-      }
-      else {
-        for (i in 1:nrow(current)) {
-          for (j in 1:ncol(current)) {
-            cat(sprintf("%.3f", current[i, j]), " ")
-          }
-          cat("\n")
-        }
-      }
+      message("Found index ", sprintf("%.3f", cur_index), ",
+              larger than selected maximum ", max.i, ". Stopping search.")
+      print_final_proj(current)
       return(NULL)
     }
 
     # current, alpha = 1, index, max.tries = 5, n = 5, delta = 0.01, cur_index = NA, ..
-    basis <- search_f(current, alpha, index, tries, max.tries, cur_index = cur_index, frozen = frozen, n_sample = n_sample, ...)
+    basis <- search_f(
+      current, alpha = alpha, index = index, tries = tries, max.tries = max.tries,
+      cur_index = cur_index, frozen = frozen, n_sample = n_sample, ...)
 
     if (method == "search_posse") {
       if (!is.null(basis$h)) {
