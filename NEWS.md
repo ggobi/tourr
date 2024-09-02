@@ -1,6 +1,12 @@
+# tourr 1.2.3
+
+* New optimisation routine, using the jellyfish optimiser.
+* New PP indexes from cassowaryr package, stringy, MIC and TIC.
+* Attempted fix for positron, but still not working.
+
 # tourr 1.2.2
 
-* New skewness index, as defined in original Cook, Buja, Cabrera paper
+* New skewness index, as defined in original Cook, Buja, Cabrera paper.
 
 # tourr 1.2.1
 
