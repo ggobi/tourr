@@ -2,9 +2,12 @@
 % Please edit documentation in R/search-jellyfish.R
 \name{search_jellyfish}
 \alias{search_jellyfish}
-\title{An jellyfish optimisers for the projection pursuit guided tour}
+\alias{check_dup}
+\title{A jellyfish optimiser for projection pursuit guided tour}
 \usage{
 search_jellyfish(current, index, tries, max.tries = 50, ...)
+
+check_dup(bases, min_dist)
 }
 \arguments{
 \item{current}{starting projection, a list of basis of class "multi-bases"}
@@ -16,12 +19,19 @@ search_jellyfish(current, index, tries, max.tries = 50, ...)
 \item{max.tries}{the maximum number of iteration before giving up}
 
 \item{...}{other arguments being passed into the \code{search_jellyfish()}}
+
+\item{bases}{a list of bases extracted from the data collection object, see examples}
+
+\item{min_dist}{the minimum distance between two bases}
 }
 \description{
-An jellyfish optimisers for the projection pursuit guided tour
+A jellyfish optimiser for projection pursuit guided tour
 }
 \examples{
-res <- animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_jellyfish))
-res
+library(dplyr)
+res <- animate_xy(flea[, 1:6], guided_tour(lda_pp(cl = flea$species),
+search_f = search_jellyfish))
+bases <- res |> filter(loop == 1) |> pull(basis) |> check_dup(0.1)
+animate_xy(data = flea[,1:6], tour_path = planned_tour(bases), col = flea$species)
 }
 \keyword{optimize}

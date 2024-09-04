@@ -162,3 +162,5 @@ mapShapes <- function(x, shapeset) {
   shapes <- shapeset
   shapes[as.numeric(x)]
 }
+
+

@@ -84,6 +84,7 @@ splines2d <- function() {
 }
 
 #' @rdname spline-loess
+#' @importFrom stats loess
 #' @export
 loess2d <- function() {
   function(mat) {

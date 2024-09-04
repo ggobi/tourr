@@ -21,6 +21,7 @@
 #'   a better projection before giving up
 #' @param max.i the maximum index value, stop search if a larger value is found
 #' @param n_sample number of samples to generate if \code{search_f} is \code{\link{search_polish}}
+#' @param n_jellies only used for \code{search_jellyfish}, the number of jellyfish to use
 #' @param ... arguments sent to the search_f
 #' @seealso \code{\link{cmass}}, \code{\link{holes}} and \code{\link{lda_pp}}
 #'   for examples of index functions.  The function should take a numeric
