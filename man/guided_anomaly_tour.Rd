@@ -53,7 +53,7 @@ using an ellipse to determine anomalies on which to select target planes.
 }
 \details{
 Usually, you will not call this function directly, but will pass it to
-a method that works with tour paths like \code{\link{animate_slice}},
+a method that works with tour paths like \code{\link{animate_xy}},
 \code{\link{save_history}} or \code{\link{render}}.
 }
 \examples{

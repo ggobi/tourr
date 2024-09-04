@@ -1,6 +1,6 @@
 Package: tourr
 Title: Tour Methods for Multivariate Data Visualisation
-Version: 1.2.0
+Version: 1.2.3
 Authors@R: c(
     person("Hadley", "Wickham", email = "h.wickham@gmail.com", role = c("aut", "ctb"), comment = c(ORCID = "0000-0003-4757-117X")),
     person("Dianne", "Cook", email = "dicook@monash.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-3813-7155")),
@@ -39,7 +39,7 @@ Suggests:
     minerva
 License: MIT + file LICENSE
 LazyData: true
-URL: https://github.com/ggobi/tourr
+URL: https://github.com/ggobi/tourr, https://ggobi.github.io/tourr/
 BugReports: https://github.com/ggobi/tourr/issues
 RoxygenNote: 7.3.2
 Encoding: UTF-8

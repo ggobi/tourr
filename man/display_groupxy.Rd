@@ -19,6 +19,7 @@ display_groupxy(
   plot_xgp = TRUE,
   palette = "Zissou 1",
   shapeset = c(15:17, 23:25),
+  axislablong = FALSE,
   ...
 )
 
@@ -54,6 +55,8 @@ If not set, defaults to maximum distance from origin to each row of data.}
 
 \item{shapeset}{numbers corresponding to shapes in base R points, to use for mapping
 categorical variable to shapes, default=c(15:17, 23:25)}
+
+\item{axislablong}{text labels only for the long axes in a projection, default FALSE}
 
 \item{...}{other arguments passed on to \code{\link{animate}} and
 \code{\link{display_groupxy}}}

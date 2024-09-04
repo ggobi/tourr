@@ -62,7 +62,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
     to_stop()
   }
   plat <- find_platform()
-  if (rstudio_gd() && fps > 19) {
+  if ((rstudio_gd() && fps > 19) || (positron_gd() && fps > 19)) {
     warning("Rstudio graphics device supports maximum fps of 19", call. = FALSE)
     fps <- 19
   }
@@ -102,7 +102,7 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
         if (!is.null(start$target)){
           dev.hold()
           on.exit(dev.flush())
-          if (plat$os == "win" || plat$iface == "rstudio") {
+          if (plat$os == "win" || plat$iface == "rstudio" || plat$iface == "cli") {
             display$render_frame()
           } else {
             display$render_transition()
@@ -131,5 +131,6 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
 }
 
 rstudio_gd <- function() identical(names(dev.cur()), "RStudioGD")
+positron_gd <- function() identical(names(dev.cur()), "Positron Graphics Device")
 
 # globalVariables("record")

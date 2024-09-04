@@ -188,6 +188,25 @@ cmass <- function() {
   }
 }
 
+#' Skewness index.
+#'
+#' Calculates the skewness index. See Cook, Buja and Cabrera (1993)
+#' Projection pursuit indexes based on orthonormal function expansions
+#'  for equations.
+#'
+#' @keywords hplot
+#' @export
+skewness <- function() {
+  function(mat) {
+    n <- nrow(mat)
+    d <- ncol(mat)
+
+    idx <- mean(rowSums(mat * exp(-0.5 * mat^2)))
+
+    idx
+  }
+}
+
 #' LDA projection pursuit index.
 #'
 #' Calculate the LDA projection pursuit index.  See Cook and Swayne (2007)
@@ -210,7 +229,7 @@ lda_pp <- function(cl) {
 
       1 - summary(fit, test = "Wilks")$stats[[3]]
     } else {
-      summary(stats::aov(mat ~ cl))[[1]][4]
+      summary(stats::aov(mat ~ cl))[[1]][1,4]
     }
   }
 }

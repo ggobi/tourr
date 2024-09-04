@@ -12,6 +12,7 @@ draw_tour_axes(
   axis.col = "grey50",
   axis.lwd = 1,
   axis.text.col = "grey50",
+  longlabels,
   ...
 )
 }
@@ -33,6 +34,8 @@ bottomleft or off}
 
 \item{axis.text.col}{colour of axes text, default "grey50"}
 
+\item{longlabels}{text labels only for the long axes in a projection, default FALSE}
+
 \item{...}{other arguments passed}
 }
 \description{
@@ -53,4 +56,5 @@ plot(flea_prj$V1, flea_prj$V2,
      xlim = c(-3, 3), ylim = c(-3, 3),
      xlab="P1", ylab="P2")
 draw_tour_axes(prj, colnames(flea)[1:6], limits=3, position="bottomleft")
+draw_tour_axes(prj, colnames(flea)[1:6], axislablong=TRUE)
 }

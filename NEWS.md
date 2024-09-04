@@ -1,3 +1,19 @@
+# tourr 1.2.3
+
+* New optimisation routine, using the jellyfish optimiser.
+* New PP indexes from cassowaryr package, stringy, MIC and TIC.
+* Attempted fix for positron, but still not working.
+
+# tourr 1.2.2
+
+* New skewness index, as defined in original Cook, Buja, Cabrera paper.
+
+# tourr 1.2.1
+
+* anomaly tour is initialised with a random basis
+* option to label only long axes
+* bug fix for save_history with lda_pp
+
 # tourr 1.2.0 
 
 * major change: rescale is now FALSE by default.

@@ -4,7 +4,7 @@
 #' using an ellipse to determine anomalies on which to select target planes.
 #'
 #' Usually, you will not call this function directly, but will pass it to
-#' a method that works with tour paths like \code{\link{animate_slice}},
+#' a method that works with tour paths like \code{\link{animate_xy}},
 #' \code{\link{save_history}} or \code{\link{render}}.
 #'
 #' @param index_f the section pursuit index function to optimise. The function
@@ -40,7 +40,7 @@ guided_anomaly_tour <- function(index_f, d = 2, alpha = 0.5, cooling = 0.99,
 
   generator <- function(current, data, tries, ...) {
     if (is.null(current)) {
-      return(basis_init(ncol(data), d))
+      return(basis_random(ncol(data), d))
     }
 
     if (is.null(h)) {

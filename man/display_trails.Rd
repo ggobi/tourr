@@ -13,6 +13,7 @@ display_trails(
   pch = 20,
   cex = 1,
   past = 3,
+  axislablong = FALSE,
   ...
 )
 
@@ -36,6 +37,8 @@ If not set, defaults to maximum distance from origin to each row of data.}
 
 \item{past}{draw line between current projection and projection \code{past}
 steps ago}
+
+\item{axislablong}{text labels only for the long axes in a projection, default FALSE}
 
 \item{...}{other arguments passed on to \code{\link{animate}} and
 \code{\link{display_xy}}}

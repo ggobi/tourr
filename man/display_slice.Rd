@@ -20,6 +20,7 @@ display_slice(
   edges = NULL,
   edges.col = "black",
   palette = "Zissou 1",
+  axislablong = FALSE,
   ...
 )
 
@@ -60,6 +61,8 @@ If NULL (default) the slice will be anchored at the data center.}
 \item{edges.col}{colour of edges to be plotted, Defaults to "black.}
 
 \item{palette}{name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"}
+
+\item{axislablong}{text labels only for the long axes in a projection, default FALSE}
 
 \item{...}{other arguments passed on to \code{\link{animate}} and
 \code{\link{display_slice}}}

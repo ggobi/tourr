@@ -14,6 +14,7 @@
 #' @param cex size of the point to be plotted.  Defaults to 1.
 #' @param contour_quartile Vector of quartiles to plot the contours at. Defaults to 5.
 #' @param palette name of color palette for point colour, used by \code{\link{hcl.colors}}, default "Zissou 1"
+#' @param axislablong text labels only for the long axes in a projection, default FALSE
 #' @param ...  other arguments passed on to \code{\link{animate}} and
 #'   \code{\link{display_density2d}}
 #' @importFrom graphics contour
@@ -53,7 +54,8 @@
 display_density2d <- function(center = TRUE, axes = "center", half_range = NULL,
                               col = "black", pch = 20, cex = 1,
                               contour_quartile = c(.25, .5, .75), edges = NULL,
-                              palette = "Zissou 1", ...) {
+                              palette = "Zissou 1",
+                              axislablong = FALSE, ...) {
   # If colors are a variable, convert to colors
   if (is.factor(col) | !areColors(col)) {
     gps <- col
@@ -80,7 +82,7 @@ display_density2d <- function(center = TRUE, axes = "center", half_range = NULL,
     rect(-1, -1, 1, 1, col = "#FFFFFFE6", border = NA)
   }
   render_data <- function(data, proj, geodesic) {
-    draw_tour_axes(proj, labels, limits = 1, axes)
+    draw_tour_axes(proj, labels, limits = 1, axes, longlabels=axislablong)
 
     # Render projected points
     x <- data %*% proj
