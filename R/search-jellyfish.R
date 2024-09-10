@@ -1,4 +1,4 @@
-#' An jellyfish optimisers for the projection pursuit guided tour
+#' A jellyfish optimiser for projection pursuit guided tour
 #'
 #' @param current starting projection, a list of basis of class "multi-bases"
 #' @param index index function
@@ -6,10 +6,15 @@
 #' @param max.tries the maximum number of iteration before giving up
 #' @param ... other arguments being passed into the \code{search_jellyfish()}
 #' @keywords optimize
+#' @importFrom stats runif
+#' @rdname jellyfish
 #' @export
 #' @examples
-#' res <- animate_xy(flea[, 1:6], guided_tour(holes(), search_f = search_jellyfish))
-#' res
+#' library(dplyr)
+#' res <- animate_xy(flea[, 1:6], guided_tour(lda_pp(cl = flea$species),
+#' search_f = search_jellyfish))
+#' bases <- res |> filter(loop == 1) |> pull(basis) |> check_dup(0.1)
+#' animate_xy(data = flea[,1:6], tour_path = planned_tour(bases), col = flea$species)
 search_jellyfish <- function(current, index, tries, max.tries = 50, ...) {
   rcd_env <- parent.frame(n = 4)
   if (is.null(rcd_env[["record"]])) rcd_env <- parent.frame(n = 1)
@@ -44,7 +49,7 @@ search_jellyfish <- function(current, index, tries, max.tries = 50, ...) {
     target = lapply(current, function(i) {update_typeB(i, current)})
   }
 
-  target <- purrr::map2(current, target, correct_orientation)
+  target <- mapply(correct_orientation, current, target)
   target_idx <- sapply(target, index)
 
   # if the target is worse than current, use current
@@ -81,4 +86,22 @@ search_jellyfish <- function(current, index, tries, max.tries = 50, ...) {
   }
 }
 
+#' @param bases a list of bases extracted from the data collection object, see examples
+#' @param min_dist the minimum distance between two bases
+#' @rdname jellyfish
+check_dup <- function(bases, min_dist) {
+  res <- list()
+  res[[1]] <- bases[[1]]
+  i <- 1; j <- 2
+  while(j <= length(bases)){
+    if (proj_dist(bases[[i]], bases[[j]]) >= min_dist) {
+      res <- c(res, list(bases[[j]]))
+      i <- i + 1; j <- j + 1
+    } else{
+      j <- j + 1
+    }
+  }
+  return(res)
+}
 
+globalVariables(c("loop"))

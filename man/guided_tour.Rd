@@ -33,6 +33,8 @@ a better projection before giving up}
 \item{search_f}{the search strategy to use: \code{\link{search_geodesic}}, \code{\link{search_better}},
 \code{\link{search_better_random}}, \code{\link{search_polish}}. Default is \code{\link{search_geodesic}}.}
 
+\item{n_jellies}{only used for \code{search_jellyfish}, the number of jellyfish to use}
+
 \item{n_sample}{number of samples to generate if \code{search_f} is \code{\link{search_polish}}}
 
 \item{alpha}{the initial size of the search window, in radians}
