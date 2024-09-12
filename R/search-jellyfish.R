@@ -89,6 +89,7 @@ search_jellyfish <- function(current, index, tries, max.tries = 50, ...) {
 #' @param bases a list of bases extracted from the data collection object, see examples
 #' @param min_dist the minimum distance between two bases
 #' @rdname jellyfish
+#' @export;
 check_dup <- function(bases, min_dist) {
   res <- list()
   res[[1]] <- bases[[1]]
