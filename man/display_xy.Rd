@@ -83,10 +83,12 @@ Animate a 2D tour path with a scatterplot.
 \examples{
 animate_xy(flea[, 1:6])
 animate(flea[, 1:6], tour_path = grand_tour(), display = display_xy())
+# This won't do anything because the flea data is standardised
+# but use rescale option to force scaling before displaying
 animate(flea[, 1:6],
   tour_path = grand_tour(),
   display = display_xy(),
-  scale = TRUE
+  rescale = TRUE
 )
 animate(flea[, 1:6],
   tour_path = grand_tour(),

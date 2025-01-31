@@ -55,11 +55,18 @@ animate_xy(flea[, 1:6], planned_tour(t1))
 testdata <- matrix(rnorm(100 * 3), ncol = 3)
 testdata[1:50, 1] <- testdata[1:50, 1] + 10
 testdata <- sphere_data(testdata)
-t2 <- save_history(testdata, guided_tour(holes(), max.tries = 10),
+t2 <- save_history(testdata, guided_tour(holes()),
   max = 5
 )
 animate_xy(testdata, planned_tour(t2))
 
 # Or you can use saved histories to visualise the path that the tour took.
 plot(path_index(interpolate(t2), holes()))
+
+# And you can plot any individual frame using
+best_prj <- matrix(t2[,,3], ncol=2)
+p <- render_proj(testdata, best_prj)
+# which creates a data frame with the elements
+# to make the plot, see render_proj() for plotting code
+# OR see draw_tour_axes() for similar code in base graphics
 }

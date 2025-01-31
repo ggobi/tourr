@@ -1,3 +1,8 @@
+# tourr 1.2.4
+
+* Fixed an error with draw_tour_axes
+* Added documentation on plotting a particular projection
+
 # tourr 1.2.3
 
 * New optimisation routine, using the jellyfish optimiser.

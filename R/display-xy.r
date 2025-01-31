@@ -34,10 +34,12 @@
 #' @examples
 #' animate_xy(flea[, 1:6])
 #' animate(flea[, 1:6], tour_path = grand_tour(), display = display_xy())
+#' # This won't do anything because the flea data is standardised
+#' # but use rescale option to force scaling before displaying
 #' animate(flea[, 1:6],
 #'   tour_path = grand_tour(),
 #'   display = display_xy(),
-#'   scale = TRUE
+#'   rescale = TRUE
 #' )
 #' animate(flea[, 1:6],
 #'   tour_path = grand_tour(),
@@ -289,10 +291,10 @@ animate_xy <- function(data, tour_path = grand_tour(), ...) {
 #'      xlim = c(-3, 3), ylim = c(-3, 3),
 #'      xlab="P1", ylab="P2")
 #' draw_tour_axes(prj, colnames(flea)[1:6], limits=3, position="bottomleft")
-#' draw_tour_axes(prj, colnames(flea)[1:6], axislablong=TRUE)
+#' draw_tour_axes(prj, colnames(flea)[1:6], longlabels=TRUE)
 draw_tour_axes <- function(proj, labels, limits=1, position="center",
                            axis.col="grey50", axis.lwd=1, axis.text.col="grey50",
-                           longlabels, ...) {
+                           longlabels=FALSE, ...) {
   position <- match.arg(position, c("center", "bottomleft", "off"))
   if (position == "off") {
     return()
