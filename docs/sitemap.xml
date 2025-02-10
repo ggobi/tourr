@@ -61,6 +61,9 @@
     <loc>/reference/animate.html</loc>
   </url>
   <url>
+    <loc>/reference/anomaly_index.html</loc>
+  </url>
+  <url>
     <loc>/reference/areColors.html</loc>
   </url>
   <url>
@@ -95,6 +98,9 @@
   </url>
   <url>
     <loc>/reference/cumulative_radial.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dcor.html</loc>
   </url>
   <url>
     <loc>/reference/dcor2d.html</loc>
@@ -199,6 +205,9 @@
     <loc>/reference/grand_tour.html</loc>
   </url>
   <url>
+    <loc>/reference/guided_anomaly_tour.html</loc>
+  </url>
+  <url>
     <loc>/reference/guided_section_tour.html</loc>
   </url>
   <url>
@@ -211,10 +220,16 @@
     <loc>/reference/index.html</loc>
   </url>
   <url>
+    <loc>/reference/indexes.html</loc>
+  </url>
+  <url>
     <loc>/reference/interpolate.html</loc>
   </url>
   <url>
     <loc>/reference/is_orthonormal.html</loc>
+  </url>
+  <url>
+    <loc>/reference/jellyfish.html</loc>
   </url>
   <url>
     <loc>/reference/lda_pp.html</loc>
@@ -227,6 +242,9 @@
   </url>
   <url>
     <loc>/reference/local_tour.html</loc>
+  </url>
+  <url>
+    <loc>/reference/mahal_dist.html</loc>
   </url>
   <url>
     <loc>/reference/manual_slice.html</loc>
@@ -283,6 +301,9 @@
     <loc>/reference/plot.path_index.html</loc>
   </url>
   <url>
+    <loc>/reference/print_final_proj.html</loc>
+  </url>
+  <url>
     <loc>/reference/proj_dist.html</loc>
   </url>
   <url>
@@ -331,6 +352,9 @@
     <loc>/reference/search_posse.html</loc>
   </url>
   <url>
+    <loc>/reference/skewness.html</loc>
+  </url>
+  <url>
     <loc>/reference/slice_binning.html</loc>
   </url>
   <url>
@@ -340,6 +364,9 @@
     <loc>/reference/sphere_data.html</loc>
   </url>
   <url>
+    <loc>/reference/spline-loess.html</loc>
+  </url>
+  <url>
     <loc>/reference/splines2d.html</loc>
   </url>
   <url>
@@ -347,6 +374,9 @@
   </url>
   <url>
     <loc>/reference/step_fraction.html</loc>
+  </url>
+  <url>
+    <loc>/reference/stringy.html</loc>
   </url>
   <url>
     <loc>/reference/t1.html</loc>

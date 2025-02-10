@@ -32,6 +32,7 @@ reference:
   - frozen_guided_tour
   - frozen_tour
   - manual_slice
+  - guided_anomaly_tour
 - title: Tour display
   desc: >
     Functions for various tour display
@@ -54,6 +55,8 @@ reference:
   - norm_kol
   - stringy
   - MIC
+  - anomaly_index
+  - skewness
 - title: Search functions
   desc: >
     Functions for index optimisation in guided tour
@@ -85,3 +88,4 @@ reference:
   - mapColors
   - mapShapes
   - sphere_data
+  - mahal_dist
