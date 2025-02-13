@@ -5,6 +5,7 @@
 #' @param tries the counter of the outer loop of the opotimiser
 #' @param max.tries the maximum number of iteration before giving up
 #' @param ... other arguments being passed into the \code{search_jellyfish()}
+#' @param verbose whether to print out the progress messages
 #' @keywords optimize
 #' @importFrom stats runif
 #' @rdname jellyfish
@@ -16,11 +17,18 @@
 #' search_f = search_jellyfish))
 #' bases <- res |> filter(loop == 1) |> pull(basis) |> check_dup(0.1)
 #' animate_xy(data = flea[,1:6], tour_path = planned_tour(bases), col = flea$species)
-search_jellyfish <- function(current, index, tries, max.tries = 50, ...) {
+search_jellyfish <- function(current, index, tries, max.tries = 50, verbose = FALSE, ...) {
   rcd_env <- parent.frame(n = 4)
   if (is.null(rcd_env[["record"]])) rcd_env <- parent.frame(n = 1)
   best_jelly <- current[[attr(current, "best_id")]]
-  current_idx <- sapply(current, index)
+  last_tries <- tries - 1
+  if (tries == 2){
+    current_idx <- sapply(current, index)
+  } else{
+    current_idx <- rcd_env[["record"]] |>
+      dplyr::filter(tries == last_tries) |>
+      dplyr::pull(index_val)
+  }
 
   c_t = abs((1 - tries / max.tries) * (2 * runif(1) - 1))
 
@@ -37,21 +45,33 @@ search_jellyfish <- function(current, index, tries, max.tries = 50, ...) {
   } else {
     # type B active
     # generate random jelly fish j and its index value
-    update_typeB <- function(jelly_i, jellies) {
-      jelly_j = jellies[[sample(1:length(jellies), 1)]]
-      if (index(jelly_i) > index(jelly_j)) {
+    update_typeB <- function(current, idx){
+      idx_jelly_i <- current_idx[idx]; jelly_i <- current
+      jelly_j_no <- sample(1:length(current_idx), 1)
+      idx_jelly_j <- current_idx[jelly_j_no]
+      current_basis <- rcd_env[["record"]] |>
+        dplyr::filter(tries == last_tries) |> dplyr::pull(basis)
+      jelly_j <- current_basis[[jelly_j_no]]
+      if (idx_jelly_i > idx_jelly_j) {
         new_i = orthonormalise(jelly_i + runif(1) * (jelly_i - jelly_j))
       } else {
         new_i = orthonormalise(jelly_i + runif(1) * (jelly_j - jelly_i)) # eq 16
       }
       return(new_i)
     }
-
-    target = lapply(current, function(i) {update_typeB(i, current)})
+    target <- mapply(update_typeB, current, 1:length(current), SIMPLIFY = FALSE)
+    #target = lapply(current, function(i) {update_typeB(i, current)})
   }
 
-  target <- mapply(correct_orientation, current, target)
+  target <- mapply(correct_orientation, current, target, SIMPLIFY = FALSE)
   target_idx <- sapply(target, index)
+
+  # check for NA for index computation (skinny gives NA if the alphahull can't be computed)
+  na_idx <- which(is.na(target_idx))
+  if (length(na_idx) > 0) {
+    target[na_idx] <- current[na_idx]
+    target_idx[na_idx] <- current_idx[na_idx]
+  }
 
   # if the target is worse than current, use current
   worse_id <- current_idx > target_idx
@@ -59,7 +79,7 @@ search_jellyfish <- function(current, index, tries, max.tries = 50, ...) {
   target_idx[worse_id] <- current_idx[worse_id]
 
   best_id <- which.max(target_idx)
-  #message("Target: ", sprintf("%.3f", max(target_idx)))
+  if (verbose) message("Target: ", sprintf("%.3f", max(target_idx)))
   attr(target, "best_id") <- best_id
   class(target) <- c("multi-bases", class(target))
 
@@ -106,4 +126,4 @@ check_dup <- function(bases, min_dist) {
   return(res)
 }
 
-globalVariables(c("loop"))
+globalVariables(c("loop", "basis"))

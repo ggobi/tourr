@@ -5,7 +5,7 @@
 \alias{check_dup}
 \title{A jellyfish optimiser for projection pursuit guided tour}
 \usage{
-search_jellyfish(current, index, tries, max.tries = 50, ...)
+search_jellyfish(current, index, tries, max.tries = 50, verbose = FALSE, ...)
 
 check_dup(bases, min_dist)
 }
@@ -17,6 +17,8 @@ check_dup(bases, min_dist)
 \item{tries}{the counter of the outer loop of the opotimiser}
 
 \item{max.tries}{the maximum number of iteration before giving up}
+
+\item{verbose}{whether to print out the progress messages}
 
 \item{...}{other arguments being passed into the \code{search_jellyfish()}}
 
