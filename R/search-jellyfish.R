@@ -11,6 +11,7 @@
 #' @export
 #' @examples
 #' library(dplyr)
+#' data(flea)
 #' res <- animate_xy(flea[, 1:6], guided_tour(lda_pp(cl = flea$species),
 #' search_f = search_jellyfish))
 #' bases <- res |> filter(loop == 1) |> pull(basis) |> check_dup(0.1)

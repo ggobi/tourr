@@ -3,8 +3,8 @@
 #' Animate a nD tour path with Chernoff's faces.  Can display up to 18
 #' dimensions.
 #'
-#' This function requires the \code{TeachingDemos} package to draw the
-#' Chernoff faces.  See \code{\link[TeachingDemos]{faces2}} for more details.
+#' This function requires the \code{aplpack} package to draw the
+#' Chernoff faces.  See \code{\link[aplpack]{faces}} for more details.
 #'
 #' @param ... other arguments passed on to \code{\link{animate}}
 #' @seealso \code{\link{animate}} for options that apply to all animations
