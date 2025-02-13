@@ -1,13 +1,20 @@
 ## Overview
 
-The main change was removing the dependency on TeachingDemos as requested by CRAN. 
+Some minor changes. Small bug fixes. A new optimiser added.
 
-Other changes are minor, except that a different default for all animations might affect current users. 
+- With devtools:check() 
 
-── R CMD check results ──────────────── tourr 1.2.0 ────
-Duration: 1m 18.7s
+── R CMD check results ───────────────────────────────────────────── tourr 1.2.4 ────
+Duration: 1m 25s
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
+
+- With R CMD CHECK ../tourr_1.2.4.tar.gz 
+
+* DONE
+
+Status: OK
+
 
 ## Test environment
 
