@@ -21,8 +21,8 @@ Animate a nD tour path with Chernoff's faces.  Can display up to 18
 dimensions.
 }
 \details{
-This function requires the \code{TeachingDemos} package to draw the
-Chernoff faces.  See \code{\link[TeachingDemos]{faces2}} for more details.
+This function requires the \code{aplpack} package to draw the
+Chernoff faces.  See \code{\link[aplpack]{faces}} for more details.
 }
 \examples{
 # The drawing code is fairly slow, so this animation works best with a
