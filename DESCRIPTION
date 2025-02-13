@@ -12,7 +12,7 @@ Description: Implements geodesic interpolation and basis
     generation functions that allow you to create new tour
     methods from R.
 Depends:
-    R (>= 3.6)
+    R (>= 4.1.0)
 Imports:
     MASS,
     tibble,
