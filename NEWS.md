@@ -1,3 +1,7 @@
+# tourr 1.2.5
+
+* fixed issue #138
+
 # tourr 1.2.4
 
 * Fixed an error with draw_tour_axes

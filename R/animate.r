@@ -49,6 +49,10 @@ animate <- function(data, tour_path = grand_tour(), display = display_xy(),
     message("Converting input data to the required matrix format.")
     data <- as.matrix(data)
   }
+  if (is.null(colnames(data))){
+    message("Adding column names.")
+    colnames(data) <- paste0("x", 1:ncol(data))
+  }
 
   if (rescale) data <- rescale(data)
   if (sphere) data <- sphere_data(data)
