@@ -1,3 +1,7 @@
+# tourr 1.2.6
+
+* Added packages used for PP indexes under Imports
+
 # tourr 1.2.5
 
 * Fixed issue #138
