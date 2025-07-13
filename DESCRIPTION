@@ -36,7 +36,7 @@ Suggests:
     rmarkdown,
     tidyr,
     covr,
-    plotly,
+    plotly
 License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/ggobi/tourr, https://ggobi.github.io/tourr/
