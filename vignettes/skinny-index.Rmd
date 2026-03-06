@@ -1,0 +1,78 @@
+---
+title: "Guided tour with the skinny scagnostic index"
+author: "Vaibhav Manihar"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Guided tour with the skinny scagnostic index}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  cache = FALSE,
+  eval = TRUE,
+  rmarkdown.html_vignette.check_title = FALSE
+)
+```
+
+```{r setup}
+library(tourr)
+```
+
+The `skinny()` index is a scagnostic measure computed using the `cassowaryr` package. It measures how narrow or elongated a point cloud appears in a 2D projection, and is useful for finding projections that reveal linear or elongated structure in the data.
+
+## Using skinny() in a guided tour
+
+We use the `flea` dataset, standardising the numeric variables before running the tour.
+
+```{r}
+f <- apply(flea[, 1:6], 2, function(x) (x - mean(x)) / sd(x))
+```
+
+We can inspect the index value on a specific projection to understand what the scalar output looks like.
+
+```{r}
+set.seed(2026)
+proj <- basis_random(ncol(f), 2)
+skinny()(f %*% proj)
+```
+
+The guided tour searches for projections that maximise this value, moving towards more elongated views of the point cloud.
+
+```{r, eval = FALSE}
+set.seed(2026)
+animate_xy(f,
+  tour_path = guided_tour(skinny()),
+  col = flea$species)
+```
+
+## Using the jellyfish optimiser
+
+The jellyfish optimiser (`search_jellyfish`) is a population-based search that can escape local optima more effectively than the default search. The tour path can be saved and replayed as a planned tour.
+
+```{r, eval = FALSE}
+set.seed(1234)
+path <- save_history(f,
+  guided_tour(skinny(), search_f = search_jellyfish),
+  max = 10)
+animate_xy(f, planned_tour(path), col = flea$species)
+```
+
+## Comparison with holes()
+
+The `holes()` index finds projections with low density near the centre, which tends to reveal cluster separation. The `skinny()` index instead measures how elongated a projected point cloud is. Because the indexes capture different geometric properties, the same projection can receive different scores from each index.
+
+```{r}
+set.seed(1234)
+proj <- basis_random(ncol(f), 2)
+
+c(
+  skinny = skinny()(f %*% proj),
+  holes  = holes()(f %*% proj)
+)
+```
+
+The two indexes evaluate the same projection differently because they measure different geometric properties of the projected point cloud.

@@ -2,9 +2,12 @@
 % Please edit documentation in R/interesting-indices.r
 \name{stringy}
 \alias{stringy}
+\alias{skinny}
 \title{Scagnostic indexes.}
 \usage{
 stringy()
+
+skinny()
 }
 \description{
 Compute the scagnostic measures from the cassowaryr package
