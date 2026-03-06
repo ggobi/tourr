@@ -8,6 +8,14 @@ stringy <- function(){
   }
 }
 
+#' @export
+#' @rdname stringy
+skinny <- function(){
+  function(mat){
+    cassowaryr::sc_skinny(mat[,1], mat[,2])
+  }
+}
+
 
 #' Maximum and total information coefficient index.
 #'
