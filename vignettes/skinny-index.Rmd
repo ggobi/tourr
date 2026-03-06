@@ -1,0 +1,72 @@
+---
+title: "Guided tour with the skinny scagnostic index"
+author: "Vaibhav Manihar"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Guided tour with the skinny scagnostic index}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  cache = FALSE,
+  eval = TRUE,
+  rmarkdown.html_vignette.check_title = FALSE
+)
+```
+
+```{r setup}
+library(tourr)
+```
+
+The `skinny()` index is a scagnostic measure computed using the `cassowaryr` package. It measures how narrow or elongated a point cloud appears in a 2D projection, and is useful for finding projections that reveal linear or elongated structure in the data.
+
+## Using skinny() in a guided tour
+
+We use the `flea` dataset, standardising the numeric variables before running the tour.
+
+```{r}
+f <- apply(flea[, 1:6], 2, function(x) (x - mean(x)) / sd(x))
+```
+
+We can inspect the index value on a specific projection to understand what the scalar output looks like.
+
+```{r}
+set.seed(2026)
+proj <- basis_random(6, 2)
+skinny()(f %*% proj)
+```
+
+The guided tour searches for projections that maximise this value, moving towards more elongated views of the point cloud.
+
+```{r}
+set.seed(2026)
+animate_xy(f,
+  tour_path = guided_tour(skinny()),
+  display = display_xy(col = flea$species))
+```
+
+## Using the jellyfish optimiser
+
+The jellyfish optimiser (`search_jellyfish`) is a population-based search that can escape local optima more effectively than the default search. The tour path can be saved and replayed as a planned tour.
+
+```{r}
+set.seed(1234)
+path <- save_history(f,
+  guided_tour(skinny(), search_f = search_jellyfish),
+  max = 10)
+animate_xy(f, planned_tour(path), col = flea$species)
+```
+
+## Comparison with holes()
+
+The `holes()` index finds projections with low density near the centre, which tends to reveal cluster separation. The `skinny()` index instead finds elongated structure, producing qualitatively different views of the same data.
+
+```{r}
+set.seed(1234)
+path_holes <- save_history(f, guided_tour(holes()), max = 10)
+animate_xy(f, planned_tour(path_holes), col = flea$species)
+```
