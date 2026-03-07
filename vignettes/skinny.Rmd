@@ -1,0 +1,84 @@
+---
+title: "Using the skinny index with jellyfish search"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using the skinny index with jellyfish search}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  cache = FALSE,
+  eval = TRUE,
+  rmarkdown.html_vignette.check_title = FALSE
+)
+```
+
+The `skinny` scagnostic basically tells you how thin a 2D point cloud looks.
+It comes from the `cassowaryr` package and is based on the ratio of the
+alpha hull perimeter to its area — so higher values mean the points are stretched
+out in a narrow, elongated way.
+
+Here we'll try using `skinny()` as a projection pursuit index with `guided_tour`,
+and use `search_jellyfish` as the optimiser since it tends to explore more broadly.
+
+```{r setup, message = FALSE}
+library(tourr)
+```
+
+## Setting up the data
+
+We'll work with the `flea` data that comes with tourr. Just standardising the
+numeric columns first so they're on a comparable scale.
+
+```{r}
+f <- apply(flea[, 1:6], 2, function(x) (x - mean(x)) / sd(x))
+head(f)
+```
+
+## Guided tour with skinny
+
+We can pass `skinny()` into `guided_tour()` the same way you'd use `holes()`
+or any other index. Adding `search_f = search_jellyfish` for the optimiser:
+
+```{r}
+animate_xy(f,
+  tour_path = guided_tour(skinny(),
+    search_f = search_jellyfish),
+  col = flea$species)
+```
+
+If you run this in the console you'll see it animate — the tour tries to
+find projections where the data looks as thin/elongated as possible.
+
+## Saving the tour path
+
+It can be handy to save the tour and replay it afterwards, especially
+if you want to look at it in a different display or just keep a record.
+
+```{r}
+set.seed(2025)
+path <- save_history(f,
+  guided_tour(skinny(), search_f = search_jellyfish),
+  max = 10)
+animate_xy(f, planned_tour(path), col = flea$species)
+```
+
+## Quick comparison with holes
+
+Just to see how `skinny()` differs from something like `holes()` — the holes
+index looks for projections with low density in the middle (good for finding
+clusters), while skinny is looking for elongated structure.
+
+```{r}
+set.seed(2025)
+path_h <- save_history(f, guided_tour(holes()), max = 10)
+animate_xy(f, planned_tour(path_h), col = flea$species)
+```
+
+You can see that `holes()` tends to tease apart the species groups, while
+`skinny()` finds a different kind of structure — more stretched out views
+of the data.
