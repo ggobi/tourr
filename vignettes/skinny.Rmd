@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The `skinny` scagnostic basically tells you how thin a 2d point cloud looks.
+The `skinny` scagnostic basically tells you how thin a 2D point cloud looks.
 It comes from the `cassowaryr` package and is based on the ratio of the
 alpha hull perimeter to its area — so higher values mean the points are stretched
 out in a narrow, elongated way.
