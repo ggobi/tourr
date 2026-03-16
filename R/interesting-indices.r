@@ -1,3 +1,15 @@
+#' Scagnostic index: skinny
+#'
+#' Compute the skinny scagnostic measure from the `cassowaryr` package.
+#' This index measures how thin and narrow a shape is.
+#' @export
+skinny <- function() {
+  function(mat) {
+    cassowaryr::sc_skinny(mat[, 1], mat[, 2])
+  }
+}
+
+
 #' Scagnostic indexes.
 #'
 #' Compute the scagnostic measures from the cassowaryr package
