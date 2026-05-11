@@ -163,6 +163,5 @@ new_tour <- function(data, tour_path, start = NULL, ...) {
 # globalVariables(c("basis", "id", "index", "index_val"))
 
 #' @importFrom grDevices dev.cur dev.flush dev.hold dev.off hcl rgb
-#' @importFrom graphics abline axis box hist image lines pairs par plot points
-#'   polygon rect segments stars text arrows
+#' @importFrom graphics abline axis box hist image lines pairs par plot points polygon rect segments stars text arrows
 NULL

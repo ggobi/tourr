@@ -8,20 +8,21 @@
 #' \code{\link{save_history}} or \code{\link{render}}.
 #'
 #' @param d target dimensionality
+#' @param reorder logical, default = TRUE, to randomise the order in which
 #' @export
 #' @examples
 #' animate_xy(flea[, 1:6], little_tour())
 #' animate_pcp(flea[, 1:6], little_tour(3))
 #' animate_scatmat(flea[, 1:6], little_tour(3))
 #' animate_pcp(flea[, 1:6], little_tour(4))
-little_tour <- function(d = 2) {
+little_tour <- function(d = 2, reorder = TRUE) {
   little <- NULL
   step <- 0
 
   generator <- function(current, data, ...) {
     if (is.null(little)) {
       # Initialise bases
-      little <<- bases_little(ncol(data), d)
+      little <<- bases_little(ncol(data), d, reorder)
     }
     step <<- (step %% length(little)) + 1
     if (is.null(current)) {
@@ -40,11 +41,13 @@ little_tour <- function(d = 2) {
 #' @keywords internal
 #' @param p dimensionality of data
 #' @param d dimensionality of target projection
-bases_little <- function(p, d = 2) {
+#' bases are visited
+bases_little <- function(p, d = 2, reorder = TRUE) {
   b <- diag(rep(1, p))
   vars <- utils::combn(p, d)
   # Let's make the list twice as long, so it visits pairs multiple
   # times, and in different order
-  vars <- cbind(vars[, sample(1:ncol(vars))], vars[, sample(1:ncol(vars))])
+  if (reorder)
+    vars <- cbind(vars[, sample(1:ncol(vars))], vars[, sample(1:ncol(vars))])
   lapply(seq_len(ncol(vars)), function(i) b[, vars[, i]])
 }

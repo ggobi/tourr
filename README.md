@@ -2,7 +2,7 @@ tourr: tour methods for multivariate data visualisation
 ================
 Hadley Wickham, Di Cook, Nick Spyrison, Ursula Laa, H. Sherry Zhang,
 Stuart Lee
-<br> July 11, 2025
+<br> May 11, 2026
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -38,7 +38,29 @@ labelled classes.
 animate_xy(flea[,-7], col=flea$species)
 ```
 
+## Managing graphics devices
+
+Depending on what operating system, and IDE, it may be useful to open a
+new device for running the animation, using
+
+    quartz()
+
+on a Mac, or
+
+    X11()
+
+on windows.
+
+If you are running code from a quarto document, make sure to run it in
+the console of the IDE, so that the animation shows as an animation
+instead of a gazillion images written into the qmd window!
+
 ## Resources
 
-The best place to get started is the [Journal of Statistical Software
-paper](https://www.jstatsoft.org/article/view/v040i02).
+Beyond the website, a good place to get started is the [Interactively
+exploring high-dimensional data and models in
+R](https://dicook.github.io/mulgar_book/). The original documentation is
+[Journal of Statistical Software
+paper](https://www.jstatsoft.org/article/view/v040i02) remains useful
+for understanding the package structure, capabilities and how to extend
+it.

@@ -4,10 +4,12 @@
 \alias{little_tour}
 \title{A little tour path.}
 \usage{
-little_tour(d = 2)
+little_tour(d = 2, reorder = TRUE)
 }
 \arguments{
 \item{d}{target dimensionality}
+
+\item{reorder}{logical, default = TRUE, to randomise the order in which}
 }
 \description{
 The little tour is a planned tour that travels between all axis parallel

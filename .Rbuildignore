@@ -22,3 +22,5 @@
 ^pkgdown$
 ^test$
 ^CRAN-SUBMISSION$
+^\.positai$
+^\.claude$

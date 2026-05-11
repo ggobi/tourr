@@ -4,12 +4,13 @@
 \alias{bases_little}
 \title{Generate bases for the little tour}
 \usage{
-bases_little(p, d = 2)
+bases_little(p, d = 2, reorder = TRUE)
 }
 \arguments{
 \item{p}{dimensionality of data}
 
-\item{d}{dimensionality of target projection}
+\item{d}{dimensionality of target projection
+bases are visited}
 }
 \description{
 Generate bases for the little tour

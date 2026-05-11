@@ -1,3 +1,7 @@
+# tourr 1.2.7
+
+* new argument for the little tour to run sequentially through the variables.
+
 # tourr 1.2.6
 
 * Added packages used for PP indexes under Imports

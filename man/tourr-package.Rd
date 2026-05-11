@@ -24,6 +24,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Dianne Cook \email{dicook@monash.edu} (\href{https://orcid.org/0000-0002-3813-7155}{ORCID})
   \item Hadley Wickham \email{h.wickham@gmail.com} (\href{https://orcid.org/0000-0003-4757-117X}{ORCID}) [contributor]
 }
 
