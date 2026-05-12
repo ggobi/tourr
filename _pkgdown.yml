@@ -1,6 +1,13 @@
 template:
-  params:
-    bootswatch: cosmo
+  bootstrap: 5
+  bootswatch: cosmo
+
+url: http://ggobi.github.io/tourr/
+
+articles:
+  - contents:
+    - intro
+    - edges
 
 reference:
 - title: In-built data
