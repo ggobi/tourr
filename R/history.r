@@ -129,9 +129,15 @@ as.list.history_list <- function(x, ...) x
 
 #' @export
 as.list.history_array <- function(x, ...) {
-  projs <- do.call("c", apply(x, 3, list))
+  projs <- lapply(seq_len(dim(x)[3]), function(i) {
+    matrix(x[, , i], nrow = dim(x)[1], ncol = dim(x)[2])
+  })
   structure(projs, class = "history_list", data = attr(x, "data"))
 }
+#as.list.history_array <- function(x, ...) {
+#  projs <- do.call("c", apply(x, 3, list))
+#  structure(projs, class = "history_list", data = attr(x, "data"))
+#}
 
 #' @export
 as.array.history_array <- function(x, ...) x
