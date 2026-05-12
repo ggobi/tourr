@@ -11,7 +11,7 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  eval = TRUE,
+  eval = FALSE,
   comment = "#>",
   rmarkdown.html_vignette.check_title = FALSE
 )
@@ -25,7 +25,7 @@ Showing connections between points can be useful in different applications, incl
 
 For example, we can generate cube vertices and edges using the `geozoo` package. The information stored as `points` constitutes the input data, and `edges` can directly be passed into the display.
 
-```{r}
+```{r cube3}
 # generate 3D cube vertices
 cube <- geozoo::cube.iterate(3)
 # data is stored points, edges contains the needed two column matrix for connecting points
@@ -35,25 +35,30 @@ cube$edges
 animate_xy(cube$points, edges = cube$edges, axes = "off")
 ```
 
+![Edges added to the vertices of a 3D cube.](figures/cube3.png){width=400 fig-alt="Recognisable 3D clube wireframe."}
+
 We can use the same functions for higher dimensional cubes as well (but would not print the data).
 
-```{r}
+```{r cube5}
 cube5 <- geozoo::cube.iterate(5)
 animate_xy(cube5$points, edges = cube5$edges, axes = "off")
 ```
+
+![Edges added to the vertices of a 5D cube.](figures/cube5.png){width=400 fig-alt="Wireframe of a 5D cube, where the 32 vertices are connected appropriately by edges. All vertices and edges are visible."}
 
 It can often be useful to connect points with edges, for example sequential points in a time series, or points that are connected by a model. As a simple example we can connect centroids found when clustering the flea dataset:
 
 ```{r}
 # get centroids of 3 clusters of the flea data
-f <- apply(flea[,1:6], 2, function(x) (x-mean(x))/sd(x))
-n <- nrow(f)
+n <- nrow(flea)
 set.seed(1019)
-flea_centroids <- stats::kmeans((f), 3)$centers
-flea_aug <- rbind(f, flea_centroids)
+flea_centroids <- stats::kmeans(flea[,1:6], 3)$centers
+flea_aug <- rbind(flea[,1:6], flea_centroids)
 col <- c(rep("black", n), rep("orange", 3))
 flea_edges <- matrix(c(n+1, n+2, n+1, n+3, n+2, n+3), ncol=2, byrow = TRUE)
 animate_xy(flea_aug, edges = flea_edges, 
            col = col, edges.col = "orange", 
            edges.width = 3)
 ```
+
+![Connecting the k-centroids with edges.](figures/kmeans.png){width=400 fig-alt="Scatterplot overlaid by a circle and line segments representing the projection coefficients. The key information is an orange triangle visibly connecting the centres of three clusters."}

@@ -2,11 +2,11 @@ tourr: tour methods for multivariate data visualisation
 ================
 Hadley Wickham, Di Cook, Nick Spyrison, Ursula Laa, H. Sherry Zhang,
 Stuart Lee
-<br> May 11, 2026
+<br> May 12, 2026
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# tourr <img src="man/figures/logo.png" align="right" width="150" />
+# tourr <img src="man/figures/logo.png" align="right" width="150"  alt="package hexsticker"/>
 
 The goal of tourr is to explore shapes of high-dimensional data. This
 code also allows new tour methods to be created that utilise geodesic

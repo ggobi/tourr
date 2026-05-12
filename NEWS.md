@@ -1,6 +1,7 @@
 # tourr 1.2.7
 
-* new argument for the little tour to run sequentially through the variables.
+* New argument for the little tour to run sequentially through the variables.
+* Animations in vignettes now do not run, because this throws an error on Windows and linux.
 
 # tourr 1.2.6
 
