@@ -99,14 +99,22 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
 }
 
 #' @export
+#"[.history_array" <- function(x, i = TRUE, j = TRUE, k = TRUE, ...) {
+#  piece <- .subset(x, i, j, k, drop = FALSE)
+#  structure(piece,
+#    data = attr(x, "data"),
+#    class = class(x)
+#  )
+#}
 "[.history_array" <- function(x, i = TRUE, j = TRUE, k = TRUE, ...) {
-  piece <- .subset(x, i, j, k, drop = FALSE)
+  # Use unclass() to bypass this method when calling base [,
+  # then re-apply drop=FALSE safely via array indexing
+  piece <- unclass(x)[i, j, k, drop = FALSE]
   structure(piece,
-    data = attr(x, "data"),
-    class = class(x)
+            data = attr(x, "data"),
+            class = class(x)
   )
 }
-
 #' @export
 "[[.history_array" <- function(x, i, ...) {
   as.matrix(.subset(x, TRUE, TRUE, i, drop = FALSE))

@@ -34,9 +34,14 @@ interpolate <- function(basis_set, angle = 0.05, cycle = FALSE) {
       loop = numeric()
     )
   # Estimate number of bases in output
+#  dists <- sapply(2:n, function(i) {
+#    proj_dist(apply(basis_set[,,i - 1], 2, c), apply(basis_set[,,i], 2, c))
+#  })
   dists <- sapply(2:n, function(i) {
-#    proj_dist(basis_set[[i - 1]], basis_set[[i]])
-    proj_dist(apply(basis_set[,,i - 1], 2, c), apply(basis_set[,,i], 2, c))
+    proj_dist(
+      matrix(unclass(basis_set)[, , i - 1], nrow = dim(basis_set)[1]),
+      matrix(unclass(basis_set)[, , i],     nrow = dim(basis_set)[1])
+    )
   })
   steps <- sum(ceiling(dists / angle)) * 2
 
@@ -47,7 +52,11 @@ interpolate <- function(basis_set, angle = 0.05, cycle = FALSE) {
   projs <- array(NA_real_, c(dim(basis_set)[1:2], steps))
 
   i <- 1
-  tour <- new_tour(basis_set[, , 1], planned_tour(basis_set, cycle))
+#  tour <- new_tour(basis_set[, , 1], planned_tour(basis_set, cycle))
+  tour <- new_tour(
+    matrix(unclass(basis_set)[, , 1], nrow = dim(basis_set)[1]),
+    planned_tour(basis_set, cycle)
+  )
   step <- tour(0)
   stop_next <- FALSE # use bool to stop after adding final projection
 
