@@ -1,6 +1,5 @@
 ---
 title: "Edges in scatterplot displays"
-description: "Examples of how to specify edges to connect points."
 author: "Ursula Laa"
 output: rmarkdown::html_vignette
 vignette: >

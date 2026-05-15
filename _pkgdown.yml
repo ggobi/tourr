@@ -4,16 +4,24 @@ home:
     generation functions that allow you to create new tour
     methods from R.
 
-url: http://ggobi.github.io/tourr/
+url: https://ggobi.github.io/tourr/
 
 template:
   bootstrap: 5
   bootswatch: cosmo
 
-articles:
-  - contents:
-    - intro
-    - edges
+navbar:
+  structure:
+    left: [reference, articles]
+
+  components:
+    articles:
+      text: Articles
+      menu:
+        - text: Introduction
+          href: articles/intro.html
+        - text: Edges
+          href: articles/edges.html
 
 reference:
 - title: In-built data
