@@ -1,5 +1,6 @@
 ---
 title: "Introduction to tourr"
+description: "Getting started with the package."
 author: "Ursula Laa"
 output: rmarkdown::html_vignette
 vignette: >

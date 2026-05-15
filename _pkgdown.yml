@@ -1,8 +1,14 @@
+home:
+  title: Tour Methods for Multivariate Data Visualisation
+  description: Implements geodesic interpolation and basis
+    generation functions that allow you to create new tour
+    methods from R.
+
+url: http://ggobi.github.io/tourr/
+
 template:
   bootstrap: 5
   bootswatch: cosmo
-
-url: http://ggobi.github.io/tourr/
 
 articles:
   - contents:
