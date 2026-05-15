@@ -5,7 +5,7 @@
 * Changes in interpolate to better handle the dimension of the history array for Windows and linux.
 * Change qplot to ggplot in the path index plots
 * A lot of new tests have been added, thanks to Claude
-* Several new vignettes on usage added.
+* Several new vignettes on usage added, also thanks to Claude.
 
 # tourr 1.2.6
 
