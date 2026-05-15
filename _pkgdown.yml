@@ -7,8 +7,14 @@ home:
 url: https://ggobi.github.io/tourr/
 
 template:
-  bootstrap: 5
-  bootswatch: cosmo
+  bootswatch: darkly
+
+  bslib:
+    primary: "#42c4c7"
+    secondary: "#f39c12"
+    bg: "#111111"
+    fg: "#f8f8f8"
+    code-color: "#f1d12f"
 
 navbar:
   structure:
@@ -20,8 +26,12 @@ navbar:
       menu:
         - text: Introduction
           href: articles/intro.html
+        - text: Different types of tours
+          href: articles/tour-types.html
         - text: Edges
           href: articles/edges.html
+        - text: Labelling observations
+          href: articles/labelling-observations.html
 
 reference:
 - title: In-built data

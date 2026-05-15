@@ -4,6 +4,8 @@
 * Animations in vignettes changed, because they throw an error on Windows and linux.
 * Changes in interpolate to better handle the dimension of the history array for Windows and linux.
 * Change qplot to ggplot in the path index plots
+* A lot of new tests have been added, thanks to Claude
+* Several new vignettes on usage added.
 
 # tourr 1.2.6
 
