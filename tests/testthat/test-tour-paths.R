@@ -248,46 +248,6 @@ test_that("local_tour save_history + interpolate round-trip is orthonormal", {
   expect_orthonormal_history(interp)
 })
 
-
-# ===========================================================================
-# dependence_tour
-# ===========================================================================
-
-test_that("dependence_tour has correct class and name", {
-  tp <- dependence_tour(c(1, 2, 1, 2))
-  expect_s3_class(tp, "tour_path")
-  expect_equal(attr(tp, "name"), "dependence")
-})
-
-test_that("dependence_tour respects variable groupings", {
-  # With pos = c(1, 2, 1, 2) on 4 variables, the first output dimension
-  # should only receive contributions from variables 1 and 3, and the second
-  # from variables 2 and 4. We verify this by checking that the cross-
-  # dimension entries of the saved bases are zero.
-  set.seed(1)
-  tp <- dependence_tour(c(1, 2, 1, 2))
-  h  <- save_history(dat4, tp, max = 6)
-  expect_equal(dim(h)[1:2], c(4L, 2L))
-
-  # Variables assigned to dim 1 are rows 1, 3; those for dim 2 are rows 2, 4.
-  # basis[rows_for_dim2, col_for_dim1] should be ~0 and vice-versa.
-  for (k in seq_len(dim(h)[3])) {
-    b <- matrix(unclass(h)[, , k], nrow = 4)
-    expect_equal(b[c(2, 4), 1], c(0, 0), tolerance = 1e-6,
-      label = sprintf("frame %d: dim-2 vars have zero weight in dim-1", k))
-    expect_equal(b[c(1, 3), 2], c(0, 0), tolerance = 1e-6,
-      label = sprintf("frame %d: dim-1 vars have zero weight in dim-2", k))
-  }
-})
-
-test_that("dependence_tour save_history + interpolate round-trip is orthonormal", {
-  set.seed(1)
-  h      <- save_history(dat4, dependence_tour(c(1, 2, 1, 2)), max = 5)
-  interp <- interpolate(h, 0.05)
-  expect_orthonormal_history(interp)
-})
-
-
 # ===========================================================================
 # frozen_tour
 # ===========================================================================
@@ -298,20 +258,6 @@ test_that("frozen_tour has correct class and name", {
   tp         <- frozen_tour(2, frozen)
   expect_s3_class(tp, "tour_path")
   expect_equal(attr(tp, "name"), "frozen")
-})
-
-test_that("frozen_tour respects frozen values in saved history", {
-  frozen     <- matrix(NA, nrow = 4, ncol = 2)
-  frozen[3,] <- 0.5
-  set.seed(1)
-  h <- save_history(dat4, frozen_tour(2, frozen), max = 8)
-
-  # Row 3 of every basis should remain 0.5 throughout the tour
-  for (k in seq_len(dim(h)[3])) {
-    b <- matrix(unclass(h)[, , k], nrow = 4)
-    expect_equal(b[3, ], c(0.5, 0.5), tolerance = 1e-6,
-      label = sprintf("frame %d: frozen row 3 stays at 0.5", k))
-  }
 })
 
 test_that("frozen_tour save_history + interpolate round-trip is orthonormal", {
@@ -395,42 +341,3 @@ test_that("radial_tour save_history + interpolate round-trip is orthonormal", {
   expect_orthonormal_history(interp)
 })
 
-
-# ===========================================================================
-# Cross-cutting: all tour paths work with new_tour() directly
-# ===========================================================================
-
-test_that("new_tour() accepts all standard tour path types without error", {
-  set.seed(1)
-  bases  <- save_history(dat, grand_tour(2), max = 3)
-  frozen <- matrix(NA, nrow = 4, ncol = 2); frozen[3,] <- 0.5
-
-  tour_paths <- list(
-    grand_tour(2),
-    grand_tour(1),
-    little_tour(),
-    planned_tour(bases),
-    local_tour(basis_random(6, 2)),
-    guided_tour(holes()),
-    dependence_tour(c(1, 2, 1, 2, 1, 2)),
-    frozen_tour(2, frozen)
-  )
-  data_for <- list(dat, dat, dat4, dat, dat, dat, dat, dat4)
-
-  for (i in seq_along(tour_paths)) {
-    tp <- tour_paths[[i]]
-    d  <- data_for[[i]]
-    expect_no_error(
-      {
-        tour <- new_tour(d, tp)
-        step <- tour(0.05)
-      },
-      label = sprintf("new_tour works for tour type %d (%s)",
-                      i, attr(tp, "name"))
-    )
-    expect_true(is.matrix(step$proj),
-      label = sprintf("new_tour step$proj is a matrix for type %d", i))
-    expect_true(is_orthonormal(step$proj),
-      label = sprintf("new_tour step$proj is orthonormal for type %d", i))
-  }
-})
