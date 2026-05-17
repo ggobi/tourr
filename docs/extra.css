@@ -1,0 +1,27 @@
+:root {
+  --bs-primary: #42c4c7;
+  --bs-secondary: #f39c12;
+  --bs-success: #f1d12f;
+}
+
+.navbar {
+  background-color: #111111 !important;
+}
+
+.navbar-brand,
+.nav-link,
+.navbar-nav .nav-link.active {
+  color: #42c4c7 !important;
+}
+
+a {
+  color: #42c4c7;
+}
+
+a:hover {
+  color: #f39c12;
+}
+
+code {
+  color: #f1d12f;
+}

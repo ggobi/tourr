@@ -9,13 +9,6 @@ url: https://ggobi.github.io/tourr/
 template:
   bootswatch: darkly
 
-  bslib:
-    primary: "#42c4c7"
-    secondary: "#f39c12"
-    bg: "#111111"
-    fg: "#f8f8f8"
-    code-color: "#f1d12f"
-
 navbar:
   structure:
     left: [reference, articles]
