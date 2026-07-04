@@ -1,3 +1,7 @@
+# tourr 1.2.8
+
+* Fix to the history array, as requested by CRAN
+
 # tourr 1.2.7
 
 * New argument for the little tour to run sequentially through the variables.

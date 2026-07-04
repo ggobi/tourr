@@ -99,13 +99,7 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
 }
 
 #' @export
-#"[.history_array" <- function(x, i = TRUE, j = TRUE, k = TRUE, ...) {
-#  piece <- .subset(x, i, j, k, drop = FALSE)
-#  structure(piece,
-#    data = attr(x, "data"),
-#    class = class(x)
-#  )
-#}
+#' @importFrom utils modifyList
 "[.history_array" <- function(x, i = TRUE, j = TRUE, k = TRUE, ...) {
   # Use unclass() to bypass this method when calling base [,
   # then re-apply drop=FALSE safely via array indexing
@@ -115,6 +109,7 @@ save_history <- function(data, tour_path = grand_tour(), max_bases = 100, start 
             class = class(x)
   )
 }
+
 #' @export
 "[[.history_array" <- function(x, i, ...) {
   as.matrix(.subset(x, TRUE, TRUE, i, drop = FALSE))
@@ -142,10 +137,6 @@ as.list.history_array <- function(x, ...) {
   })
   structure(projs, class = "history_list", data = attr(x, "data"))
 }
-#as.list.history_array <- function(x, ...) {
-#  projs <- do.call("c", apply(x, 3, list))
-#  structure(projs, class = "history_list", data = attr(x, "data"))
-#}
 
 #' @export
 as.array.history_array <- function(x, ...) x
@@ -158,4 +149,9 @@ as.array.history_list <- function(x, ...) {
     projs[, , i] <- x[[i]]
   }
   structure(projs, class = "history_array", data = attr(x, "data"))
+}
+
+#' @export
+aperm.history_array <- function(a, perm, resize = TRUE, ...) {
+  aperm(unclass(a), perm = perm, resize = resize, ...)
 }
