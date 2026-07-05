@@ -14,8 +14,8 @@
 #'   which dimensions: 1 corresponds to first, 2 to second etc.
 #' @export
 #' @examples
-#' animate_xy(flea[, 1:3], dependence_tour(c(1, 2, 2)))
-#' animate_xy(flea[, 1:4], dependence_tour(c(1, 2, 1, 2)))
+#' animate_dependence(flea[, 1:3], dependence_tour(c(1, 2, 2)))
+#' animate_dependence(flea[, 1:4], dependence_tour(c(1, 2, 1, 2)))
 #' animate_pcp(flea[, 1:6], dependence_tour(c(1, 2, 3, 2, 1, 3)))
 dependence_tour <- function(pos) {
   stopifnot(is.numeric(pos))
@@ -23,8 +23,10 @@ dependence_tour <- function(pos) {
 
   d <- max(pos)
   generator <- function(current, data, ...) {
+    stopifnot(ncol(data) == length(pos))
+
     if (is.null(current)) {
-      return(basis_init(ncol(data), d))
+      return(basis_dep_init(ncol(data), d, pos))
     }
 
     mat <- matrix(0, ncol = d, nrow = length(pos))
@@ -37,4 +39,23 @@ dependence_tour <- function(pos) {
   }
 
   new_geodesic_path("independent", generator)
+}
+
+#' Initial basis for dependence tour.
+#'
+#' First two variables are projected on first two axes.
+#'
+#' @keywords internal
+#' @param n dimensionality of data
+#' @param d dimensionality of target projection
+#' @param pos a numeric vector describing which variables are mapped to
+#'   which dimensions: 1 corresponds to first, 2 to second etc.
+#' @export
+basis_dep_init <- function(n, d, pos) {
+  start <- matrix(0, nrow = n, ncol = d)
+  for (i in seq_len(d)) {
+    pos_pos <- match(i, pos)
+    start[pos_pos, i] <- 1
+  }
+  start
 }

@@ -1,6 +1,8 @@
 # tourr 1.2.8
 
 * Fix to the history array, as requested by CRAN
+* Added a dependence display so that we can tailor what is plotted 
+when using the dependence tour
 
 # tourr 1.2.7
 

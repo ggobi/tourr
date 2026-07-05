@@ -23,7 +23,7 @@ a method that works with tour paths like \code{\link{animate}},
 \code{\link{save_history}} or \code{\link{render}}.
 }
 \examples{
-animate_xy(flea[, 1:3], dependence_tour(c(1, 2, 2)))
-animate_xy(flea[, 1:4], dependence_tour(c(1, 2, 1, 2)))
+animate_dependence(flea[, 1:3], dependence_tour(c(1, 2, 2)))
+animate_dependence(flea[, 1:4], dependence_tour(c(1, 2, 1, 2)))
 animate_pcp(flea[, 1:6], dependence_tour(c(1, 2, 3, 2, 1, 3)))
 }

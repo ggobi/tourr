@@ -2,7 +2,7 @@ tourr: tour methods for multivariate data visualisation
 ================
 Hadley Wickham, Di Cook, Nick Spyrison, Ursula Laa, H. Sherry Zhang,
 Stuart Lee
-<br> May 12, 2026
+<br> July 04, 2026
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
