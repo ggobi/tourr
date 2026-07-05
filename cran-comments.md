@@ -11,8 +11,8 @@
 
 - With devtools:check() 
 
-── R CMD check results ─────────────────────────────────── tourr 1.2.7 ────
-Duration: 2m 21.6s
+── R CMD check results ───────────────────────────────────── tourr 1.2.8 ────
+Duration: 1m 20.2s
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 

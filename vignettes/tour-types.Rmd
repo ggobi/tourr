@@ -1,0 +1,314 @@
+---
+title: "Tour types"
+author: "Claude and Di Cook"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tour types}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = TRUE
+)
+library(tourr)
+```
+
+A tour animates a sequence of low-dimensional linear projections of
+high-dimensional data. Think of it like shining a light on an object and
+watching the shadow: any single shadow (projection) shows you one view of the
+shape, but watching many shadows in sequence — as the object slowly rotates —
+lets you build up a picture of the whole structure. Clusters, outliers,
+non-linear patterns, and variable associations that would be invisible in a
+single 2D plot can emerge as the tour progresses.
+
+The two main ingredients in any tour are the **projection dimension** `d`
+(how many dimensions to project down to, usually 1 or 2) and the **tour
+type**, which controls how the sequence of projections is chosen. This
+vignette walks through each tour type, explains when to use it, and shows
+the code needed to run it.
+
+Throughout we use the `flea` dataset (74 flea beetle measurements on 6
+numeric variables), which has been standardised to have mean 0 and unit variance. The views can be misleading if your data is not standardised, or variables have not been scaled to be on comparable units. 
+
+---
+
+## Grand tour
+
+The grand tour generates target projections by sampling uniformly from the
+space of all `d`-dimensional planes and interpolates smoothly between them.
+Over time it visits every possible projection, giving a global overview of the
+data. It is the right starting point when you do not know what structure to
+look for.
+
+```{r grand, eval = FALSE}
+# 2D projections — the default
+f <- flea[,1:6] # For convenience
+animate_xy(f)
+
+# 1D projections shown as a density
+animate_dist(f)
+```
+
+Points that stand apart from the main cloud in many projections are likely
+outliers. Groups of points that stay together through many projections, then
+occasionally merge with others, suggest clusters. Because the grand tour
+samples randomly it will eventually show every view, but it may take a while
+to stumble on the most revealing one — that is where the guided tour helps.
+
+---
+
+## Guided tour
+
+The guided tour adds a direction to the search: it uses **projection
+pursuit** to move towards projections that score highly on a chosen index
+function. Each new target is not random but chosen to increase the index,
+so the tour makes progress towards the structure you care about rather than
+wandering at random.
+
+The index function is the key choice:
+
+- `holes()` looks for projections with low density near the centre and high
+  density near the edges — a signature of separated clusters.
+- `cmass()` looks for projections with high density near the centre —
+  useful for finding outliers that sit away from a dense core.
+- `lda_pp()` and `pda_pp()` use known class labels to find projections where
+  groups are well separated.
+
+```{r guided, eval = FALSE}
+# Find cluster structure without class labels
+animate_xy(f, tour_path = guided_tour(holes()))
+
+# Same search, colour by known species once structure is found
+animate_xy(f,
+  tour_path = guided_tour(holes()),
+  col = flea$species
+)
+
+# Use class labels directly to separate groups
+animate_xy(f,
+  tour_path = guided_tour(lda_pp(flea$species)),
+  col = flea$species
+)
+```
+
+The guided tour terminates when no better projection can be found, so it will
+stop on its own. The final view it settles on is usually the most revealing
+one for that index. If it stops too quickly — without finding visible structure
+— try `sphere = TRUE` in `animate()` to remove linear associations first, or
+start from a different random seed.
+
+---
+
+## Little tour
+
+The little tour is a planned tour between all axis-parallel projections: it
+cycles through every pair of original variables in turn. This makes it a
+systematic way to survey all the marginal 2D views of the data, equivalent to
+watching a slow animated scatterplot matrix.
+
+```{r little, eval = FALSE}
+animate_xy(f, tour_path = little_tour())
+```
+
+Because the little tour only visits axis-parallel projections it can miss
+structure that lives in oblique directions — a cluster that separates along a
+diagonal will not appear. It is best used as a sanity check or a complement
+to the grand tour rather than a primary exploration tool.
+
+---
+
+## Planned tour
+
+The planned tour replays a sequence of bases you have already saved. The
+typical workflow is to run a grand tour with `save_history()`, keep the saved
+path, and then replay it — perhaps in a different display, or with colour
+added after the fact.
+
+```{r planned, eval = FALSE}
+# Save a grand tour path
+set.seed(42)
+t1 <- save_history(f, max = 10)
+
+# Replay it in a scatterplot
+animate_xy(f, tour_path = planned_tour(t1))
+
+# Replay the same path with species colour added
+animate_xy(f,
+  tour_path = planned_tour(t1),
+  col = flea$species
+)
+
+# Cycle continuously through the saved bases
+animate_xy(f, tour_path = planned_tour(t1, cycle = TRUE))
+```
+
+The planned tour is also how you share a specific tour with someone else:
+save the history with `save_history()`, save the object to disk with
+`saveRDS()`, and send it alongside your code.
+
+---
+
+## Local tour
+
+The local tour makes small movements around a chosen starting projection. At
+each step it picks a new target that is within a specified angular distance
+(`angle`, in radians) of the current position, so the view never strays far
+from where you started. This is useful for examining whether a pattern you
+have spotted is robust — if the structure survives small perturbations of the
+projection it is a real feature rather than a coincidence of a particular
+viewing angle.
+
+```{r local, eval = FALSE}
+# Start from a specific projection (e.g. one saved from a guided tour)
+start <- basis_random(6, 2)
+
+# Explore a small neighbourhood of angle pi/4
+animate_xy(f,
+  tour_path = local_tour(start, angle = pi / 4),
+  col = flea$species
+)
+```
+
+A tighter `angle` keeps the view closer to the starting point. A wider angle
+effectively becomes a grand tour. Values around `pi/4` to `pi/8` are a
+reasonable starting range.
+
+---
+
+## Radial tour
+
+The radial tour answers a specific and practical question: *how important is
+a particular variable to the pattern I can currently see?* Starting from a
+chosen projection, it rotates one variable at a time smoothly out of the
+projection plane and then back in again, like a dial being turned to zero and
+back. Watching what happens to the structure in the plot as the variable is
+removed tells you exactly how much that variable contributes.
+
+The two required arguments are `start`, the projection matrix to begin from,
+and `mvar`, the index (or indices) of the variable(s) to rotate in and out.
+The `start` projection is typically one you have already found interesting —
+for example the final view of a guided tour.
+
+```{r radial, eval = FALSE}
+# Use a saved projection as the starting point — here we take the
+# end-point of a guided tour run with holes()
+set.seed(42)
+guided_path  <- save_history(f, guided_tour(holes()), sphere = TRUE)
+start        <- matrix(guided_path[, , dim(guided_path)[3]], nrow = 6)
+
+# Rotate variable 4 (elytra width) out and back in
+animate_xy(f,
+  tour_path = radial_tour(start, mvar = 4),
+  col = flea$species,
+  rescale = TRUE
+)
+
+# Rotate two variables simultaneously to see their joint contribution
+animate_xy(f,
+  tour_path = radial_tour(start, mvar = c(3, 4)),
+  col = flea$species,
+  rescale = TRUE
+)
+```
+
+The radial tour also works with other display types. If the starting
+projection is 1D, use `animate_dist()`:
+
+```{r radial-1d, eval = FALSE}
+start1d <- basis_random(6, 1)
+animate_dist(f, radial_tour(start1d, mvar = 2), rescale = TRUE)
+```
+
+**Reading the result.** When the variable is rotated out, watch whether the
+structure (clusters, gaps, outlier positions) collapses or survives:
+
+- Structure *disappears* when the variable is removed → the variable is
+  essential to producing that pattern.
+- Structure *survives* → the pattern exists without that variable; other
+  variables carry it.
+- Structure *changes shape but does not vanish* → the variable contributes
+  partially; removing it reveals a different facet of the same underlying
+  structure.
+
+This makes the radial tour one of the most useful tools for variable
+selection and for building intuition about which measurements drive the
+patterns in your data. It is often run after a guided tour: find an
+interesting projection with the guided tour, then probe each variable in turn
+with the radial tour to understand what is making the pattern.
+
+---
+
+## Frozen tour
+
+The frozen tour holds the projection coefficients for some variables fixed at
+specified values and lets the remaining coefficients vary freely under a grand
+tour. This is useful when you already know that a particular variable or
+direction is important and want to explore the remaining variation while keeping
+that variable anchored in view.
+
+Frozen values are specified with a matrix of `NA` and numeric entries: `NA`
+means the coefficient varies freely; a number fixes it.
+
+```{r frozen, eval = FALSE}
+# Fix variable 3 to contribute equally to both axes
+frozen      <- matrix(NA, nrow = 6, ncol = 2)
+frozen[3, ] <- 0.5
+
+animate_xy(f, tour_path = frozen_tour(2, frozen))
+```
+
+The frozen tour is the most specialised of the tour types and is most useful
+when you have domain knowledge that a particular variable should always be
+visible — for example, when verifying a hypothesis about the role of a specific
+measurement.
+
+---
+
+## Choosing the right tour
+
+| Goal | Recommended tour |
+|---|---|
+| General exploration, no prior knowledge | `grand_tour()` |
+| Find clusters or outliers efficiently | `guided_tour(holes())` |
+| Find class separation with labels | `guided_tour(lda_pp(class))` |
+| Survey all pairwise marginal views | `little_tour()` |
+| Replay or share a specific path | `planned_tour(saved_history)` |
+| Stress-test a pattern found elsewhere | `local_tour(start)` |
+| Assess which variables drive a pattern | `radial_tour(start, mvar)` |
+| Anchor one variable while exploring others | `frozen_tour(d, frozen)` |
+
+A common workflow is to start with the grand tour to get an overview, switch
+to the guided tour to pursue interesting features, use the radial tour to
+understand which variables are responsible for those features, and then use
+the local tour to confirm that the pattern is stable under small perturbations.
+The planned tour is then used to communicate findings by replaying the key
+paths with informative colours or labels.
+
+---
+
+## Saving a tour to a file
+
+All tour types can be rendered to a GIF with `render_gif()`. Replace
+`animate_xy()` with `render_gif()` and supply a `gif_file` path and
+`frames` count.
+
+```{r gif, eval = FALSE}
+render_gif(
+  f,
+  tour_path = guided_tour(holes()),
+  display   = display_xy(col = flea$species),
+  gif_file  = "guided_flea.gif",
+  frames    = 60
+)
+```
+
+## Further reading
+
+Cook and Laa (2024), *Interactively Exploring High-Dimensional Data and Models
+in R*, Chapman & Hall/CRC, provides a comprehensive treatment of tour methods
+and their application to clustering, dimension reduction, and classification.
+The online version is available at <https://dicook.github.io/mulgar_book/>.
