@@ -1,3 +1,7 @@
+# tourr 1.2.9
+
+* fix to check_dup function, for stringing together bases from the jellyfish optimisation
+
 # tourr 1.2.8
 
 * Fix to the history array, as requested by CRAN
