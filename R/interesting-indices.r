@@ -2,9 +2,27 @@
 #'
 #' Compute the scagnostic measures from the cassowaryr package
 #' @export
+#' @rdname scag-index
 stringy <- function(){
   function(mat){
     cassowaryr::sc_stringy(mat[,1], mat[,2])
+  }
+}
+
+stringy2 <- function(){
+  function(mat){
+    x <- cassowaryr::scree(mat[,1], mat[,2])
+    b <- cassowaryr:::gen_mst(x$del, x$weights)
+    diameter <- length(igraph::get_diameter(b))
+    length <-  length(b) - 1
+    diameter / length
+  }
+}
+
+#' @export
+skinny <- function(){
+  function(mat){
+    cassowaryr::sc_skinny(mat[,1], mat[,2])
   }
 }
 

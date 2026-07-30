@@ -117,7 +117,7 @@ check_dup <- function(bases, min_dist) {
   while(j <= length(bases)){
     if (proj_dist(bases[[i]], bases[[j]]) >= min_dist) {
       res <- c(res, list(bases[[j]]))
-      i <- i + 1; j <- j + 1
+      i <- j; j <- j + 1
     } else{
       j <- j + 1
     }
